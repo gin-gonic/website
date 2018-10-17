@@ -1,0 +1,4 @@
+baseURL = "https://gin-gonic.com/"
+languageCode = "en-us"
+title = "Gin Web Framework"
+theme = "airspace"
