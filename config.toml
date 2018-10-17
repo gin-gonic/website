@@ -2,6 +2,3 @@ baseURL = "https://gin-gonic.com/"
 languageCode = "en-us"
 title = "Gin Web Framework"
 theme = "airspace"
-
-[params]
-DateFormat = "Mon Jan 2, 2006"
