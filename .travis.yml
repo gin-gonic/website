@@ -26,5 +26,6 @@ deploy:
   github_token: $GH_TOKEN
   local_dir: public
   target_branch: master
+master
   on:
     branch: master
