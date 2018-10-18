@@ -7,8 +7,8 @@ theme = "airspace"
 
   [[menu.header]]
     weight = 2
-    name = "Document"
-    url = "#"
+    name = "Documentation"
+    url = "/documentation"
   [[menu.header]]
     weight = 3
     name = "Middleware"
