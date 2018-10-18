@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{{ partial "head.html" . }}
+</head>
+<body>
+
+	{{ partial "header.html" . }}
+
+	{{ partial "global-header.html" . }}
+
+	<section class="blog section">
+		<div class="container">
+		  <div class="row">
+			{{ .Content }}
+		  </div>
+		  <div class="row">
+			<div class="list-group">
+			  {{ range .Pages }}
+			  <h4>
+				<a href="{{ .Permalink }}" class="list-group-item list-group-item-action">
+				  {{ .Title }}
+				</a>
+			  </h4>
+			  {{ end }}
+			</div>
+		  </div>
+		  <div class="list-group">
+			{{ range .Sections }}
+			<h3>
+			  <a href="{{ .Permalink }}" class="list-group-item list-group-item-action list-group-item-secondary">{{ .Title }}</a>
+			</h3>
+			{{ end }}
+		  </div>
+	</section>
+
+	{{ partial "footer.html" . }}
+
+</body>
+</html>
