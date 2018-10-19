@@ -1,15 +1,13 @@
 ---
 title: "Custom Error Messages"
 date: 2018-10-18T20:58:56-04:00
-draft: true
+draft: false
 ---
-
-# Custom Error Messages
 
 Keeping the error handling logic in a middleware layer helps keep the business logic of your application cleaner. The example below updates Gin to a newer version of [validator](https://github.com/go-playground/validator). It also provides the option to return the errors in a template which add extra complexity that isn't needed for a JSON only application. For more examples see the following [issue](https://github.com/gin-gonic/gin/issues/430).
 
 ```go
-package main
+package middleware
 
 import (
 	"errors"
