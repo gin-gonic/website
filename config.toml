@@ -1,0 +1,39 @@
+baseURL = "https://gin-gonic.com/"
+languageCode = "en-us"
+title = "Gin Web Framework"
+theme = "airspace"
+pygmentsCodeFences = true
+pygmentsStyle = "monokailight"
+
+[menu]
+
+  [[menu.header]]
+    weight = 2
+    name = "Documentation"
+    url = "/documentation"
+  [[menu.header]]
+    weight = 3
+    name = "Middleware"
+    url = "#"
+  [[menu.header]]
+    weight = 4
+    name = "Github"
+    url = "#"
+
+  [[menu.footer]]
+    weight = 1
+    name = "About"
+    url = "#"
+  [[menu.footer]]
+    weight = 2
+    name = "Gitter"
+    url = "#"
+
+[params]
+
+  home = "Home"
+
+  [params.slider]
+    enable = true
+    title = "Gin is a web framework written in Go"
+    subtitle = "It features a martini-like API with much better performance, up to 40 times faster thanks to httprouter.<br/>If you need performance and good productivity, you will love Gin."
