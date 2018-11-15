@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+	{{ partial "meta.html" . }}
+	<title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+	{{ partial "css.html" . }}
+</head>
+<body>
+
+	{{ partial "navbar.html" . }}
+	{{ partial "navbar-clone.html" . }}
+
+	<section class="blog section">
+		<div class="container">
+		  <div class="row">
+			{{ .Content }}
+		  </div>
+		  <div class="row">
+			<div class="list-group">
+			  {{ range .Pages }}
+			  <h4>
+				<a href="{{ .Permalink }}" class="list-group-item list-group-item-action">
+				  {{ .Title }}
+				</a>
+			  </h4>
+			  {{ end }}
+			</div>
+		  </div>
+		  <div class="list-group">
+			{{ range .Sections }}
+			<h3>
+			  <a href="{{ .Permalink }}" class="list-group-item list-group-item-action list-group-item-secondary">{{ .Title }}</a>
+			</h3>
+			{{ end }}
+		  </div>
+	</section>
+
+	{{ partial "footer.html" . }}
+
+	{{ partial "javascript.html" . }}
+
+</body>
+</html>
+
