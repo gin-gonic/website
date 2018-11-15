@@ -28,11 +28,11 @@ params:
   # Customizable navbar. For a dropdown, add a "sublinks" list.
   navbar:
   - title: Features
-    url: /
-  - title: Docs
-    url: /docs
+    url: /features/
+  - title: Documentation
+    url: /documentation/
   - title: Middeware
-    url: /
+    url: /middleware/
   - title: GitHub
     url: https://github.com/gin-gonic/gin
     button: true
