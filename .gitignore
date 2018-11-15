@@ -12,3 +12,4 @@
 *.out
 
 public
+resources/_gen/
