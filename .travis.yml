@@ -5,19 +5,15 @@ sudo: false
 git:
   depth: false
 
-go:
-  - 1.11.x
-  - master
-
 matrix:
-  allow_failures:
-    - go: master
+  include:
+  - go: 1.11.x
+    env: GO111MODULE=on
 
 install:
-  - go get -u github.com/gohugoio/hugo
+  - go get -u github.com/gohugoio/hugo@0.49.2
 
 script:
-  - rm -rf public
   - hugo
 
 deploy:
