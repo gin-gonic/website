@@ -17,8 +17,8 @@ install:
   - go get -u github.com/gohugoio/hugo
 
 script:
+  - rm -rf public
   - hugo
-  - echo 'gin-gonic.com' > public/CNAME
 
 deploy:
   provider: pages
