@@ -1,0 +1,9 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="{{"js/tabs.js" | relURL}}"></script>
+<script>
+  [].slice.call(document.querySelectorAll('.tab-container'))
+    .forEach(function(el) {
+      initializeTabs(el);
+    });
+</script>
+
