@@ -13,6 +13,7 @@ install:
 
 script:
   - hugo
+  - echo 'gin-gonic.com' > public/CNAME
 
 deploy:
   provider: pages
