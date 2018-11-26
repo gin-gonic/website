@@ -1,91 +1,37 @@
-# website
-Official website for gin.
+# Gin website
 
-# Contribute and test
+Welcome! This repository houses all of the assets required to build the Gin website and documentation. We're very pleased that you want to contribute!
 
-- Fork
+## Contributing
 
-- Get themes
+- Fork the repository
 
-```shell
-git submodule update --init
+You can click the Fork button in the upper-right area of the screen to create a copy of this repository in your GitHub account. This copy is called a fork.
+
+- Create one pull request
+
+Make any changes you want in your fork, and when you are ready to send those changes to us, go to your fork and create a new pull request to let us know about it.
+
+- Merge the pull request
+
+Once your pull request is created, a Gin reviewer will take responsibility for providing clear, actionable feedback, re-improve and merge.
+
+## Running
+
+See the [official Hugo documentation](https://gohugo.io/getting-started/installing/) for Hugo installation instructions.
+
+To run the site locally when you have Hugo installed:
+
+```sh
+$ hugo
+$ hugo server
 ```
 
-- Update and check
+This will start the local Hugo server on port 1313. Open up your browser to http://localhost:1313 to view the site. As you make changes to the source files, Hugo updates the site and forces a browser refresh.
 
-```
-$ hugo server -D
-```
+## Thanks
 
-- Commit pull request
+Gin thrives on community participation, and we really appreciate your contributions to our site and our documentation!
 
-### Adding New Pages
+> The website build based on [opencensus-website](https://github.com/census-instrumentation/opencensus-website), thanks!
 
-See [Hugo's Documentation](https://gohugo.io/getting-started/directory-structure/) for more information. 
-
-```bash
-hugo new documentation/middleware/error-handling.md
-```
-
-### Content Organization
-
-```bash
-    content
-    ├── documentation
-    │   ├── binding
-    │   │   ├── checkboxes.md
-    │   │   ├── custom_struct.md
-    │   │   ├── custom_validators.md
-    │   │   ├── _index.md
-    │   │   ├── multipart.md
-    │   │   ├── multiple_binding.md
-    │   │   ├── query.md
-    │   │   └── query_post.md
-    │   ├── extra
-    │   │   ├── custom_config.md
-    │   │   ├── graceful.md
-    │   │   ├── _index.md
-    │   │   ├── lets_encrypt.md
-    │   │   ├── log_routes.md
-    │   │   ├── multiple_servers.md
-    │   │   ├── server_push.md
-    │   │   └── single_binary.md
-    │   ├── getting-started
-    │   │   ├── _index.md
-    │   │   ├── installation.md
-    │   │   ├── jsoninter.md
-    │   │   ├── quick_start.md
-    │   │   └── vendor.md
-    │   ├── _index.md
-    │   ├── middleware
-    │   │   ├── basic_auth.md
-    │   │   ├── error-handling
-    │   │   ├── error-handling.md
-    │   │   ├── goroutines.md
-    │   │   └── _index.md
-    │   ├── response
-    │   │   ├── different_formats.md
-    │   │   ├── html.md
-    │   │   ├── _index.md
-    │   │   ├── json.md
-    │   │   ├── multitemplate.md
-    │   │   ├── reader.md
-    │   │   └── static.md
-    │   ├── router
-    │   │   ├── grouping_routes.md
-    │   │   ├── _index.md
-    │   │   ├── log_file.md
-    │   │   ├── middleware.md
-    │   │   ├── multipart_form.md
-    │   │   ├── parameters_path.md
-    │   │   ├── query_form.md
-    │   │   ├── query_params.md
-    │   │   ├── query_post_map.md
-    │   │   ├── redirect.md
-    │   │   ├── requests.md
-    │   │   └── uploading_files.md
-    │   └── testing
-    │       └── _index.md
-    └── posts
-        └── hello-gin.md
-```
