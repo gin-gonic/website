@@ -633,15 +633,6 @@ $ curl -v -X POST \
 {"error":"Key: 'Login.Password' Error:Field validation for 'Password' failed on the 'required' tag"}
 ```
 
-**跳过验证**
-
-使用上面 的`curl` 命令运行上面的例子时，它返回错误。 因为这个例子使用 `binding：'需要``````。 如果使用 `binding：“ - ``````，那么在再次运行上面的例子时它不会返回错误。
-
-### 自定义验证器
-
-也可以注册自定义验证器。 请参阅[示例代码](examples/custom-validation/server.go)。
-
-[embedmd]：＃(examples/custom-validation/server.go go)
 **忽略验证**
 
 使用`curl` 命令运行上面的例子时，它返回错误，因为这个例子使用`binding:"required"` 。 如果使用 `binding:"-"` ，那么再次运行上面的例子时它不会返回错误。
