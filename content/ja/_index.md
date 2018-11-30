@@ -1,126 +1,128 @@
 ---
-title: "中文文档"
+title: "日本語ドキュメント"
 draft: false
 ---
 
 <img align="right" width="159px" src="https://raw.githubusercontent.com/gin-gonic/logo/master/color.png">
- 
-Gin 是一个 Go (Golang) 语言框架。 它是一个拥有更好性能的 martini-like API 框架, 比 [httprouter](https://github.com/julienschmidt/httprouter) 的速度快了40倍. 如果你是性能和高效的追求者, 那么你会爱上 Gin.
+
+
+Gin は Golang で書かれた Web アプリケーションフレームワークです。[martini](https://github.com/go-martini/martini) に似たAPIを持ちながら、[httprouter](https://github.com/julienschmidt/httprouter) のおかげでそれより40倍以上も速いパフォーマンスがあります。良いパフォーマンスと生産性が必要であれば、Gin が好きになれるでしょう。
 
 ![Gin console logger](https://gin-gonic.github.io/gin/other/console.png)
 
 ## Contents
 
-- [安装](#安装)
-- [前提条件](#前提条件)
-- [快速开始](#快速开始)
-- [性能测试](#性能测试)
-- [Gin v1 稳定版](#gin-v1-稳定版)
-- [使用 jsoniter ](#使用-jsoniter)
-- [API 示例](#api-示例)
-    - [GET,POST,PUT,PATCH,DELETE,OPTIONS 使用](#get-post-put-patch-delete-options-使用)
-    - [获取路由参数](#获取路由参数)
-    - [获取url查询参数](#获取url查询参数)
-    - [Multipart Urlencoded 表单](#multipart-urlencoded-表单)
-    - [获取post表单数据（url带查询参数）](#获取post表单数据url带查询参数)
-    - [映射参数 表单参数](#映射参数-表单参数)
-    - [上传文件](#上传文件)
-    - [路由组](#路由组)
-    - [默认初始化 Gin](#默认初始化-gin)
-    - [使用中间件](#使用中间件)
-    - [如何记录日志](#如何记录日志)
-    - [模型绑定和验证](#模型绑定和验证)
-    - [自定义验证器](#自定义验证器)
-    - [只绑定url查询参数](#只绑定url查询参数)
-    - [url查询参数或表单数据绑定到结构体](#url查询参数或表单数据绑定到结构体)
-    - [url路径参数绑定](#url路径参数绑定)
-    - [绑定 HTML 复选框](#绑定-html-复选框)
-    - [Multipart Urlencoded 绑定](#multipart-urlencoded-绑定)
-    - [XML JSON YAML ProtoBuf 渲染](#xml-json-yaml-protobuf-渲染)
-    - [SecureJSON](#SecureJSON)
-    - [静态文件服务](#静态文件服务)
-    - [从reader 读取数据](#从-reader-读取数据)
-    - [HTML 渲染](#html-渲染)
-    - [多模板](#多模板)
-    - [重定向](#重定向)
-    - [自定义中间件](#自定义中间件)
-    - [使用 BasicAuth() 中间件](#使用-basicauth()-中间件)
-    - [在中间件中使用Goroutines](#在中间件中使用Goroutines)
-    - [自定义 HTTP 配置](#自定义-http-配置)
-    - [Let's Encrypt 支持](#lets-encrypt-支持)
-    - [使用 Gin 运行多个服务](使用-gin-运行多个服务)
-    - [优雅重启或停止](#优雅重启或停止)
-    - [静态资源嵌入](#静态资源嵌入)
-    - [表单数据绑定到自定义结构体](#表单数据绑定到自定义结构体)
-    - [将request body绑定到不同的结构体中](#将request-body绑定到不同的结构体中)
-    - [http2 server 推送](#http2-server-推送)
-    - [定义路由日志的格式](#定义路由日志的格式)
-    - [如何使用Cookie](#如何使用Cookie)
-- [测试](#测试)
-- [用户](#用户)
+- [インストール](#インストール)
+- [要件](#要件)
+- [クイックスタート](#クイックスタート)
+- [ベンチマーク](#ベンチマーク)
+- [Gin v1 の安定性](#Gin-v1-の安定性)
+- [jsoniter でビルドする](#jsoniter-でビルドする)
+- [API の例](#API-の例)
+    - [GET,POST,PUT,PATCH,DELETE,OPTIONS メソッドを使う](#GETPOSTPUTPATCHDELETEOPTIONS-メソッドを使う)
+    - [パスに含まれるパラメータ](#パスに含まれるパラメータ)
+    - [クエリ文字列のパラメータ](#クエリ文字列のパラメータ)
+    - [Multipart/Urlencoded フォーム](#MultipartUrlencoded-フォーム)
+    - [別の例 フォーム投稿によるクエリ文字列](#別の例-フォーム投稿によるクエリ文字列)
+    - [クエリ文字列やフォーム投稿によるパラメータをマッピングする](#クエリ文字列やフォーム投稿によるパラメータをマッピングする)
+    - [ファイルのアップロード](#ファイルのアップロード)
+    - [ルーティングをグループ化する](#ルーティングをグループ化する)
+    - [デフォルトで設定されるミドルウェアがない空の Gin を作成する](#デフォルトで設定されるミドルウェアがない空の-Gin-を作成する)
+    - [ミドルウェアを利用する](#ミドルウェアを利用する)
+    - [ログファイルを書き込むには](#ログファイルを書き込むには)
+    - [モデルへのバインディングとバリデーションする](#モデルへのバインディングとバリデーションする)
+    - [カスタムバリデーション](#カスタムバリデーション)
+    - [クエリ文字列のみバインドする](#クエリ文字列のみバインドする)
+    - [クエリ文字列あるいはポストされたデータをバインドする](#クエリ文字列あるいはポストされたデータをバインドする)
+	- [URLをバインドする](#URLをバインドする)
+    - [HTMLチェックボックスをバインドする](#HTMLチェックボックスをバインドする)
+    - [Multipart/Urlencoded されたデータをバインドする](#MultipartUrlencoded-されたデータをバインドする)
+    - [XML, JSON, YAML, ProtoBuf をレンダリングする](#XML-JSON-YAML-ProtoBuf-をレンダリングする)
+    - [JSONP をレンダリングする](#JSONP-をレンダリングする)
+    - [静的ファイルを返す](#静的ファイルを返す)
+    - [io.Reader からのデータを返す](#ioReader-からのデータを返す)
+    - [HTML をレンダリングする](#HTML-をレンダリングする)
+    - [複数のテンプレート](#複数のテンプレート)
+    - [リダイレクト](#リダイレクト)
+    - [カスタムミドルウェア](#カスタムミドルウェア)
+    - [BasicAuth ミドルウェアを使う](#BasicAuth-ミドルウェアを使う)
+    - [ミドルウェア内の Goroutine](#ミドルウェア内の-Goroutine)
+    - [カスタム HTTP 設定](#カスタム-HTTP-設定)
+    - [Let's Encrypt のサポート](#Lets-Encrypt-のサポート)
+    - [Gin を使って複数のサービスを稼働させる](#Gin-を使って複数のサービスを稼働させる)
+    - [graceful restart と stop](#graceful-restart-と-stop)
+    - [テンプレートを含めた1つのバイナリをビルドする](#テンプレートを含めた1つのバイナリをビルドする)
+    - [フォーム投稿されたリクエストを構造体にバインドする](#フォーム投稿されたリクエストを構造体にバインドする)
+    - [body を異なる構造体にバインドするには](#body-を異なる構造体にバインドするには)
+    - [HTTP/2 サーバープッシュ](#HTTP2-サーバープッシュ)
+    - [ルーティングログのフォーマットを定義する](#ルーティングログのフォーマットを定義する)
+    - [cookieの設定と取得](#cookieの設定と取得)
+- [テスト](#テスト)
+- [Gin を利用したプロジェクト](#Gin-を利用したプロジェクト)
 
-## 安装
+## インストール
 
-要安装 Gin 软件包，需要先安装 Go 并设置 Go 工作区。
+Gin をインストールするには、まず Go のインストールおよび Go のワークスペースを作ることが必要です。
 
-1. 下载并安装 gin:
+1. ダウンロードしてインストールする
 
 ```sh
 $ go get -u github.com/gin-gonic/gin
 ```
 
-2. 将 gin 引入到代码中:
+2. コード内でインポートする
 
 ```go
 import "github.com/gin-gonic/gin"
 ```
 
-3. （可选）如果使用诸如`http.StatusOK`之类的常量，则需要引入 `net/http` 包。
+3. (オプション) `net/http` をインポートする。`http.StatusOK` のような定数を使用する場合に必要です
 
 ```go
 import "net/http"
 ```
 
-### 使用 [Govendor](https://github.com/kardianos/govendor) 工具创建项目
+### [Govendor](https://github.com/kardianos/govendor) のような vendor tool を使う
 
 1. `go get` govendor
 
 ```sh
 $ go get github.com/kardianos/govendor
 ```
-2.创建项目并且 `cd` 到项目目录中
+2. プロジェクトディレクトリを作り、`cd` で中に移動する
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 ```
 
-3. 使用 govendor 初始化项目,并且引入gin
+3. vendor tool でプロジェクトを初期化し、Gin を追加する
 
 ```sh
 $ govendor init
 $ govendor fetch github.com/gin-gonic/gin@v1.3
 ```
 
-4. 复制启动文件模板到项目目录中
+4. 開始用テンプレートをプロジェクトディレクトリにコピーする
 
 ```sh
 $ curl https://raw.githubusercontent.com/gin-gonic/gin/master/examples/basic/main.go > main.go
 ```
 
-5.启动项目
+5. プロジェクトを実行する
 
 ```sh
 $ go run main.go
 ```
 
-## 前提条件
+## 要件
 
-新版本的 Gin 需要 Go 1.6 或者更高版本，并且很快就会要求升级到 Go 1.7.
+Gin を利用するには Go 1.6 以上が必要です。
+なお、このバージョンはまもなく Go 1.7 に引き上げられる予定です。
 
-## 快速开始
+## クイックスタート
  
 ```sh
-# assume the following codes in example.go file
+# 以下のコードを example.go ファイルにおく
 $ cat example.go
 ```
 
@@ -136,20 +138,20 @@ func main() {
 			"message": "pong",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.Run() // 0.0.0.0:8080 でサーバーを立てます。
 }
 ```
 
 ```
-# run example.go and visit 0.0.0.0:8080/ping on browser
+# example.go を実行し、ブラウザで 0.0.0.0:8080/ping にアクセスする
 $ go run example.go
 ```
 
-## 性能测试
+## ベンチマーク
 
-Gin 使用自定义版本的 [HttpRouter](https://github.com/julienschmidt/httprouter)
+Gin は [HttpRouter](https://github.com/julienschmidt/httprouter) をカスタムしたバージョンを利用しています。
 
-[所有性能测试](/BENCHMARKS.md)
+[すべてのベンチマークを見る](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
 
 Benchmark name                              | (1)        | (2)         | (3) 		    | (4)
 --------------------------------------------|-----------:|------------:|-----------:|---------:
@@ -181,38 +183,38 @@ BenchmarkTigerTonic_GithubAll               |    1000    |  1439483    |  239104
 BenchmarkTraffic_GithubAll                  |     100    | 11383067    | 2659329    | 21848
 BenchmarkVulcan_GithubAll                   |    5000    |   394253    |   19894    |   609
 
-- (1): 在不断的时间内实现总重复，更高意味着更自信的结果
-- (2): 单次重复持续时间（ns / op），越低越好
-- (3): 堆内存（B / op），越低越好
-- (4): 每次重复的平均分配（allocs / op）越低越好
+- (1): 一定時間内を満たした総試行回数。高いとよりよい結果を示している。
+- (2): 1試行にかかった時間(ns/op)。低いと良い。
+- (3): ヒープメモリ。低いと良い。
+- (4): 1試行回数当たりの平均ヒープアロケーション。低いと良い。
 
-## Gin v1 稳定版
+## Gin v1 の安定性
 
-- [x] 零分配路由。
-- [x] 仍然是最快的http路由器和框架。
-- [x] 完整的单元测试支持
-- [x] 对战测试
-- [x] API冻结，使用新版本不需要修改原有代码。
+- [x] ヒープメモリの拡張が0のルーター
+- [x] 最速の http ルーターとフレームワーク
+- [x] 一揃いのユニットテストをすべて満たしている
+- [x] バトルがテストされている
+- [x] APIは固まっており、新しいバージョンが既存のコードを壊すことはない
 
-## 使用 [jsoniter](https://github.com/json-iterator/go) 
+## [jsoniter](https://github.com/json-iterator/go) でビルドする
 
-Gin默认使用`encoding/json`解析json数据，但您可以通过`go build -tags=`更改为使用[jsoniter](https://github.com/json-iterator/go)。
+Gin はデフォルトの json パッケージとして `encoding/json` を使っているが、他のタグからビルドすることで、[jsoniter](https://github.com/json-iterator/go) を使うこともできる。
 
 ```sh
 $ go build -tags=jsoniter .
 ```
 
-## API 示例
+## API の例
 
-### 使用GET, POST, PUT, PATCH, DELETE , OPTIONS 
+### GET,POST,PUT,PATCH,DELETE,OPTIONS メソッドを使う
 
 ```go
 func main() {
-	// Disable Console Color
+	// コンソールに出力されるテキスト色を無効にする
 	// gin.DisableConsoleColor()
 
-	// Creates a gin router with default middleware:
-	// logger and recovery (crash-free) middleware
+	// デフォルトのミドルウェアで新しい gin ルーターを作成する
+	// logger とアプリケーションクラッシュをキャッチする recovery ミドルウェア
 	router := gin.Default()
 
 	router.GET("/someGet", getting)
@@ -223,27 +225,27 @@ func main() {
 	router.HEAD("/someHead", head)
 	router.OPTIONS("/someOptions", options)
 
-	// By default it serves on :8080 unless a
-	// PORT environment variable was defined.
+	// デフォルトではポート 8080 が利用されるが、
+	// 環境変数 PORT を指定していればそちらが優先される。
 	router.Run()
-	// router.Run(":3000") for a hard coded port
+	// router.Run(":3000") と書くことでポートをハードコーディングできる
 }
 ```
 
-### 获取路由参数
+### パスに含まれるパラメータ
 
 ```go
 func main() {
 	router := gin.Default()
 
-	// This handler will match /user/john but will not match /user/ or /user
+	// このハンドラは /user/john にはマッチするが、/user/ や /user にはマッチしない
 	router.GET("/user/:name", func(c *gin.Context) {
 		name := c.Param("name")
 		c.String(http.StatusOK, "Hello %s", name)
 	})
 
-	// However, this one will match /user/john/ and also /user/john/send
-	// If no other routers match /user/john, it will redirect to /user/john/
+	// しかし、下記は /user/john/ と /user/john/send にマッチする
+	// もしほかのルーターが /user/john にマッチしなければ、/user/john/ にリダイレクトしてくれる
 	router.GET("/user/:name/*action", func(c *gin.Context) {
 		name := c.Param("name")
 		action := c.Param("action")
@@ -255,17 +257,17 @@ func main() {
 }
 ```
 
-### 获取url查询参数
+### クエリ文字列のパラメータ
 
 ```go
 func main() {
 	router := gin.Default()
 
-	// Query string parameters are parsed using the existing underlying request object.
-	// The request responds to a url matching:  /welcome?firstname=Jane&lastname=Doe
+	// クエリ文字列のパラメータは、既存の Request オブジェクトによって解析される。
+	// このルーターは、/welcome?firstname=Jane&lastname=Doe にマッチしたURLにアクセスすると、レスポンスを返す
 	router.GET("/welcome", func(c *gin.Context) {
 		firstname := c.DefaultQuery("firstname", "Guest")
-		lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
+		lastname := c.Query("lastname") // c.Request.URL.Query().Get("lastname") へのショートカット
 
 		c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
 	})
@@ -273,7 +275,7 @@ func main() {
 }
 ```
 
-### Multipart Urlencoded 表单
+### Multipart/Urlencoded フォーム
 
 ```go
 func main() {
@@ -293,7 +295,7 @@ func main() {
 }
 ```
 
-### 获取post表单数据(url带查询参数)
+### 別の例 フォーム投稿によるクエリ文字列
 
 ```
 POST /post?id=1234&page=1 HTTP/1.1
@@ -323,7 +325,7 @@ func main() {
 id: 1234; page: 1; name: manu; message: this_is_great
 ```
 
-### 映射参数 表单参数
+### クエリ文字列やフォーム投稿によるパラメータをマッピングする
 
 ```
 POST /post?ids[a]=1234&ids[b]=hello HTTP/1.1
@@ -351,23 +353,23 @@ func main() {
 ids: map[b:hello a:1234], names: map[second:tianou first:thinkerou]
 ```
 
-### 上传文件
+### ファイルのアップロード
 
-#### 单个文件上传
+#### 単一のファイル
 
-参考问题[＃774](https://github.com/gin-gonic/gin/issues/774)和详细[示例代码](examples/upload-file/single)。
+issue [#774](https://github.com/gin-gonic/gin/issues/774) と、詳細は [サンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/upload-file/single) 参照。
 
 ```go
 func main() {
 	router := gin.Default()
-	// Set a lower memory limit for multipart forms (default is 32 MiB)
+	// マルチパートフォームが利用できるメモリの制限を設定する(デフォルトは 32 MiB)
 	// router.MaxMultipartMemory = 8 << 20  // 8 MiB
 	router.POST("/upload", func(c *gin.Context) {
-		// single file
+		// 単一のファイル
 		file, _ := c.FormFile("file")
 		log.Println(file.Filename)
 
-		// Upload the file to specific dst.
+		// 特定のディレクトリにファイルをアップロードする
 		// c.SaveUploadedFile(file, dst)
 
 		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
@@ -376,7 +378,7 @@ func main() {
 }
 ```
 
-`curl`示例:
+`curl` での使い方:
 
 ```bash
 curl -X POST http://localhost:8080/upload \
@@ -384,24 +386,24 @@ curl -X POST http://localhost:8080/upload \
   -H "Content-Type: multipart/form-data"
 ```
 
-#### 多文件上传
+#### 複数のファイル
 
-查看详细信息[示例代码](examples/upload-file/multiple)。
+詳細は [サンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/upload-file/multiple) 参照のこと.
 
 ```go
 func main() {
 	router := gin.Default()
-	// Set a lower memory limit for multipart forms (default is 32 MiB)
+	// マルチパートフォームが利用できるメモリの制限を設定する(デフォルトは 32 MiB)
 	// router.MaxMultipartMemory = 8 << 20  // 8 MiB
 	router.POST("/upload", func(c *gin.Context) {
-		// Multipart form
+		// マルチパートフォーム
 		form, _ := c.MultipartForm()
 		files := form.File["upload[]"]
 
 		for _, file := range files {
 			log.Println(file.Filename)
 
-			// Upload the file to specific dst.
+			// 特定のディレクトリにファイルをアップロードする
 			// c.SaveUploadedFile(file, dst)
 		}
 		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
@@ -410,7 +412,7 @@ func main() {
 }
 ```
 
-`curl`示例:
+`curl` での使い方:
 
 ```bash
 curl -X POST http://localhost:8080/upload \
@@ -419,13 +421,13 @@ curl -X POST http://localhost:8080/upload \
   -H "Content-Type: multipart/form-data"
 ```
 
-### 路由组
+### ルーティングをグループ化する
 
 ```go
 func main() {
 	router := gin.Default()
 
-	// Simple group: v1
+	// v1 のグループ
 	v1 := router.Group("/v1")
 	{
 		v1.POST("/login", loginEndpoint)
@@ -433,7 +435,7 @@ func main() {
 		v1.POST("/read", readEndpoint)
 	}
 
-	// Simple group: v2
+	// v2 のグループ
 	v2 := router.Group("/v2")
 	{
 		v2.POST("/login", loginEndpoint)
@@ -445,72 +447,69 @@ func main() {
 }
 ```
 
-### 默认初始化 Gin
-
-用
+### デフォルトで設定されるミドルウェアがない空の Gin を作成する
 
 ```go
 r := gin.New()
 ```
 
-代替
+下記のコードではなく、上記のコードを利用する
 
 ```go
-// Default With the Logger and Recovery middleware already attached
+// Default は Logger と Recovery ミドルウェアが既にアタッチされている
 r := gin.Default()
 ```
 
 
-### 使用中间件
+### ミドルウェアを利用する
 ```go
 func main() {
-	// Creates a router without any middleware by default
+	// デフォルトのミドルウェアが何もない router を作成する
 	r := gin.New()
 
-	// Global middleware
-	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
-	// By default gin.DefaultWriter = os.Stdout
+	// グローバルなミドルウェア
+	// Logger ミドルウェアは GIN_MODE=release を設定してても、 gin.DefaultWriter にログを出力する
+	// gin.DefaultWriter はデフォルトでは os.Stdout。
 	r.Use(gin.Logger())
 
-	// Recovery middleware recovers from any panics and writes a 500 if there was one.
+	// Recovery ミドルウェアは panic が発生しても 500 エラーを返してくれる
 	r.Use(gin.Recovery())
 
-	// Per route middleware, you can add as many as you desire.
+	// 個別のルーティングに、ミドルウェアを好きに追加することもできる
 	r.GET("/benchmark", MyBenchLogger(), benchEndpoint)
 
-	// Authorization group
+	// 認証が必要なグループ
 	// authorized := r.Group("/", AuthRequired())
-	// exactly the same as:
+	// 下記と同一
 	authorized := r.Group("/")
-	// per group middleware! in this case we use the custom created
-	// AuthRequired() middleware just in the "authorized" group.
+	// 個別のグループのミドルウェア。この例では、AuthRequired() ミドルウェアを認証が必要なグループに設定している。
 	authorized.Use(AuthRequired())
 	{
 		authorized.POST("/login", loginEndpoint)
 		authorized.POST("/submit", submitEndpoint)
 		authorized.POST("/read", readEndpoint)
 
-		// nested group
+		// ネストしたグループ
 		testing := authorized.Group("testing")
 		testing.GET("/analytics", analyticsEndpoint)
 	}
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てる
 	r.Run(":8080")
 }
 ```
 
-### 如何记录日志
+### ログファイルを書き込むには
 ```go
 func main() {
-    // Disable Console Color, you don't need console color when writing the logs to file.
+	// コンソール出力時の色を無効にする。ログファイルに書き込むならば、色は不要なので。
     gin.DisableConsoleColor()
 
-    // Logging to a file.
+	// ファイルへログを書き込む
     f, _ := os.Create("gin.log")
     gin.DefaultWriter = io.MultiWriter(f)
 
-    // Use the following code if you need to write the logs to file and console at the same time.
+	// ログに書き込みつつ、コンソールにも出力する場合、下記のコードを利用する。
     // gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
     router := gin.Default()
@@ -518,32 +517,32 @@ func main() {
         c.String(200, "pong")
     })
 
-    router.Run(":8080")
+    router.Run(":8080")
 }
 ```
 
-### 模型绑定和验证
+### モデルへのバインディングとバリデーションする
 
-要将请求主体绑定到结构体中，请使用模型绑定。Gin目前支持JSON、XML、YAML和标准表单值的绑定（foo=bar＆boo=baz）。
+リクエストボディをある型にバインドするには、モデルへのバインディングを利用してください。Gin は今のところ JSON, XML, YAML と標準的なフォームの値(foo=bar&boo=baz)をサポートしています。
 
-Gin使用[go-playground/validator.v8](https://github.com/go-playground/validator)进行验证。[完整文档](http://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Baked_In_Validators_and_Tags)。
+Gin は [**go-playground/validator.v8**](https://github.com/go-playground/validator) をバリデーションに使用しています。 タグの使い方のすべてのドキュメントを読むには [ここ](http://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Baked_In_Validators_and_Tags) を参照してください。
 
-使用时，需要在要绑定的所有字段上，设置相应的tag。例如，使用JSON绑定时，字段tag设置为`json:"fieldname"`。
+バインドしたいすべてのフィールドに対応するタグを設定する必要があることに注意してください。たとえば、JSONからバインドする場合は、`json:"fieldname"` を設定します。
 
-Gin提供了两类绑定方法：
-- **MustBind** - 
-   - **方法** - `Bind`, `BindJSON`, `BindXML`, `BindQuery`, `BindYAML`
-   - **说明** - 这些方法属于`MustBindWith`的具体调用。如果发生绑定错误，则请求终止，并触发`c.AbortWithError(400,err).SetType(ErrorTypeBind)`。响应状态码被设置为400，`Content-Type`被设置为`text/plain;charset= UTF-8`。如果您在此之后尝试设置响应状态码，Gin会输出日志“ `[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422`。如果您希望更好地把控绑定，请考虑使用`ShouldBind`等效方法。
-- **ShouldBind** - 
-   - **方法** - `ShouldBind`，`ShouldBindJSON`，`ShouldBindXML`，`ShouldBindQuery`
-   - **说明** - 这些方法属于`ShouldBindWith`的具体调用。如果发生绑定错误，Gin会返回错误。由您处理错误以及请求。
+また、Gin は2種類のバインドのためのメソッドを用意しています。
+- **種類** - Must bind
+  - **メソッド** - `Bind`, `BindJSON`, `BindXML`, `BindQuery`, `BindYAML`
+  - **挙動** - これらのメソッドは、内部では `MustBindWith` メソッドを使っています。もしバインド時にエラーがあった場合、ユーザーからのリクエストは `c.AbortWithError(400, err).SetType(ErrorTypeBind)` で中止されます。この処理は、ステータスコード 400 を設定し、`Content-Type` ヘッダーに `text/plain; charset=utf-8` をセットします。もしこのあとにステータスコードを設定しようとした場合、`[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422` という注意メッセージが表示されるので注意してください。もしこの挙動をよりコントロールする必要がある場合、`ShouldBind` という同様のメソッドを利用することを検討してください。
+- **種類** - Should bind
+  - **メソッド** - `ShouldBind`, `ShouldBindJSON`, `ShouldBindXML`, `ShouldBindQuery`, `ShouldBindYAML`
+  - **挙動** - これらのメソッドは、内部では `ShouldBindWith` メソッドを使っています。もしバインド時にエラーがあった場合、エラーが返ってくるので、開発者の責任で、適切にエラーやリクエストをハンドリングします。
 
-使用Bind方法时，Gin会根据Content-Type尝试推断如何绑定，如果您明确知道，您可以使用 `MustBindWith` 或 `ShouldBindWith`。
+`Bind` メソッドを使用するとき、Gin は Content-Type ヘッダーに応じて何のバインダーでバインドするか推測しようとします。もし何のバインダーでバインドするかわかるならば、`MustBindWith` や `ShouldBindWith` が使えます。
 
-指定必须绑定的字段，在该字段Tag上加上`binding:"required"` ，如果绑定时是空值，Gin会报错。
+また、どのフィールドが必須か指定することができます。もしフィールドが、`binding:"required"` 指定されていて、バインディングの際に値が空であれば、エラーが返ります。
 
 ```go
-// Binding from JSON
+// JSON からバインドする
 type Login struct {
 	User     string `form:"user" json:"user" xml:"user"  binding:"required"`
 	Password string `form:"password" json:"password" xml:"password" binding:"required"`
@@ -552,7 +551,7 @@ type Login struct {
 func main() {
 	router := gin.Default()
 
-	// Example for binding JSON ({"user": "manu", "password": "123"})
+	// JSON でバインドする例 ({"user": "manu", "password": "123"})
 	router.POST("/loginJSON", func(c *gin.Context) {
 		var json Login
 		if err := c.ShouldBindJSON(&json); err != nil {
@@ -568,7 +567,7 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 	})
 
-	// Example for binding XML (
+	// XML でバインドする例 (
 	//	<?xml version="1.0" encoding="UTF-8"?>
 	//	<root>
 	//		<user>user</user>
@@ -589,10 +588,10 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 	})
 
-	// Example for binding a HTML form (user=manu&password=123)
+	// HTML Form からバインドする例 (user=manu&password=123)
 	router.POST("/loginForm", func(c *gin.Context) {
 		var form Login
-		// This will infer what binder to use depending on the content-type header.
+		// このコードは、content-type ヘッダーから類推して HTML Form でバインドする
 		if err := c.ShouldBind(&form); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
@@ -606,12 +605,13 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てる
 	router.Run(":8080")
 }
 ```
 
-**测试**
+**リクエスト例**
+
 ```shell
 $ curl -v -X POST \
   http://localhost:8080/loginJSON \
@@ -633,23 +633,15 @@ $ curl -v -X POST \
 {"error":"Key: 'Login.Password' Error:Field validation for 'Password' failed on the 'required' tag"}
 ```
 
-**跳过验证**
+**バリデーションをスキップする**
 
-使用上面 的`curl` 命令运行上面的例子时，它返回错误。 因为这个例子使用 `binding：'需要``````。 如果使用 `binding：“ - ``````，那么在再次运行上面的例子时它不会返回错误。
+上記の `curl` コマンドのサンプルを実行すると、エラーが返ります。これはサンプルコードで `binding:"required"` が `Password` フィールドに指定されているからです。`binding:"-"` を `Password` フィールドに指定することで、上記のサンプルを実行してもエラーは返らなくなります。
 
-### 自定义验证器
+### カスタムバリデーション
 
-也可以注册自定义验证器。 请参阅[示例代码](examples/custom-validation/server.go)。
+カスタムしたバリデーションを使用することもできます。[サンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/custom-validation/server.go) も見てみてください。
 
-[embedmd]：＃(examples/custom-validation/server.go go)
-**忽略验证**
-
-使用`curl` 命令运行上面的例子时，它返回错误，因为这个例子使用`binding:"required"` 。 如果使用 `binding:"-"` ，那么再次运行上面的例子时它不会返回错误。
-
-### 自定义验证器
-
-注册自定义验证器， 请参阅[示例代码](examples/custom-validation/server.go)。
-
+[embedmd]:# (examples/custom-validation/server.go go)
 ```go
 package main
 
@@ -663,7 +655,7 @@ import (
 	"gopkg.in/go-playground/validator.v8"
 )
 
-// Booking contains binded and validated data.
+// Booking はバリデーションされてバインドされたデータを持ちます
 type Booking struct {
 	CheckIn  time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
 	CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn" time_format:"2006-01-02"`
@@ -711,12 +703,12 @@ $ curl "localhost:8085/bookable?check_in=2018-03-08&check_out=2018-03-09"
 {"error":"Key: 'Booking.CheckIn' Error:Field validation for 'CheckIn' failed on the 'bookabledate' tag"}
 ```
 
-结构体验证也可以参考[这种方法](https://github.com/go-playground/validator/releases/tag/v8.7)注册。
-请参阅[struct-lvl-validation示例](examples/struct-lvl-validations)以了解更多信息。
+[Struct level validations](https://github.com/go-playground/validator/releases/tag/v8.7) もこの方法で登録できます。
+[struct-lvl-validation のサンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/struct-lvl-validations) を見ることでより学べます。
 
-### 只绑定url查询参数
+### クエリ文字列のみバインドする
 
-`ShouldBindQuery` 函数只绑定url查询参数而不是post字段。 请参阅[详细信息](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017)。
+`ShouldBindQuery` 関数はクエリ文字列のみをバインドし、POSTデータをバインドしません。[詳細](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017) はこちら。
 
 ```go
 package main
@@ -750,9 +742,9 @@ func startPage(c *gin.Context) {
 
 ```
 
-### url查询参数或表单数据绑定到结构体
+### クエリ文字列あるいはポストされたデータをバインドする
 
-请参阅[详细信息](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292)。
+[詳細](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292) はこちら。
 
 ```go
 package main
@@ -778,9 +770,9 @@ func main() {
 
 func startPage(c *gin.Context) {
 	var person Person
-	// If `GET`, only `Form` binding engine (`query`) used.
-	// If `POST`, first checks the `content-type` for `JSON` or `XML`, then uses `Form` (`form-data`).
-	// See more at https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
+	// `GET` の場合、`Form` (クエリ文字列) がバインディングのみが使われます
+	// `POST` の場合、まず `JSON` か `XML` か判断するために `content-type` がチェックされ、そして `Form` (フォームデータ) が使われます。
+	// 詳細は https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48 を参照
 	if c.ShouldBind(&person) == nil {
 		log.Println(person.Name)
 		log.Println(person.Address)
@@ -791,14 +783,14 @@ func startPage(c *gin.Context) {
 }
 ```
 
-测试:
+以下のコードでテストできます。
 ```sh
 $ curl -X GET "localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
 ```
 
-### url路径参数绑定
+### URLをバインドする
 
-查看[详细信息](https://github.com/gin-gonic/gin/issues/846).
+[詳細](https://github.com/gin-gonic/gin/issues/846) はこちら。
 
 ```go
 package main
@@ -824,15 +816,15 @@ func main() {
 }
 ```
 
-测试:
+以下のコードでテストできます。
 ```sh
 $ curl -v localhost:8088/thinkerou/987fbc97-4bed-5078-9f07-9141ba07c9f3
 $ curl -v localhost:8088/thinkerou/not-uuid
 ```
 
-### 绑定 HTML 复选框
+### HTMLチェックボックスをバインドする
 
-参见[详细信息](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)
+[詳細な情報](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092) はこちら。
 
 main.go
 
@@ -861,22 +853,22 @@ form.html
 <form action="/" method="POST">
     <p>Check some colors</p>
     <label for="red">Red</label>
-    <input type="checkbox" name="colors[]" value="red" id="red" />
+    <input type="checkbox" name="colors[]" value="red" id="red">
     <label for="green">Green</label>
-    <input type="checkbox" name="colors[]" value="green" id="green" />
+    <input type="checkbox" name="colors[]" value="green" id="green">
     <label for="blue">Blue</label>
-    <input type="checkbox" name="colors[]" value="blue" id="blue" />
-    <input type="submit" />
+    <input type="checkbox" name="colors[]" value="blue" id="blue">
+    <input type="submit">
 </form>
 ```
 
-result:
+結果
 
 ```
 {"color":["red","green","blue"]}
 ```
 
-### Multipart Urlencoded 绑定
+### Multipart/Urlencoded されたデータをバインドする
 
 ```go
 package main
@@ -893,11 +885,11 @@ type LoginForm struct {
 func main() {
 	router := gin.Default()
 	router.POST("/login", func(c *gin.Context) {
-		// you can bind multipart form with explicit binding declaration:
+		// 明示的にバインディングを定義して、multipart form をバインドすることができます。
 		// c.ShouldBindWith(&form, binding.Form)
-		// or you can simply use autobinding with ShouldBind method:
+		// あるいは、ShouldBind メソッドを使うことで、シンプルに自動でバインドすることもできます。
 		var form LoginForm
-		// in this case proper binding will be automatically selected
+		// このケースでは正しいバインディングが自動で選択されます。
 		if c.ShouldBind(&form) == nil {
 			if form.User == "user" && form.Password == "password" {
 				c.JSON(200, gin.H{"status": "you are logged in"})
@@ -910,24 +902,24 @@ func main() {
 }
 ```
 
-测试:
+以下のコードでテストできます。
 ```sh
 $ curl -v --form user=user --form password=password http://localhost:8080/login
 ```
 
-### XML JSON YAML ProtoBuf 渲染
+### XML, JSON, YAML, ProtoBuf をレンダリングする
 
 ```go
 func main() {
 	r := gin.Default()
 
-	// gin.H is a shortcut for map[string]interface{}
+	// gin.H は map[string]interface{} へのショートカットです。
 	r.GET("/someJSON", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
 	r.GET("/moreJSON", func(c *gin.Context) {
-		// You also can use a struct
+		// 構造体を使うこともできます。
 		var msg struct {
 			Name    string `json:"user"`
 			Message string
@@ -936,8 +928,8 @@ func main() {
 		msg.Name = "Lena"
 		msg.Message = "hey"
 		msg.Number = 123
-		// Note that msg.Name becomes "user" in the JSON
-		// Will output  :   {"user": "Lena", "Message": "hey", "Number": 123}
+		// msg.Name は JSON 内で "user" となることに注意してください
+		// 右記が出力されます  :   {"user": "Lena", "Message": "hey", "Number": 123}
 		c.JSON(http.StatusOK, msg)
 	})
 
@@ -952,46 +944,47 @@ func main() {
 	r.GET("/someProtoBuf", func(c *gin.Context) {
 		reps := []int64{int64(1), int64(2)}
 		label := "test"
-		// The specific definition of protobuf is written in the testdata/protoexample file.
+		// protobuf の定義は testdata/protoexample にかかれています。
 		data := &protoexample.Test{
 			Label: &label,
 			Reps:  reps,
 		}
-		// Note that data becomes binary data in the response
-		// Will output protoexample.Test protobuf serialized data
+		// データはレスポンス時にバイナリデータになることに注意してください。
+		// protoexample.Test の protobuf でシリアライズされたデータが出力されます。
 		c.ProtoBuf(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
 
 #### SecureJSON
 
-使用 SecureJSON 来防止 json 劫持。 如果给定的结构是数组值，则默认预 置`“while(1)，”` 到响应体。
+SecureJSON メソッドを使うことで、JSON ハイジャックを防げます。与えられた構造体が Array であれば、
+デフォルトで `"while(1),"` がレスポンスに含まれます。
 
 ```go
 func main() {
 	r := gin.Default()
 
-	// You can also use your own secure json prefix
+	// 別の prefix を使うこともできます
 	// r.SecureJsonPrefix(")]}',\n")
 
 	r.GET("/someJSON", func(c *gin.Context) {
 		names := []string{"lena", "austin", "foo"}
 
-		// Will output  :   while(1);["lena","austin","foo"]
+		// while(1);["lena","austin","foo"] が出力されます。
 		c.SecureJSON(http.StatusOK, names)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
-#### JSONP
+#### JSONP をレンダリングする
 
-使用 JSONP 从不同域中的服务器请求数据。 如果查询参数回调存在，则将回调添加到响应正文。
+JSONP を使うことで、別のドメインのサーバーからレスポンスを受け取ることができます。callback をクエリ文字列に指定することで、レスポンスに callback を追加します。
 
 ```go
 func main() {
@@ -1002,19 +995,20 @@ func main() {
 			"foo": "bar",
 		}
 		
-		//callback is x
-		// Will output  :   x({\"foo\":\"bar\"})
+		//callback は x です。
+		// x({\"foo\":\"bar\"}) が出力されます。
 		c.JSONP(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
 
 #### AsciiJSON
 
-使用 Ascii JSON 生成具有转义的非 ASCII 字符的仅 ASCII JSON。
+AsciiJSON メソッドを使うことで、ASCII 文字列以外をエスケープした
+ASCII 文字列のみの JSON を出力できます。
 
 ```go
 func main() {
@@ -1026,44 +1020,45 @@ func main() {
 			"tag":  "<br>",
 		}
 
-		// will output : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
+		// {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"} が出力されます
 		c.AsciiJSON(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
 
 #### PureJSON
 
-通常，JSON使用unicode替换特殊HTML字符，例如 `<` 变为 `\ u003c`。 如果要按字面意思对这些字符进行编码，则可以使用 PureJSON。
-Go 1.6及更低版本无法使用此功能。
+通常、JSON メソッドは `<` のようなHTML 文字を `\u003c` のような Unicode に置き換えます。
+もしこのような文字をそのままエンコードしたい場合、PureJSON メソッドを代わりに使用してください。
+この機能は、Go 1.6 以下では使えません。
 
 ```go
 func main() {
 	r := gin.Default()
 	
-	// Serves unicode entities
+	// Unicode を返します
 	r.GET("/json", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"html": "<b>Hello, world!</b>",
 		})
 	})
 	
-	// Serves literal characters
+	// そのままの文字を返します
 	r.GET("/purejson", func(c *gin.Context) {
 		c.PureJSON(200, gin.H{
 			"html": "<b>Hello, world!</b>",
 		})
 	})
 	
-	// listen and serve on 0.0.0.0:8080
-	r.Run(":8080)
+	// 0.0.0.0:8080 でサーバーを立てます。
+	r.Run(":8080")
 }
 ```
 
-### 静态文件服务
+### 静的ファイルを返す
 
 ```go
 func main() {
@@ -1072,12 +1067,12 @@ func main() {
 	router.StaticFS("/more_static", http.Dir("my_file_system"))
 	router.StaticFile("/favicon.ico", "./resources/favicon.ico")
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	router.Run(":8080")
 }
 ```
 
-### 从 reader 读取数据
+### io.Reader からのデータを返す
 
 ```go
 func main() {
@@ -1103,9 +1098,9 @@ func main() {
 }
 ```
 
-### HTML 渲染
+### HTML をレンダリングする
 
-使用LoadHTMLGlob()或LoadHTMLFiles()
+LoadHTMLGlob() あるいは LoadHTMLFiles() メソッドを使用してください。
 
 ```go
 func main() {
@@ -1131,7 +1126,7 @@ templates/index.tmpl
 </html>
 ```
 
-在不同目录中使用具有相同名称的模板
+別のディレクトリにある同名のテンプレートを使う方法です。
 
 ```go
 func main() {
@@ -1175,9 +1170,9 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-#### 自定义模板渲染器
+#### カスタムテンプレートエンジン
 
-您还可以使用自己的 html 模板渲染
+独自のHTMLテンプレートエンジンを使うこともできます。
 
 ```go
 import "html/template"
@@ -1190,9 +1185,9 @@ func main() {
 }
 ```
 
-#### 自定义分隔符
+#### カスタムデリミタ
 
-您可以使用自定义分隔
+独自のデリミタを使用することもできます。
 
 ```go
 	r := gin.Default()
@@ -1200,9 +1195,9 @@ func main() {
 	r.LoadHTMLGlob("/path/to/templates")
 ```
 
-#### 自定义模板功能
+#### カスタムテンプレート関数
 
-查看详细信息[示例代码](examples/template)。
+詳細は [サンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/template) を参照。
 
 main.go
 
@@ -1243,21 +1238,22 @@ func main() {
 raw.tmpl
 
 ```html
-日期: {[{.now | formatAsDate}]}
+Date: {[{.now | formatAsDate}]}
 ```
 
-结果:
+Result:
 ```
 Date: 2017/07/01
 ```
 
-### 多模板
+### 複数のテンプレート
 
-Gin 允许默认只使用一个 html 模板。 检查[多模板渲染](https://github.com/gin-contrib/multitemplate)以使用 go 1.6 `block template` 等功能。
+Gin はデフォルトでは、1つの html.Template しか使用できません。
+go 1.6 の `block template` のような機能が使用できる [a multitemplate render](https://github.com/gin-contrib/multitemplate) を検討してください。
 
-### 重定向
+### リダイレクト
 
-Issuing a HTTP redirect is easy. Both internal and external locations are supported.
+HTTP リダイレクトするのは簡単です。内部パス、外部URL両方のリダイレクトに対応しています。
 
 ```go
 r.GET("/test", func(c *gin.Context) {
@@ -1266,7 +1262,7 @@ r.GET("/test", func(c *gin.Context) {
 ```
 
 
-发出路由器重定向，使用如下的“HandleContext”。
+Router でリダイレクトするには、下記のように `HandleContext` メソッドを使ってください。
 
 ``` go
 r.GET("/test", func(c *gin.Context) {
@@ -1279,25 +1275,25 @@ r.GET("/test2", func(c *gin.Context) {
 ```
 
 
-###  自定义中间件
+### カスタムミドルウェア
 
 ```go
 func Logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		t := time.Now()
 
-		// Set example variable
+		// サンプル変数を設定
 		c.Set("example", "12345")
 
-		// before request
+		// request 処理の前
 
 		c.Next()
 
-		// after request
+		// request 処理の後
 		latency := time.Since(t)
 		log.Print(latency)
 
-		// access the status we are sending
+		// 送信予定のステータスコードにアクセスする
 		status := c.Writer.Status()
 		log.Println(status)
 	}
@@ -1310,19 +1306,19 @@ func main() {
 	r.GET("/test", func(c *gin.Context) {
 		example := c.MustGet("example").(string)
 
-		// it would print: "12345"
+		// "12345" が表示される
 		log.Println(example)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
 
-### BasicAuth() 中间件
+### BasicAuth ミドルウェアを使う
 
 ```go
-// simulate some private data
+// 秘匿されたデータをシミュレートする
 var secrets = gin.H{
 	"foo":    gin.H{"email": "foo@bar.com", "phone": "123433"},
 	"austin": gin.H{"email": "austin@example.com", "phone": "666"},
@@ -1332,8 +1328,8 @@ var secrets = gin.H{
 func main() {
 	r := gin.Default()
 
-	// Group using gin.BasicAuth() middleware
-	// gin.Accounts is a shortcut for map[string]string
+	// gin.BasicAuth() ミドルウェアを使用したグループ
+	// gin.Accounts は map[string]string へのショートカットです。
 	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
 		"foo":    "bar",
 		"austin": "1234",
@@ -1341,10 +1337,9 @@ func main() {
 		"manu":   "4321",
 	}))
 
-	// /admin/secrets endpoint
-	// hit "localhost:8080/admin/secrets
+	// /admin/secrets エンドポイントは localhost:8080/admin/secrets です。
 	authorized.GET("/secrets", func(c *gin.Context) {
-		// get user, it was set by the BasicAuth middleware
+		// BasicAuth ミドルウェアで設定されたユーザー名にアクセスします。
 		user := c.MustGet(gin.AuthUserKey).(string)
 		if secret, ok := secrets[user]; ok {
 			c.JSON(http.StatusOK, gin.H{"user": user, "secret": secret})
@@ -1353,47 +1348,47 @@ func main() {
 		}
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
 
-###  在中间件中使用Goroutines
+### ミドルウェア内の Goroutine
 
-当在中间件或handler中启动新的Goroutines时，不能使用原始上下文，必须使用只读副本。
+新しい goroutine をミドルウェアやハンドラー内で生成する場合、goroutine の内部でオリジナルの context を **使用しないでください**。読み込み用のコピーを使ってください。
 
 ```go
 func main() {
 	r := gin.Default()
 
 	r.GET("/long_async", func(c *gin.Context) {
-		// create copy to be used inside the goroutine
+		// goroutine 内で使用するコピーを生成します
 		cCp := c.Copy()
 		go func() {
-			// simulate a long task with time.Sleep(). 5 seconds
+			// time.Sleep() を使って、長時間かかる処理をシミュレートします。5秒です。
 			time.Sleep(5 * time.Second)
 
-			// note that you are using the copied context "cCp", IMPORTANT
+			// コピーされた context である "cCp" を使ってください。重要！
 			log.Println("Done! in path " + cCp.Request.URL.Path)
 		}()
 	})
 
 	r.GET("/long_sync", func(c *gin.Context) {
-		// simulate a long task with time.Sleep(). 5 seconds
+		// time.Sleep() を使って、長時間かかる処理をシミュレートします。5秒です。
 		time.Sleep(5 * time.Second)
 
-		// since we are NOT using a goroutine, we do not have to copy the context
+		// goroutine を使ってなければ、context をコピーする必要はありません。
 		log.Println("Done! in path " + c.Request.URL.Path)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
 
-### 自定义 HTTP 配置
+### カスタム HTTP 設定
 
-直接使用`http.ListenAndServe()`，如下所示：
+以下のように `http.ListenAndServe()` を直接使ってください。
 
 ```go
 func main() {
@@ -1401,7 +1396,7 @@ func main() {
 	http.ListenAndServe(":8080", router)
 }
 ```
-or
+あるいは
 
 ```go
 func main() {
@@ -1418,9 +1413,9 @@ func main() {
 }
 ```
 
-###  Let's Encrypt 支持
+### Let's Encrypt のサポート
 
-一行代码支持 LetsEncrypt HTTPS示例。
+1行の Let's Encrypt HTTPS サーバーのサンプルコードです。
 
 [embedmd]:# (examples/auto-tls/example1/main.go go)
 ```go
@@ -1445,7 +1440,7 @@ func main() {
 }
 ```
 
-autocert使用示例。
+カスタム autocert manager を利用したサンプルコードです。
 
 [embedmd]:# (examples/auto-tls/example2/main.go go)
 ```go
@@ -1477,9 +1472,9 @@ func main() {
 }
 ```
 
-### 使用 Gin 运行多个服务
+### Gin を使って複数のサービスを稼働させる
 
-请参阅[问题](https://github.com/gin-gonic/gin/issues/346)并尝试以下示例：
+[issue](https://github.com/gin-gonic/gin/issues/346) を見て、以下のサンプルコードを試してみてください。
 
 [embedmd]:# (examples/multiple-service/main.go go)
 ```go
@@ -1559,12 +1554,12 @@ func main() {
 }
 ```
 
-### 优雅重启或停止
+### graceful restart と stop
 
-您想要优雅地重启或停止您的Web服务器吗？
-有一些方法可以做到这一点。
+graceful restart と stop をしたいですか？
+いくつかの方法があります。
 
-我们可以使用[fvbock/endless](https://github.com/fvbock/endless)来替换默认的`ListenAndServe`。 有关更多详细信息，请参阅问题[＃296](https://github.com/gin-gonic/gin/issues/296)。
+[fvbock/endless](https://github.com/fvbock/endless) を使って、デフォルトの `ListenAndServe` を置き換えることができます。詳細は Issue [#296](https://github.com/gin-gonic/gin/issues/296) を参照ください。
 
 ```go
 router := gin.Default()
@@ -1573,14 +1568,13 @@ router.GET("/", handler)
 endless.ListenAndServe(":4242", router)
 ```
 
-替代方案：
+endless の代わりは以下があります。
 
-* [manners](https://github.com/braintree/manners)：礼貌的Go HTTP服务器，可以正常关闭。
-* [graceful](https://github.com/tylerb/graceful)：Graceful是一个Go包，可以正常关闭http.Handler服务器。
-* [grace](https://github.com/facebookgo/grace)：Go服务器的平滑重启和零停机时间部署。
+* [manners](https://github.com/braintree/manners): A polite Go HTTP server that shuts down gracefully.
+* [graceful](https://github.com/tylerb/graceful): Graceful is a Go package enabling graceful shutdown of an http.Handler server.
+* [grace](https://github.com/facebookgo/grace): Graceful restart & zero downtime deploy for Go servers.
 
-如果您使用的是Go 1.8，可以考虑使用http.Server的内置[Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown)方法进行正常关机。
-请参阅gin的完整[graceful-shutdown](/examples /graceful-shutdown)示例。
+もし Go 1.8 を使っているなら、これらのライブラリを使う必要はないかもしれません！http.Server 組み込みの [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) メソッドを、graceful shutdowns に利用することを検討してみてください。詳細は Gin の [graceful-shutdown](https://github.com/gin-gonic/gin/blob/master/examples/graceful-shutdown) サンプルコードを見てみてください。
 
 [embedmd]:# (examples/graceful-shutdown/graceful-shutdown/server.go go)
 ```go
@@ -1612,14 +1606,13 @@ func main() {
 	}
 
 	go func() {
-		// service connections
+		// サービスの接続
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
 		}
 	}()
 
-	// Wait for interrupt signal to gracefully shutdown the server with
-	// a timeout of 5 seconds.
+	// シグナル割り込みを待ち、タイムアウト時間が5秒の graceful shutdown をする
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
@@ -1634,9 +1627,11 @@ func main() {
 }
 ```
 
-### 静态资源嵌入
+### テンプレートを含めた1つのバイナリをビルドする
 
-使用[go-assets](https://github.com/jessevdk/go-assets)将静态资源打包到可执行文件中。
+[go-assets](https://github.com/jessevdk/go-assets) を利用することで、サーバーアプリケーションを、テンプレートを含む1つのバイナリにまとめることができます。
+
+[go-assets]: https://github.com/jessevdk/go-assets
 
 ```go
 func main() {
@@ -1654,7 +1649,7 @@ func main() {
 	r.Run(":8080")
 }
 
-// loadTemplate loads templates embedded by go-assets-builder
+// loadTemplate は go-assets-builder によって埋め込まれたテンプレートたちをロードします。
 func loadTemplate() (*template.Template, error) {
 	t := template.New("")
 	for name, file := range Assets.Files {
@@ -1674,11 +1669,11 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-请参阅`examples/assets-in-binary`目录中的完整示例。
+完全なサンプルコードは、[examples/assets-in-binary](https://github.com/gin-gonic/gin/tree/master/examples/assets-in-binary) を見てください。
 
-### 表单数据绑定到自定义结构体
+### フォーム投稿されたリクエストを構造体にバインドする
 
-以下示例使用自定义结构体：
+下記のサンプルコードは、カスタム構造体を使っています。
 
 ```go
 type StructA struct {
@@ -1739,7 +1734,7 @@ func main() {
 }
 ```
 
-`curl`命令示例：
+`curl` を使った結果です。
 
 ```
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
@@ -1750,27 +1745,27 @@ $ curl "http://localhost:8080/getd?field_x=hello&field_d=world"
 {"d":"world","x":{"FieldX":"hello"}}
 ```
 
-**注意**:不支持以下格式结构体：
+**NOTE**: 下記の構造体はサポートしています。
 
 ```go
 type StructX struct {
-    X struct {} `form:"name_x"` // HERE have form
+    X struct {} `form:"name_x"` // ここが form を持ってしまっている
 }
 
 type StructY struct {
-    Y StructX `form:"name_y"` // HERE have form
+    Y StructX `form:"name_y"` // ここが form を持ってしまっている
 }
 
 type StructZ struct {
-    Z *StructZ `form:"name_z"` // HERE have form
+    Z *StructZ `form:"name_z"` // ここが form を持ってしまっている
 }
 ```
 
-一句话，现在只支持没有`form`的嵌套结构体。
+端的に言えば、ネストした構造体は `form` を今は持つことができません。
 
-### 将request body绑定到不同的结构体中
+### body を異なる構造体にバインドするには
 
-一般通过调用`c.Request.Body`方法绑定数据，但不能多次调用这个方法。
+通常のリクエスト本文をバインドするメソッドたちは、`c.Request.Body` を消費します。よってそれらのメソッドは複数回呼び出すことができません。
 
 ```go
 type formA struct {
@@ -1784,10 +1779,10 @@ type formB struct {
 func SomeHandler(c *gin.Context) {
   objA := formA{}
   objB := formB{}
-  // This c.ShouldBind consumes c.Request.Body and it cannot be reused.
+  // この c.ShouldBind メソッドは c.Request.Body を消費し、再利用できなくします。
   if errA := c.ShouldBind(&objA); errA == nil {
     c.String(http.StatusOK, `the body should be formA`)
-  // Always an error is occurred by this because c.Request.Body is EOF now.
+  // c.Request.Body が EOF なので、常にエラーとなります。
   } else if errB := c.ShouldBind(&objB); errB == nil {
     c.String(http.StatusOK, `the body should be formB`)
   } else {
@@ -1796,19 +1791,19 @@ func SomeHandler(c *gin.Context) {
 }
 ```
 
-为此，要想多次绑定，需要使用`c.ShouldBindBodyWith`.
+複数回呼び出したい場合、`c.ShouldBindBodyWith` を使ってください。
 
 ```go
 func SomeHandler(c *gin.Context) {
   objA := formA{}
   objB := formB{}
-  // This reads c.Request.Body and stores the result into the context.
+  // このコードは、c.Request.Body を読み込み、そして結果を context に保存します。
   if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
     c.String(http.StatusOK, `the body should be formA`)
-  // At this time, it reuses body stored in the context.
+  // ここでは、context に保存された body を再利用します。
   } else if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
     c.String(http.StatusOK, `the body should be formB JSON`)
-  // And it can accepts other formats
+  // 他のフォーマットも受け付けます。
   } else if errB2 := c.ShouldBindBodyWith(&objB, binding.XML); errB2 == nil {
     c.String(http.StatusOK, `the body should be formB XML`)
   } else {
@@ -1817,14 +1812,12 @@ func SomeHandler(c *gin.Context) {
 }
 ```
 
+* `c.ShouldBindBodyWith` はバインド前に context にリクエスト本文を保存します。この処理は、パフォーマンスにわずかな影響を与えます。バインディングが一度だけで良いなら、このメソッドは使うべきではありません。
+* この機能は `JSON`, `XML`, `MsgPack`,`ProtoBuf` のフォーマットでのみ必要です。`Query`, `Form`, `FormPost`, `FormMultipart` のような他のフォーマットでは `c.ShouldBind()` を何度も呼び出せるので、パフォーマンスへの影響はありません。(Issue [#1341](https://github.com/gin-gonic/gin/pull/1341) も参照ください)
 
-* `c.ShouldBindBodyWith`会在绑定之前将body存储到上下文中。 这会对性能造成轻微影响，如果调用一次就能完成绑定的话，那就不要用这个方法。
-* 只有某些格式需要此功能 ，如`JSON`、`XML`、`MsgPack`、`ProtoBuf`。 对于其他格式，如`Query`、`Form`、`FormPost`、`FormMultipart`可以多次调用`c.ShouldBind()`而不会造成任任何性能损失（见[＃1341](https://github.com/gin-gonic/gin/pull/1341)）。
+### HTTP/2 サーバープッシュ
 
-### http2 server 推送
-
-
-http.Pusher仅支持go1.8 +。 有关详细信息，请参阅[golang blog](https://blog.golang.org/h2push)。
+http.Pusher は **go1.8+** 以降でのみサポートしています。 詳細な情報は [golang blog](https://blog.golang.org/h2push) を見てください。
 
 [embedmd]:# (examples/http-pusher/main.go go)
 ```go
@@ -1856,7 +1849,7 @@ func main() {
 
 	r.GET("/", func(c *gin.Context) {
 		if pusher := c.Writer.Pusher(); pusher != nil {
-			// use pusher.Push() to do server push
+			// サーバープッシュするために pusher.Push() を使う
 			if err := pusher.Push("/assets/app.js", nil); err != nil {
 				log.Printf("Failed to push: %v", err)
 			}
@@ -1866,22 +1859,23 @@ func main() {
 		})
 	})
 
-	// Listen and Server in https://127.0.0.1:8080
+	// https://127.0.0.1:8080 でサーバーを立てる
 	r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
 
-### 定义路由日志的格式
+### ルーティングログのフォーマットを定義する
 
-默认的路由日志格式：
+デフォルトのルーティングログは以下のようになります。
 ```
 [GIN-debug] POST   /foo                      --> main.main.func1 (3 handlers)
 [GIN-debug] GET    /bar                      --> main.main.func2 (3 handlers)
 [GIN-debug] GET    /status                   --> main.main.func3 (3 handlers)
 ```
 
-如果要以指的格式（例如JSON，Key Values或其他格式）记录信息，则可以使用`gin.DebugPrintRouteFunc`指定格式。
-在下面的示例中，我们使用标准日志包记录所有路由，但您可以使用其他满足需求的日志工具。
+もしログのフォーマットを定義したい(JSONやキーバリュー形式、その他)なら、`gin.DebugPrintRouteFunc` を定義することで可能です。
+以下のサンプルコードでは、すべてのルーティングを標準の log パッケージで記録していますが、必要に応じて最適な別のログツールを利用することも可能です。
+
 ```go
 import (
 	"log"
@@ -1908,12 +1902,12 @@ func main() {
 		c.JSON(http.StatusOK, "ok")
 	})
 
-	// Listen and Server in http://0.0.0.0:8080
+	// http://0.0.0.0:8080 でサーバーを立てる
 	r.Run()
 }
 ```
 
-### 如何使用Cookie
+### cookieの設定と取得
 
 ```go
 import (
@@ -1942,9 +1936,10 @@ func main() {
 }
 ```
 
-## 测试
 
-HTTP测试首选`net/http/httptest`包。
+## テスト
+
+`net/http/httptest` パッケージが、HTTP テストをするには好ましい方法です。
 
 ```go
 package main
@@ -1963,7 +1958,7 @@ func main() {
 }
 ```
 
-上面这段代码的测试用例：
+テストコードの例は以下のようになります。
 
 ```go
 package main
@@ -1988,12 +1983,13 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-## 用户
+## Gin を利用したプロジェクト
 
-使用[Gin](https://github.com/gin-gonic/gin)框架的著名项目：
+[Gin](https://github.com/gin-gonic/gin) を利用している素晴らしいプロジェクト一覧。
 
-* [drone](https://github.com/drone/drone)：用Go编写的基于docker的持续集成平台。
-* [gorush](https://github.com/appleboy/gorush)：用Go编写的推送通知服务。
-* [fnproject](https://github.com/fnproject/fn)：容器驱动、云无关的无服务器平台。
-* [photoprism](https://github.com/photoprism/photoprism): 用Go编写的基于TensorFlow的个人相册管理系统.
-* [krakend](https://github.com/devopsfaith/krakend): 表现优异的API网关中间件。
+* [drone](https://github.com/drone/drone): Drone is a Continuous Delivery platform built on Docker, written in Go.
+* [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
+* [fnproject](https://github.com/fnproject/fn): The container native, cloud agnostic serverless platform.
+* [photoprism](https://github.com/photoprism/photoprism): Personal photo management powered by Go and Google TensorFlow.
+* [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
+* [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
