@@ -5,7 +5,6 @@ draft: false
 
 <img align="right" width="159px" src="https://raw.githubusercontent.com/gin-gonic/logo/master/color.png">
  
- 
 Gin 是一个 Go (Golang) 语言框架。 它是一个拥有更好性能的 martini-like API 框架, 比 [httprouter](https://github.com/julienschmidt/httprouter) 的速度快了40倍. 如果你是性能和高效的追求者, 那么你会爱上 Gin.
 
 ![Gin console logger](https://gin-gonic.github.io/gin/other/console.png)
@@ -787,6 +786,7 @@ func startPage(c *gin.Context) {
 ```sh
 $ curl -X GET "localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
 ```
+
 ### url路径参数绑定
 
 查看[详细信息](https://github.com/gin-gonic/gin/issues/846).
@@ -1903,6 +1903,7 @@ func main() {
 	r.Run()
 }
 ```
+
 ### 如何使用Cookie
 
 ```go
@@ -1979,6 +1980,7 @@ func TestPingRoute(t *testing.T) {
 ```
 
 ## 用户
+
 使用[Gin](https://github.com/gin-gonic/gin)框架的著名项目：
 
 * [drone](https://github.com/drone/drone)：用Go编写的基于docker的持续集成平台。
