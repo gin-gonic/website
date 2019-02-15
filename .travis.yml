@@ -12,6 +12,7 @@ install:
   - go get -u github.com/gohugoio/hugo
 
 script:
+  - npm install
   - hugo
   - echo 'gin-gonic.com' > public/CNAME
 
