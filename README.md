@@ -10,7 +10,9 @@ You can click the Fork button in the upper-right area of the screen to create a 
 
 > You need to use the below command to clone code for downloading all submodules.
 
-> git clone --recursive https://github.com/YOURUSERNAME/website.git
+```
+git clone --recursive https://github.com/YOURUSERNAME/website.git
+```
 
 - Create one pull request
 
