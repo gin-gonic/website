@@ -16,6 +16,7 @@ node_js:
 
 script:
   - npm install
+  - ls
   - hugo
   - echo 'gin-gonic.com' > public/CNAME
 
