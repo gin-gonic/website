@@ -11,6 +11,9 @@ go:
 install:
   - go get -u github.com/gohugoio/hugo
 
+node_js:
+  - "7"
+
 script:
   - npm install
   - hugo
