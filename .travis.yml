@@ -4,12 +4,11 @@ node_js:
  - "7"
 
 install:
- - wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.deb
+ - wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_extended_0.54.0_Linux-64bit.deb
  - sudo dpkg -i /tmp/hugo.deb
 
 script:
   - npm install
-  - ls node_modules
   - hugo
   - echo 'gin-gonic.com' > public/CNAME
 
