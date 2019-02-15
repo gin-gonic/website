@@ -86,7 +86,7 @@ copyright = "Gin Team"
 github_repo = "https://github.com/gin-gonic/website"
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
-gcs_engine_id = "011737558837375720776:fsdu1nryfng"
+gcs_engine_id = "005538359705255204576:q0elqbxmlfs"
 
 # User interface configuration
 [params.ui]
