@@ -1,17 +1,14 @@
-language: go
+language: node_js
 
-sudo: false
-
-git:
-  depth: false
-
-go:
-  - 1.11.x
+node_js:
+ - "7"
 
 install:
-  - go get -u github.com/gohugoio/hugo
+ - wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.deb
+ - sudo dpkg -i /tmp/hugo.deb
 
 script:
+  - npm install
   - hugo
   - echo 'gin-gonic.com' > public/CNAME
 
