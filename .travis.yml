@@ -4,10 +4,10 @@ node_js:
  - "11"
 
 install:
+ - sudo apt-get install libstdc++6
+ - sudo find / -name "libstdc++.so*"
  - wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_extended_0.54.0_Linux-64bit.deb
  - sudo dpkg -i /tmp/hugo.deb
- - sudo apt-get install libstdc++6
- - find / -name "libstdc++.so*"
 
 script:
   - npm install
