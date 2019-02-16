@@ -4,7 +4,7 @@ node_js:
  - "11"
 
 install:
- - sudo apt-get install hugo
+ - snap install hugo --channel=extended
 
 script:
   - npm install
