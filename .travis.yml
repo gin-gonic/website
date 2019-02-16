@@ -1,10 +1,11 @@
 language: node_js
 
 node_js:
- - "11"
+  - "11"
 
 install:
- - snap install hugo --channel=extended
+  - wget -O /tmp/hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.54.0/hugo_0.54.0_Linux-64bit.deb
+  - sudo dpkg -i /tmp/hugo.deb
 
 script:
   - npm install
