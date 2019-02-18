@@ -1,6 +1,8 @@
 # Gin website
 
-Welcome! This repository houses all of the assets required to build the Gin website and documentation. We're very pleased that you want to contribute!
+Welcome! This repository houses all of the assets required to build the Gin website and documentation. We're very pleased that you want to contribute! The website are hosted at https://gin-gonic.com.
+
+We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy](https://github.com/google/docsy) theme for styling and site structure. Thanks!
 
 ## Contributing
 
