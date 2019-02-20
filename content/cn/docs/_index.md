@@ -9,7 +9,7 @@ menu:
 
 <img align="right" width="159px" src="https://raw.githubusercontent.com/gin-gonic/logo/master/color.png">
  
-Gin 是一个 Go (Golang) 语言框架。 它是一个拥有更好性能的 martini-like API 框架, 比 [httprouter](https://github.com/julienschmidt/httprouter) 的速度快了40倍. 如果你是性能和高效的追求者, 那么你会爱上 Gin.
+Gin 是一个 Go (Golang) 语言框架。 它是一个拥有更好性能的 martini-like API 框架, 由于 [httprouter](https://github.com/julienschmidt/httprouter)，速度提高了近 40 倍。 如果你是性能和高效的追求者, 那么你会爱上 Gin.
 
 ![Gin console logger](https://gin-gonic.github.io/gin/other/console.png)
 
