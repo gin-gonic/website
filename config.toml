@@ -36,6 +36,10 @@ disqusShortname = "gin-gonic"
 name = "GitHub"
 url = "https://github.com/gin-gonic"
 
+[[menu.main]]
+name = "Middleware"
+url = "https://github.com/gin-contrib"
+
 # Configure how URLs look like per section.
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
