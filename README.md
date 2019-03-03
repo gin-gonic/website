@@ -33,10 +33,10 @@ See the [official Hugo documentation](https://gohugo.io/getting-started/installi
 To run the site locally when you have Hugo installed:
 
 ```sh
-$ # If use `hugo` command, you need to use `npm install` command
+# If use `hugo` command, you need to use `npm install` command
 $ npm install
 $ hugo
-$ # Or use `hugo server`, it not need `npm install` command
+# Or use `hugo server`, it not need `npm install` command
 $ hugo server
 ```
 
