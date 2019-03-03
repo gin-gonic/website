@@ -1,0 +1,23 @@
+os: osx
+
+language: node_js
+
+node_js:
+  - "11"
+
+install:
+  - ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  - brew install hugo
+
+script:
+  - npm install
+  - hugo
+  - echo 'gin-gonic.com' > public/CNAME
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  local_dir: public
+  on:
+    branch: master
