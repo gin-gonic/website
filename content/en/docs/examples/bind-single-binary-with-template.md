@@ -3,9 +3,7 @@ title: "Build a single binary with templates"
 draft: false
 ---
 
-You can build a server into a single binary containing templates by using [go-assets][].
-
-[go-assets]: https://github.com/jessevdk/go-assets
+You can build a server into a single binary containing templates by using [go-assets](https://github.com/jessevdk/go-assets).
 
 ```go
 func main() {
@@ -43,5 +41,5 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-See a complete example in the `examples/assets-in-binary` directory.
+See a complete example in the `https://github.com/gin-gonic/examples/tree/master/assets-in-binary` directory.
 

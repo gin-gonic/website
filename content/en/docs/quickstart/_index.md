@@ -4,17 +4,13 @@ draft: false
 weight: 2
 ---
 
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Getting started](#getting-started)
-
 In this quickstart, we’ll glean insights from code segments and learn how to:
 
 ## Requirements
 
 - Go 1.6 or above
 
-> Go 1.7 or Go 1.8 will be required soon.
+> Go 1.7 or Go 1.8 will be no longer supported soon.
 
 ## Installation
 
@@ -38,7 +34,7 @@ import "github.com/gin-gonic/gin"
 import "net/http"
 ```
 
-#### Use a vendor tool like [Govendor](https://github.com/kardianos/govendor)
+### Use a vendor tool like [Govendor](https://github.com/kardianos/govendor)
 
 1. `go get` govendor
 
@@ -61,7 +57,7 @@ $ govendor fetch github.com/gin-gonic/gin@v1.3
 4. Copy a starting template inside your project
 
 ```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/gin/master/examples/basic/main.go > main.go
+$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
 5. Run your project
