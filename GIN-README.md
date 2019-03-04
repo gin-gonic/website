@@ -111,7 +111,7 @@ $ govendor fetch github.com/gin-gonic/gin@v1.3
 4. Copy a starting template inside your project
 
 ```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/gin/master/examples/basic/main.go > main.go
+$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
 5. Run your project
@@ -1835,24 +1835,6 @@ $ curl "http://localhost:8080/getc?field_a=hello&field_c=world"
 $ curl "http://localhost:8080/getd?field_x=hello&field_d=world"
 {"d":"world","x":{"FieldX":"hello"}}
 ```
-
-**NOTE**: NOT support the follow style struct:
-
-```go
-type StructX struct {
-    X struct {} `form:"name_x"` // HERE have form
-}
-
-type StructY struct {
-    Y StructX `form:"name_y"` // HERE have form
-}
-
-type StructZ struct {
-    Z *StructZ `form:"name_z"` // HERE have form
-}
-```
-
-In a word, only support nested custom struct which have no `form` now.
 
 ### Try to bind body into different structs
 
