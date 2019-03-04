@@ -73,7 +73,7 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-#### Custom Template renderer
+### Custom Template renderer
 
 You can also use your own html template render
 
@@ -88,7 +88,7 @@ func main() {
 }
 ```
 
-#### Custom Delimiters
+### Custom Delimiters
 
 You may use custom delims
 
@@ -98,9 +98,9 @@ You may use custom delims
 	r.LoadHTMLGlob("/path/to/templates")
 ```
 
-#### Custom Template Funcs
+### Custom Template Funcs
 
-See the detail [example code](examples/template).
+See the detail [example code](https://github.com/gin-gonic/examples/tree/master/template).
 
 main.go
 
