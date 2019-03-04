@@ -1,9 +1,9 @@
 ---
-title: "Support Let's Encrypt"
+title: "Let's Encrypt のサポート"
 draft: false
 ---
 
-example for 1-line LetsEncrypt HTTPS servers.
+1行の Let's Encrypt HTTPS サーバーのサンプルコードです。
 
 ```go
 package main
@@ -27,7 +27,7 @@ func main() {
 }
 ```
 
-example for custom autocert manager.
+カスタム autocert manager を利用したサンプルコードです。
 
 ```go
 package main
@@ -57,4 +57,5 @@ func main() {
 	log.Fatal(autotls.RunWithManager(r, &m))
 }
 ```
+
 

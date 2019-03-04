@@ -1,9 +1,9 @@
 ---
-title: "Build a single binary with templates"
+title: "テンプレートを含めた1つのバイナリをビルドする"
 draft: false
 ---
 
-You can build a server into a single binary containing templates by using [go-assets][].
+[go-assets](https://github.com/jessevdk/go-assets) を利用することで、サーバーアプリケーションを、テンプレートを含む1つのバイナリにまとめることができます。
 
 [go-assets]: https://github.com/jessevdk/go-assets
 
@@ -23,7 +23,7 @@ func main() {
 	r.Run(":8080")
 }
 
-// loadTemplate loads templates embedded by go-assets-builder
+// loadTemplate は go-assets-builder によって埋め込まれたテンプレートたちをロードします。
 func loadTemplate() (*template.Template, error) {
 	t := template.New("")
 	for name, file := range Assets.Files {
@@ -43,5 +43,6 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-See a complete example in the `examples/assets-in-binary` directory.
+完全なサンプルコードは、[examples/assets-in-binary](https://github.com/gin-gonic/gin/tree/master/examples/assets-in-binary) を見てください。
+
 

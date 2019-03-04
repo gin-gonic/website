@@ -1,5 +1,5 @@
 ---
-title: "Query and post form"
+title: "フォーム投稿によるクエリ文字列"
 draft: false
 ---
 
@@ -30,3 +30,5 @@ func main() {
 ```sh
 id: 1234; page: 1; name: manu; message: this_is_great
 ```
+
+

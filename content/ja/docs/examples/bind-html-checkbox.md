@@ -1,9 +1,9 @@
 ---
-title: "Bind html checkboxes"
+title: "HTMLチェックボックスをバインドする"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)
+[詳細な情報](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092) はこちら。
 
 main.go
 
@@ -41,7 +41,7 @@ form.html
 </form>
 ```
 
-result:
+結果
 
 ```sh
 {"color":["red","green","blue"]}

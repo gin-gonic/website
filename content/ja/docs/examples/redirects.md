@@ -1,9 +1,9 @@
 ---
-title: "Redirects"
+title: "リダイレクト"
 draft: false
 ---
 
-Issuing a HTTP redirect is easy. Both internal and external locations are supported.
+HTTP リダイレクトするのは簡単です。内部パス、外部URL両方のリダイレクトに対応しています。
 
 ```go
 r.GET("/test", func(c *gin.Context) {
@@ -12,7 +12,7 @@ r.GET("/test", func(c *gin.Context) {
 ```
 
 
-Issuing a Router redirect, use `HandleContext` like below.
+Router でリダイレクトするには、下記のように `HandleContext` メソッドを使ってください。
 
 ``` go
 r.GET("/test", func(c *gin.Context) {
@@ -23,3 +23,6 @@ r.GET("/test2", func(c *gin.Context) {
     c.JSON(200, gin.H{"hello": "world"})
 })
 ```
+
+
+

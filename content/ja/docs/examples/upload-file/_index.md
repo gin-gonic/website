@@ -1,6 +1,6 @@
 ---
-title: "Upload files"
+title: "ファイルアップロード"
 draft: false
 ---
 
-The section lists upload file api usage.
+このセクションではファイルのアップロードAPIの使い方を列挙します。

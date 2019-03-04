@@ -1,70 +1,70 @@
 ---
-title: "Quickstart"
+title: "クイックスタート"
 draft: false
 weight: 2
 ---
 
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Getting started](#getting-started)
+- [要件](#要件)
+- [インストール](#インストール)
+- [クイックスタート](#クイックスタート)
 
-In this quickstart, we’ll glean insights from code segments and learn how to:
+このクイックスタートでは、コードの集まりからの洞察を収集し、どのようにするかを学びます。
 
-## Requirements
+## 要件
 
-- Go 1.6 or above
+- Gin を利用するには Go 1.6 以上が必要です。
 
-> Go 1.7 or Go 1.8 will be required soon.
+> なお、このバージョンはまもなく Go 1.7 に引き上げられる予定です。
 
-## Installation
+## インストール
 
-To install Gin package, you need to install Go and set your Go workspace first.
+Gin をインストールするには、まず Go のインストールおよび Go のワークスペースを作ることが必要です。
 
-1. Download and install it:
+1. ダウンロードしてインストールする
 
 ```sh
 $ go get -u github.com/gin-gonic/gin
 ```
 
-2. Import it in your code:
+2. コード内でインポートする
 
 ```go
 import "github.com/gin-gonic/gin"
 ```
 
-3. (Optional) Import `net/http`. This is required for example if using constants such as `http.StatusOK`.
+3. (オプション) `net/http` をインポートする。`http.StatusOK` のような定数を使用する場合に必要です
 
 ```go
 import "net/http"
 ```
 
-#### Use a vendor tool like [Govendor](https://github.com/kardianos/govendor)
+#### [Govendor](https://github.com/kardianos/govendor) のような vendor tool を使う
 
 1. `go get` govendor
 
 ```sh
 $ go get github.com/kardianos/govendor
 ```
-2. Create your project folder and `cd` inside
+2. プロジェクトディレクトリを作り、`cd` で中に移動する
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 ```
 
-3. Vendor init your project and add gin
+3. vendor tool でプロジェクトを初期化し、Gin を追加する
 
 ```sh
 $ govendor init
 $ govendor fetch github.com/gin-gonic/gin@v1.3
 ```
 
-4. Copy a starting template inside your project
+4. 開始用テンプレートをプロジェクトディレクトリにコピーする
 
 ```sh
 $ curl https://raw.githubusercontent.com/gin-gonic/gin/master/examples/basic/main.go > main.go
 ```
 
-5. Run your project
+5. プロジェクトを実行する
 
 ```sh
 $ go run main.go
@@ -72,17 +72,16 @@ $ go run main.go
 
 ## Getting Started
 
-> Unsure how to write and execute Go code? [Click here](https://golang.org/doc/code.html).
+> Go のコードを書いて実行する方法がわからない？ [ここをクリックしてください](https://golang.org/doc/code.html).
 
-First, create a file called `example.go`:
+まず、`example.go` を作成します。
 
 ```sh
-# assume the following codes in example.go file
+# 後述のコードが、example.go のファイルにあるとします。
 $ touch example.go
 ```
 
-Next, put the following code inside of `example.go`:
-
+次に、下記のコードを `example.go` に書きます。
 ```go
 package main
 
@@ -95,14 +94,15 @@ func main() {
 			"message": "pong",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.Run() // 0.0.0.0:8080 でサーバーを立てます。
 }
 ```
 
-And, You can run the code via `go run example.go`:
+そして `go run example.go` でコードを実行します。
 
-```sh
-# run example.go and visit 0.0.0.0:8080/ping on browser
+```
+# example.go を実行し、ブラウザで 0.0.0.0:8080/ping にアクセスする
 $ go run example.go
 ```
+
 

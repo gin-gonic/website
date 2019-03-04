@@ -1,9 +1,9 @@
 ---
-title: "HTTP2 server push"
+title: "HTTP/2 サーバープッシュ"
 draft: false
 ---
 
-http.Pusher is supported only **go1.8+**. See the [golang blog](https://blog.golang.org/h2push) for detail information.
+http.Pusher は **go1.8+** 以降でのみサポートしています。 詳細な情報は [golang blog](https://blog.golang.org/h2push) を見てください。
 
 ```go
 package main
@@ -34,7 +34,7 @@ func main() {
 
 	r.GET("/", func(c *gin.Context) {
 		if pusher := c.Writer.Pusher(); pusher != nil {
-			// use pusher.Push() to do server push
+			// サーバープッシュするために pusher.Push() を使う
 			if err := pusher.Push("/assets/app.js", nil); err != nil {
 				log.Printf("Failed to push: %v", err)
 			}
@@ -44,8 +44,9 @@ func main() {
 		})
 	})
 
-	// Listen and Server in https://127.0.0.1:8080
+	// https://127.0.0.1:8080 でサーバーを立てる
 	r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
+
 

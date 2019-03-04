@@ -1,12 +1,12 @@
 ---
-title: "Testing"
+title: "テスト"
 draft: false
 weight: 7
 ---
 
-##### How to write test case for Gin?
+##### Gin でテストコードを書くには
 
-The `net/http/httptest` package is preferable way for HTTP testing.
+`net/http/httptest` パッケージが、HTTP テストをするには好ましい方法です。
 
 {{<highlight go>}}
 
@@ -26,7 +26,7 @@ func main() {
 }
 {{</highlight>}}
 
-Test for code example above:
+テストコードの例は以下のようになります。
 
 ```go
 package main
@@ -50,6 +50,3 @@ func TestPingRoute(t *testing.T) {
 	assert.Equal(t, "pong", w.Body.String())
 }
 ```
-
-
-

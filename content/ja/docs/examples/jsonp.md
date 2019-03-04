@@ -1,9 +1,9 @@
 ---
-title: "JSONP"
+title: "JSONP をレンダリングする"
 draft: false
 ---
 
-Using JSONP to request data from a server  in a different domain. Add callback to response body if the query parameter callback exists.
+JSONP を使うことで、別のドメインのサーバーからレスポンスを受け取ることができます。callback をクエリ文字列に指定することで、レスポンスに callback を追加します。
 
 ```go
 func main() {
@@ -14,12 +14,14 @@ func main() {
 			"foo": "bar",
 		}
 		
-		//callback is x
-		// Will output  :   x({\"foo\":\"bar\"})
+		//callback は x です。
+		// x({\"foo\":\"bar\"}) が出力されます。
 		c.JSONP(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
+
+

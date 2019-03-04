@@ -1,5 +1,5 @@
 ---
-title: "Multipart/Urlencoded form"
+title: "Multipart/Urlencoded フォーム"
 draft: false
 ---
 
@@ -20,4 +20,5 @@ func main() {
 	router.Run(":8080")
 }
 ```
+
 

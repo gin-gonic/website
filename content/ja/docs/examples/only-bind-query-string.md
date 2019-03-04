@@ -1,9 +1,9 @@
 ---
-title: "Only bind query string"
+title: "クエリ文字列のみバインドする"
 draft: false
 ---
 
-`ShouldBindQuery` function only binds the query params and not the post data. See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017).
+`ShouldBindQuery` 関数はクエリ文字列のみをバインドし、POSTデータをバインドしません。[詳細](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017) はこちら。
 
 ```go
 package main
@@ -34,4 +34,6 @@ func startPage(c *gin.Context) {
 	}
 	c.String(200, "Success")
 }
+
 ```
+
