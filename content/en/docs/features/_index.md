@@ -4,7 +4,7 @@ draft: false
 weight: 4
 ---
 
-##### Gin v1 stable features:
+## Gin v1 stable features:
 
 - Zero allocation router.
 
