@@ -1,5 +1,5 @@
 ---
-title: "Grouping routes"
+title: "ルーティングをグループ化する"
 draft: false
 ---
 
@@ -7,7 +7,7 @@ draft: false
 func main() {
 	router := gin.Default()
 
-	// Simple group: v1
+	// v1 のグループ
 	v1 := router.Group("/v1")
 	{
 		v1.POST("/login", loginEndpoint)
@@ -15,7 +15,7 @@ func main() {
 		v1.POST("/read", readEndpoint)
 	}
 
-	// Simple group: v2
+	// v2 のグループ
 	v2 := router.Group("/v2")
 	{
 		v2.POST("/login", loginEndpoint)
@@ -26,3 +26,5 @@ func main() {
 	router.Run(":8080")
 }
 ```
+
+

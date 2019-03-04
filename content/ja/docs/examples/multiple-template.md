@@ -1,6 +1,9 @@
 ---
-title: "Multitemplate"
+title: "複数のテンプレート"
 draft: false
 ---
 
-Gin allow by default use only one html.Template. Check [a multitemplate render](https://github.com/gin-contrib/multitemplate) for using features like go 1.6 `block template`.
+Gin はデフォルトでは、1つの html.Template しか使用できません。
+go 1.6 の `block template` のような機能が使用できる [a multitemplate render](https://github.com/gin-contrib/multitemplate) を検討してください。
+
+

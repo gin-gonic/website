@@ -1,9 +1,9 @@
 ---
-title: "Run multiple service"
+title: "Gin を使って複数のサービスを稼働させる"
 draft: false
 ---
 
-See the [question](https://github.com/gin-gonic/gin/issues/346) and try the following example:
+[issue](https://github.com/gin-gonic/gin/issues/346) を見て、以下のサンプルコードを試してみてください。
 
 ```go
 package main
@@ -81,4 +81,3 @@ func main() {
 	}
 }
 ```
-

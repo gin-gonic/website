@@ -1,10 +1,10 @@
 ---
-title: "Users"
+title: "Gin のユーザー"
 draft: false
 weight: 8
 ---
 
-##### Awesome project lists using [Gin](https://github.com/gin-gonic/gin) web framework:
+##### [Gin](https://github.com/gin-gonic/gin) を利用している素晴らしいプロジェクト一覧。
 
 * [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
 

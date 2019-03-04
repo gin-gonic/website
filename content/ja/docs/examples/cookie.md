@@ -1,5 +1,5 @@
 ---
-title: "Set and get a cookie"
+title: "cookieの設定と取得"
 draft: false
 ---
 

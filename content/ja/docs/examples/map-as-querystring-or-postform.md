@@ -1,5 +1,5 @@
 ---
-title: "Map as querystring or postform parameters"
+title: "クエリ文字列やフォーム投稿によるパラメータをマッピングする"
 draft: false
 ---
 
@@ -28,4 +28,5 @@ func main() {
 ```sh
 ids: map[b:hello a:1234], names: map[second:tianou first:thinkerou]
 ```
+
 

@@ -1,9 +1,9 @@
 ---
-title: "HTML rendering"
+title: "HTML をレンダリングする"
 draft: false
 ---
 
-Using LoadHTMLGlob() or LoadHTMLFiles()
+LoadHTMLGlob() あるいは LoadHTMLFiles() メソッドを使用してください。
 
 ```go
 func main() {
@@ -29,7 +29,7 @@ templates/index.tmpl
 </html>
 ```
 
-Using templates with same name in different directories
+別のディレクトリにある同名のテンプレートを使う方法です。
 
 ```go
 func main() {
@@ -73,34 +73,34 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-#### Custom Template renderer
+#### カスタムテンプレートエンジン
 
-You can also use your own html template render
+独自のHTMLテンプレートエンジンを使うこともできます。
 
 ```go
 import "html/template"
 
 func main() {
-	router := gin.Default()
-	html := template.Must(template.ParseFiles("file1", "file2"))
-	router.SetHTMLTemplate(html)
-	router.Run(":8080")
+       router := gin.Default()
+       html := template.Must(template.ParseFiles("file1", "file2"))
+       router.SetHTMLTemplate(html)
+       router.Run(":8080")
 }
 ```
 
-#### Custom Delimiters
+#### カスタムデリミタ
 
-You may use custom delims
+独自のデリミタを使用することもできます。
 
 ```go
-	r := gin.Default()
-	r.Delims("{[{", "}]}")
-	r.LoadHTMLGlob("/path/to/templates")
+       r := gin.Default()
+       r.Delims("{[{", "}]}")
+       r.LoadHTMLGlob("/path/to/templates")
 ```
 
-#### Custom Template Funcs
+#### カスタムテンプレート関数
 
-See the detail [example code](examples/template).
+詳細は [サンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/template) を参照。
 
 main.go
 

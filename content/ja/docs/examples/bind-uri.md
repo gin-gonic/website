@@ -1,9 +1,9 @@
 ---
-title: "Bind Uri"
+title: "URLをバインドする"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/846).
+[詳細](https://github.com/gin-gonic/gin/issues/846) はこちら。
 
 ```go
 package main
@@ -29,8 +29,9 @@ func main() {
 }
 ```
 
-Test it with:
+以下のコードでテストできます。
 ```sh
 $ curl -v localhost:8088/thinkerou/987fbc97-4bed-5078-9f07-9141ba07c9f3
 $ curl -v localhost:8088/thinkerou/not-uuid
 ```
+

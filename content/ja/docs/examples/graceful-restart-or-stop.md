@@ -1,12 +1,12 @@
 ---
-title: "Graceful restart or stop"
+title: "graceful restart と stop"
 draft: false
 ---
 
-Do you want to graceful restart or stop your web server?
-There are some ways this can be done.
+graceful restart と stop をしたいですか？
+いくつかの方法があります。
 
-We can use [fvbock/endless](https://github.com/fvbock/endless) to replace the default `ListenAndServe`. Refer issue [#296](https://github.com/gin-gonic/gin/issues/296) for more details.
+[fvbock/endless](https://github.com/fvbock/endless) を使って、デフォルトの `ListenAndServe` を置き換えることができます。詳細は Issue [#296](https://github.com/gin-gonic/gin/issues/296) を参照ください。
 
 ```go
 router := gin.Default()
@@ -15,13 +15,13 @@ router.GET("/", handler)
 endless.ListenAndServe(":4242", router)
 ```
 
-An alternative to endless:
+endless の代わりは以下があります。
 
 * [manners](https://github.com/braintree/manners): A polite Go HTTP server that shuts down gracefully.
 * [graceful](https://github.com/tylerb/graceful): Graceful is a Go package enabling graceful shutdown of an http.Handler server.
 * [grace](https://github.com/facebookgo/grace): Graceful restart & zero downtime deploy for Go servers.
 
-If you are using Go 1.8, you may not need to use this library! Consider using http.Server's built-in [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) method for graceful shutdowns. See the full [graceful-shutdown](./examples/graceful-shutdown) example with gin.
+もし Go 1.8 を使っているなら、これらのライブラリを使う必要はないかもしれません！http.Server 組み込みの [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) メソッドを、graceful shutdowns に利用することを検討してみてください。詳細は Gin の [graceful-shutdown](https://github.com/gin-gonic/gin/blob/master/examples/graceful-shutdown) サンプルコードを見てみてください。
 
 ```go
 // +build go1.8
@@ -52,14 +52,13 @@ func main() {
 	}
 
 	go func() {
-		// service connections
+		// サービスの接続
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
 		}
 	}()
 
-	// Wait for interrupt signal to gracefully shutdown the server with
-	// a timeout of 5 seconds.
+	// シグナル割り込みを待ち、タイムアウト時間が5秒の graceful shutdown をする
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
@@ -73,4 +72,5 @@ func main() {
 	log.Println("Server exiting")
 }
 ```
+
 

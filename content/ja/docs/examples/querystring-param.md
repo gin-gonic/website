@@ -1,5 +1,5 @@
 ---
-title: "Query string parameters"
+title: "クエリ文字列のパラメータ"
 draft: false
 ---
 
@@ -7,14 +7,16 @@ draft: false
 func main() {
 	router := gin.Default()
 
-	// Query string parameters are parsed using the existing underlying request object.
-	// The request responds to a url matching:  /welcome?firstname=Jane&lastname=Doe
+	// クエリ文字列のパラメータは、既存の Request オブジェクトによって解析される。
+	// このルーターは、/welcome?firstname=Jane&lastname=Doe にマッチしたURLにアクセスすると、レスポンスを返す
 	router.GET("/welcome", func(c *gin.Context) {
 		firstname := c.DefaultQuery("firstname", "Guest")
-		lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
+		lastname := c.Query("lastname") // c.Request.URL.Query().Get("lastname") へのショートカット
 
 		c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
 	})
 	router.Run(":8080")
 }
 ```
+
+

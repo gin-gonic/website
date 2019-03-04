@@ -1,5 +1,5 @@
 ---
-title: "Custom Middleware"
+title: "カスタムミドルウェア"
 draft: false
 ---
 
@@ -8,18 +8,18 @@ func Logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		t := time.Now()
 
-		// Set example variable
+		// サンプル変数を設定
 		c.Set("example", "12345")
 
-		// before request
+		// request 処理の前
 
 		c.Next()
 
-		// after request
+		// request 処理の後
 		latency := time.Since(t)
 		log.Print(latency)
 
-		// access the status we are sending
+		// 送信予定のステータスコードにアクセスする
 		status := c.Writer.Status()
 		log.Println(status)
 	}
@@ -32,12 +32,13 @@ func main() {
 	r.GET("/test", func(c *gin.Context) {
 		example := c.MustGet("example").(string)
 
-		// it would print: "12345"
+		// "12345" が表示される
 		log.Println(example)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
+
 

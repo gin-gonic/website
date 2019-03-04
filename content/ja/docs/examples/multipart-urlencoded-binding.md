@@ -1,5 +1,5 @@
 ---
-title: "Multipart/Urlencoded binding"
+title: "Multipart/Urlencoded されたデータをバインドする"
 draft: false
 ---
 
@@ -18,11 +18,11 @@ type LoginForm struct {
 func main() {
 	router := gin.Default()
 	router.POST("/login", func(c *gin.Context) {
-		// you can bind multipart form with explicit binding declaration:
+		// 明示的にバインディングを定義して、multipart form をバインドすることができます。
 		// c.ShouldBindWith(&form, binding.Form)
-		// or you can simply use autobinding with ShouldBind method:
+		// あるいは、ShouldBind メソッドを使うことで、シンプルに自動でバインドすることもできます。
 		var form LoginForm
-		// in this case proper binding will be automatically selected
+		// このケースでは正しいバインディングが自動で選択されます。
 		if c.ShouldBind(&form) == nil {
 			if form.User == "user" && form.Password == "password" {
 				c.JSON(200, gin.H{"status": "you are logged in"})
@@ -35,7 +35,9 @@ func main() {
 }
 ```
 
-Test it with:
+以下のコードでテストできます。
 ```sh
 $ curl -v --form user=user --form password=password http://localhost:8080/login
 ```
+
+

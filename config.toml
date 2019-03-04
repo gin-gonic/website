@@ -89,7 +89,7 @@ time_format_blog = "02.01.2006"
 [languages.ja]
 title = "Gin"
 description = "Gin Web Framework"
-languageName = "にほんご"
+languageName = "日本語"
 contentDir = "content/ja"
 time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"

@@ -1,17 +1,18 @@
 ---
-title: "Define format for the log of routes"
+title: "ルーティングログのフォーマットを定義する"
 draft: false
 ---
 
-The default log of routes is:
+デフォルトのルーティングログは以下のようになります。
 ```
 [GIN-debug] POST   /foo                      --> main.main.func1 (3 handlers)
 [GIN-debug] GET    /bar                      --> main.main.func2 (3 handlers)
 [GIN-debug] GET    /status                   --> main.main.func3 (3 handlers)
 ```
 
-If you want to log this information in given format (e.g. JSON, key values or something else), then you can define this format with `gin.DebugPrintRouteFunc`.
-In the example below, we log all routes with standard log package but you can use another log tools that suits of your needs.
+もしログのフォーマットを定義したい(JSONやキーバリュー形式、その他)なら、`gin.DebugPrintRouteFunc` を定義することで可能です。
+以下のサンプルコードでは、すべてのルーティングを標準の log パッケージで記録していますが、必要に応じて最適な別のログツールを利用することも可能です。
+
 ```go
 import (
 	"log"
@@ -38,7 +39,7 @@ func main() {
 		c.JSON(http.StatusOK, "ok")
 	})
 
-	// Listen and Server in http://0.0.0.0:8080
+	// http://0.0.0.0:8080 でサーバーを立てる
 	r.Run()
 }
 ```
