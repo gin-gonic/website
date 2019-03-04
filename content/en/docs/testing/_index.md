@@ -4,7 +4,7 @@ draft: false
 weight: 7
 ---
 
-##### How to write test case for Gin?
+## How to write test case for Gin?
 
 The `net/http/httptest` package is preferable way for HTTP testing.
 

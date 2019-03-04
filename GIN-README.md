@@ -1,20 +1,5 @@
 # Gin Web Framework
 
-<img align="right" width="159px" src="https://raw.githubusercontent.com/gin-gonic/logo/master/color.png">
-
-[![Build Status](https://travis-ci.org/gin-gonic/gin.svg)](https://travis-ci.org/gin-gonic/gin)
-[![codecov](https://codecov.io/gh/gin-gonic/gin/branch/master/graph/badge.svg)](https://codecov.io/gh/gin-gonic/gin)
-[![Go Report Card](https://goreportcard.com/badge/github.com/gin-gonic/gin)](https://goreportcard.com/report/github.com/gin-gonic/gin)
-[![GoDoc](https://godoc.org/github.com/gin-gonic/gin?status.svg)](https://godoc.org/github.com/gin-gonic/gin)
-[![Join the chat at https://gitter.im/gin-gonic/gin](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gin-gonic/gin?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Sourcegraph](https://sourcegraph.com/github.com/gin-gonic/gin/-/badge.svg)](https://sourcegraph.com/github.com/gin-gonic/gin?badge)
-[![Open Source Helpers](https://www.codetriage.com/gin-gonic/gin/badges/users.svg)](https://www.codetriage.com/gin-gonic/gin)
-[![Release](https://img.shields.io/github/release/gin-gonic/gin.svg?style=flat-square)](https://github.com/gin-gonic/gin/releases)
-
-Gin is a web framework written in Go (Golang). It features a martini-like API with much better performance, up to 40 times faster thanks to [httprouter](https://github.com/julienschmidt/httprouter). If you need performance and good productivity, you will love Gin.
-
-![Gin console logger](https://gin-gonic.github.io/gin/other/console.png)
-
 ## Contents
 
 - [Installation](#installation)
@@ -63,8 +48,6 @@ Gin is a web framework written in Go (Golang). It features a martini-like API wi
     - [http2 server push](#http2-server-push)
     - [Define format for the log of routes](#define-format-for-the-log-of-routes)
     - [Set and get a cookie](#set-and-get-a-cookie)
-- [Testing](#testing)
-- [Users](#users)
 
 ## Installation
 
@@ -2014,58 +1997,3 @@ func main() {
 ```
 
 
-## Testing
-
-The `net/http/httptest` package is preferable way for HTTP testing.
-
-```go
-package main
-
-func setupRouter() *gin.Engine {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.String(200, "pong")
-	})
-	return r
-}
-
-func main() {
-	r := setupRouter()
-	r.Run(":8080")
-}
-```
-
-Test for code example above:
-
-```go
-package main
-
-import (
-	"net/http"
-	"net/http/httptest"
-	"testing"
-
-	"github.com/stretchr/testify/assert"
-)
-
-func TestPingRoute(t *testing.T) {
-	router := setupRouter()
-
-	w := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/ping", nil)
-	router.ServeHTTP(w, req)
-
-	assert.Equal(t, 200, w.Code)
-	assert.Equal(t, "pong", w.Body.String())
-}
-```
-
-## Users
-
-Awesome project lists using [Gin](https://github.com/gin-gonic/gin) web framework.
-
-* [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
-* [fnproject](https://github.com/fnproject/fn): The container native, cloud agnostic serverless platform.
-* [photoprism](https://github.com/photoprism/photoprism): Personal photo management powered by Go and Google TensorFlow.
-* [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
-* [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
