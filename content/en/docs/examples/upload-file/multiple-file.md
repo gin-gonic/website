@@ -3,7 +3,7 @@ title: "Multiple files"
 draft: false
 ---
 
-See the detail [example code](examples/upload-file/multiple).
+See the detail [example code](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple).
 
 ```go
 func main() {
