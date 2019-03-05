@@ -1,17 +1,17 @@
 ---
-title: "Without middleware by default"
+title: "デフォルトで設定されるミドルウェアがない空の Gin を作成する"
 draft: false
 ---
-
-Use
 
 ```go
 r := gin.New()
 ```
 
-instead of
+下記のコードではなく、上記のコードを利用する
 
 ```go
-// Default With the Logger and Recovery middleware already attached
+// Default は Logger と Recovery ミドルウェアが既にアタッチされている
 r := gin.Default()
 ```
+
+

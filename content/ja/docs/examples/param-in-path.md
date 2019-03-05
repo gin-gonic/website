@@ -1,5 +1,5 @@
 ---
-title: "Parameters in path"
+title: "パスに含まれるパラメータ"
 draft: false
 ---
 
@@ -7,14 +7,14 @@ draft: false
 func main() {
 	router := gin.Default()
 
-	// This handler will match /user/john but will not match /user/ or /user
+	// このハンドラは /user/john にはマッチするが、/user/ や /user にはマッチしない
 	router.GET("/user/:name", func(c *gin.Context) {
 		name := c.Param("name")
 		c.String(http.StatusOK, "Hello %s", name)
 	})
 
-	// However, this one will match /user/john/ and also /user/john/send
-	// If no other routers match /user/john, it will redirect to /user/john/
+	// しかし、下記は /user/john/ と /user/john/send にマッチする
+	// もしほかのルーターが /user/john にマッチしなければ、/user/john/ にリダイレクトしてくれる
 	router.GET("/user/:name/*action", func(c *gin.Context) {
 		name := c.Param("name")
 		action := c.Param("action")
@@ -25,3 +25,5 @@ func main() {
 	router.Run(":8080")
 }
 ```
+
+

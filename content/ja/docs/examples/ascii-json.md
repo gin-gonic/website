@@ -3,7 +3,8 @@ title: "AsciiJSON"
 draft: false
 ---
 
-Using AsciiJSON to Generates ASCII-only JSON with escaped non-ASCII chracters.
+AsciiJSON メソッドを使うことで、ASCII 文字列以外をエスケープした
+ASCII 文字列のみの JSON を出力できます。
 
 ```go
 func main() {
@@ -15,11 +16,11 @@ func main() {
 			"tag":  "<br>",
 		}
 
-		// will output : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
+		// {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"} が出力されます
 		c.AsciiJSON(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```

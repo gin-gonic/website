@@ -1,9 +1,9 @@
 ---
-title: "Bind query string or post data"
+title: "クエリ文字列あるいはポストされたデータをバインドする"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292).
+[詳細](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292) はこちら。
 
 ```go
 package main
@@ -29,9 +29,9 @@ func main() {
 
 func startPage(c *gin.Context) {
 	var person Person
-	// If `GET`, only `Form` binding engine (`query`) used.
-	// If `POST`, first checks the `content-type` for `JSON` or `XML`, then uses `Form` (`form-data`).
-	// See more at https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
+	// `GET` の場合、`Form` (クエリ文字列) がバインディングのみが使われます
+	// `POST` の場合、まず `JSON` か `XML` か判断するために `content-type` がチェックされ、そして `Form` (フォームデータ) が使われます。
+	// 詳細は https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48 を参照
 	if c.ShouldBind(&person) == nil {
 		log.Println(person.Name)
 		log.Println(person.Address)
@@ -42,7 +42,7 @@ func startPage(c *gin.Context) {
 }
 ```
 
-Test it with:
+以下のコードでテストできます。
 ```sh
 $ curl -X GET "localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
 ```

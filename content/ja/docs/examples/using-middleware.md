@@ -1,43 +1,43 @@
 ---
-title: "Using middleware"
+title: "ミドルウェアを利用する"
 draft: false
 ---
 
 ```go
 func main() {
-	// Creates a router without any middleware by default
+	// デフォルトのミドルウェアが何もない router を作成する
 	r := gin.New()
 
-	// Global middleware
-	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
-	// By default gin.DefaultWriter = os.Stdout
+	// グローバルなミドルウェア
+	// Logger ミドルウェアは GIN_MODE=release を設定してても、 gin.DefaultWriter にログを出力する
+	// gin.DefaultWriter はデフォルトでは os.Stdout。
 	r.Use(gin.Logger())
 
-	// Recovery middleware recovers from any panics and writes a 500 if there was one.
+	// Recovery ミドルウェアは panic が発生しても 500 エラーを返してくれる
 	r.Use(gin.Recovery())
 
-	// Per route middleware, you can add as many as you desire.
+	// 個別のルーティングに、ミドルウェアを好きに追加することもできる
 	r.GET("/benchmark", MyBenchLogger(), benchEndpoint)
 
-	// Authorization group
+	// 認証が必要なグループ
 	// authorized := r.Group("/", AuthRequired())
-	// exactly the same as:
+	// 下記と同一
 	authorized := r.Group("/")
-	// per group middleware! in this case we use the custom created
-	// AuthRequired() middleware just in the "authorized" group.
+	// 個別のグループのミドルウェア。この例では、AuthRequired() ミドルウェアを認証が必要なグループに設定している。
 	authorized.Use(AuthRequired())
 	{
 		authorized.POST("/login", loginEndpoint)
 		authorized.POST("/submit", submitEndpoint)
 		authorized.POST("/read", readEndpoint)
 
-		// nested group
+		// ネストしたグループ
 		testing := authorized.Group("testing")
 		testing.GET("/analytics", analyticsEndpoint)
 	}
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てる
 	r.Run(":8080")
 }
 ```
+
 

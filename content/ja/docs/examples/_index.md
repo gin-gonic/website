@@ -1,7 +1,7 @@
 ---
-title: "Examples"
+title: "APIの使い方のサンプル"
 draft: false
 weight: 6
 ---
 
-The section lists api usage.
+このセクションでは APIの使い方のサンプルを挙げます。

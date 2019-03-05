@@ -1,15 +1,15 @@
 ---
-title: "Using HTTP method"
+title: "GET,POST,PUT,PATCH,DELETE,OPTIONS メソッドを使う"
 draft: false
 ---
 
 ```go
 func main() {
-	// Disable Console Color
+	// コンソールに出力されるテキスト色を無効にする
 	// gin.DisableConsoleColor()
 
-	// Creates a gin router with default middleware:
-	// logger and recovery (crash-free) middleware
+	// デフォルトのミドルウェアで新しい gin ルーターを作成する
+	// logger とアプリケーションクラッシュをキャッチする recovery ミドルウェア
 	router := gin.Default()
 
 	router.GET("/someGet", getting)
@@ -20,9 +20,11 @@ func main() {
 	router.HEAD("/someHead", head)
 	router.OPTIONS("/someOptions", options)
 
-	// By default it serves on :8080 unless a
-	// PORT environment variable was defined.
+	// デフォルトではポート 8080 が利用されるが、
+	// 環境変数 PORT を指定していればそちらが優先される。
 	router.Run()
-	// router.Run(":3000") for a hard coded port
+	// router.Run(":3000") と書くことでポートをハードコーディングできる
 }
 ```
+
+

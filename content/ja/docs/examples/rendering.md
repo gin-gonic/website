@@ -1,5 +1,5 @@
 ---
-title: "XML/JSON/YAML/ProtoBuf rendering"
+title: "XML, JSON, YAML, ProtoBuf をレンダリングする"
 draft: false
 ---
 
@@ -7,13 +7,13 @@ draft: false
 func main() {
 	r := gin.Default()
 
-	// gin.H is a shortcut for map[string]interface{}
+	// gin.H は map[string]interface{} へのショートカットです。
 	r.GET("/someJSON", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
 	r.GET("/moreJSON", func(c *gin.Context) {
-		// You also can use a struct
+		// 構造体を使うこともできます。
 		var msg struct {
 			Name    string `json:"user"`
 			Message string
@@ -22,8 +22,8 @@ func main() {
 		msg.Name = "Lena"
 		msg.Message = "hey"
 		msg.Number = 123
-		// Note that msg.Name becomes "user" in the JSON
-		// Will output  :   {"user": "Lena", "Message": "hey", "Number": 123}
+		// msg.Name は JSON 内で "user" となることに注意してください
+		// 右記が出力されます  :   {"user": "Lena", "Message": "hey", "Number": 123}
 		c.JSON(http.StatusOK, msg)
 	})
 
@@ -38,17 +38,19 @@ func main() {
 	r.GET("/someProtoBuf", func(c *gin.Context) {
 		reps := []int64{int64(1), int64(2)}
 		label := "test"
-		// The specific definition of protobuf is written in the testdata/protoexample file.
+		// protobuf の定義は testdata/protoexample にかかれています。
 		data := &protoexample.Test{
 			Label: &label,
 			Reps:  reps,
 		}
-		// Note that data becomes binary data in the response
-		// Will output protoexample.Test protobuf serialized data
+		// データはレスポンス時にバイナリデータになることに注意してください。
+		// protoexample.Test の protobuf でシリアライズされたデータが出力されます。
 		c.ProtoBuf(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てます。
 	r.Run(":8080")
 }
 ```
+
+

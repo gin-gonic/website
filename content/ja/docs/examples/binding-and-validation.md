@@ -1,28 +1,28 @@
 ---
-title: "Model binding and validation"
+title: "モデルへのバインディングとバリデーションする"
 draft: false
 ---
 
-To bind a request body into a type, use model binding. We currently support binding of JSON, XML, YAML and standard form values (foo=bar&boo=baz).
+リクエストボディをある型にバインドするには、モデルへのバインディングを利用してください。Gin は今のところ JSON, XML, YAML と標準的なフォームの値(foo=bar&boo=baz)をサポートしています。
 
-Gin uses [**go-playground/validator.v8**](https://github.com/go-playground/validator) for validation. Check the full docs on tags usage [here](http://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Baked_In_Validators_and_Tags).
+Gin は [**go-playground/validator.v8**](https://github.com/go-playground/validator) をバリデーションに使用しています。 タグの使い方のすべてのドキュメントを読むには [ここ](http://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Baked_In_Validators_and_Tags) を参照してください。
 
-Note that you need to set the corresponding binding tag on all fields you want to bind. For example, when binding from JSON, set `json:"fieldname"`.
+バインドしたいすべてのフィールドに対応するタグを設定する必要があることに注意してください。たとえば、JSONからバインドする場合は、`json:"fieldname"` を設定します。
 
-Also, Gin provides two sets of methods for binding:
-- **Type** - Must bind
-  - **Methods** - `Bind`, `BindJSON`, `BindXML`, `BindQuery`, `BindYAML`
-  - **Behavior** - These methods use `MustBindWith` under the hood. If there is a binding error, the request is aborted with `c.AbortWithError(400, err).SetType(ErrorTypeBind)`. This sets the response status code to 400 and the `Content-Type` header is set to `text/plain; charset=utf-8`. Note that if you try to set the response code after this, it will result in a warning `[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422`. If you wish to have greater control over the behavior, consider using the `ShouldBind` equivalent method.
-- **Type** - Should bind
-  - **Methods** - `ShouldBind`, `ShouldBindJSON`, `ShouldBindXML`, `ShouldBindQuery`, `ShouldBindYAML`
-  - **Behavior** - These methods use `ShouldBindWith` under the hood. If there is a binding error, the error is returned and it is the developer's responsibility to handle the request and error appropriately.
+また、Gin は2種類のバインドのためのメソッドを用意しています。
+- **種類** - Must bind
+  - **メソッド** - `Bind`, `BindJSON`, `BindXML`, `BindQuery`, `BindYAML`
+  - **挙動** - これらのメソッドは、内部では `MustBindWith` メソッドを使っています。もしバインド時にエラーがあった場合、ユーザーからのリクエストは `c.AbortWithError(400, err).SetType(ErrorTypeBind)` で中止されます。この処理は、ステータスコード 400 を設定し、`Content-Type` ヘッダーに `text/plain; charset=utf-8` をセットします。もしこのあとにステータスコードを設定しようとした場合、`[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422` という注意メッセージが表示されるので注意してください。もしこの挙動をよりコントロールする必要がある場合、`ShouldBind` という同様のメソッドを利用することを検討してください。
+- **種類** - Should bind
+  - **メソッド** - `ShouldBind`, `ShouldBindJSON`, `ShouldBindXML`, `ShouldBindQuery`, `ShouldBindYAML`
+  - **挙動** - これらのメソッドは、内部では `ShouldBindWith` メソッドを使っています。もしバインド時にエラーがあった場合、エラーが返ってくるので、開発者の責任で、適切にエラーやリクエストをハンドリングします。
 
-When using the Bind-method, Gin tries to infer the binder depending on the Content-Type header. If you are sure what you are binding, you can use `MustBindWith` or `ShouldBindWith`.
+`Bind` メソッドを使用するとき、Gin は Content-Type ヘッダーに応じて何のバインダーでバインドするか推測しようとします。もし何のバインダーでバインドするかわかるならば、`MustBindWith` や `ShouldBindWith` が使えます。
 
-You can also specify that specific fields are required. If a field is decorated with `binding:"required"` and has a empty value when binding, an error will be returned.
+また、どのフィールドが必須か指定することができます。もしフィールドが、`binding:"required"` 指定されていて、バインディングの際に値が空であれば、エラーが返ります。
 
 ```go
-// Binding from JSON
+// JSON からバインドする
 type Login struct {
 	User     string `form:"user" json:"user" xml:"user"  binding:"required"`
 	Password string `form:"password" json:"password" xml:"password" binding:"required"`
@@ -31,7 +31,7 @@ type Login struct {
 func main() {
 	router := gin.Default()
 
-	// Example for binding JSON ({"user": "manu", "password": "123"})
+	// JSON でバインドする例 ({"user": "manu", "password": "123"})
 	router.POST("/loginJSON", func(c *gin.Context) {
 		var json Login
 		if err := c.ShouldBindJSON(&json); err != nil {
@@ -47,7 +47,7 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 	})
 
-	// Example for binding XML (
+	// XML でバインドする例 (
 	//	<?xml version="1.0" encoding="UTF-8"?>
 	//	<root>
 	//		<user>user</user>
@@ -68,10 +68,10 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 	})
 
-	// Example for binding a HTML form (user=manu&password=123)
+	// HTML Form からバインドする例 (user=manu&password=123)
 	router.POST("/loginForm", func(c *gin.Context) {
 		var form Login
-		// This will infer what binder to use depending on the content-type header.
+		// このコードは、content-type ヘッダーから類推して HTML Form でバインドする
 		if err := c.ShouldBind(&form); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
@@ -85,12 +85,12 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 0.0.0.0:8080 でサーバーを立てる
 	router.Run(":8080")
 }
 ```
 
-#### Sample request
+**リクエスト例**
 
 ```sh
 $ curl -v -X POST \
@@ -113,6 +113,8 @@ $ curl -v -X POST \
 {"error":"Key: 'Login.Password' Error:Field validation for 'Password' failed on the 'required' tag"}
 ```
 
-#### Skip validate
+#### バリデーションをスキップする
 
-When running the above example using the above the `curl` command, it returns error. Because the example use `binding:"required"` for `Password`. If use `binding:"-"` for `Password`, then it will not return error when running the above example again.
+上記の `curl` コマンドのサンプルを実行すると、エラーが返ります。これはサンプルコードで `binding:"required"` が `Password` フィールドに指定されているからです。`binding:"-"` を `Password` フィールドに指定することで、上記のサンプルを実行してもエラーは返らなくなります。
+
+

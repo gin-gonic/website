@@ -1,9 +1,9 @@
 ---
-title: "Bind form-data request with custom struct"
+title: "フォーム投稿されたリクエストを構造体にバインドする"
 draft: false
 ---
 
-The follow example using custom struct:
+下記のサンプルコードは、カスタム構造体を使っています。
 
 ```go
 type StructA struct {
@@ -64,7 +64,7 @@ func main() {
 }
 ```
 
-Using the command `curl` command result:
+`curl` を使った結果です。
 
 ```
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
@@ -75,21 +75,22 @@ $ curl "http://localhost:8080/getd?field_x=hello&field_d=world"
 {"d":"world","x":{"FieldX":"hello"}}
 ```
 
-**NOTE**: NOT support the follow style struct:
+**NOTE**: 下記の構造体はサポートしていません。
 
 ```go
 type StructX struct {
-    X struct {} `form:"name_x"` // HERE have form
+    X struct {} `form:"name_x"` // ここが form を持ってしまっている
 }
 
 type StructY struct {
-    Y StructX `form:"name_y"` // HERE have form
+    Y StructX `form:"name_y"` // ここが form を持ってしまっている
 }
 
 type StructZ struct {
-    Z *StructZ `form:"name_z"` // HERE have form
+    Z *StructZ `form:"name_z"` // ここが form を持ってしまっている
 }
 ```
 
-In a word, only support nested custom struct which have no `form` now.
+端的に言えば、ネストした構造体は `form` を今は持つことができません。
+
 

@@ -1,5 +1,5 @@
 ---
-title: "Serving data from reader"
+title: "io.Reader からのデータを返す"
 draft: false
 ---
 
@@ -26,3 +26,5 @@ func main() {
 	router.Run(":8080")
 }
 ```
+
+

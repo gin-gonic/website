@@ -1,17 +1,17 @@
 ---
-title: "Features"
+title: "機能"
 draft: false
 weight: 4
 ---
 
-##### Gin v1 stable features:
+#### Gin v1 の安定性
 
-- Zero allocation router.
+- ヒープメモリの拡張が0のルーター
 
-- Still the fastest http router and framework. From routing to writing.
+- 最速の http ルーターとフレームワーク
 
-- Complete suite of unit tests.
+- 一揃いのユニットテストをすべて満たしている
 
-- Battle tested.
+- バトルがテストされている
 
-- API frozen, new releases will not break your code.
+- APIは固まっており、新しいバージョンが既存のコードを壊すことはない
