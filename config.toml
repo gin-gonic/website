@@ -110,6 +110,7 @@ gcs_engine_id = "005538359705255204576:q0elqbxmlfs"
 [params.ui]
 # Enable to show the side bar menu in its compact state.
 sidebar_menu_compact = false
+sidebar_search_disable = true
 #  Set to true to disable breadcrumb navigation.
 breadcrumb_disable = false
 
