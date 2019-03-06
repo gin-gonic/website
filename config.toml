@@ -68,20 +68,22 @@ id = "UA-42425385-2"
 
 [languages]
 [languages.en]
-title = "Gin"
+title = "Gin Web Framework"
 description = "Gin Web Framework"
 languageName = "English"
 # Weight used for sorting.
 weight = 1
+
 [languages.zh-cn]
-title = "Gin"
+title = "Gin Web Framework"
 description = "Gin Web Framework"
 languageName = "简体中文"
 contentDir = "content/zh-cn"
 time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"
+
 [languages.zh-tw]
-title = "Gin"
+title = "Gin Web Framework"
 description = "Gin Web Framework"
 languageName = "繁體中文"
 contentDir = "content/zh-tw"
@@ -89,7 +91,7 @@ time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"
 
 [languages.ja]
-title = "Gin"
+title = "Gin Web Framework"
 description = "Gin Web Framework"
 languageName = "日本語"
 contentDir = "content/ja"
