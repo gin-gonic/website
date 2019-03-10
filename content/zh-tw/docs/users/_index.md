@@ -15,3 +15,5 @@ weight: 8
 * [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
 
 * [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
+
+* [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per web socket.
