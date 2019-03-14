@@ -17,3 +17,5 @@ weight: 8
 * [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
 
 * [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per web socket.
+
+* [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
