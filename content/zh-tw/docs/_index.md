@@ -108,7 +108,7 @@ $ govendor fetch github.com/gin-gonic/gin@v1.3
 4. 复制启动文件模板到项目目录中
 
 ```sh
-$ curl curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go > main.go
+$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
 5.启动项目
