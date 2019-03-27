@@ -4,5 +4,5 @@ draft: false
 weight: 9
 ---
 
-TODO: record some frequently asked question from GitHub Issue tab.
+TODO：记录 GitHub Issue 中的一些常见问题。
 

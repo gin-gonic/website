@@ -1,11 +1,9 @@
 ---
-title: "Build a single binary with templates"
+title: "静态资源嵌入"
 draft: false
 ---
 
-You can build a server into a single binary containing templates by using [go-assets][].
-
-[go-assets]: https://github.com/jessevdk/go-assets
+你可以使用  [go-assets](https://github.com/jessevdk/go-assets) 将静态资源打包到可执行文件中。
 
 ```go
 func main() {
@@ -23,7 +21,7 @@ func main() {
 	r.Run(":8080")
 }
 
-// loadTemplate loads templates embedded by go-assets-builder
+// loadTemplate 加载由 go-assets-builder 嵌入的模板
 func loadTemplate() (*template.Template, error) {
 	t := template.New("")
 	for name, file := range Assets.Files {
@@ -43,5 +41,5 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-See a complete example in the `examples/assets-in-binary` directory.
+请参阅 `examples/assets-in-binary` 目录中的完整示例。
 

@@ -1,21 +1,21 @@
 ---
-title: "Single file"
+title: "单文件"
 draft: false
 ---
 
-References issue [#774](https://github.com/gin-gonic/gin/issues/774) and detail [example code](examples/upload-file/single).
+参考 issue [#774](https://github.com/gin-gonic/gin/issues/774) 和详细[示例代码](https://github.com/gin-gonic/examples/tree/master/upload-file/single).
 
 ```go
 func main() {
 	router := gin.Default()
-	// Set a lower memory limit for multipart forms (default is 32 MiB)
+	// 为 multipart forms 设置较低的内存限制 (默认是 32 MiB)
 	// router.MaxMultipartMemory = 8 << 20  // 8 MiB
 	router.POST("/upload", func(c *gin.Context) {
-		// single file
+		// 单文件
 		file, _ := c.FormFile("file")
 		log.Println(file.Filename)
 
-		// Upload the file to specific dst.
+		// 上传文件至指定目录
 		// c.SaveUploadedFile(file, dst)
 
 		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
@@ -24,7 +24,7 @@ func main() {
 }
 ```
 
-How to `curl`:
+如何使用 `curl`：
 
 ```sh
 curl -X POST http://localhost:8080/upload \

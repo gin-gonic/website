@@ -1,5 +1,5 @@
 ---
-title: "Query and post form"
+title: "Query 和 post form"
 draft: false
 ---
 

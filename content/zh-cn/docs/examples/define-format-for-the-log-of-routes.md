@@ -1,17 +1,17 @@
 ---
-title: "Define format for the log of routes"
+title: "定义路由日志的格式"
 draft: false
 ---
 
-The default log of routes is:
+默认的路由日志格式：
 ```
 [GIN-debug] POST   /foo                      --> main.main.func1 (3 handlers)
 [GIN-debug] GET    /bar                      --> main.main.func2 (3 handlers)
 [GIN-debug] GET    /status                   --> main.main.func3 (3 handlers)
 ```
 
-If you want to log this information in given format (e.g. JSON, key values or something else), then you can define this format with `gin.DebugPrintRouteFunc`.
-In the example below, we log all routes with standard log package but you can use another log tools that suits of your needs.
+如果你想要以指定的格式（例如 JSON，key values 或其他格式）记录信息，则可以使用 `gin.DebugPrintRouteFunc` 指定格式。
+在下面的示例中，我们使用标准日志包记录所有路由，但你可以使用其他满足你需求的日志工具。
 ```go
 import (
 	"log"
@@ -38,7 +38,7 @@ func main() {
 		c.JSON(http.StatusOK, "ok")
 	})
 
-	// Listen and Server in http://0.0.0.0:8080
+	// 监听并在 0.0.0.0:8080 上启动服务
 	r.Run()
 }
 ```

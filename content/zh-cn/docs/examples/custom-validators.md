@@ -1,9 +1,9 @@
 ---
-title: "Custom validators"
+title: "自定义验证器"
 draft: false
 ---
 
-It is also possible to register custom validators. See the [example code](examples/custom-validation/server.go).
+注册自定义验证器，查看[示例代码](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).
 
 ```go
 package main
@@ -18,7 +18,7 @@ import (
 	"gopkg.in/go-playground/validator.v8"
 )
 
-// Booking contains binded and validated data.
+// Booking 包含绑定和验证的数据。
 type Booking struct {
 	CheckIn  time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
 	CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn" time_format:"2006-01-02"`
@@ -66,5 +66,4 @@ $ curl "localhost:8085/bookable?check_in=2018-03-08&check_out=2018-03-09"
 {"error":"Key: 'Booking.CheckIn' Error:Field validation for 'CheckIn' failed on the 'bookabledate' tag"}
 ```
 
-[Struct level validations](https://github.com/go-playground/validator/releases/tag/v8.7) can also be registered this way.
-See the [struct-lvl-validation example](examples/struct-lvl-validations) to learn more.
+[结构体级别的验证器](https://github.com/go-playground/validator/releases/tag/v8.7) 也可以通过其他的方式注册。更多信息请参阅 [struct-lvl-validation 示例](examples/struct-lvl-validations)。

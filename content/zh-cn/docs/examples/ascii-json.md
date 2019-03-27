@@ -3,7 +3,7 @@ title: "AsciiJSON"
 draft: false
 ---
 
-Using AsciiJSON to Generates ASCII-only JSON with escaped non-ASCII chracters.
+使用 AsciiJSON 生成具有转义的非 ASCII 字符的 ASCII-only JSON。
 
 ```go
 func main() {
@@ -15,11 +15,11 @@ func main() {
 			"tag":  "<br>",
 		}
 
-		// will output : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
+		// 输出 : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
 		c.AsciiJSON(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 监听并在 0.0.0.0:8080 上启动服务
 	r.Run(":8080")
 }
 ```

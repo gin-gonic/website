@@ -1,12 +1,12 @@
 ---
-title: "Benchmarks"
+title: "基准测试"
 draft: false
 weight: 3
 ---
 
-Gin uses a custom version of [HttpRouter](https://github.com/julienschmidt/httprouter)
+Gin 使用了自定义版本的 [HttpRouter](https://github.com/julienschmidt/httprouter)
 
-[See all benchmarks](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
+[查看所有基准测试](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
 
 Benchmark name                | (1)        | (2)         | (3) 		    | (4)
 ------------------------------|-----------:|------------:|-----------:|---------:
@@ -38,7 +38,7 @@ BenchmarkTigerTonic_GithubAll |    1000    |  1439483    |  239104    |  5374
 BenchmarkTraffic_GithubAll    |     100    | 11383067    | 2659329    | 21848
 BenchmarkVulcan_GithubAll     |    5000    |   394253    |   19894    |   609
 
-- (1): Total Repetitions achieved in constant time, higher means more confident result
-- (2): Single Repetition Duration (ns/op), lower is better
-- (3): Heap Memory (B/op), lower is better
-- (4): Average Allocations per Repetition (allocs/op), lower is better
+- (1)：在一定的时间内实现的总调用数，越高越好
+- (2)：单次操作耗时（ns/op），越低越好
+- (3)：堆内存分配 （B/op）, 越低越好
+- (4)：每次操作的平均内存分配次数（allocs/op），越低越好

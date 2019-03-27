@@ -1,17 +1,17 @@
 ---
-title: "Features"
+title: "特性"
 draft: false
 weight: 4
 ---
 
-##### Gin v1 stable features:
+##### Gin v1 稳定的特性:
 
-- Zero allocation router.
+- 零分配路由。
 
-- Still the fastest http router and framework. From routing to writing.
+- 仍然是最快的 http 路由器和框架。
 
-- Complete suite of unit tests.
+- 完整的单元测试支持。
 
-- Battle tested.
+- 实战考验。
 
-- API frozen, new releases will not break your code.
+- API 冻结，新版本的发布不会破坏你的代码。
