@@ -1,10 +1,9 @@
 ---
-title: "Try to bind body into different structs"
+title: "将 request body 绑定到不同的结构体中"
 draft: false
 ---
 
-The normal methods for binding request body consumes `c.Request.Body` and they
-cannot be called multiple times.
+一般通过调用 `c.Request.Body` 方法绑定数据，但不能多次调用这个方法。
 
 ```go
 type formA struct {
@@ -18,10 +17,10 @@ type formB struct {
 func SomeHandler(c *gin.Context) {
   objA := formA{}
   objB := formB{}
-  // This c.ShouldBind consumes c.Request.Body and it cannot be reused.
+  // c.ShouldBind 使用了 c.Request.Body，不可重用。
   if errA := c.ShouldBind(&objA); errA == nil {
     c.String(http.StatusOK, `the body should be formA`)
-  // Always an error is occurred by this because c.Request.Body is EOF now.
+  // 因为现在 c.Request.Body 是 EOF，所以这里会报错。
   } else if errB := c.ShouldBind(&objB); errB == nil {
     c.String(http.StatusOK, `the body should be formB`)
   } else {
@@ -30,19 +29,19 @@ func SomeHandler(c *gin.Context) {
 }
 ```
 
-For this, you can use `c.ShouldBindBodyWith`.
+要想多次绑定，可以使用 `c.ShouldBindBodyWith`.
 
 ```go
 func SomeHandler(c *gin.Context) {
   objA := formA{}
   objB := formB{}
-  // This reads c.Request.Body and stores the result into the context.
+  // 读取 c.Request.Body 并将结果存入上下文。
   if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
     c.String(http.StatusOK, `the body should be formA`)
-  // At this time, it reuses body stored in the context.
+  // 这时, 复用存储在上下文中的 body。
   } else if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
     c.String(http.StatusOK, `the body should be formB JSON`)
-  // And it can accepts other formats
+  // 可以接受其他格式
   } else if errB2 := c.ShouldBindBodyWith(&objB, binding.XML); errB2 == nil {
     c.String(http.StatusOK, `the body should be formB XML`)
   } else {
@@ -51,11 +50,7 @@ func SomeHandler(c *gin.Context) {
 }
 ```
 
-* `c.ShouldBindBodyWith` stores body into the context before binding. This has
-a slight impact to performance, so you should not use this method if you are
-enough to call binding at once.
-* This feature is only needed for some formats -- `JSON`, `XML`, `MsgPack`,
-`ProtoBuf`. For other formats, `Query`, `Form`, `FormPost`, `FormMultipart`,
-can be called by `c.ShouldBind()` multiple times without any damage to
-performance (See [#1341](https://github.com/gin-gonic/gin/pull/1341)).
-
+* `c.ShouldBindBodyWith` 会在绑定之前将 body 存储到上下文中。 这会对性能造成轻微影响，如果调用一次就能完成绑定的话，那就不要用这个方法。
+* 只有某些格式需要此功能，如 `JSON`, `XML`, `MsgPack`,
+`ProtoBuf`。 对于其他格式, 如 `Query`, `Form`, `FormPost`, `FormMultipart`
+可以多次调用 `c.ShouldBind()` 而不会造成任任何性能损失 (详见 [#1341](https://github.com/gin-gonic/gin/pull/1341))。

@@ -1,5 +1,5 @@
 ---
-title: "Map as querystring or postform parameters"
+title: "映射查询字符串或表单参数"
 draft: false
 ---
 

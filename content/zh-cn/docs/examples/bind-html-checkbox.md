@@ -1,9 +1,9 @@
 ---
-title: "Bind html checkboxes"
+title: "绑定 HTML 复选框"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)
+参见[详细信息](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)
 
 main.go
 
@@ -41,7 +41,7 @@ form.html
 </form>
 ```
 
-result:
+结果:
 
 ```sh
 {"color":["red","green","blue"]}

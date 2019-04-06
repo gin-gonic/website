@@ -1,9 +1,9 @@
 ---
-title: "Redirects"
+title: "重定向"
 draft: false
 ---
 
-Issuing a HTTP redirect is easy. Both internal and external locations are supported.
+HTTP 重定向很容易。 内部、外部重定向均支持。
 
 ```go
 r.GET("/test", func(c *gin.Context) {
@@ -12,7 +12,7 @@ r.GET("/test", func(c *gin.Context) {
 ```
 
 
-Issuing a Router redirect, use `HandleContext` like below.
+路由重定向，使用 `HandleContext`：
 
 ``` go
 r.GET("/test", func(c *gin.Context) {

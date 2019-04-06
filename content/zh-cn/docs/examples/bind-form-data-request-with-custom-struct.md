@@ -1,9 +1,9 @@
 ---
-title: "Bind form-data request with custom struct"
+title: "绑定表单数据至自定义结构体"
 draft: false
 ---
 
-The follow example using custom struct:
+以下示例使用自定义结构体：
 
 ```go
 type StructA struct {
@@ -64,7 +64,7 @@ func main() {
 }
 ```
 
-Using the command `curl` command result:
+使用 `curl` 命令结果：
 
 ```
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
@@ -75,21 +75,21 @@ $ curl "http://localhost:8080/getd?field_x=hello&field_d=world"
 {"d":"world","x":{"FieldX":"hello"}}
 ```
 
-**NOTE**: NOT support the follow style struct:
+**注意**：不支持以下格式结构体：
 
 ```go
 type StructX struct {
-    X struct {} `form:"name_x"` // HERE have form
+    X struct {} `form:"name_x"` // 有 form
 }
 
 type StructY struct {
-    Y StructX `form:"name_y"` // HERE have form
+    Y StructX `form:"name_y"` // 有 form
 }
 
 type StructZ struct {
-    Z *StructZ `form:"name_z"` // HERE have form
+    Z *StructZ `form:"name_z"` // 有 form
 }
 ```
 
-In a word, only support nested custom struct which have no `form` now.
+总之, 目前仅支持没有 form 的嵌套结构体。
 

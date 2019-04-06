@@ -1,9 +1,9 @@
 ---
-title: "HTML rendering"
+title: "HTML 渲染"
 draft: false
 ---
 
-Using LoadHTMLGlob() or LoadHTMLFiles()
+使用 LoadHTMLGlob() 或者 LoadHTMLFiles()
 
 ```go
 func main() {
@@ -29,7 +29,7 @@ templates/index.tmpl
 </html>
 ```
 
-Using templates with same name in different directories
+使用不同目录下名称相同的模板
 
 ```go
 func main() {
@@ -73,9 +73,9 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-#### Custom Template renderer
+#### 自定义模板渲染器
 
-You can also use your own html template render
+你可以使用自定义的 html 模板渲染
 
 ```go
 import "html/template"
@@ -88,9 +88,9 @@ func main() {
 }
 ```
 
-#### Custom Delimiters
+#### 自定义分隔符
 
-You may use custom delims
+你可以使用自定义分隔
 
 ```go
 	r := gin.Default()
@@ -98,9 +98,9 @@ You may use custom delims
 	r.LoadHTMLGlob("/path/to/templates")
 ```
 
-#### Custom Template Funcs
+#### 自定义模板功能
 
-See the detail [example code](examples/template).
+查看详细[示例代码](https://github.com/gin-gonic/examples/tree/master/template)。
 
 main.go
 
@@ -144,7 +144,7 @@ raw.tmpl
 Date: {[{.now | formatAsDate}]}
 ```
 
-Result:
+结果：
 ```sh
 Date: 2017/07/01
 ```

@@ -1,9 +1,9 @@
 ---
-title: "Run multiple service"
+title: "运行多个服务"
 draft: false
 ---
 
-See the [question](https://github.com/gin-gonic/gin/issues/346) and try the following example:
+请参阅 [issues](https://github.com/gin-gonic/gin/issues/346) 并尝试以下示例：
 
 ```go
 package main
