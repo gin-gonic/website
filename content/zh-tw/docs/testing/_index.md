@@ -1,12 +1,12 @@
 ---
-title: "Testing"
+title: "測試"
 draft: false
 weight: 7
 ---
 
-##### How to write test case for Gin?
+##### 如何為 Gin 寫測試案例？
 
-The `net/http/httptest` package is preferable way for HTTP testing.
+傾向使用 `net/http/httptest` 套件來做 HTTP 測試。
 
 {{<highlight go>}}
 
@@ -26,7 +26,7 @@ func main() {
 }
 {{</highlight>}}
 
-Test for code example above:
+為上面程式碼所寫的測試：
 
 ```go
 package main
