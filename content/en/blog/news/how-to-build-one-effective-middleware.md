@@ -4,11 +4,11 @@ linkTitle: "How to build one effective middleware?"
 date: 2019-02-26
 ---
 
-## Consitituent part
+## Constituent parts
 
 The middleware has two parts:
 
-  - part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens one per application lifetime.
+  - part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens once per application lifetime.
 
   - part two is what executes on every request. For example, a database middleware you simply inject your "global" database object into the context. Once it's inside the context, you can retrieve it from within other middlewares and your handler function.
 
@@ -17,7 +17,7 @@ func funcName(params string) gin.HandlerFunc {
     // <---
     // This is part one
     // --->
-    // The follow code is an example
+    // The following code is an example
     if err := check(params); err != nil {
         panic(err)
     }
@@ -26,7 +26,7 @@ func funcName(params string) gin.HandlerFunc {
         // <---
         // This is part two
         // --->
-        // The follow code is an example
+        // The following code is an example
         c.Set("TestVar", params)
         c.Next()    
     }
@@ -35,7 +35,7 @@ func funcName(params string) gin.HandlerFunc {
 
 ## Execution process
 
-Firstly, we have the follow example code:
+Firstly, we have the following example code:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to [Consitituent part](#consitituent-part) said, when we run the gin process, **part one** will execute firstly and will print the follow information:
+According to [Constituent parts](#Constituent-parts) said, when we run the gin process, **part one** will execute firstly and will print the following information:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-And init order are:
+And init order is:
 
 ```go
 globalMiddleware...1
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, run order are:
+In other words, run order is:
 
 ```go
 globalMiddleware...2
