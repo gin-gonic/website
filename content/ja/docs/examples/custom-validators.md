@@ -67,5 +67,4 @@ $ curl "localhost:8085/bookable?check_in=2018-03-08&check_out=2018-03-09"
 ```
 
 [Struct level validations](https://github.com/go-playground/validator/releases/tag/v8.7) もこの方法で登録できます。
-[struct-lvl-validation のサンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/struct-lvl-validations) を見ることでより学べます。
-
+[struct-lvl-validation のサンプルコード](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) を見ることでより学べます。
