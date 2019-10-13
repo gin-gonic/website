@@ -1,18 +1,18 @@
 ---
-title: "How to write log file"
+title: "如何记录日志"
 draft: false
 ---
 
 ```go
 func main() {
-    // Disable Console Color, you don't need console color when writing the logs to file.
+    // 禁用控制台颜色，将日志写入文件时不需要控制台颜色。
     gin.DisableConsoleColor()
 
-    // Logging to a file.
+    // 记录到文件。
     f, _ := os.Create("gin.log")
     gin.DefaultWriter = io.MultiWriter(f)
 
-    // Use the following code if you need to write the logs to file and console at the same time.
+    // 如果需要同时将日志写入文件和控制台，请使用以下代码。
     // gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
     router := gin.Default()

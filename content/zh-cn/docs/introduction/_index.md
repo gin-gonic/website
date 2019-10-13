@@ -1,39 +1,46 @@
 ---
-title: "Introduction"
+title: "介绍"
 draft: false
 weight: 1
 ---
 
-Gin is a web framework written in Go (Golang). It features a martini-like API with much better performance, up to 40 times faster thanks to [httprouter](https://github.com/julienschmidt/httprouter). If you need performance and good productivity, you will love Gin.
+Gin 是一个用 Go (Golang) 编写的 web 框架。 它是一个类似于 [martini](https://github.com/go-martini/martini) 但拥有更好性能的 API 框架, 由于 [httprouter](https://github.com/julienschmidt/httprouter)，速度提高了近 40 倍。 如果你是性能和高效的追求者, 你会爱上 Gin.
 
-In this section we will walk through what Gin is, what problems it solves, and how it can help your project.
+在本节中，我们将介绍 Gin 是什么，它解决了哪些问题，以及它如何帮助你的项目。
 
-Or, if you are ready to use Gin in to your project, visit the [Quickstart](/quickstart).
+或者, 如果你已经准备在项目中使用 Gin，请访问[快速入门](https://gin-gonic.com/zh-cn/docs/quickstart/).
 
-# Features
+## 特性
 
-#### Fast
-Radix tree based routing, small memory foot print. No reflection. Predictable API performance. 
+### 快速
 
-#### Middleware support
-A incoming HTTP request can be handled by a chain of middlewares and the final action. 
-For example: Logger, Authorization, GZIP and finally post a message in the DB.
+基于 Radix 树的路由，小内存占用。没有反射。可预测的 API 性能。
 
-#### Crash-free
-Gin can catch a panic occurred during a HTTP request and recover it. This way, your server will be always available. It’s also possible to report this panic to Sentry for example!
+### 支持中间件
 
-#### JSON validation 
-Gin can parse and validate the JSON of a request, checking for example the existence of required values.
+传入的 HTTP 请求可以由一系列中间件和最终操作来处理。
+例如：Logger，Authorization，GZIP，最终操作 DB。
 
-#### Routes grouping
-Organize your routes better. Authorization required vs non required, different API versions... In addition, the groups can be nested unlimitedly without degrading performance.
+### Crash 处理
 
-#### Error management
-Gin provides a convenient way to collect all the errors occurred during a HTTP request. Eventually, a middleware can write them to a log file, to a database and send them through the network.
+Gin 可以 catch 一个发生在 HTTP 请求中的 panic 并 recover 它。这样，你的服务器将始终可用。例如，你可以向 Sentry 报告这个 panic！
 
-#### Rendering built-in
-Gin provides a easy to use API for JSON, XML and HTML rendering.
+### JSON 验证 
 
-#### Extendable
-Creating a new middleware is so easy, just check out the sample codes.
+Gin 可以解析并验证请求的 JSON，例如检查所需值的存在。
 
+### 路由组
+
+更好地组织路由。是否需要授权，不同的 API 版本...... 此外，这些组可以无限制地嵌套而不会降低性能。
+
+### 错误管理
+
+Gin 提供了一种方便的方法来收集 HTTP 请求期间发生的所有错误。最终，中间件可以将它们写入日志文件，数据库并通过网络发送。
+
+### 内置渲染
+
+Gin 为 JSON，XML 和 HTML 渲染提供了易于使用的 API。
+
+### 可扩展性
+
+新建一个中间件非常简单，去查看[示例代码](https://gin-gonic.com/zh-cn/docs/examples/using-middleware/)吧。

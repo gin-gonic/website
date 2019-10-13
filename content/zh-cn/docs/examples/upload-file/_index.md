@@ -1,6 +1,6 @@
 ---
-title: "Upload files"
+title: "上传文件"
 draft: false
 ---
 
-The section lists upload file api usage.
+本节列出了上传图片的 api 用法。

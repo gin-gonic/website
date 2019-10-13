@@ -1,5 +1,5 @@
 ---
-title: "Query string parameters"
+title: "查询字符串参数"
 draft: false
 ---
 
@@ -7,11 +7,11 @@ draft: false
 func main() {
 	router := gin.Default()
 
-	// Query string parameters are parsed using the existing underlying request object.
-	// The request responds to a url matching:  /welcome?firstname=Jane&lastname=Doe
+	// 使用现有的基础请求对象解析查询字符串参数。
+	// 示例 URL： /welcome?firstname=Jane&lastname=Doe
 	router.GET("/welcome", func(c *gin.Context) {
 		firstname := c.DefaultQuery("firstname", "Guest")
-		lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
+		lastname := c.Query("lastname") // c.Request.URL.Query().Get("lastname") 的一种快捷方式
 
 		c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
 	})

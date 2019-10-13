@@ -1,7 +1,7 @@
 ---
-title: "Examples"
+title: "範例"
 draft: false
 weight: 6
 ---
 
-The section lists api usage.
+這個章節列出一些 API 使用方法。

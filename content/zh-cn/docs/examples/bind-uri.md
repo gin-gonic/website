@@ -1,9 +1,9 @@
 ---
-title: "Bind Uri"
+title: "绑定 Uri"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/846).
+查看[详细信息](https://github.com/gin-gonic/gin/issues/846).
 
 ```go
 package main
@@ -29,7 +29,7 @@ func main() {
 }
 ```
 
-Test it with:
+测试:
 ```sh
 $ curl -v localhost:8088/thinkerou/987fbc97-4bed-5078-9f07-9141ba07c9f3
 $ curl -v localhost:8088/thinkerou/not-uuid
