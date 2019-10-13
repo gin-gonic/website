@@ -90,6 +90,14 @@ contentDir = "content/ja"
 time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"
 
+[languages.ko-kr]
+title = "Gin Web Framework"
+description = "Gin Web Framework"
+languageName = "한국어"
+contentDir = "content/ko-kr"
+time_format_default = "02.01.2006"
+time_format_blog = "02.01.2006"
+
 # Everything below this are Site Params
 
 [params]
