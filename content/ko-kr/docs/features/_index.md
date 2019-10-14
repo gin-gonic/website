@@ -1,17 +1,17 @@
 ---
-title: "Features"
+title: "기능"
 draft: false
 weight: 4
 ---
 
-## Gin v1 stable features:
+## Gin v1 안정판의 기능:
 
-- Zero allocation router.
+- 동적 메모리 할당이 0인 라우터
 
-- Still the fastest http router and framework. From routing to writing.
+- 가장 빠른 http 라우터와 프레임워크
 
-- Complete suite of unit tests.
+- 단위 테스트가 갖추어져 있음
 
-- Battle tested.
+- 엄격한 테스트를 통과함 (Battle tested)
 
-- API frozen, new releases will not break your code.
+- API는 고정되어 있고, 새로운 버전이 기존의 코드에 영향을 끼치지 않음

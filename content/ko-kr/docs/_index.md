@@ -1,24 +1,23 @@
 ---
-title: "Documentation"
-linkTitle: "Documentation"
+title: "문서"
+linkTitle: "문서"
 weight: 20
 menu:
   main:
     weight: 20
 ---
 
-## What is Gin?
+## Gin 이란?
 
-Gin is a HTTP web framework written in Go (Golang). It features a Martini-like API with much better performance -- up to 40 times faster. If you need smashing performance, get yourself some Gin.
+Gin은 Go 언어로 작성된 HTTP Web 프레임워크입니다. [Martini](https://github.com/go-martini/martini)와 유사한 API를 제공하지만,최대 40배 빠른 성능을 발휘합니다. 매우 좋은 성능이 필요하다면 Gin을 사용하세요.
 
-## How to use Gin?
+## Gin의 사용법은?
 
-We provide some API usage [examples](https://github.com/gin-gonic/examples) and lists some public known [Gin's user](./users).
+우리는 API [예제들](https://github.com/gin-gonic/examples)과 [Gin을 사용하는 프로젝트](./users) 리스트를 제공하고 있습니다.
 
-## How to contribute to Gin?
+## Gin에 기여하기 위해서는?
 
-* Help people on the discussion forums
-* Tell us your success stories using Gin
-* Tell us how we can improve Gin and help us do it
-* Contribute to an existing library
-
+* 토론 포럼에서 사람들을 도와주세요
+* Gin을 사용한 성공사례를 알려주세요
+* Gin을 개선하기 위한 좋은 방법이 있다면 알려주세요
+* 기존의 라이브러리에 기여해주세요

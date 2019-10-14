@@ -1,12 +1,12 @@
 ---
-title: "Testing"
+title: "테스트"
 draft: false
 weight: 7
 ---
 
-## How to write test case for Gin?
+## Gin의 테스트 케이스를 작성하는 방법은?
 
-The `net/http/httptest` package is preferable way for HTTP testing.
+`net/http/httptest` 패키지 는 HTTP테스트에 선호되는 방법입니다.
 
 {{<highlight go>}}
 
@@ -26,7 +26,7 @@ func main() {
 }
 {{</highlight>}}
 
-Test for code example above:
+위 예제의 테스트 코드:
 
 ```go
 package main

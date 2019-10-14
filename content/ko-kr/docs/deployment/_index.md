@@ -1,10 +1,10 @@
 ---
-title: "Deployment"
+title: "배포"
 draft: false
 weight: 6
 ---
 
-Gin projects can be deployed easily on any cloud provider.
+Gin 프로젝트는 모든 클라우드 제공 업체에 쉽게 배포 할 수 있습니다.
 
 * **[Render](https://render.com)**
 <p>
