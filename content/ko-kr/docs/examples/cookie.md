@@ -1,5 +1,5 @@
 ---
-title: "Set and get a cookie"
+title: "쿠키의 설정 및 가져오기"
 draft: false
 ---
 

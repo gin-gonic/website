@@ -1,5 +1,5 @@
 ---
-title: "Map as querystring or postform parameters"
+title: "쿼리 문자열 혹은 POST 폼의 파라미터에 매핑"
 draft: false
 ---
 

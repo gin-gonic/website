@@ -1,17 +1,17 @@
 ---
-title: "Without middleware by default"
+title: "기본 미들웨어를 포함하지 않는 방법"
 draft: false
 ---
 
-Use
+이렇게 사용하세요.
 
 ```go
 r := gin.New()
 ```
 
-instead of
+아래와 같은 코드는 기본 미들웨어를 포함합니다.
 
 ```go
-// Default With the Logger and Recovery middleware already attached
+// 로거와 복구 미들웨어가 이미 연결된 상태
 r := gin.Default()
 ```

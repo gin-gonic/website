@@ -1,9 +1,9 @@
 ---
-title: "HTML rendering"
+title: "HTML 랜더링"
 draft: false
 ---
 
-Using LoadHTMLGlob() or LoadHTMLFiles()
+LoadHTMLGlob() 혹은 LoadHTMLFiles()를 사용합니다.
 
 ```go
 func main() {
@@ -29,7 +29,7 @@ templates/index.tmpl
 </html>
 ```
 
-Using templates with same name in different directories
+다른 디렉토리에 있는 동일한 이름의 템플릿을 사용할 경우
 
 ```go
 func main() {
@@ -73,9 +73,9 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-### Custom Template renderer
+### 커스텀 템플릿 렌더링 엔진
 
-You can also use your own html template render
+독자적인 HTML 템플릿 렌더링 엔진을 사용하는 것도 가능합니다.
 
 ```go
 import "html/template"
@@ -88,9 +88,9 @@ func main() {
 }
 ```
 
-### Custom Delimiters
+### 커스텀 구분자
 
-You may use custom delims
+구분자를 사용자 정의하여 사용할 수도 있습니다.
 
 ```go
 	r := gin.Default()
@@ -98,9 +98,9 @@ You may use custom delims
 	r.LoadHTMLGlob("/path/to/templates")
 ```
 
-### Custom Template Funcs
+### 커스텀 템플릿 기능
 
-See the detail [example code](https://github.com/gin-gonic/examples/tree/master/template).
+자세한 내용은 [예제 코드](https://github.com/gin-gonic/examples/tree/master/template)를 확인하세요.
 
 main.go
 
@@ -144,7 +144,7 @@ raw.tmpl
 Date: {[{.now | formatAsDate}]}
 ```
 
-Result:
+결과:
 ```sh
 Date: 2017/07/01
 ```

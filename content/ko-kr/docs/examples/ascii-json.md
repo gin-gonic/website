@@ -15,11 +15,11 @@ func main() {
 			"tag":  "<br>",
 		}
 
-		// 출력 내용 : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
+		// 출력내용 : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
 		c.AsciiJSON(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
 	r.Run(":8080")
 }
 ```

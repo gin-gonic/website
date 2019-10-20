@@ -1,9 +1,9 @@
 ---
-title: "Custom validators"
+title: "커스텀 유효성 검사"
 draft: false
 ---
 
-It is also possible to register custom validators. See the [example code](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).
+커스텀 유효성 검사를 사용 할 수도있습니다. [예제 코드](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations)를 확인하세요.
 
 ```go
 package main
@@ -18,7 +18,7 @@ import (
 	"gopkg.in/go-playground/validator.v8"
 )
 
-// Booking contains binded and validated data.
+// Booking은 유효성 검사 후 바인딩 된 데이터를 갖습니다.
 type Booking struct {
 	CheckIn  time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
 	CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn" time_format:"2006-01-02"`
@@ -66,5 +66,5 @@ $ curl "localhost:8085/bookable?check_in=2018-03-08&check_out=2018-03-09"
 {"error":"Key: 'Booking.CheckIn' Error:Field validation for 'CheckIn' failed on the 'bookabledate' tag"}
 ```
 
-[Struct level validations](https://github.com/go-playground/validator/releases/tag/v8.7) can also be registered this way.
-See the [struct-lvl-validation example](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) to learn more.
+[구조체 레벨 유효성 검사](https://github.com/go-playground/validator/releases/tag/v8.7)도 이 방법으로 설정 할 수 있습니다.
+[struct-lvl-validation 예제](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations)를 보며 더 많은 것을 배울 수 있습니다.

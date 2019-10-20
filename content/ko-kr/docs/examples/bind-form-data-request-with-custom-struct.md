@@ -1,9 +1,9 @@
 ---
-title: "Bind form-data request with custom struct"
+title: "양식 데이터 리퀘스트를 구조체에 바인드 하기"
 draft: false
 ---
 
-The follow example using custom struct:
+아래의 예제는 사용자 정의 구조체를 사용합니다:
 
 ```go
 type StructA struct {
@@ -64,7 +64,7 @@ func main() {
 }
 ```
 
-Using the command `curl` command result:
+`curl` 명령어를 이용한 결과 입니다:
 
 ```
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"

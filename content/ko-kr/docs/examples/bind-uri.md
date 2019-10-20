@@ -1,9 +1,9 @@
 ---
-title: "Bind Uri"
+title: "URI를 바인드하기"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/846).
+[자세한 정보](https://github.com/gin-gonic/gin/issues/846)를 확인하세요.
 
 ```go
 package main
@@ -29,7 +29,7 @@ func main() {
 }
 ```
 
-Test it with:
+다음과 같이 테스트 할 수 있습니다:
 ```sh
 $ curl -v localhost:8088/thinkerou/987fbc97-4bed-5078-9f07-9141ba07c9f3
 $ curl -v localhost:8088/thinkerou/not-uuid

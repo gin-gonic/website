@@ -1,10 +1,10 @@
 ---
-title: "Try to bind body into different structs"
+title: "body를 다른 구조체에 바인드 하기"
 draft: false
 ---
 
-The normal methods for binding request body consumes `c.Request.Body` and they
-cannot be called multiple times.
+일반적인 body 바인딩 메소드는 `c.Request.Body`를 소모합니다.
+따라서 이러한 메소드들은 여러번 호출할 수 없습니다.
 
 ```go
 type formA struct {
@@ -18,10 +18,10 @@ type formB struct {
 func SomeHandler(c *gin.Context) {
   objA := formA{}
   objB := formB{}
-  // This c.ShouldBind consumes c.Request.Body and it cannot be reused.
+  // 아래의 c.ShouldBind는 c.Request.Body를 소모하며, 재이용이 불가능합니다.
   if errA := c.ShouldBind(&objA); errA == nil {
     c.String(http.StatusOK, `the body should be formA`)
-  // Always an error is occurred by this because c.Request.Body is EOF now.
+  // c.Request.Body가 EOF 이므로 오류가 발생합니다.
   } else if errB := c.ShouldBind(&objB); errB == nil {
     c.String(http.StatusOK, `the body should be formB`)
   } else {
@@ -30,19 +30,19 @@ func SomeHandler(c *gin.Context) {
 }
 ```
 
-For this, you can use `c.ShouldBindBodyWith`.
+이를 위해 `c.ShouldBindBodyWith`를 사용하여 해결 할 수 있습니다.
 
 ```go
 func SomeHandler(c *gin.Context) {
   objA := formA{}
   objB := formB{}
-  // This reads c.Request.Body and stores the result into the context.
+  // c.Request.Body를 읽고 context에 결과를 저장합니다.
   if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
     c.String(http.StatusOK, `the body should be formA`)
-  // At this time, it reuses body stored in the context.
+  // context에 저장된 body를 읽어 재이용 합니다.
   } else if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
     c.String(http.StatusOK, `the body should be formB JSON`)
-  // And it can accepts other formats
+  // 다른 형식을 사용할 수도 있습니다.
   } else if errB2 := c.ShouldBindBodyWith(&objB, binding.XML); errB2 == nil {
     c.String(http.StatusOK, `the body should be formB XML`)
   } else {
@@ -51,11 +51,9 @@ func SomeHandler(c *gin.Context) {
 }
 ```
 
-* `c.ShouldBindBodyWith` stores body into the context before binding. This has
-a slight impact to performance, so you should not use this method if you are
-enough to call binding at once.
-* This feature is only needed for some formats -- `JSON`, `XML`, `MsgPack`,
-`ProtoBuf`. For other formats, `Query`, `Form`, `FormPost`, `FormMultipart`,
-can be called by `c.ShouldBind()` multiple times without any damage to
-performance (See [#1341](https://github.com/gin-gonic/gin/pull/1341)).
+* `c.ShouldBindBodyWith`는 바인딩 전에 context에 body를 저장합니다. 이것은 성능에 약간의
+영향을 미치기 때문에 한번의 바인딩으로 충분하다면, 이 메소드를 사용하지 않는 것이 좋습니다.
+* 이 기능은 `JSON`, `XML`, `MsgPack`,`ProtoBuf` 형식에만 필요합니다.
+`Query`, `Form`, `FormPost`, `FormMultipart`와 같은 다른 형식은 성능에 영향을 주지 않고
+`c.ShouldBind()`에 의해 여러번 호출 될 수 있습니다. (이슈 참고[#1341](https://github.com/gin-gonic/gin/pull/1341)).
 
