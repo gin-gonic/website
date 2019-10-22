@@ -4,5 +4,5 @@ draft: false
 weight: 9
 ---
 
-TODO: record some frequently asked question from GitHub Issue tab.
+TODO: GitHub 이슈탭에서 자주 받는 질문을 정리하기.
 

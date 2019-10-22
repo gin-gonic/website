@@ -1,5 +1,5 @@
 ---
-title: "Query and post form"
+title: "POST 양식 쿼리"
 draft: false
 ---
 

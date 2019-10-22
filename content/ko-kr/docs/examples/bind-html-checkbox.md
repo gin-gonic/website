@@ -1,9 +1,9 @@
 ---
-title: "Bind html checkboxes"
+title: "html 체크박스를 바인드 하기"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)
+[자세한 정보](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)를 확인 하세요.
 
 main.go
 
@@ -41,7 +41,7 @@ form.html
 </form>
 ```
 
-result:
+결과:
 
 ```sh
 {"color":["red","green","blue"]}

@@ -1,14 +1,14 @@
 ---
-title: "Benchmarks"
+title: "벤치마크"
 draft: false
 weight: 3
 ---
 
-Gin uses a custom version of [HttpRouter](https://github.com/julienschmidt/httprouter)
+Gin은 [HttpRouter](https://github.com/julienschmidt/httprouter)을 커스텀 한 버전을 사용합니다.
 
-[See all benchmarks](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
+[모든 벤치마크 보기](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
 
-Benchmark name                | (1)        | (2)         | (3) 		    | (4)
+벤치마크 이름                    | (1)        | (2)         | (3) 		    | (4)
 ------------------------------|-----------:|------------:|-----------:|---------:
 **BenchmarkGin_GithubAll**    | **30000**  |  **48375**  |     **0**  |   **0**
 BenchmarkAce_GithubAll        |   10000    |   134059    |   13792    |   167
@@ -38,7 +38,7 @@ BenchmarkTigerTonic_GithubAll |    1000    |  1439483    |  239104    |  5374
 BenchmarkTraffic_GithubAll    |     100    | 11383067    | 2659329    | 21848
 BenchmarkVulcan_GithubAll     |    5000    |   394253    |   19894    |   609
 
-- (1): Total Repetitions achieved in constant time, higher means more confident result
-- (2): Single Repetition Duration (ns/op), lower is better
-- (3): Heap Memory (B/op), lower is better
-- (4): Average Allocations per Repetition (allocs/op), lower is better
+- (1): 일정한 시간 내에 실행된 총횟수, 높을수록 더 좋은 결과를 뜻합니다.
+- (2): 1회 실행에 걸린 시간 (ns/op), 낮을수록 좋습니다.
+- (3): 힙 메모리 (B/op), 낮을수록 좋습니다.
+- (4): 1회 실행에 할당된 메모리 평균량 (allocs/op), 낮을수록 좋습니다.

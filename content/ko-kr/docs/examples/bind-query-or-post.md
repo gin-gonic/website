@@ -1,9 +1,9 @@
 ---
-title: "Bind query string or post data"
+title: "쿼리 문자열 혹은 post 데이터를 바인드하기"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292).
+[자세한 정보](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292)를 확인하세요.
 
 ```go
 package main
@@ -29,9 +29,9 @@ func main() {
 
 func startPage(c *gin.Context) {
 	var person Person
-	// If `GET`, only `Form` binding engine (`query`) used.
-	// If `POST`, first checks the `content-type` for `JSON` or `XML`, then uses `Form` (`form-data`).
-	// See more at https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
+	// `GET`의 경우 `Form` (`query`)만 사용됩니다.
+	// `POST`의 경우, 먼저 `content-type`가 `JSON` 혹은 `XML`을 확인한 다음 `Form` (`form-data`)가 사용됩니다.
+	// 자세한 정보는 https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48 를 참고하세요.
 	if c.ShouldBind(&person) == nil {
 		log.Println(person.Name)
 		log.Println(person.Address)
@@ -42,7 +42,7 @@ func startPage(c *gin.Context) {
 }
 ```
 
-Test it with:
+다음과 같이 테스트 할 수 있습니다:
 ```sh
 $ curl -X GET "localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
 ```

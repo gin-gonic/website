@@ -1,9 +1,9 @@
 ---
-title: "Support Let's Encrypt"
+title: "Let's Encrypt 지원"
 draft: false
 ---
 
-example for 1-line LetsEncrypt HTTPS servers.
+한 줄의 LetsEncrypt HTTPS 서버의 샘플입니다.
 
 ```go
 package main
@@ -27,7 +27,7 @@ func main() {
 }
 ```
 
-example for custom autocert manager.
+autocert 관리자의 커스텀 예제.
 
 ```go
 package main

@@ -1,5 +1,5 @@
 ---
-title: "Multipart/Urlencoded form"
+title: "Multipart/Urlencoded 양식"
 draft: false
 ---
 

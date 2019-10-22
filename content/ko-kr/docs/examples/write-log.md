@@ -1,18 +1,18 @@
 ---
-title: "How to write log file"
+title: "로그 파일을 작성하는 방법"
 draft: false
 ---
 
 ```go
 func main() {
-    // Disable Console Color, you don't need console color when writing the logs to file.
+    // 로그 파일 작성에는 색상이 필요 없으므로, 콘솔 색상을 비활성화 합니다.
     gin.DisableConsoleColor()
 
-    // Logging to a file.
+    // 파일에 로그를 작성합니다.
     f, _ := os.Create("gin.log")
     gin.DefaultWriter = io.MultiWriter(f)
 
-    // Use the following code if you need to write the logs to file and console at the same time.
+    // 파일과 동시에 콘솔에도 로그를 작성해야 하는 경우에는 다음과 같은 코드를 사용하세요.
     // gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
     router := gin.Default()

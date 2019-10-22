@@ -1,9 +1,9 @@
 ---
-title: "Redirects"
+title: "리디렉션"
 draft: false
 ---
 
-Issuing a HTTP redirect is easy. Both internal and external locations are supported.
+HTTP 리다이렉트 하는 것은 간단합니다. 내부와 외부위치를 모두 지원합니다.
 
 ```go
 r.GET("/test", func(c *gin.Context) {
@@ -12,7 +12,7 @@ r.GET("/test", func(c *gin.Context) {
 ```
 
 
-Issuing a Router redirect, use `HandleContext` like below.
+라우터 리다이렉트를 실행하려면, 아래와 같이 `HandleContext`를 사용하세요.
 
 ``` go
 r.GET("/test", func(c *gin.Context) {

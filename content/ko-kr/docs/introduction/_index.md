@@ -1,47 +1,47 @@
 ---
-title: "Introduction"
+title: "소개"
 draft: false
 weight: 1
 ---
 
-Gin is a web framework written in Go (Golang). It features a martini-like API with much better performance, up to 40 times faster thanks to [httprouter](https://github.com/julienschmidt/httprouter). If you need performance and good productivity, you will love Gin.
+Gin은 Go 언어로 작성된 HTTP Web 프레임워크입니다. martini와 유사한 API를 제공하지만, [httprouter](https://github.com/julienschmidt/httprouter) 덕분에 최대 40배 빠른 성능을 제공합니다. 매우 좋은 성능과 생산성이 필요하다면 Gin을 좋아하게 될 것입니다.
 
-In this section we will walk through what Gin is, what problems it solves, and how it can help your project.
+이 장에서는 Gin이 무엇인지, 어떤 문제를 해결할 수 있는지, 어떻게 프로젝트에 도움이 되는지 살펴보겠습니다.
+assume the following codes in example.go file
+만약, 당신의 프로젝트가 Gin을 사용할 준비가 되어 있다면, [퀵 스타트](https://gin-gonic.com/docs/quickstart/)를 봐주세요.
 
-Or, if you are ready to use Gin in to your project, visit the [Quickstart](https://gin-gonic.com/docs/quickstart/).
+## 기능
 
-## Features
+### 빠른 속도
 
-### Fast
+기수 트리(Radix tree)를 기반으로 한 라우팅, 적은 메모리 사용량. 리플렉션 미사용. 예측 가능한 API 성능.
 
-Radix tree based routing, small memory foot print. No reflection. Predictable API performance. 
+### 미들웨어 지원
 
-### Middleware support
+수신된 HTTP 요청은 미들웨어 체인과 최종적인 액션을 통한 처리가 가능합니다.
+예: Logger, 인증, GZIP 압축, DB에 메시지 전송.
 
-An incoming HTTP request can be handled by a chain of middlewares and the final action. 
-For example: Logger, Authorization, GZIP and finally post a message in the DB.
+### 충돌방지
 
-### Crash-free
+Gin은 HTTP 요청 중 발생한 `panic` 을 감지하고 `recover` 할 수 있습니다. 따라서, 서버는 항상 이용 가능한 상태를 유지합니다. 예를 들면, 발생한 `panic` 을 Sentry에 보고 하는 것도 가능합니다!
 
-Gin can catch a panic occurred during a HTTP request and recover it. This way, your server will be always available. As an example - it’s also possible to report this panic to Sentry!
+### JSON 유효성 검사
 
-### JSON validation 
+Gin은 JSON 형식의 요청에 대해 파싱과 유효성 검사를 할 수 있습니다. 예를 들어, 필수값이 들어 있는지 확인 할 수 있습니다.
 
-Gin can parse and validate the JSON of a request - for example,checking the existence of required values.
+### 라우팅 그룹화
 
-### Routes grouping
+라우팅 경로를 더 좋게 정리 할 수 있습니다. 인증이 필요한지 아닌지, 버전이 다른 API인지 아닌지 등... 또한, 성능 저하 없이 그룹을 무제한 중첩할 수 있습니다.
 
-Organize your routes better. Authorization required vs non required, different API versions... In addition, the groups can be nested unlimitedly without degrading performance.
+### 에러관리
 
-### Error management
+Gin은 HTTP 요청 중에 발생한 모든 에러를 수집하는 편리한 방법을 제공합니다. 이것을 통해 미들웨어는 로그 파일, 데이터베이스에 기록하고 네트워크를 통해 전송할 수 있습니다.
 
-Gin provides a convenient way to collect all the errors occurred during a HTTP request. Eventually, a middleware can write them to a log file, to a database and send them through the network.
+### 렌더링 기능 내장
 
-### Rendering built-in
+Gin은 JSON, XML, HTML 렌더링을 위한 사용하기 쉬운 API를 제공합니다.
 
-Gin provides a easy to use API for JSON, XML and HTML rendering.
-
-### Extendable
-
-Creating a new middleware is so easy, just check out the sample codes.
+### 확장 가능
+
+아주 쉽게 새로운 미들웨어를 만들 수 있습니다. 샘플 코드를 확인하세요.
 
