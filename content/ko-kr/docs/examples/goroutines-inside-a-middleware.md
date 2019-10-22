@@ -16,7 +16,7 @@ func main() {
 			// time.Sleep()를 사용하여 장시간(5초) 작업을 시뮬레이션 합니다.
 			time.Sleep(5 * time.Second)
 
-			// 중요! 복사된 context인 "cCp"를 사용하십시오.
+			// 중요! 복사된 context인 "cCp"를 사용하세요.
 			log.Println("Done! in path " + cCp.Request.URL.Path)
 		}()
 	})

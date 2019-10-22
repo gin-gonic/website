@@ -21,7 +21,7 @@ func SomeHandler(c *gin.Context) {
   // 아래의 c.ShouldBind는 c.Request.Body를 소모하며, 재이용이 불가능합니다.
   if errA := c.ShouldBind(&objA); errA == nil {
     c.String(http.StatusOK, `the body should be formA`)
-  // c.Request.Body가 EOF 이므로 오류가 발생합니다.
+  // c.Request.Body가 EOF 이므로 에러가 발생합니다.
   } else if errB := c.ShouldBind(&objB); errB == nil {
     c.String(http.StatusOK, `the body should be formB`)
   } else {

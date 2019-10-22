@@ -8,16 +8,16 @@ Gin 프로젝트는 모든 클라우드 제공 업체에 쉽게 배포 할 수 �
 
 * **[Render](https://render.com)**
 <p>
-Render is a modern cloud platform that offers native support for Go, fully managed SSL, databases, zero-downtime deploys, HTTP/2, and websocket support.
+Render은 Go를 기본 지원하는 최신 클라우드 플랫폼으로, SSL관리, 데이터베이스, 무중단 배포, HTTP/2, websocket을 지원합니다.
 </p>
 <p>
-Follow the Render [guide to deploying Gin projects](https://render.com/docs/deploy-go-gin).
+Render의 [Gin프로젝트 배포 가이드](https://render.com/docs/deploy-go-gin)를 참조하세요.
 </p>
 
 * **[Google App Engine](https://cloud.google.com/appengine/)**
 <p>
-GAE has two ways to deploy Go applications. The standard environment is easier to use but less customizable and prevents [syscalls](https://github.com/gin-gonic/gin/issues/1639) for security reasons. The flexible environment can run any framework or library.
+GAE에는 Go어플리케이션을 배포하는 두 가지 방법이 있습니다. 표준환경은 간단히 사용할 수 있으나, 사용자 정의가 어려우며 보안상의 이유로 [syscalls](https://github.com/gin-gonic/gin/issues/1639)를 사용할 수 없습니다. 가변형 환경은 모든 프레임워크와 라이브러리를 사용할 수 있습니다.
 </p>
 <p>
-Learn more and pick your preferred environment at [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+[Google App Engine의 Go](https://cloud.google.com/appengine/docs/go/)에서 자세히 알아보고 자신에게 알맞은 환경을 선택하세요.
 </p>

@@ -26,7 +26,7 @@ func main() {
 }
 {{</highlight>}}
 
-위 예제의 테스트 코드:
+위 예제의 테스트 코드:
 
 ```go
 package main

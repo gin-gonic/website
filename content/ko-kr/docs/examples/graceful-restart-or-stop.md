@@ -6,7 +6,7 @@ draft: false
 웹 서버를 graceful 재시작 혹은 정지를 하고 싶습니까?
 이 작업을 하기 위한 몇 가지 방법이 있습니다.
 
-[fvbock/endless](https://github.com/fvbock/endless)를 사용하여 기본 `ListenAndServe`를 바꿀 수 있습니다. 자세한 내용은 이슈 [#296](https://github.com/gin-gonic/gin/issues/296)를 참조하세요.
+[fvbock/endless](https://github.com/fvbock/endless)를 사용하여 기본 `ListenAndServe`를 바꿀 수 있습니다. 자세한 내용은 이슈 [#296](https://github.com/gin-gonic/gin/issues/296)를 참조하세요.
 
 ```go
 router := gin.Default()
