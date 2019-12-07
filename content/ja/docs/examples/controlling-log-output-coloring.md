@@ -1,15 +1,15 @@
 ---
-title: "Controlling Log output coloring"
+title: "ログ出力の色付けを制御する"
 draft: false
 ---
 
-By default, logs output on console should be colorized depending on the detected TTY.
+デフォルトでは、ログ出力は検出された TTY に応じて色付けされます。
 
-Never colorize logs:
+ログの色付けを止めるには:
 
 ```go
 func main() {
-    // Disable log's color
+    // ログの色付けを無効にする:
     gin.DisableConsoleColor()
 
     // Creates a gin router with default middleware:
@@ -24,11 +24,11 @@ func main() {
 }
 ```
 
-Always colorize logs:
+常にログの色付けをするには:
 
 ```go
 func main() {
-    // Force log's color
+    // ログの色付けを常にに有効にする:
     gin.ForceConsoleColor()
 
     // Creates a gin router with default middleware:
