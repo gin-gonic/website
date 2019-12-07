@@ -28,7 +28,7 @@ func main() {
 
 ```go
 func main() {
-    // ログの色付けを常にに有効にする:
+    // ログの色付けを常に有効にする:
     gin.ForceConsoleColor()
 
     // Creates a gin router with default middleware:
