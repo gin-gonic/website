@@ -9,12 +9,12 @@ draft: false
 func main() {
 	r := gin.Default()
 
-	r.GET("/JSONP?callback=x", func(c *gin.Context) {
+	r.GET("/JSONP", func(c *gin.Context) {
 		data := map[string]interface{}{
 			"foo": "bar",
 		}
 		
-		// callback 是 x
+		// /JSONP?callback=x
 		// 将输出：x({\"foo\":\"bar\"})
 		c.JSONP(http.StatusOK, data)
 	})
