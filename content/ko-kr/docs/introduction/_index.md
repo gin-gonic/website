@@ -4,11 +4,11 @@ draft: false
 weight: 1
 ---
 
-Gin은 Go 언어로 작성된 HTTP Web 프레임워크입니다. martini와 유사한 API를 제공하지만, [httprouter](https://github.com/julienschmidt/httprouter) 덕분에 최대 40배 빠른 성능을 제공합니다. 매우 좋은 성능과 생산성이 필요하다면 Gin을 좋아하게 될 것입니다.
+Gin은 Go로 작성된 웹 프레임워크입니다. Martini와 비슷한 API를 제공하지만, [httprouter](https://github.com/julienschmidt/httprouter) 덕분에 최대 40배 빠른 성능을 제공합니다. 만약 뛰어난 생산성과 퍼포먼스가 필요하다면, Gin을 좋아하게 될 것입니다.
 
-이 장에서는 Gin이 무엇인지, 어떤 문제를 해결할 수 있는지, 어떻게 프로젝트에 도움이 되는지 살펴보겠습니다.
-assume the following codes in example.go file
-만약, 당신의 프로젝트가 Gin을 사용할 준비가 되어 있다면, [퀵 스타트](https://gin-gonic.com/docs/quickstart/)를 봐주세요.
+이 페이지에서는 Gin이 무엇이고 또 어떤 문제를 해결하도록 도와주는지, 그리고 어떻게 당신의 프로젝트를 도와주는지 알아보겠습니다.
+
+혹은, 당신의 프로젝트가 Gin을 사용할 준비가 되어 있다면, [퀵 스타트](https://gin-gonic.com/docs/quickstart/)를 봐주세요.
 
 ## 기능
 
@@ -42,6 +42,6 @@ Gin은 HTTP 요청 중에 발생한 모든 에러를 수집하는 편리한 방�
 Gin은 JSON, XML, HTML 렌더링을 위한 사용하기 쉬운 API를 제공합니다.
 
 ### 확장 가능
-
+
 아주 쉽게 새로운 미들웨어를 만들 수 있습니다. 샘플 코드를 확인하세요.
 
