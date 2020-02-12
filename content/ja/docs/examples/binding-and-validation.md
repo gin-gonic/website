@@ -51,7 +51,7 @@ func main() {
 	//	<?xml version="1.0" encoding="UTF-8"?>
 	//	<root>
 	//		<user>user</user>
-	//		<password>123</user>
+	//		<password>123</password>
 	//	</root>)
 	router.POST("/loginXML", func(c *gin.Context) {
 		var xml Login
@@ -90,7 +90,7 @@ func main() {
 }
 ```
 
-**リクエスト例**
+### リクエスト例
 
 ```sh
 $ curl -v -X POST \
@@ -113,7 +113,7 @@ $ curl -v -X POST \
 {"error":"Key: 'Login.Password' Error:Field validation for 'Password' failed on the 'required' tag"}
 ```
 
-#### バリデーションをスキップする
+### バリデーションをスキップする
 
 上記の `curl` コマンドのサンプルを実行すると、エラーが返ります。これはサンプルコードで `binding:"required"` が `Password` フィールドに指定されているからです。`binding:"-"` を `Password` フィールドに指定することで、上記のサンプルを実行してもエラーは返らなくなります。
 

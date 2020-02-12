@@ -3,7 +3,11 @@ title: "単一のファイル"
 draft: false
 ---
 
-issue [#774](https://github.com/gin-gonic/gin/issues/774) と、詳細は [サンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/upload-file/single) 参照。
+issue [#774](https://github.com/gin-gonic/gin/issues/774) と、詳細は [サンプルコード](https://github.com/gin-gonic/examples/tree/master/upload-file/single) 参照。
+
+`file.Filename` を信用する**べきではありません**。 [MDN の `Content-Disposition`](https://developer.mozilla.org/ja/docs/Web/HTTP/Headers/Content-Disposition#Directives) と [#1693](https://github.com/gin-gonic/gin/issues/1693) を参照。
+
+> ファイル名は常にオプションであり、アプリケーションで闇雲に使用しないでください。パス情報を削除し、サーバーのファイルシステムルールに変換すべきです。
 
 ```go
 func main() {
