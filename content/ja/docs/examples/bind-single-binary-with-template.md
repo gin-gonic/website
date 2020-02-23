@@ -18,7 +18,7 @@ func main() {
 	r.SetHTMLTemplate(t)
 
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "/html/index.tmpl",nil)
+		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
 	})
 	r.Run(":8080")
 }

@@ -21,7 +21,7 @@ endless の代わりは以下があります。
 * [graceful](https://github.com/tylerb/graceful): Graceful is a Go package enabling graceful shutdown of an http.Handler server.
 * [grace](https://github.com/facebookgo/grace): Graceful restart & zero downtime deploy for Go servers.
 
-もし Go 1.8 を使っているなら、これらのライブラリを使う必要はないかもしれません！http.Server 組み込みの [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) メソッドを、graceful shutdowns に利用することを検討してみてください。詳細は Gin の [graceful-shutdown](https://github.com/gin-gonic/gin/blob/master/examples/graceful-shutdown) サンプルコードを見てみてください。
+もし Go 1.8 を使っているなら、これらのライブラリを使う必要はないかもしれません！http.Server 組み込みの [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) メソッドを、graceful shutdowns に利用することを検討してみてください。詳細は Gin の [graceful-shutdown](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) サンプルコードを見てみてください。
 
 ```go
 // +build go1.8
@@ -34,6 +34,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -60,7 +61,10 @@ func main() {
 
 	// シグナル割り込みを待ち、タイムアウト時間が5秒の graceful shutdown をする
 	quit := make(chan os.Signal)
-	signal.Notify(quit, os.Interrupt)
+	// kill (no param) default send syscanll.SIGTERM
+	// kill -2 is syscall.SIGINT
+	// kill -9 is syscall. SIGKILL but can"t be catch, so don't need add it
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
 	log.Println("Shutdown Server ...")
 
@@ -68,6 +72,11 @@ func main() {
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
 		log.Fatal("Server Shutdown:", err)
+	}
+	// ctx.Done() をキャッチする。5秒間のタイムアウト。
+	select {
+	case <-ctx.Done():
+		log.Println("timeout of 5 seconds.")
 	}
 	log.Println("Server exiting")
 }

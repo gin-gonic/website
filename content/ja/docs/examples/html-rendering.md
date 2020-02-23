@@ -73,7 +73,7 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-#### カスタムテンプレートエンジン
+### カスタムテンプレートエンジン
 
 独自のHTMLテンプレートエンジンを使うこともできます。
 
@@ -88,7 +88,7 @@ func main() {
 }
 ```
 
-#### カスタムデリミタ
+### カスタムデリミタ
 
 独自のデリミタを使用することもできます。
 
@@ -98,9 +98,9 @@ func main() {
        r.LoadHTMLGlob("/path/to/templates")
 ```
 
-#### カスタムテンプレート関数
+### カスタムテンプレート関数
 
-詳細は [サンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/template) を参照。
+詳細は [サンプルコード](https://github.com/gin-gonic/examples/tree/master/template) を参照。
 
 main.go
 

@@ -4,10 +4,6 @@ draft: false
 weight: 2
 ---
 
-- [要件](#要件)
-- [インストール](#インストール)
-- [クイックスタート](#クイックスタート)
-
 このクイックスタートでは、コードの集まりからの洞察を収集し、どのようにするかを学びます。
 
 ## 要件
@@ -38,7 +34,7 @@ import "github.com/gin-gonic/gin"
 import "net/http"
 ```
 
-#### [Govendor](https://github.com/kardianos/govendor) のような vendor tool を使う
+### [Govendor](https://github.com/kardianos/govendor) のような vendor tool を使う
 
 1. `go get` govendor
 

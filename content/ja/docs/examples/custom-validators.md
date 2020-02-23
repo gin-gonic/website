@@ -3,7 +3,7 @@ title: "カスタムバリデーション"
 draft: false
 ---
 
-カスタムしたバリデーションを使用することもできます。[サンプルコード](https://github.com/gin-gonic/gin/blob/master/examples/custom-validation/server.go) も見てみてください。
+カスタムしたバリデーションを使用することもできます。[サンプルコード](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) も見てみてください。
 
 ```go
 package main

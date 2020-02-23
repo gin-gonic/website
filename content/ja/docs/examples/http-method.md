@@ -5,9 +5,6 @@ draft: false
 
 ```go
 func main() {
-	// コンソールに出力されるテキスト色を無効にする
-	// gin.DisableConsoleColor()
-
 	// デフォルトのミドルウェアで新しい gin ルーターを作成する
 	// logger とアプリケーションクラッシュをキャッチする recovery ミドルウェア
 	router := gin.Default()

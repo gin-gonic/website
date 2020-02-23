@@ -9,7 +9,7 @@ menu:
 
 ## Gin 是什么？
 
-Gin 是一个用 Go (Golang) 编写的 HTTP web 框架。 它是一个类似于 [martini](https://github.com/go-martini/martini) 但拥有更好性能的 API 框架, 由于 [httprouter](https://github.com/julienschmidt/httprouter)，速度提高了近 40 倍。如果你需要极好的性能，使用 Gin 吧。
+Gin 是一个用 Go (Golang) 编写的 HTTP web 框架。 它是一个类似于 [martini](https://github.com/go-martini/martini) 但拥有更好性能的 API 框架, 优于 [httprouter](https://github.com/julienschmidt/httprouter)，速度提高了近 40 倍。如果你需要极好的性能，使用 Gin 吧。
 <!-- ![Gin console logger](https://gin-gonic.github.io/gin/other/console.png) -->
 
 ## 如何使用 Gin？
