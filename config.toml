@@ -30,7 +30,7 @@ pygmentsStyle = "tango"
 # First one is picked as the Twitter card image if not set on page.
 #images = ["images/project-illustration.png"]
 
-disqusShortname = "gin-gonic"
+#disqusShortname = "gin-gonic"
 
 googleAnalytics = "UA-42425385-2"
 
