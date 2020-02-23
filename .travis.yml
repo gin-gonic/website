@@ -10,7 +10,8 @@ install:
   - brew install hugo
 
 script:
-  - npm install
+  - npm install -D --save autoprefixer
+  - npm install -D --save postcss-cli
   - hugo
   - echo 'gin-gonic.com' > public/CNAME
 
