@@ -12,6 +12,7 @@ install:
 script:
   - npm install -D --save autoprefixer
   - npm install -D --save postcss-cli
+  - npm audit fix
   - hugo
   - echo 'gin-gonic.com' > public/CNAME
 
