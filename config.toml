@@ -16,7 +16,7 @@ defaultContentLanguageInSubdir = false
 # Useful when translating.
 enableMissingTranslationPlaceholders = true
 
-disableKinds = ["taxonomy", "taxonomyTerm"]
+disableKinds = ["RSS", "taxonomy", "taxonomyTerm"]
 
 # Highlighting config
 pygmentsCodeFences = true
