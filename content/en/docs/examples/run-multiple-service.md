@@ -29,7 +29,7 @@ func router01() http.Handler {
 			http.StatusOK,
 			gin.H{
 				"code":  http.StatusOK,
-				"error": "Welcome server 01",
+				"message": "Welcome server 01",
 			},
 		)
 	})
@@ -45,7 +45,7 @@ func router02() http.Handler {
 			http.StatusOK,
 			gin.H{
 				"code":  http.StatusOK,
-				"error": "Welcome server 02",
+				"message": "Welcome server 02",
 			},
 		)
 	})
