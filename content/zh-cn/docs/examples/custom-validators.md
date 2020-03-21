@@ -24,13 +24,11 @@ type Booking struct {
 	CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn" time_format:"2006-01-02"`
 }
 
-func bookableDate(
-	v *validator.Validate, topStruct reflect.Value, currentStructOrField reflect.Value,
-	field reflect.Value, fieldType reflect.Type, fieldKind reflect.Kind, param string,
-) bool {
-	if date, ok := field.Interface().(time.Time); ok {
+var bookableDate validator.Func = func(fl validator.FieldLevel) bool {
+	date, ok := fl.Field().Interface().(time.Time)
+	if ok {
 		today := time.Now()
-		if today.Year() > date.Year() || today.YearDay() > date.YearDay() {
+		if today.After(date) {
 			return false
 		}
 	}
