@@ -4,17 +4,16 @@ draft: false
 weight: 6
 ---
 
-Gin projects can be deployed easily on any cloud provider.
+Ginのプロジェクトはあらゆるクラウドサービス上に簡単にデプロイできます。
 
 ## [Render](https://render.com)
 
-Render is a modern cloud platform that offers native support for Go, fully managed SSL, databases, zero-downtime deploys, HTTP/2, and websocket support.
+RenderはGoをネイティブサポートするモダンなクラウドプラットフォームで、フルマネージドSSL、データベース、ダウンタイムのないデプロイ、HTTP/2、そしてwebsocketもサポートしています。
 
-Follow the Render [guide to deploying Gin projects](https://render.com/docs/deploy-go-gin).
+Renderの[Ginプロジェクトのデプロイガイド](https://render.com/docs/deploy-go-gin)に詳細な記述があります。
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE has two ways to deploy Go applications. The standard environment is easier to use but less customizable and prevents [syscalls](https://github.com/gin-gonic/gin/issues/1639) for security reasons. The flexible environment can run any framework or library.
+GAEでGoのアプリケーションをデプロイするには2つの方法があります。スタンダード環境は簡単に使用できますが、カスタマイズ性は低く、セキュリティ上の問題で[システムコール](https://github.com/gin-gonic/gin/issues/1639)の使用は避けるべきです。フレキシブル環境はあらゆるフレームワークやライブラリが使用できます。
 
-Learn more and pick your preferred environment at [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
-
+さらに学んだり、より適した環境を探すには[Google App Engine 上での Go の使用](https://cloud.google.com/appengine/docs/go/)を参考にしてください。
