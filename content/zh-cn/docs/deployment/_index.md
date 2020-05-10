@@ -17,4 +17,3 @@ Render 是一个原生支持 Go 的现代化云平台，并支持全托管 SSL�
 GAE 提供了两种方式部署 Go 应用。标准环境，简单易用但可定制性较低，且出于安全考虑禁止 [syscalls](https://github.com/gin-gonic/gin/issues/1639)。灵活环境，可以运行任何框架和库。
 
 前往 [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/) 了解更多并选择你喜欢的环境。
-
