@@ -14,8 +14,6 @@ Render 是一個原生支援 Go 語言的現代化雲平台，並支持管理 SS
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE has two ways to deploy Go applications. The standard environment is easier to use but less customizable and prevents [syscalls](https://github.com/gin-gonic/gin/issues/1639) for security reasons. The flexible environment can run any framework or library.
-
 GAE 提供兩種方式部署 Go 應用。標準環境簡單使用但是比較客製化，且出於安全考量禁止使用 [syscalls](https://github.com/gin-gonic/gin/issues/1639)。在靈活的還輕可以運行任何框架跟套件。
 
 前往 [Google App Engine](https://cloud.google.com/appengine/docs/go/) 了解更多並選擇您喜歡的環境。
