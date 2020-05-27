@@ -11,6 +11,13 @@ r.GET("/test", func(c *gin.Context) {
 })
 ```
 
+Issuing a HTTP redirect from POST. Refer to issue: [#444](https://github.com/gin-gonic/gin/issues/444)
+
+```go
+r.POST("/test", func(c *gin.Context) {
+	c.Redirect(http.StatusFound, "/foo")
+})
+```
 
 라우터 리다이렉트를 실행하려면, 아래와 같이 `HandleContext`를 사용하세요.
 

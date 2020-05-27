@@ -11,6 +11,13 @@ r.GET("/test", func(c *gin.Context) {
 })
 ```
 
+Issuing a HTTP redirect from POST. Refer to issue: [#444](https://github.com/gin-gonic/gin/issues/444)
+
+```go
+r.POST("/test", func(c *gin.Context) {
+	c.Redirect(http.StatusFound, "/foo")
+})
+```
 
 Router でリダイレクトするには、下記のように `HandleContext` メソッドを使ってください。
 
