@@ -11,7 +11,7 @@ r.GET("/test", func(c *gin.Context) {
 })
 ```
 
-Issuing a HTTP redirect from POST. Refer to issue: [#444](https://github.com/gin-gonic/gin/issues/444)
+POSTからのHTTPリダイレクトのissueは [#444](https://github.com/gin-gonic/gin/issues/444) を参照してください。
 
 ```go
 r.POST("/test", func(c *gin.Context) {
