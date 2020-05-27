@@ -11,7 +11,7 @@ r.GET("/test", func(c *gin.Context) {
 })
 ```
 
-Issuing a HTTP redirect from POST. Refer to issue: [#444](https://github.com/gin-gonic/gin/issues/444)
+通过 POST 方法进行 HTTP 重定向。请参考 issue：[#444](https://github.com/gin-gonic/gin/issues/444)
 
 ```go
 r.POST("/test", func(c *gin.Context) {
