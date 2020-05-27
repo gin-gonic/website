@@ -9,7 +9,7 @@ draft: false
 func main() {
 	router := gin.Default()
 	// マルチパートフォームが利用できるメモリの制限を設定する(デフォルトは 32 MiB)
-	// router.MaxMultipartMemory = 8 << 20  // 8 MiB
+	router.MaxMultipartMemory = 8 << 20  // 8 MiB
 	router.POST("/upload", func(c *gin.Context) {
 		// マルチパートフォーム
 		form, _ := c.MultipartForm()
@@ -19,7 +19,7 @@ func main() {
 			log.Println(file.Filename)
 
 			// 特定のディレクトリにファイルをアップロードする
-			// c.SaveUploadedFile(file, dst)
+			c.SaveUploadedFile(file, dst)
 		}
 		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
 	})
