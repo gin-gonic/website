@@ -34,33 +34,19 @@ import "github.com/gin-gonic/gin"
 import "net/http"
 ```
 
-### [Govendor](https://github.com/kardianos/govendor) のような vendor tool を使う
-
-1. `go get` govendor
-
-```sh
-$ go get github.com/kardianos/govendor
-```
-2. プロジェクトディレクトリを作り、`cd` で中に移動する
+1. プロジェクトフォルダを作り、 `cd` で中に入ります。
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 ```
 
-3. vendor tool でプロジェクトを初期化し、Gin を追加する
-
-```sh
-$ govendor init
-$ govendor fetch github.com/gin-gonic/gin@v1.3
-```
-
-4. 開始用テンプレートをプロジェクトディレクトリにコピーする
+2. 開始用テンプレートをプロジェクトディレクトリにコピーする
 
 ```sh
 $ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
-5. プロジェクトを実行する
+3. プロジェクトを実行する
 
 ```sh
 $ go run main.go
