@@ -39,7 +39,7 @@ Gin provides a convenient way to collect all the errors occurred during a HTTP r
 
 ### Rendering built-in
 
-Gin provides a easy to use API for JSON, XML and HTML rendering.
+Gin provides an easy to use API for JSON, XML and HTML rendering.
 
 ### Extendable
 
