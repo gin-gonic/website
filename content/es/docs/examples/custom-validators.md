@@ -14,7 +14,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
-	// import error https://github.com/go-playground/validator/issues/565
 	"github.com/go-playground/validator/v10"
 )
 
