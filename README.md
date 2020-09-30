@@ -21,6 +21,7 @@ git clone --recursive https://github.com/YOURUSERNAME/website.git
 - Create one pull request
 
 Make any changes you want in your fork, and when you are ready to send those changes to us, go to your fork and create a new pull request to let us know about it.
+You can also add a comment and a topic describing what changes you have made.
 
 - Merge the pull request
 
