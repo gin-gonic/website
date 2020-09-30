@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/gin-gonic/website.svg?branch=master)](https://travis-ci.org/gin-gonic/website)
 
-# Gin website
+# GIN website
 
 Welcome! This repository houses all of the assets required to build the Gin website and documentation. We're very pleased that you want to contribute! The website are hosted at https://gin-gonic.com.
 
