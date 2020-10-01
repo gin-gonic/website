@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.org/gin-gonic/website.svg?branch=master)](https://travis-ci.org/gin-gonic/website)
 
-# Gin website
+# Gin website :-
 
 Welcome! This repository houses all of the assets required to build the Gin website and documentation. We're very pleased that you want to contribute! The website are hosted at https://gin-gonic.com.
 
 We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy](https://github.com/google/docsy) theme for styling and site structure. Thanks!
 
-## Contributing
+## Contributing :-
 
 - Fork the repository
 
@@ -26,7 +26,7 @@ Make any changes you want in your fork, and when you are ready to send those cha
 
 Once your pull request is created, a Gin reviewer will take responsibility for providing clear, actionable feedback, re-improve and merge.
 
-## Running
+## Running :-
 
 See the [official Hugo documentation](https://gohugo.io/getting-started/installing/) for Hugo installation instructions.
 
@@ -44,7 +44,7 @@ $ hugo server
 
 This will start the local Hugo server on port 1313. Open up your browser to http://localhost:1313 to view the site. As you make changes to the source files, Hugo updates the site and forces a browser refresh.
 
-## Thanks
+## Thanks:-
 
 Gin thrives on community participation, and we really appreciate your contributions to our site and our documentation!
 
