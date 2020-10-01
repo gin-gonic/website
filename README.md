@@ -9,6 +9,7 @@ We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy
 ## Contributing
 
 - Fork the repository
+- Forking repository is also known as Copying that repository so you can add some other items without affecting original one
 
 You can click the Fork button in the upper-right area of the screen to create a copy of this repository in your GitHub account. This copy is called a fork.
 
