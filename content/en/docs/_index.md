@@ -9,11 +9,11 @@ menu:
 
 ## What is Gin?
 
-Gin is a HTTP web framework written in Go (Golang). It features a Martini-like API with much better performance -- up to 40 times faster. If you need smashing performance, get yourself some Gin.
+Gin is a HTTP web framework written in Go (Golang). It features a Martini-like API, but with performance up to 40 times faster than Martini. If you need smashing performance, get yourself some Gin.
 
 ## How to use Gin?
 
-We provide some API usage [examples](https://github.com/gin-gonic/examples) and lists some public known [Gin's user](./users).
+We provide API usage [examples](https://github.com/gin-gonic/examples) and list some publicly known [Gin users](./users).
 
 ## How to contribute to Gin?
 
