@@ -6,11 +6,11 @@ Welcome! This repository houses all the assets required to build the Gin website
 
 We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy](https://github.com/google/docsy) theme for styling and site structure. Thanks!
 
-## Contributing
+## Contribution
 
 - Fork the repository
 
-You can click the Fork button in the upper-right area of the screen to create a copy of this repository in your GitHub account. This copy is called a fork.
+You can click the Fork button in the upper-right area of the screen to create a copy of this repository in your GitHub account. This copy is called as fork.
 
 > You need to use the below command to clone code for downloading all submodules.
 
