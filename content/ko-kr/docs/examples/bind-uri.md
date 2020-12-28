@@ -11,7 +11,7 @@ package main
 import "github.com/gin-gonic/gin"
 
 type Person struct {
-	ID string `uri:"id" binding:"required,uuid"`
+	ID string   `uri:"id" binding:"required,uuid"`
 	Name string `uri:"name" binding:"required"`
 }
 
@@ -30,6 +30,7 @@ func main() {
 ```
 
 다음과 같이 테스트 할 수 있습니다:
+
 ```sh
 $ curl -v localhost:8088/thinkerou/987fbc97-4bed-5078-9f07-9141ba07c9f3
 $ curl -v localhost:8088/thinkerou/not-uuid

@@ -3,7 +3,7 @@ title: "Bind Uri"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/846).
+查看[詳細訊息](https://github.com/gin-gonic/gin/issues/846).
 
 ```go
 package main
@@ -11,7 +11,7 @@ package main
 import "github.com/gin-gonic/gin"
 
 type Person struct {
-	ID string `uri:"id" binding:"required,uuid"`
+	ID string   `uri:"id" binding:"required,uuid"`
 	Name string `uri:"name" binding:"required"`
 }
 
@@ -29,7 +29,8 @@ func main() {
 }
 ```
 
-Test it with:
+測試:
+
 ```sh
 $ curl -v localhost:8088/thinkerou/987fbc97-4bed-5078-9f07-9141ba07c9f3
 $ curl -v localhost:8088/thinkerou/not-uuid
