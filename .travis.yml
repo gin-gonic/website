@@ -1,20 +1,17 @@
-os: osx
-
 language: node_js
 
 node_js:
   - "11"
 
 install:
-  - ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  - brew install hugo
+  - sudo apt-get install hugo
 
 script:
   - npm install -D --save autoprefixer
   - npm install -D --save postcss-cli
   - npm audit fix
   - hugo
-  - bash <(curl -s https://peek.run/ci) 
+  - bash <(curl -s https://peek.run/ci)
   - echo 'gin-gonic.com' > public/CNAME
 
 deploy:
