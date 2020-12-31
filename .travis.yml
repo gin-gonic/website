@@ -5,6 +5,7 @@ node_js:
 
 before_install:
   - git submodule foreach git pull origin master
+  - git clone --recurse-submodules --depth 1 https://github.com/google/docsy.git
   - sudo apt-get install hugo
 
 addons:
