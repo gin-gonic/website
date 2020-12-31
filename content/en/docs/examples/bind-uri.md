@@ -11,7 +11,7 @@ package main
 import "github.com/gin-gonic/gin"
 
 type Person struct {
-	ID string   `uri:"id" binding:"required,uuid"`
+	ID   string `uri:"id" binding:"required,uuid"`
 	Name string `uri:"name" binding:"required"`
 }
 
