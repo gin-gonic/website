@@ -1,10 +1,13 @@
-[![Build Status](https://travis-ci.org/gin-gonic/website.svg?branch=master)](https://travis-ci.org/gin-gonic/website)
 
 # Gin website
 
+[![Build Status](https://travis-ci.org/gin-gonic/website.svg?branch=master)](https://travis-ci.org/gin-gonic/website)
+
 Welcome! This repository houses all the assets required to build the Gin website and documentation. We're pleased that you want to contribute! The website is hosted at https://gin-gonic.com.
 
-We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy](https://github.com/google/docsy) theme for styling and site structure. Thanks!
+We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy](https://github.com/google/docsy) theme for styling and site structure. Thanks!.
+
+**Note:** We only support hugo [v0.75.1 version](https://github.com/gohugoio/hugo/releases/tag/v0.75.1).
 
 ## Contribution
 
@@ -12,10 +15,10 @@ We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy
 
 You can click the Fork button in the upper-right area of the screen to create a copy of this repository in your GitHub account. This copy is called as fork.
 
-> You need to use the below command to clone code for downloading all submodules.
+> You need to use the below command to clone code for docsy theme.
 
-```
-git clone --recursive https://github.com/YOURUSERNAME/website.git
+```sh
+git clone --recurse-submodules --depth 1 https://github.com/google/docsy.git themes/docsy
 ```
 
 - Create one pull request
@@ -33,8 +36,6 @@ See the [official Hugo documentation](https://gohugo.io/getting-started/installi
 To run the site locally when you have Hugo installed:
 
 ```sh
-# Update docsy theme to the latest master branch
-$ git submodule foreach git pull origin master
 # If use `hugo` command, you need to use `npm install` command
 $ npm install
 $ hugo
@@ -47,4 +48,3 @@ This will start the local Hugo server on port 1313. Open up your browser to http
 ## Thanks
 
 Gin thrives on community participation, and we really appreciate your contributions to our site and our documentation!
-
