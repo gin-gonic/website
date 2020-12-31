@@ -3,8 +3,13 @@ language: node_js
 node_js:
   - "11"
 
-install:
+before_install:
+  - git submodule foreach git pull origin master
   - sudo apt-get install hugo
+
+addons:
+  apt:
+    update: true
 
 script:
   - npm install -D --save autoprefixer
