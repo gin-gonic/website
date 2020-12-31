@@ -4,9 +4,9 @@ node_js:
   - "11"
 
 before_install:
-  - git submodule foreach git pull origin master
-  - git clone --recurse-submodules --depth 1 https://github.com/google/docsy.git
-  - sudo apt-get install hugo
+  - git clone --recurse-submodules --depth 1 https://github.com/google/docsy.git themes/docsy
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.75.1/hugo_extended_0.75.1_Linux-64bit.tar.gz -O hugo.tar.gz
+  - tar -zxvf hugo.tar.gz
 
 addons:
   apt:
@@ -16,7 +16,7 @@ script:
   - npm install -D --save autoprefixer
   - npm install -D --save postcss-cli
   - npm audit fix
-  - hugo
+  - ./hugo
   - bash <(curl -s https://peek.run/ci)
   - echo 'gin-gonic.com' > public/CNAME
 
