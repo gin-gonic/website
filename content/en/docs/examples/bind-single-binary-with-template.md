@@ -2,8 +2,9 @@
 title: "Build a single binary with templates"
 draft: false
 ---
+## Use the third-party package
 
-You can build a server into a single binary containing templates by using [go-assets](https://github.com/jessevdk/go-assets).
+You can use the third party package to build a server into a single binary containing templates by using [go-assets](https://github.com/jessevdk/go-assets).
 
 ```go
 func main() {
