@@ -43,6 +43,6 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-完全なサンプルコードは、[examples/assets-in-binary](https://github.com/gin-gonic/gin/tree/master/examples/assets-in-binary) を見てください。
+完全なサンプルコードは、[assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01) を見てください。
 
 

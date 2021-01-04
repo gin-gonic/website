@@ -41,5 +41,4 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-전체 예제는 `https://github.com/gin-gonic/examples/tree/master/assets-in-binary` 디렉토리에서 확인하세요.
-
+전체 예제는 [assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01) 디렉토리에서 확인하세요.

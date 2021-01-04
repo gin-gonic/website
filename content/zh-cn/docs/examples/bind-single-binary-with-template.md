@@ -41,5 +41,4 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-请参阅 `examples/assets-in-binary` 目录中的完整示例。
-
+请参阅 [assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01) 目录中的完整示例。
