@@ -51,6 +51,3 @@ func TestPingRoute(t *testing.T) {
 	assert.Equal(t, "pong", w.Body.String())
 }
 ```
-
-
-
