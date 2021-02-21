@@ -5,7 +5,7 @@ draft: false
 
 리퀘스트 바디를 바인딩하려면 모델 바인딩을 사용하세요. 현재 JSON, XML, YAML 및 표준 form values (foo=bar&boo=baz) 바인딩을 지원합니다.
 
-Gin은 유효성 검사에 [**go-playground/validator.v8**](https://github.com/go-playground/validator)을 사용합니다. 태그 사용법에 대한 전체 문서는 [여기](http://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Baked_In_Validators_and_Tags)를 확인하세요.
+Gin은 유효성 검사에 [**go-playground/validator/v10**](https://github.com/go-playground/validator)을 사용합니다. 태그 사용법에 대한 전체 문서는 [여기](https://pkg.go.dev/github.com/go-playground/validator/v10#hdr-Baked_In_Validators_and_Tags)를 확인하세요.
 
 바인딩 하려는 모든 항목에 대해 해당 바인딩 태그를 설정해야 합니다. 예를 들어, JSON을 바인딩 하려면 `json:"fieldname"`을 설정하세요.
 

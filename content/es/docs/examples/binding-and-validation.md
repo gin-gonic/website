@@ -5,7 +5,7 @@ draft: false
 
 Para vincular el cuerpo de un request en un tipo, puede hacerse el vínculo a un modelo. Actualmente se soporta el vínculo a JSON, XML, YAML y valores estandar para formularios (foo=bar&boo=baz).
 
-Gin emplea para realizar validación el paquete [**go-playground/validator.v8**](https://github.com/go-playground/validator). Puedes revisar la documentación completa de validación por medio de tags [aquí](http://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Baked_In_Validators_and_Tags).
+Gin emplea para realizar validación el paquete [**go-playground/validator/v10**](https://github.com/go-playground/validator). Puedes revisar la documentación completa de validación por medio de tags [aquí](https://pkg.go.dev/github.com/go-playground/validator/v10#hdr-Baked_In_Validators_and_Tags).
 
 Es necesario establecer el tag correspondiente en todos los campos que se desea vincular. Por ejemplo, cuando se vinculan datos de JSON debe definirse el tag `json:"fieldname"`.
 

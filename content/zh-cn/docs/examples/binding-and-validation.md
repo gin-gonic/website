@@ -5,7 +5,7 @@ draft: false
 
 要将请求体绑定到结构体中，使用模型绑定。 Gin目前支持JSON、XML、YAML和标准表单值的绑定（foo=bar＆boo=baz）。
 
-Gin使用 [**go-playground/validator.v8**](https://github.com/go-playground/validator) 进行验证。 查看标签用法的全部[文档](http://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Baked_In_Validators_and_Tags).
+Gin使用 [**go-playground/validator/v10**](https://github.com/go-playground/validator) 进行验证。 查看标签用法的全部[文档](https://pkg.go.dev/github.com/go-playground/validator/v10#hdr-Baked_In_Validators_and_Tags).
 
 使用时，需要在要绑定的所有字段上，设置相应的tag。 例如，使用 JSON 绑定时，设置字段标签为 `json:"fieldname"`。
 
