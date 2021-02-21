@@ -8,9 +8,7 @@ En este inicio rápido, captaremos información y aprenderemos por medio de porc
 
 ## Requerimientos
 
-- Go 1.9 o superior
-
-> Las versiones de Go 1.7 ó Go 1.8 dejarán de ser compatibles pronto.
+- Go 1.12 o superior
 
 ## Instalación
 
@@ -87,4 +85,3 @@ Y ahora, puede ejecutar el código a través de `go run example.go`:
 # ejecuta example.go y visita 0.0.0.0:8080/ping en el navegador
 $ go run example.go
 ```
-
