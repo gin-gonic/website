@@ -5,7 +5,7 @@ draft: false
 
 リクエストボディをある型にバインドするには、モデルへのバインディングを利用してください。Gin は今のところ JSON, XML, YAML と標準的なフォームの値(foo=bar&boo=baz)をサポートしています。
 
-Gin は [**go-playground/validator.v8**](https://github.com/go-playground/validator) をバリデーションに使用しています。 タグの使い方のすべてのドキュメントを読むには [ここ](http://godoc.org/gopkg.in/go-playground/validator.v8#hdr-Baked_In_Validators_and_Tags) を参照してください。
+Gin は [**go-playground/validator/v10**](https://github.com/go-playground/validator) をバリデーションに使用しています。 タグの使い方のすべてのドキュメントを読むには [ここ](https://pkg.go.dev/github.com/go-playground/validator/v10#hdr-Baked_In_Validators_and_Tags) を参照してください。
 
 バインドしたいすべてのフィールドに対応するタグを設定する必要があることに注意してください。たとえば、JSONからバインドする場合は、`json:"fieldname"` を設定します。
 
@@ -116,5 +116,3 @@ $ curl -v -X POST \
 ### バリデーションをスキップする
 
 上記の `curl` コマンドのサンプルを実行すると、エラーが返ります。これはサンプルコードで `binding:"required"` が `Password` フィールドに指定されているからです。`binding:"-"` を `Password` フィールドに指定することで、上記のサンプルを実行してもエラーは返らなくなります。
-
-

@@ -8,9 +8,7 @@ In this quickstart, we’ll glean insights from code segments and learn how to:
 
 ## Requirements
 
-- Go 1.9 or above
-
-> Go 1.7 or Go 1.8 will be no longer supported soon.
+- Go 1.12 or above
 
 ## Installation
 
@@ -87,4 +85,3 @@ And, You can run the code via `go run example.go`:
 # run example.go and visit 0.0.0.0:8080/ping on browser
 $ go run example.go
 ```
-
