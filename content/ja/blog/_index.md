@@ -1,13 +1,12 @@
 ---
-title: "Blog"
-linkTitle: "Blog"
+title: "ブログ"
+linkTitle: "ブログ"
 menu:
   main:
     weight: 30
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+ここれは **blog** セクションです。ニュースとリリースという2種類のカテゴリがあります。
 
-Files in these directories will be listed in reverse chronological order.
-
+このディレクトリ内のファイルは時系列の降順にリストされます。

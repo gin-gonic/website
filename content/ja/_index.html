@@ -6,12 +6,12 @@ linkTitle = "Gin Web Framework"
 {{< blocks/cover title="Gin Web Framework" image_anchor="top" height="full" color="orange" >}}
 <div class="mx-auto">
 	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
-		Learn More <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+		詳しく見る <i class="fas fa-arrow-alt-circle-right ml-2"></i>
 	</a>
 	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/gin-gonic/gin/releases">
-		Download <i class="fab fa-github ml-2 "></i>
+		ダウンロード <i class="fab fa-github ml-2 "></i>
 	</a>
-	<p class="lead mt-5">The fastest full-featured web framework for Go. Crystal clear.</p>
+	<p class="lead mt-5">Go 言語のためのフル機能の最速 Web フレームワーク。水晶のようにクリア。</p>
 	<div class="mx-auto mt-5"/>
 	{{< blocks/link-down color="info" >}}
 </div>
@@ -20,58 +20,57 @@ linkTitle = "Gin Web Framework"
 
 {{% blocks/lead color="white" %}}
 
-**What is Gin?**
+**Ginとは何か？**
 
-Gin is a web framework written in Golang.
+Gin は、Golang で書かれた Web フレームワークです。
 
-It features a martini-like API with much better performance, up to 40 times faster.
+martini に似た API を持ちながら、非常に優れたパフォーマンスを発揮し、最大で40倍高速であることが特徴です。
 
-If you need performance and good productivity, you will love Gin.
+性能と優れた生産性が必要なら、きっと Gin が好きになれるでしょう。
 
 {{% /blocks/lead %}}
 
 {{< blocks/section color="light" >}}
 
-{{% blocks/feature icon="fa fa-tachometer-alt" title="Fast" %}}
-Radix tree based routing, small memory foot print. No reflection. Predictable API performance.
+{{% blocks/feature icon="fa fa-tachometer-alt" title="高速" %}}
+基数木（redix tree）を元にしたルーティング、小さなメモリフットプリント、リフレクションなし、予測可能な API 性能などの特徴があります。
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-bars" title="Middleware support" %}}
-A incoming HTTP request can be handled by a chain of middlewares and the final action.
-For example: Logger, Authorization, GZIP and finally post a message in the DB.
+{{% blocks/feature icon="fa fa-bars" title="ミドルウェアのサポート" %}}
+受信したHTTPリクエストをミドルウェアのチェーンと最終的なアクションによりハンドリングできます。たとえば、ロガー、認証、GZIP、さらに DB へのメッセージのポストなどが可能です。
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-life-ring" title="Crash-free" %}}
-Gin can catch a panic occurred during a HTTP request and recover it. This way, your server will be always available. It’s also possible to report this panic to Sentry for example!
+{{% blocks/feature icon="fa fa-life-ring" title="クラッシュフリー" %}}
+Gin は、HTTP リクエスト中に発生した panic をキャッチし、回復することが可能です。これにより、サーバーが常に利用可能な状態になります。さらに、この panic を Sentry などに報告することもできます。
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
 
 {{< blocks/section color="white" >}}
 
-{{% blocks/feature icon="fa fa-check-circle" title="JSON validation" %}}
-Gin can parse and validate the JSON of a request, checking for example the existence of required values.
+{{% blocks/feature icon="fa fa-check-circle" title="JSONのバリデーション" %}}
+Gin はリクエストの JSON をパース・検証できます。たとえば、必須の値が存在するかどうかをチェックできます。
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-users-cog" title="Routes grouping" %}}
-Organize your routes better. Authorization required vs non required, different API versions. In addition, the groups can be nested unlimitedly without degrading performance.
+{{% blocks/feature icon="fa fa-users-cog" title="ルートのグループ化" %}}
+ルートを上手く組織化しましょう。認証が必要なページと必要のないページ、異なるバージョンの API などを区別できます。さらに、各グループは性能劣化なしに無制限にネストできます。
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fa fa-briefcase" title="Error management" %}}
-Gin provides a convenient way to collect all the errors occurred during a HTTP request. Eventually, a middleware can write them to a log file, to a database and send them through the network.
+{{% blocks/feature icon="fa fa-briefcase" title="エラーの管理" %}}
+Gin は HTTP リクエスト中に発生したすべてのエラーを収集する便利な手段を提供します。最終的に、ミドルウェアによって、ログファイルへの書き込み、データベースへの格納、ネットワーク越しの送信などが行われます。
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
 
 {{< blocks/section color="info" >}}
 
-{{% blocks/feature icon="fa fa-images" title="Rendering built-in" %}}
-Gin provides an easy to use API for JSON, XML and HTML rendering.
+{{% blocks/feature icon="fa fa-images" title="レンダリングのビルトイン" %}}
+Gin は JSON、XML、HTML のレンダリングのための簡単に使える API を提供します。
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-code" title="Extendable" %}}
-Creating a new middleware is so easy, just check out the sample codes.
+{{% blocks/feature icon="fa fa-code" title="拡張可能" %}}
+新しいミドルウェアの作成は非常に簡単です。サンプルコードを見てみてください。
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
