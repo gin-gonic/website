@@ -1,7 +1,7 @@
 
 ---
-title: "Releases"
-linkTitle: "Releases"
+title: "リリース"
+linkTitle: "リリース"
 weight: 20
 ---
 
