@@ -51,7 +51,7 @@ func main() {
 	// XML 바인딩 예제 (
 	//	<?xml version="1.0" encoding="UTF-8"?>
 	//	<root>
-	//		<user>user</user>
+	//		<user>manu</user>
 	//		<password>123</password>
 	//	</root>)
 	router.POST("/loginXML", func(c *gin.Context) {
