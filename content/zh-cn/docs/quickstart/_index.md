@@ -4,10 +4,6 @@ draft: false
 weight: 2
 ---
 
-- [要求](#要求)
-- [安装](#安装)
-- [开始](#开始)
-
 ## 要求
 
 - Go 1.13 及以上版本
@@ -34,33 +30,19 @@ import "github.com/gin-gonic/gin"
 import "net/http"
 ```
 
-#### 使用 [Govendor](https://github.com/kardianos/govendor) 工具创建项目
-
-1.`go get` govendor
-
-```sh
-$ go get github.com/kardianos/govendor
-```
-2.创建项目并且 `cd` 到项目目录中
+1. 创建你的项目文件夹并 `cd` 进去
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 ```
 
-3.使用 govendor 初始化项目，并且引入 gin
-
-```sh
-$ govendor init
-$ govendor fetch github.com/gin-gonic/gin@v1.3
-```
-
-4.复制启动文件模板到项目目录中
+2. 拷贝一个初始模板到你的项目里
 
 ```sh
 $ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
-5.启动项目
+3. 运行你的项目
 
 ```sh
 $ go run main.go
