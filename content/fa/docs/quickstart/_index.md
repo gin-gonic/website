@@ -1,67 +1,67 @@
 ---
-title: "Quickstart"
+title: "شروع سریع"
 draft: false
 weight: 2
 ---
 
-In this quickstart, we’ll glean insights from code segments and learn how to:
+در اینجا ما اطلاعاتی را در کدها دریافت میکنیم و همچنین یاد میگیریم که :
 
-## Requirements
+## الزامات
 
-- Go 1.13 or above
+- Go 1.13 یا بالا تر
 
-## Installation
+## نصب و راه اندازی
 
-To install Gin package, you need to install Go and set your Go workspace first.
+برای نصب پکیج Gin ابتدا باید گو را نصب کنید و محیط خودتون رو تنظیم کنید.
 
-1. Download and install it:
+1. دانلود و نصب:
 
 ```sh
 $ go get -u github.com/gin-gonic/gin
 ```
 
-2. Import it in your code:
+2. جین را به پروژتون اضافه کنید
 
 ```go
 import "github.com/gin-gonic/gin"
 ```
 
-3. (Optional) Import `net/http`. This is required for example if using constants such as `http.StatusOK`.
+3. وارد کنید "net/http" برای متغیر های ثابت مثل http.StatusOK (اختیاری).
 
 ```go
 import "net/http"
 ```
 
-1. Create your project folder and `cd` inside
+1. یک پوشه بسازید و وارد اون پوشه بشید
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 ```
 
-2. Copy a starting template inside your project
+2. یک الگوی اولیه برای شروع را در داخل پروژه خود کپی کنید
 
 ```sh
 $ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
-3. Run your project
+3. پروژتون رو اجرا کنید
 
 ```sh
 $ go run main.go
 ```
 
-## Getting Started
+## شروع
 
-> Unsure how to write and execute Go code? [Click here](https://golang.org/doc/code.html).
+> نمیدونید چطور یک کد گو رو اجرا کنید ؟ [اینجا کلیک کنید](https://golang.org/doc/code.html).
 
-First, create a file called `example.go`:
+ابتدا یک فایل به اسم `example.go` بسازید :
 
 ```sh
 # assume the following codes in example.go file
 $ touch example.go
 ```
 
-Next, put the following code inside of `example.go`:
+سپس کد های زیر رو توی فایل `example.go` بنویسید :
 
 ```go
 package main
@@ -79,7 +79,7 @@ func main() {
 }
 ```
 
-And, You can run the code via `go run example.go`:
+حالا میتوانید کد رو با دستور زیر اجرا کنید :
 
 ```sh
 # run example.go and visit 0.0.0.0:8080/ping on browser
