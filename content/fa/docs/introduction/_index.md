@@ -1,47 +1,46 @@
 ---
-title: "Introduction"
+title: "مقدمه"
 draft: false
 weight: 1
 ---
 
-Gin is a web framework written in Go (Golang). It features a martini-like API with much better performance, up to 40 times faster thanks to [httprouter](https://github.com/julienschmidt/httprouter). If you need performance and good productivity, you will love Gin.
+Gin یم فریم ورک وب ساخته شده با Go است که امکاناتی مانند martini دارد (یکی دیگر از فریم ورک های وب گو) ولی با کارایی بالاتر چیزی حدود 40 برابر سریع تر با تشکر از [httprouter](https://github.com/iamAmirrezaSaki/website.git).اگه به عملکرد فوق ابعاده ایی نیاز دارید عاشق Gin میشید.
 
-In this section we will walk through what Gin is, what problems it solves, and how it can help your project.
+در این بخش ما به بررسی جین میپردازیم که چه مشکلاتی را حل می کند و چگونه می تواند به پروژه شما کمک کند.
 
-Or, if you are ready to use Gin in to your project, visit the [Quickstart](https://gin-gonic.com/docs/quickstart/).
+یا اگر آماده استفاده از Gin برای پروژه خود هستید ، به [شروع سریع] (https://gin-gonic.com/docs/quickstart/) سر بزنید.
 
-## Features
+## امکانات
 
-### Fast
+### سرعت بالا(سریع)
 
-Radix tree based routing, small memory foot print. No reflection. Predictable API performance. 
+مسیریابی مبتنی بر درخت ردیکس(Radix tree based routing) ، چاپ ردپا روی حافظه کم(small memory foot print). بدون تأمل. عملکرد قابل پیش بینی API.
 
-### Middleware support
+### پشتیبانی از میان افزارها(middleware)
 
-An incoming HTTP request can be handled by a chain of middlewares and the final action. 
-For example: Logger, Authorization, GZIP and finally post a message in the DB.
+یک درخواست HTTP ورودی میتواند از میان زنجیره ایی از میان افزار ها بگردد و سپس به یک اقدام نهایی منجرب شود.
+برای مثال: زنجیره ی میان افزار ها -> Logger, Authorization, GZIOP و در نهایت یک اقدام یا پروسه نهایی که منجرب به ذخیره ی یک پیام در دیتابیس میشود.
 
-### Crash-free
+### (بدون خرابی)Crash-free
 
-Gin can catch a panic occurred during a HTTP request and recover it. This way, your server will be always available. As an example - it’s also possible to report this panic to Sentry!
+Gin می تواند در هنگام درخواست HTTP دچار پنیک(کرش) شود و آن را بازیابی کند. به این ترتیب سرور شما همیشه در دسترس خواهد بود و پایدار میماند. به عنوان مثال - همچنین می توانید این پنیک(کرش) را به Sentry گزارش دهید!
 
-### JSON validation 
+### JSON validation(اعتبار سنجی فرمت JSON)
 
-Gin can parse and validate the JSON of a request - for example,checking the existence of required values.
+جین می تواند JSON ورودی را تجزیه و اعتبار سنجی کند - به عنوان مثال ، بررسی مقادیر مورد نیاز.(فیلد های اجباری مورد نیاز)
 
-### Routes grouping
+### Routes grouping(گروه بندی کردن مسیر ها یا ایپی ای ها)
 
-Organize your routes better. Authorization required vs non required, different API versions... In addition, the groups can be nested unlimitedly without degrading performance.
+مسیرهای خود را بهتر سازماندهی کنید. گروه ها می توانند بدون محدودیت عملکرد به صورت نامحدود تو در تو قرار بگیرند.
 
-### Error management
+### Error management(مدیریت خطا)
 
-Gin provides a convenient way to collect all the errors occurred during a HTTP request. Eventually, a middleware can write them to a log file, to a database and send them through the network.
+جین یک روش مناسب برای جمع آوری تمام خطاهایی که در هنگام درخواست HTTP رخ داده است فراهم می کند. در نهایت ، یک میان افزار می تواند آنها را در یک فایل log یا یک پایگاه داده بنویسد و از طریق شبکه ارسال کند.
 
-### Rendering built-in
+### Rendering built-in(رندر داخلی)
 
-Gin provides an easy to use API for JSON, XML and HTML rendering.
+Gin استفاده آسان از API را برای استفاده از JSON ، XML و HTML فراهم می کند.
 
-### Extendable
+### Extendable(توسعه پذیر)
 
-Creating a new middleware is so easy, just check out the sample codes.
-
+ساخت یک میان افزار جدید بسیار ساده است. تنها کافیه به نمونه کدها یه نگاه بندازید.

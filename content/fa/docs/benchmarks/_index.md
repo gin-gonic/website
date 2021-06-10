@@ -1,15 +1,15 @@
 ---
-title: "Benchmarks"
+title: "بنچ مارک ها"
 draft: false
 weight: 3
 ---
 
-Gin uses a custom version of [HttpRouter](https://github.com/julienschmidt/httprouter)
+جین از یک نسخه سفارشی از [HttpRouter](https://github.com/julienschmidt/httprouter) استفاده میکند.
 
-[See all benchmarks](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
+[نتایج همه بنچ مارک ها رو اینجا ببینید](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
 
 | Benchmark name                 |       (1) |             (2) |          (3) |             (4) |
-| ------------------------------ | ---------:| ---------------:| ------------:| ---------------:|
+| ------------------------------ | --------: | --------------: | -----------: | --------------: |
 | BenchmarkGin_GithubAll         | **43550** | **27364 ns/op** |   **0 B/op** | **0 allocs/op** |
 | BenchmarkAce_GithubAll         |     40543 |     29670 ns/op |       0 B/op |     0 allocs/op |
 | BenchmarkAero_GithubAll        |     57632 |     20648 ns/op |       0 B/op |     0 allocs/op |
@@ -41,7 +41,9 @@ Gin uses a custom version of [HttpRouter](https://github.com/julienschmidt/httpr
 | BenchmarkTraffic_GithubAll     |       355 |   3478508 ns/op |  820744 B/op | 14114 allocs/op |
 | BenchmarkVulcan_GithubAll      |      6885 |    193333 ns/op |   19894 B/op |   609 allocs/op |
 
-- (1): Total Repetitions achieved in constant time, higher means more confident result
-- (2): Single Repetition Duration (ns/op), lower is better
-- (3): Heap Memory (B/op), lower is better
-- (4): Average Allocations per Repetition (allocs/op), lower is better
+راهنمای جدول بالا
+
+- (1): Total Repetitions achieved in constant time -> بالاتر یعنی نتیجه با اطمینان بیشتری است
+- (2): Single Repetition Duration (ns/op) -> هرچه پایین تر بهتر است
+- (3): Heap Memory (B/op) -> هرچه پایین تر بهتر است
+- (4): Average Allocations per Repetition (allocs/op) -> هرچه پایین تر بهتر است
