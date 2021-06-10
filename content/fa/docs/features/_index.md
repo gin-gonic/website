@@ -1,17 +1,17 @@
 ---
-title: "Features"
+title: "امکانات"
 draft: false
 weight: 4
 ---
 
-## Gin v1 stable features:
+## امکانات نسخه پایدار 1 جین :
 
 - Zero allocation router.
 
-- Still the fastest http router and framework. From routing to writing.
+- هنوز سریعترین روتر و فریم ورک http. از مسیریابی گرفته تا نوشتن.
 
-- Complete suite of unit tests.
+- مجموعه کامل یونیت تست ها
 
-- Battle tested.
+- نبرد تست شده.
 
-- API frozen, new releases will not break your code.
+- API forzen ، در نسخه های جدید کد شما بریک نمیشود.
