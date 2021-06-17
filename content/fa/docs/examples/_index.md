@@ -1,7 +1,7 @@
 ---
-title: "Examples"
+title: "مثال ها"
 draft: false
 weight: 6
 ---
 
-The section lists api usage.
+لیست مثال ها.
