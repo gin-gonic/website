@@ -1,25 +1,25 @@
 ---
-title: "Deployment"
+title: "دیپلوی"
 draft: false
 weight: 6
 ---
 
-Gin projects can be deployed easily on any cloud provider.
+جین به راحتی میتواند روی هر فضای ابری دیپلوی شود.
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery provides free Cloud hosting with databases, SSL, a global CDN, and automatic deploys with Git.
+Qovery یک هاست رایگان همراه با دیتابیس ssl , CDN را اراعه میدهد و همچنین به صورت خودکار با گیت دیپلوی میشود.
 
-Follow the Qovery guide to [deploy your Gin project](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/).
+[پروژه جین خودتو با استفاده از Qovery دیپلوی کن](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/).
 
 ## [Render](https://render.com)
 
-Render is a modern cloud platform that offers native support for Go, fully managed SSL, databases, zero-downtime deploys, HTTP/2, and websocket support.
+Render یک پلت فرم ابری مدرن است که پشتیبانی نیتیو از Go ، SSL کاملاً مدیریت شده ، دیتابیس ،zero-downtime deploys ، HTTP / 2 و پشتیبانی از websocket را ارائه می دهد.
 
-Follow the Render [guide to deploying Gin projects](https://render.com/docs/deploy-go-gin).
+[پروژه جین خودتو با Render دیپلوی کن](https://render.com/docs/deploy-go-gin).
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE has two ways to deploy Go applications. The standard environment is easier to use but less customizable and prevents [syscalls](https://github.com/gin-gonic/gin/issues/1639) for security reasons. The flexible environment can run any framework or library.
+GAE دو روش برای دیپلوی برنامه های Go دارد. استفاده از محیط استاندارد آسان تر است اما کمتر قابل تنظیم است و به دلایل امنیتی از [syscalls](https://github.com/gin-gonic/gin/issues/1639) جلوگیری می کند. محیط انعطاف پذیر آن می تواند هر چارچوب یا کتابخانه ای را اجرا کند.
 
-Learn more and pick your preferred environment at [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+[محیط خودتو با Google App Engine بساز](https://cloud.google.com/appengine/docs/go/).
