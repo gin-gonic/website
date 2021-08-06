@@ -19,3 +19,5 @@ weight: 8
 * [gotify](https://github.com/gotify/server)：使用实时 web socket 做消息收发的简单服务器。
 
 * [cds](https://github.com/ovh/cds)：企业级持续交付和 DevOps 自动化开源平台。
+
+* [go-admin](https://github.com/go-admin-team/go-admin): 前后端分离的中后台管理系统脚手架。
