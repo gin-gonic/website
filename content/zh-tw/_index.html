@@ -6,43 +6,43 @@ linkTitle = "Gin Web Framework"
 {{< blocks/cover title="Gin Web Framework" image_anchor="top" height="full" color="orange" >}}
 <div class="mx-auto">
 	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
-		Learn More <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+		了解更多 <i class="fas fa-arrow-alt-circle-right ml-2"></i>
 	</a>
 	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/gin-gonic/gin/releases">
-		Download <i class="fab fa-github ml-2 "></i>
+		下載 <i class="fab fa-github ml-2 "></i>
 	</a>
-	<p class="lead mt-5">The fastest full-featured web framework for Go. Crystal clear.</p>
+	<p class="lead mt-5">Go語言最快的全功能Web框架。晶瑩剔透。</p>
 	<div class="mx-auto mt-5"/>
 	{{< blocks/link-down color="info" >}}
 </div>
 {{< /blocks/cover >}}
 
-
 {{% blocks/lead color="white" %}}
 
-**What is Gin?**
+**什麼是Gin?**
 
-Gin is a web framework written in Golang.
+Gin是一個使用Go語言開發的Web框架。
 
-It features a martini-like API with much better performance, up to 40 times faster.
+它提供類似Martini的API，但性能更佳，速度提升高達40倍。
 
-If you need performance and good productivity, you will love Gin.
+如果您追求性能和良好的生產力，您一定會愛上Gin。
 
 {{% /blocks/lead %}}
 
 {{< blocks/section color="light" >}}
 
 {{% blocks/feature icon="fa fa-tachometer-alt" title="Fast" %}}
-Radix tree based routing, small memory foot print. No reflection. Predictable API performance.
+基於Redix樹的路由器, 內存佔用小。不使用反射。 API性能可預測。
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fa fa-bars" title="Middleware support" %}}
-A incoming HTTP request can be handled by a chain of middlewares and the final action.
-For example: Logger, Authorization, GZIP and finally post a message in the DB.
+傳入的HTTP請求可以被一系列中間件和最終操作處理。
+例如：Logger, 授權，GZIP，最終向數據庫發送信息。
+
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fa fa-life-ring" title="Crash-free" %}}
-Gin can catch a panic occurred during a HTTP request and recover it. This way, your server will be always available. It’s also possible to report this panic to Sentry for example!
+Gin可以捕獲 HTTP 請求過程中的 panic 並恢復它。這樣一來您的服務器將保持可用。 Gin 也可以報告這個 panic，例如，將其發送到 Sentry。
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
@@ -50,16 +50,16 @@ Gin can catch a panic occurred during a HTTP request and recover it. This way, y
 {{< blocks/section color="white" >}}
 
 {{% blocks/feature icon="fa fa-check-circle" title="JSON validation" %}}
-Gin can parse and validate the JSON of a request, checking for example the existence of required values.
+Gin可以解析和驗證請求中的JSON，例如，檢查必須字段是否存在。
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fa fa-users-cog" title="Routes grouping" %}}
-Organize your routes better. Authorization required vs non required, different API versions. In addition, the groups can be nested unlimitedly without degrading performance.
+Gin幫助您更好地組織您的路由，例如，按照需要授權和不需要授權和不同API版本進行分組。此外，路由分組可以無限嵌套而不降低性能。
 {{% /blocks/feature %}}
 
 
 {{% blocks/feature icon="fa fa-briefcase" title="Error management" %}}
-Gin provides a convenient way to collect all the errors occurred during a HTTP request. Eventually, a middleware can write them to a log file, to a database and send them through the network.
+Gin幫助您方便地收集HTTP請求期間發生的所有錯誤。最終，中間件可以將它們寫入日誌文件、數據庫並通過網絡發送它們。
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
@@ -67,11 +67,11 @@ Gin provides a convenient way to collect all the errors occurred during a HTTP r
 {{< blocks/section color="info" >}}
 
 {{% blocks/feature icon="fa fa-images" title="Rendering built-in" %}}
-Gin provides an easy to use API for JSON, XML and HTML rendering.
+Gin為JSON、XML和HTML呈現都提供了易於使用的API。
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fa fa-code" title="Extendable" %}}
-Creating a new middleware is so easy, just check out the sample codes.
+創建一個新的中間件非常簡單，詳情參照示例代碼。
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
