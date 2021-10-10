@@ -11,7 +11,7 @@ linkTitle = "Gin Web Framework"
 	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/gin-gonic/gin/releases">
 		下載 <i class="fab fa-github ml-2 "></i>
 	</a>
-	<p class="lead mt-5">Go語言最快的全功能Web框架。晶瑩剔透。</p>
+	<p class="lead mt-5">Go語言最快的全功能Web框架。晶瑩剔透。 </p>
 	<div class="mx-auto mt-5"/>
 	{{< blocks/link-down color="info" >}}
 </div>
@@ -25,53 +25,53 @@ Gin是一個使用Go語言開發的Web框架。
 
 它提供類似Martini的API，但性能更佳，速度提升高達40倍。
 
-如果您追求性能和良好的生產力，您一定會愛上Gin。
+如果你是性能和高效的追求者, 你會愛上 Gin。
 
 {{% /blocks/lead %}}
 
 {{< blocks/section color="light" >}}
 
-{{% blocks/feature icon="fa fa-tachometer-alt" title="Fast" %}}
-基於Redix樹的路由器, 內存佔用小。不使用反射。 API性能可預測。
+{{% blocks/feature icon="fa fa-tachometer-alt" title="快速" %}}
+基於 Radix 樹的路由，小內存佔用。沒有反射。可預測的 API 性能。
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-bars" title="Middleware support" %}}
-傳入的HTTP請求可以被一系列中間件和最終操作處理。
-例如：Logger, 授權，GZIP，最終向數據庫發送信息。
+{{% blocks/feature icon="fa fa-bars" title="支持中間件" %}}
+傳入的 HTTP 請求可以由一系列中間件和最終操作來處理。
+例如：Logger，Authorization，GZIP，最終操作 DB。
 
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-life-ring" title="Crash-free" %}}
-Gin可以捕獲HTTP請求過程中的panic並恢復它。這樣一來您的服務器將保持可用。 Gin也可以報告這個panic，例如，將其發送到Sentry。
+{{% blocks/feature icon="fa fa-life-ring" title="Crash 處理" %}}
+Gin 可以 catch 一個發生在 HTTP 請求中的 panic 並 recover 它。這樣，你的服務器將始終可用。例如，你可以向 Sentry 報告這個 panic！
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
 
 {{< blocks/section color="white" >}}
 
-{{% blocks/feature icon="fa fa-check-circle" title="JSON validation" %}}
-Gin可以解析和驗證請求中的JSON，例如，檢查必須字段是否存在。
+{{% blocks/feature icon="fa fa-check-circle" title="JSON 驗證" %}}
+Gin 可以解析並驗證請求的 JSON，例如檢查所需值的存在。
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-users-cog" title="Routes grouping" %}}
+{{% blocks/feature icon="fa fa-users-cog" title="路由組" %}}
 Gin幫助您更好地組織您的路由，例如，按照需要授權和不需要授權和不同API版本進行分組。此外，路由分組可以無限嵌套而不降低性能。
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fa fa-briefcase" title="Error management" %}}
-Gin幫助您方便地收集HTTP請求期間發生的所有錯誤。最終，中間件可以將它們寫入日誌文件、數據庫並通過網絡發送它們。
+{{% blocks/feature icon="fa fa-briefcase" title="錯誤管理" %}}
+Gin 提供了一種方便的方法來收集 HTTP 請求期間發生的所有錯誤。最終，中間件可以將它們寫入日誌文件，數據庫並通過網絡發送。
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
 
 {{< blocks/section color="info" >}}
 
-{{% blocks/feature icon="fa fa-images" title="Rendering built-in" %}}
-Gin為JSON、XML和HTML呈現都提供了易於使用的API。
+{{% blocks/feature icon="fa fa-images" title="內置渲染" %}}
+Gin 為 JSON，XML 和 HTML 渲染提供了易於使用的 API。
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-code" title="Extendable" %}}
-創建一個新的中間件非常簡單，詳情參照示例代碼。
+{{% blocks/feature icon="fa fa-code" title="可擴展性" %}}
+新建一個中間件非常簡單，去查看[示例代碼](https://gin-gonic.com/zh-tw/docs/examples/using-middleware/)吧。
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
