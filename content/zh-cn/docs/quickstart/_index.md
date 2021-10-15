@@ -79,6 +79,6 @@ func main() {
 然后, 执行 `go run example.go` 命令来运行代码：
 
 ```sh
-# 运行 example.go 并且在浏览器中访问 0.0.0.0:8080/ping
+# 运行 example.go 并且在浏览器中访问 HOST_IP:8080/ping
 $ go run example.go
 ```
