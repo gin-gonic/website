@@ -1,5 +1,5 @@
 ---
-title: "绑定 Uri"
+title: "绑定 Url"
 draft: false
 ---
 
