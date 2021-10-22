@@ -27,19 +27,20 @@ func main() {
 ```
 
 **Result:**
-
+```
 GET /user/john
 
 Hello john
+```
 
-
-
+```
 GET /user/john/
 
 john is /
+```
 
+```
+GET /user/john/doing/chores
 
-
-GET /user/john/img/avatar.jpg
-
-john is /img/avatar.jpg
+john is /doing/chores
+```
