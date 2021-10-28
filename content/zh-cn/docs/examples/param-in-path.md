@@ -27,6 +27,9 @@ func main() {
 ```
 
 **运行结果：**
+
+---
+
 ```
 GET /user/john
 

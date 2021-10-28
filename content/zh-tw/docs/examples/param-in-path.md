@@ -27,6 +27,9 @@ func main() {
 ```
 
 **Result:**
+
+---
+
 ```
 GET /user/john
 
