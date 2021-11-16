@@ -6,6 +6,12 @@ weight: 6
 
 Gin projects can be deployed easily on any cloud provider.
 
+## [Koyeb](https://www.koyeb.com)
+
+Koyeb is a developer-friendly serverless platform to deploy apps globally with git-based deployment, TLS encryption, native autoscaling, a global edge network, and built-in service mesh & discovery.
+
+Follow the Koyeb [guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+
 ## [Qovery](https://www.qovery.com)
 
 Qovery provides free Cloud hosting with databases, SSL, a global CDN, and automatic deploys with Git.
