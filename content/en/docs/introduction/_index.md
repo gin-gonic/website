@@ -27,7 +27,7 @@ Gin can catch a panic occurred during a HTTP request and recover it. This way, y
 
 ### JSON validation 
 
-Gin can parse and validate the JSON of a request - for example,checking the existence of required values.
+Gin can parse and validate the JSON of a request - for example, checking the existence of required values.
 
 ### Routes grouping
 
