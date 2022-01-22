@@ -20,4 +20,4 @@ weight: 8
 
 * [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
 
-* [go-admin](https://github.com/go-admin-team/go-admin): Go admin is a middle background framework based on Gin
+* [go-admin](https://github.com/go-admin-team/go-admin): Go admin is a middle background framework based on Gin.
