@@ -1,0 +1,50 @@
+name: Run Deploy
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '12' ]
+    name: Node ${{ matrix.node }} Setup
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install node module
+        run: |
+          npm install -D --save autoprefixer
+          npm install -D --save postcss-cli
+          npm audit fix
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.75.1'
+          extended: true
+
+      - name: Download Hugo Theme
+        run: |
+          git clone --recurse-submodules --depth 1 https://github.com/google/docsy.git themes/docsy
+
+      - name: Build
+        run: |
+          hugo --minify
+          echo 'gin-gonic.com' > public/CNAME
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/master'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
