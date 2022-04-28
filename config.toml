@@ -160,6 +160,9 @@ github_repo = "https://github.com/gin-gonic/website"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
 github_project_repo = "https://github.com/google/docsy"
 
+# Specify a value here if you have would like to reference a different branch for the other github settings like Edit this page or Create project issue.
+github_branch = "master"
+
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
 
