@@ -6,12 +6,12 @@ linkTitle = "Gin Web Framework"
 {{< blocks/cover title="Gin Web Framework" image_anchor="top" height="full" color="orange" >}}
 <div class="mx-auto">
 	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
-		Learn More <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+		더 알아보기 <i class="fas fa-arrow-alt-circle-right ml-2"></i>
 	</a>
 	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/gin-gonic/gin/releases">
-		Download <i class="fab fa-github ml-2 "></i>
+		다운로드 <i class="fab fa-github ml-2 "></i>
 	</a>
-	<p class="lead mt-5">The fastest full-featured web framework for Go. Crystal clear.</p>
+	<p class="lead mt-5">Go를 위한 만능 Web 프레임워크.</p>
 	<div class="mx-auto mt-5"/>
 	{{< blocks/link-down color="info" >}}
 </div>
@@ -20,58 +20,58 @@ linkTitle = "Gin Web Framework"
 
 {{% blocks/lead color="white" %}}
 
-**What is Gin?**
+**Gin은 무엇인가요?**
 
-Gin is a web framework written in Golang.
+Gin은 Golang으로 쓰여진 Web 프레임워크입니다.
 
-It features a martini-like API with much better performance, up to 40 times faster.
+Martini와 비슷한 API를 가지고 있으며, 최대 40배 더 빠른 성능을 가지고 있는 것이 특징입니다.
 
-If you need performance and good productivity, you will love Gin.
+만약 당신이 성능과 뛰어난 생산성이 필요하다면, 분명 Gin을 좋아하게 될 것입니다.
 
 {{% /blocks/lead %}}
 
 {{< blocks/section color="light" >}}
 
-{{% blocks/feature icon="fa fa-tachometer-alt" title="Fast" %}}
-Radix tree based routing, small memory foot print. No reflection. Predictable API performance.
+{{% blocks/feature icon="fa fa-tachometer-alt" title="빠른 속도" %}}
+Radix tree 기반 라우팅으로 적은 메모리 사용량을 가지며 리플렉션이 없습니다. 또한 예측 가능한 API 성능을 제공합니다.
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-bars" title="Middleware support" %}}
-A incoming HTTP request can be handled by a chain of middlewares and the final action.
-For example: Logger, Authorization, GZIP and finally post a message in the DB.
+{{% blocks/feature icon="fa fa-bars" title="미들웨어 지원" %}}
+수신된 HTTP 요청을 미들웨어 체인과 최종 조치(Final action)에 의해 처리할 수 있습니다.
+예를 들어 Logger, 인증, GZIP 그리고 DB에 메시지 포스트 등이 가능합니다.
 {{% /blocks/feature %}}
 
 {{% blocks/feature icon="fa fa-life-ring" title="Crash-free" %}}
-Gin can catch a panic occurred during a HTTP request and recover it. This way, your server will be always available. It’s also possible to report this panic to Sentry for example!
+Gin은 HTTP 요청중 발생한 panic을 포착하여 복구할 수 있습니다. 이렇게 하면 서버는 항상 이용 가능한 상태가 됩니다. 이 panic을 Sentry 등에 보고할 수도 있습니다.
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
 
 {{< blocks/section color="white" >}}
 
-{{% blocks/feature icon="fa fa-check-circle" title="JSON validation" %}}
-Gin can parse and validate the JSON of a request, checking for example the existence of required values.
+{{% blocks/feature icon="fa fa-check-circle" title="JSON 유효성 검사" %}}
+Gin은 요청의 JSON을 파싱하고 검증할 수 있습니다. 예를 들어, 필수 값의 존재 여부를 체크할 수 있습니다.
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-users-cog" title="Routes grouping" %}}
-Organize your routes better. Authorization required vs non required, different API versions. In addition, the groups can be nested unlimitedly without degrading performance.
+{{% blocks/feature icon="fa fa-users-cog" title="루트 그룹화" %}}
+당신의 루트를 더 나은 방식으로 구성할 수 있습니다. 예를 들어, 인증이 필요한 페이지와 필요 없는 페이지, 다른 버전의 API 등을 구분할 수 있습니다. 또한 성능 저하 없이 그룹을 무한히 중첩할 수 있습니다.
 {{% /blocks/feature %}}
 
 
-{{% blocks/feature icon="fa fa-briefcase" title="Error management" %}}
-Gin provides a convenient way to collect all the errors occurred during a HTTP request. Eventually, a middleware can write them to a log file, to a database and send them through the network.
+{{% blocks/feature icon="fa fa-briefcase" title="오류 관리" %}}
+Gin은 HTP 요청 중에 발생한 모든 오류들을 수집할 수 있는 편리한 방법을 제공합니다. 최종적으로 미들웨어에 의해서 오류에 대한 로그 파일 작성, 데이터베이스에 저장, 네트워크로 송신이 이루어집니다.
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
 
 {{< blocks/section color="info" >}}
 
-{{% blocks/feature icon="fa fa-images" title="Rendering built-in" %}}
-Gin provides an easy to use API for JSON, XML and HTML rendering.
+{{% blocks/feature icon="fa fa-images" title="기본 제공 렌더링" %}}
+Gin은 JSON, XML, HTML의 렌더링을 위해 쉽게 사용할 수 있는 API를 제공합니다.
 {{% /blocks/feature %}}
 
-{{% blocks/feature icon="fa fa-code" title="Extendable" %}}
-Creating a new middleware is so easy, just check out the sample codes.
+{{% blocks/feature icon="fa fa-code" title="확장성" %}}
+새로운 미들웨어를 만드는 것은 무척 쉽습니다. 예제 코드를 참조해보세요.
 {{% /blocks/feature %}}
 
 {{< /blocks/section >}}
