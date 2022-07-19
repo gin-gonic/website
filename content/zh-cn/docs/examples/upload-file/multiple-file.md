@@ -18,6 +18,7 @@ func main() {
 		for _, file := range files {
 			log.Println(file.Filename)
 
+			dst := "./" + file.Filename
 			// 上传文件至指定目录
 			c.SaveUploadedFile(file, dst)
 		}
