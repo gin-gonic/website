@@ -75,7 +75,7 @@ func main() {
 		log.Fatal("Server Shutdown:", err)
 	}
 	// catching ctx.Done(). timeout of 5 seconds.
-	<-ctx.Done():
+	<-ctx.Done()
         log.Println("timeout of 5 seconds.")
 	log.Println("Server exiting")
 }
