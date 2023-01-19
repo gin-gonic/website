@@ -8,7 +8,7 @@ En este inicio rápido, captaremos información y aprenderemos por medio de porc
 
 ## Requerimientos
 
-- Go 1.13 o superior
+- Go 1.16 o superior
 
 ## Instalación
 

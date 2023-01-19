@@ -8,7 +8,7 @@ Bu hızlı başlangıçta, kod parçacıklarından içgörüler toplayacağız v
 
 ## Gereksinimler
 
-- Go 1.13 veya üzeri
+- Go 1.16 veya üzeri
 
 ## Kurulum
 
