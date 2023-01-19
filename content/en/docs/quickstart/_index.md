@@ -8,7 +8,7 @@ In this quickstart, we’ll glean insights from code segments and learn how to:
 
 ## Requirements
 
-- Go 1.13 or above
+- Go 1.16 or above
 
 ## Installation
 
