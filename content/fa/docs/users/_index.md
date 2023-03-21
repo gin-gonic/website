@@ -19,5 +19,3 @@ weight: 8
 - [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per web socket.
 
 - [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
-
-- [go-admin](https://github.com/go-admin-team/go-admin): Go admin is a middle background framework based on Gin

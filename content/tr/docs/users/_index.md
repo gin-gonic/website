@@ -19,5 +19,3 @@ weight: 8
 * [gotify](https://github.com/gotify/server): Web soketi başına gerçek zamanlı olarak mesaj göndermek ve almak için basit bir sunucu.
 
 * [cds](https://github.com/ovh/cds): Kurumsal Düzeyde Continuous Delivery ve DevOps Otomasyonu Açık Kaynak Platformu.
-
-* [go-admin](https://github.com/go-admin-team/go-admin): Go admin, Gin'e dayalı bir orta arka plan çerçevesidir.
