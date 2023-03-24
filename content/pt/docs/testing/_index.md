@@ -1,12 +1,12 @@
 ---
-title: "Testing"
+title: "Testagem"
 draft: false
 weight: 7
 ---
 
-## How to write test case for Gin?
+## Como escrever um caso de teste para Gin?
 
-The `net/http/httptest` package is preferable way for HTTP testing.
+O pacote `net/http/httptest` é a maneira preferível para testagem de HTTP:
 
 ```go
 package main
@@ -27,7 +27,7 @@ func main() {
 }
 ```
 
-Test for code example above:
+O teste para exemplo de código acima:
 
 ```go
 package main
