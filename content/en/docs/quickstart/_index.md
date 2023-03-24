@@ -41,7 +41,7 @@ $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 2. Copy a starting template inside your project
 
 ```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go -k
 ```
 
 3. Run your project
