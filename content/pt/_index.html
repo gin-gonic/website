@@ -1,9 +1,9 @@
 +++
-title = "Gin Web Framework"
-linkTitle = "Gin Web Framework"
+title = "A Abstração de Web Gin"
+linkTitle = "A Abstração de Web Gin"
 +++
 
-{{< blocks/cover title="Gin Web Framework" image_anchor="top" height="full" color="orange">}}
+{{< blocks/cover title="A Abstração de Web Gin" image_anchor="top" height="full" color="orange">}}
 	<div class="mx-auto">
 		<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref " /docs">}}">
 			Aprenda mais <i class="fas fa-arrow-alt-circle-right ml-2"></i>
@@ -11,7 +11,7 @@ linkTitle = "Gin Web Framework"
 		<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/gin-gonic/gin/releases">
 			Descarregar <i class="fab fa-github ml-2 "></i>
 		</a>
-		<p class="lead mt-5">A mais rápida e completa abstração de programação web em Go. Transparente.</p>
+		<p class="lead mt-5">A mais rápida e completa abstração de web em Go. Transparente.</p>
 		<div class="mx-auto mt-5" />
 		{{< blocks/link-down color="info">}}
 	</div>
@@ -22,11 +22,11 @@ linkTitle = "Gin Web Framework"
 
 		**O que é a Gin?**
 
-		A Gin é uma abstração de programação web escrita em Golang.
+		A Gin é uma abstração de web escrita em Golang.
 
-		Ela representa uma API parecida com a Martini, mais com desempenho elevado a 40 vezes mais rápido do que a Martini.
+		Ela apresenta uma API parecida com a Martini, mais com desempenho mais alto, 40 vezes mais rápida do que a Martini.
 
-		Se precisas de desempenho e produtividade, irás amar a Gin.
+		Se precisas de desempenho e produtividade, amarás a Gin.
 
 		{{% /blocks/lead %}}
 
@@ -36,12 +36,12 @@ linkTitle = "Gin Web Framework"
 			Árvore de roteamento baseada em Radix, pouco consumo de memória. Sem reflexão. Desempenho de API previsível.
 			{{% /blocks/feature %}}
 
-			{{% blocks/feature icon="fa fa-bars" title="Middleware support" %}}
+			{{% blocks/feature icon="fa fa-bars" title="Suporte à Intermediário" %}}
 			Uma requisição futura de HTTP pode ser manipulada por uma cadeia de intermediários e pela ação final.
-			Por exemplo: Logger, Authorization, GZIP e finalmente publicar uma mensagem na BD.
+			Por exemplo: Registador, Autorização, GZIP e finalmente publicar uma mensagem na BD.
 			{{% /blocks/feature %}}
 
-			{{% blocks/feature icon="fa fa-life-ring" title="Crash-free" %}}
+			{{% blocks/feature icon="fa fa-life-ring" title="Livre de Avaria" %}}
 			A Gin pode capturar um pânico que ocorreu durante uma requisição de HTTP e recuperá-lo. Deste maneira, o teu
 			servidor estará sempre disponível. Também é possível informar este pânico ao Sentry por exemplo!
 			{{% /blocks/feature %}}
@@ -50,18 +50,18 @@ linkTitle = "Gin Web Framework"
 
 				{{< blocks/section color="white">}}
 
-					{{% blocks/feature icon="fa fa-check-circle" title="JSON validation" %}}
+					{{% blocks/feature icon="fa fa-check-circle" title="Validação de JSON" %}}
 					A Gin pode analisar e validar o JSON de uma requisição, verificando, por exemplo, a existência de valores
 					obrigatórios.
 					{{% /blocks/feature %}}
 
-					{{% blocks/feature icon="fa fa-users-cog" title="Routes grouping" %}}
+					{{% blocks/feature icon="fa fa-users-cog" title="Agrupamento de Rotas" %}}
 					Organiza melhor as tuas rotas. Autorização obrigatória vs não obrigatória, diferentes versões de API. Além
 					disso, grupos podem ser encaixados infinitamente sem a degradação do desempenho.
 					{{% /blocks/feature %}}
 
 
-					{{% blocks/feature icon="fa fa-briefcase" title="Error management" %}}
+					{{% blocks/feature icon="fa fa-briefcase" title="Gestão de Erro" %}}
 					A Gin fornece uma maneira conveniente de coletar todos os erros ocorridos durante uma requisição de HTTP.
 					Eventualmente, o intermediário pode escrevê-los em um ficheiro de registo, em uma base de dados e enviá-los
 					através da rede.
@@ -71,11 +71,11 @@ linkTitle = "Gin Web Framework"
 
 						{{< blocks/section color="info">}}
 
-							{{% blocks/feature icon="fa fa-images" title="Rendering built-in" %}}
+							{{% blocks/feature icon="fa fa-images" title="Interpretação Embutida" %}}
 							A Gin fornece uma API fácil de utilizar para interpretação de JSON, XML e HTML.
 							{{% /blocks/feature %}}
 
-							{{% blocks/feature icon="fa fa-code" title="Extendable" %}}
+							{{% blocks/feature icon="fa fa-code" title="Extensível" %}}
 							A criação de um novo intermediário é tão fácil, apenas consulte o código de exemplo.
 							{{% /blocks/feature %}}
 
