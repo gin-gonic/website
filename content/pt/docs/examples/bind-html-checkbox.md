@@ -1,9 +1,9 @@
 ---
-title: "Bind html checkboxes"
+title: "Vincular caixas de confirmações de HTML"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)
+Consulte a [informação detalhada](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092):
 
 main.go
 
@@ -41,7 +41,7 @@ form.html
 </form>
 ```
 
-result:
+resultado:
 
 ```sh
 {"color":["red","green","blue"]}
