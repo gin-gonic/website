@@ -16,11 +16,11 @@ Ou, se estiveres pronto para usar a Gin no teu projeto, visite a [Introdução r
 
 Roteamento baseado na árvore de Radix, pegada de memória pequena. Sem reflexão. Desempenho de API previsível.
 
-### Suporte de Intermediário
+### Suporte à Intermediário
 
 Uma requisição de HTTP de chegada pode ser manipulada por uma série de intermediários e a ação final. Por exemplo: Registador, Autorização, GZIP e finalmente publicar uma mensagem na Base de Dados.
 
-### Sem Avaria
+### Livre de Avaria
 
 A Gin pode capturar um pânico ocorrido durante uma requisição de HTTP e recuperá-lo. Desta maneira, o teu servidor sempre estará disponível. Como exemplo - também é possível reportar este pânico para a Sentry!
 
