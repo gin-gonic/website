@@ -1,9 +1,9 @@
 ---
-title: "Bind Uri"
+title: "Vincular a URI"
 draft: false
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/846).
+Consulte a [informação detalhada](https://github.com/gin-gonic/gin/issues/846):
 
 ```go
 package main
@@ -29,7 +29,7 @@ func main() {
 }
 ```
 
-Test it with:
+Testá-lo com:
 
 ```sh
 $ curl -v localhost:8088/thinkerou/987fbc97-4bed-5078-9f07-9141ba07c9f3
