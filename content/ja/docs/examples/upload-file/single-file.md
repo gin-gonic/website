@@ -20,7 +20,7 @@ func main() {
 		log.Println(file.Filename)
 
 		// 特定のディレクトリにファイルをアップロードする
-		c.SaveUploadedFile(file, dst)
+		c.SaveUploadedFile(file, "./files/" + file.Filename)
 
 		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 	})
