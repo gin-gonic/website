@@ -1,7 +1,9 @@
 ---
-title: "cookieの設定と取得"
+title: "Cookie"
 draft: false
 ---
+
+cookieの設定と取得
 
 ```go
 import (
@@ -28,4 +30,10 @@ func main() {
 
     router.Run()
 }
+```
+
+Delete cookie by set max age to -1.
+
+```go
+c.SetCookie("gin_cookie", "test", -1, "/", "localhost", false, true)
 ```

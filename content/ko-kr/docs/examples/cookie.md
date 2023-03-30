@@ -1,7 +1,9 @@
 ---
-title: "쿠키의 설정 및 가져오기"
+title: "Cookie"
 draft: false
 ---
+
+쿠키의 설정 및 가져오기
 
 ```go
 import (
@@ -28,4 +30,10 @@ func main() {
 
     router.Run()
 }
+```
+
+Delete cookie by set max age to -1.
+
+```go
+c.SetCookie("gin_cookie", "test", -1, "/", "localhost", false, true)
 ```
