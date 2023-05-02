@@ -1,18 +1,20 @@
 ---
-title: "How to write log file"
+title: "Como Escrever Ficheiro de Registo"
 draft: false
 ---
 
 ```go
 func main() {
-    // Disable Console Color, you don't need console color when writing the logs to file.
+    // desativar a cor da consola, não precisas de cor de consola quando
+    // escreves registos em um ficheiro.
     gin.DisableConsoleColor()
 
-    // Logging to a file.
+    // registando num ficheiro.
     f, _ := os.Create("gin.log")
     gin.DefaultWriter = io.MultiWriter(f)
 
-    // Use the following code if you need to write the logs to file and console at the same time.
+    // use o seguinte código se precisares de escrever registos num ficheiro e
+    // imprimir na consola ao mesmo tempo.
     // gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 
     router := gin.Default()
