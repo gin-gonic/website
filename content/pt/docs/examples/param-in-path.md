@@ -1,5 +1,5 @@
 ---
-title: "Parameters in path"
+title: "Parâmetros no Caminho"
 draft: false
 ---
 
@@ -7,14 +7,17 @@ draft: false
 func main() {
 	router := gin.Default()
 
-	// This handler will match /user/john but will not match /user/ or /user
+	// este manipulador corresponderá ao "/user/john"
+	// mas não corresponderá ao "/user/" ou ao "/user"
 	router.GET("/user/:name", func(c *gin.Context) {
 		name := c.Param("name")
 		c.String(http.StatusOK, "Hello %s", name)
 	})
 
-	// However, this one will match /user/john/ and also /user/john/send
-	// If no other routers match /user/john, it will redirect to /user/john/
+	// no entanto, este corresponderá o "/user/john/"
+	// e também "/user/john/send"
+	// se nenhuma outra rota corresponder ao "/user/john",
+	// redirecionará ao "/user/john"
 	router.GET("/user/:name/*action", func(c *gin.Context) {
 		name := c.Param("name")
 		action := c.Param("action")
