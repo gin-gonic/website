@@ -1,5 +1,5 @@
 ---
-title: "Servindo os Ficheiros Estáticos"
+title: "Servir os Ficheiros Estáticos"
 draft: false
 ---
 
