@@ -1,6 +1,6 @@
 ---
-title: "Multitemplate"
+title: "Vários Modelos de Marcação"
 draft: false
 ---
 
-Gin allow by default use only one html.Template. Check [a multitemplate render](https://github.com/gin-contrib/multitemplate) for using features like go 1.6 `block template`.
+A Gin permite por padrão usar apenas um `html.Template`. Consulte [um interpretador de vários modelos de marcação] para usares funcionalidades como `block template` de Go 1.6.
