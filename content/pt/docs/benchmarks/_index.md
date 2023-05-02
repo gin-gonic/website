@@ -1,14 +1,14 @@
 ---
-title: "Pontos de Referências"
+title: "Analises Comparativas"
 draft: false
 weight: 3
 ---
 
 A Gin usa uma versão personalizada da [`HttpRouter`](https://github.com/julienschmidt/httprouter).
 
-[Consulte todos os pontos de referências](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md):
+[Consulte todos os analises comparativas](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md):
 
-| Nome do ponto de referência                 |       (1) |             (2) |          (3) |             (4) |
+| Nome da analise comparativa              |       (1) |             (2) |          (3) |             (4) |
 | ------------------------------ | ---------:| ---------------:| ------------:| ---------------:|
 | BenchmarkGin_GithubAll         | **43550** | **27364 ns/op** |   **0 B/op** | **0 allocs/op** |
 | BenchmarkAce_GithubAll         |     40543 |     29670 ns/op |       0 B/op |     0 allocs/op |
