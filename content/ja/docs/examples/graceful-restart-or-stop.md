@@ -60,7 +60,7 @@ func main() {
 	}()
 
 	// シグナル割り込みを待ち、タイムアウト時間が5秒の graceful shutdown をする
-	quit := make(chan os.Signal)
+	quit := make(chan os.Signal, 1)
 	// kill (no param) default send syscanll.SIGTERM
 	// kill -2 is syscall.SIGINT
 	// kill -9 is syscall. SIGKILL but can"t be catch, so don't need add it
