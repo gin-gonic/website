@@ -1,10 +1,9 @@
 ---
-title: "Try to bind body into different structs"
+title: "Tentar vincular o corpo à diferentes estruturas"
 draft: false
 ---
 
-The normal methods for binding request body consumes `c.Request.Body` and they
-cannot be called multiple times.
+Os métodos normais para vincular o corpo da requisição consumem a `c.Request.Body` e não podem ser chamados várias vezes:
 
 ```go
 type formA struct {
@@ -18,10 +17,10 @@ type formB struct {
 func SomeHandler(c *gin.Context) {
   objA := formA{}
   objB := formB{}
-  // This c.ShouldBind consumes c.Request.Body and it cannot be reused.
+  // Este c.ShouldBind consume o c.Request.Body e não pode ser reutilizado.
   if errA := c.ShouldBind(&objA); errA == nil {
     c.String(http.StatusOK, `the body should be formA`)
-  // Always an error is occurred by this because c.Request.Body is EOF now.
+  // Um erro sempre acontecerá por aqui porque c.Request.Body agora é EOF
   } else if errB := c.ShouldBind(&objB); errB == nil {
     c.String(http.StatusOK, `the body should be formB`)
   } else {
@@ -30,19 +29,19 @@ func SomeHandler(c *gin.Context) {
 }
 ```
 
-For this, you can use `c.ShouldBindBodyWith`.
+Para isto, podes usar `c.ShouldBindBodyWith`:
 
 ```go
 func SomeHandler(c *gin.Context) {
   objA := formA{}
   objB := formB{}
-  // This reads c.Request.Body and stores the result into the context.
+  // Isto lê c.Request.Body e armazena o resultado no contexto.
   if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
     c.String(http.StatusOK, `the body should be formA`)
-  // At this time, it reuses body stored in the context.
+  // Neste momento, ela reutiliza o corpo armazenado no contexto.
   } else if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
     c.String(http.StatusOK, `the body should be formB JSON`)
-  // And it can accepts other formats
+  // E pode aceitar outros formatos
   } else if errB2 := c.ShouldBindBodyWith(&objB, binding.XML); errB2 == nil {
     c.String(http.StatusOK, `the body should be formB XML`)
   } else {
@@ -51,11 +50,7 @@ func SomeHandler(c *gin.Context) {
 }
 ```
 
-* `c.ShouldBindBodyWith` stores body into the context before binding. This has
-a slight impact to performance, so you should not use this method if you are
-enough to call binding at once.
-* This feature is only needed for some formats -- `JSON`, `XML`, `MsgPack`,
-`ProtoBuf`. For other formats, `Query`, `Form`, `FormPost`, `FormMultipart`,
-can be called by `c.ShouldBind()` multiple times without any damage to
-performance (See [#1341](https://github.com/gin-gonic/gin/pull/1341)).
+* `c.ShouldBindBodyWidth` armazena o corpo no contexto antes da vinculação. Isto tem um ligeiro impacto no desempenho, então não deverias usar este método se estás bem para chamar a vinculação imediatamente.
+
+* Esta funcionalidade é apenas necessário para alguns formatos -- `JSON`, `XML`, `MsgPack`, `ProtoBuf`. Para outros formatos, `Query`, `Form`, `FormPost`, `FormMultipart`, podem ser chamados pela `c.ShouldBind()` várias vezes sem qualquer dado para o desempenho (consulte a [#1341](https://github.com/gin-gonic/gin/pull/1341)).
 

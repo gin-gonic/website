@@ -4,9 +4,9 @@ draft: false
 weight: 5
 ---
 
-## Build with [jsoniter](https://github.com/json-iterator/go)
+### Construir com o [`jsoniter`](https://github.com/json-iterator/go)
 
-Gin uses `encoding/json` as default json package but you can change to [jsoniter](https://github.com/json-iterator/go) by build from other tags.
+A Gin usa o módulo `encoding/json` como pacote de JSON padrão mas podes mudar para o [`jsoniter`](https://github.com/json-iterator/go) ao construir a partir de outros marcadores:
 
 ```sh
 $ go build -tags=jsoniter .

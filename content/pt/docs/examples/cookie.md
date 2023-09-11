@@ -1,5 +1,5 @@
 ---
-title: "Set and get a cookie"
+title: "Definir e Recuperar um Cookie"
 draft: false
 ---
 

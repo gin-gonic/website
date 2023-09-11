@@ -1,24 +1,24 @@
 ---
 title: "Documentação"
-linkTitle: "Documentation"
+linkTitle: "Documentação"
 weight: 20
 menu:
   main:
     weight: 20
 ---
 
-## What is Gin?
+## O que é a Gin?
 
-Gin is a HTTP web framework written in Go (Golang). It features a Martini-like API, but with performance up to 40 times faster than Martini. If you need smashing performance, get yourself some Gin.
+A Gin é uma abstração de web escrita em Go (Golang). Ela apresenta uma API parecida com a Martini, mas com aumento de desempenho 40 vezes mais rápido do que a Martini. Se precisares de desempenho fantástico, sirva-te com algum Gin.
 
-## How to use Gin?
+## Como usar a Gin?
 
-We provide API usage [examples](https://github.com/gin-gonic/examples) and list some publicly known [Gin users](./users).
+Nós fornecemos [exemplos](https://github.com/gin-gonic/examples) de uso da API e listamos alguns [utilizadores de Gin](./users) conhecidos publicamente.
 
-## How to contribute to Gin?
+## Como contribuir com a Gin?
 
-* Help people on the discussion forums
-* Tell us your success stories using Gin
-* Tell us how we can improve Gin and help us do it
-* Contribute to an existing library
+* Ajude as pessoas nos fóruns de discussão
+* Conte-nos as tuas histórias de sucesso usando a Gin
+* Conte-nos como podemos melhorar a Gin e ajude-nos a fazê-lo
+* Contribua para com um biblioteca existente
 

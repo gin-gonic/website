@@ -1,9 +1,9 @@
 ---
-title: "HTTP2 server push"
+title: "Impulso do Servidor de HTTP2"
 draft: false
 ---
 
-http.Pusher is supported only **go1.8+**. See the [golang blog](https://blog.golang.org/h2push) for detail information.
+`http.Pusher` é suportado apenas versão **1.8+** de Go. Consulte o [blogue da Golang](https://blog.golang.org/h2push) por informação detalhada:
 
 ```go
 package main
@@ -34,7 +34,7 @@ func main() {
 
 	r.GET("/", func(c *gin.Context) {
 		if pusher := c.Writer.Pusher(); pusher != nil {
-			// use pusher.Push() to do server push
+			// usar pusher.Push() para impulsionar o servidor.
 			if err := pusher.Push("/assets/app.js", nil); err != nil {
 				log.Printf("Failed to push: %v", err)
 			}
@@ -44,7 +44,7 @@ func main() {
 		})
 	})
 
-	// Listen and Server in https://127.0.0.1:8080
+	// ouvir e servir no https://127.0.0.1:8080
 	r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
