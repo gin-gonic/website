@@ -1,17 +1,17 @@
 ---
-title: "Without middleware by default"
+title: "Sem Intermediário por Padrão"
 draft: false
 ---
 
-Use
+Use:
 
 ```go
 r := gin.New()
 ```
 
-instead of
+Ao invés de:
 
 ```go
-// Default With the Logger and Recovery middleware already attached
+// predefine com o intermediário registador e de recuperação já em anexo.
 r := gin.Default()
 ```

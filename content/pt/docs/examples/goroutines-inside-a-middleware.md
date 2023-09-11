@@ -1,35 +1,35 @@
 ---
-title: "Goroutines inside a middleware"
+title: "Rotinas de Go dentro dum Intermediário"
 draft: false
 ---
 
-When starting new Goroutines inside a middleware or handler, you **SHOULD NOT** use the original context inside it, you have to use a read-only copy.
+Quando começares novas rotinas de Go dentro dum intermediário ou manipulador, **NÃO DEVERIAS** usar o contexto original dentro dele, tens que usar uma cópia de apenas leitura.
 
 ```go
 func main() {
 	r := gin.Default()
 
 	r.GET("/long_async", func(c *gin.Context) {
-		// create copy to be used inside the goroutine
+		// criar cópia a ser usada dentro da rotina de go
 		cCp := c.Copy()
 		go func() {
-			// simulate a long task with time.Sleep(). 5 seconds
+			// simular uma tarefa longa com time.Sleep(). 5 segundos
 			time.Sleep(5 * time.Second)
 
-			// note that you are using the copied context "cCp", IMPORTANT
+			// nota que estás a usar o contexto copiado "cCp", IMPORTANTE
 			log.Println("Done! in path " + cCp.Request.URL.Path)
 		}()
 	})
 
 	r.GET("/long_sync", func(c *gin.Context) {
-		// simulate a long task with time.Sleep(). 5 seconds
+		// simular uma tarefa longa com time.Sleep(). 5 segundos
 		time.Sleep(5 * time.Second)
 
-		// since we are NOT using a goroutine, we do not have to copy the context
+		// já que não estamos a usar uma rotina de Go, não temos que copiar o contexto
 		log.Println("Done! in path " + c.Request.URL.Path)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// ouvir e servir na porta 0.0.0.0:8080
 	r.Run(":8080")
 }
 ```

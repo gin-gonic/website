@@ -1,5 +1,5 @@
 ---
-title: "Query and post form"
+title: "Consulta e Formulário de Publicação"
 draft: false
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "Upload files"
+title: "Carregar Ficheiros"
 draft: false
 ---
 
-The section lists upload file api usage.
+A seção lista o uso da API de carregamento de ficheiro.

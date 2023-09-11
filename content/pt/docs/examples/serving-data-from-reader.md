@@ -1,5 +1,5 @@
 ---
-title: "Serving data from reader"
+title: "Servir os Dados a partir do Leitor"
 draft: false
 ---
 

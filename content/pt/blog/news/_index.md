@@ -1,7 +1,7 @@
 
 ---
 title: "Novidades"
-linkTitle: "News"
+linkTitle: "Novidades"
 weight: 20
 ---
 

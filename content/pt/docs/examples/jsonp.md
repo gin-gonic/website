@@ -3,7 +3,7 @@ title: "JSONP"
 draft: false
 ---
 
-Using JSONP to request data from a server  in a different domain. Add callback to response body if the query parameter callback exists.
+Usando JSONP para pedir dados dum servidor num domínio diferente. Adicione a função de resposta ao corpo da resposta se a função de resposta do parâmetro da consulta existir:
 
 ```go
 func main() {
@@ -14,12 +14,12 @@ func main() {
 			"foo": "bar",
 		}
 		
-		//callback is x
-		// Will output  :   x({\"foo\":\"bar\"})
+		// função de resposta é x
+		// resultará em:   x({\"foo\":\"bar\"})
 		c.JSONP(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// ouvir e servir no 0.0.0.0:8080
 	r.Run(":8080")
 }
 ```
