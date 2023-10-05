@@ -1,7 +1,7 @@
 
 ---
 title: "Lançamentos"
-linkTitle: "Releases"
+linkTitle: "Lançamentos"
 weight: 20
 ---
 

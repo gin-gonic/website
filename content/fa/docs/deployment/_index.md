@@ -8,7 +8,7 @@ weight: 6
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery یک هاست رایگان همراه با دیتابیس ssl , CDN را اراعه میدهد و همچنین به صورت خودکار با گیت دیپلوی میشود.
+Qovery یک هاست رایگان همراه با دیتابیس ssl , CDN را ارائه میدهد و همچنین به صورت خودکار با گیت دیپلوی میشود.
 
 [پروژه جین خودتو با استفاده از Qovery دیپلوی کن](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/).
 

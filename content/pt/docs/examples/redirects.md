@@ -1,9 +1,9 @@
 ---
-title: "Redirects"
+title: "Redirecionamentos"
 draft: false
 ---
 
-Issuing a HTTP redirect is easy. Both internal and external locations are supported.
+Emitir um redirecionamento de HTTP é fácil. Ambas localizações internas e externas são suportadas:
 
 ```go
 r.GET("/test", func(c *gin.Context) {
@@ -11,7 +11,7 @@ r.GET("/test", func(c *gin.Context) {
 })
 ```
 
-Issuing a HTTP redirect from POST. Refer to issue: [#444](https://github.com/gin-gonic/gin/issues/444)
+Emitir um redirecionamento de HTTP a partir do `POST`. Consulte o problema: [#444](https://github.com/gin-gonic/gin/issues/444):
 
 ```go
 r.POST("/test", func(c *gin.Context) {
@@ -19,7 +19,7 @@ r.POST("/test", func(c *gin.Context) {
 })
 ```
 
-Issuing a Router redirect, use `HandleContext` like below.
+Emitir um redirecionamento de roteador, use `HandleContext` como abaixo:
 
 ``` go
 r.GET("/test", func(c *gin.Context) {

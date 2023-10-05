@@ -1,9 +1,9 @@
 ---
-title: "Custom validators"
+title: "Validadores Personalizados"
 draft: false
 ---
 
-It is also possible to register custom validators. See the [example code](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).
+Também é possível registar validadores personalizados. Consulte o [código de exemplo](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations):
 
 ```go
 package main
@@ -17,7 +17,7 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-// Booking contains binded and validated data.
+// `Booking` (contratação) contém dados vinculados e validados.
 type Booking struct {
 	CheckIn  time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
 	CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn,bookabledate" time_format:"2006-01-02"`
@@ -63,5 +63,5 @@ $ curl "localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
 {"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
 ```
 
-[Struct level validations](https://github.com/go-playground/validator/releases/tag/v8.7) can also be registered this way.
-See the [struct-lvl-validation example](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) to learn more.
+As [validações a nível estrutural](https://github.com/go-playground/validator/releases/tag/v8.7) também podem ser registadas desta maneira.
+Consulte o [exemplo `struct-lvl-validation`](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) para saber mais.

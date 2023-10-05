@@ -10,7 +10,7 @@ json 하이재킹을 방지하기 위해 SecureJSON를 사용합니다.
 func main() {
 	r := gin.Default()
 
-	// 자체적인 보인 json 접두사를 사용할 수도 있습니다.
+	// 자체적인 보안 json 접두사를 사용할 수도 있습니다.
 	// r.SecureJsonPrefix(")]}',\n")
 
 	r.GET("/someJSON", func(c *gin.Context) {

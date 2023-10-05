@@ -1,19 +1,19 @@
 ---
-title: "Controlling Log output coloring"
+title: "Controlando a Colorização da Saída de Registo"
 draft: false
 ---
 
-By default, logs output on console should be colorized depending on the detected TTY.
+Por padrão, a saída de registos na consola deveria ser colorida dependendo do TTY detetado.
 
-Never colorize logs: 
+Nunca colorir os registos:
 
 ```go
 func main() {
-    // Disable log's color
+    // Desativar a cor do registo
     gin.DisableConsoleColor()
     
-    // Creates a gin router with default middleware:
-    // logger and recovery (crash-free) middleware
+    // Criar um roteador de Gin com o intermediário padrão:
+    // registador e intermediário de recuperação (livre de avaria)
     router := gin.Default()
     
     router.GET("/ping", func(c *gin.Context) {
@@ -24,15 +24,15 @@ func main() {
 }
 ```
 
-Always colorize logs: 
+Sempre colorir os registos:
 
 ```go
 func main() {
-    // Force log's color
+    // Forçar a cor do registo
     gin.ForceConsoleColor()
     
-    // Creates a gin router with default middleware:
-    // logger and recovery (crash-free) middleware
+    // Criar um roteador de Gin com o intermediário padrão:
+    // registador e intermediário de recuperação (livre de avaria)
     router := gin.Default()
     
     router.GET("/ping", func(c *gin.Context) {

@@ -1,17 +1,17 @@
 ---
-title: "Features"
+title: "Características"
 draft: false
 weight: 4
 ---
 
-## Gin v1 stable features:
+## Gin v1 estável apresenta:
 
-- Zero allocation router.
+- Roteador de alocação zero.
 
-- Still the fastest http router and framework. From routing to writing.
+- Continua o roteador de HTTP e abstração mais rápida. Desde o roteamento à escrita.
 
-- Complete suite of unit tests.
+- Conjunto completo de testes unitários.
 
-- Battle tested.
+- Testado em combate.
 
-- API frozen, new releases will not break your code.
+- API imóvel, novos lançamentos não quebrarão o teu código.

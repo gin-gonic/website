@@ -1,5 +1,5 @@
 ---
-title: "Query string parameters"
+title: "Parâmetros da Sequência de Consulta"
 draft: false
 ---
 
@@ -7,11 +7,13 @@ draft: false
 func main() {
 	router := gin.Default()
 
-	// Query string parameters are parsed using the existing underlying request object.
-	// The request responds to a url matching:  /welcome?firstname=Jane&lastname=Doe
+	// os parâmetros da sequência de caracteres de consulta 
+	// são analisados usando objeto de requisição subjacente existente.
+	// a requisição responde à uma URL correspondendo a:
+	// /welcome?firstname=Jane&lastname=Doe
 	router.GET("/welcome", func(c *gin.Context) {
 		firstname := c.DefaultQuery("firstname", "Guest")
-		lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
+		lastname := c.Query("lastname") // atalho para c.Request.URL.Query().Get("lastname")
 
 		c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
 	})
