@@ -13,8 +13,9 @@ func main() {
 		data := map[string]interface{}{
 			"foo": "bar",
 		}
-		
-		//callback is x
+
+		// GET /JSONP?callback=x
+		// callback is x
 		// Will output  :   x({\"foo\":\"bar\"})
 		c.JSONP(http.StatusOK, data)
 	})
