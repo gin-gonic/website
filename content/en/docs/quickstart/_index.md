@@ -17,7 +17,7 @@ To install Gin package, you need to install Go and set your Go workspace first.
 1. Download and install it:
 
 ```sh
-$ go get -u github.com/gin-gonic/gin
+$ go install github.com/gin-gonic/gin@latest
 ```
 
 2. Import it in your code:
