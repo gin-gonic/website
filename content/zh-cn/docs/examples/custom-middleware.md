@@ -27,9 +27,9 @@ func Logger() gin.HandlerFunc {
 
 func main() {
 	r := gin.New()
-	r.Use(Logger())
+	router.Use(Logger())
 
-	r.GET("/test", func(c *gin.Context) {
+	router.GET("/test", func(c *gin.Context) {
 		example := c.MustGet("example").(string)
 
 		// 打印："12345"
@@ -37,7 +37,7 @@ func main() {
 	})
 
 	// 监听并在 0.0.0.0:8080 上启动服务
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
 

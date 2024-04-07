@@ -7,9 +7,9 @@ draft: false
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/long_async", func(c *gin.Context) {
+	router.GET("/long_async", func(c *gin.Context) {
 		// goroutine 内で使用するコピーを生成します
 		cCp := c.Copy()
 		go func() {
@@ -21,7 +21,7 @@ func main() {
 		}()
 	})
 
-	r.GET("/long_sync", func(c *gin.Context) {
+	router.GET("/long_sync", func(c *gin.Context) {
 		// time.Sleep() を使って、長時間かかる処理をシミュレートします。5秒です。
 		time.Sleep(5 * time.Second)
 
@@ -30,7 +30,7 @@ func main() {
 	})
 
 	// 0.0.0.0:8080 でサーバーを立てます。
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
 
