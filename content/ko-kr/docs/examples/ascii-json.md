@@ -3,7 +3,7 @@ title: "AsciiJSON"
 draft: false
 ---
 
-이스케이프 된 비 ASCII chracter를 AsciiJSON을 사용하여 ASCII 전용 JSON을 생성합니다
+이스케이프 된 비 ASCII character를 AsciiJSON을 사용하여 ASCII 전용 JSON을 생성합니다
 
 ```go
 func main() {
