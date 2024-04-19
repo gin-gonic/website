@@ -130,6 +130,14 @@ contentDir = "content/pt"
 time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"
 
+[languages.pt]
+title = "Gin Web Framework"
+description = "Gin Web Framework"
+languageName = "Russian"
+contentDir = "content/ru"
+time_format_default = "02.01.2006"
+time_format_blog = "02.01.2006"
+
 
 [markup]
   [markup.goldmark]
