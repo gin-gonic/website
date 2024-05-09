@@ -7,9 +7,9 @@ draft: false
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/JSONP", func(c *gin.Context) {
+	router.GET("/JSONP", func(c *gin.Context) {
 		data := map[string]interface{}{
 			"foo": "bar",
 		}
@@ -20,6 +20,6 @@ func main() {
 	})
 
 	// 监听并在 0.0.0.0:8080 上启动服务
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

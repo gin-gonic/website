@@ -93,9 +93,9 @@ func main() {
 구분자를 사용자 정의하여 사용할 수도 있습니다.
 
 ```go
-	r := gin.Default()
-	r.Delims("{[{", "}]}")
-	r.LoadHTMLGlob("/path/to/templates")
+	router := gin.Default()
+	router.Delims("{[{", "}]}")
+	router.LoadHTMLGlob("/path/to/templates")
 ```
 
 ### 커스텀 템플릿 기능

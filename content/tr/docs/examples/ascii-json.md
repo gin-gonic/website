@@ -7,9 +7,9 @@ Using AsciiJSON to Generates ASCII-only JSON with escaped non-ASCII characters.
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/someJSON", func(c *gin.Context) {
+	router.GET("/someJSON", func(c *gin.Context) {
 		data := map[string]interface{}{
 			"lang": "GO语言",
 			"tag":  "<br>",
@@ -20,6 +20,6 @@ func main() {
 	})
 
 	// Listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

@@ -6,18 +6,18 @@ Usando SecureJSON para evitar el secuestro de JSON. Por defecto se antepone `"wh
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// Se puede emplear un prefijo JSON seguro propio 
-	// r.SecureJsonPrefix(")]}',\n")
+	// router.SecureJsonPrefix(")]}',\n")
 
-	r.GET("/someJSON", func(c *gin.Context) {
+	router.GET("/someJSON", func(c *gin.Context) {
 		names := []string{"lena", "austin", "foo"}
 
 		// Retornará  :   while(1);["lena","austin","foo"]
 		c.SecureJSON(http.StatusOK, names)
 	})
 
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

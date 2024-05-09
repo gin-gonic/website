@@ -93,9 +93,9 @@ func main() {
 Pueden establecerse separadores personalizados
 
 ```go
-	r := gin.Default()
-	r.Delims("{[{", "}]}")
-	r.LoadHTMLGlob("/path/to/templates")
+	router := gin.Default()
+	router.Delims("{[{", "}]}")
+	router.LoadHTMLGlob("/path/to/templates")
 ```
 
 ### Funciones personalizadas en plantillas

@@ -13,12 +13,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	r.SetHTMLTemplate(t)
+	router.SetHTMLTemplate(t)
 
-	r.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
 	})
-	r.Run(":8080")
+	router.Run(":8080")
 }
 
 // loadTemplate은 go-assets-builder에 의해 임베디드 된 템플릿을 로드합니다

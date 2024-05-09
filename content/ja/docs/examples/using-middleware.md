@@ -11,18 +11,18 @@ func main() {
 	// グローバルなミドルウェア
 	// Logger ミドルウェアは GIN_MODE=release を設定してても、 gin.DefaultWriter にログを出力する
 	// gin.DefaultWriter はデフォルトでは os.Stdout。
-	r.Use(gin.Logger())
+	router.Use(gin.Logger())
 
 	// Recovery ミドルウェアは panic が発生しても 500 エラーを返してくれる
-	r.Use(gin.Recovery())
+	router.Use(gin.Recovery())
 
 	// 個別のルーティングに、ミドルウェアを好きに追加することもできる
-	r.GET("/benchmark", MyBenchLogger(), benchEndpoint)
+	router.GET("/benchmark", MyBenchLogger(), benchEndpoint)
 
 	// 認証が必要なグループ
-	// authorized := r.Group("/", AuthRequired())
+	// authorized := router.Group("/", AuthRequired())
 	// 下記と同一
-	authorized := r.Group("/")
+	authorized := router.Group("/")
 	// 個別のグループのミドルウェア。この例では、AuthRequired() ミドルウェアを認証が必要なグループに設定している。
 	authorized.Use(AuthRequired())
 	{
@@ -36,7 +36,7 @@ func main() {
 	}
 
 	// 0.0.0.0:8080 でサーバーを立てる
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
 

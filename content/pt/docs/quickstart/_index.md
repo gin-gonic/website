@@ -69,13 +69,13 @@ package main
 import "github.com/gin-gonic/gin"
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
+	router := gin.Default()
+	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
-	r.Run() // oiça e sirva na `0.0.0.0:8080`
+	router.Run() // oiça e sirva na `0.0.0.0:8080`
 }
 ```
 

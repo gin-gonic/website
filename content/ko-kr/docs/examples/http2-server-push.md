@@ -28,11 +28,11 @@ var html = template.Must(template.New("https").Parse(`
 `))
 
 func main() {
-	r := gin.Default()
-	r.Static("/assets", "./assets")
-	r.SetHTMLTemplate(html)
+	router := gin.Default()
+	router.Static("/assets", "./assets")
+	router.SetHTMLTemplate(html)
 
-	r.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		if pusher := c.Writer.Pusher(); pusher != nil {
 			// 서버 푸시를 위해 pusher.Push()를 사용합니다
 			if err := pusher.Push("/assets/app.js", nil); err != nil {
@@ -45,7 +45,7 @@ func main() {
 	})
 
 	// 서버가 실행 되고 https://127.0.0.1:8080 에서 요청을 기다립니다.
-	r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
+	router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
 

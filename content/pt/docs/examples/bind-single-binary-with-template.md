@@ -14,12 +14,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	r.SetHTMLTemplate(t)
+	router.SetHTMLTemplate(t)
 
-	r.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
 	})
-	r.Run(":8080")
+	router.Run(":8080")
 }
 
 // loadTemplate carrega os modelos de marcação fixado pelo go-assets-builder

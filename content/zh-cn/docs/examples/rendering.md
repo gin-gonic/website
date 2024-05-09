@@ -5,14 +5,14 @@ draft: false
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// gin.H 是 map[string]interface{} 的一种快捷方式
-	r.GET("/someJSON", func(c *gin.Context) {
+	router.GET("/someJSON", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
-	r.GET("/moreJSON", func(c *gin.Context) {
+	router.GET("/moreJSON", func(c *gin.Context) {
 		// 你也可以使用一个结构体
 		var msg struct {
 			Name    string `json:"user"`
@@ -27,15 +27,15 @@ func main() {
 		c.JSON(http.StatusOK, msg)
 	})
 
-	r.GET("/someXML", func(c *gin.Context) {
+	router.GET("/someXML", func(c *gin.Context) {
 		c.XML(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
-	r.GET("/someYAML", func(c *gin.Context) {
+	router.GET("/someYAML", func(c *gin.Context) {
 		c.YAML(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
-	r.GET("/someProtoBuf", func(c *gin.Context) {
+	router.GET("/someProtoBuf", func(c *gin.Context) {
 		reps := []int64{int64(1), int64(2)}
 		label := "test"
 		// protobuf 的具体定义写在 testdata/protoexample 文件中。
@@ -49,6 +49,6 @@ func main() {
 	})
 
 	// 监听并在 0.0.0.0:8080 上启动服务
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

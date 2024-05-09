@@ -8,9 +8,9 @@ Using JSONP to request data from a server  in a different domain. Agregue un cal
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/JSONP?callback=x", func(c *gin.Context) {
+	router.GET("/JSONP?callback=x", func(c *gin.Context) {
 		data := map[string]interface{}{
 			"foo": "bar",
 		}
@@ -21,6 +21,6 @@ func main() {
 	})
 
 	// Escucha y sirve peticiones en 0.0.0.0:8080
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
