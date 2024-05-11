@@ -13,6 +13,7 @@ In this quickstart, we’ll glean insights from code segments and learn how to:
 ## Installation
 
 To install Gin package, you need to install Go and set your Go workspace first.
+If you don't have a go.mod file, create it with `go mod init gin`.
 
 1. Download and install it:
 
