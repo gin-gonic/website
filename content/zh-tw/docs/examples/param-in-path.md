@@ -25,3 +25,25 @@ func main() {
 	router.Run(":8080")
 }
 ```
+
+**Result:**
+
+---
+
+```
+GET /user/john
+
+Hello john
+```
+
+```
+GET /user/john/
+
+john is /
+```
+
+```
+GET /user/john/doing/chores
+
+john is /doing/chores
+```
