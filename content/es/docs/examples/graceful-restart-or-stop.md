@@ -61,7 +61,7 @@ func main() {
 	// Espera por la señal de interrupción para el apagado controlado del servidor
 	// con un tiempo de espera de 5 segundos.
 	quit := make(chan os.Signal, 1)
-	// kill (sin parámetro) envío por defecto de la señal syscanll.SIGTERM
+	// kill (sin parámetro) envío por defecto de la señal syscall.SIGTERM
 	// kill -2 es syscall.SIGINT
 	// kill -9 es syscall.SIGKILL pero no se puede atrapar, así que no es necesario agregarlo
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)

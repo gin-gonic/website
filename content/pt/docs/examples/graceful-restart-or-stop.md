@@ -62,7 +62,7 @@ func main() {
 	// espere pelo sinal de interrupção para parar graciosamente o
 	// servidor com uma pausa de 5 segundos.
 	quit := make(chan os.Signal, 1)
-	// "kill" padrão (sem parâmetro) envia "syscanll.SIGTERM"
+	// "kill" padrão (sem parâmetro) envia "syscall.SIGTERM"
 	// "kill -2" é "syscall.SIGINT"
 	// "kill -9" é "syscall.SIGKILL" mas não pode ser capturado,
 	// então não precisas adicioná-lo
