@@ -24,18 +24,6 @@ Or install:
 $ go install github.com/gin-gonic/gin@latest
 ```
 
-2. Import it in your code:
-
-```go
-import "github.com/gin-gonic/gin"
-```
-
-3. (Optional) Import `net/http`. This is required for example if using constants such as `http.StatusOK`.
-
-```go
-import "net/http"
-```
-
 1. Create your project folder and `cd` inside
 
 ```sh
