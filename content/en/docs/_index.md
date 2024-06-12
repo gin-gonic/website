@@ -21,4 +21,3 @@ We provide API usage [examples](https://github.com/gin-gonic/examples) and list 
 * Tell us your success stories using Gin
 * Tell us how we can improve Gin and help us do it
 * Contribute to an existing library
-
