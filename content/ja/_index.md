@@ -1,0 +1,95 @@
+---
+title: Gin Web Framework
+linkTitle: Gin Web Framework
+---
+
+{{< blocks/cover title="Gin Web Framework" image_anchor="top" height="full" >}}
+<a class="btn btn-lg btn-primary me-3 mb-4" href="/docs/"> 詳しく見る
+<i class="fas fa-arrow-alt-circle-right ms-2"></i> </a>
+<a class="btn btn-lg btn-secondary text-dark me-3 mb-4" href="https://github.com/gin-gonic/gin/releases">
+ダウンロード <i class="fab fa-github ms-2 "></i> </a>
+
+<p class="lead mt-5">Go 言語のためのフル機能の最速 Web フレームワーク。水晶のようにクリア。</p>
+
+{{< blocks/link-down color="info" >}} {{< /blocks/cover >}}
+
+{{% blocks/lead color="white" %}}
+
+**Gin とは何か？**
+
+Gin は、Golang で書かれた Web フレームワークです。
+
+martini に似た API を持ちながら、非常に優れたパフォーマンスを発揮し、最大で 40
+倍高速であることが特徴です。
+
+性能と優れた生産性が必要なら、きっと Gin が好きになれるでしょう。
+
+{{% /blocks/lead %}}
+
+{{% blocks/section color="light" type="row" %}}
+{{% blocks/feature icon="fa-tachometer-alt" title="高速" %}}
+
+基数木（redix tree）を元にしたルーティング、小さなメモリフットプリント、リフレク
+ションなし、予測可能な API 性能などの特徴があります。
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-bars" title="ミドルウェアのサポート"%}}
+
+受信した HTTP リクエストをミドルウェアのチェーンと最終的なアクションによりハンド
+リングできます。たとえば、ロガー、認証、GZIP、さらに DB へのメッセージのポストな
+どが可能です。
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-life-ring" title="クラッシュフリー"  %}}
+
+Gin は、HTTP リクエスト中に発生した panic をキャッチし、回復することが可能です。
+これにより、サーバーが常に利用可能な状態になります。さらに、この panic を Sentry
+などに報告することもできます。
+
+{{% /blocks/feature %}}
+
+{{% /blocks/section %}}
+
+{{% blocks/section color="white" type="row" %}}
+{{% blocks/feature icon="fa-check-circle" title="JSON のバリデーション" %}}
+
+Gin はリクエストの JSON をパース・検証できます。たとえば、必須の値が存在するかど
+うかをチェックできます。
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-users-cog" title="ルートのグループ化"%}}
+
+ルートを上手く組織化しましょう。認証が必要なページと必要のないページ、異なるバー
+ジョンの API などを区別できます。さらに、各グループは性能劣化なしに無制限にネス
+トできます。
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-briefcase" title="エラーの管理"  %}}
+
+Gin は HTTP リクエスト中に発生したすべてのエラーを収集する便利な手段を提供します
+。最終的に、ミドルウェアによって、ログファイルへの書き込み、データベースへの格納
+、ネットワーク越しの送信などが行われます。
+
+{{% /blocks/feature %}}
+
+{{% /blocks/section %}}
+
+{{% blocks/section color="info" type="row" %}}
+
+{{% blocks/feature icon="fa-images" title="レンダリングのビルトイン" %}}
+
+Gin は JSON、XML、HTML のレンダリングのための簡単に使える API を提供します。
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-code" title="拡張可能" %}}
+
+新しいミドルウェアの作成は非常に簡単です。サンプルコードを見てみてください。
+
+{{% /blocks/feature %}}
+
+{{% /blocks/section %}}
