@@ -1,0 +1,96 @@
+---
+title: Gin Web Framework
+linkTitle: Gin Web Framework
+---
+
+{{< blocks/cover title="Gin Web Framework" image_anchor="top" height="full" >}}
+<a class="btn btn-lg btn-primary me-3 mb-4" href="/docs/"> Подробнее
+<i class="fas fa-arrow-alt-circle-right ms-2"></i> </a>
+<a class="btn btn-lg btn-secondary text-dark me-3 mb-4" href="https://github.com/gin-gonic/gin/releases">
+Скачать <i class="fab fa-github ms-2 "></i> </a>
+
+<p class="lead mt-5">Самый быстрый полнофункциональный веб-фреймворк для Go. Кристально чистый.</p>
+{{< blocks/link-down color="info" >}}
+{{< /blocks/cover >}}
+
+{{% blocks/lead color="white" %}}
+
+**Что такое Gin?**
+
+Gin - это веб-фреймворк, написанный на языке Golang.
+
+В нем реализован API, похожий на Martini, но производительность в 40 раз выше,
+чем у Martini.
+
+Если вам нужна производительность и продуктивность, Gin вам понравится.
+
+{{% /blocks/lead %}}
+
+{{% blocks/section color="light" type="row" %}}
+{{% blocks/feature icon="fa-tachometer-alt" title="Fast" %}}
+
+Маршрутизация на основе радиксного дерева, малый объем памяти. Никаких
+отражений. Предсказуемая производительность API.
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-bars" title="Middleware support"%}}
+
+Входящий HTTP-запрос может быть обработан цепочкой промежуточного ПО
+(Middleware) и конечным действием. Например: Логгер, авторизация, GZIP и,
+наконец, публикация сообщения в БД.
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-life-ring" title="Crash-free"  %}}
+
+Gin может поймать панику, возникшую во время HTTP-запроса, и восстановить ее.
+Таким образом, ваш сервер будет всегда доступен. Также можно сообщить об этой
+панике, например, в Sentry!
+
+{{% /blocks/feature %}}
+
+{{% /blocks/section %}}
+
+{{% blocks/section color="white" type="row" %}}
+{{% blocks/feature icon="fa-check-circle" title="JSON validation" %}}
+
+Gin может анализировать и проверять JSON-запросы, например, на наличие
+необходимых значений.
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-users-cog" title="Routes grouping"%}}
+
+Организуйте свои маршруты лучше. Требуется и не требуется авторизация, разные
+версии API. Кроме того, группы могут быть вложены бесконечно без снижения
+производительности.
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-briefcase" title="Error management"  %}}
+
+Gin обеспечивает удобный способ сбора всех ошибок, возникших во время
+HTTP-запроса. В конечном итоге промежуточное ПО (Middleware) может записывать их
+в файл журнала, в базу данных и отправлять через сеть.
+
+{{% /blocks/feature %}}
+
+{{% /blocks/section %}}
+
+{{% blocks/section color="info" type="row" %}}
+
+{{% blocks/feature icon="fa-images" title="Rendering built-in" %}}
+
+Gin предоставляет простой в использовании API для рендеринга JSON, XML и HTML.
+
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa-code" title="Extendable"%}}
+
+Создать новое промежуточное программное обеспечение очень просто, просто
+посмотрите пример кода.
+
+{{% /blocks/feature %}}
+
+{{% /blocks/section %}}

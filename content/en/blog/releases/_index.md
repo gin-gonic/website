@@ -1,8 +1,5 @@
-
 ---
-title: "Releases"
-linkTitle: "Releases"
+title: Releases
+linkTitle: Releases
 weight: 20
 ---
-
-

@@ -151,7 +151,7 @@ time_format_blog = "02.01.2006"
 # Everything below this are Site Params
 
 [params]
-copyright = "Gin Team"
+copyright = "Gin Team All Rights Reserved"
 #privacy_policy = "https://policies.google.com/privacy"
 
 # First one is picked as the Twitter card image if not set on page.
@@ -217,7 +217,7 @@ no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY
 [[params.links.user]]
 	name = "Gitter"
 	url = "https://gitter.im/gin-gonic/gin"
-	icon = "fab fa-gitter"
+	icon = "fa fa-gitter"
         desc = "Discussion and help from your fellow users"
 #[[params.links.user]]
 #	name ="Twitter"
@@ -243,7 +243,7 @@ no = 'Sorry to hear that. Please <a href="https://github.com/USERNAME/REPOSITORY
 #[[params.links.developer]]
 #	name = "Developer mailing list"
 #	url = "https://example.org/mail"
-#	icon = "fa fa-envelope"
+#	icon = "fa-envelope"
 #        desc = "Discuss development issues around the project"
 
 [module]

@@ -1,6 +1,6 @@
 ---
-title: "How to build one effective middleware?"
-linkTitle: "How to build one effective middleware?"
+title: 'How to build one effective middleware?'
+linkTitle: 'How to build one effective middleware?'
 date: 2019-02-26
 ---
 
@@ -8,9 +8,14 @@ date: 2019-02-26
 
 The middleware has two parts:
 
-  - part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens once per application lifetime.
+- part one is what is executed once, when you initialize your middleware. That's
+  where you set up all the global objects, logicals etc. Everything that happens
+  once per application lifetime.
 
-  - part two is what executes on every request. For example, a database middleware you simply inject your "global" database object into the context. Once it's inside the context, you can retrieve it from within other middlewares and your handler function.
+- part two is what executes on every request. For example, a database middleware
+  you simply inject your "global" database object into the context. Once it's
+  inside the context, you can retrieve it from within other middlewares and your
+  handler function.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -28,7 +33,7 @@ func funcName(params string) gin.HandlerFunc {
         // --->
         // The following code is an example
         c.Set("TestVar", params)
-        c.Next()    
+        c.Next()
     }
 }
 ```
@@ -84,7 +89,9 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to [Constituent parts](#Constituent-parts) said, when we run the gin process, **part one** will execute firstly and will print the following information:
+According to [Constituent parts](#Constituent-parts) said, when we run the gin
+process, **part one** will execute firstly and will print the following
+information:
 
 ```go
 globalMiddleware...1
@@ -104,7 +111,8 @@ mid1...1
 mid2...1
 ```
 
-When we curl one request `curl -v localhost:8080/rest/n/api/some`, **part two** will execute their middleware and output the following information:
+When we curl one request `curl -v localhost:8080/rest/n/api/some`, **part two**
+will execute their middleware and output the following information:
 
 ```go
 globalMiddleware...2
@@ -139,5 +147,3 @@ mid1...3
     v
 globalMiddleware...3
 ```
-
-
