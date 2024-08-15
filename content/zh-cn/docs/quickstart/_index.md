@@ -17,6 +17,11 @@ weight: 2
 ```sh
 $ go get -u github.com/gin-gonic/gin
 ```
+或 install 
+```sh
+$ go install github.com/gin-gonic/gin@latest
+```
+
 
 2.将 gin 引入到代码中：
 
