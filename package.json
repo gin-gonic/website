@@ -1,27 +1,20 @@
 {
-  "name": "tech-doc-hugo",
+  "name": "",
+  "type": "module",
   "version": "0.0.1",
-  "description": "Hugo theme for technical documentation.",
-  "main": "none.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bep/tech-doc-hugo.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bep/tech-doc-hugo/issues"
-  },
-  "homepage": "https://github.com/bep/tech-doc-hugo#readme",
   "dependencies": {
-    "postcss": "^7.0.27"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "postcss-cli": "^11.0.0"
+    "@astrojs/check": "^0.9.3",
+    "@astrojs/starlight": "^0.27.1",
+    "@lorenzo_lewis/starlight-utils": "^0.1.2",
+    "astro": "^4.15.3",
+    "sharp": "^0.32.5",
+    "typescript": "^5.6.2"
   }
 }
