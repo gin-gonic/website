@@ -31,35 +31,35 @@ export default defineConfig({
 					lang: 'es',
 				},
 				"fa": {
-					label: "fa",
+					label: "Persian",
 					lang: "fa",
 				},
 				"ja": {
-					label: "ja",
+					label: "日本語",
 					lang: "ja",
 				},
 				"ko-kr": {
-					label: "ko-kr",
+					label: "한국어",
 					lang: "ko-kr",
 				},
 				"pt": {
-					label: "pt",
+					label: "Português",
 					lang: "pt",
 				},
 				"ru": {
-					label: "ru",
+					label: "Russian",
 					lang: "ru",
 				},
 				"tr": {
-					label: "tr",
+					label: "Turkish",
 					lang: "tr",
 				},
 				"zh-cn": {
-					label: "zh-cn",
+					label: "简体中文",
 					lang: "zh-cn",
 				},
 				"zh-tw": {
-					label: "zh-tw",
+					label: "繁體中文",
 					lang: "zh-tw",
 				},
 			},
