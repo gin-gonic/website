@@ -66,6 +66,7 @@ export default defineConfig({
 
 			social: {
 				github: 'https://github.com/gin-gonic/gin',
+				gitter: "https://gitter.im/gin-gonic/gin"
 			},
 			sidebar: [
 				{
