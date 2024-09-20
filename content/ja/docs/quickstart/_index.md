@@ -20,6 +20,12 @@ Gin をインストールするには、まず Go のインストールおよび
 $ go get -u github.com/gin-gonic/gin
 ```
 
+もしくは次の方法でインストールします。
+
+```sh
+$ go install github.com/gin-gonic/gin@latest
+```
+
 2. コード内でインポートする
 
 ```go
