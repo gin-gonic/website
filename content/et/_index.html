@@ -1,0 +1,77 @@
++++
+title = "Gin Veebiraamistik"
+linkTitle = "Gin Veebiraamistik"
++++
+
+{{< blocks/cover title="Gin Veebiraamistik" image_anchor="top" height="full" color="orange" >}}
+<div class="mx-auto">
+	<a class="btn btn-lg btn-primary mr-3 mb-4" href="{{< relref "/docs" >}}">
+		Lisateave <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+	</a>
+	<a class="btn btn-lg btn-secondary mr-3 mb-4" href="https://github.com/gin-gonic/gin/releases">
+		Lae alla <i class="fab fa-github ml-2 "></i>
+	</a>
+	<p class="lead mt-5">Kiireim Go täisfunktsionaalne veebiraamistik. Kristallselge.</p>
+	<div class="mx-auto mt-5"/>
+	{{< blocks/link-down color="info" >}}
+</div>
+{{< /blocks/cover >}}
+
+
+{{% blocks/lead color="white" %}}
+
+**Mis asi on Gin?**
+
+Gin on veebiraamistik, mis on kirjutatud Golang keeles.
+
+Gin on Martini-sarnase API-ga, kuid kuni 40 korda kiirema jõudlusega kui Martini.
+
+Kui vajate jõudlust ja tootlikkust, siis teile meeldib Gin.
+
+{{% /blocks/lead %}}
+
+{{< blocks/section color="light" >}}
+
+{{% blocks/feature icon="fa fa-tachometer-alt" title="Fast" %}}
+Radixi puupõhine marsruutimine, väike mälujalajälg. Ei mingit peegeldust. Prognoositav API jõudlus.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa fa-bars" title="Middleware support" %}}
+Sissetulevat HTTP-päringut saab käsitleda vahevarade kett ja viimane toiming.
+Näiteks: logija, autoriseerimine, GZIP ja lõpuks DB-sse sõnumi postitamine.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa fa-life-ring" title="Crash-free" %}}
+Gin võib HTTP-päringu ajal tekkinud paanika tabada ja selle taastada. Nii on teie server alati saadaval. Sellest paanikast on võimalik teatada ka näiteks Sentryle!
+{{% /blocks/feature %}}
+
+{{< /blocks/section >}}
+
+{{< blocks/section color="white" >}}
+
+{{% blocks/feature icon="fa fa-check-circle" title="JSON validation" %}}
+Gin saab päringu JSON-it sõeluda ja kinnitada, näiteks kontrollides nõutavate väärtuste olemasolu.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa fa-users-cog" title="Routes grouping" %}}
+Organiseerige oma marsruute paremini. Vajalik autoriseerimine vs mittenõutav, erinevad API versioonid. Lisaks saab rühmi lõpmatult pesastada ilma jõudlust halvendamata.
+{{% /blocks/feature %}}
+
+
+{{% blocks/feature icon="fa fa-briefcase" title="Error management" %}}
+Gin pakub mugavat võimalust koguda kokku kõik HTTP päringu ajal ilmnenud vead. Lõpuks saab vahevara need logifaili ja andmebaasi kirjutada ning saata võrgu kaudu.
+{{% /blocks/feature %}}
+
+{{< /blocks/section >}}
+
+{{< blocks/section color="info" >}}
+
+{{% blocks/feature icon="fa fa-images" title="Rendering built-in" %}}
+Gin pakub hõlpsasti kasutatavat API-d JSON-i, XML-i ja HTML-i renderdamiseks.
+{{% /blocks/feature %}}
+
+{{% blocks/feature icon="fa fa-code" title="Extendable" %}}
+Uue vahevara loomine on nii lihtne, vaadake lihtsalt näidiskoodi.
+{{% /blocks/feature %}}
+
+{{< /blocks/section >}}
