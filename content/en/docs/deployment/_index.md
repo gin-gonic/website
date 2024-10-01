@@ -12,6 +12,12 @@ Koyeb is a developer-friendly serverless platform to deploy apps globally with g
 
 Follow the Koyeb [guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
 
+## [Railway](https://railway.app)
+
+Railway is the modern cloud platform for building, shipping, and monitoring applications globally. Instant Deployments, Effortless Scale
+
+Follow the Railway [guide to deploy your Gin projects](https://docs.railway.app/guides/gin).
+
 ## [Qovery](https://www.qovery.com)
 
 Qovery provides free Cloud hosting with databases, SSL, a global CDN, and automatic deploys with Git.
