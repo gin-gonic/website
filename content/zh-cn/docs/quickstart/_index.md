@@ -15,7 +15,12 @@ weight: 2
 1.下载并安装 gin：
 
 ```sh
-$ go get -u github.com/gin-gonic/gin
+go get -u github.com/gin-gonic/gin
+```
+
+或使用go install安装:
+```sh
+go install github.com/gin-gonic/gin@latest
 ```
 
 2.将 gin 引入到代码中：
