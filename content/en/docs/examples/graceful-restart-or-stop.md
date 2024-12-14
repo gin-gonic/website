@@ -55,7 +55,7 @@ func main() {
 	go func() {
 		// service connections
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatalf("listen: %s\n", err)
+			log.Println("listen:", err)
 		}
 	}()
 
@@ -78,6 +78,8 @@ func main() {
 	select {
 	case <-ctx.Done():
 		log.Println("timeout of 5 seconds.")
+	default:
+		break
 	}
 	log.Println("Server exiting")
 }
