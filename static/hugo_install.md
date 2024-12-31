@@ -7,7 +7,7 @@ go install github.com/jmooring/hvm@latest
 Add this to your `.bashrc` or `.zshrc`:
 
 ```sh
-export PATH=$PATH:/home/wathi/.cache/hvm/default
+export PATH=$PATH:$HOME/.cache/hvm/default
 export PATH=/usr/bin:/bin:$PATH
 ```
 
