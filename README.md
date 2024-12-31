@@ -7,7 +7,7 @@ Welcome! This repository houses all the assets required to build the Gin website
 We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy](https://github.com/google/docsy) theme for styling and site structure. Thanks!.
 
 **Note:** We only support hugo [v0.75.1 version](https://github.com/gohugoio/hugo/releases/tag/v0.75.1).
-See how to install Hugo v0.75.1 [here](resources/hugo_install.md).
+See how to install Hugo v0.75.1 [here](static/hugo_install.md).
 
 ## Contribution
 
@@ -34,6 +34,7 @@ Once your pull request is created, a Gin reviewer will take responsibility for p
 See the [official Hugo documentation](https://gohugo.io/getting-started/installing/) for Hugo installation instructions.
 
 To run the site locally when you have Hugo installed:
+
 ```sh
 # If you use the `hugo` command, first run `npm install` to install dependencies
 $ npm install
