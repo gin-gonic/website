@@ -22,7 +22,7 @@ pygmentsUseClasses = false
 pygmentsUseClassic = false
 #pygmentsOptions = "linenos=table"
 # See https://help.farbox.com/pygments.html
-pygmentsStyle = "tango"
+# pygmentsStyle = "tango"
 
 # First one is picked as the Twitter card image if not set on page.
 #images = ["images/project-illustration.png"]
@@ -144,6 +144,8 @@ time_format_default = "02.01.2006"
 time_format_blog = "02.01.2006"
 
 [markup]
+  [markup.highlight]
+    noClasses = false
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
