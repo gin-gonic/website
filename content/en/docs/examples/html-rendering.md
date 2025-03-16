@@ -52,6 +52,8 @@ func main() {
 }
 ```
 
+**Note:** Please wrap your HTML template in the `{{define <template-path>}} {{end}}` block and define your template file with the relative path `<template-path>`. Otherwise, GIN will not properly parse the template files.
+
 templates/posts/index.tmpl
 
 ```html
