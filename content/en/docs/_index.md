@@ -17,7 +17,7 @@ We provide API usage [examples](https://github.com/gin-gonic/examples) and list 
 
 ## How to contribute to Gin?
 
-* Help people on the discussion forums
-* Tell us your success stories using Gin
-* Tell us how we can improve Gin and help us do it
-* Contribute to an existing library
+- Help people on the discussion forums
+- Tell us your success stories using Gin
+- Tell us how we can improve Gin and help us do it
+- Contribute to an existing library

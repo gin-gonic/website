@@ -7,9 +7,9 @@ draft: false
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/long_async", func(c *gin.Context) {
+	router.GET("/long_async", func(c *gin.Context) {
 		// 创建在 goroutine 中使用的副本
 		cCp := c.Copy()
 		go func() {
@@ -21,7 +21,7 @@ func main() {
 		}()
 	})
 
-	r.GET("/long_sync", func(c *gin.Context) {
+	router.GET("/long_sync", func(c *gin.Context) {
 		// 用 time.Sleep() 模拟一个长任务。
 		time.Sleep(5 * time.Second)
 
@@ -30,6 +30,6 @@ func main() {
 	})
 
 	// 监听并在 0.0.0.0:8080 上启动服务
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
