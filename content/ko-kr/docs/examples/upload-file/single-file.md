@@ -20,7 +20,7 @@ func main() {
 		log.Println(file.Filename)
 
 		// 특정 경로(dst)에 파일을 업로드 합니다.
-		c.SaveUploadedFile(file, dst)
+		c.SaveUploadedFile(file, "./files/" + file.Filename)
 
 		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 	})

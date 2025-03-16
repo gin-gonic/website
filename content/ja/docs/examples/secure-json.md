@@ -8,12 +8,12 @@ SecureJSON メソッドを使うことで、JSON ハイジャックを防げま�
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// 別の prefix を使うこともできます
-	// r.SecureJsonPrefix(")]}',\n")
+	// router.SecureJsonPrefix(")]}',\n")
 
-	r.GET("/someJSON", func(c *gin.Context) {
+	router.GET("/someJSON", func(c *gin.Context) {
 		names := []string{"lena", "austin", "foo"}
 
 		// while(1);["lena","austin","foo"] が出力されます。
@@ -21,7 +21,7 @@ func main() {
 	})
 
 	// 0.0.0.0:8080 でサーバーを立てます。
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
 

@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '12' ]
+        node: [ '20' ]
     name: Node ${{ matrix.node }} Setup
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
       - name: Install node module
@@ -28,14 +28,10 @@ jobs:
           npm audit fix
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.75.1'
+          hugo-version: '0.125.4'
           extended: true
-
-      - name: Download Hugo Theme
-        run: |
-          git clone --recurse-submodules --depth 1 https://github.com/google/docsy.git themes/docsy
 
       - name: Build
         run: |
@@ -43,7 +39,7 @@ jobs:
           echo 'gin-gonic.com' > public/CNAME
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         if: github.ref == 'refs/heads/master'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

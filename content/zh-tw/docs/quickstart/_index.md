@@ -4,13 +4,11 @@ draft: false
 weight: 2
 ---
 
-- [需求](#需求)
-- [安裝](#安裝)
-- [開始使用](#開始使用)
+在這個快速入門中，我們將從程式碼片段中獲得洞察並學習如何：
 
 ## 需求
 
-- Go 1.13 及更新版本
+- Go 1.16 及更新版本
 
 ## 安裝
 
@@ -29,39 +27,24 @@ import "github.com/gin-gonic/gin"
 ```
 
 3. （可選的）如果你想要使用像是 `http.StatusOK` 的常數，你會需要匯入 `net/http` 套件
-  
+
 ```go
 import "net/http"
 ```
 
-### 使用 vendor 工具像是 [Govendor](https://github.com/kardianos/govendor)
-
-1. `go get` govendor
-
-```sh
-$ go get github.com/kardianos/govendor
-```
-
-2. 新增你的專案資料夾並 `cd` 進入
+1. 新增你的專案資料夾並 `cd` 進入
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
    ```
 
-3. Vendor init 專案並加入 gin
-
-```sh
-$ govendor init
-$ govendor fetch github.com/gin-gonic/gin@v1.3
-```
-
-4. 複製範本到你的專案
+2. 複製範本到你的專案
 
 ```sh
 $ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
-5. 執行你的專案
+3. 執行你的專案
 
 ```sh
 $ go run main.go
@@ -86,13 +69,13 @@ package main
 import "github.com/gin-gonic/gin"
 
 func main() {
-    r := gin.Default()
-    r.GET("/ping", func(c *gin.Context) {
+    router := gin.Default()
+    router.GET("/ping", func(c *gin.Context) {
             c.JSON(200, gin.H{
             "message": "pong",
             })
     })
-    r.Run() // listen and serve on 0.0.0.0:8080
+    router.Run() // listen and serve on 0.0.0.0:8080
 }
 ```
 

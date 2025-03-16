@@ -60,8 +60,8 @@ func main() {
 	}()
 
 	// 5초의 타임아웃으로 인해 인터럽트 신호가 서버를 정상종료 할 때까지 기다립니다.
-	quit := make(chan os.Signal)
-	// kill (파라미터 없음) 기본값으로 syscanll.SIGTERM를 보냅니다
+	quit := make(chan os.Signal, 1)
+	// kill (파라미터 없음) 기본값으로 syscall.SIGTERM를 보냅니다
 	// kill -2 는 syscall.SIGINT를 보냅니다
 	// kill -9 는 syscall.SIGKILL를 보내지만 캐치할수 없으므로, 추가할 필요가 없습니다.
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)

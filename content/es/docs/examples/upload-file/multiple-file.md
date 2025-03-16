@@ -19,7 +19,7 @@ func main() {
 			log.Println(file.Filename)
 
 			// Guarda el archivo recibido a un destino específico
-			c.SaveUploadedFile(file, dst)
+			c.SaveUploadedFile(file, "./files/" + file.Filename)
 		}
 		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
 	})

@@ -6,6 +6,8 @@ draft: false
 Use `http.ListenAndServe()` directly, like this:
 
 ```go
+import "net/http"
+
 func main() {
 	router := gin.Default()
 	http.ListenAndServe(":8080", router)
@@ -14,6 +16,8 @@ func main() {
 or
 
 ```go
+import "net/http"
+
 func main() {
 	router := gin.Default()
 
