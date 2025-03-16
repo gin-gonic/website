@@ -7,9 +7,9 @@ JSONP를 사용하여 다른 도메인의 서버에 요청하고 데이터를 �
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/JSONP?callback=x", func(c *gin.Context) {
+	router.GET("/JSONP?callback=x", func(c *gin.Context) {
 		data := map[string]interface{}{
 			"foo": "bar",
 		}
@@ -20,6 +20,6 @@ func main() {
 	})
 
 	// 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

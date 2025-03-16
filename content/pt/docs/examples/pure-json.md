@@ -7,23 +7,23 @@ Normalmente, a JSON substitui os caracteres de HTML especiais com suas entidades
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 	
 	// servir as entidades de unicode
-	r.GET("/json", func(c *gin.Context) {
+	router.GET("/json", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"html": "<b>Hello, world!</b>",
 		})
 	})
 	
 	// servir os caracteres literais
-	r.GET("/purejson", func(c *gin.Context) {
+	router.GET("/purejson", func(c *gin.Context) {
 		c.PureJSON(200, gin.H{
 			"html": "<b>Hello, world!</b>",
 		})
 	})
 	
 	// ouvir e servir no 0.0.0.0:8080
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
