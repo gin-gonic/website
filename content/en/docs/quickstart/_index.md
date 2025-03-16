@@ -92,4 +92,28 @@ And, You can run the code via `go run example.go`:
 $ go run example.go
 ```
 
+If you prefer to use the `net/http` package, follow the code snippet below
+
+```go
+
+package main
+
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
+
+func main() {
+	router := gin.Default()
+
+	router.GET("/ping", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "pong",
+		})
+	})
+
+	router.Run() // listen and serve on 0.0.0.0:8080
+}
+```
+
 Additional information is available from the [Gin source code repository](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).
