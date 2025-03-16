@@ -12,11 +12,11 @@ var secrets = gin.H{
 }
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// Agrupación de rutas usando el middleware gin.BasicAuth()
 	// gin.Accounts es una abreviatura para map[string]string
-	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
+	authorized := router.Group("/admin", gin.BasicAuth(gin.Accounts{
 		"foo":    "bar",
 		"austin": "1234",
 		"lena":   "hello2",
@@ -35,6 +35,6 @@ func main() {
 		}
 	})
 
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
