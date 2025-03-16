@@ -4,7 +4,7 @@ draft: false
 weight: 7
 ---
 
-##### 如何為 Gin 寫測試案例？
+## 如何為 Gin 寫測試案例？
 
 傾向使用 `net/http/httptest` 套件來做 HTTP 測試。
 
