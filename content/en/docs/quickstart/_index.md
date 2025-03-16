@@ -38,19 +38,19 @@ import "github.com/gin-gonic/gin"
 import "net/http"
 ```
 
-1. Create your project folder and `cd` inside
+4. Create your project folder and `cd` inside
 
 ```sh
 mkdir -p project && cd "$_"
 ```
 
-2. Copy a starting template inside your project
+5. Copy a starting template inside your project
 
 ```sh
 curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
-3. Run your project
+6. Run your project
 
 ```sh
 go run main.go
