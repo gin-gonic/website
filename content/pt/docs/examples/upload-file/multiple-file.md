@@ -19,8 +19,8 @@ func main() {
 		for _, file := range files {
 			log.Println(file.Filename)
 
-			// carregar o ficheiro para um destino específico.
-			c.SaveUploadedFile(file, dst)
+			// Upload the file to specific dst.
+			c.SaveUploadedFile(file, "./files/" + file.Filename)
 		}
 		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
 	})

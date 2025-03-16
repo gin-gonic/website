@@ -19,8 +19,7 @@ func main() {
 			log.Println(file.Filename)
 
 			// Upload the file to specific dst.
-			dst := "./" + file.Filename
-			c.SaveUploadedFile(file, dst)
+			c.SaveUploadedFile(file, "./files/" + file.Filename)
 		}
 		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
 	})
