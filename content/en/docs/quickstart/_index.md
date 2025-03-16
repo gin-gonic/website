@@ -91,3 +91,5 @@ And, You can run the code via `go run example.go`:
 # run example.go and visit 0.0.0.0:8080/ping on browser
 $ go run example.go
 ```
+
+Additional information is available from the [Gin source code repository](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).
