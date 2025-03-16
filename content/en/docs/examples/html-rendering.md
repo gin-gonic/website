@@ -3,7 +3,10 @@ title: "HTML rendering"
 draft: false
 ---
 
-Using LoadHTMLGlob() or LoadHTMLFiles()
+Gin uses the [html/template](https://pkg.go.dev/html/template) package for HTML rendering.
+For more information about how to use them, including available placeholders, see the documentation for [text/template](https://pkg.go.dev/text/template)
+
+Use LoadHTMLGlob() or LoadHTMLFiles() to select the HTML files to load.
 
 ```go
 func main() {
