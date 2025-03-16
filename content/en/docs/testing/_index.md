@@ -14,8 +14,8 @@ package main
 import "github.com/gin-gonic/gin"
 
 type User struct {
-	Username string `json:"username"`
-	Gender   string `json:"gender"`
+  Username string `json:"username"`
+  Gender   string `json:"gender"`
 }
 
 func setupRouter() *gin.Engine {
@@ -48,42 +48,44 @@ Test for code example above:
 package main
 
 import (
-	"net/http"
-	"net/http/httptest"
-	"testing"
+  "net/http"
+  "net/http/httptest"
+  "encoding/json"
+  "testing"
+  "strings"
 
-	"github.com/stretchr/testify/assert"
+  "github.com/stretchr/testify/assert"
 )
 
 func TestPingRoute(t *testing.T) {
-	router := setupRouter()
+  router := setupRouter()
 
-	w := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/ping", nil)
-	router.ServeHTTP(w, req)
+  w := httptest.NewRecorder()
+  req, _ := http.NewRequest("GET", "/ping", nil)
+  router.ServeHTTP(w, req)
 
-	assert.Equal(t, 200, w.Code)
-	assert.Equal(t, "pong", w.Body.String())
+  assert.Equal(t, 200, w.Code)
+  assert.Equal(t, "pong", w.Body.String())
 }
 
 // Test for POST /user/add
 func TestPostUser(t *testing.T) {
-	router := setupRouter()
-	router = postUser(router)
+  router := setupRouter()
+  router = postUser(router)
 
-	w := httptest.NewRecorder()
+  w := httptest.NewRecorder()
 
-	// Create an example user for testing
-	exampleUser := User{
-		Username: "test_name",
-		Gender:   "male",
-	}
-	userJson, _ := json.Marshal(exampleUser)
-	req, _ := http.NewRequest("POST", "/user/add", strings.NewReader(string(userJson)))
-	router.ServeHTTP(w, req)
+  // Create an example user for testing
+  exampleUser := User{
+    Username: "test_name",
+    Gender:   "male",
+  }
+  userJson, _ := json.Marshal(exampleUser)
+  req, _ := http.NewRequest("POST", "/user/add", strings.NewReader(string(userJson)))
+  router.ServeHTTP(w, req)
 
-	assert.Equal(t, 200, w.Code)
-	// Compare the response body with the json data of exampleUser
-	assert.Equal(t, string(userJson), w.Body.String())
+  assert.Equal(t, 200, w.Code)
+  // Compare the response body with the json data of exampleUser
+  assert.Equal(t, string(userJson), w.Body.String())
 }
 ```

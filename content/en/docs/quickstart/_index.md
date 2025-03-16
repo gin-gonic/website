@@ -17,7 +17,13 @@ To install Gin package, you need to install Go and set your Go workspace first.
 1. Download and install it:
 
 ```sh
-$ go get -u github.com/gin-gonic/gin
+go get -u github.com/gin-gonic/gin
+```
+
+Or install:
+
+```sh
+go install github.com/gin-gonic/gin@latest
 ```
 
 2. Import it in your code:
@@ -35,19 +41,19 @@ import "net/http"
 1. Create your project folder and `cd` inside
 
 ```sh
-$ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
+mkdir -p project && cd "$_"
 ```
 
 2. Copy a starting template inside your project
 
 ```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
 3. Run your project
 
 ```sh
-$ go run main.go
+go run main.go
 ```
 
 ## Getting Started
@@ -85,3 +91,5 @@ And, You can run the code via `go run example.go`:
 # run example.go and visit 0.0.0.0:8080/ping on browser
 $ go run example.go
 ```
+
+Additional information is available from the [Gin source code repository](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).
