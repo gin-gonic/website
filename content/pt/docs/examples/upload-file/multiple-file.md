@@ -1,17 +1,18 @@
 ---
-title: "Multiple files"
+title: "Vários Ficheiros"
 draft: false
 ---
 
-See the detail [example code](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple).
+Consulte o [código de exemplo](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple) detalhado.
 
 ```go
 func main() {
 	router := gin.Default()
-	// Set a lower memory limit for multipart forms (default is 32 MiB)
+	// definir um limite de memória mais baixa
+	// para formulários de várias partes (o padrão é 32MiB)
 	router.MaxMultipartMemory = 8 << 20  // 8 MiB
 	router.POST("/upload", func(c *gin.Context) {
-		// Multipart form
+		// formulário de várias partes
 		form, _ := c.MultipartForm()
 		files := form.File["upload[]"]
 
@@ -27,7 +28,7 @@ func main() {
 }
 ```
 
-How to `curl`:
+Como testar com a `curl`:
 
 ```sh
 curl -X POST http://localhost:8080/upload \

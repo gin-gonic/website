@@ -1,5 +1,5 @@
 ---
-title: "Serving static files"
+title: "Servir os Ficheiros Estáticos"
 draft: false
 ---
 
@@ -10,7 +10,7 @@ func main() {
 	router.StaticFS("/more_static", http.Dir("my_file_system"))
 	router.StaticFile("/favicon.ico", "./resources/favicon.ico")
 
-	// Listen and serve on 0.0.0.0:8080
+	// ouvir e servir no 0.0.0.0:8080
 	router.Run(":8080")
 }
 ```

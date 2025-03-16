@@ -93,9 +93,9 @@ func main() {
 独自のデリミタを使用することもできます。
 
 ```go
-       r := gin.Default()
-       r.Delims("{[{", "}]}")
-       r.LoadHTMLGlob("/path/to/templates")
+       router := gin.Default()
+       router.Delims("{[{", "}]}")
+       router.LoadHTMLGlob("/path/to/templates")
 ```
 
 ### カスタムテンプレート関数

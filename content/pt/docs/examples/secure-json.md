@@ -3,23 +3,23 @@ title: "SecureJSON"
 draft: false
 ---
 
-Using SecureJSON to prevent json hijacking. Default prepends `"while(1),"` to response body if the given struct is array values.
+Usando SecureJSON para impedir o sequestro do JSON. Por padrão adiciona `"while(1)"` no início do corpo da resposta se a dada estrutura for valores de arranjo:
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	// You can also use your own secure json prefix
-	// r.SecureJsonPrefix(")]}',\n")
+	// podes também usar o teu próprio prefixo de JSON seguro
+	// router.SecureJsonPrefix(")]}',\n")
 
-	r.GET("/someJSON", func(c *gin.Context) {
+	router.GET("/someJSON", func(c *gin.Context) {
 		names := []string{"lena", "austin", "foo"}
 
-		// Will output  :   while(1);["lena","austin","foo"]
+		// resultará em: while(1);["lena","austin","foo"]
 		c.SecureJSON(http.StatusOK, names)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+	// ouvir e servir no 0.0.0.0:8080
+	router.Run(":8080")
 }
 ```

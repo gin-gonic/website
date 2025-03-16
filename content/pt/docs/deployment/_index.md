@@ -1,31 +1,31 @@
 ---
-title: "Deployment"
+title: "Implementação em Produção"
 draft: false
 weight: 6
 ---
 
-Gin projects can be deployed easily on any cloud provider.
+Os projetos de Gin podem ser implementados em produção facilmente em qualquer provedor da nuvem.
 
 ## [Koyeb](https://www.koyeb.com)
 
-Koyeb is a developer-friendly serverless platform to deploy apps globally with git-based deployment, TLS encryption, native autoscaling, a global edge network, and built-in service mesh & discovery.
+A Koyeb é uma plataforma sem servidor amistosa ao programador para implementar as aplicações localmente em produção com a implementação baseada em Git, encriptação de TLS, auto-escalamento nativo, rede de fio global, e malha de rede de serviço e descoberta embutido.
 
-Follow the Koyeb [guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+Siga o [guia da Koyeb para implementar em produção os teus projetos de Gin](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery provides free Cloud hosting with databases, SSL, a global CDN, and automatic deploys with Git.
+A Qovery fornece hospedagem de nuvem gratuita com bases de dados, SSL, uma CDN global e implementações em produção automáticas com a Git.
 
-Follow the Qovery guide to [deploy your Gin project](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/).
+Siga o [guia da Qovery para implementar o teu projeto de Gin em produção](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/).
 
 ## [Render](https://render.com)
 
-Render is a modern cloud platform that offers native support for Go, fully managed SSL, databases, zero-downtime deploys, HTTP/2, and websocket support.
+A Render é uma plataforma da nuvem moderna que oferece suporte nativo para a Go, SSL completamente administrado, bases de dados, implementações em produção com tempo de inatividade zero, HTTP/2, e suporte a websocket.
 
-Follow the Render [guide to deploying Gin projects](https://render.com/docs/deploy-go-gin).
+Siga o [guia da Render para implementação de projetos de Gin em produção](https://render.com/docs/deploy-go-gin).
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE has two ways to deploy Go applications. The standard environment is easier to use but less customizable and prevents [syscalls](https://github.com/gin-gonic/gin/issues/1639) for security reasons. The flexible environment can run any framework or library.
+A GAE tem duas maneiras de implementar aplicações de Go em produção. O ambiente padrão é mais fácil de usar mas menos personalizável e impedi [syscalls](https://github.com/gin-gonic/gin/issues/1639) por razões de segurança. O ambiente flexível pode executar qualquer abstração ou biblioteca.
 
-Learn more and pick your preferred environment at [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+Saiba mais e escolha o teu ambiente preferido na [Go sobre a Google App Engine](https://cloud.google.com/appengine/docs/go/).

@@ -1,7 +1,9 @@
 ---
-title: "设置和获取 Cookie"
+title: "Cookie"
 draft: false
 ---
+
+设置和获取 Cookie
 
 ```go
 import (
@@ -28,4 +30,10 @@ func main() {
 
     router.Run()
 }
+```
+
+删除cookie: 通过设置max age的值为-1.
+
+```go
+c.SetCookie("gin_cookie", "test", -1, "/", "localhost", false, true)
 ```

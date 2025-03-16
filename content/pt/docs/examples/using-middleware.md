@@ -1,43 +1,46 @@
 ---
-title: "Using middleware"
+title: "Usar Intermediário"
 draft: false
 ---
 
 ```go
 func main() {
-	// Creates a router without any middleware by default
+	// criar um roteador sem nenhum intermediário por padrão
 	r := gin.New()
 
-	// Global middleware
-	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
-	// By default gin.DefaultWriter = os.Stdout
-	r.Use(gin.Logger())
+	// intermediário global
+	// intermediário registador escreverá os registos ao "gin.DefaultWriter",
+	// mesmo se definires com "GIN_MODE=release".
+	// por padrão "gin.DefaultWriter = os.Stdout"
+	router.Use(gin.Logger())
 
-	// Recovery middleware recovers from any panics and writes a 500 if there was one.
-	r.Use(gin.Recovery())
+	// intermediário de recuperação recupera de quaisquer pânicos e
+	// escreve um 500 se ouve um.
+	router.Use(gin.Recovery())
 
-	// Per route middleware, you can add as many as you desire.
-	r.GET("/benchmark", MyBenchLogger(), benchEndpoint)
+	// intermediário por rota, podes adicionar tanto quanto desejares.
+	router.GET("/benchmark", MyBenchLogger(), benchEndpoint)
 
-	// Authorization group
-	// authorized := r.Group("/", AuthRequired())
-	// exactly the same as:
-	authorized := r.Group("/")
-	// per group middleware! in this case we use the custom created
-	// AuthRequired() middleware just in the "authorized" group.
+	// grupo de autorização
+	// authorized := router.Group("/", AuthRequired())
+	// exatamente o mesmo que:
+	authorized := router.Group("/")
+	// intermediário por grupo! neste caso usamos o intermediário
+	// "AuthRequired()" criado de maneira personalizada só no
+	// grupo "authorized".
 	authorized.Use(AuthRequired())
 	{
 		authorized.POST("/login", loginEndpoint)
 		authorized.POST("/submit", submitEndpoint)
 		authorized.POST("/read", readEndpoint)
 
-		// nested group
+		// grupo encaixado
 		testing := authorized.Group("testing")
 		testing.GET("/analytics", analyticsEndpoint)
 	}
 
-	// Listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+	// ouvir e servir no 0.0.0.0:8080
+	router.Run(":8080")
 }
 ```
 

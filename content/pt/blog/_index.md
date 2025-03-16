@@ -1,13 +1,13 @@
 ---
 title: "Blogue"
-linkTitle: "Blog"
+linkTitle: "Blogue"
 menu:
   main:
     weight: 30
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+Esta é a seção **blogue**. Ela tem duas categorias: Novidades e Lançamentos.
 
-Files in these directories will be listed in reverse chronological order.
+Os ficheiros nestes diretórios serão listados em ordem cronológica inversa.
 

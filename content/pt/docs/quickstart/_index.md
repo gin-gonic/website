@@ -1,67 +1,67 @@
 ---
-title: "Quickstart"
+title: "Introdução Rápida"
 draft: false
 weight: 2
 ---
 
-In this quickstart, we’ll glean insights from code segments and learn how to:
+Nesta introdução rápida, recolheremos entendimentos a partir de segmentos de código e aprenderemos a como:
 
-## Requirements
+## Requisitos
 
-- Go 1.13 or above
+- Go 1.13 ou superior
 
-## Installation
+## Instalação
 
-To install Gin package, you need to install Go and set your Go workspace first.
+Para instalar o pacote de Gin, precisas de instalar a Go e definir a tua área de trabalho de Go primeiro:
 
-1. Download and install it:
+1. Descarregue e instale-o:
 
 ```sh
 $ go get -u github.com/gin-gonic/gin
 ```
 
-2. Import it in your code:
+2. Importe-o no teu código:
 
 ```go
 import "github.com/gin-gonic/gin"
 ```
 
-3. (Optional) Import `net/http`. This is required for example if using constants such as `http.StatusOK`.
+3. (Opcional) Importe `net/http`. Isto é obrigatório para por exemplo se estiveres a usar constantes tais como `http.StatusOk`:
 
 ```go
 import "net/http"
 ```
 
-1. Create your project folder and `cd` inside
+1. Crie a pasta do teu projeto e entre dentro dela com `cd`:
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 ```
 
-2. Copy a starting template inside your project
+2. Copie um modelo de partida dentro do teu projeto:
 
 ```sh
 $ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
-3. Run your project
+3. Execute o teu projeto:
 
 ```sh
 $ go run main.go
 ```
 
-## Getting Started
+## Começar
 
-> Unsure how to write and execute Go code? [Click here](https://golang.org/doc/code.html).
+> Inseguro de como escrever e executar o código de Go? [Clique nesta ligação](https://golang.org/doc/code.html).
 
-First, create a file called `example.go`:
+Primeiro, crie um ficheiro chamado `example.go`:
 
 ```sh
-# assume the following codes in example.go file
+# presuma os seguintes códigos no ficheiro `example.go`
 $ touch example.go
 ```
 
-Next, put the following code inside of `example.go`:
+A seguir, coloque o seguinte código dentro do `example.go`:
 
 ```go
 package main
@@ -69,19 +69,19 @@ package main
 import "github.com/gin-gonic/gin"
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
+	router := gin.Default()
+	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	router.Run() // oiça e sirva na `0.0.0.0:8080`
 }
 ```
 
-And, You can run the code via `go run example.go`:
+E, podes executar o código através de `go run example.go`:
 
 ```sh
-# run example.go and visit 0.0.0.0:8080/ping on browser
+# execute `example.go` e visite `0.0.0.0:8080/ping` no navegador
 $ go run example.go
 ```

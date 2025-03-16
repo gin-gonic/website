@@ -1,7 +1,7 @@
 ---
-title: "Examples"
+title: "Exemplos"
 draft: false
 weight: 6
 ---
 
-The section lists api usage.
+A seção lista o uso da API.
