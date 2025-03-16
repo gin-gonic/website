@@ -75,13 +75,13 @@ package main
 import "github.com/gin-gonic/gin"
 
 func main() {
-	router := gin.Default()
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	router.Run() // listen and serve on 0.0.0.0:8080
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
+    c.JSON(200, gin.H{
+      "message": "pong",
+    })
+  })
+  router.Run() // listen and serve on 0.0.0.0:8080
 }
 ```
 
@@ -95,24 +95,23 @@ $ go run example.go
 If you prefer to use the `net/http` package, follow the code snippet below
 
 ```go
-
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"net/http"
+  "github.com/gin-gonic/gin"
+  "net/http"
 )
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
+  router.GET("/ping", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "message": "pong",
+    })
+  })
 
-	router.Run() // listen and serve on 0.0.0.0:8080
+  router.Run() // listen and serve on 0.0.0.0:8080
 }
 ```
 
