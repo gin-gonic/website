@@ -1,9 +1,9 @@
 ---
-title: "Custom HTTP configuration"
+title: "Configuração de HTTP Personalizada"
 draft: false
 ---
 
-Use `http.ListenAndServe()` directly, like this:
+Usar o `http.ListenAndServe()` diretamente, desta maneira:
 
 ```go
 func main() {
@@ -11,7 +11,8 @@ func main() {
 	http.ListenAndServe(":8080", router)
 }
 ```
-or
+
+ou
 
 ```go
 func main() {

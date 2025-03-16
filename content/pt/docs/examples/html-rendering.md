@@ -1,9 +1,9 @@
 ---
-title: "HTML rendering"
+title: "Interpretação do HTML"
 draft: false
 ---
 
-Using LoadHTMLGlob() or LoadHTMLFiles()
+Usando `LoadHTMLGlob()` ou `LoadHTMLFiles()`:
 
 ```go
 func main() {
@@ -29,7 +29,7 @@ templates/index.tmpl
 </html>
 ```
 
-Using templates with same name in different directories
+Usando modelos de marcação com o mesmo nome em diretórios diferentes:
 
 ```go
 func main() {
@@ -73,9 +73,9 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-### Custom Template renderer
+### Interpretador de Modelo de Marcação Personalizado
 
-You can also use your own html template render
+Tu podes também usar o teu próprio interpretador de modelo de marcação de HTML:
 
 ```go
 import "html/template"
@@ -88,19 +88,19 @@ func main() {
 }
 ```
 
-### Custom Delimiters
+### Delimitadores Personalizados
 
-You may use custom delims
+Tu podes usar delimitadores personalizados:
 
 ```go
-	r := gin.Default()
-	r.Delims("{[{", "}]}")
-	r.LoadHTMLGlob("/path/to/templates")
+	router := gin.Default()
+	router.Delims("{[{", "}]}")
+	router.LoadHTMLGlob("/path/to/templates")
 ```
 
-### Custom Template Funcs
+### Funções de Modelo de Marcação Personalizado
 
-See the detail [example code](https://github.com/gin-gonic/examples/tree/master/template).
+Consulte os pormenores do [código de exemplo](https://github.com/gin-gonic/examples/tree/master/template):
 
 main.go
 
@@ -144,7 +144,8 @@ raw.tmpl
 Date: {[{.now | formatAsDate}]}
 ```
 
-Result:
+Resultado:
+
 ```sh
 Date: 2017/07/01
 ```

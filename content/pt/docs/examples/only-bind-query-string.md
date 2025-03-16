@@ -1,9 +1,9 @@
 ---
-title: "Only bind query string"
+title: "Vincular Apenas a Sequência de Caracteres de Consulta"
 draft: false
 ---
 
-`ShouldBindQuery` function only binds the query params and not the post data. See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017).
+A função `ShouldBindQuery` apenas vincula os parâmetros de consulta e não os dados da publicação. Consulte a [informação detalhada](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017):
 
 ```go
 package main

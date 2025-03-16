@@ -1,5 +1,5 @@
 ---
-title: "Custom Middleware"
+title: "Intermediário Personalizado"
 draft: false
 ---
 
@@ -8,18 +8,18 @@ func Logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		t := time.Now()
 
-		// Set example variable
+		// Definir a variável de exemplo
 		c.Set("example", "12345")
 
-		// before request
+		// antes da requisição
 
 		c.Next()
 
-		// after request
+		// depois da requisição
 		latency := time.Since(t)
 		log.Print(latency)
 
-		// access the status we are sending
+		// acessar o estado que estamos a enviar
 		status := c.Writer.Status()
 		log.Println(status)
 	}
@@ -27,17 +27,17 @@ func Logger() gin.HandlerFunc {
 
 func main() {
 	r := gin.New()
-	r.Use(Logger())
+	router.Use(Logger())
 
-	r.GET("/test", func(c *gin.Context) {
+	router.GET("/test", func(c *gin.Context) {
 		example := c.MustGet("example").(string)
 
-		// it would print: "12345"
+		// imprimiria: "12345"
 		log.Println(example)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+	// Ouvir e servir na 0.0.0.0:8080
+	router.Run(":8080")
 }
 ```
 

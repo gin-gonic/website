@@ -1,14 +1,14 @@
 ---
-title: "Benchmarks"
+title: "Analises Comparativas"
 draft: false
 weight: 3
 ---
 
-Gin uses a custom version of [HttpRouter](https://github.com/julienschmidt/httprouter)
+A Gin usa uma versão personalizada da [`HttpRouter`](https://github.com/julienschmidt/httprouter).
 
-[See all benchmarks](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
+[Consulte todos os analises comparativas](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md):
 
-| Benchmark name                 |       (1) |             (2) |          (3) |             (4) |
+| Nome da analise comparativa              |       (1) |             (2) |          (3) |             (4) |
 | ------------------------------ | ---------:| ---------------:| ------------:| ---------------:|
 | BenchmarkGin_GithubAll         | **43550** | **27364 ns/op** |   **0 B/op** | **0 allocs/op** |
 | BenchmarkAce_GithubAll         |     40543 |     29670 ns/op |       0 B/op |     0 allocs/op |
@@ -41,7 +41,7 @@ Gin uses a custom version of [HttpRouter](https://github.com/julienschmidt/httpr
 | BenchmarkTraffic_GithubAll     |       355 |   3478508 ns/op |  820744 B/op | 14114 allocs/op |
 | BenchmarkVulcan_GithubAll      |      6885 |    193333 ns/op |   19894 B/op |   609 allocs/op |
 
-- (1): Total Repetitions achieved in constant time, higher means more confident result
-- (2): Single Repetition Duration (ns/op), lower is better
-- (3): Heap Memory (B/op), lower is better
-- (4): Average Allocations per Repetition (allocs/op), lower is better
+- (1): Repetições Totais alcançadas em tempo constante, quanto mais alto, significa mais segurança do resultado.
+- (2): Duração de Uma Repetição (ns/op), quanto mais baixo, melhor.
+- (3): Amontoar Memória (B/op), quanto mais baixo, melhor.
+- (4): Alocações Média por Repetição (allocs/op), quanto mais baixo, melhor.

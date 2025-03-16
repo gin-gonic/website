@@ -1,10 +1,10 @@
 ---
-title: "Build a single binary with templates"
+title: "Construir um único binário com modelos de marcação"
 draft: false
 ---
-## Use the third-party package
+## Usar o pacote de terceiro
 
-You can use the third party package to build a server into a single binary containing templates by using [go-assets](https://github.com/jessevdk/go-assets).
+Tu podes usar o pacote de terceiro para construir um servidor em um único binário contendo os modelos de marcação usando o [go-assets](https://github.com/jessevdk/go-assets):
 
 ```go
 func main() {
@@ -14,15 +14,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	r.SetHTMLTemplate(t)
+	router.SetHTMLTemplate(t)
 
-	r.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
 	})
-	r.Run(":8080")
+	router.Run(":8080")
 }
 
-// loadTemplate loads templates embedded by go-assets-builder
+// loadTemplate carrega os modelos de marcação fixado pelo go-assets-builder
 func loadTemplate() (*template.Template, error) {
 	t := template.New("")
 	for name, file := range Assets.Files {
@@ -42,4 +42,4 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-See a complete example in the [assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01) directory.
+Consulte um exemplo completo no diretório [assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01).

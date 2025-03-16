@@ -3,28 +3,27 @@ title: "PureJSON"
 draft: false
 ---
 
-Normally, JSON replaces special HTML characters with their unicode entities, e.g. `<` becomes  `\u003c`. If you want to encode such characters literally, you can use PureJSON instead.
-This feature is unavailable in Go 1.6 and lower.
+Normalmente, a JSON substitui os caracteres de HTML especiais com suas entidades de unicode, por exemplo, `<` torna-se `\u003c`. Se quiseres codificar tais caracteres literalmente, podes usar PureJSON. Esta funcionalidade está indisponível na Go 1.6 para baixo:
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 	
-	// Serves unicode entities
-	r.GET("/json", func(c *gin.Context) {
+	// servir as entidades de unicode
+	router.GET("/json", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"html": "<b>Hello, world!</b>",
 		})
 	})
 	
-	// Serves literal characters
-	r.GET("/purejson", func(c *gin.Context) {
+	// servir os caracteres literais
+	router.GET("/purejson", func(c *gin.Context) {
 		c.PureJSON(200, gin.H{
 			"html": "<b>Hello, world!</b>",
 		})
 	})
 	
-	// listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+	// ouvir e servir no 0.0.0.0:8080
+	router.Run(":8080")
 }
 ```

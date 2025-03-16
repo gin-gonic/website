@@ -1,9 +1,9 @@
 ---
-title: "Support Let's Encrypt"
+title: "Suportar Let's Encrypt"
 draft: false
 ---
 
-example for 1-line LetsEncrypt HTTPS servers.
+Exemplo para servidores de HTTP LetsEncrypt de uma linha:
 
 ```go
 package main
@@ -16,10 +16,10 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	// Ping handler
-	r.GET("/ping", func(c *gin.Context) {
+	// manipulador de ping
+	router.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 
@@ -27,7 +27,7 @@ func main() {
 }
 ```
 
-example for custom autocert manager.
+Exemplo para o gestor de certificado automático personalizado:
 
 ```go
 package main
@@ -41,10 +41,10 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	// Ping handler
-	r.GET("/ping", func(c *gin.Context) {
+	// manipulador de ping
+	router.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 
