@@ -24,6 +24,7 @@ An alternative to endless:
 If you are using Go 1.8, you may not need to use this library! Consider using http.Server's built-in [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) method for graceful shutdowns. See the full [graceful-shutdown](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) example with gin.
 
 ```go
+//go:build go1.8
 // +build go1.8
 
 package main
@@ -75,12 +76,8 @@ func main() {
 		log.Println("Server Shutdown:", err)
 	}
 	// catching ctx.Done(). timeout of 5 seconds.
-	select {
-	case <-ctx.Done():
-		log.Println("timeout of 5 seconds.")
-	default:
-		break
-	}
+	<-ctx.Done()
+	log.Println("timeout of 5 seconds.")
 	log.Println("Server exiting")
 }
 ```
