@@ -13,7 +13,7 @@ func main() {
 	router.POST("/upload", func(c *gin.Context) {
 		// Multipart form
 		form, _ := c.MultipartForm()
-		files := form.File["upload[]"]
+		files := form.File["files"]
 
 		for _, file := range files {
 			log.Println(file.Filename)
