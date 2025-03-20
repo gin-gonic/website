@@ -23,21 +23,21 @@ func setupRouter() *gin.Engine {
   router.GET("/ping", func(c *gin.Context) {
     c.String(200, "pong")
   })
-  return r
+  return router
 }
 
-func postUser(r *gin.Engine) *gin.Engine {
+func postUser(router *gin.Engine) *gin.Engine {
   router.POST("/user/add", func(c *gin.Context) {
     var user User
     c.BindJSON(&user)
     c.JSON(200, user)
   })
-  return r
+  return router
 }
 
 func main() {
-  r := setupRouter()
-  r = postUser(r)
+  router := setupRouter()
+  router = postUser(r)
   router.Run(":8080")
 }
 ```
