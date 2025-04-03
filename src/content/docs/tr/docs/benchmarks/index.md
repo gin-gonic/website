@@ -1,6 +1,5 @@
 ---
 title: "Kalite Testleri"
-draft: false
 weight: 3
 ---
 

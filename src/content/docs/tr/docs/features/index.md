@@ -1,6 +1,5 @@
 ---
 title: "Özellikler"
-draft: false
 weight: 4
 ---
 

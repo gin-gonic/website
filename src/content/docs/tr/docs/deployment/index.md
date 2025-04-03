@@ -1,6 +1,5 @@
 ---
 title: "Deploy etme"
-draft: false
 weight: 6
 ---
 

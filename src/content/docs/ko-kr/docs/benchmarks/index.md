@@ -1,6 +1,5 @@
 ---
 title: "벤치마크"
-draft: false
 weight: 3
 ---
 

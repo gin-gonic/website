@@ -1,6 +1,5 @@
 ---
 title: "소개"
-draft: false
 weight: 1
 ---
 

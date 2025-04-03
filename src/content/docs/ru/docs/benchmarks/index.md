@@ -1,6 +1,5 @@
 ---
 title: "Контрольные показатели"
-draft: false
 weight: 3
 ---
 

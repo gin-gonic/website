@@ -1,6 +1,5 @@
 ---
 title: "範例"
-draft: false
 weight: 6
 ---
 

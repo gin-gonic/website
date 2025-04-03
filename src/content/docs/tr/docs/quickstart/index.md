@@ -1,6 +1,5 @@
 ---
 title: "Hızlı Başlangıç"
-draft: false
 weight: 2
 ---
 

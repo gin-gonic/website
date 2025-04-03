@@ -1,6 +1,5 @@
 ---
 title: "Giriş"
-draft: false
 weight: 1
 ---
 

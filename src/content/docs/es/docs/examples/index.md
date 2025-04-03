@@ -1,6 +1,5 @@
 ---
 title: "Ejemplos"
-draft: false
 weight: 6
 ---
 

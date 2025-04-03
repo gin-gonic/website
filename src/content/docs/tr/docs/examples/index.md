@@ -1,6 +1,5 @@
 ---
 title: "Örnekler"
-draft: false
 weight: 6
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "部署"
-draft: false
 weight: 6
 ---
 

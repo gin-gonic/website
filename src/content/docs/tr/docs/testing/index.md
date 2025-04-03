@@ -1,6 +1,5 @@
 ---
 title: "Test"
-draft: false
 weight: 7
 ---
 

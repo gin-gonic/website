@@ -1,6 +1,5 @@
 ---
 title: "تست"
-draft: false
 weight: 7
 ---
 

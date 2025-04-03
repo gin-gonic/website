@@ -1,6 +1,5 @@
 ---
 title: "کاربران"
-draft: false
 weight: 8
 ---
 

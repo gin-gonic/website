@@ -1,6 +1,5 @@
 ---
 title: "Implementação em Produção"
-draft: false
 weight: 6
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "基准测试"
-draft: false
 weight: 3
 ---
 

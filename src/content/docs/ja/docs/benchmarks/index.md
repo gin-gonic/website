@@ -1,6 +1,5 @@
 ---
 title: "ベンチマーク"
-draft: false
 weight: 3
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "Testing en Gin"
-draft: false
 weight: 7
 ---
 

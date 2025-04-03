@@ -1,6 +1,5 @@
 ---
 title: "Analises Comparativas"
-draft: false
 weight: 3
 ---
 

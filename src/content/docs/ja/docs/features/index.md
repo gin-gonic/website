@@ -1,6 +1,5 @@
 ---
 title: "機能"
-draft: false
 weight: 4
 ---
 

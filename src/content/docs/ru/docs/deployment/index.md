@@ -1,6 +1,5 @@
 ---
 title: "Deployment"
-draft: false
 weight: 6
 ---
 

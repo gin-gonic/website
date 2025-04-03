@@ -1,6 +1,5 @@
 ---
 title: "기능"
-draft: false
 weight: 4
 ---
 

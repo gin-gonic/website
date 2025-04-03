@@ -1,6 +1,5 @@
 ---
 title: "快速入门"
-draft: false
 weight: 2
 ---
 

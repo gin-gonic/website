@@ -1,6 +1,5 @@
 ---
 title: "Utilizadores"
-draft: false
 weight: 8
 ---
 

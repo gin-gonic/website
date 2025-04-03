@@ -1,6 +1,5 @@
 ---
 title: "بنچ مارک ها"
-draft: false
 weight: 3
 ---
 

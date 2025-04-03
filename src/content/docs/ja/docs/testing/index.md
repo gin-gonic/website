@@ -1,6 +1,5 @@
 ---
 title: "テスト"
-draft: false
 weight: 7
 ---
 

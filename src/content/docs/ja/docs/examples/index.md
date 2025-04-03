@@ -1,6 +1,5 @@
 ---
 title: "APIの使い方のサンプル"
-draft: false
 weight: 6
 ---
 

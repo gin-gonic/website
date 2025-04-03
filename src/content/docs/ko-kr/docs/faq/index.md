@@ -1,6 +1,5 @@
 ---
 title: "FAQ"
-draft: false
 weight: 9
 ---
 

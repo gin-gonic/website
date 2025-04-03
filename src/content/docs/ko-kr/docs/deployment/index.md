@@ -1,6 +1,5 @@
 ---
 title: "배포"
-draft: false
 weight: 6
 ---
 

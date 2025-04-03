@@ -1,6 +1,5 @@
 ---
 title: "Kullanıcılar"
-draft: false
 weight: 8
 ---
 

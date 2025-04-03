@@ -1,6 +1,5 @@
 ---
 title: "예제"
-draft: false
 weight: 6
 ---
 

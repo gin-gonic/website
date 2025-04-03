@@ -1,6 +1,5 @@
 ---
 title: "Características"
-draft: false
 weight: 4
 ---
 

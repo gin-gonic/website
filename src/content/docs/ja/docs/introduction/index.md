@@ -1,6 +1,5 @@
 ---
 title: "まず始めに"
-draft: false
 weight: 1
 ---
 

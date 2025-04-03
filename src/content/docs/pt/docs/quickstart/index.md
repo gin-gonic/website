@@ -1,6 +1,5 @@
 ---
 title: "Introdução Rápida"
-draft: false
 weight: 2
 ---
 

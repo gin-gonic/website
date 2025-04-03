@@ -1,6 +1,5 @@
 ---
 title: "特性"
-draft: false
 weight: 4
 ---
 

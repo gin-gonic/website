@@ -1,6 +1,5 @@
 ---
 title: "クイックスタート"
-draft: false
 weight: 2
 ---
 

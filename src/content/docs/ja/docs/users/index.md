@@ -1,6 +1,5 @@
 ---
 title: "Gin のユーザー"
-draft: false
 weight: 8
 ---
 

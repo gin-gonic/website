@@ -1,6 +1,5 @@
 ---
 title: "퀵 스타트"
-draft: false
 weight: 2
 ---
 

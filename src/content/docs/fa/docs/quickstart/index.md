@@ -1,6 +1,5 @@
 ---
 title: "شروع سریع"
-draft: false
 weight: 2
 ---
 

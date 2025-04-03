@@ -1,6 +1,5 @@
 ---
 title: "مقدمه"
-draft: false
 weight: 1
 ---
 

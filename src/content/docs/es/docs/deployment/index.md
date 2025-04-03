@@ -1,6 +1,5 @@
 ---
 title: "Despliegue"
-draft: false
 weight: 6
 ---
 

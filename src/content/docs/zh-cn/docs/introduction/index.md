@@ -1,6 +1,5 @@
 ---
 title: "介绍"
-draft: false
 weight: 1
 ---
 Gin 是一个用 Go (Golang) 编写的 Web 框架。 它具有类似 martini 的 API，性能要好得多，多亏了 [httprouter](https://github.com/julienschmidt/httprouter)，速度提高了 40 倍。 如果您需要性能和良好的生产力，您一定会喜欢 Gin。

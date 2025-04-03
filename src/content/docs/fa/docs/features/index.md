@@ -1,6 +1,5 @@
 ---
 title: "امکانات"
-draft: false
 weight: 4
 ---
 

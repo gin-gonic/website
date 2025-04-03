@@ -1,6 +1,5 @@
 ---
 title: "دیپلوی"
-draft: false
 weight: 6
 ---
 

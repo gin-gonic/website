@@ -1,6 +1,5 @@
 ---
 title: "Testagem"
-draft: false
 weight: 7
 ---
 

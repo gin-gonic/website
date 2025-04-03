@@ -1,6 +1,5 @@
 ---
 title: "Inicio Rápido"
-draft: false
 weight: 2
 ---
 

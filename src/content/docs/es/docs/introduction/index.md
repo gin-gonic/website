@@ -1,6 +1,5 @@
 ---
 title: "Introducción"
-draft: false
 weight: 1
 ---
 

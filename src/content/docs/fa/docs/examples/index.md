@@ -1,6 +1,5 @@
 ---
 title: "مثال ها"
-draft: false
 weight: 6
 ---
 
