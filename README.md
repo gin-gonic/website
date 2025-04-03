@@ -1,17 +1,37 @@
-# Starlight Starter Kit: Basics
+# Gin website
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+[![Run Deploy](https://github.com/gin-gonic/website/actions/workflows/node.yml/badge.svg)](https://github.com/gin-gonic/website/actions/workflows/node.yml)
 
+Welcome! This repository houses all the assets required to build the Gin website and documentation. We're pleased that you want to contribute! The website is hosted at https://gin-gonic.com.
+
+We use [Astro](https://astro.build) to format and generate our website, the [Starlight](https://starlight.astro.build) template for styling and site structure. Thanks!.
+
+## Contribution
+
+- Fork the repository
+
+You can click the Fork button in the upper-right area of the screen to create a copy of this repository in your GitHub account. This copy is called as fork.
+
+- Create one pull request
+
+Make any changes you want in your fork, and when you are ready to send those changes to us, go to your fork and create a new pull request to let us know about it.
+
+- Merge the pull request
+
+Once your pull request is created, a Gin reviewer will take responsibility for providing clear, actionable feedback, re-improve and merge.
+
+## Running
+
+See the [official Astro documentation](https://docs.astro.build/en/getting-started) for Astro installation instructions. and [Starlight documentation](https://starlight.astro.build/getting-started) for Starlight installation instructions.
+
+To run the site locally when you have Hugo installed:
+
+```sh
+npm install
+npm run dev
 ```
-npm create astro@latest -- --template starlight
-```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/starlight/tree/main/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/starlight/tree/main/examples/basics)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/withastro/starlight&create_from_path=examples/basics)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwithastro%2Fstarlight%2Ftree%2Fmain%2Fexamples%2Fbasics&project-name=my-starlight-docs&repository-name=my-starlight-docs)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+This will start the local Astro server on port 4321. Open up your browser to http://localhost:4321 to view the site. As you make changes to the source files, Astro updates the site and forces a browser refresh.
 
 ## 🚀 Project Structure
 
@@ -49,6 +69,6 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## Thanks
 
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+Gin thrives on community participation, and we really appreciate your contributions to our site and our documentation!
