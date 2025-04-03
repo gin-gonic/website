@@ -146,5 +146,5 @@ Date: {[{.now | formatAsDate}]}
 
 결과:
 ```sh
-lastUpdated: 2017/07/01
+Date: 2017/07/01
 ```

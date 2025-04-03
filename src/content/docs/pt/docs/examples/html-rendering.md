@@ -147,5 +147,5 @@ Date: {[{.now | formatAsDate}]}
 Resultado:
 
 ```sh
-lastUpdated: 2017/07/01
+Date: 2017/07/01
 ```

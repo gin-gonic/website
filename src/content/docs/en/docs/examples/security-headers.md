@@ -61,7 +61,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 X-Xss-Protection: 1; mode=block
-lastUpdated: Sat, 30 Mar 2024 08:20:44 GMT
+Date: Sat, 30 Mar 2024 08:20:44 GMT
 Content-Length: 18
 
 // Check Host Header Injection
