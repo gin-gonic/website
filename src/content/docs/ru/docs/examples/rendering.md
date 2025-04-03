@@ -1,5 +1,5 @@
 ---
-Заголовок: "Рендеринг XML/JSON/YAML/ProtoBuf"
+title: "Рендеринг XML/JSON/YAML/ProtoBuf"
 черновик: false
 ---
 

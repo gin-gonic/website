@@ -1,5 +1,5 @@
 ---
-Заголовок: "Связка Multipart/Urlencoded"
+title: "Связка Multipart/Urlencoded"
 draft: false
 ---
 

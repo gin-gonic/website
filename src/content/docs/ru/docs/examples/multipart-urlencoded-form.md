@@ -1,5 +1,5 @@
 ---
-Заголовок: "Форма Multipart/Urlencoded"
+title: "Форма Multipart/Urlencoded"
 draft: false
 ---
 

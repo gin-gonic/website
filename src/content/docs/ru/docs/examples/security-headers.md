@@ -1,5 +1,5 @@
 ---
-название: "Заголовки безопасности"
+title: "Заголовки безопасности"
 черновик: false
 ---
 
@@ -48,7 +48,7 @@ func main() {
 Вы можете проверить его с помощью `curl`: 
 
 ```bash
-// Проверка заголовок
+// Проверка title
 
 curl localhost:8080/ping -I
 
@@ -64,7 +64,7 @@ X-Xss-Protection: 1; mode=block
 lastUpdated: Sat, 30 Mar 2024 08:20:44 GMT
 Content-Length: 18
 
-// Проверка инъекции в заголовок хоста
+// Проверка инъекции в title хоста
 
 curl localhost:8080/ping -I -H "Host:neti.ee"
 
