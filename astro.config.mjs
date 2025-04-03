@@ -7,6 +7,8 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
+    site: 'https://gin-gonic.com',
+
     integrations: [starlight({
         plugins: [starlightUtils({
             multiSidebar: {
