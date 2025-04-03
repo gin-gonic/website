@@ -83,7 +83,9 @@ export default defineConfig({
 			editLink: {
 				baseUrl: 'https://github.com/gin-gonic/website/edit/master/',
 			},
-
+			customCss: [
+				'./src/styles/custom.css',
+			],
 			lastUpdated: true,
 			credits: false, // Opcional
 		}),
