@@ -1,6 +1,5 @@
 ---
 title: "Introdução"
-
 sidebar:
   order: 1
 ---

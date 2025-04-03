@@ -1,6 +1,5 @@
 ---
 title: "Características"
-
 sidebar:
   order: 4
 ---

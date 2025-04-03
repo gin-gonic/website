@@ -1,6 +1,5 @@
 ---
 title: "Personalizar Validaciones"
-
 ---
 
 Es posible registrar validaciones personalizadas como puede verse en el [código de ejemplo](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).

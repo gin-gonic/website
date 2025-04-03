@@ -1,6 +1,5 @@
 ---
 title: "Retornando data a partir de un reader"
-
 ---
 
 ```go

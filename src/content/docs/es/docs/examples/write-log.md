@@ -1,6 +1,5 @@
 ---
 title: "Como registrar un Log en un archivo"
-
 ---
 
 ```go

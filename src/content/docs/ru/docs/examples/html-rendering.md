@@ -1,6 +1,5 @@
 ---
 title: "HTML-рендеринг"
-
 ---
 
 Использование LoadHTMLGlob() или LoadHTMLFiles()

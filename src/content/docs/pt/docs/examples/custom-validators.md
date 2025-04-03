@@ -1,6 +1,5 @@
 ---
 title: "Validadores Personalizados"
-
 ---
 
 Também é possível registar validadores personalizados. Consulte o [código de exemplo](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations):

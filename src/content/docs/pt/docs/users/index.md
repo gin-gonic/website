@@ -1,6 +1,5 @@
 ---
 title: "Utilizadores"
-
 sidebar:
   order: 8
 ---

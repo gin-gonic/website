@@ -1,6 +1,5 @@
 ---
 title: "مقدمه"
-
 sidebar:
   order: 1
 ---

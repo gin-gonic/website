@@ -1,6 +1,5 @@
 ---
 title: "모델 바인딩과 유효성 검사"
-
 ---
 
 리퀘스트 바디를 바인딩하려면 모델 바인딩을 사용하세요. 현재 JSON, XML, YAML 및 표준 form values (foo=bar&boo=baz) 바인딩을 지원합니다.

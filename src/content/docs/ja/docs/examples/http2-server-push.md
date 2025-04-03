@@ -1,6 +1,5 @@
 ---
 title: "HTTP/2 サーバープッシュ"
-
 ---
 
 http.Pusher は **go1.8+** 以降でのみサポートしています。 詳細な情報は [golang blog](https://blog.golang.org/h2push) を見てください。
@@ -28,11 +27,11 @@ var html = template.Must(template.New("https").Parse(`
 `))
 
 func main() {
-	r := gin.Default()
-	r.Static("/assets", "./assets")
-	r.SetHTMLTemplate(html)
+	router := gin.Default()
+	router.Static("/assets", "./assets")
+	router.SetHTMLTemplate(html)
 
-	r.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		if pusher := c.Writer.Pusher(); pusher != nil {
 			// サーバープッシュするために pusher.Push() を使う
 			if err := pusher.Push("/assets/app.js", nil); err != nil {
@@ -45,7 +44,7 @@ func main() {
 	})
 
 	// https://127.0.0.1:8080 でサーバーを立てる
-	r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
+	router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
 

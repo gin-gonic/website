@@ -1,8 +1,7 @@
 ---
 title: "Dokümantasyon"
-linkTitle: "Dokümantasyon"
 sidebar:
-  order: 1
+  order: 20
 ---
 
 ## Gin nedir?

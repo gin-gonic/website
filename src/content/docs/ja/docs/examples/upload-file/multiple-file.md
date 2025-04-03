@@ -1,6 +1,5 @@
 ---
 title: "複数のファイル"
-
 ---
 
 詳細は [サンプルコード](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple) 参照のこと.
@@ -19,7 +18,7 @@ func main() {
 			log.Println(file.Filename)
 
 			// 特定のディレクトリにファイルをアップロードする
-			c.SaveUploadedFile(file, dst)
+			c.SaveUploadedFile(file, "./files/" + file.Filename)
 		}
 		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
 	})

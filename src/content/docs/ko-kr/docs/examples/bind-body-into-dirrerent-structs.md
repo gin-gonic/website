@@ -1,6 +1,5 @@
 ---
 title: "body를 다른 구조체에 바인드 하기"
-
 ---
 
 일반적인 body 바인딩 메소드는 `c.Request.Body`를 소모합니다.

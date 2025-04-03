@@ -1,6 +1,5 @@
 ---
 title: "Blog"
-linkTitle: "Blog"
 sidebar:
   order: 30
 ---

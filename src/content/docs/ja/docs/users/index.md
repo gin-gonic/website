@@ -1,6 +1,5 @@
 ---
 title: "Gin のユーザー"
-
 sidebar:
   order: 8
 ---

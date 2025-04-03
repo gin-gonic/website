@@ -1,6 +1,5 @@
 ---
 title: "예제"
-
 sidebar:
   order: 6
 ---

@@ -1,6 +1,5 @@
 ---
 title: "HTML rendering"
-
 ---
 
 Using LoadHTMLGlob() or LoadHTMLFiles()
@@ -93,9 +92,9 @@ func main() {
 You may use custom delims
 
 ```go
-	r := gin.Default()
-	r.Delims("{[{", "}]}")
-	r.LoadHTMLGlob("/path/to/templates")
+	router := gin.Default()
+	router.Delims("{[{", "}]}")
+	router.LoadHTMLGlob("/path/to/templates")
 ```
 
 ### Custom Template Funcs

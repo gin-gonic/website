@@ -1,6 +1,5 @@
 ---
 title: "カスタムミドルウェア"
-
 ---
 
 ```go
@@ -27,9 +26,9 @@ func Logger() gin.HandlerFunc {
 
 func main() {
 	r := gin.New()
-	r.Use(Logger())
+	router.Use(Logger())
 
-	r.GET("/test", func(c *gin.Context) {
+	router.GET("/test", func(c *gin.Context) {
 		example := c.MustGet("example").(string)
 
 		// "12345" が表示される
@@ -37,7 +36,7 @@ func main() {
 	})
 
 	// 0.0.0.0:8080 でサーバーを立てます。
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
 

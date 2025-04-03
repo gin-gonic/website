@@ -1,6 +1,5 @@
 ---
 title: "APIの使い方のサンプル"
-
 sidebar:
   order: 6
 ---

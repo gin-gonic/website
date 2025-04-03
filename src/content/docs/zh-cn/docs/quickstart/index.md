@@ -1,6 +1,5 @@
 ---
 title: "快速入门"
-
 sidebar:
   order: 2
 ---
@@ -18,6 +17,11 @@ sidebar:
 ```sh
 $ go get -u github.com/gin-gonic/gin
 ```
+或 install 
+```sh
+$ go install github.com/gin-gonic/gin@latest
+```
+
 
 2.将 gin 引入到代码中：
 
@@ -67,13 +71,13 @@ package main
 import "github.com/gin-gonic/gin"
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
+	router := gin.Default()
+	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
-	r.Run() // 监听并在 0.0.0.0:8080 上启动服务
+	router.Run() // 监听并在 0.0.0.0:8080 上启动服务
 }
 ```
 

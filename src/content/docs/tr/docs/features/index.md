@@ -1,6 +1,5 @@
 ---
 title: "Özellikler"
-
 sidebar:
   order: 4
 ---

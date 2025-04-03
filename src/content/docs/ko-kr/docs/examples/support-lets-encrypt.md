@@ -1,6 +1,5 @@
 ---
 title: "Let's Encrypt 지원"
-
 ---
 
 한 줄의 LetsEncrypt HTTPS 서버의 샘플입니다.
@@ -16,10 +15,10 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// Ping handler
-	r.GET("/ping", func(c *gin.Context) {
+	router.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 
@@ -41,10 +40,10 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// Ping handler
-	r.GET("/ping", func(c *gin.Context) {
+	router.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 

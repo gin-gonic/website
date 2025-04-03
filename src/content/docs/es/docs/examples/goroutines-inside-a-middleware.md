@@ -1,15 +1,14 @@
 ---
 title: "Goroutines dentro de un middleware"
-
 ---
 
 Cuando se inicia una goroutine dentro de un middleware o un handler, **NO SE DEBE** utilizar el context dentro de él, debe emplearse una copia de lectura.
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/long_async", func(c *gin.Context) {
+	router.GET("/long_async", func(c *gin.Context) {
 		// crear una copia para usar dentro de la rutina
 		cCp := c.Copy()
 		go func() {
@@ -21,7 +20,7 @@ func main() {
 		}()
 	})
 
-	r.GET("/long_sync", func(c *gin.Context) {
+	router.GET("/long_sync", func(c *gin.Context) {
 		// se simula una tarea prolongada con un time.Sleep(). de 5 seconds
 		time.Sleep(5 * time.Second)
 
@@ -30,6 +29,6 @@ func main() {
 	})
 
 	// Escucha y sirve peticiones en 0.0.0.0:8080
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

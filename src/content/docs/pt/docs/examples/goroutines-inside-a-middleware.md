@@ -1,15 +1,14 @@
 ---
 title: "Rotinas de Go dentro dum Intermediário"
-
 ---
 
 Quando começares novas rotinas de Go dentro dum intermediário ou manipulador, **NÃO DEVERIAS** usar o contexto original dentro dele, tens que usar uma cópia de apenas leitura.
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/long_async", func(c *gin.Context) {
+	router.GET("/long_async", func(c *gin.Context) {
 		// criar cópia a ser usada dentro da rotina de go
 		cCp := c.Copy()
 		go func() {
@@ -21,7 +20,7 @@ func main() {
 		}()
 	})
 
-	r.GET("/long_sync", func(c *gin.Context) {
+	router.GET("/long_sync", func(c *gin.Context) {
 		// simular uma tarefa longa com time.Sleep(). 5 segundos
 		time.Sleep(5 * time.Second)
 
@@ -30,6 +29,6 @@ func main() {
 	})
 
 	// ouvir e servir na porta 0.0.0.0:8080
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

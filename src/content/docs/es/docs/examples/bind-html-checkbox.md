@@ -1,6 +1,5 @@
 ---
 title: "Vincular checkboxes html"
-
 ---
 
 Revise la [información detallada](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)

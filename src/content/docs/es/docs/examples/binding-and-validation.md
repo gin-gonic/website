@@ -1,6 +1,5 @@
 ---
 title: "Vincular y validar un Modelo"
-
 ---
 
 Para vincular el cuerpo de un request en un tipo, puede hacerse el vínculo a un modelo. Actualmente se soporta el vínculo a JSON, XML, YAML y valores estandar para formularios (foo=bar&boo=baz).

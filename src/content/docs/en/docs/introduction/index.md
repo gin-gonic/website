@@ -1,6 +1,5 @@
 ---
 title: "Introduction"
-
 sidebar:
   order: 1
 ---
@@ -15,18 +14,18 @@ Or, if you are ready to use Gin in to your project, visit the [Quickstart](https
 
 ### Fast
 
-Radix tree based routing, small memory foot print. No reflection. Predictable API performance. 
+Radix tree based routing, small memory foot print. No reflection. Predictable API performance.
 
 ### Middleware support
 
-An incoming HTTP request can be handled by a chain of middlewares and the final action. 
+An incoming HTTP request can be handled by a chain of middlewares and the final action.
 For example: Logger, Authorization, GZIP and finally post a message in the DB.
 
 ### Crash-free
 
 Gin can catch a panic occurred during a HTTP request and recover it. This way, your server will be always available. As an example - it’s also possible to report this panic to Sentry!
 
-### JSON validation 
+### JSON validation
 
 Gin can parse and validate the JSON of a request - for example, checking the existence of required values.
 
@@ -45,4 +44,3 @@ Gin provides an easy to use API for JSON, XML and HTML rendering.
 ### Extendable
 
 Creating a new middleware is so easy, just check out the sample codes.
-

@@ -1,6 +1,5 @@
 ---
 title: "Users"
-
 sidebar:
   order: 8
 ---

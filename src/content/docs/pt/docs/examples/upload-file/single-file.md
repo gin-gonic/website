@@ -1,6 +1,5 @@
 ---
 title: "Único Ficheiro"
-
 ---
 
 Consulte a questão [#774](https://github.com/gin-gonic/gin/issues/774) e [exemplo de código](https://github.com/gin-gonic/examples/tree/master/upload-file/single) detalhado.
@@ -20,8 +19,8 @@ func main() {
 		file, _ := c.FormFile("file")
 		log.Println(file.Filename)
 
-		// carregar o ficheiro para um destino específico.
-		c.SaveUploadedFile(file, dst)
+		// Upload the file to specific dst.
+		c.SaveUploadedFile(file, "./files/" + file.Filename)
 
 		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 	})

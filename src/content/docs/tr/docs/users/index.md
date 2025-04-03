@@ -1,6 +1,5 @@
 ---
 title: "Kullanıcılar"
-
 sidebar:
   order: 8
 ---

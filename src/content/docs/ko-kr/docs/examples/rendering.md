@@ -1,18 +1,17 @@
 ---
 title: "XML/JSON/YAML/ProtoBuf 랜더링"
-
 ---
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// gin.H은 map[string]interface{} 타입입니다.
-	r.GET("/someJSON", func(c *gin.Context) {
+	router.GET("/someJSON", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
-	r.GET("/moreJSON", func(c *gin.Context) {
+	router.GET("/moreJSON", func(c *gin.Context) {
 		// 구조체도 사용할 수 있습니다.
 		var msg struct {
 			Name    string `json:"user"`
@@ -27,15 +26,15 @@ func main() {
 		c.JSON(http.StatusOK, msg)
 	})
 
-	r.GET("/someXML", func(c *gin.Context) {
+	router.GET("/someXML", func(c *gin.Context) {
 		c.XML(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
-	r.GET("/someYAML", func(c *gin.Context) {
+	router.GET("/someYAML", func(c *gin.Context) {
 		c.YAML(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
-	r.GET("/someProtoBuf", func(c *gin.Context) {
+	router.GET("/someProtoBuf", func(c *gin.Context) {
 		reps := []int64{int64(1), int64(2)}
 		label := "test"
 		// protobuf의 정의는 testdata/protoexample 파일에 작성되어 있습니다.
@@ -49,6 +48,6 @@ func main() {
 	})
 
 	// 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

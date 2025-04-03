@@ -1,6 +1,5 @@
 ---
 title: "AsciiJSON"
-
 ---
 
 AsciiJSON メソッドを使うことで、ASCII 文字列以外をエスケープした
@@ -8,9 +7,9 @@ ASCII 文字列のみの JSON を出力できます。
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/someJSON", func(c *gin.Context) {
+	router.GET("/someJSON", func(c *gin.Context) {
 		data := map[string]interface{}{
 			"lang": "GO语言",
 			"tag":  "<br>",
@@ -21,6 +20,6 @@ func main() {
 	})
 
 	// 0.0.0.0:8080 でサーバーを立てます。
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

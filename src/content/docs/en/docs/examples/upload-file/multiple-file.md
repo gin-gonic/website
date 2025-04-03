@@ -1,6 +1,5 @@
 ---
 title: "Multiple files"
-
 ---
 
 See the detail [example code](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple).
@@ -13,13 +12,13 @@ func main() {
 	router.POST("/upload", func(c *gin.Context) {
 		// Multipart form
 		form, _ := c.MultipartForm()
-		files := form.File["upload[]"]
+		files := form.File["files"]
 
 		for _, file := range files {
 			log.Println(file.Filename)
 
 			// Upload the file to specific dst.
-			c.SaveUploadedFile(file, dst)
+			c.SaveUploadedFile(file, "./files/" + file.Filename)
 		}
 		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
 	})
@@ -31,7 +30,7 @@ How to `curl`:
 
 ```sh
 curl -X POST http://localhost:8080/upload \
-  -F "upload[]=@/Users/appleboy/test1.zip" \
-  -F "upload[]=@/Users/appleboy/test2.zip" \
+  -F "files=@/Users/appleboy/test1.zip" \
+  -F "files=@/Users/appleboy/test2.zip" \
   -H "Content-Type: multipart/form-data"
 ```

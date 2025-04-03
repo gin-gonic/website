@@ -1,6 +1,5 @@
 ---
 title: "Usando o Método de HTTP"
-
 ---
 
 ```go

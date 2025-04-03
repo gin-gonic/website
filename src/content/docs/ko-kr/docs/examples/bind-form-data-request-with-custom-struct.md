@@ -1,6 +1,5 @@
 ---
 title: "양식 데이터 리퀘스트를 구조체에 바인드 하기"
-
 ---
 
 아래의 예제는 사용자 정의 구조체를 사용합니다:
@@ -55,18 +54,18 @@ func GetDataD(c *gin.Context) {
 }
 
 func main() {
-    r := gin.Default()
-    r.GET("/getb", GetDataB)
-    r.GET("/getc", GetDataC)
-    r.GET("/getd", GetDataD)
+    router := gin.Default()
+    router.GET("/getb", GetDataB)
+    router.GET("/getc", GetDataC)
+    router.GET("/getd", GetDataD)
 
-    r.Run()
+    router.Run()
 }
 ```
 
 `curl` 명령어를 이용한 결과 입니다:
 
-```
+```bash
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
 {"a":{"FieldA":"hello"},"b":"world"}
 $ curl "http://localhost:8080/getc?field_a=hello&field_c=world"

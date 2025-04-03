@@ -1,6 +1,5 @@
 ---
 title: "Örnekler"
-
 sidebar:
   order: 6
 ---

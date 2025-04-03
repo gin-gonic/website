@@ -1,6 +1,5 @@
 ---
 title: "Analises Comparativas"
-
 sidebar:
   order: 3
 ---

@@ -1,6 +1,5 @@
 ---
 title: "امکانات"
-
 sidebar:
   order: 4
 ---

@@ -1,6 +1,5 @@
 ---
 title: "How to write log file"
-
 ---
 
 ```go

@@ -1,6 +1,5 @@
 ---
 title: "FAQ"
-
 sidebar:
   order: 9
 ---

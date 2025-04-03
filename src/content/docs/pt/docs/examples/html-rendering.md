@@ -1,6 +1,5 @@
 ---
 title: "Interpretação do HTML"
-
 ---
 
 Usando `LoadHTMLGlob()` ou `LoadHTMLFiles()`:
@@ -93,9 +92,9 @@ func main() {
 Tu podes usar delimitadores personalizados:
 
 ```go
-	r := gin.Default()
-	r.Delims("{[{", "}]}")
-	r.LoadHTMLGlob("/path/to/templates")
+	router := gin.Default()
+	router.Delims("{[{", "}]}")
+	router.LoadHTMLGlob("/path/to/templates")
 ```
 
 ### Funções de Modelo de Marcação Personalizado

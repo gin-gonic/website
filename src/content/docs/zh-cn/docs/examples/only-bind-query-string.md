@@ -1,6 +1,5 @@
 ---
 title: "只绑定 url 查询字符串"
-
 ---
 
 `ShouldBindQuery` 函数只绑定 url 查询参数而忽略 post 数据。参阅[详细信息](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017).

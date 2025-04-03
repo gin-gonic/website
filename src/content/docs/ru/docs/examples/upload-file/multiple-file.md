@@ -1,6 +1,5 @@
 ---
 title: "Multiple files"
-
 ---
 
 Смотрите подробности [пример кода](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple).

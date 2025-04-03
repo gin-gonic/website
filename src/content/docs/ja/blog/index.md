@@ -1,6 +1,5 @@
 ---
 title: "ブログ"
-linkTitle: "ブログ"
 sidebar:
   order: 30
 ---

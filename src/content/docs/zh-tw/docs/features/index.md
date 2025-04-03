@@ -1,6 +1,5 @@
 ---
 title: "特色"
-
 sidebar:
   order: 4
 ---

@@ -1,8 +1,7 @@
 ---
 title: "문서"
-linkTitle: "문서"
 sidebar:
-  order: 1
+  order: 20
 ---
 
 ## Gin 이란?

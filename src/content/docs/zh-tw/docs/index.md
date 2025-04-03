@@ -1,8 +1,7 @@
 ---
 title: "文件"
-linkTitle: "文件"
 sidebar:
-  order: 1
+  order: 20
 ---
 
 ## Gin 是什麼？

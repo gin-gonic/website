@@ -1,6 +1,5 @@
 ---
 title: "소개"
-
 sidebar:
   order: 1
 ---

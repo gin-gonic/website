@@ -1,6 +1,5 @@
 ---
 title: "벤치마크"
-
 sidebar:
   order: 3
 ---

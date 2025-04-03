@@ -1,6 +1,5 @@
 ---
 title: "示例"
-
 sidebar:
   order: 6
 ---

@@ -1,6 +1,5 @@
 ---
 title: "Usar o Intermediário de BasicAuth"
-
 ---
 
 ```go
@@ -12,11 +11,11 @@ var secrets = gin.H{
 }
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// grupo usando intermediário de "gin.BasicAuth()"
 	// "gin.Accounts" é um atalho para "map[string]string"
-	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
+	authorized := router.Group("/admin", gin.BasicAuth(gin.Accounts{
 		"foo":    "bar",
 		"austin": "1234",
 		"lena":   "hello2",
@@ -36,6 +35,6 @@ func main() {
 	})
 
 	// ouvir e servir no 0.0.0.0:8080
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

@@ -1,8 +1,7 @@
 ---
 title: "ドキュメント"
-linkTitle: "ドキュメント"
 sidebar:
-  order: 1
+  order: 20
 ---
 
 ## Gin ってなに？

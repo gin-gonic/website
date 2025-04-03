@@ -1,6 +1,5 @@
 ---
 title: "Multiple files"
-
 ---
 
 See the detail [example code](examples/upload-file/multiple).
@@ -19,7 +18,7 @@ func main() {
 			log.Println(file.Filename)
 
 			// Upload the file to specific dst.
-			c.SaveUploadedFile(file, dst)
+			c.SaveUploadedFile(file, "./files/" + file.Filename)
 		}
 		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
 	})

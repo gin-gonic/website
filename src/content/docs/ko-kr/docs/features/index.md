@@ -1,6 +1,5 @@
 ---
 title: "기능"
-
 sidebar:
   order: 4
 ---

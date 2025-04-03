@@ -1,6 +1,5 @@
 ---
 title: "Using BasicAuth middleware"
-
 ---
 
 ```go
@@ -12,11 +11,11 @@ var secrets = gin.H{
 }
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// Group using gin.BasicAuth() middleware
 	// gin.Accounts is a shortcut for map[string]string
-	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
+	authorized := router.Group("/admin", gin.BasicAuth(gin.Accounts{
 		"foo":    "bar",
 		"austin": "1234",
 		"lena":   "hello2",
@@ -36,6 +35,6 @@ func main() {
 	})
 
 	// Listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

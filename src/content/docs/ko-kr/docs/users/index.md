@@ -1,6 +1,5 @@
 ---
 title: "Gin을 사용하는 곳"
-
 sidebar:
   order: 8
 ---

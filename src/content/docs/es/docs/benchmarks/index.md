@@ -1,6 +1,5 @@
 ---
 title: "Benchmarks"
-
 sidebar:
   order: 3
 ---

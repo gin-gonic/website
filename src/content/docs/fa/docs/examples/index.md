@@ -1,6 +1,5 @@
 ---
 title: "مثال ها"
-
 sidebar:
   order: 6
 ---

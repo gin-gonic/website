@@ -1,6 +1,5 @@
 ---
 title: "Usar Intermediário"
-
 ---
 
 ```go
@@ -12,19 +11,19 @@ func main() {
 	// intermediário registador escreverá os registos ao "gin.DefaultWriter",
 	// mesmo se definires com "GIN_MODE=release".
 	// por padrão "gin.DefaultWriter = os.Stdout"
-	r.Use(gin.Logger())
+	router.Use(gin.Logger())
 
 	// intermediário de recuperação recupera de quaisquer pânicos e
 	// escreve um 500 se ouve um.
-	r.Use(gin.Recovery())
+	router.Use(gin.Recovery())
 
 	// intermediário por rota, podes adicionar tanto quanto desejares.
-	r.GET("/benchmark", MyBenchLogger(), benchEndpoint)
+	router.GET("/benchmark", MyBenchLogger(), benchEndpoint)
 
 	// grupo de autorização
-	// authorized := r.Group("/", AuthRequired())
+	// authorized := router.Group("/", AuthRequired())
 	// exatamente o mesmo que:
-	authorized := r.Group("/")
+	authorized := router.Group("/")
 	// intermediário por grupo! neste caso usamos o intermediário
 	// "AuthRequired()" criado de maneira personalizada só no
 	// grupo "authorized".
@@ -40,7 +39,7 @@ func main() {
 	}
 
 	// ouvir e servir no 0.0.0.0:8080
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
 

@@ -1,9 +1,11 @@
 ---
 title: "HTML rendering"
-
 ---
 
-Using LoadHTMLGlob() or LoadHTMLFiles()
+Gin uses the [html/template](https://pkg.go.dev/html/template) package for HTML rendering.
+For more information about how to use them, including available placeholders, see the documentation for [text/template](https://pkg.go.dev/text/template)
+
+Use LoadHTMLGlob() or LoadHTMLFiles() to select the HTML files to load.
 
 ```go
 func main() {
@@ -49,6 +51,8 @@ func main() {
 }
 ```
 
+**Note:** Please wrap your HTML template in the `{{define <template-path>}} {{end}}` block and define your template file with the relative path `<template-path>`. Otherwise, GIN will not properly parse the template files.
+
 templates/posts/index.tmpl
 
 ```html
@@ -93,9 +97,9 @@ func main() {
 You may use custom delims
 
 ```go
-	r := gin.Default()
-	r.Delims("{[{", "}]}")
-	r.LoadHTMLGlob("/path/to/templates")
+	router := gin.Default()
+	router.Delims("{[{", "}]}")
+	router.LoadHTMLGlob("/path/to/templates")
 ```
 
 ### Custom Template Funcs

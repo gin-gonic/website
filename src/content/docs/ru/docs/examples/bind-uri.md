@@ -1,6 +1,5 @@
 ---
 title: "Связывание Uri"
-
 ---
 
 Смотрите [подробную информацию](https://github.com/gin-gonic/gin/issues/846).

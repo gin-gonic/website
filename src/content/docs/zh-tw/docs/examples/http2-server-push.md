@@ -1,6 +1,5 @@
 ---
 title: "HTTP2 server push"
-
 ---
 
 http.Pusher is supported only **go1.8+**. See the [golang blog](https://blog.golang.org/h2push) for detail information.
@@ -28,11 +27,11 @@ var html = template.Must(template.New("https").Parse(`
 `))
 
 func main() {
-	r := gin.Default()
-	r.Static("/assets", "./assets")
-	r.SetHTMLTemplate(html)
+	router := gin.Default()
+	router.Static("/assets", "./assets")
+	router.SetHTMLTemplate(html)
 
-	r.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		if pusher := c.Writer.Pusher(); pusher != nil {
 			// use pusher.Push() to do server push
 			if err := pusher.Push("/assets/app.js", nil); err != nil {
@@ -45,7 +44,7 @@ func main() {
 	})
 
 	// Listen and Server in https://127.0.0.1:8080
-	r.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
+	router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
 

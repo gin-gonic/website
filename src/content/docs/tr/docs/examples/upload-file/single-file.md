@@ -1,6 +1,5 @@
 ---
 title: "Single file"
-
 ---
 
 References issue [#774](https://github.com/gin-gonic/gin/issues/774) and detail [example code](https://github.com/gin-gonic/examples/tree/master/upload-file/single).
@@ -20,7 +19,7 @@ func main() {
 		log.Println(file.Filename)
 
 		// Upload the file to specific dst.
-		c.SaveUploadedFile(file, dst)
+		c.SaveUploadedFile(file, "./files/" + file.Filename)
 
 		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 	})

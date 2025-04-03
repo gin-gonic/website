@@ -1,6 +1,5 @@
 ---
 title: "Subir un archivo individual"
-
 ---
 
 Issue de referencia [#774](https://github.com/gin-gonic/gin/issues/774) y código [detallado de ejemplo](https://github.com/gin-gonic/examples/tree/master/upload-file/single).
@@ -20,7 +19,7 @@ func main() {
 		log.Println(file.Filename)
 
 		// Guarda el archivo recibido a un destino específico
-		c.SaveUploadedFile(file, dst)
+		c.SaveUploadedFile(file, "./files/" + file.Filename)
 
 		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 	})

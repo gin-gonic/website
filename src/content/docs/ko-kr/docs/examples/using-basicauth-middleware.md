@@ -1,6 +1,5 @@
 ---
 title: "기본인증(BasicAuth) 미들웨어 사용하기"
-
 ---
 
 ```go
@@ -12,11 +11,11 @@ var secrets = gin.H{
 }
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// gin.BasicAuth() 미들웨어를 사용하여 그룹화 하기
 	// gin.Accounts는 map[string]string 타입입니다.
-	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
+	authorized := router.Group("/admin", gin.BasicAuth(gin.Accounts{
 		"foo":    "bar",
 		"austin": "1234",
 		"lena":   "hello2",
@@ -36,6 +35,6 @@ func main() {
 	})
 
 	// 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

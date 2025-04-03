@@ -1,6 +1,5 @@
 ---
 title: "PureJSON"
-
 ---
 
 일반적으로 JSON은 `<`와 같은 HTML문자를 `\u003c`처럼 유니코드로 변환 합니다.
@@ -9,23 +8,23 @@ title: "PureJSON"
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// 유니코드 엔티티 반환
-	r.GET("/json", func(c *gin.Context) {
+	router.GET("/json", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"html": "<b>Hello, world!</b>",
 		})
 	})
 
 	// 리터럴 문자 반환
-	r.GET("/purejson", func(c *gin.Context) {
+	router.GET("/purejson", func(c *gin.Context) {
 		c.PureJSON(200, gin.H{
 			"html": "<b>Hello, world!</b>",
 		})
 	})
 
 	// 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

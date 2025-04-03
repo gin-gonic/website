@@ -1,6 +1,5 @@
 ---
 title: "라우트의 로그 형식을 정의"
-
 ---
 
 라우트의 기본 로그는 다음과 같습니다:
@@ -21,24 +20,24 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
 		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
 	}
 
-	r.POST("/foo", func(c *gin.Context) {
+	router.POST("/foo", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "foo")
 	})
 
-	r.GET("/bar", func(c *gin.Context) {
+	router.GET("/bar", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "bar")
 	})
 
-	r.GET("/status", func(c *gin.Context) {
+	router.GET("/status", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "ok")
 	})
 
 	// 서버가 실행 되고 http://0.0.0.0:8080 에서 요청을 기다립니다.
-	r.Run()
+	router.Run()
 }
 ```

@@ -1,6 +1,5 @@
 ---
 title: "Sem Intermediário por Padrão"
-
 ---
 
 Use:

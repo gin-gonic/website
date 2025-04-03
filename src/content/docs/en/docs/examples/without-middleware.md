@@ -1,6 +1,5 @@
 ---
 title: "Without middleware by default"
-
 ---
 
 Use

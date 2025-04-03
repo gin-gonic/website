@@ -1,6 +1,5 @@
 ---
 title: "Vincular a requisição de dados de formulário com a estrutura personalizada"
-
 ---
 
 O seguinte exemplo usando estrutura personalizada:
@@ -55,18 +54,18 @@ func GetDataD(c *gin.Context) {
 }
 
 func main() {
-    r := gin.Default()
-    r.GET("/getb", GetDataB)
-    r.GET("/getc", GetDataC)
-    r.GET("/getd", GetDataD)
+    router := gin.Default()
+    router.GET("/getb", GetDataB)
+    router.GET("/getc", GetDataC)
+    router.GET("/getd", GetDataD)
 
-    r.Run()
+    router.Run()
 }
 ```
 
 Usando o comando `url` e resultado do comando:
 
-```
+```bash
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
 {"a":{"FieldA":"hello"},"b":"world"}
 $ curl "http://localhost:8080/getc?field_a=hello&field_c=world"

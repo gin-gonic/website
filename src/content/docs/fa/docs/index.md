@@ -1,8 +1,7 @@
 ---
 title: "اسناد"
-linkTitle: "اسناد/"
 sidebar:
-  order: 1
+  order: 20
 ---
 
 ## Gin چیست ؟

@@ -1,18 +1,17 @@
 ---
 title: "SecureJSON"
-
 ---
 
 使用 SecureJSON 防止 json 劫持。如果给定的结构是数组值，则默认预置 `"while(1),"` 到响应体。
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// 你也可以使用自己的 SecureJSON 前缀
-	// r.SecureJsonPrefix(")]}',\n")
+	// router.SecureJsonPrefix(")]}',\n")
 
-	r.GET("/someJSON", func(c *gin.Context) {
+	router.GET("/someJSON", func(c *gin.Context) {
 		names := []string{"lena", "austin", "foo"}
 
 		// 将输出：while(1);["lena","austin","foo"]
@@ -20,6 +19,6 @@ func main() {
 	})
 
 	// 监听并在 0.0.0.0:8080 上启动服务
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

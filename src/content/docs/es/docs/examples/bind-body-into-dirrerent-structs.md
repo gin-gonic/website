@@ -1,6 +1,5 @@
 ---
 title: "Vincular el cuerpo de un request en distintos tipos de structs"
-
 ---
 
 El método común para vincular el cuerpo de un request emplea `c.Request.Body` pero presenta

@@ -1,6 +1,5 @@
 ---
 title: "機能"
-
 sidebar:
   order: 4
 ---

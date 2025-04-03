@@ -1,6 +1,5 @@
 ---
 title: "تست"
-
 sidebar:
   order: 7
 ---
@@ -20,15 +19,15 @@ type User struct {
 }
 
 func setupRouter() *gin.Engine {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
+	router := gin.Default()
+	router.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 	return r
 }
 
 func postUser(r *gin.Engine) *gin.Engine {
-	r.POST("/user/add", func(c *gin.Context) {
+	router.POST("/user/add", func(c *gin.Context) {
 		var user User
 		c.BindJSON(&user)
 		c.JSON(200, user)
@@ -39,7 +38,7 @@ func postUser(r *gin.Engine) *gin.Engine {
 func main() {
 	r := setupRouter()
 	r = postUser(r)
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
 

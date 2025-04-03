@@ -1,6 +1,5 @@
 ---
 title: "여러 파일"
-
 ---
 
 자세한 내용은 [예제 코드](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple)를 확인하세요.
@@ -19,7 +18,7 @@ func main() {
 			log.Println(file.Filename)
 
 			// 특정 경로(dst)에 파일을 업로드 합니다.
-			c.SaveUploadedFile(file, dst)
+			c.SaveUploadedFile(file, "./files/" + file.Filename)
 		}
 		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
 	})

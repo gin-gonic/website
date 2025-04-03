@@ -1,6 +1,5 @@
 ---
 title: "Exemplos"
-
 sidebar:
   order: 6
 ---

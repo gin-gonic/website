@@ -1,6 +1,5 @@
 ---
 title: "BasicAuth ミドルウェアを使う"
-
 ---
 
 ```go
@@ -12,11 +11,11 @@ var secrets = gin.H{
 }
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// gin.BasicAuth() ミドルウェアを使用したグループ
 	// gin.Accounts は map[string]string へのショートカットです。
-	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
+	authorized := router.Group("/admin", gin.BasicAuth(gin.Accounts{
 		"foo":    "bar",
 		"austin": "1234",
 		"lena":   "hello2",
@@ -35,7 +34,7 @@ func main() {
 	})
 
 	// 0.0.0.0:8080 でサーバーを立てます。
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```
 

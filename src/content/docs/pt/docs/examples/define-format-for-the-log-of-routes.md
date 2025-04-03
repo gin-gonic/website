@@ -1,6 +1,5 @@
 ---
 title: "Definir o Formato para o Registo de Rotas"
-
 ---
 
 O registo padrão de rotas é:
@@ -23,24 +22,24 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
 		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
 	}
 
-	r.POST("/foo", func(c *gin.Context) {
+	router.POST("/foo", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "foo")
 	})
 
-	r.GET("/bar", func(c *gin.Context) {
+	router.GET("/bar", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "bar")
 	})
 
-	r.GET("/status", func(c *gin.Context) {
+	router.GET("/status", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "ok")
 	})
 
 	// Ouvir e servir na http://0.0.0.0:8080
-	r.Run()
+	router.Run()
 }
 ```

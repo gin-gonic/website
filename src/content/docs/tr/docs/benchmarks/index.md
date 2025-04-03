@@ -1,6 +1,5 @@
 ---
 title: "Kalite Testleri"
-
 sidebar:
   order: 3
 ---

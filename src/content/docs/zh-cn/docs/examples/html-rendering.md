@@ -1,6 +1,5 @@
 ---
 title: "HTML 渲染"
-
 ---
 
 使用 LoadHTMLGlob() 或者 LoadHTMLFiles()
@@ -93,9 +92,9 @@ func main() {
 你可以使用自定义分隔
 
 ```go
-	r := gin.Default()
-	r.Delims("{[{", "}]}")
-	r.LoadHTMLGlob("/path/to/templates")
+	router := gin.Default()
+	router.Delims("{[{", "}]}")
+	router.LoadHTMLGlob("/path/to/templates")
 ```
 
 #### 自定义模板功能

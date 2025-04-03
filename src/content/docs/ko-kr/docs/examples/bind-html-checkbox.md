@@ -1,6 +1,5 @@
 ---
 title: "html 체크박스를 바인드 하기"
-
 ---
 
 [자세한 정보](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)를 확인 하세요.

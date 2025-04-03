@@ -1,15 +1,14 @@
 ---
 title: "AsciiJSON"
-
 ---
 
 使用 AsciiJSON 生成具有转义的非 ASCII 字符的 ASCII-only JSON。
 
 ```go
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
-	r.GET("/someJSON", func(c *gin.Context) {
+	router.GET("/someJSON", func(c *gin.Context) {
 		data := map[string]interface{}{
 			"lang": "GO语言",
 			"tag":  "<br>",
@@ -20,6 +19,6 @@ func main() {
 	})
 
 	// 监听并在 0.0.0.0:8080 上启动服务
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

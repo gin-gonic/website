@@ -1,6 +1,5 @@
 ---
 title: "Parámetros en rutas"
-
 ---
 
 ```go

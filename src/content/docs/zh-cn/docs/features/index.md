@@ -1,6 +1,5 @@
 ---
 title: "特性"
-
 sidebar:
   order: 4
 ---

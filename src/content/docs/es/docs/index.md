@@ -1,8 +1,7 @@
 ---
 title: "Documentación"
-linkTitle: "Documentación"
 sidebar:
-  order: 1
+  order: 20
 ---
 
 ## ¿Qué es Gin?

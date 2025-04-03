@@ -1,6 +1,5 @@
 ---
 title: "Vincular una petición form-data con un struct personalizado"
-
 ---
 
 El siguiente es el ejemplo para un struct personalizado:
@@ -55,18 +54,18 @@ func GetDataD(c *gin.Context) {
 }
 
 func main() {
-    r := gin.Default()
-    r.GET("/getb", GetDataB)
-    r.GET("/getc", GetDataC)
-    r.GET("/getd", GetDataD)
+    router := gin.Default()
+    router.GET("/getb", GetDataB)
+    router.GET("/getc", GetDataC)
+    router.GET("/getd", GetDataD)
 
-    r.Run()
+    router.Run()
 }
 ```
 
 Empleando el comando `curl` las respuestas serían:
 
-```
+```bash
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
 {"a":{"FieldA":"hello"},"b":"world"}
 $ curl "http://localhost:8080/getc?field_a=hello&field_c=world"

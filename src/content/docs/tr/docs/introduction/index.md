@@ -1,6 +1,5 @@
 ---
 title: "Giriş"
-
 sidebar:
   order: 1
 ---

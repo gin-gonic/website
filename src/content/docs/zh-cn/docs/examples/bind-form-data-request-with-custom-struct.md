@@ -1,6 +1,5 @@
 ---
 title: "绑定表单数据至自定义结构体"
-
 ---
 
 以下示例使用自定义结构体：
@@ -55,18 +54,18 @@ func GetDataD(c *gin.Context) {
 }
 
 func main() {
-    r := gin.Default()
-    r.GET("/getb", GetDataB)
-    r.GET("/getc", GetDataC)
-    r.GET("/getd", GetDataD)
+    router := gin.Default()
+    router.GET("/getb", GetDataB)
+    router.GET("/getc", GetDataC)
+    router.GET("/getd", GetDataD)
 
-    r.Run()
+    router.Run()
 }
 ```
 
 使用 `curl` 命令结果：
 
-```
+```bash
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
 {"a":{"FieldA":"hello"},"b":"world"}
 $ curl "http://localhost:8080/getc?field_a=hello&field_c=world"

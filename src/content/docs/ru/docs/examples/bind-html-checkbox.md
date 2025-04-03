@@ -1,6 +1,5 @@
 ---
 title: "Привязка html-флажков"
-
 ---
 
 Смотрите [подробную информацию](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)

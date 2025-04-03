@@ -1,6 +1,5 @@
 ---
 title: "Support Let's Encrypt"
-
 ---
 
 example for 1-line LetsEncrypt HTTPS servers.
@@ -16,10 +15,10 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// Ping handler
-	r.GET("/ping", func(c *gin.Context) {
+	router.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 
@@ -41,10 +40,10 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 
 	// Ping handler
-	r.GET("/ping", func(c *gin.Context) {
+	router.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 

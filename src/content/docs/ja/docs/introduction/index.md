@@ -1,6 +1,5 @@
 ---
 title: "まず始めに"
-
 sidebar:
   order: 1
 ---

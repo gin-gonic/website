@@ -1,6 +1,5 @@
 ---
 title: "Vincular Apenas a Sequência de Caracteres de Consulta"
-
 ---
 
 A função `ShouldBindQuery` apenas vincula os parâmetros de consulta e não os dados da publicação. Consulte a [informação detalhada](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017):

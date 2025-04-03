@@ -1,6 +1,5 @@
 ---
 title: "GET,POST,PUT,PATCH,DELETE,OPTIONS メソッドを使う"
-
 ---
 
 ```go

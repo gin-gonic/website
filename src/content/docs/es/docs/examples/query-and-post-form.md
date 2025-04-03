@@ -1,6 +1,5 @@
 ---
 title: "Formulario POST y parámetros GET en URL"
-
 ---
 
 ```sh

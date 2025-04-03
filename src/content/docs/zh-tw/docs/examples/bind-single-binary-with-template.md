@@ -1,6 +1,5 @@
 ---
 title: "Build a single binary with templates"
-
 ---
 
 You can build a server into a single binary containing templates by using [go-assets][].
@@ -15,12 +14,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	r.SetHTMLTemplate(t)
+	router.SetHTMLTemplate(t)
 
-	r.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
 	})
-	r.Run(":8080")
+	router.Run(":8080")
 }
 
 // loadTemplate loads templates embedded by go-assets-builder

@@ -1,6 +1,5 @@
 ---
 title: "Definir el formato para el log de rutas"
-
 ---
 
 El log de rutas por defecto es:
@@ -22,24 +21,24 @@ import (
 )
 
 func main() {
-	r := gin.Default()
+	router := gin.Default()
 	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
 		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
 	}
 
-	r.POST("/foo", func(c *gin.Context) {
+	router.POST("/foo", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "foo")
 	})
 
-	r.GET("/bar", func(c *gin.Context) {
+	router.GET("/bar", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "bar")
 	})
 
-	r.GET("/status", func(c *gin.Context) {
+	router.GET("/status", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "ok")
 	})
 
 	// Escucha y sirve peticiones en 0.0.0.0:8080
-	r.Run(":8080")
+	router.Run(":8080")
 }
 ```

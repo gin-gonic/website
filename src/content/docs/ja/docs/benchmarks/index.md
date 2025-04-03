@@ -1,6 +1,5 @@
 ---
 title: "ベンチマーク"
-
 sidebar:
   order: 3
 ---

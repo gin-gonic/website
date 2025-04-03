@@ -1,6 +1,5 @@
 ---
 title: "Bind query string or post data"
-
 ---
 
 See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292).
@@ -32,11 +31,15 @@ func startPage(c *gin.Context) {
 	// If `GET`, only `Form` binding engine (`query`) used.
 	// If `POST`, first checks the `content-type` for `JSON` or `XML`, then uses `Form` (`form-data`).
 	// See more at https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
-	if c.ShouldBind(&person) == nil {
-		log.Println(person.Name)
-		log.Println(person.Address)
-		log.Println(person.Birthday)
+	err := c.ShouldBind(&person)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
+
+	log.Println(person.Name)
+	log.Println(person.Address)
+	log.Println(person.Birthday)
 
 	c.String(200, "Success")
 }
