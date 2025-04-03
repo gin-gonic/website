@@ -1,9 +1,8 @@
 ---
 title: "اسناد"
 weight: 20
-menu:
-  main:
-    weight: 20
+sidebar:
+  order: 20
 ---
 
 ## Gin چیست ؟

@@ -1,8 +1,7 @@
 ---
 title: "Blogue"
-menu:
-  main:
-    weight: 30
+sidebar:
+  order: 30
 ---
 
 

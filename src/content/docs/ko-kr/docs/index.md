@@ -1,9 +1,8 @@
 ---
 title: "문서"
 weight: 20
-menu:
-  main:
-    weight: 20
+sidebar:
+  order: 20
 ---
 
 ## Gin 이란?
