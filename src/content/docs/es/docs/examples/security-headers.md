@@ -69,6 +69,6 @@ curl localhost:8080/ping -I -H "Host:neti.ee"
 
 HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
-lastUpdated: Sat, 30 Mar 2024 08:21:09 GMT
+Date: Sat, 30 Mar 2024 08:21:09 GMT
 Content-Length: 31
 ```
