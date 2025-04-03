@@ -1,25 +1,16 @@
-
 # Gin website
 
 [![Run Deploy](https://github.com/gin-gonic/website/actions/workflows/node.yml/badge.svg)](https://github.com/gin-gonic/website/actions/workflows/node.yml)
 
 Welcome! This repository houses all the assets required to build the Gin website and documentation. We're pleased that you want to contribute! The website is hosted at https://gin-gonic.com.
 
-We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy](https://github.com/google/docsy) theme for styling and site structure. Thanks!.
-
-**Note:** We only support hugo [v0.75.1 version](https://github.com/gohugoio/hugo/releases/tag/v0.75.1).
+We use [Astro](https://astro.build) to format and generate our website, the [Starlight](https://starlight.astro.build) template for styling and site structure. Thanks!.
 
 ## Contribution
 
 - Fork the repository
 
 You can click the Fork button in the upper-right area of the screen to create a copy of this repository in your GitHub account. This copy is called as fork.
-
-> You need to use the below command to clone code for docsy theme.
-
-```sh
-git clone --recurse-submodules --depth 1 https://github.com/google/docsy.git themes/docsy
-```
 
 - Create one pull request
 
@@ -31,19 +22,52 @@ Once your pull request is created, a Gin reviewer will take responsibility for p
 
 ## Running
 
-See the [official Hugo documentation](https://gohugo.io/getting-started/installing/) for Hugo installation instructions.
+See the [official Astro documentation](https://docs.astro.build/en/getting-started) for Astro installation instructions. and [Starlight documentation](https://starlight.astro.build/getting-started) for Starlight installation instructions.
 
 To run the site locally when you have Hugo installed:
 
 ```sh
-# If use `hugo` command, you need to use `npm install` command
-$ npm install
-$ hugo
-# Or use `hugo server`, it not need `npm install` command
-$ hugo server
+npm install
+npm run dev
 ```
 
-This will start the local Hugo server on port 1313. Open up your browser to http://localhost:1313 to view the site. As you make changes to the source files, Hugo updates the site and forces a browser refresh.
+This will start the local Astro server on port 4321. Open up your browser to http://localhost:4321 to view the site. As you make changes to the source files, Astro updates the site and forces a browser refresh.
+
+## 🚀 Project Structure
+
+Inside of your Astro + Starlight project, you'll see the following folders and files:
+
+```
+.
+├── public/
+├── src/
+│   ├── assets/
+│   ├── content/
+│   │   ├── docs/
+│   └── content.config.ts
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
+```
+
+Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+
+Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+
+Static assets, like favicons, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
 ## Thanks
 
