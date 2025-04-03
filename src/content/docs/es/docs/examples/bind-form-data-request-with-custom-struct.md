@@ -66,7 +66,7 @@ func main() {
 
 Empleando el comando `curl` las respuestas serían:
 
-```
+```bash
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
 {"a":{"FieldA":"hello"},"b":"world"}
 $ curl "http://localhost:8080/getc?field_a=hello&field_c=world"

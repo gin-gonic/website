@@ -66,7 +66,7 @@ func main() {
 
 `curl` 명령어를 이용한 결과 입니다:
 
-```
+```bash
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
 {"a":{"FieldA":"hello"},"b":"world"}
 $ curl "http://localhost:8080/getc?field_a=hello&field_c=world"
