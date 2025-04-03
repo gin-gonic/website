@@ -1,6 +1,5 @@
 ---
 title: "문서"
-linkTitle: "문서"
 weight: 20
 menu:
   main:

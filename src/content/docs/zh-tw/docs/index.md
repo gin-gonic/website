@@ -1,6 +1,5 @@
 ---
 title: "文件"
-linkTitle: "文件"
 weight: 20
 menu:
   main:

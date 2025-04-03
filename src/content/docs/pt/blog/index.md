@@ -1,6 +1,5 @@
 ---
 title: "Blogue"
-linkTitle: "Blogue"
 menu:
   main:
     weight: 30

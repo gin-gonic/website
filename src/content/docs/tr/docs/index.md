@@ -1,6 +1,5 @@
 ---
 title: "Dokümantasyon"
-linkTitle: "Dokümantasyon"
 weight: 20
 menu:
   main:

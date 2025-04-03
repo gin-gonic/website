@@ -1,6 +1,5 @@
 ---
 title: "ブログ"
-linkTitle: "ブログ"
 menu:
   main:
     weight: 30

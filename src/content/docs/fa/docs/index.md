@@ -1,6 +1,5 @@
 ---
 title: "اسناد"
-linkTitle: "اسناد/"
 weight: 20
 menu:
   main:
