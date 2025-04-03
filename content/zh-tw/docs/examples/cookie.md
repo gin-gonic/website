@@ -1,9 +1,9 @@
 ---
-title: "Установка и получение cookie"
-черновик: false
+title: "Cookie"
+draft: false
 ---
 
-cookieの設定と取得
+Set and get cookie.
 
 ```go
 import (

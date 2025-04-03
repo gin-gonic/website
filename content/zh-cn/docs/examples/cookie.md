@@ -1,9 +1,9 @@
 ---
-title: "Установка и получение cookie"
-черновик: false
+title: "Cookie"
+draft: false
 ---
 
-cookieの設定と取得
+设置和获取 Cookie
 
 ```go
 import (
@@ -32,7 +32,7 @@ func main() {
 }
 ```
 
-Delete cookie by set max age to -1.
+删除cookie: 通过设置max age的值为-1.
 
 ```go
 c.SetCookie("gin_cookie", "test", -1, "/", "localhost", false, true)

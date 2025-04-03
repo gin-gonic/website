@@ -12,7 +12,7 @@ func main() {
 	router.POST("/upload", func(c *gin.Context) {
 		// Multipart form
 		form, _ := c.MultipartForm()
-		files := form.File["upload[]"]
+		files := form.File["files"]
 
 		for _, file := range files {
 			log.Println(file.Filename)
@@ -30,7 +30,7 @@ How to `curl`:
 
 ```sh
 curl -X POST http://localhost:8080/upload \
-  -F "upload[]=@/Users/appleboy/test1.zip" \
-  -F "upload[]=@/Users/appleboy/test2.zip" \
+  -F "files=@/Users/appleboy/test1.zip" \
+  -F "files=@/Users/appleboy/test2.zip" \
   -H "Content-Type: multipart/form-data"
 ```

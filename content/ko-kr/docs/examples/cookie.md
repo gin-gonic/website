@@ -1,9 +1,9 @@
 ---
-title: "Установка и получение cookie"
-черновик: false
+title: "Cookie"
+draft: false
 ---
 
-cookieの設定と取得
+쿠키의 설정 및 가져오기
 
 ```go
 import (
