@@ -1,7 +1,7 @@
 ---
 title: "How to build one effective middleware?"
 linkTitle: "How to build one effective middleware?"
-date: 2019-02-26
+lastUpdated: 2019-02-26
 ---
 
 ## Constituent parts

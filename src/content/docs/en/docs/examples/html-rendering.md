@@ -146,10 +146,10 @@ func main() {
 raw.tmpl
 
 ```sh
-Date: {[{.now | formatAsDate}]}
+lastUpdated: {[{.now | formatAsDate}]}
 ```
 
 Result:
 ```sh
-Date: 2017/07/01
+lastUpdated: 2017/07/01
 ```

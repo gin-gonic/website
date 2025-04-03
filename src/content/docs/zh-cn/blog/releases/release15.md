@@ -1,7 +1,7 @@
 ---
 title: "Gin 1.5.0 is released"
 linkTitle: "Gin 1.5.0 is released"
-date: 2019-11-28
+lastUpdated: 2019-11-28
 ---
 
 ### CHANGELOG

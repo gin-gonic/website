@@ -107,7 +107,7 @@ $ curl -v -X POST \
 * upload completely sent off: 18 out of 18 bytes
 < HTTP/1.1 400 Bad Request
 < Content-Type: application/json; charset=utf-8
-< Date: Fri, 04 Aug 2017 03:51:31 GMT
+< lastUpdated: Fri, 04 Aug 2017 03:51:31 GMT
 < Content-Length: 100
 <
 {"error":"Key: 'Login.Password' Error:Field validation for 'Password' failed on the 'required' tag"}

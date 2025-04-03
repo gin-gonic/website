@@ -1,7 +1,7 @@
 ---
 title: "Como construir um intermediário efetivo?"
 linkTitle: "Como construir um intermediário efetivo?"
-date: 2019-02-26
+lastUpdated: 2019-02-26
 ---
 
 ## Partes constituintes

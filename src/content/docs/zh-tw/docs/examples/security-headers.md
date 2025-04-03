@@ -61,7 +61,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 X-Content-Type-Options: nosniff
 X-Frame-Options: DENY
 X-Xss-Protection: 1; mode=block
-Date: Sat, 30 Mar 2024 08:20:44 GMT
+lastUpdated: Sat, 30 Mar 2024 08:20:44 GMT
 Content-Length: 18
 
 // 检查主机标头注入
@@ -70,6 +70,6 @@ curl localhost:8080/ping -I -H "Host:neti.ee"
 
 HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
-Date: Sat, 30 Mar 2024 08:21:09 GMT
+lastUpdated: Sat, 30 Mar 2024 08:21:09 GMT
 Content-Length: 31
 ```

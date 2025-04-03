@@ -1,7 +1,7 @@
 ---
 title: "Gin 1.8.0 is released"
 linkTitle: "Gin 1.8.0 is released"
-date: 2022-05-30
+lastUpdated: 2022-05-30
 ---
 
 ### CHANGELOG
