@@ -32,3 +32,7 @@ pnpm-debug.log*
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+
+migrate.sh
+old-docs/
