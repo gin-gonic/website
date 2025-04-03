@@ -9,7 +9,7 @@ Content-Type: application/x-www-form-urlencoded
 names[first]=thinkerou&names[second]=tianou
 ```
 
-```curl
+```sh
 curl 'http://localhost:8080/post?ids\[a\]=1234&ids\[b\]=hello' \
 --data-raw 'names[first]=pure&names[seconds]=maslak' \
 --compressed
