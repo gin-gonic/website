@@ -1,6 +1,6 @@
 ---
 title: "Representación de HTML"
-draft: false
+
 ---
 
 Using LoadHTMLGlob() or LoadHTMLFiles()

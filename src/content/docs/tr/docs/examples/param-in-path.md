@@ -1,6 +1,6 @@
 ---
 title: "Parameters in path"
-draft: false
+
 ---
 
 ```go

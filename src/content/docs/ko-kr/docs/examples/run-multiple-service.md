@@ -1,6 +1,6 @@
 ---
 title: "여러 개의 서비스를 실행하기"
-draft: false
+
 ---
 
 이 [질문](https://github.com/gin-gonic/gin/issues/346)을 보고, 다음 예제를 실행해 보세요:

@@ -1,6 +1,6 @@
 ---
 title: "Multipart/Urlencoded 바인딩"
-draft: false
+
 ---
 
 ```go

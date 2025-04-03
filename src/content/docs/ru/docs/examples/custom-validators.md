@@ -1,6 +1,6 @@
 ---
 title: "Пользовательские валидаторы"
-draft: false
+
 ---
 
 Также можно зарегистрировать пользовательские валидаторы. Смотрите [пример кода](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).

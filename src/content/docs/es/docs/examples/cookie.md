@@ -1,6 +1,6 @@
 ---
 title: "Cookie"
-draft: false
+
 ---
 
 Crear y obtener una cookie

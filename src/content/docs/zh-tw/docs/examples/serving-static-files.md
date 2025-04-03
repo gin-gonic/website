@@ -1,6 +1,6 @@
 ---
 title: "Serving static files"
-draft: false
+
 ---
 
 ```go

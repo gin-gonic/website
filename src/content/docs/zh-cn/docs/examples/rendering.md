@@ -1,6 +1,6 @@
 ---
 title: "XML/JSON/YAML/ProtoBuf 渲染"
-draft: false
+
 ---
 
 ```go

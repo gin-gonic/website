@@ -1,6 +1,6 @@
 ---
 title: "Interpretação do HTML"
-draft: false
+
 ---
 
 Usando `LoadHTMLGlob()` ou `LoadHTMLFiles()`:

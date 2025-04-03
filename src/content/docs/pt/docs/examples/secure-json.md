@@ -1,6 +1,6 @@
 ---
 title: "SecureJSON"
-draft: false
+
 ---
 
 Usando SecureJSON para impedir o sequestro do JSON. Por padrão adiciona `"while(1)"` no início do corpo da resposta se a dada estrutura for valores de arranjo:

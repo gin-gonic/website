@@ -1,6 +1,6 @@
 ---
 title: "Bind form-data request with custom struct"
-draft: false
+
 ---
 
 The follow example using custom struct:

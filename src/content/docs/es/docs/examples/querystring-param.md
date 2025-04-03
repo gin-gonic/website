@@ -1,6 +1,6 @@
 ---
 title: "Parámetros GET en URL"
-draft: false
+
 ---
 
 ```go

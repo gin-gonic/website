@@ -1,6 +1,6 @@
 ---
 title: "HTML rendering"
-draft: false
+
 ---
 
 Gin uses the [html/template](https://pkg.go.dev/html/template) package for HTML rendering.

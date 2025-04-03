@@ -1,6 +1,6 @@
 ---
 title: "Usar o Intermediário de BasicAuth"
-draft: false
+
 ---
 
 ```go

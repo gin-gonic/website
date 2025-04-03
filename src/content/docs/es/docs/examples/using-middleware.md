@@ -1,6 +1,6 @@
 ---
 title: "Usando middleware"
-draft: false
+
 ---
 
 ```go

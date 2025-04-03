@@ -1,6 +1,6 @@
 ---
 title: "Subir un archivo individual"
-draft: false
+
 ---
 
 Issue de referencia [#774](https://github.com/gin-gonic/gin/issues/774) y código [detallado de ejemplo](https://github.com/gin-gonic/examples/tree/master/upload-file/single).

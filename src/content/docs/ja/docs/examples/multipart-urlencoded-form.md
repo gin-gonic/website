@@ -1,6 +1,6 @@
 ---
 title: "Multipart/Urlencoded フォーム"
-draft: false
+
 ---
 
 ```go

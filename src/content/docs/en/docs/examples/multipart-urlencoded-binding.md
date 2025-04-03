@@ -1,6 +1,6 @@
 ---
 title: "Multipart/Urlencoded binding"
-draft: false
+
 ---
 
 ```go

@@ -1,6 +1,6 @@
 ---
 title: "Query and post form"
-draft: false
+
 ---
 
 ```sh

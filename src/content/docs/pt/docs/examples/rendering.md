@@ -1,6 +1,6 @@
 ---
 title: "Interpretação de XML/JSON/YAML/ProtoBuf"
-draft: false
+
 ---
 
 ```go

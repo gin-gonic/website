@@ -1,6 +1,6 @@
 ---
 title: "Custom validators"
-draft: false
+
 ---
 
 It is also possible to register custom validators. See the [example code](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).

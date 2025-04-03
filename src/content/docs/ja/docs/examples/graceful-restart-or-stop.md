@@ -1,6 +1,6 @@
 ---
 title: "graceful restart と stop"
-draft: false
+
 ---
 
 graceful restart と stop をしたいですか？

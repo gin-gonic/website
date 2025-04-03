@@ -1,6 +1,6 @@
 ---
 title: "Vincular a sequência de caracteres de consulta ou publicar dados"
-draft: false
+
 ---
 
 Consulte a [informação detalhada](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292):

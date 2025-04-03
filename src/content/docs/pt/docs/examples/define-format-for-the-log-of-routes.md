@@ -1,6 +1,6 @@
 ---
 title: "Definir o Formato para o Registo de Rotas"
-draft: false
+
 ---
 
 O registo padrão de rotas é:

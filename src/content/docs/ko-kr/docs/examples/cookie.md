@@ -1,6 +1,6 @@
 ---
 title: "Cookie"
-draft: false
+
 ---
 
 쿠키의 설정 및 가져오기

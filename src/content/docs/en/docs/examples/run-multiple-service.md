@@ -1,6 +1,6 @@
 ---
 title: "Run multiple service"
-draft: false
+
 ---
 
 See the [question](https://github.com/gin-gonic/gin/issues/346) and try the following example:

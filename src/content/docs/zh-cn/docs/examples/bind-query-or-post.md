@@ -1,6 +1,6 @@
 ---
 title: "绑定查询字符串或表单数据"
-draft: false
+
 ---
 
 查看[详细信息](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292)。

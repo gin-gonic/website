@@ -1,6 +1,6 @@
 ---
 title: "Como Escrever Ficheiro de Registo"
-draft: false
+
 ---
 
 ```go

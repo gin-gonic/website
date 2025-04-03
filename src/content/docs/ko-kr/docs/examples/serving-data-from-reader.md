@@ -1,6 +1,6 @@
 ---
 title: "Reader로 데이터 반환"
-draft: false
+
 ---
 
 ```go

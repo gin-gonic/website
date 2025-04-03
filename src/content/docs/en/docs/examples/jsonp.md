@@ -1,6 +1,6 @@
 ---
 title: "JSONP"
-draft: false
+
 ---
 
 Using JSONP to request data from a server  in a different domain. Add callback to response body if the query parameter callback exists.

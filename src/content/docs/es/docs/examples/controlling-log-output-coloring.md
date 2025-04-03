@@ -1,6 +1,6 @@
 ---
 title: "Controlar el color del texto del Log en cónsola"
-draft: false
+
 ---
 
 Por defecto la la salida en cónsola puede tener color, dependiendo del TTY detectado.

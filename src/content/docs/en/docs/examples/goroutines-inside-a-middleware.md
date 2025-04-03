@@ -1,6 +1,6 @@
 ---
 title: "Goroutines inside a middleware"
-draft: false
+
 ---
 
 When starting new Goroutines inside a middleware or handler, you **SHOULD NOT** use the original context inside it, you have to use a read-only copy.

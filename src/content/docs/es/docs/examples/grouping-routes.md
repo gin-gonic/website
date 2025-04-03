@@ -1,6 +1,6 @@
 ---
 title: "Grouping routes"
-draft: false
+
 ---
 
 ```go

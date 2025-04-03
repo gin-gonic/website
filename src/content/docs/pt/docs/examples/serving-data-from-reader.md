@@ -1,6 +1,6 @@
 ---
 title: "Servir os Dados a partir do Leitor"
-draft: false
+
 ---
 
 ```go

@@ -1,6 +1,6 @@
 ---
 title: "绑定 Uri"
-draft: false
+
 ---
 
 查看[详细信息](https://github.com/gin-gonic/gin/issues/846).

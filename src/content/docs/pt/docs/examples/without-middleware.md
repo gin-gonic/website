@@ -1,6 +1,6 @@
 ---
 title: "Sem Intermediário por Padrão"
-draft: false
+
 ---
 
 Use:

@@ -1,6 +1,6 @@
 ---
 title: "HTML rendering"
-draft: false
+
 ---
 
 Using LoadHTMLGlob() or LoadHTMLFiles()

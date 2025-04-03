@@ -1,6 +1,6 @@
 ---
 title: "경로를 포함한 파라미터"
-draft: false
+
 ---
 
 ```go

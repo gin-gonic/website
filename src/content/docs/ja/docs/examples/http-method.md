@@ -1,6 +1,6 @@
 ---
 title: "GET,POST,PUT,PATCH,DELETE,OPTIONS メソッドを使う"
-draft: false
+
 ---
 
 ```go

@@ -1,6 +1,6 @@
 ---
 title: "Tentar vincular o corpo à diferentes estruturas"
-draft: false
+
 ---
 
 Os métodos normais para vincular o corpo da requisição consumem a `c.Request.Body` e não podem ser chamados várias vezes:

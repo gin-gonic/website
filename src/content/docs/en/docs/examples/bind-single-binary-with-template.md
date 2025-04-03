@@ -1,6 +1,6 @@
 ---
 title: "Build a single binary with templates"
-draft: false
+
 ---
 ## Use the third-party package
 

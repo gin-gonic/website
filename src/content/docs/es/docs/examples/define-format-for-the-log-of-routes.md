@@ -1,6 +1,6 @@
 ---
 title: "Definir el formato para el log de rutas"
-draft: false
+
 ---
 
 El log de rutas por defecto es:

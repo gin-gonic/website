@@ -1,6 +1,6 @@
 ---
 title: "라우트 그룹화"
-draft: false
+
 ---
 
 ```go

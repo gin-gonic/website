@@ -1,6 +1,6 @@
 ---
 title: "정적 파일 반환"
-draft: false
+
 ---
 
 ```go

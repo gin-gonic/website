@@ -1,6 +1,6 @@
 ---
 title: "Vários Ficheiros"
-draft: false
+
 ---
 
 Consulte o [código de exemplo](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple) detalhado.

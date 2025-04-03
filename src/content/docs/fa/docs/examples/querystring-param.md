@@ -1,6 +1,6 @@
 ---
 title: "Query string parameters"
-draft: false
+
 ---
 
 ```go

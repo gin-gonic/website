@@ -1,6 +1,6 @@
 ---
 title: "Build a single binary with templates"
-draft: false
+
 ---
 
 You can build a server into a single binary containing templates by using [go-assets][].

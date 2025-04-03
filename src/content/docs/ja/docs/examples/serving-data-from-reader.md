@@ -1,6 +1,6 @@
 ---
 title: "io.Reader からのデータを返す"
-draft: false
+
 ---
 
 ```go

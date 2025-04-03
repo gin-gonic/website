@@ -1,6 +1,6 @@
 ---
 title: "Formulario Multipart/Urlencoded"
-draft: false
+
 ---
 
 ```go

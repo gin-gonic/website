@@ -1,6 +1,6 @@
 ---
 title: "Uso del middleware BasicAuth"
-draft: false
+
 ---
 
 ```go

@@ -1,6 +1,6 @@
 ---
 title: "XML/JSON/YAML/ProtoBuf 랜더링"
-draft: false
+
 ---
 
 ```go

@@ -1,6 +1,6 @@
 ---
 title: "Связка Multipart/Urlencoded"
-draft: false
+
 ---
 
 ```go

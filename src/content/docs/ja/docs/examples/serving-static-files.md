@@ -1,6 +1,6 @@
 ---
 title: "静的ファイルを返す"
-draft: false
+
 ---
 
 ```go

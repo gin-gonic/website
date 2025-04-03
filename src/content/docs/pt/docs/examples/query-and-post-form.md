@@ -1,6 +1,6 @@
 ---
 title: "Consulta e Formulário de Publicação"
-draft: false
+
 ---
 
 ```sh

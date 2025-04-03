@@ -1,6 +1,6 @@
 ---
 title: "Usar Intermediário"
-draft: false
+
 ---
 
 ```go

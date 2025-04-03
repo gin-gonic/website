@@ -1,6 +1,6 @@
 ---
 title: "Personalizar formato de Logs"
-draft: false
+
 ---
 
 For example:

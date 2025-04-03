@@ -1,6 +1,6 @@
 ---
 title: "Using BasicAuth middleware"
-draft: false
+
 ---
 
 ```go

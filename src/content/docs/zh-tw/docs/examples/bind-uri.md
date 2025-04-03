@@ -1,6 +1,6 @@
 ---
 title: "Bind Uri"
-draft: false
+
 ---
 
 查看[詳細訊息](https://github.com/gin-gonic/gin/issues/846).

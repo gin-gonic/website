@@ -1,6 +1,6 @@
 ---
 title: "Mapa como Sequência de Caracteres de Consulta ou Parâmetros de Formulário de Publicação"
-draft: false
+
 ---
 
 ```sh

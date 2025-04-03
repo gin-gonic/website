@@ -1,6 +1,6 @@
 ---
 title: "Intermediário Personalizado"
-draft: false
+
 ---
 
 ```go

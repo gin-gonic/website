@@ -1,6 +1,6 @@
 ---
 title: "Uso de SecureJSON"
-draft: false
+
 ---
 Usando SecureJSON para evitar el secuestro de JSON. Por defecto se antepone `"while(1),"` al cuerpo de respuesta si la estructura dada son valores de array.
 

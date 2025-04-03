@@ -1,6 +1,6 @@
 ---
 title: "Multipart/Urlencoded 绑定"
-draft: false
+
 ---
 
 ```go

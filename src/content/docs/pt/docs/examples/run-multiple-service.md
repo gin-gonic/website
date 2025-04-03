@@ -1,6 +1,6 @@
 ---
 title: "Executar Vários Serviços"
-draft: false
+
 ---
 
 Consulte a [questão](https://github.com/gin-gonic/gin/issues/346) e tente seguinte exemplo:

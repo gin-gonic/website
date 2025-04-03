@@ -1,6 +1,6 @@
 ---
 title: "Vincular a URI"
-draft: false
+
 ---
 
 Consulte a [informação detalhada](https://github.com/gin-gonic/gin/issues/846):

@@ -1,6 +1,6 @@
 ---
 title: "JSONP"
-draft: false
+
 ---
 
 Usando JSONP para pedir dados dum servidor num domínio diferente. Adicione a função de resposta ao corpo da resposta se a função de resposta do parâmetro da consulta existir:

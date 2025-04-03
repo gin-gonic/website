@@ -1,6 +1,6 @@
 ---
 title: "如何记录日志"
-draft: false
+
 ---
 
 ```go

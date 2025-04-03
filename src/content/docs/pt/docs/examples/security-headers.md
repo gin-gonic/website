@@ -1,6 +1,6 @@
 ---
 title: "Cabeçalhos de segurança"
-draft: false
+
 ---
 
 É importante utilizar cabeçalhos de segurança para proteger a sua aplicação Web de vulnerabilidades de segurança comuns. Este exemplo mostra-lhe como adicionar cabeçalhos de segurança à sua aplicação Gin e também como evitar ataques relacionados com a injeção de cabeçalhos de anfitrião (SSRF, Open Redirection).

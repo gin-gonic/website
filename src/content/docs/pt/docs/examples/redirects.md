@@ -1,6 +1,6 @@
 ---
 title: "Redirecionamentos"
-draft: false
+
 ---
 
 Emitir um redirecionamento de HTTP é fácil. Ambas localizações internas e externas são suportadas:

@@ -1,6 +1,6 @@
 ---
 title: "Serving data from reader"
-draft: false
+
 ---
 
 ```go

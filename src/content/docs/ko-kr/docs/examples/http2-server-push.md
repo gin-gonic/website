@@ -1,6 +1,6 @@
 ---
 title: "HTTP2 서버 푸시"
-draft: false
+
 ---
 
 http.Pusher는 **go1.8 이상**에서만 지원됩니다. 자세한 정보는 [Go언어 블로그](https://blog.golang.org/h2push)에서 확인하세요.

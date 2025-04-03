@@ -1,6 +1,6 @@
 ---
 title: "Bind query string or post data"
-draft: false
+
 ---
 
 See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292).

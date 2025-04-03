@@ -1,6 +1,6 @@
 ---
 title: "Without middleware by default"
-draft: false
+
 ---
 
 Use

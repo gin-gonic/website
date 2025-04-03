@@ -1,6 +1,6 @@
 ---
 title: "Parámetros en rutas"
-draft: false
+
 ---
 
 ```go

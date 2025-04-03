@@ -1,6 +1,6 @@
 ---
 title: "Define format for the log of routes"
-draft: false
+
 ---
 
 The default log of routes is:

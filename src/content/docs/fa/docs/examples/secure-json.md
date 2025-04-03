@@ -1,6 +1,6 @@
 ---
 title: "SecureJSON"
-draft: false
+
 ---
 
 Using SecureJSON to prevent json hijacking. Default prepends `"while(1),"` to response body if the given struct is array values.

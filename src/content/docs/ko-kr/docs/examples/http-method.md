@@ -1,6 +1,6 @@
 ---
 title: "HTTP 메소드 사용"
-draft: false
+
 ---
 
 ```go

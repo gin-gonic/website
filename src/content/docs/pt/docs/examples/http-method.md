@@ -1,6 +1,6 @@
 ---
 title: "Usando o Método de HTTP"
-draft: false
+
 ---
 
 ```go

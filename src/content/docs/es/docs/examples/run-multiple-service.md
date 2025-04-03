@@ -1,6 +1,6 @@
 ---
 title: "Ejecutar múltiples servicios a la vez"
-draft: false
+
 ---
 
 Véase la [pregunta](https://github.com/gin-gonic/gin/issues/346) e intente el siguiente ejemplo:

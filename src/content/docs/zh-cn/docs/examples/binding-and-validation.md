@@ -1,6 +1,6 @@
 ---
 title: "模型绑定和验证"
-draft: false
+
 ---
 
 要将请求体绑定到结构体中，使用模型绑定。 Gin目前支持JSON、XML、YAML和标准表单值的绑定（foo=bar＆boo=baz）。

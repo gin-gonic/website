@@ -1,6 +1,6 @@
 ---
 title: "Gin を使って複数のサービスを稼働させる"
-draft: false
+
 ---
 
 [issue](https://github.com/gin-gonic/gin/issues/346) を見て、以下のサンプルコードを試してみてください。

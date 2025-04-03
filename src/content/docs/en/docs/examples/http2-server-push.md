@@ -1,6 +1,6 @@
 ---
 title: "HTTP2 server push"
-draft: false
+
 ---
 
 http.Pusher is supported only **go1.8+**. See the [golang blog](https://blog.golang.org/h2push) for detail information.

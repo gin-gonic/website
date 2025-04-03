@@ -1,6 +1,6 @@
 ---
 title: "Encabezados de seguridad"
-draft: false
+
 ---
 Es importante utilizar cabeceras de seguridad para proteger su aplicación web de vulnerabilidades de seguridad comunes. Este ejemplo le muestra cómo añadir cabeceras de seguridad a su aplicación Gin y también cómo evitar ataques relacionados con Host Header Injection (SSRF, Open Redirection).
 

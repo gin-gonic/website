@@ -1,6 +1,6 @@
 ---
 title: "Single file"
-draft: false
+
 ---
 Ссылки на проблему [#774](https://github.com/gin-gonic/gin/issues/774) и деталь [пример кода](https://github.com/gin-gonic/examples/tree/master/upload-file/single).
 

@@ -1,6 +1,6 @@
 ---
 title: "Uso de un método específico de HTTP"
-draft: false
+
 ---
 
 ```go

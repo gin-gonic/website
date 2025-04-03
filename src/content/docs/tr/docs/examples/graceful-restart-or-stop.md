@@ -1,6 +1,6 @@
 ---
 title: "Graceful restart or stop"
-draft: false
+
 ---
 
 Do you want to graceful restart or stop your web server?

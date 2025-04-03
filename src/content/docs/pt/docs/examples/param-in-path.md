@@ -1,6 +1,6 @@
 ---
 title: "Parâmetros no Caminho"
-draft: false
+
 ---
 
 ```go

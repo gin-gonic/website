@@ -1,6 +1,6 @@
 ---
 title: "XML, JSON, YAML, ProtoBuf をレンダリングする"
-draft: false
+
 ---
 
 ```go

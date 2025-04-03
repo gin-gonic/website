@@ -1,6 +1,6 @@
 ---
 title: "Связывание Uri"
-draft: false
+
 ---
 
 Смотрите [подробную информацию](https://github.com/gin-gonic/gin/issues/846).

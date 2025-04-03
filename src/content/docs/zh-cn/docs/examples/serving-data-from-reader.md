@@ -1,6 +1,6 @@
 ---
 title: "从 reader 读取数据"
-draft: false
+
 ---
 
 ```go

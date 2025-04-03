@@ -1,6 +1,6 @@
 ---
 title: "Multiple files"
-draft: false
+
 ---
 
 See the detail [example code](examples/upload-file/multiple).

@@ -1,6 +1,6 @@
 ---
 title: "쿼리 문자열만 바인딩하기"
-draft: false
+
 ---
 
 `ShouldBindQuery` 함수는 POST 데이터가 아닌 쿼리 파라미터만 바인딩 합니다. [자세한 정보](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017)를 확인 하세요.

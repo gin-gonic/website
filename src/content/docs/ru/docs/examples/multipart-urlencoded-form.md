@@ -1,6 +1,6 @@
 ---
 title: "Форма Multipart/Urlencoded"
-draft: false
+
 ---
 
 ```go

@@ -1,6 +1,6 @@
 ---
 title: "カスタム HTTP 設定"
-draft: false
+
 ---
 
 以下のように `http.ListenAndServe()` を直接使ってください。

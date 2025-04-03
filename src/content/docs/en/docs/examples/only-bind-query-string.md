@@ -1,6 +1,6 @@
 ---
 title: "Only bind query string"
-draft: false
+
 ---
 
 `ShouldBindQuery` function only binds the query params and not the post data. See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017).

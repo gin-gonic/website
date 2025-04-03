@@ -1,6 +1,6 @@
 ---
 title: "Cookie"
-draft: false
+
 ---
 
 Set and get cookie.

@@ -1,6 +1,6 @@
 ---
 title: "HTML 랜더링"
-draft: false
+
 ---
 
 LoadHTMLGlob() 혹은 LoadHTMLFiles()를 사용합니다.

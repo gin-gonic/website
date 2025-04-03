@@ -1,6 +1,6 @@
 ---
 title: "Vincular una petición form-data con un struct personalizado"
-draft: false
+
 ---
 
 El siguiente es el ejemplo para un struct personalizado:

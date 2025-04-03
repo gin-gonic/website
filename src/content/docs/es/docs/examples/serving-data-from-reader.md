@@ -1,6 +1,6 @@
 ---
 title: "Retornando data a partir de un reader"
-draft: false
+
 ---
 
 ```go

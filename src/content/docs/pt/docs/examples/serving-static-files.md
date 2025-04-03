@@ -1,6 +1,6 @@
 ---
 title: "Servir os Ficheiros Estáticos"
-draft: false
+
 ---
 
 ```go

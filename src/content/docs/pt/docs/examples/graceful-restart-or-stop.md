@@ -1,6 +1,6 @@
 ---
 title: "Reinicialização ou Interrupção Graciosa"
-draft: false
+
 ---
 
 Queres reiniciar ou parar graciosamente o teu servidor de web?

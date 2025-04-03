@@ -1,6 +1,6 @@
 ---
 title: "Redirects"
-draft: false
+
 ---
 
 Issuing a HTTP redirect is easy. Both internal and external locations are supported.

@@ -1,6 +1,6 @@
 ---
 title: "HTML-рендеринг"
-draft: false
+
 ---
 
 Использование LoadHTMLGlob() или LoadHTMLFiles()

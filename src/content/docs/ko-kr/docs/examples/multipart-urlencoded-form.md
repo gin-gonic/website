@@ -1,6 +1,6 @@
 ---
 title: "Multipart/Urlencoded 양식"
-draft: false
+
 ---
 
 ```go

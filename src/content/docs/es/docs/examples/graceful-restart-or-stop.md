@@ -1,6 +1,6 @@
 ---
 title: "Apagado o reinicio controlado del servidor web"
-draft: false
+
 ---
 
 Estas son algunas formas de reiniciar o detener el servidor web controladamente.

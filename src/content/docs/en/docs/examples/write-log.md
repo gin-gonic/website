@@ -1,6 +1,6 @@
 ---
 title: "How to write log file"
-draft: false
+
 ---
 
 ```go

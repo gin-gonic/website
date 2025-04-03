@@ -1,6 +1,6 @@
 ---
 title: "Vincular a requisição de dados de formulário com a estrutura personalizada"
-draft: false
+
 ---
 
 O seguinte exemplo usando estrutura personalizada:

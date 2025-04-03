@@ -1,6 +1,6 @@
 ---
 title: "POST 양식 쿼리"
-draft: false
+
 ---
 
 ```sh

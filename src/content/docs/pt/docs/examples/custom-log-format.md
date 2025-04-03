@@ -1,6 +1,6 @@
 ---
 title: "Ficheiro de Registo Personalizado"
-draft: false
+
 ---
 
 Por exemplo:

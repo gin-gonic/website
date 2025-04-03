@@ -1,6 +1,6 @@
 ---
 title: "Multipart/Urlencoded されたデータをバインドする"
-draft: false
+
 ---
 
 ```go

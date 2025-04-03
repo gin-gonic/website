@@ -1,6 +1,6 @@
 ---
 title: "Sirviendo archivos estáticos"
-draft: false
+
 ---
 
 ```go

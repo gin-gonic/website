@@ -1,6 +1,6 @@
 ---
 title: "기본인증(BasicAuth) 미들웨어 사용하기"
-draft: false
+
 ---
 
 ```go

@@ -1,6 +1,6 @@
 ---
 title: "Custom log file"
-draft: false
+
 ---
 
 For example:

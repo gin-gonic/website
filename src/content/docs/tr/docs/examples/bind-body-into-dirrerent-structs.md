@@ -1,6 +1,6 @@
 ---
 title: "Try to bind body into different structs"
-draft: false
+
 ---
 
 The normal methods for binding request body consumes `c.Request.Body` and they

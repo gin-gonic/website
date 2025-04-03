@@ -1,6 +1,6 @@
 ---
 title: "커스텀 유효성 검사"
-draft: false
+
 ---
 
 커스텀 유효성 검사를 사용 할 수도있습니다. [예제 코드](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations)를 확인하세요.

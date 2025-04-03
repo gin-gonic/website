@@ -1,6 +1,6 @@
 ---
 title: "Vinculação de Modelo e Validação"
-draft: false
+
 ---
 
 Para vincular uma corpo de requisição à um tipo, use a vinculação de modelo. Nós atualmente suportamos a vinculação de JSON, XML, YAML e valores de formulário padrão (foo=bar&boo=baz).

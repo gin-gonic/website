@@ -1,6 +1,6 @@
 ---
 title: "SecureJSON"
-draft: false
+
 ---
 
 json 하이재킹을 방지하기 위해 SecureJSON를 사용합니다.

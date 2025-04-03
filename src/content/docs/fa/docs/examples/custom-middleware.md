@@ -1,6 +1,6 @@
 ---
 title: "Custom Middleware"
-draft: false
+
 ---
 
 ```go

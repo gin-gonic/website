@@ -1,6 +1,6 @@
 ---
 title: "複数のテンプレート"
-draft: false
+
 ---
 
 Gin はデフォルトでは、1つの html.Template しか使用できません。

@@ -1,6 +1,6 @@
 ---
 title: "ミドルウェア内の Goroutine"
-draft: false
+
 ---
 
 新しい goroutine をミドルウェアやハンドラー内で生成する場合、goroutine の内部でオリジナルの context を **使用しないでください**。読み込み用のコピーを使ってください。

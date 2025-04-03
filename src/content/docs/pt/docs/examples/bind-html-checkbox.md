@@ -1,6 +1,6 @@
 ---
 title: "Vincular caixas de confirmações de HTML"
-draft: false
+
 ---
 
 Consulte a [informação detalhada](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092):

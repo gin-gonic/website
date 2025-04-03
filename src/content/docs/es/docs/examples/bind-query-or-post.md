@@ -1,6 +1,6 @@
 ---
 title: "Vincular parámetros get o data Post"
-draft: false
+
 ---
 
 Revise la [información detallada](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292).

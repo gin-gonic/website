@@ -1,6 +1,6 @@
 ---
 title: "テンプレートを含めた1つのバイナリをビルドする"
-draft: false
+
 ---
 
 [go-assets](https://github.com/jessevdk/go-assets) を利用することで、サーバーアプリケーションを、テンプレートを含む1つのバイナリにまとめることができます。

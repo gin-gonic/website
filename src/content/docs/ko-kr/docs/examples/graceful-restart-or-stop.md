@@ -1,6 +1,6 @@
 ---
 title: "Graceful 재시작과 정지"
-draft: false
+
 ---
 
 웹 서버를 graceful 재시작 혹은 정지를 하고 싶습니까?

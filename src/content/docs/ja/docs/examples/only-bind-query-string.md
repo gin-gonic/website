@@ -1,6 +1,6 @@
 ---
 title: "クエリ文字列のみバインドする"
-draft: false
+
 ---
 
 `ShouldBindQuery` 関数はクエリ文字列のみをバインドし、POSTデータをバインドしません。[詳細](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017) はこちら。

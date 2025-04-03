@@ -1,6 +1,6 @@
 ---
 title: "Только связывание строки запроса"
-draft: false
+
 ---
 
 Функция `ShouldBindQuery` связывает только параметры запроса, но не данные поста. См. [подробную информацию](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017).

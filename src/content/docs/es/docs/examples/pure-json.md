@@ -1,6 +1,6 @@
 ---
 title: "PureJSON"
-draft: false
+
 ---
 Usualmente, JSON sustituye carácteres especiales HTML con sus entidades unicode. Por ejemplo `<` se convierte a `\u003c`. Si se requiere condificar este tipo de caracteres literalmente, se puede utilizar PureJSON.
 Esta característica no está disponible en Go 1.6 o versiones inferiores.

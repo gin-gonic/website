@@ -1,6 +1,6 @@
 ---
 title: "Vínculo de Várias Partes / URL Codificada"
-draft: false
+
 ---
 
 ```go

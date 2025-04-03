@@ -1,6 +1,6 @@
 ---
 title: "로그 파일을 작성하는 방법"
-draft: false
+
 ---
 
 ```go

@@ -1,6 +1,6 @@
 ---
 title: "쿼리 문자열 파라미터"
-draft: false
+
 ---
 
 ```go
