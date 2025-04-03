@@ -1,50 +1,54 @@
+# Starlight Starter Kit: Basics
 
-# Gin website
+[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
-[![Run Deploy](https://github.com/gin-gonic/website/actions/workflows/node.yml/badge.svg)](https://github.com/gin-gonic/website/actions/workflows/node.yml)
-
-Welcome! This repository houses all the assets required to build the Gin website and documentation. We're pleased that you want to contribute! The website is hosted at https://gin-gonic.com.
-
-We use [Hugo](https://gohugo.io/) to format and generate our website, the [Docsy](https://github.com/google/docsy) theme for styling and site structure. Thanks!.
-
-**Note:** We only support hugo [v0.75.1 version](https://github.com/gohugoio/hugo/releases/tag/v0.75.1).
-
-## Contribution
-
-- Fork the repository
-
-You can click the Fork button in the upper-right area of the screen to create a copy of this repository in your GitHub account. This copy is called as fork.
-
-> You need to use the below command to clone code for docsy theme.
-
-```sh
-git clone --recurse-submodules --depth 1 https://github.com/google/docsy.git themes/docsy
+```
+npm create astro@latest -- --template starlight
 ```
 
-- Create one pull request
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/starlight/tree/main/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/starlight/tree/main/examples/basics)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/withastro/starlight&create_from_path=examples/basics)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwithastro%2Fstarlight%2Ftree%2Fmain%2Fexamples%2Fbasics&project-name=my-starlight-docs&repository-name=my-starlight-docs)
 
-Make any changes you want in your fork, and when you are ready to send those changes to us, go to your fork and create a new pull request to let us know about it.
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-- Merge the pull request
+## 🚀 Project Structure
 
-Once your pull request is created, a Gin reviewer will take responsibility for providing clear, actionable feedback, re-improve and merge.
+Inside of your Astro + Starlight project, you'll see the following folders and files:
 
-## Running
-
-See the [official Hugo documentation](https://gohugo.io/getting-started/installing/) for Hugo installation instructions.
-
-To run the site locally when you have Hugo installed:
-
-```sh
-# If use `hugo` command, you need to use `npm install` command
-$ npm install
-$ hugo
-# Or use `hugo server`, it not need `npm install` command
-$ hugo server
+```
+.
+├── public/
+├── src/
+│   ├── assets/
+│   ├── content/
+│   │   ├── docs/
+│   └── content.config.ts
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
-This will start the local Hugo server on port 1313. Open up your browser to http://localhost:1313 to view the site. As you make changes to the source files, Hugo updates the site and forces a browser refresh.
+Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
 
-## Thanks
+Images can be added to `src/assets/` and embedded in Markdown with a relative link.
 
-Gin thrives on community participation, and we really appreciate your contributions to our site and our documentation!
+Static assets, like favicons, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).

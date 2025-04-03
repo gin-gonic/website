@@ -5,7 +5,6 @@ import starlightUtils from "@lorenzo_lewis/starlight-utils";
 
 // https://astro.build/config
 export default defineConfig({
-
 	integrations: [
 		starlight({
 			plugins: [starlightUtils({
@@ -19,7 +18,7 @@ export default defineConfig({
 			logo: {
 				src: "./src/assets/gin.png",
 			},
-			
+
 			defaultLocale: 'en',
 			locales: {
 				'en': {
@@ -78,15 +77,9 @@ export default defineConfig({
 					autogenerate: { directory: "blog" }
 				},
 			],
-
-			customCss: [
-				'./src/styles/custom.css',
-			],
-
 			expressiveCode: {
 				themes: ['github-dark', 'github-light'],
 			},
-
 			editLink: {
 				baseUrl: 'https://github.com/gin-gonic/website/edit/master/',
 			},
