@@ -1,6 +1,5 @@
 ---
 title: "graceful restart と stop"
-
 ---
 
 graceful restart と stop をしたいですか？

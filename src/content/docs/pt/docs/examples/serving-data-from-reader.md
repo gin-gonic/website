@@ -1,6 +1,5 @@
 ---
 title: "Servir os Dados a partir do Leitor"
-
 ---
 
 ```go

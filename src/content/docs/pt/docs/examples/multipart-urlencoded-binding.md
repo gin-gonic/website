@@ -1,6 +1,5 @@
 ---
 title: "Vínculo de Várias Partes / URL Codificada"
-
 ---
 
 ```go

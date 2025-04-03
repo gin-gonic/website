@@ -1,6 +1,5 @@
 ---
 title: "クエリ文字列あるいはポストされたデータをバインドする"
-
 ---
 
 [詳細](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292) はこちら。

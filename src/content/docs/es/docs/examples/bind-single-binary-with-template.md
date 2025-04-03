@@ -1,6 +1,5 @@
 ---
 title: "Crear un ejecutable individual con templates"
-
 ---
 
 Puede crear un servidor en un solo binario que contenga templates usando [go-assets](https://github.com/jessevdk/go-assets).

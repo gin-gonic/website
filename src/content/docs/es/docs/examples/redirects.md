@@ -1,6 +1,5 @@
 ---
 title: "Redirección"
-
 ---
 
 Emitir una redirección HTTP es sencillo. Son soportadas las rutas internas o externas.

@@ -1,6 +1,5 @@
 ---
 title: "SecureJSON"
-
 ---
 
 SecureJSON メソッドを使うことで、JSON ハイジャックを防げます。与えられた構造体が Array であれば、

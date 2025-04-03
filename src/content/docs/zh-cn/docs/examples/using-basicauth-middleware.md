@@ -1,6 +1,5 @@
 ---
 title: "使用 BasicAuth 中间件"
-
 ---
 
 ```go

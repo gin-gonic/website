@@ -1,6 +1,5 @@
 ---
 title: "Map a partir de una cadena de parámetros GET o parámetros de un formulario POST"
-
 ---
 
 ```sh

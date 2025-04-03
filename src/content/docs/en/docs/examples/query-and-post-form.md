@@ -1,6 +1,5 @@
 ---
 title: "Query and post form"
-
 ---
 
 ```sh

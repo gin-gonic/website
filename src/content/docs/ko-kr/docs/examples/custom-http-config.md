@@ -1,6 +1,5 @@
 ---
 title: "HTTP 구성 사용자 정의"
-
 ---
 
 아래와 같이 직접 `http.ListenAndServe()` 를 사용하세요:

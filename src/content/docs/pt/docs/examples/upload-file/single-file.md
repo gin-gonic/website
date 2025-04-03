@@ -1,6 +1,5 @@
 ---
 title: "Único Ficheiro"
-
 ---
 
 Consulte a questão [#774](https://github.com/gin-gonic/gin/issues/774) e [exemplo de código](https://github.com/gin-gonic/examples/tree/master/upload-file/single) detalhado.

@@ -1,6 +1,5 @@
 ---
 title: "Graceful restart or stop"
-
 ---
 
 Do you want to graceful restart or stop your web server?

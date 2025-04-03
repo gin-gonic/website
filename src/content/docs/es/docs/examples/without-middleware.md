@@ -1,6 +1,5 @@
 ---
 title: "Usar Gin sin los middleware por defecto"
-
 ---
 
 Utilice

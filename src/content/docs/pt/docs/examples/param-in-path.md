@@ -1,6 +1,5 @@
 ---
 title: "Parâmetros no Caminho"
-
 ---
 
 ```go

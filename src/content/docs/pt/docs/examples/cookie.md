@@ -1,6 +1,5 @@
 ---
 title: "Cookie"
-
 ---
 
 Set and get cookie.

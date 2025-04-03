@@ -1,6 +1,5 @@
 ---
 title: "XML/JSON/YAML/ProtoBuf 渲染"
-
 ---
 
 ```go

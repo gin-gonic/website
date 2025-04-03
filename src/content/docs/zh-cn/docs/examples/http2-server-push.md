@@ -1,6 +1,5 @@
 ---
 title: "HTTP2 server 推送"
-
 ---
 
 http.Pusher 仅支持 **go1.8+**。 更多信息，请查阅 [golang blog](https://blog.golang.org/h2push)。

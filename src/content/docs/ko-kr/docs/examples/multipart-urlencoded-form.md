@@ -1,6 +1,5 @@
 ---
 title: "Multipart/Urlencoded 양식"
-
 ---
 
 ```go

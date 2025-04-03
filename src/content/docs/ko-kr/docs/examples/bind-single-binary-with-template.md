@@ -1,6 +1,5 @@
 ---
 title: "템플릿을 포함한 단일 바이너리 빌드"
-
 ---
 
 [go-assets](https://github.com/jessevdk/go-assets)를 사용하여 템플릿을 포함한 단일 바이너리로 서버를 만들 수 있습니다.

@@ -1,6 +1,5 @@
 ---
 title: "Servir os Ficheiros Estáticos"
-
 ---
 
 ```go

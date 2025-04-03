@@ -1,6 +1,5 @@
 ---
 title: "Grouping routes"
-
 ---
 
 ```go

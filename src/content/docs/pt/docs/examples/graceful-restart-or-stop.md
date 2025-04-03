@@ -1,6 +1,5 @@
 ---
 title: "Reinicialização ou Interrupção Graciosa"
-
 ---
 
 Queres reiniciar ou parar graciosamente o teu servidor de web?

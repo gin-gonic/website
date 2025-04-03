@@ -1,6 +1,5 @@
 ---
 title: "Serving data from reader"
-
 ---
 
 ```go

@@ -1,6 +1,5 @@
 ---
 title: "Query string parameters"
-
 ---
 
 ```go

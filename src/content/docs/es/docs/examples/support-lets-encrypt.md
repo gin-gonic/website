@@ -1,6 +1,5 @@
 ---
 title: "Soporte de certificados Let's Encrypt"
-
 ---
 
 Ejemplo para servidores HTTPS 1-line LetsEncrypt HTTPS.

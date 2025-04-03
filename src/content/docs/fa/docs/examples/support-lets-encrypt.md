@@ -1,6 +1,5 @@
 ---
 title: "Support Let's Encrypt"
-
 ---
 
 example for 1-line LetsEncrypt HTTPS servers.

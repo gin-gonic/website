@@ -1,6 +1,5 @@
 ---
 title: "Personalizar un Middleware"
-
 ---
 
 ```go

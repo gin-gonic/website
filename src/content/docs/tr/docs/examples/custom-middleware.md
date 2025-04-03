@@ -1,6 +1,5 @@
 ---
 title: "Custom Middleware"
-
 ---
 
 ```go

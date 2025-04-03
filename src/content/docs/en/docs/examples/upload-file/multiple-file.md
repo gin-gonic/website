@@ -1,6 +1,5 @@
 ---
 title: "Multiple files"
-
 ---
 
 See the detail [example code](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple).

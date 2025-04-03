@@ -1,6 +1,5 @@
 ---
 title: "Vincular a requisição de dados de formulário com a estrutura personalizada"
-
 ---
 
 O seguinte exemplo usando estrutura personalizada:

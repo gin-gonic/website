@@ -1,6 +1,5 @@
 ---
 title: "Güvenlik Üst Bilgileri"
-
 ---
 
 Web uygulamanızı yaygın güvenlik açıklarından korumak için güvenlik başlıklarını kullanmak önemlidir. Bu örnek, Gin uygulamanıza güvenlik başlıklarını nasıl ekleyeceğinizi ve ayrıca Host Header Injection ile ilgili saldırılardan (SSRF, Open Redirection) nasıl kaçınacağınızı gösterir.

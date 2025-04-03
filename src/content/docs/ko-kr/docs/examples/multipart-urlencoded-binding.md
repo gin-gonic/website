@@ -1,6 +1,5 @@
 ---
 title: "Multipart/Urlencoded 바인딩"
-
 ---
 
 ```go

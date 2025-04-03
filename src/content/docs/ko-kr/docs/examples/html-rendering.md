@@ -1,6 +1,5 @@
 ---
 title: "HTML 랜더링"
-
 ---
 
 LoadHTMLGlob() 혹은 LoadHTMLFiles()를 사용합니다.

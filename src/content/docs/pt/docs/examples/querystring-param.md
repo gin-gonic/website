@@ -1,6 +1,5 @@
 ---
 title: "Parâmetros da Sequência de Consulta"
-
 ---
 
 ```go

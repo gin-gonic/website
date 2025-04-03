@@ -1,6 +1,5 @@
 ---
 title: "Representación de HTML"
-
 ---
 
 Using LoadHTMLGlob() or LoadHTMLFiles()

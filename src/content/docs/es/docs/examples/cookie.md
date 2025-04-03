@@ -1,6 +1,5 @@
 ---
 title: "Cookie"
-
 ---
 
 Crear y obtener una cookie

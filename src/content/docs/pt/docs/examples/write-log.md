@@ -1,6 +1,5 @@
 ---
 title: "Como Escrever Ficheiro de Registo"
-
 ---
 
 ```go

@@ -1,6 +1,5 @@
 ---
 title: "HTMLチェックボックスをバインドする"
-
 ---
 
 [詳細な情報](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092) はこちら。

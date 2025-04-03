@@ -1,6 +1,5 @@
 ---
 title: "AsciiJSON"
-
 ---
 
 AsciiJSON メソッドを使うことで、ASCII 文字列以外をエスケープした

@@ -1,6 +1,5 @@
 ---
 title: "Configuração de HTTP Personalizada"
-
 ---
 
 Usar o `http.ListenAndServe()` diretamente, desta maneira:

@@ -1,6 +1,5 @@
 ---
 title: "Rotinas de Go dentro dum Intermediário"
-
 ---
 
 Quando começares novas rotinas de Go dentro dum intermediário ou manipulador, **NÃO DEVERIAS** usar o contexto original dentro dele, tens que usar uma cópia de apenas leitura.

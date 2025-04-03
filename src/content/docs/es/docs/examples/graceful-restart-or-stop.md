@@ -1,6 +1,5 @@
 ---
 title: "Apagado o reinicio controlado del servidor web"
-
 ---
 
 Estas son algunas formas de reiniciar o detener el servidor web controladamente.

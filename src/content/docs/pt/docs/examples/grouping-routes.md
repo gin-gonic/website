@@ -1,6 +1,5 @@
 ---
 title: "Agrupamento de Rotas"
-
 ---
 
 ```go

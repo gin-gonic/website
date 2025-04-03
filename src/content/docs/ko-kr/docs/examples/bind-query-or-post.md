@@ -1,6 +1,5 @@
 ---
 title: "쿼리 문자열 혹은 post 데이터를 바인드하기"
-
 ---
 
 [자세한 정보](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292)를 확인하세요.

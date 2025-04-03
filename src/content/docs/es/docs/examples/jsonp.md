@@ -1,6 +1,5 @@
 ---
 title: "JSONP"
-
 ---
 
 Uso de JSONP para realizar una petición de datos desde un servidor en un dominio diferente

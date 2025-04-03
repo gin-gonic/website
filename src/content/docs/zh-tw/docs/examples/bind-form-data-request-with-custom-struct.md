@@ -1,6 +1,5 @@
 ---
 title: "Bind form-data request with custom struct"
-
 ---
 
 The follow example using custom struct:

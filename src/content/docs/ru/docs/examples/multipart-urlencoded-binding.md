@@ -1,6 +1,5 @@
 ---
 title: "Связка Multipart/Urlencoded"
-
 ---
 
 ```go

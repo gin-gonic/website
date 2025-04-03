@@ -1,6 +1,5 @@
 ---
 title: "Executar Vários Serviços"
-
 ---
 
 Consulte a [questão](https://github.com/gin-gonic/gin/issues/346) e tente seguinte exemplo:

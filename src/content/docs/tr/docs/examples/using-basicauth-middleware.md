@@ -1,6 +1,5 @@
 ---
 title: "Using BasicAuth middleware"
-
 ---
 
 ```go

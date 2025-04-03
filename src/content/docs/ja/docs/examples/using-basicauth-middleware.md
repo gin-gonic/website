@@ -1,6 +1,5 @@
 ---
 title: "BasicAuth ミドルウェアを使う"
-
 ---
 
 ```go

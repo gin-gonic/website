@@ -1,6 +1,5 @@
 ---
 title: "Bind html checkboxes"
-
 ---
 
 See the [detail information](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)

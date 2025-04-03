@@ -1,6 +1,5 @@
 ---
 title: "HTTP/2 サーバープッシュ"
-
 ---
 
 http.Pusher は **go1.8+** 以降でのみサポートしています。 詳細な情報は [golang blog](https://blog.golang.org/h2push) を見てください。

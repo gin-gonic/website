@@ -1,6 +1,5 @@
 ---
 title: "Vincular formularios Multipart/Urlencoded"
-
 ---
 
 ```go

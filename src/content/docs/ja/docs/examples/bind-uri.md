@@ -1,6 +1,5 @@
 ---
 title: "URLをバインドする"
-
 ---
 
 [詳細](https://github.com/gin-gonic/gin/issues/846) はこちら。

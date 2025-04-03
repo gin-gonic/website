@@ -1,6 +1,5 @@
 ---
 title: "Multipart/Urlencoded されたデータをバインドする"
-
 ---
 
 ```go

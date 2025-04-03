@@ -1,6 +1,5 @@
 ---
 title: "Consulta e Formulário de Publicação"
-
 ---
 
 ```sh

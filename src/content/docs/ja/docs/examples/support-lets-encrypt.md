@@ -1,6 +1,5 @@
 ---
 title: "Let's Encrypt のサポート"
-
 ---
 
 1行の Let's Encrypt HTTPS サーバーのサンプルコードです。

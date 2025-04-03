@@ -1,6 +1,5 @@
 ---
 title: "Parámetros GET en URL"
-
 ---
 
 ```go

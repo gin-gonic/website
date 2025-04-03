@@ -1,6 +1,5 @@
 ---
 title: "단일 파일"
-
 ---
 
 이슈 [#774](https://github.com/gin-gonic/gin/issues/774) 혹은 자세한 [예제 코드](https://github.com/gin-gonic/examples/tree/master/upload-file/single)를 확인하세요.

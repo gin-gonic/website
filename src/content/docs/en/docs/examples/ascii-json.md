@@ -1,6 +1,5 @@
 ---
 title: "AsciiJSON"
-
 ---
 
 Using AsciiJSON to Generates ASCII-only JSON with escaped non-ASCII characters.

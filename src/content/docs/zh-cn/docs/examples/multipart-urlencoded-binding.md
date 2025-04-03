@@ -1,6 +1,5 @@
 ---
 title: "Multipart/Urlencoded 绑定"
-
 ---
 
 ```go

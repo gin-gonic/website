@@ -1,6 +1,5 @@
 ---
 title: "Sirviendo archivos estáticos"
-
 ---
 
 ```go

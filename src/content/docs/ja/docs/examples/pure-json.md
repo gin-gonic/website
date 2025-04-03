@@ -1,6 +1,5 @@
 ---
 title: "PureJSON"
-
 ---
 
 通常、JSON メソッドは `<` のようなHTML 文字を `\u003c` のような Unicode に置き換えます。

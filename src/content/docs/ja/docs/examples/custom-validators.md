@@ -1,6 +1,5 @@
 ---
 title: "カスタムバリデーション"
-
 ---
 
 カスタムしたバリデーションを使用することもできます。[サンプルコード](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) も見てみてください。

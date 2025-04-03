@@ -1,6 +1,5 @@
 ---
 title: "静态资源嵌入"
-
 ---
 
 你可以使用  [go-assets](https://github.com/jessevdk/go-assets) 将静态资源打包到可执行文件中。

@@ -1,6 +1,5 @@
 ---
 title: "Multiple files"
-
 ---
 
 See the detail [example code](examples/upload-file/multiple).

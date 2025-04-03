@@ -1,6 +1,5 @@
 ---
 title: "PureJSON"
-
 ---
 
 Normally, JSON replaces special HTML characters with their unicode entities, e.g. `<` becomes  `\u003c`. If you want to encode such characters literally, you can use PureJSON instead.

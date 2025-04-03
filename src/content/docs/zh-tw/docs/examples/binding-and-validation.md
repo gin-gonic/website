@@ -1,6 +1,5 @@
 ---
 title: "Model binding and validation"
-
 ---
 
 To bind a request body into a type, use model binding. We currently support binding of JSON, XML, YAML and standard form values (foo=bar&boo=baz).

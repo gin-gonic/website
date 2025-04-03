@@ -1,6 +1,5 @@
 ---
 title: "Uso de un método específico de HTTP"
-
 ---
 
 ```go

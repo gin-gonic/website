@@ -1,6 +1,5 @@
 ---
 title: "Interpretação do HTML"
-
 ---
 
 Usando `LoadHTMLGlob()` ou `LoadHTMLFiles()`:

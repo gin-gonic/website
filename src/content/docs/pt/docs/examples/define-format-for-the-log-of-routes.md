@@ -1,6 +1,5 @@
 ---
 title: "Definir o Formato para o Registo de Rotas"
-
 ---
 
 O registo padrão de rotas é:

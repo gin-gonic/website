@@ -1,6 +1,5 @@
 ---
 title: "Vincular una petición form-data con un struct personalizado"
-
 ---
 
 El siguiente es el ejemplo para un struct personalizado:

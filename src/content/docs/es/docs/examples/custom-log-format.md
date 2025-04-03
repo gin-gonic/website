@@ -1,6 +1,5 @@
 ---
 title: "Personalizar formato de Logs"
-
 ---
 
 For example:

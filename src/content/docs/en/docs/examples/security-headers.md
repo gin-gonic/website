@@ -1,6 +1,5 @@
 ---
 title: "Security Headers"
-
 ---
 
 It's important to use security headers to protect your web application from common security vulnerabilities. This example shows you how to add security headers to your Gin application and also how to avoid Host Header Injection related attacks (SSRF, Open Redirection).

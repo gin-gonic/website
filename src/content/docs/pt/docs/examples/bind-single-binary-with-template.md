@@ -1,6 +1,5 @@
 ---
 title: "Construir um único binário com modelos de marcação"
-
 ---
 ## Usar o pacote de terceiro
 

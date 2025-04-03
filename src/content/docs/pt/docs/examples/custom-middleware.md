@@ -1,6 +1,5 @@
 ---
 title: "Intermediário Personalizado"
-
 ---
 
 ```go

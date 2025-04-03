@@ -1,6 +1,5 @@
 ---
 title: "Uso del middleware BasicAuth"
-
 ---
 
 ```go

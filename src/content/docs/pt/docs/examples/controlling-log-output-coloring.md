@@ -1,6 +1,5 @@
 ---
 title: "Controlando a Colorização da Saída de Registo"
-
 ---
 
 Por padrão, a saída de registos na consola deveria ser colorida dependendo do TTY detetado.

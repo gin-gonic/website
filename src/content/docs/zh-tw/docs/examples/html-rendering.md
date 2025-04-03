@@ -1,6 +1,5 @@
 ---
 title: "HTML rendering"
-
 ---
 
 Using LoadHTMLGlob() or LoadHTMLFiles()

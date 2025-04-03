@@ -1,6 +1,5 @@
 ---
 title: "Usar o Intermediário de BasicAuth"
-
 ---
 
 ```go

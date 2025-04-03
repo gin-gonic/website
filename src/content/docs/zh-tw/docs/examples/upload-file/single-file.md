@@ -1,6 +1,5 @@
 ---
 title: "Single file"
-
 ---
 
 References issue [#774](https://github.com/gin-gonic/gin/issues/774) and detail [example code](examples/upload-file/single).

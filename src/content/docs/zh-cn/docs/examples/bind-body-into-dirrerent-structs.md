@@ -1,6 +1,5 @@
 ---
 title: "将 request body 绑定到不同的结构体中"
-
 ---
 
 一般通过调用 `c.Request.Body` 方法绑定数据，但不能多次调用这个方法。

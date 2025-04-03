@@ -1,6 +1,5 @@
 ---
 title: "Define format for the log of routes"
-
 ---
 
 The default log of routes is:

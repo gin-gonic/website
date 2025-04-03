@@ -1,6 +1,5 @@
 ---
 title: "单文件"
-
 ---
 
 参考 issue [#774](https://github.com/gin-gonic/gin/issues/774) 和详细[示例代码](https://github.com/gin-gonic/examples/tree/master/upload-file/single).

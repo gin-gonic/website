@@ -1,6 +1,5 @@
 ---
 title: "Usar Intermediário"
-
 ---
 
 ```go

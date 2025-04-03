@@ -1,6 +1,5 @@
 ---
 title: "Goroutines dentro de un middleware"
-
 ---
 
 Cuando se inicia una goroutine dentro de un middleware o un handler, **NO SE DEBE** utilizar el context dentro de él, debe emplearse una copia de lectura.

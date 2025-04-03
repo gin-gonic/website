@@ -1,6 +1,5 @@
 ---
 title: "多文件"
-
 ---
 
 查看详细[示例代码](https://github.com/gin-gonic/examples/tree/master/upload-file/multiple).

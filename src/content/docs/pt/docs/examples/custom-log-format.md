@@ -1,6 +1,5 @@
 ---
 title: "Ficheiro de Registo Personalizado"
-
 ---
 
 Por exemplo:

@@ -1,6 +1,5 @@
 ---
 title: "Serving static files"
-
 ---
 
 ```go

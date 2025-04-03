@@ -1,6 +1,5 @@
 ---
 title: "Parameters in path"
-
 ---
 
 ```go

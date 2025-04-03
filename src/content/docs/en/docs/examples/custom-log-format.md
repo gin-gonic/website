@@ -1,6 +1,5 @@
 ---
 title: "Custom log file"
-
 ---
 
 For example:

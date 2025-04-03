@@ -1,6 +1,5 @@
 ---
 title: "Custom validators"
-
 ---
 
 It is also possible to register custom validators. See the [example code](examples/custom-validation/server.go).

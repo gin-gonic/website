@@ -1,6 +1,5 @@
 ---
 title: "Impulso do Servidor de HTTP2"
-
 ---
 
 `http.Pusher` é suportado apenas versão **1.8+** de Go. Consulte o [blogue da Golang](https://blog.golang.org/h2push) por informação detalhada:

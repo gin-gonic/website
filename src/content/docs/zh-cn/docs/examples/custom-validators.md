@@ -1,6 +1,5 @@
 ---
 title: "自定义验证器"
-
 ---
 
 注册自定义验证器，查看[示例代码](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).

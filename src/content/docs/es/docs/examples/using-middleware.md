@@ -1,6 +1,5 @@
 ---
 title: "Usando middleware"
-
 ---
 
 ```go

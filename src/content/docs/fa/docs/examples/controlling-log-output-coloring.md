@@ -1,6 +1,5 @@
 ---
 title: "Controlling Log output coloring"
-
 ---
 
 By default, logs output on console should be colorized depending on the detected TTY.

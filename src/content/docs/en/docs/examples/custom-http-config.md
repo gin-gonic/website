@@ -1,6 +1,5 @@
 ---
 title: "Custom HTTP configuration"
-
 ---
 
 Use `http.ListenAndServe()` directly, like this:

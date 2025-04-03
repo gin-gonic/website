@@ -1,6 +1,5 @@
 ---
 title: "URI를 바인드하기"
-
 ---
 
 [자세한 정보](https://github.com/gin-gonic/gin/issues/846)를 확인하세요.
