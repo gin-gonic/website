@@ -1,6 +1,7 @@
 ---
 title: "مثال ها"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 لیست مثال ها.

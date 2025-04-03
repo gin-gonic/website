@@ -1,6 +1,7 @@
 ---
 title: "벤치마크"
-weight: 3
+sidebar:
+  order: 3
 ---
 
 Gin은 [HttpRouter](https://github.com/julienschmidt/httprouter)을 커스텀 한 버전을 사용합니다.

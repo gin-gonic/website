@@ -1,6 +1,7 @@
 ---
 title: "測試"
-weight: 7
+sidebar:
+  order: 7
 ---
 
 ## 如何為 Gin 寫測試案例？

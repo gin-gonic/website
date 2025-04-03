@@ -1,6 +1,7 @@
 ---
 title: "部署"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 Gin 项目可以轻松部署在任何云提供商上。

@@ -1,6 +1,7 @@
 ---
 title: "Hızlı Başlangıç"
-weight: 2
+sidebar:
+  order: 2
 ---
 
 Bu hızlı başlangıçta, kod parçacıklarından içgörüler toplayacağız ve aşağıda belirtilen adımları nasıl yapacağımızı öğreneceğiz:

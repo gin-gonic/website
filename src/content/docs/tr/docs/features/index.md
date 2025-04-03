@@ -1,6 +1,7 @@
 ---
 title: "Özellikler"
-weight: 4
+sidebar:
+  order: 4
 ---
 
 ## Gin v1 sabit özellikler:

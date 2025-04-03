@@ -1,6 +1,7 @@
 ---
 title: "测试"
-weight: 7
+sidebar:
+  order: 7
 ---
 
 ##### 怎样编写 Gin 的测试用例

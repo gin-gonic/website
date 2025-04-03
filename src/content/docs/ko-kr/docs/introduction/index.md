@@ -1,6 +1,7 @@
 ---
 title: "소개"
-weight: 1
+sidebar:
+  order: 1
 ---
 
 Gin은 Go로 작성된 웹 프레임워크입니다. Martini와 비슷한 API를 제공하지만, [httprouter](https://github.com/julienschmidt/httprouter) 덕분에 최대 40배 빠른 성능을 제공합니다. 만약 뛰어난 생산성과 퍼포먼스가 필요하다면, Gin을 좋아하게 될 것입니다.

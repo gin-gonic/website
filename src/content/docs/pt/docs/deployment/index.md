@@ -1,6 +1,7 @@
 ---
 title: "Implementação em Produção"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 Os projetos de Gin podem ser implementados em produção facilmente em qualquer provedor da nuvem.

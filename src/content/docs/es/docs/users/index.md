@@ -1,6 +1,7 @@
 ---
 title: "Usuarios"
-weight: 8
+sidebar:
+  order: 8
 ---
 
 ##### Lista de proyectos fantásticos que usan [Gin](https://github.com/gin-gonic/gin) web framework:

@@ -1,6 +1,7 @@
 ---
 title: "Features"
-weight: 4
+sidebar:
+  order: 4
 ---
 
 ## Gin v1 stable features

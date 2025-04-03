@@ -1,6 +1,7 @@
 ---
 title: "Deploy etme"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 Gin projeleri herhangi bir bulut sağlayıcısına kolayca deploy edilebilir.

@@ -1,6 +1,7 @@
 ---
 title: "Jsoniter"
-weight: 5
+sidebar:
+  order: 5
 ---
 
 ## Go Build con [jsoniter](https://github.com/json-iterator/go)

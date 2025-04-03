@@ -1,6 +1,7 @@
 ---
 title: "Benchmarks"
-weight: 3
+sidebar:
+  order: 3
 ---
 
 Gin usa una versión personalizada de [HttpRouter](https://github.com/julienschmidt/httprouter)

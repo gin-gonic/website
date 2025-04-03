@@ -1,6 +1,7 @@
 ---
 title: "Despliegue"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 Los proyectos en Gin pueden ser desplegados fácilmente en cualquier proveedor en la nube.

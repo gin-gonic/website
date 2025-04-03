@@ -1,6 +1,7 @@
 ---
 title: "部署"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 Gin 專案可以輕鬆部署到任意雲主機商。

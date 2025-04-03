@@ -1,6 +1,7 @@
 ---
 title: "基准测试"
-weight: 3
+sidebar:
+  order: 3
 ---
 
 Gin 使用了自定义版本的 [HttpRouter](https://github.com/julienschmidt/httprouter)

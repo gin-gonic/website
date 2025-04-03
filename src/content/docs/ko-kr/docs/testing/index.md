@@ -1,6 +1,7 @@
 ---
 title: "테스트"
-weight: 7
+sidebar:
+  order: 7
 ---
 
 ## Gin의 테스트 케이스를 작성하는 방법은?

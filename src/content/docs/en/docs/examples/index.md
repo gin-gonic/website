@@ -1,6 +1,7 @@
 ---
 title: "Examples"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 The section lists api usage.

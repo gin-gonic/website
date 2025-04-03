@@ -1,6 +1,7 @@
 ---
 title: "テスト"
-weight: 7
+sidebar:
+  order: 7
 ---
 
 ##### Gin でテストコードを書くには

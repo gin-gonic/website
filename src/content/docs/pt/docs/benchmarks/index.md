@@ -1,6 +1,7 @@
 ---
 title: "Analises Comparativas"
-weight: 3
+sidebar:
+  order: 3
 ---
 
 A Gin usa uma versão personalizada da [`HttpRouter`](https://github.com/julienschmidt/httprouter).

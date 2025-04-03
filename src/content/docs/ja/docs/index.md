@@ -1,6 +1,5 @@
 ---
 title: "ドキュメント"
-weight: 20
 sidebar:
   order: 20
 ---

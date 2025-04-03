@@ -1,6 +1,7 @@
 ---
 title: "배포"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 Gin 프로젝트는 모든 클라우드 제공 업체에 쉽게 배포 할 수 있습니다.

@@ -1,6 +1,7 @@
 ---
 title: "Inicio Rápido"
-weight: 2
+sidebar:
+  order: 2
 ---
 
 En este inicio rápido, captaremos información y aprenderemos por medio de porciones de código:

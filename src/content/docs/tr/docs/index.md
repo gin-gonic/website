@@ -1,6 +1,5 @@
 ---
 title: "Dokümantasyon"
-weight: 20
 sidebar:
   order: 20
 ---

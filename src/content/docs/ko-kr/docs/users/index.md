@@ -1,6 +1,7 @@
 ---
 title: "Gin을 사용하는 곳"
-weight: 8
+sidebar:
+  order: 8
 ---
 
 ##### [Gin](https://github.com/gin-gonic/gin) 웹 프레임워크를 사용한 멋진 프로젝트 목록:

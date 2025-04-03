@@ -1,6 +1,7 @@
 ---
 title: "用户"
-weight: 8
+sidebar:
+  order: 8
 ---
 
 ##### 使用 [Gin](https://github.com/gin-gonic/gin) web 框架的知名项目：

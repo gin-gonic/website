@@ -1,6 +1,7 @@
 ---
 title: "Deployment"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 Gin projects can be deployed easily on any cloud provider.

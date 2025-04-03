@@ -1,6 +1,7 @@
 ---
 title: "Контрольные показатели"
-weight: 3
+sidebar:
+  order: 3
 ---
 
 Gin использует пользовательскую версию [HttpRouter](https://github.com/julienschmidt/httprouter).

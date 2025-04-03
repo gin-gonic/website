@@ -1,6 +1,7 @@
 ---
 title: "效能評估"
-weight: 3
+sidebar:
+  order: 3
 ---
 
 Gin 使用自訂版本的 [HttpRouter](https://github.com/julienschmidt/httprouter)

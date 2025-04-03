@@ -1,6 +1,7 @@
 ---
 title: "機能"
-weight: 4
+sidebar:
+  order: 4
 ---
 
 #### Gin v1 の安定性

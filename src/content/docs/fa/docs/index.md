@@ -1,6 +1,5 @@
 ---
 title: "اسناد"
-weight: 20
 sidebar:
   order: 20
 ---

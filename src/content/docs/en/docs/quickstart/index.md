@@ -1,6 +1,7 @@
 ---
 title: "Quickstart"
-weight: 2
+sidebar:
+  order: 2
 ---
 
 In this quickstart, we’ll glean insights from code segments and learn how to:

@@ -1,6 +1,7 @@
 ---
 title: "Testagem"
-weight: 7
+sidebar:
+  order: 7
 ---
 
 ## Como escrever um caso de teste para Gin?

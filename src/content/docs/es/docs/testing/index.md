@@ -1,6 +1,7 @@
 ---
 title: "Testing en Gin"
-weight: 7
+sidebar:
+  order: 7
 ---
 
 ## ¿Cómo escribir casos de prueba en Gin?

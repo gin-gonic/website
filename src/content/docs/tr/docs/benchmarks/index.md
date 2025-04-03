@@ -1,6 +1,7 @@
 ---
 title: "Kalite Testleri"
-weight: 3
+sidebar:
+  order: 3
 ---
 
 Gin, [HttpRouter](https://github.com/julienschmidt/httprouter)'ın özel bir sürümünü kullanır

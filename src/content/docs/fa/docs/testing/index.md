@@ -1,6 +1,7 @@
 ---
 title: "تست"
-weight: 7
+sidebar:
+  order: 7
 ---
 
 ## چگونه در gin تست بنویسیم ؟

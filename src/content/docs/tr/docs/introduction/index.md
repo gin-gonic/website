@@ -1,6 +1,7 @@
 ---
 title: "Giriş"
-weight: 1
+sidebar:
+  order: 1
 ---
 
 Gin, Go (Golang) ile yazılmış bir web çerçevesidir. Martini benzeri bir API'ye sahiptir ama [httprouter](https://github.com/julienschmidt/httprouter) sayesinde 40 kata kadar daha hızlı, çok daha iyi performansa sahiptir. Performansa ve iyi üretkenliğe ihtiyacınız varsa, Gin'i seveceksiniz.

@@ -1,6 +1,7 @@
 ---
 title: "Características"
-weight: 4
+sidebar:
+  order: 4
 ---
 
 ## Gin versión 1 estable ofrece:

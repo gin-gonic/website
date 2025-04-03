@@ -1,6 +1,7 @@
 ---
 title: "کاربران"
-weight: 8
+sidebar:
+  order: 8
 ---
 
 ##### لیستی عالی از پروژه های ساخته شده با [Gin](https://github.com/gin-gonic/gin):

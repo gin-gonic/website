@@ -1,6 +1,7 @@
 ---
 title: "Introdução Rápida"
-weight: 2
+sidebar:
+  order: 2
 ---
 
 Nesta introdução rápida, recolheremos entendimentos a partir de segmentos de código e aprenderemos a como:

@@ -1,6 +1,7 @@
 ---
 title: "Jsoniter"
-weight: 5
+sidebar:
+  order: 5
 ---
 
 #### 使用 [jsoniter](https://github.com/json-iterator/go) 编译

@@ -1,6 +1,7 @@
 ---
 title: "Örnekler"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 Bu bölüm, api kullanımını listeler.

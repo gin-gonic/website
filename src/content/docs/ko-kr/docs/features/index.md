@@ -1,6 +1,7 @@
 ---
 title: "기능"
-weight: 4
+sidebar:
+  order: 4
 ---
 
 ## Gin v1 안정판의 기능:

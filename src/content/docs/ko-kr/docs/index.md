@@ -1,6 +1,5 @@
 ---
 title: "문서"
-weight: 20
 sidebar:
   order: 20
 ---

@@ -1,6 +1,7 @@
 ---
 title: "Introdução"
-weight: 1
+sidebar:
+  order: 1
 ---
 
 A Gin é uma abstração de web escrita em Go (Golang). Ela apresenta uma API parecida com a Martini com desempenho muito melhor, acima de 40 vezes mais rápida graças ao [`httprouter`](https://github.com/julienschmidt/httprouter). Se precisares de desempenho e excelente produtividade, amarás a Gin.

@@ -1,6 +1,7 @@
 ---
 title: "Test"
-weight: 7
+sidebar:
+  order: 7
 ---
 
 ## Gin için nasıl test yazılır?

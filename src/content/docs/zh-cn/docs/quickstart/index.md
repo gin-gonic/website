@@ -1,6 +1,7 @@
 ---
 title: "快速入门"
-weight: 2
+sidebar:
+  order: 2
 ---
 
 ## 要求

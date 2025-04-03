@@ -1,6 +1,7 @@
 ---
 title: "Users"
-weight: 8
+sidebar:
+  order: 8
 ---
 
 ## Awesome Project Lists

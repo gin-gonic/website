@@ -1,6 +1,7 @@
 ---
 title: "Gin のユーザー"
-weight: 8
+sidebar:
+  order: 8
 ---
 
 ##### [Gin](https://github.com/gin-gonic/gin) を利用している素晴らしいプロジェクト一覧。

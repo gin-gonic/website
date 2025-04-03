@@ -1,6 +1,7 @@
 ---
 title: "Características"
-weight: 4
+sidebar:
+  order: 4
 ---
 
 ## Gin v1 estável apresenta:

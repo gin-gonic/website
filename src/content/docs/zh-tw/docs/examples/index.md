@@ -1,6 +1,7 @@
 ---
 title: "範例"
-weight: 6
+sidebar:
+  order: 6
 ---
 
 這個章節列出一些 API 使用方法。

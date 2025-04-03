@@ -1,6 +1,7 @@
 ---
 title: "使用者"
-weight: 8
+sidebar:
+  order: 8
 ---
 
 ##### Awesome project lists using [Gin](https://github.com/gin-gonic/gin) web framework:

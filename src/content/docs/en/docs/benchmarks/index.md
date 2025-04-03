@@ -1,6 +1,7 @@
 ---
 title: "Benchmarks"
-weight: 3
+sidebar:
+  order: 3
 ---
 
 **VM HOST:** Travis

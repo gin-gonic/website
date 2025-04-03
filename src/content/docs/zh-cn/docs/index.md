@@ -1,6 +1,5 @@
 ---
 title: "文档"
-weight: 20
 sidebar:
   order: 20
 ---

@@ -1,6 +1,7 @@
 ---
 title: "ベンチマーク"
-weight: 3
+sidebar:
+  order: 3
 ---
 
 Gin は [HttpRouter](https://github.com/julienschmidt/httprouter) をカスタムしたバージョンを利用しています。

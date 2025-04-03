@@ -1,6 +1,7 @@
 ---
 title: "Utilizadores"
-weight: 8
+sidebar:
+  order: 8
 ---
 
 #### Uma lista projetos incríveis usando a abstração de web [Gin](https://github.com/gin-gonic/gin):

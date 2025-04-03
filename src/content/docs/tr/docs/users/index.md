@@ -1,6 +1,7 @@
 ---
 title: "Kullanıcılar"
-weight: 8
+sidebar:
+  order: 8
 ---
 
 ##### [Gin](https://github.com/gin-gonic/gin) web çerçevesini kullanan harika proje listeleri:

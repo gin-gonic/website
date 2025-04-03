@@ -1,6 +1,7 @@
 ---
 title: "まず始めに"
-weight: 1
+sidebar:
+  order: 1
 ---
 
 Gin は Golang で書かれた Web アプリケーションフレームワークです。martini に似たAPIを持ちながら、httprouter のおかげでそれより40倍以上も速いパフォーマンスがあります。良いパフォーマンスと生産性が必要であれば、Gin が好きになれるでしょう。

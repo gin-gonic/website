@@ -1,6 +1,5 @@
 ---
 title: "Documentação"
-weight: 20
 sidebar:
   order: 20
 ---
