@@ -21,21 +21,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - name: Install node module
-        run: |
-          npm install -D --save autoprefixer
-          npm install -D --save postcss-cli
-          npm audit fix
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.125.4'
-          extended: true
+      - name: Install node modules
+        run: npm install
 
       - name: Build
         run: |
-          hugo --minify
+          npm run build
           echo 'gin-gonic.com' > public/CNAME
 
       - name: Deploy
@@ -43,4 +34,4 @@ jobs:
         if: github.ref == 'refs/heads/master'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./dist
