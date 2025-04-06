@@ -1,16 +1,16 @@
 ---
-title: "How to build one effective middleware?"
-linkTitle: "How to build one effective middleware?"
-lastUpdated: 2019-02-26
+title: "효과적인 미들웨어를 만드는 방법은?"
+linkTitle: "효과적인 미들웨어를 만드는 방법은?"
+date: 2019-02-26
 ---
 
 ## Constituent parts
 
-The middleware has two parts:
+미들웨어는 두 부분으로 구성됩니다:
 
-  - part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens once per application lifetime.
+  - 첫 번째 부분은 미들웨어를 초기화할 때 한 번만 실행됩니다. 이 단계에서 전역 객체, 논리적 설정 등을 구성하며, 이는 애플리케이션의 전체 수명 동안 한 번만 수행됩니다.
 
-  - part two is what executes on every request. For example, a database middleware you simply inject your "global" database object into the context. Once it's inside the context, you can retrieve it from within other middlewares and your handler function.
+  - 두 번째 부분은 각 요청(request)마다 실행됩니다. 예를 들어, 데이터베이스 미들웨어의 경우, 전역 데이터베이스 객체를 컨텍스트(context)에 주입합니다. 한 번 컨텍스트에 주입되면, 다른 미들웨어나 핸들러 함수 내에서 이를 가져와 사용할 수 있습니다.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -35,7 +35,7 @@ func funcName(params string) gin.HandlerFunc {
 
 ## Execution process
 
-Firstly, we have the following example code:
+먼저, 다음과 같은 예제 코드가 있습니다:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to [Constituent parts](#Constituent-parts) said, when we run the gin process, **part one** will execute firstly and will print the following information:
+[구성 요소](#Constituent-parts)에 따라서, gin 프로세스를 실행하면, **첫번째 부분**이 먼저 실행되며, 다음 정보를 출력합니다:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-And init order is:
+그리고 초기화 순서는 다음과 같습니다:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When we curl one request `curl -v localhost:8080/rest/n/api/some`, **part two** will execute their middleware and output the following information:
+'curl -v localhost:8080/rest/n/api/some' 요청을 보낼 때, **두 번째 부분**은 미들웨어를 실행하고 다음 정보를 출력합니다:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, run order is:
+다시 말해, 실행 순서는 다음과 같습니다:
 
 ```go
 globalMiddleware...2

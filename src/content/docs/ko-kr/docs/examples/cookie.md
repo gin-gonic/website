@@ -31,7 +31,7 @@ func main() {
 }
 ```
 
-Delete cookie by set max age to -1.
+max age를 -1로 설정하여 쿠키를 삭제합니다.
 
 ```go
 c.SetCookie("gin_cookie", "test", -1, "/", "localhost", false, true)
