@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gin-gonic.com/sitemap-index.xml
