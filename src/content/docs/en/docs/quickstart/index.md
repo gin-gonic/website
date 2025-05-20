@@ -21,12 +21,6 @@ If you don't have a go.mod file, create it with `go mod init gin`.
 go get -u github.com/gin-gonic/gin
 ```
 
-Or install:
-
-```sh
-go install github.com/gin-gonic/gin@latest
-```
-
 2. Import it in your code:
 
 ```go
