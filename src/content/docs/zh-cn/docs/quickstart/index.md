@@ -15,13 +15,8 @@ sidebar:
 1.下载并安装 gin：
 
 ```sh
-$ go get -u github.com/gin-gonic/gin
+go get -u github.com/gin-gonic/gin
 ```
-或 install 
-```sh
-$ go install github.com/gin-gonic/gin@latest
-```
-
 
 2.将 gin 引入到代码中：
 
@@ -38,19 +33,19 @@ import "net/http"
 1. 创建你的项目文件夹并 `cd` 进去
 
 ```sh
-$ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
+mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 ```
 
-2. 拷贝一个初始模板到你的项目里
+1. 拷贝一个初始模板到你的项目里
 
 ```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
-3. 运行你的项目
+1. 运行你的项目
 
 ```sh
-$ go run main.go
+go run main.go
 ```
 
 ## 开始
@@ -60,7 +55,7 @@ $ go run main.go
 首先，创建一个名为 `example.go` 的文件
 
 ```sh
-$ touch example.go
+touch example.go
 ```
 
 接下来, 将如下的代码写入 `example.go` 中：
@@ -71,13 +66,13 @@ package main
 import "github.com/gin-gonic/gin"
 
 func main() {
-	router := gin.Default()
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	router.Run() // 监听并在 0.0.0.0:8080 上启动服务
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
+    c.JSON(200, gin.H{
+      "message": "pong",
+    })
+  })
+  router.Run() // 监听并在 0.0.0.0:8080 上启动服务
 }
 ```
 
@@ -85,5 +80,5 @@ func main() {
 
 ```sh
 # 运行 example.go 并且在浏览器中访问 HOST_IP:8080/ping
-$ go run example.go
+go run example.go
 ```
