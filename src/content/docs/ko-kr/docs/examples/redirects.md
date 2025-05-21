@@ -10,7 +10,7 @@ router.GET("/test", func(c *gin.Context) {
 })
 ```
 
-Issuing a HTTP redirect from POST. Refer to issue: [#444](https://github.com/gin-gonic/gin/issues/444)
+POST 요청에서 HTTP 리다이렉트를 수행하기 – 관련 이슈: [#444](https://github.com/gin-gonic/gin/issues/444) 참고
 
 ```go
 router.POST("/test", func(c *gin.Context) {
