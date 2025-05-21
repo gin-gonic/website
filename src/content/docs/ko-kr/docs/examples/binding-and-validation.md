@@ -12,7 +12,7 @@ Gin은 유효성 검사에 [**go-playground/validator/v10**](https://github.com/
 
 - **타입** - Must bind
   - **메소드** - `Bind`, `BindJSON`, `BindXML`, `BindQuery`, `BindYAML`
-  - **동작** - 이 메소드들은 내부에서 `MustBindWith`를 사용합니다. 바인딩 에러가 있는 경우, 리퀘스트는 `c.AbortWithError(400, err).SetType(ErrorTypeBind)`와 함께 중단됩니다. 응답코드는 400으로 설정되며, `Content-Type`헤더에는 `text/plain; charset=utf-8`이 설정됩니다. 이 이후에 응답코드를 설정하려고 하면 `[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422` 경고가 발생합니다. 동작을 더 상세하게 제어하고 싶다면 `ShouldBind`와 같은 메소드를 사용하세요.
+  - **동작** - 이 메소드들은 내부에서 `MustBindWith`를 사용합니다. 바인딩 에러가 있는 경우, 리퀘스트는 `c.AbortWithError(400, err).SetType(ErrorTypeBind)`와 함께 중단됩니다. 응답코드는 400으로 설정되며, `Content-Type`헤더에는 `text/plain; charset=utf-8`이 설정됩니다. 이 이후에 응답코드를 설정하려고 하면 `[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422` 경고가 발생합니다. 동작을 더 상세하게 제어하고 싶다면 `ShouldBind`와 같은 메소드를 사용하세요.
 - **타입** - Should bind
   - **메소드** - `ShouldBind`, `ShouldBindJSON`, `ShouldBindXML`, `ShouldBindQuery`, `ShouldBindYAML`
   - **동작** - 이 메소드들은 내부에서 `ShouldBindWith`를 사용합니다. 바인딩 에러가 있는 경우, 에러를 적절히 처리하고 반환하는 것은 개발자의 몫입니다.
