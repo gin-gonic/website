@@ -1,0 +1,49 @@
+title: Gin Web Framework
+description: Framework web đầy đủ tính năng và nhanh nhất cho Go. Rõ ràng như pha lê.
+template: splash
+hero:
+  tagline: Framework web đầy đủ tính năng và nhanh nhất cho Go. Rõ ràng như pha lê.
+  image:
+    file: ../../../assets/gin.png
+  actions:
+    - text: Đọc tài liệu
+      link: /en/docs/
+      icon: right-arrow
+    - text: Tải xuống
+      link: https://github.com/gin-gonic/gin/releases
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Gin là gì?
+
+Gin là một framework web được viết bằng Golang. Nó có API tương tự như Martini, nhưng với hiệu suất nhanh hơn tới 40 lần. Nếu bạn cần hiệu suất và năng suất, bạn sẽ yêu thích Gin.
+
+<CardGrid>
+	<Card title="Nhanh" icon="rocket">
+		Định tuyến dựa trên cây Radix, chiếm ít bộ nhớ. Không sử dụng reflection. Hiệu suất API dự đoán được.
+	</Card>
+	<Card title="Hỗ trợ Middleware" icon="seti:plan">
+		Một yêu cầu HTTP đến có thể được xử lý bởi một chuỗi middleware và hành động cuối cùng. Ví dụ: Logger, Xác thực, GZIP và cuối cùng là đăng tin nhắn vào DB.
+	</Card>
+	<Card title="Không sập" icon="seti:lock">
+		Gin có thể bắt panic xảy ra trong quá trình xử lý yêu cầu HTTP và khôi phục nó. Nhờ vậy, máy chủ của bạn sẽ luôn khả dụng. Cũng có thể báo cáo panic này cho Sentry chẳng hạn!
+	</Card>
+	<Card title="Xác thực JSON" icon="approve-check-circle">
+		Gin có thể phân tích và xác thực JSON của một yêu cầu, kiểm tra, ví dụ như sự tồn tại của các giá trị bắt buộc.
+	</Card>
+	<Card title="Nhóm tuyến đường" icon="puzzle">
+		Tổ chức các tuyến đường của bạn tốt hơn. Phân biệt các API cần xác thực và không cần, các phiên bản API khác nhau. Ngoài ra, các nhóm có thể được lồng vô hạn mà không làm giảm hiệu suất.
+	</Card>
+	<Card title="Quản lý lỗi" icon="open-book">
+		Gin cung cấp cách thuận tiện để thu thập tất cả các lỗi xảy ra trong quá trình xử lý yêu cầu HTTP. Cuối cùng, middleware có thể ghi chúng vào file log, cơ sở dữ liệu và gửi qua mạng.
+	</Card>
+	<Card title="Tích hợp sẵn khả năng render" icon="seti:json">
+		Gin cung cấp API dễ sử dụng để render JSON, XML và HTML.
+	</Card>
+	<Card title="Có thể mở rộng" icon="seti:html">
+		Tạo middleware mới rất dễ dàng, chỉ cần xem qua mã mẫu.
+	</Card>	
+</CardGrid>
