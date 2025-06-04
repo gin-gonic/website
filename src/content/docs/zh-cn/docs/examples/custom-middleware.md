@@ -25,7 +25,7 @@ func Logger() gin.HandlerFunc {
 }
 
 func main() {
-	r := gin.New()
+	router := gin.New()
 	router.Use(Logger())
 
 	router.GET("/test", func(c *gin.Context) {
