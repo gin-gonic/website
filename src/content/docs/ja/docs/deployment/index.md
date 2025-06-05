@@ -1,30 +1,65 @@
 ---
-title: "Deployment"
 sidebar:
   order: 6
+title: Deployment
 ---
 
 Gin のプロジェクトはあらゆるクラウドサービス上に簡単にデプロイできます。
 
+## [Railway](https://www.railway.com)
+
+Railway is a cutting-edge cloud development platform for deploying,
+managing, and scaling applications and services. It simplifies your
+infrastructure stack from servers to observability with a single, scalable,
+easy-to-use platform.
+
+Follow the Railway [guide to deploy your Gin
+projects](https://docs.railway.com/guides/gin).
+
+## [Koyeb](https://www.koyeb.com)
+
+Koyeb is a developer-friendly serverless platform to deploy apps globally
+with git-based deployment, TLS encryption, native autoscaling, a global edge
+network, and built-in service mesh & discovery.
+
+Follow the Koyeb [guide to deploy your Gin
+projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+
+## [Qovery](https://www.qovery.com)
+
+Qovery provides free Cloud hosting with databases, SSL, a global CDN, and
+automatic deploys with Git.
+
+Follow the Qovery guide to [deploy your Gin
+project](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/).
+
 ## [Render](https://render.com)
 
-Render は Go をネイティブサポートするモダンなクラウドプラットフォームで、フルマネージド SSL、データベース、ダウンタイムのないデプロイ、HTTP/2、そして websocket もサポートしています。
+Render は Go をネイティブサポートするモダンなクラウドプラットフォームで、フルマネージド
+SSL、データベース、ダウンタイムのないデプロイ、HTTP/2、そして websocket もサポートしています。
 
-Render の[Gin プロジェクトのデプロイガイド](https://render.com/docs/deploy-go-gin)に詳細な記述があります。
+Render の[Gin
+プロジェクトのデプロイガイド](https://render.com/docs/deploy-go-gin)に詳細な記述があります。
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE で Go のアプリケーションをデプロイするには 2 つの方法があります。スタンダード環境は簡単に使用できますが、カスタマイズ性は低く、セキュリティ上の問題で[システムコール](https://github.com/gin-gonic/gin/issues/1639)の使用は避けるべきです。フレキシブル環境はあらゆるフレームワークやライブラリが使用できます。
+GAE で Go のアプリケーションをデプロイするには 2
+つの方法があります。スタンダード環境は簡単に使用できますが、カスタマイズ性は低く、セキュリティ上の問題で[システムコール](https://github.com/gin-gonic/gin/issues/1639)の使用は避けるべきです。フレキシブル環境はあらゆるフレームワークやライブラリが使用できます。
 
-さらに学んだり、より適した環境を探すには[Google App Engine 上での Go の使用](https://cloud.google.com/appengine/docs/go/)を参考にしてください。
+さらに学んだり、より適した環境を探すには[Google App Engine 上での Go
+の使用](https://cloud.google.com/appengine/docs/go/)を参考にしてください。
 
 ## Self Hosted
 
-Gin projects can also be deployed in a self-hosted manner. Deployment architecture and security considerations vary depending on the target environment. The following section only presents a high level overview of configuration options to consider when planning the deployment.
+Gin projects can also be deployed in a self-hosted manner. Deployment
+architecture and security considerations vary depending on the target
+environment. The following section only presents a high level overview of
+configuration options to consider when planning the deployment.
 
 ## Configuration Options
 
-Gin project deployments can be tuned by using environment variables or directly in code.
+Gin project deployments can be tuned by using environment variables or
+directly in code.
 
 The following environment variables are available for configuring Gin:
 
@@ -57,14 +92,14 @@ router.SetTrustedProxies([]string{"192.168.1.2"})
 
 ## Don't trust all proxies
 
-Gin lets you specify which headers to hold the real client IP (if any),
-as well as specifying which proxies (or direct clients) you trust to
-specify one of these headers.
+Gin lets you specify which headers to hold the real client IP (if any), as
+well as specifying which proxies (or direct clients) you trust to specify
+one of these headers.
 
-Use function `SetTrustedProxies()` on your `gin.Engine` to specify network addresses
-or network CIDRs from where clients which their request headers related to client
-IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs, IPv6 addresses or
-IPv6 CIDRs.
+Use function `SetTrustedProxies()` on your `gin.Engine` to specify network
+addresses or network CIDRs from where clients which their request headers
+related to client IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs,
+IPv6 addresses or IPv6 CIDRs.
 
 **Attention:** Gin trust all proxies by default if you don't specify a trusted
 proxy using the function above, **this is NOT safe**. At the same time, if you don't
