@@ -1,5 +1,5 @@
 ---
-title: "クエリ文字列やフォーム投稿によるパラメータをマッピングする"
+title: クエリ文字列やフォーム投稿によるパラメータをマッピングする
 ---
 
 ```sh
@@ -7,6 +7,12 @@ POST /post?ids[a]=1234&ids[b]=hello HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
 names[first]=thinkerou&names[second]=tianou
+```
+
+```bash
+curl 'http://localhost:8080/post?ids\[a\]=1234&ids\[b\]=hello' \
+--data-raw 'names[first]=pure&names[seconds]=maslak' \
+--compressed
 ```
 
 ```go
@@ -27,5 +33,4 @@ func main() {
 ```sh
 ids: map[b:hello a:1234], names: map[second:tianou first:thinkerou]
 ```
-
 
