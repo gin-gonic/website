@@ -1,6 +1,11 @@
 ---
-title: "HTML をレンダリングする"
+title: 'HTML をレンダリングする'
 ---
+
+Gin uses the [html/template](https://pkg.go.dev/html/template) package for
+HTML rendering.  For more information about how to use them, including
+available placeholders, see the documentation for
+[text/template](https://pkg.go.dev/text/template)
 
 LoadHTMLGlob() あるいは LoadHTMLFiles() メソッドを使用してください。
 
@@ -47,6 +52,8 @@ func main() {
 	router.Run(":8080")
 }
 ```
+
+**Note:** Please wrap your HTML template in the `{{define <template-path>}} {{end}}` block and define your template file with the relative path `<template-path>`. Otherwise, GIN will not properly parse the template files.
 
 templates/posts/index.tmpl
 
@@ -99,7 +106,8 @@ func main() {
 
 ### カスタムテンプレート関数
 
-詳細は [サンプルコード](https://github.com/gin-gonic/examples/tree/master/template) を参照。
+詳細は [サンプルコード](https://github.com/gin-gonic/examples/tree/master/template)
+を参照。
 
 main.go
 
