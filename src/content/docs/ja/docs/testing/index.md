@@ -1,10 +1,10 @@
 ---
-title: "テスト"
 sidebar:
   order: 7
+title: テスト
 ---
 
-##### Gin でテストコードを書くには
+## Gin でテストコードを書くには
 
 `net/http/httptest` パッケージが、HTTP テストをするには好ましい方法です。
 
