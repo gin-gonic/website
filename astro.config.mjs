@@ -64,6 +64,10 @@ export default defineConfig({
                 label: "繁體中文",
                 lang: "zh-tw",
             },
+            "ar": {
+                label: "عربي",
+                lang: "ar",
+            },
         },
 
         social: {

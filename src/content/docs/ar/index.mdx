@@ -1,0 +1,56 @@
+---
+title: إطار عمل الويب Gin
+description: The fastest full-featured web framework for Go. Crystal clear.
+template: splash
+hero:
+  tagline: أسرع إطار عمل ويب متكامل للغة Go. واضح كالكريستال.
+  image:
+    file: ../../../assets/gin.png
+  actions:
+    - text: Read the docs
+      link: /en/docs/
+      icon: right-arrow
+    - text: Download
+      link: https://github.com/gin-gonic/gin/releases
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from "@astrojs/starlight/components";
+
+## ما هو Gin?
+
+Gin هو إطار عمل ويب مكتوب بلغة Go (Golang). يتميز بواجهة برمجية تشبه واجهة Martini، لكنه يوفر أداءً أسرع بما يصل إلى 40 مرة مقارنة بـ Martini. إذا كنت تبحث عن الأداء العالي والإنتاجية، فستحب Gin بالتأكيد.
+
+<CardGrid>
+  <Card title="سريع" icon="rocket">
+    التوجيه يعتمد على شجرة Radix، بذاكرة صغيرة الاستخدام. لا يستخدم الانعكاس (reflection). أداء واجهة البرمجة (API) قابل للتنبؤ به.
+  </Card>
+  <Card title="Middleware support" icon="seti:plan">
+    يمكن معالجة طلب HTTP وارد بواسطة سلسلة من البرامج الوسيطة (middleware) ثم تنفيذ الإجراء النهائي. على سبيل المثال: تسجيل الدخول (Logger)، التفويض (Authorization)، ضغط البيانات (GZIP)، وأخيرًا حفظ رسالة في قاعدة البيانات.
+
+  </Card>
+  <Card title="خالٍ من الأخطاء" icon="seti:lock">
+    يمكن لـ Gin التقاط حالة الـ panic التي تحدث أثناء معالجة طلب HTTP واستعادتها. بهذه الطريقة، يظل الخادم الخاص بك متاحًا دائمًا. كما يمكن أيضًا إرسال تقرير عن هذا الـ panic إلى خدمات مثل Sentry على سبيل المثال!
+  </Card>
+  <Card title="التحقق من صحة JSON" icon="approve-check-circle">
+يستطيع Gin تحليل والتحقق من صحة بيانات JSON في الطلب، مثل التحقق من وجود القيم المطلوبة.
+
+  </Card>
+  <Card title="تجميع المسارات" icon="puzzle">
+نظّم مساراتك بشكل أفضل. مثلًا، التمييز بين المسارات التي تتطلب التفويض والمسارات التي لا تتطلبه، أو التعامل مع إصدارات مختلفة من واجهة البرمجة (API). بالإضافة إلى ذلك، يمكن تجميع المجموعات بشكل متداخل بلا حدود دون التأثير على الأداء.
+
+  </Card>
+  <Card title="إدارة الأخطاء" icon="open-book">
+    يوفر Gin طريقة ملائمة لجمع جميع الأخطاء التي تحدث أثناء معالجة طلب HTTP. في
+    النهاية، يمكن للبرامج الوسيطة (middleware) تسجيل هذه الأخطاء في ملف سجل، أو
+    في قاعدة بيانات، أو إرسالها عبر الشبكة.
+  </Card>
+  <Card title="التصيير المدمج" icon="seti:json">
+يوفر Gin واجهة برمجة تطبيقات سهلة الاستخدام لتصيير بيانات JSON و XML و HTML.
+
+  </Card>
+  <Card title="قابل للتوسيع" icon="seti:html">
+    إن إنشاء برنامج وسيط (middleware) جديد سهل جدًا، فقط اطلع على مثال الكود.
+  </Card>
+</CardGrid>
