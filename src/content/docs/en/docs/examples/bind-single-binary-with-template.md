@@ -1,44 +1,41 @@
 ---
 title: "Build a single binary with templates"
 ---
-## Use the third-party package
 
-You can use the third party package to build a server into a single binary containing templates by using [go-assets](https://github.com/jessevdk/go-assets).
+You can build a server into a single binary containing templates easily by Std lib.
 
 ```go
 func main() {
-	r := gin.New()
+	router := gin.Default()
+	templ := template.Must(template.New("").ParseFS(f, "templates/*.tmpl", "templates/foo/*.tmpl"))
+	router.SetHTMLTemplate(templ)
 
-	t, err := loadTemplate()
-	if err != nil {
-		panic(err)
-	}
-	router.SetHTMLTemplate(t)
+	// example: /public/assets/images/example.png
+	router.StaticFS("/public", http.FS(f))
 
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
+		c.HTML(http.StatusOK, "index.tmpl", gin.H{
+			"title": "Main website",
+		})
 	})
-	router.Run(":8080")
-}
 
-// loadTemplate loads templates embedded by go-assets-builder
-func loadTemplate() (*template.Template, error) {
-	t := template.New("")
-	for name, file := range Assets.Files {
-		if file.IsDir() || !strings.HasSuffix(name, ".tmpl") {
-			continue
-		}
-		h, err := ioutil.ReadAll(file)
-		if err != nil {
-			return nil, err
-		}
-		t, err = t.New(name).Parse(string(h))
-		if err != nil {
-			return nil, err
-		}
-	}
-	return t, nil
+	router.GET("/foo", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "bar.tmpl", gin.H{
+			"title": "Foo website",
+		})
+	})
+
+	router.GET("favicon.ico", func(c *gin.Context) {
+		file, _ := f.ReadFile("assets/favicon.ico")
+		c.Data(
+			http.StatusOK,
+			"image/x-icon",
+			file,
+		)
+	})
+
+	router.Run(":8080")
 }
 ```
 
-See a complete example in the [assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01) directory.
+See a complete example in the [assets-in-binary/example01](https://github.com/gin-gonic/examples/blob/master/assets-in-binary/main.go) directory.
