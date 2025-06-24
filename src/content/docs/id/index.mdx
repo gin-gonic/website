@@ -1,0 +1,50 @@
+---
+title: Gin Web Framework
+description: The fastest full-featured web framework for Go. Crystal clear.
+template: splash
+hero:
+  tagline: Framework web Go tercepat dengan fitur lengkap. Jelas seperti kristal.
+  image:
+    file: ../../../assets/gin.png
+  actions:
+    - text: Baca dokumentasi
+      link: /id/docs/
+      icon: right-arrow
+    - text: Unduh
+      link: https://github.com/gin-gonic/gin/releases
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Apa itu Gin?
+
+Gin adalah framework web yang ditulis menggunakan Golang. Framework ini memiliki API yang mirip dengan Martini, tapi dengan performa hingga 40 kali lebih cepat. Kalau Anda membutuhkan performa tinggi dan produktivitas, Anda akan menyukai Gin.
+
+<CardGrid>
+	<Card title="Cepat" icon="rocket">
+		Routing berbasis radix tree, memori footprint kecil. Tidak ada penggunaan reflection. Kinerja API yang dapat diprediksi.
+	</Card>
+	<Card title="Dukungan middleware" icon="seti:plan">
+		Permintaan HTTP yang masuk dapat diproses oleh serangkaian middleware sebelum tindakan akhirnya dieksekusi. Sebagai contoh: Logger, Authorization, GZIP, dan selanjutnya pesan disimpan ke dalam database.
+	</Card>
+	<Card title="Bebas crash" icon="seti:lock">
+		Gin dapat menangkap dan memulihkan panic yang terjadi selama pemrosesan permintaan HTTP. Dengan begitu, server Anda akan selalu tersedia. Bahkan, Anda bisa melaporkan panic ini ke layanan seperti Sentry!
+	</Card>
+	<Card title="Validasi JSON" icon="approve-check-circle">
+		Gin dapat melakukan parse dan validasi JSON dari suatu permintaan, seperti memeriksa keberadaan nilai-nilai yang wajib ada.
+	</Card>
+	<Card title="Pengelompokan route" icon="puzzle">
+		Atur route dengan lebih rapi. Anda bisa mengelompokkan route yang memerlukan otorisasi dan yang tidak, atau berdasarkan versi API yang berbeda. Pengelompokan ini bisa bersarang tanpa batas dan tidak akan menurunkan performa.
+	</Card>
+	<Card title="Manajemen error" icon="open-book">
+		Gin menyediakan cara yang mudah untuk mengumpulkan semua error yang terjadi selama pemrosesan permintaan HTTP. Nantinya, middleware dapat mencatat error tersebut ke file log, database, dan mengirimnya melalui jaringan.
+	</Card>
+	<Card title="Rendering bawaan" icon="seti:json">
+		Gin menyediakan API yang mudah digunakan untuk melakukan rendering dalam format JSON, XML, dan HTML.
+	</Card>
+	<Card title="Extendable" icon="seti:html">
+		Sangat mudah membuat middleware baru, Anda bisa langsung melihat contoh kodenya.
+	</Card>	
+</CardGrid>
