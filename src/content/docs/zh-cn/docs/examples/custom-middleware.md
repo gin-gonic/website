@@ -26,9 +26,9 @@ func Logger() gin.HandlerFunc {
 
 func main() {
 	r := gin.New()
-	router.Use(Logger())
+	r.Use(Logger())
 
-	router.GET("/test", func(c *gin.Context) {
+	r.GET("/test", func(c *gin.Context) {
 		example := c.MustGet("example").(string)
 
 		// 打印："12345"
