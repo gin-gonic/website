@@ -36,6 +36,10 @@ export default defineConfig({
                 label: "Persian",
                 lang: "fa",
             },
+            "id": {
+                label: "Bahasa Indonesia",
+                lang: "id",
+            },
             "ja": {
                 label: "日本語",
                 lang: "ja",
