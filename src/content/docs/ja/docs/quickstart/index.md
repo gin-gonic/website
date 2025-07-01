@@ -1,7 +1,7 @@
 ---
-title: "クイックスタート"
 sidebar:
   order: 2
+title: クイックスタート
 ---
 
 このクイックスタートでは、コードの集まりからの洞察を収集し、どのようにするかを学びます。
@@ -32,19 +32,19 @@ import "github.com/gin-gonic/gin"
 import "net/http"
 ```
 
-1. プロジェクトフォルダを作り、 `cd` で中に入ります。
+4. プロジェクトフォルダを作り、 `cd` で中に入ります。
 
 ```sh
 $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 ```
 
-2. 開始用テンプレートをプロジェクトディレクトリにコピーする
+5. 開始用テンプレートをプロジェクトディレクトリにコピーする
 
 ```sh
 $ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
 ```
 
-3. プロジェクトを実行する
+6. プロジェクトを実行する
 
 ```sh
 $ go run main.go
@@ -62,6 +62,7 @@ $ touch example.go
 ```
 
 次に、下記のコードを `example.go` に書きます。
+
 ```go
 package main
 
@@ -80,7 +81,33 @@ func main() {
 
 そして `go run example.go` でコードを実行します。
 
-```
+```sh
 # example.go を実行し、ブラウザで 0.0.0.0:8080/ping にアクセスする
 $ go run example.go
 ```
+
+If you prefer to use the `net/http` package, follow the code snippet below
+
+```go
+package main
+
+import (
+  "github.com/gin-gonic/gin"
+  "net/http"
+)
+
+func main() {
+  router := gin.Default()
+
+  router.GET("/ping", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "message": "pong",
+    })
+  })
+
+  router.Run() // listen and serve on 0.0.0.0:8080
+}
+```
+
+Additional information is available from the [Gin source code
+repository](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).

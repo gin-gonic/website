@@ -1,5 +1,5 @@
 ---
-title: "フォーム投稿されたリクエストを構造体にバインドする"
+title: フォーム投稿されたリクエストを構造体にバインドする
 ---
 
 下記のサンプルコードは、カスタム構造体を使っています。
@@ -73,23 +73,4 @@ $ curl "http://localhost:8080/getc?field_a=hello&field_c=world"
 $ curl "http://localhost:8080/getd?field_x=hello&field_d=world"
 {"d":"world","x":{"FieldX":"hello"}}
 ```
-
-**NOTE**: 下記の構造体はサポートしていません。
-
-```go
-type StructX struct {
-    X struct {} `form:"name_x"` // ここが form を持ってしまっている
-}
-
-type StructY struct {
-    Y StructX `form:"name_y"` // ここが form を持ってしまっている
-}
-
-type StructZ struct {
-    Z *StructZ `form:"name_z"` // ここが form を持ってしまっている
-}
-```
-
-端的に言えば、ネストした構造体は `form` を今は持つことができません。
-
 
