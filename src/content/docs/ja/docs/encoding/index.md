@@ -1,11 +1,13 @@
 ---
-title: "Encoding"
 sidebar:
   order: 5
+title: エンコーディング
 ---
 
-### JSONの差し替えビルドについて
-Gin では、標準の JSON パッケージとして encoding/json が使用されていますが、ビルドタグを利用することで他の JSON パッケージに差し替えることが可能です。
+### jsonの代替を使ったビルド
+
+Ginでは`encoding/json`が既定のJSONパッケージとして使われます。
+しかし、別のタグでビルドすると変えられます。
 
 [go-json](https://github.com/goccy/go-json)
 
@@ -19,7 +21,7 @@ go build -tags=go_json .
 go build -tags=jsoniter .
 ```
 
-[sonic](https://github.com/bytedance/sonic) (この処理を実行するには、お使いの CPU が AVX 命令セットに対応している必要があります。)
+[sonic](https://github.com/bytedance/sonic)（cpuがavxの命令に対応していることを要確認）
 
 ```sh
 $ go build -tags="sonic avx" .
