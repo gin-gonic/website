@@ -23,6 +23,7 @@ endless の代わりは以下があります。
 もし Go 1.8 を使っているなら、これらのライブラリを使う必要はないかもしれません！http.Server 組み込みの [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) メソッドを、graceful shutdowns に利用することを検討してみてください。詳細は Gin の [graceful-shutdown](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) サンプルコードを見てみてください。
 
 ```go
+//go:build go1.8
 // +build go1.8
 
 package main
@@ -48,21 +49,22 @@ func main() {
 
 	srv := &http.Server{
 		Addr:    ":8080",
-		Handler: router,
+		Handler: router.Handler(),
 	}
 
 	go func() {
-		// サービスの接続
+		// service connections
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
 		}
 	}()
 
-	// シグナル割り込みを待ち、タイムアウト時間が5秒の graceful shutdown をする
+	// Wait for interrupt signal to gracefully shutdown the server with
+	// a timeout of 5 seconds.
 	quit := make(chan os.Signal, 1)
-	// kill (no param) default sends syscall.SIGTERM
+	// kill (no params) by default sends syscall.SIGTERM
 	// kill -2 is syscall.SIGINT
-	// kill -9 is syscall. SIGKILL but can't be caught, so don't need add it
+	// kill -9 is syscall.SIGKILL but can't be caught, so don't need add it
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
 	log.Println("Shutdown Server ...")
@@ -70,15 +72,8 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
-	}
-	// ctx.Done() をキャッチする。5秒間のタイムアウト。
-	select {
-	case <-ctx.Done():
-		log.Println("timeout of 5 seconds.")
+		log.Println("Server Shutdown:", err)
 	}
 	log.Println("Server exiting")
 }
 ```
-
-

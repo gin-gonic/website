@@ -34,6 +34,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -48,7 +49,7 @@ func main() {
 
 	srv := &http.Server{
 		Addr:    ":8080",
-		Handler: router,
+		Handler: router.Handler(),
 	}
 
 	go func() {
@@ -73,9 +74,6 @@ func main() {
 	if err := srv.Shutdown(ctx); err != nil {
 		log.Println("Server Shutdown:", err)
 	}
-	// catching ctx.Done(). timeout of 5 seconds.
-	<-ctx.Done()
-	log.Println("timeout of 5 seconds.")
 	log.Println("Server exiting")
 }
 ```

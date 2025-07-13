@@ -22,6 +22,7 @@ Alternativas de endless:
 Si estás usando Go 1.8, no necesitas hacer uso de esta librería!. Considera el uso del método [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) que viene incluído en `http.Server` para el apagado controlado. Véase el ejemplo de [apagado controlado](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) con Gin.
 
 ```go
+//go:build go1.8
 // +build go1.8
 
 package main
@@ -47,22 +48,22 @@ func main() {
 
 	srv := &http.Server{
 		Addr:    ":8080",
-		Handler: router,
+		Handler: router.Handler(),
 	}
 
 	go func() {
-		// conexiones de servicio
+		// service connections
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
 		}
 	}()
 
-	// Espera por la señal de interrupción para el apagado controlado del servidor
-	// con un tiempo de espera de 5 segundos.
+	// Wait for interrupt signal to gracefully shutdown the server with
+	// a timeout of 5 seconds.
 	quit := make(chan os.Signal, 1)
-	// kill (sin parámetro) envío por defecto de la señal syscall.SIGTERM
-	// kill -2 es syscall.SIGINT
-	// kill -9 es syscall.SIGKILL pero no se puede atrapar, así que no es necesario agregarlo
+	// kill (no params) by default sends syscall.SIGTERM
+	// kill -2 is syscall.SIGINT
+	// kill -9 is syscall.SIGKILL but can't be caught, so don't need add it
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
 	log.Println("Shutdown Server ...")
@@ -70,12 +71,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
-	}
-	// controlando ctx.Done(). tiempo de espera de 5 segundos.
-	select {
-	case <-ctx.Done():
-		log.Println("timeout of 5 seconds.")
+		log.Println("Server Shutdown:", err)
 	}
 	log.Println("Server exiting")
 }

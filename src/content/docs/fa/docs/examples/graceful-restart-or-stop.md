@@ -23,6 +23,7 @@ An alternative to endless:
 If you are using Go 1.8, you may not need to use this library! Consider using http.Server's built-in [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) method for graceful shutdowns. See the full [graceful-shutdown](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) example with gin.
 
 ```go
+//go:build go1.8
 // +build go1.8
 
 package main
@@ -48,7 +49,7 @@ func main() {
 
 	srv := &http.Server{
 		Addr:    ":8080",
-		Handler: router,
+		Handler: router.Handler(),
 	}
 
 	go func() {
@@ -61,7 +62,7 @@ func main() {
 	// Wait for interrupt signal to gracefully shutdown the server with
 	// a timeout of 5 seconds.
 	quit := make(chan os.Signal, 1)
-	// kill (no param) default sends syscall.SIGTERM
+	// kill (no params) by default sends syscall.SIGTERM
 	// kill -2 is syscall.SIGINT
 	// kill -9 is syscall.SIGKILL but can't be caught, so don't need add it
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
@@ -71,12 +72,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
-	}
-	// catching ctx.Done(). timeout of 5 seconds.
-	select {
-	case <-ctx.Done():
-		log.Println("timeout of 5 seconds.")
+		log.Println("Server Shutdown:", err)
 	}
 	log.Println("Server exiting")
 }

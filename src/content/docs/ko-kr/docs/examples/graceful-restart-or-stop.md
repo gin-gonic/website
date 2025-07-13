@@ -23,6 +23,7 @@ endless의 대안은 다음과 같습니다:
 만약 Go 1.8을 사용한다면, 이 라이브러리를 사용할 필요가 없습니다! Graceful 종료를 위해 http.Server에 포함되어 있는 [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) 메소드를 사용할 것을 검토해보세요. 자세한 내용은 Gin의 [graceful-shutdown](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) 예제에서 확인해 주세요.
 
 ```go
+//go:build go1.8
 // +build go1.8
 
 package main
@@ -48,21 +49,22 @@ func main() {
 
 	srv := &http.Server{
 		Addr:    ":8080",
-		Handler: router,
+		Handler: router.Handler(),
 	}
 
 	go func() {
-		// 서비스 접속
+		// service connections
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
 		}
 	}()
 
-	// 5초의 타임아웃으로 인해 인터럽트 신호가 서버를 정상종료 할 때까지 기다립니다.
+	// Wait for interrupt signal to gracefully shutdown the server with
+	// a timeout of 5 seconds.
 	quit := make(chan os.Signal, 1)
-	// kill (파라미터 없음) 기본값으로 syscall.SIGTERM를 보냅니다
-	// kill -2 는 syscall.SIGINT를 보냅니다
-	// kill -9 는 syscall.SIGKILL를 보내지만 캐치할수 없으므로, 추가할 필요가 없습니다.
+	// kill (no params) by default sends syscall.SIGTERM
+	// kill -2 is syscall.SIGINT
+	// kill -9 is syscall.SIGKILL but can't be caught, so don't need add it
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
 	log.Println("Shutdown Server ...")
@@ -70,12 +72,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
-	}
-	// 5초의 타임아웃으로 ctx.Done()을 캐치합니다.
-	select {
-	case <-ctx.Done():
-		log.Println("timeout of 5 seconds.")
+		log.Println("Server Shutdown:", err)
 	}
 	log.Println("Server exiting")
 }

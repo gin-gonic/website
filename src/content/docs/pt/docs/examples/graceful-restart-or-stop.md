@@ -23,6 +23,7 @@ Uma alternativa ao `endless`:
 Se usas a Go 1.8, podes não precisar de usar esta biblioteca! Considere usar o método [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) embutido da `http.Server` para paragens graciosas. Consulte o exemplo [graceful-shutdown](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) completo com a Gin:
 
 ```go
+//go:build go1.8
 // +build go1.8
 
 package main
@@ -48,23 +49,22 @@ func main() {
 
 	srv := &http.Server{
 		Addr:    ":8080",
-		Handler: router,
+		Handler: router.Handler(),
 	}
 
 	go func() {
-		// servir conexões ou conexões de serviço
+		// service connections
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
 		}
 	}()
 
-	// espere pelo sinal de interrupção para parar graciosamente o
-	// servidor com uma pausa de 5 segundos.
+	// Wait for interrupt signal to gracefully shutdown the server with
+	// a timeout of 5 seconds.
 	quit := make(chan os.Signal, 1)
-	// "kill" padrão (sem parâmetro) envia "syscall.SIGTERM"
-	// "kill -2" é "syscall.SIGINT"
-	// "kill -9" é "syscall.SIGKILL" mas não pode ser capturado,
-	// então não precisas adicioná-lo
+	// kill (no params) by default sends syscall.SIGTERM
+	// kill -2 is syscall.SIGINT
+	// kill -9 is syscall.SIGKILL but can't be caught, so don't need add it
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
 	log.Println("Shutdown Server ...")
@@ -72,12 +72,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
-	}
-	// capturar ctx.Done(). pausa de 5 segundos.
-	select {
-	case <-ctx.Done():
-		log.Println("timeout of 5 seconds.")
+		log.Println("Server Shutdown:", err)
 	}
 	log.Println("Server exiting")
 }

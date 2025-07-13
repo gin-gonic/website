@@ -22,6 +22,7 @@ endless.ListenAndServe(":4242", router)
 如果你使用的是 Go 1.8，可以不需要这些库！考虑使用 http.Server 内置的 [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) 方法优雅地关机. 请参阅 gin 完整的 [graceful-shutdown](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) 示例。
 
 ```go
+//go:build go1.8
 // +build go1.8
 
 package main
@@ -32,6 +33,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -46,28 +48,31 @@ func main() {
 
 	srv := &http.Server{
 		Addr:    ":8080",
-		Handler: router,
+		Handler: router.Handler(),
 	}
 
 	go func() {
-		// 服务连接
+		// service connections
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatalf("listen: %s\n", err)
 		}
 	}()
 
-	// 等待中断信号以优雅地关闭服务器（设置 5 秒的超时时间）
+	// Wait for interrupt signal to gracefully shutdown the server with
+	// a timeout of 5 seconds.
 	quit := make(chan os.Signal, 1)
-	signal.Notify(quit, os.Interrupt)
+	// kill (no params) by default sends syscall.SIGTERM
+	// kill -2 is syscall.SIGINT
+	// kill -9 is syscall.SIGKILL but can't be caught, so don't need add it
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	<-quit
 	log.Println("Shutdown Server ...")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
+		log.Println("Server Shutdown:", err)
 	}
 	log.Println("Server exiting")
 }
 ```
-
