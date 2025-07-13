@@ -2,7 +2,7 @@
 
 [![Run Deploy](https://github.com/gin-gonic/website/actions/workflows/node.yml/badge.svg)](https://github.com/gin-gonic/website/actions/workflows/node.yml)
 
-Welcome! This repository houses all the assets required to build the Gin website and documentation. We're pleased that you want to contribute! The website is hosted at https://gin-gonic.com.
+Welcome! This repository houses all the assets required to build the Gin website and documentation. We're pleased that you want to contribute! The website is hosted at [https://gin-gonic.com](https://gin-gonic.com).
 
 We use [Astro](https://astro.build) to format and generate our website, the [Starlight](https://starlight.astro.build) template for styling and site structure. Thanks!.
 
@@ -31,13 +31,13 @@ npm install
 npm run dev
 ```
 
-This will start the local Astro server on port 4321. Open up your browser to http://localhost:4321 to view the site. As you make changes to the source files, Astro updates the site and forces a browser refresh.
+This will start the local Astro server on port 4321. Open up your browser to <http://localhost:4321> to view the site. As you make changes to the source files, Astro updates the site and forces a browser refresh.
 
 ## 🚀 Project Structure
 
 Inside of your Astro + Starlight project, you'll see the following folders and files:
 
-```
+```bash
 .
 ├── public/
 ├── src/
