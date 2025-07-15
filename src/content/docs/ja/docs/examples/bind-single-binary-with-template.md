@@ -1,10 +1,10 @@
 ---
-title: "テンプレートを含めた1つのバイナリをビルドする"
+title: テンプレートを含めた1つのバイナリをビルドする
 ---
+## Use the third-party package
 
-[go-assets](https://github.com/jessevdk/go-assets) を利用することで、サーバーアプリケーションを、テンプレートを含む1つのバイナリにまとめることができます。
-
-[go-assets]: https://github.com/jessevdk/go-assets
+[go-assets](https://github.com/jessevdk/go-assets)
+を利用することで、サーバーアプリケーションを、テンプレートを含む1つのバイナリにまとめることができます。
 
 ```go
 func main() {
@@ -42,6 +42,5 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-完全なサンプルコードは、[assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01) を見てください。
-
-
+完全なサンプルコードは、[assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01)
+を見てください。

@@ -1,8 +1,10 @@
 ---
-title: "セキュリティ・ヘッダ"
+title: セキュリティ・ヘッダ
 ---
 
-セキュリティヘッダの使用は、一般的なセキュリティの脆弱性からウェブアプリケーションを守るために重要です。この例では、Gin アプリケーションにセキュリティヘッダーを追加する方法と、ホストヘッダーインジェクションに関連する攻撃（SSRF、Open Redirection）を回避する方法を示します。
+セキュリティヘッダの使用は、一般的なセキュリティの脆弱性からウェブアプリケーションを守るために重要です。この例では、Gin
+アプリケーションにセキュリティヘッダーを追加する方法と、ホストヘッダーインジェクションに関連する攻撃（SSRF、Open
+Redirection）を回避する方法を示します。
 
 ```go
 package main
@@ -18,7 +20,7 @@ func main() {
 
 	expectedHost := "localhost:8080"
 
-	// Setup Security Headers
+	// セキュリティヘッダを準備
 	r.Use(func(c *gin.Context) {
 		if c.Request.Host != expectedHost {
 			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid host header"})
@@ -40,12 +42,11 @@ func main() {
 		})
 	})
 
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.Run() // 0.0.0.0:8080 でリッスンしサーバーを立てます
 }
 ```
 
-`curl`でテストできます： 
-
+`curl`でテストできます：
 
 ```bash
 // ヘッダーのチェック

@@ -1,10 +1,19 @@
 ---
-title: "ベンチマーク"
 sidebar:
   order: 3
+title: ベンチマーク
 ---
 
-Gin は [HttpRouter](https://github.com/julienschmidt/httprouter) をカスタムしたバージョンを利用しています。
+**VM HOST:** Travis
+**Machine:** Ubuntu 16.04.6 LTS x64
+**Date:** May 04th, 2020
+**Version:** Gin v1.6.3
+**Go Version:** 1.14.2 linux/amd64
+**Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+**Result:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+
+Gin は [HttpRouter](https://github.com/julienschmidt/httprouter)
+をカスタムしたバージョンを利用しています。
 
 [すべてのベンチマークを見る](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
 
@@ -40,6 +49,8 @@ Gin は [HttpRouter](https://github.com/julienschmidt/httprouter) をカスタ�
 | BenchmarkTigerTonic_GithubAll  |      2008 |    687874 ns/op |  193856 B/op |  4474 allocs/op |
 | BenchmarkTraffic_GithubAll     |       355 |   3478508 ns/op |  820744 B/op | 14114 allocs/op |
 | BenchmarkVulcan_GithubAll      |      6885 |    193333 ns/op |   19894 B/op |   609 allocs/op |
+
+Notes:
 
 - (1): 一定時間内を満たした総試行回数。高いとよりよい結果を示している。
 - (2): 1試行にかかった時間(ns/op)。低いと良い。

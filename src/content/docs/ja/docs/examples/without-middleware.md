@@ -1,6 +1,8 @@
 ---
-title: "デフォルトで設定されるミドルウェアがない空の Gin を作成する"
+title: 'デフォルトで設定されるミドルウェアがない空の Gin を作成する'
 ---
+
+Use
 
 ```go
 r := gin.New()
@@ -12,5 +14,3 @@ r := gin.New()
 // Default は Logger と Recovery ミドルウェアが既にアタッチされている
 r := gin.Default()
 ```
-
-
