@@ -12,6 +12,8 @@ A Gin é uma abstração de web escrita em Go (Golang). Ela apresenta uma API pa
 
 Nós fornecemos [exemplos](https://github.com/gin-gonic/examples) de uso da API e listamos alguns [utilizadores de Gin](./users) conhecidos publicamente.
 
+Quer praticar conceitos de Gin de forma interativa? Consulte nossos [Recursos de Aprendizagem](./learning-resources) para desafios interativos e tutoriais.
+
 ## Como contribuir com a Gin?
 
 * Ajude as pessoas nos fóruns de discussão

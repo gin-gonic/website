@@ -12,6 +12,8 @@ Gin, Go (Golang) ile yazılmış bir HTTP web çerçevesidir. Martini benzeri bi
 
 API kullanım [örnekleri](https://github.com/gin-gonic/examples) sunuyoruz ve bilinen bazı [Gin kullanıcılarını](./users) listeliyoruz.
 
+Gin kavramlarını pratik yapmaya hazır mısınız? Etkileşimli görevler ve öğreticiler için [Öğrenme Kaynaklarımızı](./learning-resources) inceleyin.
+
 ## Gin'e nasıl katkıda bulunmalı?
 
 * Tartışma forumlarında insanlara yardım edin

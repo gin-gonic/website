@@ -12,6 +12,8 @@ Gin 是一个用 Go (Golang) 编写的 HTTP Web 框架。 它具有类似 Martin
 
 我们提供了一些 API 的使用[示例](https://gin-gonic.com/zh-cn/docs/examples/) 并罗列了一些众所周知的 [Gin 用户](./users).
 
+想要实践 Gin 概念吗？查看我们的[学习资源](./learning-resources)以获取交互式挑战和教程。
+
 ## 如何为 Gin 做贡献？
 
 * 在社区帮助其他人
