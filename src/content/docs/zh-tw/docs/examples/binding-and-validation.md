@@ -1,27 +1,27 @@
 ---
-title: "Model binding and validation"
+title: "模型綁定與驗證"
 ---
 
-To bind a request body into a type, use model binding. We currently support binding of JSON, XML, YAML and standard form values (foo=bar&boo=baz).
+若要將請求內文綁定到一個類型，請使用模型綁定。我們目前支援綁定 JSON、XML、YAML 和標準表單值 (foo=bar&boo=baz)。
 
-Gin uses [**go-playground/validator/v10**](https://github.com/go-playground/validator) for validation. Check the full docs on tags usage [here](https://pkg.go.dev/github.com/go-playground/validator/v10#hdr-Baked_In_Validators_and_Tags).
+Gin 使用 [**go-playground/validator/v10**](https://github.com/go-playground/validator) 進行驗證。請在此處查看有關標籤用法的[完整文件](https://pkg.go.dev/github.com/go-playground/validator/v10#hdr-Baked_In_Validators_and_Tags)。
 
-Note that you need to set the corresponding binding tag on all fields you want to bind. For example, when binding from JSON, set `json:"fieldname"`.
+請注意，您需要在所有要綁定的欄位上設定對應的綁定標籤。例如，從 JSON 綁定時，請設定 `json:"fieldname"`。
 
-Also, Gin provides two sets of methods for binding:
-- **Type** - Must bind
-  - **Methods** - `Bind`, `BindJSON`, `BindXML`, `BindQuery`, `BindYAML`
-  - **Behavior** - These methods use `MustBindWith` under the hood. If there is a binding error, the request is aborted with `c.AbortWithError(400, err).SetType(ErrorTypeBind)`. This sets the response status code to 400 and the `Content-Type` header is set to `text/plain; charset=utf-8`. Note that if you try to set the response code after this, it will result in a warning `[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422`. If you wish to have greater control over the behavior, consider using the `ShouldBind` equivalent method.
-- **Type** - Should bind
-  - **Methods** - `ShouldBind`, `ShouldBindJSON`, `ShouldBindXML`, `ShouldBindQuery`, `ShouldBindYAML`
-  - **Behavior** - These methods use `ShouldBindWith` under the hood. If there is a binding error, the error is returned and it is the developer's responsibility to handle the request and error appropriately.
+此外，Gin 還提供了兩組綁定方法：
+- **類型** - 必須綁定
+  - **方法** - `Bind`、`BindJSON`、`BindXML`、`BindQuery`、`BindYAML`
+  - **行為** - 這些方法在底層使用 `MustBindWith`。如果發生綁定錯誤，請求將被中止，並回傳 `c.AbortWithError(400, err).SetType(ErrorTypeBind)`。這會將回應狀態碼設定為 400，並將 `Content-Type` 標頭設定為 `text/plain; charset=utf-8`。請注意，如果您在此之後嘗試設定回應碼，將會出現警告 `[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422`。如果您希望對行為有更大的控制權，請考慮使用 `ShouldBind` 的對等方法。
+- **類型** - 應該綁定
+  - **方法** - `ShouldBind`、`ShouldBindJSON`、`ShouldBindXML`、`ShouldBindQuery`、`ShouldBindYAML`
+  - **行為** - 這些方法在底層使用 `ShouldBindWith`。如果發生綁定錯誤，將會回傳錯誤，開發人員有責任適當處理請求和錯誤。
 
-When using the Bind-method, Gin tries to infer the binder depending on the Content-Type header. If you are sure what you are binding, you can use `MustBindWith` or `ShouldBindWith`.
+使用 Bind 方法時，Gin 會根據 Content-Type 標頭嘗試推斷綁定器。如果您確定要綁定的內容，可以使用 `MustBindWith` 或 `ShouldBindWith`。
 
-You can also specify that specific fields are required. If a field is decorated with `binding:"required"` and has a empty value when binding, an error will be returned.
+您還可以指定特定欄位為必填。如果欄位使用 `binding:"required"` 裝飾，但在綁定時值為空，則會回傳錯誤。
 
 ```go
-// Binding from JSON
+// 從 JSON 綁定
 type Login struct {
 	User     string `form:"user" json:"user" xml:"user"  binding:"required"`
 	Password string `form:"password" json:"password" xml:"password" binding:"required"`
@@ -30,23 +30,23 @@ type Login struct {
 func main() {
 	router := gin.Default()
 
-	// Example for binding JSON ({"user": "manu", "password": "123"})
+	// 綁定 JSON 的範例 ({"user": "manu", "password": "123"})
 	router.POST("/loginJSON", func(c *gin.Context) {
 		var json Login
 		if err := c.ShouldBindJSON(&json); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
-		
+
 		if json.User != "manu" || json.Password != "123" {
 			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
 			return
-		} 
-		
+		}
+
 		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 	})
 
-	// Example for binding XML (
+	// 綁定 XML 的範例 (
 	//	<?xml version="1.0" encoding="UTF-8"?>
 	//	<root>
 	//		<user>manu</user>
@@ -58,38 +58,38 @@ func main() {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
-		
+
 		if xml.User != "manu" || xml.Password != "123" {
 			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
 			return
-		} 
-		
+		}
+
 		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 	})
 
-	// Example for binding a HTML form (user=manu&password=123)
+	// 綁定 HTML 表單的範例 (user=manu&password=123)
 	router.POST("/loginForm", func(c *gin.Context) {
 		var form Login
-		// This will infer what binder to use depending on the content-type header.
+		// 這將根據 content-type 標頭推斷要使用的綁定器。
 		if err := c.ShouldBind(&form); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
-		
+
 		if form.User != "manu" || form.Password != "123" {
 			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
 			return
-		} 
-		
+		}
+
 		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 在 0.0.0.0:8080 上監聽並提供服務
 	router.Run(":8080")
 }
 ```
 
-#### Sample request
+#### 範例請求
 
 ```sh
 $ curl -v -X POST \
@@ -112,6 +112,6 @@ $ curl -v -X POST \
 {"error":"Key: 'Login.Password' Error:Field validation for 'Password' failed on the 'required' tag"}
 ```
 
-#### Skip validate
+#### 略過驗證
 
-When running the above example using the above the `curl` command, it returns error. Because the example use `binding:"required"` for `Password`. If use `binding:"-"` for `Password`, then it will not return error when running the above example again.
+使用上述 `curl` 指令執行範例時，會回傳錯誤。這是因為範例中 `Password` 使用了 `binding:"required"`。如果將 `Password` 的標籤改為 `binding:"-"`，再次執行上述範例時將不會回傳錯誤。

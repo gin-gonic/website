@@ -1,8 +1,8 @@
 ---
-title: "Bind html checkboxes"
+title: "綁定 HTML 核取方塊"
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)
+詳情請參閱[此處](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)。
 
 main.go
 
@@ -29,18 +29,18 @@ form.html
 
 ```html
 <form action="/" method="POST">
-    <p>Check some colors</p>
-    <label for="red">Red</label>
+    <p>請勾選一些顏色</p>
+    <label for="red">紅色</label>
     <input type="checkbox" name="colors[]" value="red" id="red">
-    <label for="green">Green</label>
+    <label for="green">綠色</label>
     <input type="checkbox" name="colors[]" value="green" id="green">
-    <label for="blue">Blue</label>
+    <label for="blue">藍色</label>
     <input type="checkbox" name="colors[]" value="blue" id="blue">
     <input type="submit">
 </form>
 ```
 
-result:
+結果：
 
 ```sh
 {"color":["red","green","blue"]}

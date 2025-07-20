@@ -1,8 +1,8 @@
 ---
-title: "Support Let's Encrypt"
+title: "支援 Let's Encrypt"
 ---
 
-example for 1-line LetsEncrypt HTTPS servers.
+單行 LetsEncrypt HTTPS 伺服器範例。
 
 ```go
 package main
@@ -15,10 +15,10 @@ import (
 )
 
 func main() {
-	router := gin.Default()
+	r := gin.Default()
 
-	// Ping handler
-	router.GET("/ping", func(c *gin.Context) {
+	// Ping 處理函式
+	r.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 
@@ -26,7 +26,7 @@ func main() {
 }
 ```
 
-example for custom autocert manager.
+自訂 autocert 管理器範例。
 
 ```go
 package main
@@ -40,10 +40,10 @@ import (
 )
 
 func main() {
-	router := gin.Default()
+	r := gin.Default()
 
-	// Ping handler
-	router.GET("/ping", func(c *gin.Context) {
+	// Ping 處理函式
+	r.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
 

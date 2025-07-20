@@ -1,5 +1,5 @@
 ---
-title: "Serving data from reader"
+title: "從讀取器提供資料"
 ---
 
 ```go

@@ -1,8 +1,8 @@
 ---
-title: "Redirects"
+title: "重新導向"
 ---
 
-Issuing a HTTP redirect is easy. Both internal and external locations are supported.
+發出 HTTP 重新導向很簡單。內部和外部位置都支援。
 
 ```go
 router.GET("/test", func(c *gin.Context) {
@@ -10,7 +10,7 @@ router.GET("/test", func(c *gin.Context) {
 })
 ```
 
-Issuing a HTTP redirect from POST. Refer to issue: [#444](https://github.com/gin-gonic/gin/issues/444)
+從 POST 發出 HTTP 重新導向。請參閱問題：[#444](https://github.com/gin-gonic/gin/issues/444)
 
 ```go
 router.POST("/test", func(c *gin.Context) {
@@ -18,7 +18,7 @@ router.POST("/test", func(c *gin.Context) {
 })
 ```
 
-Issuing a Router redirect, use `HandleContext` like below.
+若要發出路由器重新導向，請如下所示使用 `HandleContext`。
 
 ``` go
 router.GET("/test", func(c *gin.Context) {

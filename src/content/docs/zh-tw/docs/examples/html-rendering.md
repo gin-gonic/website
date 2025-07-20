@@ -1,8 +1,8 @@
 ---
-title: "HTML rendering"
+title: "HTML 渲染"
 ---
 
-Using LoadHTMLGlob() or LoadHTMLFiles()
+使用 `LoadHTMLGlob()` 或 `LoadHTMLFiles()`
 
 ```go
 func main() {
@@ -11,7 +11,7 @@ func main() {
 	//router.LoadHTMLFiles("templates/template1.html", "templates/template2.html")
 	router.GET("/index", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl", gin.H{
-			"title": "Main website",
+			"title": "主網站",
 		})
 	})
 	router.Run(":8080")
@@ -28,7 +28,7 @@ templates/index.tmpl
 </html>
 ```
 
-Using templates with same name in different directories
+在不同目錄中使用同名樣板
 
 ```go
 func main() {
@@ -36,12 +36,12 @@ func main() {
 	router.LoadHTMLGlob("templates/**/*")
 	router.GET("/posts/index", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "posts/index.tmpl", gin.H{
-			"title": "Posts",
+			"title": "文章",
 		})
 	})
 	router.GET("/users/index", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "users/index.tmpl", gin.H{
-			"title": "Users",
+			"title": "使用者",
 		})
 	})
 	router.Run(":8080")
@@ -55,7 +55,7 @@ templates/posts/index.tmpl
 <html><h1>
 	{{ .title }}
 </h1>
-<p>Using posts/index.tmpl</p>
+<p>正在使用 posts/index.tmpl</p>
 </html>
 {{ end }}
 ```
@@ -67,14 +67,14 @@ templates/users/index.tmpl
 <html><h1>
 	{{ .title }}
 </h1>
-<p>Using users/index.tmpl</p>
+<p>正在使用 users/index.tmpl</p>
 </html>
 {{ end }}
 ```
 
-#### Custom Template renderer
+#### 自訂樣板渲染器
 
-You can also use your own html template render
+您也可以使用自己的 HTML 樣板渲染器
 
 ```go
 import "html/template"
@@ -87,9 +87,9 @@ func main() {
 }
 ```
 
-#### Custom Delimiters
+#### 自訂分隔符號
 
-You may use custom delims
+您可以使用自訂分隔符號
 
 ```go
 	router := gin.Default()
@@ -97,9 +97,9 @@ You may use custom delims
 	router.LoadHTMLGlob("/path/to/templates")
 ```
 
-#### Custom Template Funcs
+#### 自訂樣板函式
 
-See the detail [example code](examples/template).
+請參閱詳細的[範例程式碼](examples/template)。
 
 main.go
 
@@ -140,10 +140,10 @@ func main() {
 raw.tmpl
 
 ```sh
-Date: {[{.now | formatAsDate}]}
+日期： {[{.now | formatAsDate}]}
 ```
 
-Result:
+結果：
 ```sh
-Date: 2017/07/01
+日期： 2017/07/01
 ```

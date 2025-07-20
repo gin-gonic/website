@@ -1,42 +1,42 @@
 ---
-title: "Using middleware"
+title: "使用中介軟體"
 ---
 
 ```go
 func main() {
-	// Creates a router without any middleware by default
+	// 預設建立一個不含任何中介軟體的路由器
 	r := gin.New()
 
-	// Global middleware
-	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
-	// By default gin.DefaultWriter = os.Stdout
-	router.Use(gin.Logger())
+	// 全域中介軟體
+	// 即使您設定 GIN_MODE=release，Logger 中介軟體也會將日誌寫入 gin.DefaultWriter。
+	// 預設情況下，gin.DefaultWriter = os.Stdout
+	r.Use(gin.Logger())
 
-	// Recovery middleware recovers from any panics and writes a 500 if there was one.
-	router.Use(gin.Recovery())
+	// Recovery 中介軟體可從任何 panic 中恢復，並在發生 panic 時寫入 500。
+	r.Use(gin.Recovery())
 
-	// Per route middleware, you can add as many as you desire.
-	router.GET("/benchmark", MyBenchLogger(), benchEndpoint)
+	// 每個路由的中介軟體，您可以隨意新增多個。
+	r.GET("/benchmark", MyBenchLogger(), benchEndpoint)
 
-	// Authorization group
+	// 授權群組
 	// authorized := router.Group("/", AuthRequired())
-	// exactly the same as:
-	authorized := router.Group("/")
-	// per group middleware! in this case we use the custom created
-	// AuthRequired() middleware just in the "authorized" group.
+	// 與以下完全相同：
+	authorized := r.Group("/")
+	// 每個群組的中介軟體！在此範例中，我們僅在 "authorized" 群組中使用自訂建立的
+	// AuthRequired() 中介軟體。
 	authorized.Use(AuthRequired())
 	{
 		authorized.POST("/login", loginEndpoint)
 		authorized.POST("/submit", submitEndpoint)
 		authorized.POST("/read", readEndpoint)
 
-		// nested group
+		// 巢狀群組
 		testing := authorized.Group("testing")
 		testing.GET("/analytics", analyticsEndpoint)
 	}
 
-	// Listen and serve on 0.0.0.0:8080
-	router.Run(":8080")
+	// 在 0.0.0.0:8080 上監聽並提供服務
+	r.Run(":8080")
 }
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: "Map as querystring or postform parameters"
+title: "將 Map 作為查詢字串或 postform 參數"
 ---
 
 ```sh

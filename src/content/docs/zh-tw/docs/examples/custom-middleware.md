@@ -1,5 +1,5 @@
 ---
-title: "Custom Middleware"
+title: "自訂中介軟體"
 ---
 
 ```go
@@ -7,18 +7,18 @@ func Logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		t := time.Now()
 
-		// Set example variable
+		// 設定範例變數
 		c.Set("example", "12345")
 
-		// before request
+		// 請求前
 
 		c.Next()
 
-		// after request
+		// 請求後
 		latency := time.Since(t)
 		log.Print(latency)
 
-		// access the status we are sending
+		// 存取我們正在傳送的狀態
 		status := c.Writer.Status()
 		log.Println(status)
 	}
@@ -31,12 +31,12 @@ func main() {
 	r.GET("/test", func(c *gin.Context) {
 		example := c.MustGet("example").(string)
 
-		// it would print: "12345"
+		// 它會印出：「12345」
 		log.Println(example)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
-	router.Run(":8080")
+	// 在 0.0.0.0:8080 上監聽並提供服務
+	r.Run(":8080")
 }
 ```
 

@@ -1,8 +1,8 @@
 ---
-title: "Build a single binary with templates"
+title: "使用樣板建置單一二進位檔"
 ---
 
-You can build a server into a single binary containing templates by using [go-assets][].
+您可以使用 [go-assets][] 將包含樣板的伺服器建置為單一二進位檔。
 
 [go-assets]: https://github.com/jessevdk/go-assets
 
@@ -14,15 +14,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	router.SetHTMLTemplate(t)
+	r.SetHTMLTemplate(t)
 
-	router.GET("/", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
 	})
-	router.Run(":8080")
+	r.Run(":8080")
 }
 
-// loadTemplate loads templates embedded by go-assets-builder
+// loadTemplate 載入由 go-assets-builder 嵌入的樣板
 func loadTemplate() (*template.Template, error) {
 	t := template.New("")
 	for name, file := range Assets.Files {
@@ -42,4 +42,4 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-See a complete example in the [assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01) directory.
+請參閱 [assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01) 目錄中的完整範例。

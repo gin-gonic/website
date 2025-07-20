@@ -23,14 +23,17 @@ func setupRouter() *gin.Engine {
 	router.GET("/ping", func(c *gin.Context) {
 		c.String(200, "pong")
 	})
-	return r
+	return router
 }
 
 func postUser(r *gin.Engine) *gin.Engine {
-	router.POST("/user/add", func(c *gin.Context) {
+	r.POST("/user/add", func(c *gin.Context) {
 		var user User
-		c.BindJSON(&user)
-		c.JSON(200, user)
+		if err := c.BindJSON(&user); err == nil {
+			c.JSON(200, user)
+		} else {
+			c.JSON(400, gin.H{"error": err.Error()})
+		}
 	})
 	return r
 }
@@ -38,18 +41,20 @@ func postUser(r *gin.Engine) *gin.Engine {
 func main() {
 	r := setupRouter()
 	r = postUser(r)
-	router.Run(":8080")
+	r.Run(":8080")
 }
 ```
 
-為上面程式碼所寫的測試：
+為上述程式碼所寫的測試：
 
 ```go
 package main
 
 import (
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -66,24 +71,25 @@ func TestPingRoute(t *testing.T) {
 	assert.Equal(t, "pong", w.Body.String())
 }
 
-// Test for POST /user/add
+// 測試 POST /user/add
 func TestPostUser(t *testing.T) {
 	router := setupRouter()
 	router = postUser(router)
 
 	w := httptest.NewRecorder()
 
-	// Create an example user for testing
+	// 建立一個用於測試的範例使用者
 	exampleUser := User{
 		Username: "test_name",
 		Gender:   "male",
 	}
 	userJson, _ := json.Marshal(exampleUser)
 	req, _ := http.NewRequest("POST", "/user/add", strings.NewReader(string(userJson)))
+	req.Header.Set("Content-Type", "application/json")
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 200, w.Code)
-	// Compare the response body with the json data of exampleUser
+	// 比較回應主體與範例使用者的 JSON 資料
 	assert.Equal(t, string(userJson), w.Body.String())
 }
 ```

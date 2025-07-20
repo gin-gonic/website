@@ -1,8 +1,8 @@
 ---
-title: "Bind form-data request with custom struct"
+title: "使用自訂結構綁定 form-data 請求"
 ---
 
-The follow example using custom struct:
+以下範例使用自訂結構：
 
 ```go
 type StructA struct {
@@ -36,20 +36,20 @@ func GetDataB(c *gin.Context) {
 }
 
 func GetDataC(c *gin.Context) {
-    var b StructC
-    c.Bind(&b)
+    var cStruct StructC
+    c.Bind(&cStruct)
     c.JSON(200, gin.H{
-        "a": b.NestedStructPointer,
-        "c": b.FieldC,
+        "a": cStruct.NestedStructPointer,
+        "c": cStruct.FieldC,
     })
 }
 
 func GetDataD(c *gin.Context) {
-    var b StructD
-    c.Bind(&b)
+    var d StructD
+    c.Bind(&d)
     c.JSON(200, gin.H{
-        "x": b.NestedAnonyStruct,
-        "d": b.FieldD,
+        "x": d.NestedAnonyStruct,
+        "d": d.FieldD,
     })
 }
 
@@ -63,7 +63,7 @@ func main() {
 }
 ```
 
-Using the command `curl` command result:
+使用 `curl` 命令的結果：
 
 ```bash
 $ curl "http://localhost:8080/getb?field_a=hello&field_b=world"
@@ -74,21 +74,21 @@ $ curl "http://localhost:8080/getd?field_x=hello&field_d=world"
 {"d":"world","x":{"FieldX":"hello"}}
 ```
 
-**NOTE**: NOT support the follow style struct:
+**注意**：不支援以下樣式的結構：
 
 ```go
 type StructX struct {
-    X struct {} `form:"name_x"` // HERE have form
+    X struct {} `form:"name_x"` // 這裡有 form 標籤
 }
 
 type StructY struct {
-    Y StructX `form:"name_y"` // HERE have form
+    Y StructX `form:"name_y"` // 這裡有 form 標籤
 }
 
 type StructZ struct {
-    Z *StructZ `form:"name_z"` // HERE have form
+    Z *StructZ `form:"name_z"` // 這裡有 form 標籤
 }
 ```
 
-In a word, only support nested custom struct which have no `form` now.
+總之，目前僅支援沒有 `form` 標籤的巢狀自訂結構。
 

@@ -1,9 +1,9 @@
 ---
-title: Gin Web Framework
-description: The fastest full-featured web framework for Go. Crystal clear.
+title: Gin Web 框架
+description: Go 語言中最快、功能最齊全的 Web 框架。如水晶般清晰。
 template: splash
 hero:
-  tagline: Go語言最快的全功能Web框架。晶瑩剔透。
+  tagline: Go 語言中最快、功能最齊全的 Web 框架。如水晶般清晰。
   image:
     file: ../../../assets/gin.png
   actions:
@@ -18,34 +18,33 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## 什麼是Gin?
+## 什麼是 Gin？
 
-Gin是一個使用Go語言開發的Web框架。 它提供類似Martini的API，但性能更佳，速度提升高達40倍。 如果你是性能和高效的追求者, 你會愛上 Gin。
+Gin 是用 Go 語言開發的 Web 框架。它具有類似 Martini 的 API，但效能更好，速度提高了 40 倍。如果您是追求效能和高效率的人，您一定會愛上 Gin。
 
 <CardGrid>
 	<Card title="快速" icon="rocket">
-		基於 Radix 樹的路由，小內存佔用。沒有反射。可預測的 API 性能。
+		基於 Radix 樹的路由，佔用記憶體少。沒有反射。可預測的 API 效能。
 	</Card>
-	<Card icon="seti:plan" title="支持中間件">
-		傳入的 HTTP 請求可以由一系列中間件和最終操作來處理。例如：Logger，Authorization，GZIP，最終操作 DB。
+	<Card icon="seti:plan" title="支援中介軟體">
+		傳入的 HTTP 請求可由一系列中介軟體和最終操作處理。例如：日誌、授權、GZIP，以及最終的資料庫操作。
 	</Card>
-	<Card icon="seti:lock" title="Crash 處理">
-		Gin 可以 catch 一個發生在 HTTP 請求中的 panic 並 recover 它。這樣，你的服務器將始終可用。例如，你可以向 Sentry 報告這個 panic！
+	<Card icon="seti:lock" title="錯誤處理">
+		Gin 可以捕捉並復原 HTTP 請求中發生的 panic。如此一來，您的伺服器將始終保持可用。例如，您可以將此 panic 回報給 Sentry！
 	</Card>
 	<Card icon="approve-check-circle" title="JSON 驗證">
-		Gin 可以解析並驗證請求的 JSON，例如檢查所需值的存在。
+		Gin 可以解析並驗證請求的 JSON，例如檢查必要值是否存在。
 	</Card>
-	<Card icon="puzzle" title="路由組">
-		Gin幫助您更好地組織您的路由，例如，按照需要授權和不需要授權和不同API版本進行分組。此外，路由分組可以無限嵌套而不降低性能。
+	<Card icon="puzzle" title="路由群組">
+		Gin 協助您更好地組織路由，例如，根據是否需要授權以及不同的 API 版本進行分組。此外，路由分組可以無限巢狀化，而不會降低效能。
 	</Card>
 	<Card icon="open-book" title="錯誤管理">
-		Gin 提供了一種方便的方法來收集 HTTP 請求期間發生的所有錯誤。最終，中間件可以將它們寫入日誌文件，數據庫並通過網絡發送。
+		Gin 提供了一種便利的方法來收集 HTTP 請求期間發生的所有錯誤。最終，中介軟體可以將它們寫入日誌檔、資料庫並透過網路傳送。
 	</Card>
-	<Card icon="seti:json" title="內置渲染">
-		Gin 為 JSON，XML 和 HTML 渲染提供了易於使用的 API。
+	<Card icon="seti:json" title="內建渲染">
+		Gin 為 JSON、XML 和 HTML 的渲染提供了易於使用的 API。
 	</Card>
 	<Card icon="seti:html" title="可擴展性">
-		新建一個中間件非常簡單，去查看[示例代碼](https://gin-gonic.com/zh-tw/docs/examples/using-middleware/)吧。
+		建立新的中介軟體非常簡單，請查看[範例程式碼](https://gin-gonic.com/zh-tw/docs/examples/using-middleware/)。
 	</Card>
 </CardGrid>
- 

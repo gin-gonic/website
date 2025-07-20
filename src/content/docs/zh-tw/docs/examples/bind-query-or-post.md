@@ -1,8 +1,8 @@
 ---
-title: "Bind query string or post data"
+title: "綁定查詢字串或 POST 資料"
 ---
 
-See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292).
+詳情請參閱[此處](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292)。
 
 ```go
 package main
@@ -28,20 +28,20 @@ func main() {
 
 func startPage(c *gin.Context) {
 	var person Person
-	// If `GET`, only `Form` binding engine (`query`) used.
-	// If `POST`, first checks the `content-type` for `JSON` or `XML`, then uses `Form` (`form-data`).
-	// See more at https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
+	// 若為 `GET`，僅使用 `Form` 綁定引擎 (`query`)。
+	// 若為 `POST`，則先檢查 `content-type` 是否為 `JSON` 或 `XML`，然後使用 `Form` (`form-data`)。
+	// 更多資訊請參閱 https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
 	if c.ShouldBind(&person) == nil {
 		log.Println(person.Name)
 		log.Println(person.Address)
 		log.Println(person.Birthday)
 	}
 
-	c.String(200, "Success")
+	c.String(200, "成功")
 }
 ```
 
-Test it with:
+使用以下指令進行測試：
 ```sh
 $ curl -X GET "localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
 ```

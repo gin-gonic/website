@@ -2,7 +2,7 @@
 title: "Cookie"
 ---
 
-Set and get cookie.
+設定和取得 cookie。
 
 ```go
 import (
@@ -24,14 +24,14 @@ func main() {
             c.SetCookie("gin_cookie", "test", 3600, "/", "localhost", false, true)
         }
 
-        fmt.Printf("Cookie value: %s \n", cookie)
+        fmt.Printf("Cookie 值：%s \n", cookie)
     })
 
     router.Run()
 }
 ```
 
-Delete cookie by set max age to -1.
+將 max age 設定為 -1 來刪除 cookie。
 
 ```go
 c.SetCookie("gin_cookie", "test", -1, "/", "localhost", false, true)

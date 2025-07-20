@@ -1,18 +1,18 @@
 ---
-title: "Controlling Log output coloring"
+title: "控制日誌輸出的著色"
 ---
 
-By default, logs output on console should be colorized depending on the detected TTY.
+預設情況下，主控台上的日誌輸出會根據偵測到的 TTY 進行著色。
 
-Never colorize logs:
+永不為日誌著色：
 
 ```go
 func main() {
-    // Disable log's color
+    // 停用日誌顏色
     gin.DisableConsoleColor()
 
-    // Creates a gin router with default middleware:
-    // logger and recovery (crash-free) middleware
+    // 建立一個帶有預設中介軟體的 gin 路由器：
+    // logger 和 recovery (無崩潰) 中介軟體
     router := gin.Default()
 
     router.GET("/ping", func(c *gin.Context) {
@@ -23,15 +23,15 @@ func main() {
 }
 ```
 
-Always colorize logs:
+總是為日誌著色：
 
 ```go
 func main() {
-    // Force log's color
+    // 強制日誌顏色
     gin.ForceConsoleColor()
 
-    // Creates a gin router with default middleware:
-    // logger and recovery (crash-free) middleware
+    // 建立一個帶有預設中介軟體的 gin 路由器：
+    // logger 和 recovery (無崩潰) 中介軟體
     router := gin.Default()
 
     router.GET("/ping", func(c *gin.Context) {

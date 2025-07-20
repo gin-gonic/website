@@ -1,5 +1,5 @@
 ---
-title: "Serving static files"
+title: "提供靜態檔案"
 ---
 
 ```go
@@ -9,7 +9,7 @@ func main() {
 	router.StaticFS("/more_static", http.Dir("my_file_system"))
 	router.StaticFile("/favicon.ico", "./resources/favicon.ico")
 
-	// Listen and serve on 0.0.0.0:8080
+	// 在 0.0.0.0:8080 上監聽並提供服務
 	router.Run(":8080")
 }
 ```

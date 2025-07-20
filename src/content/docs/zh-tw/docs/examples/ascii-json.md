@@ -2,7 +2,7 @@
 title: "AsciiJSON"
 ---
 
-Using AsciiJSON to Generates ASCII-only JSON with escaped non-ASCII characters.
+使用 AsciiJSON 來產生僅含 ASCII 字元並逸出非 ASCII 字元的 JSON。
 
 ```go
 func main() {
@@ -10,15 +10,15 @@ func main() {
 
 	router.GET("/someJSON", func(c *gin.Context) {
 		data := map[string]interface{}{
-			"lang": "GO语言",
+			"lang": "GO語言",
 			"tag":  "<br>",
 		}
 
-		// will output : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
+		// 將輸出：{"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
 		c.AsciiJSON(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 監聽並在 0.0.0.0:8080 上提供服務
 	router.Run(":8080")
 }
 ```

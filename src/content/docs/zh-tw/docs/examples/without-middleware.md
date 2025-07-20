@@ -1,16 +1,16 @@
 ---
-title: "Without middleware by default"
+title: "預設不使用中介軟體"
 ---
 
-Use
+使用
 
 ```go
 r := gin.New()
 ```
 
-instead of
+來取代
 
 ```go
-// Default With the Logger and Recovery middleware already attached
+// 預設已附加 Logger 和 Recovery 中介軟體
 r := gin.Default()
 ```

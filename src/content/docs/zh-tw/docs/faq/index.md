@@ -1,8 +1,8 @@
 ---
-title: "FAQ"
+title: "常見問題"
 sidebar:
   order: 9
 ---
 
-TODO: record some frequently asked question from GitHub Issue tab.
+待辦事項：從 GitHub Issue 分頁記錄一些常見問題。
 

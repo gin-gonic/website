@@ -1,8 +1,8 @@
 ---
-title: "Only bind query string"
+title: "僅綁定查詢字串"
 ---
 
-`ShouldBindQuery` function only binds the query params and not the post data. See the [detail information](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017).
+`ShouldBindQuery` 函式僅綁定查詢參數，而不綁定 POST 資料。詳情請參閱[此處](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017)。
 
 ```go
 package main
@@ -27,10 +27,10 @@ func main() {
 func startPage(c *gin.Context) {
 	var person Person
 	if c.ShouldBindQuery(&person) == nil {
-		log.Println("====== Only Bind By Query String ======")
+		log.Println("====== 僅透過查詢字串綁定 ======")
 		log.Println(person.Name)
 		log.Println(person.Address)
 	}
-	c.String(200, "Success")
+	c.String(200, "成功")
 }
 ```

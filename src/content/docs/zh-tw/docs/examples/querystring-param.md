@@ -1,18 +1,18 @@
 ---
-title: "Query string parameters"
+title: "查詢字串參數"
 ---
 
 ```go
 func main() {
 	router := gin.Default()
 
-	// Query string parameters are parsed using the existing underlying request object.
-	// The request responds to a url matching:  /welcome?firstname=Jane&lastname=Doe
+	// 查詢字串參數是使用現有的底層請求物件來解析的。
+	// 請求會回應符合以下格式的 URL： /welcome?firstname=Jane&lastname=Doe
 	router.GET("/welcome", func(c *gin.Context) {
 		firstname := c.DefaultQuery("firstname", "Guest")
-		lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
+		lastname := c.Query("lastname") // c.Request.URL.Query().Get("lastname") 的簡寫
 
-		c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
+		c.String(http.StatusOK, "哈囉 %s %s", firstname, lastname)
 	})
 	router.Run(":8080")
 }

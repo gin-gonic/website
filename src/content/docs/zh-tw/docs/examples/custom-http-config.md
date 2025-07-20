@@ -1,8 +1,8 @@
 ---
-title: "Custom HTTP configuration"
+title: "自訂 HTTP 組態"
 ---
 
-Use `http.ListenAndServe()` directly, like this:
+直接使用 `http.ListenAndServe()`，如下所示：
 
 ```go
 import "net/http"
@@ -12,7 +12,7 @@ func main() {
 	http.ListenAndServe(":8080", router)
 }
 ```
-or
+或
 
 ```go
 import "net/http"

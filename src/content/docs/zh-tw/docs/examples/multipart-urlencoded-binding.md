@@ -1,5 +1,5 @@
 ---
-title: "Multipart/Urlencoded binding"
+title: "Multipart/Urlencoded 綁定"
 ---
 
 ```go
@@ -17,16 +17,16 @@ type LoginForm struct {
 func main() {
 	router := gin.Default()
 	router.POST("/login", func(c *gin.Context) {
-		// you can bind multipart form with explicit binding declaration:
+		// 您可以使用明確的綁定宣告來綁定 multipart 表單：
 		// c.ShouldBindWith(&form, binding.Form)
-		// or you can simply use autobinding with ShouldBind method:
+		// 或者您可以簡單地使用 ShouldBind 方法進行自動綁定：
 		var form LoginForm
-		// in this case proper binding will be automatically selected
+		// 在這種情況下，將會自動選擇適當的綁定
 		if c.ShouldBind(&form) == nil {
 			if form.User == "user" && form.Password == "password" {
-				c.JSON(200, gin.H{"status": "you are logged in"})
+				c.JSON(200, gin.H{"status": "您已登入"})
 			} else {
-				c.JSON(401, gin.H{"status": "unauthorized"})
+				c.JSON(401, gin.H{"status": "未授權"})
 			}
 		}
 	})
@@ -34,7 +34,7 @@ func main() {
 }
 ```
 
-Test it with:
+使用以下指令進行測試：
 ```sh
 $ curl -v --form user=user --form password=password http://localhost:8080/login
 ```

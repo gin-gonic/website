@@ -1,32 +1,32 @@
 ---
-title: "Multiple files"
+title: "多個檔案"
 ---
 
-See the detail [example code](examples/upload-file/multiple).
+請參閱詳細的[範例程式碼](examples/upload-file/multiple)。
 
 ```go
 func main() {
 	router := gin.Default()
-	// Set a lower memory limit for multipart forms (default is 32 MiB)
+	// 為 multipart 表單設定較低的記憶體限制 (預設為 32 MiB)
 	router.MaxMultipartMemory = 8 << 20  // 8 MiB
 	router.POST("/upload", func(c *gin.Context) {
-		// Multipart form
+		// Multipart 表單
 		form, _ := c.MultipartForm()
 		files := form.File["upload[]"]
 
 		for _, file := range files {
 			log.Println(file.Filename)
 
-			// Upload the file to specific dst.
+			// 將檔案上傳到指定目的地。
 			c.SaveUploadedFile(file, "./files/" + file.Filename)
 		}
-		c.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
+		c.String(http.StatusOK, fmt.Sprintf("已上傳 %d 個檔案！", len(files)))
 	})
 	router.Run(":8080")
 }
 ```
 
-How to `curl`:
+如何使用 `curl`：
 
 ```sh
 curl -X POST http://localhost:8080/upload \

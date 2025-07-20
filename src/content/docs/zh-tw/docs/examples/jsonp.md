@@ -2,7 +2,7 @@
 title: "JSONP"
 ---
 
-Using JSONP to request data from a server  in a different domain. Add callback to response body if the query parameter callback exists.
+使用 JSONP 從不同網域的伺服器請求資料。如果查詢參數回呼存在，則將回呼新增至回應主體。
 
 ```go
 func main() {
@@ -13,12 +13,12 @@ func main() {
 			"foo": "bar",
 		}
 		
-		//callback is x
-		// Will output  :   x({\"foo\":\"bar\"})
+		// 回呼為 x
+		// 將輸出：   x({\"foo\":\"bar\"})
 		c.JSONP(http.StatusOK, data)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 在 0.0.0.0:8080 上監聽並提供服務
 	router.Run(":8080")
 }
 ```

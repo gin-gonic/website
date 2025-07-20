@@ -1,34 +1,34 @@
 ---
-title: "Goroutines inside a middleware"
+title: "在中介軟體中使用 Goroutine"
 ---
 
-When starting new Goroutines inside a middleware or handler, you **SHOULD NOT** use the original context inside it, you have to use a read-only copy.
+在中介軟體或處理函式中啟動新的 Goroutine 時，您**不應**在其中使用原始的上下文，而必須使用唯讀的副本。
 
 ```go
 func main() {
 	router := gin.Default()
 
 	router.GET("/long_async", func(c *gin.Context) {
-		// create copy to be used inside the goroutine
+		// 建立一個在 goroutine 中使用的副本
 		cCp := c.Copy()
 		go func() {
-			// simulate a long task with time.Sleep(). 5 seconds
+			// 模擬一個耗時 5 秒的長時間任務
 			time.Sleep(5 * time.Second)
 
-			// note that you are using the copied context "cCp", IMPORTANT
-			log.Println("Done! in path " + cCp.Request.URL.Path)
+			// 請注意，您使用的是複製的上下文 "cCp"，這點很重要
+			log.Println("完成！路徑為 " + cCp.Request.URL.Path)
 		}()
 	})
 
 	router.GET("/long_sync", func(c *gin.Context) {
-		// simulate a long task with time.Sleep(). 5 seconds
+		// 模擬一個耗時 5 秒的長時間任務
 		time.Sleep(5 * time.Second)
 
-		// since we are NOT using a goroutine, we do not have to copy the context
-		log.Println("Done! in path " + c.Request.URL.Path)
+		// 因為我們沒有使用 goroutine，所以不需要複製上下文
+		log.Println("完成！路徑為 " + c.Request.URL.Path)
 	})
 
-	// Listen and serve on 0.0.0.0:8080
+	// 在 0.0.0.0:8080 上監聽並提供服務
 	router.Run(":8080")
 }
 ```

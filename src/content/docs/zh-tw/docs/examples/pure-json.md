@@ -2,28 +2,28 @@
 title: "PureJSON"
 ---
 
-Normally, JSON replaces special HTML characters with their unicode entities, e.g. `<` becomes  `\u003c`. If you want to encode such characters literally, you can use PureJSON instead.
-This feature is unavailable in Go 1.6 and lower.
+一般來說，JSON 會將特殊的 HTML 字元取代為其 Unicode 實體，例如 `<` 會變成 `\u003c`。如果您想直接編碼這些字元，可以使用 PureJSON。
+此功能在 Go 1.6 及更早版本中不可用。
 
 ```go
 func main() {
 	router := gin.Default()
 	
-	// Serves unicode entities
+	// 提供 Unicode 實體
 	router.GET("/json", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"html": "<b>Hello, world!</b>",
+			"html": "<b>哈囉，世界！</b>",
 		})
 	})
 	
-	// Serves literal characters
+	// 提供字面字元
 	router.GET("/purejson", func(c *gin.Context) {
 		c.PureJSON(200, gin.H{
-			"html": "<b>Hello, world!</b>",
+			"html": "<b>哈囉，世界！</b>",
 		})
 	})
 	
-	// listen and serve on 0.0.0.0:8080
+	// 在 0.0.0.0:8080 上監聽並提供服務
 	router.Run(":8080")
 }
 ```

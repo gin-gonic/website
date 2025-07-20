@@ -1,8 +1,8 @@
 ---
-title: "Run multiple service"
+title: "執行多個服務"
 ---
 
-See the [question](https://github.com/gin-gonic/gin/issues/346) and try the following example:
+請參閱[此問題](https://github.com/gin-gonic/gin/issues/346)並嘗試以下範例：
 
 ```go
 package main
@@ -28,7 +28,7 @@ func router01() http.Handler {
 			http.StatusOK,
 			gin.H{
 				"code":  http.StatusOK,
-				"error": "Welcome server 01",
+				"error": "歡迎使用伺服器 01",
 			},
 		)
 	})
@@ -44,7 +44,7 @@ func router02() http.Handler {
 			http.StatusOK,
 			gin.H{
 				"code":  http.StatusOK,
-				"error": "Welcome server 02",
+				"error": "歡迎使用伺服器 02",
 			},
 		)
 	})

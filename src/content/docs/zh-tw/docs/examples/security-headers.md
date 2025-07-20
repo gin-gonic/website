@@ -1,8 +1,8 @@
 ---
-title: "安全页眉"
+title: "安全標頭"
 ---
 
-使用安全标头保护网络应用程序免受常见安全漏洞的攻击非常重要。本示例将向您展示如何在 Gin 应用程序中添加安全标头，以及如何避免与主机标头注入相关的攻击（SSRF、开放重定向）。
+使用安全標頭來保護您的 Web 應用程式免於常見的安全性漏洞至關重要。此範例將示範如何在 Gin 應用程式中新增安全標頭，以及如何避免與主機標頭注入相關的攻擊（例如 SSRF、開放式重新導向）。
 
 ```go
 package main
@@ -18,10 +18,10 @@ func main() {
 
 	expectedHost := "localhost:8080"
 
-	// Setup Security Headers
+	// 設定安全標頭
 	r.Use(func(c *gin.Context) {
 		if c.Request.Host != expectedHost {
-			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid host header"})
+			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "無效的主機標頭"})
 			return
 		}
 		c.Header("X-Frame-Options", "DENY")
@@ -40,20 +40,20 @@ func main() {
 		})
 	})
 
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.Run() // 在 0.0.0.0:8080 上監聽並提供服務
 }
 ```
 
-您可以通过 `curl` 进行测试。
+您可以使用 `curl` 進行測試。
 
 ```bash
-// 检查页眉
+// 檢查標頭
 
 curl localhost:8080/ping -I
 
-HTTP/1.1 404 Not Found
+HTTP/1.1 200 OK
 Content-Security-Policy: default-src 'self'; connect-src *; font-src *; script-src-elem * 'unsafe-inline'; img-src * data:; style-src * 'unsafe-inline';
-Content-Type: text/plain
+Content-Type: application/json; charset=utf-8
 Permissions-Policy: geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()
 Referrer-Policy: strict-origin
 Strict-Transport-Security: max-age=31536000; includeSubDomains
@@ -63,7 +63,7 @@ X-Xss-Protection: 1; mode=block
 Date: Sat, 30 Mar 2024 08:20:44 GMT
 Content-Length: 18
 
-// 检查主机标头注入
+// 檢查主機標頭注入
 
 curl localhost:8080/ping -I -H "Host:neti.ee"
 

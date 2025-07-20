@@ -1,5 +1,5 @@
 ---
-title: "Upload files"
+title: "上傳檔案"
 ---
 
-The section lists upload file api usage.
+本節列出上傳檔案 API 的用法。

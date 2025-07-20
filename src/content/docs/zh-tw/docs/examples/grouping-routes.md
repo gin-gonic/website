@@ -1,12 +1,12 @@
 ---
-title: "Grouping routes"
+title: "路由分組"
 ---
 
 ```go
 func main() {
 	router := gin.Default()
 
-	// Simple group: v1
+	// 簡單分組：v1
 	{
 		v1 := router.Group("/v1")
 		v1.POST("/login", loginEndpoint)
@@ -14,7 +14,7 @@ func main() {
 		v1.POST("/read", readEndpoint)
 	}
 
-	// Simple group: v2
+	// 簡單分組：v2
 	{
 		v2 := router.Group("/v2")
 		v2.POST("/login", loginEndpoint)
