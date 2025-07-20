@@ -8,39 +8,39 @@ title: "安全標頭"
 package main
 
 import (
-	"net/http"
+  "net/http"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
+  r := gin.Default()
 
-	expectedHost := "localhost:8080"
+  expectedHost := "localhost:8080"
 
-	// 設定安全標頭
-	r.Use(func(c *gin.Context) {
-		if c.Request.Host != expectedHost {
-			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "無效的主機標頭"})
-			return
-		}
-		c.Header("X-Frame-Options", "DENY")
-		c.Header("Content-Security-Policy", "default-src 'self'; connect-src *; font-src *; script-src-elem * 'unsafe-inline'; img-src * data:; style-src * 'unsafe-inline';")
-		c.Header("X-XSS-Protection", "1; mode=block")
-		c.Header("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
-		c.Header("Referrer-Policy", "strict-origin")
-		c.Header("X-Content-Type-Options", "nosniff")
-		c.Header("Permissions-Policy", "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()")
-		c.Next()
-	})
+  // 設定安全標頭
+  r.Use(func(c *gin.Context) {
+    if c.Request.Host != expectedHost {
+      c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "無效的主機標頭"})
+      return
+    }
+    c.Header("X-Frame-Options", "DENY")
+    c.Header("Content-Security-Policy", "default-src 'self'; connect-src *; font-src *; script-src-elem * 'unsafe-inline'; img-src * data:; style-src * 'unsafe-inline';")
+    c.Header("X-XSS-Protection", "1; mode=block")
+    c.Header("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+    c.Header("Referrer-Policy", "strict-origin")
+    c.Header("X-Content-Type-Options", "nosniff")
+    c.Header("Permissions-Policy", "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()")
+    c.Next()
+  })
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+  r.GET("/ping", func(c *gin.Context) {
+    c.JSON(200, gin.H{
+      "message": "pong",
+    })
+  })
 
-	r.Run() // 在 0.0.0.0:8080 上監聽並提供服務
+  r.Run() // 在 0.0.0.0:8080 上監聽並提供服務
 }
 ```
 

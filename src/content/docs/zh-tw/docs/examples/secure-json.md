@@ -6,25 +6,25 @@ title: "SecureJSON"
 
 ```go
 import (
-	"net/http"
+  "net/http"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	// 您也可以使用自己的安全 JSON 前置詞
-	// router.SecureJsonPrefix(")]}',\n")
+  // 您也可以使用自己的安全 JSON 前置詞
+  // router.SecureJsonPrefix(")]}',\n")
 
-	router.GET("/someJSON", func(c *gin.Context) {
-		names := []string{"lena", "austin", "foo"}
+  router.GET("/someJSON", func(c *gin.Context) {
+    names := []string{"lena", "austin", "foo"}
 
-		// 將輸出：   while(1);["lena","austin","foo"]
-		c.SecureJSON(http.StatusOK, names)
-	})
+    // 將輸出：   while(1);["lena","austin","foo"]
+    c.SecureJSON(http.StatusOK, names)
+  })
 
-	// 在 0.0.0.0:8080 上監聽並提供服務
-	router.Run(":8080")
+  // 在 0.0.0.0:8080 上監聽並提供服務
+  router.Run(":8080")
 }
 ```

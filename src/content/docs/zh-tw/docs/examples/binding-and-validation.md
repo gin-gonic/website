@@ -24,75 +24,75 @@ Gin 使用 [**go-playground/validator/v10**](https://github.com/go-playground/va
 ```go
 // 從 JSON 綁定
 type Login struct {
-	User     string `form:"user" json:"user" xml:"user"  binding:"required"`
-	Password string `form:"password" json:"password" xml:"password" binding:"required"`
+  User     string `form:"user" json:"user" xml:"user"  binding:"required"`
+  Password string `form:"password" json:"password" xml:"password" binding:"required"`
 }
 
 import (
-	 "net/http"
+  "net/http"
 
-	 "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	// 綁定 JSON 的範例 ({"user": "manu", "password": "123"})
-	router.POST("/loginJSON", func(c *gin.Context) {
-		var json Login
-		if err := c.ShouldBindJSON(&json); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
+  // 綁定 JSON 的範例 ({"user": "manu", "password": "123"})
+  router.POST("/loginJSON", func(c *gin.Context) {
+    var json Login
+    if err := c.ShouldBindJSON(&json); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
 
-		if json.User != "manu" || json.Password != "123" {
-			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
-			return
-		}
+    if json.User != "manu" || json.Password != "123" {
+      c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
+      return
+    }
 
-		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
-	})
+    c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
+  })
 
-	// 綁定 XML 的範例 (
-	//	<?xml version="1.0" encoding="UTF-8"?>
-	//	<root>
-	//		<user>manu</user>
-	//		<password>123</user>
-	//	</root>)
-	router.POST("/loginXML", func(c *gin.Context) {
-		var xml Login
-		if err := c.ShouldBindXML(&xml); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
+  // 綁定 XML 的範例 (
+  //  <?xml version="1.0" encoding="UTF-8"?>
+  //  <root>
+  //    <user>manu</user>
+  //    <password>123</user>
+  //  </root>)
+  router.POST("/loginXML", func(c *gin.Context) {
+    var xml Login
+    if err := c.ShouldBindXML(&xml); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
 
-		if xml.User != "manu" || xml.Password != "123" {
-			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
-			return
-		}
+    if xml.User != "manu" || xml.Password != "123" {
+      c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
+      return
+    }
 
-		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
-	})
+    c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
+  })
 
-	// 綁定 HTML 表單的範例 (user=manu&password=123)
-	router.POST("/loginForm", func(c *gin.Context) {
-		var form Login
-		// 這將根據 content-type 標頭推斷要使用的綁定器。
-		if err := c.ShouldBind(&form); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
+  // 綁定 HTML 表單的範例 (user=manu&password=123)
+  router.POST("/loginForm", func(c *gin.Context) {
+    var form Login
+    // 這將根據 content-type 標頭推斷要使用的綁定器。
+    if err := c.ShouldBind(&form); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
 
-		if form.User != "manu" || form.Password != "123" {
-			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
-			return
-		}
+    if form.User != "manu" || form.Password != "123" {
+      c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
+      return
+    }
 
-		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
-	})
+    c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
+  })
 
-	// 在 0.0.0.0:8080 上監聽並提供服務
-	router.Run(":8080")
+  // 在 0.0.0.0:8080 上監聽並提供服務
+  router.Run(":8080")
 }
 ```
 

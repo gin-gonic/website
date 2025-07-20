@@ -6,25 +6,25 @@ title: "JSONP"
 
 ```go
 import (
-	"net/http"
+  "net/http"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	router.GET("/JSONP", func(c *gin.Context) {
-		data := map[string]interface{}{
-			"foo": "bar",
-		}
+  router.GET("/JSONP", func(c *gin.Context) {
+    data := map[string]interface{}{
+      "foo": "bar",
+    }
 
-		//callback is x
-		// Will output  :   x({\"foo\":\"bar\"})
-		c.JSONP(http.StatusOK, data)
-	})
+    //callback is x
+    // Will output  :   x({\"foo\":\"bar\"})
+    c.JSONP(http.StatusOK, data)
+  })
 
-	// Listen and serve on 0.0.0.0:8080
-	router.Run(":8080")
+  // Listen and serve on 0.0.0.0:8080
+  router.Run(":8080")
 }
 ```

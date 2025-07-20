@@ -8,29 +8,29 @@ title: "僅綁定查詢字串"
 package main
 
 import (
-	"log"
+  "log"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 type Person struct {
-	Name    string `form:"name"`
-	Address string `form:"address"`
+  Name    string `form:"name"`
+  Address string `form:"address"`
 }
 
 func main() {
-	route := gin.Default()
-	route.Any("/testing", startPage)
-	route.Run(":8085")
+  route := gin.Default()
+  route.Any("/testing", startPage)
+  route.Run(":8085")
 }
 
 func startPage(c *gin.Context) {
-	var person Person
-	if c.ShouldBindQuery(&person) == nil {
-		log.Println("====== 僅透過查詢字串綁定 ======")
-		log.Println(person.Name)
-		log.Println(person.Address)
-	}
-	c.String(200, "成功")
+  var person Person
+  if c.ShouldBindQuery(&person) == nil {
+    log.Println("====== 僅透過查詢字串綁定 ======")
+    log.Println(person.Name)
+    log.Println(person.Address)
+  }
+  c.String(200, "成功")
 }
 ```

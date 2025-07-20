@@ -9,23 +9,23 @@ title: "PureJSON"
 import "github.com/gin-gonic/gin"
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	// 提供 Unicode 實體
-	router.GET("/json", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"html": "<b>哈囉，世界！</b>",
-		})
-	})
+  // 提供 Unicode 實體
+  router.GET("/json", func(c *gin.Context) {
+    c.JSON(200, gin.H{
+      "html": "<b>哈囉，世界！</b>",
+    })
+  })
 
-	// 提供字面字元
-	router.GET("/purejson", func(c *gin.Context) {
-		c.PureJSON(200, gin.H{
-			"html": "<b>哈囉，世界！</b>",
-		})
-	})
+  // 提供字面字元
+  router.GET("/purejson", func(c *gin.Context) {
+    c.PureJSON(200, gin.H{
+      "html": "<b>哈囉，世界！</b>",
+    })
+  })
 
-	// 在 0.0.0.0:8080 上監聽並提供服務
-	router.Run(":8080")
+  // 在 0.0.0.0:8080 上監聽並提供服務
+  router.Run(":8080")
 }
 ```

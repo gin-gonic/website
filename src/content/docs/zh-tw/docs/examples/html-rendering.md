@@ -6,21 +6,21 @@ title: "HTML 渲染"
 
 ```go
 import (
-	"net/http"
+  "net/http"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
-	router.LoadHTMLGlob("templates/*")
-	//router.LoadHTMLFiles("templates/template1.html", "templates/template2.html")
-	router.GET("/index", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.tmpl", gin.H{
-			"title": "主網站",
-		})
-	})
-	router.Run(":8080")
+  router := gin.Default()
+  router.LoadHTMLGlob("templates/*")
+  //router.LoadHTMLFiles("templates/template1.html", "templates/template2.html")
+  router.GET("/index", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{
+      "title": "主網站",
+    })
+  })
+  router.Run(":8080")
 }
 ```
 
@@ -28,9 +28,9 @@ templates/index.tmpl
 
 ```html
 <html>
-	<h1>
-		{{ .title }}
-	</h1>
+  <h1>
+    {{ .title }}
+  </h1>
 </html>
 ```
 
@@ -38,19 +38,19 @@ templates/index.tmpl
 
 ```go
 func main() {
-	router := gin.Default()
-	router.LoadHTMLGlob("templates/**/*")
-	router.GET("/posts/index", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "posts/index.tmpl", gin.H{
-			"title": "文章",
-		})
-	})
-	router.GET("/users/index", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "users/index.tmpl", gin.H{
-			"title": "使用者",
-		})
-	})
-	router.Run(":8080")
+  router := gin.Default()
+  router.LoadHTMLGlob("templates/**/*")
+  router.GET("/posts/index", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "posts/index.tmpl", gin.H{
+      "title": "文章",
+    })
+  })
+  router.GET("/users/index", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "users/index.tmpl", gin.H{
+      "title": "使用者",
+    })
+  })
+  router.Run(":8080")
 }
 ```
 
@@ -59,7 +59,7 @@ templates/posts/index.tmpl
 ```html
 {{ define "posts/index.tmpl" }}
 <html><h1>
-	{{ .title }}
+  {{ .title }}
 </h1>
 <p>正在使用 posts/index.tmpl</p>
 </html>
@@ -71,7 +71,7 @@ templates/users/index.tmpl
 ```html
 {{ define "users/index.tmpl" }}
 <html><h1>
-	{{ .title }}
+  {{ .title }}
 </h1>
 <p>正在使用 users/index.tmpl</p>
 </html>
@@ -86,16 +86,16 @@ templates/users/index.tmpl
 import "html/template"
 
 import (
-	"html/template"
+  "html/template"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
-	html := template.Must(template.ParseFiles("file1", "file2"))
-	router.SetHTMLTemplate(html)
-	router.Run(":8080")
+  router := gin.Default()
+  html := template.Must(template.ParseFiles("file1", "file2"))
+  router.SetHTMLTemplate(html)
+  router.Run(":8080")
 }
 ```
 
@@ -104,9 +104,9 @@ func main() {
 您可以使用自訂分隔符號
 
 ```go
-	router := gin.Default()
-	router.Delims("{[{", "}]}")
-	router.LoadHTMLGlob("/path/to/templates")
+  router := gin.Default()
+  router.Delims("{[{", "}]}")
+  router.LoadHTMLGlob("/path/to/templates")
 ```
 
 #### 自訂樣板函式
@@ -116,7 +116,7 @@ func main() {
 main.go
 
 ```go
-	import (
+  import (
     "fmt"
     "html/template"
     "net/http"

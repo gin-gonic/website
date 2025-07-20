@@ -8,10 +8,10 @@ title: "HTTP/2 伺服器推送"
 package main
 
 import (
-	"html/template"
-	"log"
+  "html/template"
+  "log"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 var html = template.Must(template.New("https").Parse(`
@@ -27,24 +27,24 @@ var html = template.Must(template.New("https").Parse(`
 `))
 
 func main() {
-	router := gin.Default()
-	router.Static("/assets", "./assets")
-	router.SetHTMLTemplate(html)
+  router := gin.Default()
+  router.Static("/assets", "./assets")
+  router.SetHTMLTemplate(html)
 
-	router.GET("/", func(c *gin.Context) {
-		if pusher := c.Writer.Pusher(); pusher != nil {
-			// 使用 pusher.Push() 進行伺服器推送
-			if err := pusher.Push("/assets/app.js", nil); err != nil {
-				log.Printf("推送失敗： %v", err)
-			}
-		}
-		c.HTML(200, "https", gin.H{
-			"status": "成功",
-		})
-	})
+  router.GET("/", func(c *gin.Context) {
+    if pusher := c.Writer.Pusher(); pusher != nil {
+      // 使用 pusher.Push() 進行伺服器推送
+      if err := pusher.Push("/assets/app.js", nil); err != nil {
+        log.Printf("推送失敗： %v", err)
+      }
+    }
+    c.HTML(200, "https", gin.H{
+      "status": "成功",
+    })
+  })
 
-	// 在 https://127.0.0.1:8080 上監聽並提供服務
-	router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
+  // 在 https://127.0.0.1:8080 上監聽並提供服務
+  router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
 

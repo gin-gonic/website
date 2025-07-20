@@ -40,52 +40,52 @@ endless 的替代方案：
 package main
 
 import (
-	"context"
-	"log"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
+  "context"
+  "log"
+  "net/http"
+  "os"
+  "os/signal"
+  "syscall"
+  "time"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
-		time.Sleep(5 * time.Second)
-		c.String(http.StatusOK, "歡迎使用 Gin 伺服器")
-	})
+  router := gin.Default()
+  router.GET("/", func(c *gin.Context) {
+    time.Sleep(5 * time.Second)
+    c.String(http.StatusOK, "歡迎使用 Gin 伺服器")
+  })
 
-	srv := &http.Server{
-		Addr:    ":8080",
-		Handler: router,
-	}
+  srv := &http.Server{
+    Addr:    ":8080",
+    Handler: router,
+  }
 
-	go func() {
-		// 服務連線
-		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatalf("監聽： %s\n", err)
-		}
-	}()
+  go func() {
+    // 服務連線
+    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+      log.Fatalf("監聽： %s\n", err)
+    }
+  }()
 
-	// 等待中斷訊號以優雅地關閉伺服器，並設定 5 秒的超時。
-	quit := make(chan os.Signal, 1)
-	// kill (不帶參數) 預設傳送 syscall.SIGTERM
-	// kill -2 是 syscall.SIGINT
-	// kill -9 是 syscall.SIGKILL，但無法被捕捉，因此不需加入
-	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-	<-quit
-	log.Println("正在關閉伺服器...")
+  // 等待中斷訊號以優雅地關閉伺服器，並設定 5 秒的超時。
+  quit := make(chan os.Signal, 1)
+  // kill (不帶參數) 預設傳送 syscall.SIGTERM
+  // kill -2 是 syscall.SIGINT
+  // kill -9 是 syscall.SIGKILL，但無法被捕捉，因此不需加入
+  signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+  <-quit
+  log.Println("正在關閉伺服器...")
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("伺服器關閉時發生錯誤：", err)
-	}
+  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+  defer cancel()
+  if err := srv.Shutdown(ctx); err != nil {
+    log.Fatal("伺服器關閉時發生錯誤：", err)
+  }
 
-	log.Println("伺服器已退出")
+  log.Println("伺服器已退出")
 }
 ```
 

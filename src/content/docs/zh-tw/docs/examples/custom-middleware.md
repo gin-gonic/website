@@ -4,45 +4,45 @@ title: "自訂中介軟體"
 
 ```go
 import (
-	"log"
-	"time"
+  "log"
+  "time"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func Logger() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		t := time.Now()
+  return func(c *gin.Context) {
+    t := time.Now()
 
-		// 設定範例變數
-		c.Set("example", "12345")
+    // 設定範例變數
+    c.Set("example", "12345")
 
-		// 請求前
+    // 請求前
 
-		c.Next()
+    c.Next()
 
-		// 請求後
-		latency := time.Since(t)
-		log.Print(latency)
+    // 請求後
+    latency := time.Since(t)
+    log.Print(latency)
 
-		// 存取我們正在傳送的狀態
-		status := c.Writer.Status()
-		log.Println(status)
-	}
+    // 存取我們正在傳送的狀態
+    status := c.Writer.Status()
+    log.Println(status)
+  }
 }
 
 func main() {
-	r := gin.New()
-	r.Use(Logger())
+  r := gin.New()
+  r.Use(Logger())
 
-	r.GET("/test", func(c *gin.Context) {
-		example := c.MustGet("example").(string)
+  r.GET("/test", func(c *gin.Context) {
+    example := c.MustGet("example").(string)
 
-		// 它會印出：「12345」
-		log.Println(example)
-	})
+    // 它會印出：「12345」
+    log.Println(example)
+  })
 
-	// 在 0.0.0.0:8080 上監聽並提供服務
-	r.Run(":8080")
+  // 在 0.0.0.0:8080 上監聽並提供服務
+  r.Run(":8080")
 }
 ```

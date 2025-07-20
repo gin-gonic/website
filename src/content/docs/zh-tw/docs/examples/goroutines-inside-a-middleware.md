@@ -6,36 +6,36 @@ title: "在中介軟體中使用 Goroutine"
 
 ```go
 import (
-	"log"
-	"time"
+  "log"
+  "time"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	router.GET("/long_async", func(c *gin.Context) {
-		// 建立一個在 goroutine 中使用的副本
-		cCp := c.Copy()
-		go func() {
-			// 模擬一個耗時 5 秒的長時間任務
-			time.Sleep(5 * time.Second)
+  router.GET("/long_async", func(c *gin.Context) {
+    // 建立一個在 goroutine 中使用的副本
+    cCp := c.Copy()
+    go func() {
+      // 模擬一個耗時 5 秒的長時間任務
+      time.Sleep(5 * time.Second)
 
-			// 請注意，您使用的是複製的上下文 "cCp"，這點很重要
-			log.Println("完成！路徑為 " + cCp.Request.URL.Path)
-		}()
-	})
+      // 請注意，您使用的是複製的上下文 "cCp"，這點很重要
+      log.Println("完成！路徑為 " + cCp.Request.URL.Path)
+    }()
+  })
 
-	router.GET("/long_sync", func(c *gin.Context) {
-		// 模擬一個耗時 5 秒的長時間任務
-		time.Sleep(5 * time.Second)
+  router.GET("/long_sync", func(c *gin.Context) {
+    // 模擬一個耗時 5 秒的長時間任務
+    time.Sleep(5 * time.Second)
 
-		// 因為我們沒有使用 goroutine，所以不需要複製上下文
-		log.Println("完成！路徑為 " + c.Request.URL.Path)
-	})
+    // 因為我們沒有使用 goroutine，所以不需要複製上下文
+    log.Println("完成！路徑為 " + c.Request.URL.Path)
+  })
 
-	// 在 0.0.0.0:8080 上監聽並提供服務
-	router.Run(":8080")
+  // 在 0.0.0.0:8080 上監聽並提供服務
+  router.Run(":8080")
 }
 ```
