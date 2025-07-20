@@ -3,6 +3,29 @@ title: "使用 HTTP 方法"
 ---
 
 ```go
+import "github.com/gin-gonic/gin"
+
+func getting(c *gin.Context) {
+}
+
+func posting(c *gin.Context) {
+}
+
+func putting(c *gin.Context) {
+}
+
+func deleting(c *gin.Context) {
+}
+
+func patching(c *gin.Context) {
+}
+
+func head(c *gin.Context) {
+}
+
+func options(c *gin.Context) {
+}
+
 func main() {
 	// 停用主控台顏色
 	// gin.DisableConsoleColor()

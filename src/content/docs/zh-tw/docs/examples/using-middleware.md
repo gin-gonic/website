@@ -3,6 +3,49 @@ title: "使用中介軟體"
 ---
 
 ```go
+import (
+	"log"
+	"net/http"
+	"time"
+
+	"github.com/gin-gonic/gin"
+)
+
+func MyBenchLogger() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		t := time.Now()
+		c.Next()
+		latency := time.Since(t)
+		log.Print(latency)
+	}
+}
+
+func AuthRequired() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// Do something
+	}
+}
+
+func loginEndpoint(c *gin.Context) {
+	c.String(http.StatusOK, "loginEndpoint")
+}
+
+func submitEndpoint(c *gin.Context) {
+	c.String(http.StatusOK, "submitEndpoint")
+}
+
+func readEndpoint(c *gin.Context) {
+	c.String(http.StatusOK, "readEndpoint")
+}
+
+func analyticsEndpoint(c *gin.Context) {
+	c.String(http.StatusOK, "analyticsEndpoint")
+}
+
+func benchEndpoint(c *gin.Context) {
+	c.String(http.StatusOK, "benchEndpoint")
+}
+
 func main() {
 	// 預設建立一個不含任何中介軟體的路由器
 	r := gin.New()

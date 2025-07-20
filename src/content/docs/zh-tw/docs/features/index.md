@@ -4,7 +4,7 @@ sidebar:
   order: 4
 ---
 
-##### Gin v1 穩定功能
+- Gin v1 穩定功能
 
 - 零配置的路由器。
 

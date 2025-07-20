@@ -5,6 +5,13 @@ title: "在中介軟體中使用 Goroutine"
 在中介軟體或處理函式中啟動新的 Goroutine 時，您**不應**在其中使用原始的上下文，而必須使用唯讀的副本。
 
 ```go
+import (
+	"log"
+	"time"
+
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 	router := gin.Default()
 

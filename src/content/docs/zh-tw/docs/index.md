@@ -10,7 +10,7 @@ Gin 是一個使用 Go (Golang) 寫的 HTTP Web 框架。它提供類似 Martini
 
 ## 如何使用 Gin？
 
-我們提供了一些 API 使用 [範例](https://github.com/gin-gonic/examples) 並列出一些知名的 [Gin 使用者](./users).
+我們提供了一些 API 使用 [範例](https://github.com/gin-gonic/examples) 並列出一些知名的 [Gin 使用者](./users)。
 
 想要親手練習 Gin 的概念嗎？查看我們的[學習資源](./learning-resources)，裡面有互動式挑戰和教學。
 

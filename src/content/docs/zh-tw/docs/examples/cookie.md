@@ -6,28 +6,28 @@ title: "Cookie"
 
 ```go
 import (
-    "fmt"
+  "fmt"
 
-    "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
 
-    router := gin.Default()
+  router := gin.Default()
 
-    router.GET("/cookie", func(c *gin.Context) {
+  router.GET("/cookie", func(c *gin.Context) {
 
-        cookie, err := c.Cookie("gin_cookie")
+      cookie, err := c.Cookie("gin_cookie")
 
-        if err != nil {
-            cookie = "NotSet"
-            c.SetCookie("gin_cookie", "test", 3600, "/", "localhost", false, true)
-        }
+      if err != nil {
+          cookie = "NotSet"
+          c.SetCookie("gin_cookie", "test", 3600, "/", "localhost", false, true)
+      }
 
-        fmt.Printf("Cookie 值：%s \n", cookie)
-    })
+      fmt.Printf("Cookie 值：%s \n", cookie)
+  })
 
-    router.Run()
+  router.Run()
 }
 ```
 

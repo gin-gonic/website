@@ -10,6 +10,11 @@ name=manu&message=this_is_great
 ```
 
 ```go
+import (
+	"fmt"
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 	router := gin.Default()
 

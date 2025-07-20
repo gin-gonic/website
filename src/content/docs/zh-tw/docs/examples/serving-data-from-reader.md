@@ -3,6 +3,12 @@ title: "從讀取器提供資料"
 ---
 
 ```go
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 	router := gin.Default()
 	router.GET("/someDataFromReader", func(c *gin.Context) {

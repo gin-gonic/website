@@ -3,6 +3,12 @@ title: "提供靜態檔案"
 ---
 
 ```go
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 	router := gin.Default()
 	router.Static("/assets", "./assets")

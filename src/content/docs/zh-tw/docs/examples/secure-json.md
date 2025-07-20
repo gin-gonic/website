@@ -5,6 +5,12 @@ title: "SecureJSON"
 使用 SecureJSON 來防止 JSON 劫持。如果給定的結構是陣列值，預設會在回應主體前加上 `"while(1),"。
 
 ```go
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 	router := gin.Default()
 

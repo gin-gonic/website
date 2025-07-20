@@ -5,6 +5,12 @@ title: "AsciiJSON"
 使用 AsciiJSON 來產生僅含 ASCII 字元並逸出非 ASCII 字元的 JSON。
 
 ```go
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 

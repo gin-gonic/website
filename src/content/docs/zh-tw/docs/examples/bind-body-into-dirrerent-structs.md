@@ -31,6 +31,13 @@ func SomeHandler(c *gin.Context) {
 為此，您可以使用 `c.ShouldBindBodyWith`。
 
 ```go
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin/binding"
+)
+
 func SomeHandler(c *gin.Context) {
   objA := formA{}
   objB := formB{}

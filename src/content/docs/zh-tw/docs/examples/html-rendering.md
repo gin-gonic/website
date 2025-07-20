@@ -5,6 +5,12 @@ title: "HTML 渲染"
 使用 `LoadHTMLGlob()` 或 `LoadHTMLFiles()`
 
 ```go
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*")
@@ -79,6 +85,12 @@ templates/users/index.tmpl
 ```go
 import "html/template"
 
+import (
+	"html/template"
+
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 	router := gin.Default()
 	html := template.Must(template.ParseFiles("file1", "file2"))
@@ -104,14 +116,14 @@ func main() {
 main.go
 
 ```go
-import (
+	import (
     "fmt"
     "html/template"
     "net/http"
     "time"
 
     "github.com/gin-gonic/gin"
-)
+  )
 
 func formatAsDate(t time.Time) string {
     year, month, day := t.Date()

@@ -7,6 +7,15 @@ title: "使用樣板建置單一二進位檔"
 [go-assets]: https://github.com/jessevdk/go-assets
 
 ```go
+import (
+  "html/template"
+  "io/ioutil"
+  "net/http"
+  "strings"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   r := gin.New()
 

@@ -10,6 +10,12 @@ var secrets = gin.H{
 	"lena":   gin.H{"email": "lena@guapa.com", "phone": "523443"},
 }
 
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 	router := gin.Default()
 

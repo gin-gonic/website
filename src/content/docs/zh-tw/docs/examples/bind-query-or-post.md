@@ -7,12 +7,12 @@ title: "綁定查詢字串或 POST 資料"
 ```go
 package main
 
-import (
-  "log"
-  "time"
+  import (
+    "log"
+    "time"
 
-  "github.com/gin-gonic/gin"
-)
+    "github.com/gin-gonic/gin"
+  )
 
 type Person struct {
   Name     string    `form:"name"`

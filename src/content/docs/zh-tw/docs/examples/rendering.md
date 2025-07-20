@@ -3,6 +3,13 @@ title: "XML/JSON/YAML/ProtoBuf 渲染"
 ---
 
 ```go
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/testdata/protoexample"
+)
+
 func main() {
 	router := gin.Default()
 

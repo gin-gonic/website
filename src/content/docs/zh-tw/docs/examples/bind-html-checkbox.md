@@ -7,21 +7,32 @@ title: "綁定 HTML 核取方塊"
 main.go
 
 ```go
-...
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
 
 type myForm struct {
   Colors []string `form:"colors[]"`
 }
 
-...
+func main() {
+  router := gin.Default()
+  router.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "form.html", nil)
+  })
+  router.POST("/", formHandler)
+  router.LoadHTMLFiles("form.html")
+
+  router.Run()
+}
 
 func formHandler(c *gin.Context) {
   var fakeForm myForm
   c.ShouldBind(&fakeForm)
-  c.JSON(200, gin.H{"color": fakeForm.Colors})
+  c.JSON(http.StatusOK, gin.H{"color": fakeForm.Colors})
 }
-
-...
 
 ```
 

@@ -3,6 +3,12 @@ title: "查詢字串參數"
 ---
 
 ```go
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 func main() {
 	router := gin.Default()
 

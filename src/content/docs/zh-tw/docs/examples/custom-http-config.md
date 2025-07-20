@@ -15,7 +15,12 @@ func main() {
 或
 
 ```go
-import "net/http"
+import (
+  "net/http"
+  "time"
+
+  "github.com/gin-gonic/gin"
+)
 
 func main() {
 	router := gin.Default()

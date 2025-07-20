@@ -8,10 +8,21 @@ title: "優雅地重新啟動或停止"
 我們可以使用 [fvbock/endless](https://github.com/fvbock/endless) 來取代預設的 `ListenAndServe`。詳情請參閱問題 [#296](https://github.com/gin-gonic/gin/issues/296)。
 
 ```go
-router := gin.Default()
-router.GET("/", handler)
-// [...]
-endless.ListenAndServe(":4242", router)
+import (
+  "github.com/fvbock/endless"
+  "github.com/gin-gonic/gin"
+)
+
+func handler(c *gin.Context) {
+  c.String(http.StatusOK, "Hello, World!")
+}
+
+func main() {
+  router := gin.Default()
+  router.GET("/", handler)
+  // [...]
+  endless.ListenAndServe(":4242", router)
+}
 ```
 
 endless 的替代方案：

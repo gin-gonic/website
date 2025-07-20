@@ -22,7 +22,7 @@ Qovery 提供免費的雲端主機托管，包括資料庫、SSL、全球 CDN，
 
 Render 是一個原生支援 Go 語言的現代化雲平台，並支持管理 SSL、資料庫、不停機部署、HTTP/2 和 websocket。
 
-請參考 Render 文件[部署 Gin 專案](https://render.com/docs/deploy-go-gin).
+請參考 Render 文件[部署 Gin 專案](https://render.com/docs/deploy-go-gin)。
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
@@ -76,55 +76,55 @@ Gin 允許您指定哪些標頭可以保存真實的客戶端 IP（如果有的�
 **注意：** 如果您沒有使用上述函式指定可信任的代理，Gin 預設會信任所有代理，這是**不安全的**。同時，如果您不使用任何代理，可以使用 `Engine.SetTrustedProxies(nil)` 來停用此功能，這樣 `Context.ClientIP()` 將直接回傳遠端位址，避免不必要的運算。
 
 ```go
-import (
-    "fmt"
+ import (
+   "fmt"
 
-    "github.com/gin-gonic/gin"
-)
+   "github.com/gin-gonic/gin"
+ )
 
-func main() {
-    router := gin.Default()
-    router.SetTrustedProxies([]string{"192.168.1.2"})
+ func main() {
+   router := gin.Default()
+   router.SetTrustedProxies([]string{"192.168.1.2"})
 
-    router.GET("/", func(c *gin.Context) {
-        // 如果客戶端是 192.168.1.2，則使用 X-Forwarded-For
-        // 標頭中可信任的部分來推斷原始客戶端 IP。
-        // 否則，直接回傳客戶端 IP
-        fmt.Printf("ClientIP: %s\n", c.ClientIP())
-    })
-    router.Run()
-}
+   router.GET("/", func(c *gin.Context) {
+     // 如果客戶端是 192.168.1.2，則使用 X-Forwarded-For
+     // 標頭中可信任的部分來推斷原始客戶端 IP。
+     // 否則，直接回傳客戶端 IP
+     fmt.Printf("ClientIP: %s\n", c.ClientIP())
+   })
+   router.Run()
+ }
 ```
 
 **提醒：** 如果您使用 CDN 服務，可以設定 `Engine.TrustedPlatform` 來跳過 TrustedProxies 檢查，它的優先順序高於 TrustedProxies。
 請看以下範例：
 
 ```go
-import (
-    "fmt"
+ import (
+   "fmt"
 
-    "github.com/gin-gonic/gin"
-)
+   "github.com/gin-gonic/gin"
+ )
 
-func main() {
-    router := gin.Default()
-    // 使用預定義的標頭 gin.PlatformXXX
-    // Google App Engine
-    router.TrustedPlatform = gin.PlatformGoogleAppEngine
-    // Cloudflare
-    router.TrustedPlatform = gin.PlatformCloudflare
-    // Fly.io
-    router.TrustedPlatform = gin.PlatformFlyIO
-    // 或者，您可以設定自己的可信任請求標頭。但請確保您的 CDN
-    // 會防止使用者傳遞此標頭！例如，如果您的 CDN 將客戶端 IP
-    // 放在 X-CDN-Client-IP 中：
-    router.TrustedPlatform = "X-CDN-Client-IP"
+ func main() {
+   router := gin.Default()
+   // 使用預定義的標頭 gin.PlatformXXX
+   // Google App Engine
+   router.TrustedPlatform = gin.PlatformGoogleAppEngine
+   // Cloudflare
+   router.TrustedPlatform = gin.PlatformCloudflare
+   // Fly.io
+   router.TrustedPlatform = gin.PlatformFlyIO
+   // 或者，您可以設定自己的可信任請求標頭。但請確保您的 CDN
+   // 會防止使用者傳遞此標頭！例如，如果您的 CDN 將客戶端 IP
+   // 放在 X-CDN-Client-IP 中：
+   router.TrustedPlatform = "X-CDN-Client-IP"
 
-    router.GET("/", func(c *gin.Context) {
-        // 如果您設定了 TrustedPlatform，ClientIP() 將會解析
-        // 對應的標頭並直接回傳 IP
-        fmt.Printf("ClientIP: %s\n", c.ClientIP())
-    })
-    router.Run()
-}
+   router.GET("/", func(c *gin.Context) {
+     // 如果您設定了 TrustedPlatform，ClientIP() 將會解析
+     // 對應的標頭並直接回傳 IP
+     fmt.Printf("ClientIP: %s\n", c.ClientIP())
+   })
+   router.Run()
+ }
 ```
