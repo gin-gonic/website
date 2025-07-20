@@ -40,10 +40,10 @@ Gin 專案部署可以透過環境變數或直接在程式碼中進行調整。
 
 以下是可用於設定 Gin 的環境變數：
 
-| 環境變數 | 說明                                                                                                                                                                        |
-| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PORT     | 使用 `router.Run()` 啟動 Gin 伺服器時要監聽的 TCP 連接埠（即不帶任何參數時）。                                                                                              |
-| GIN_MODE | 可設定為 `debug`、`release` 或 `test`。用於管理 Gin 模式，例如是否輸出除錯資訊。也可以在程式碼中使用 `gin.SetMode(gin.ReleaseMode)` 或 `gin.SetMode(gin.TestMode)` 來設定。 |
+| 環境變數 | 說明                                                                 |
+| -------- | -------------------------------------------------------------------- |
+| PORT     | 使用 `router.Run()` 啟動 Gin 伺服器時要監聽的 TCP 連接埠<br>（即不帶任何參數時）。 |
+| GIN_MODE | 可設定為 `debug`、`release` 或 `test`。用於管理 Gin 模式，<br>例如是否輸出除錯資訊。也可以在程式碼中使用<br>`gin.SetMode(gin.ReleaseMode)` 或 `gin.SetMode(gin.TestMode)` 來設定。 |
 
 以下程式碼可用於設定 Gin：
 
@@ -71,9 +71,13 @@ router.SetTrustedProxies([]string{"192.168.1.2"})
 
 Gin 允許您指定哪些標頭可以保存真實的客戶端 IP（如果有的話），以及指定您信任哪些代理（或直接客戶端）可以設定這些標頭。
 
-在 `gin.Engine` 上使用 `SetTrustedProxies()` 函式來指定可信任的網路位址或網路 CIDR，這些來源的請求標頭中與客戶端 IP 相關的資訊將被視為可信任。可以是 IPv4 位址、IPv4 CIDR、IPv6 位址或 IPv6 CIDR。
+在 `gin.Engine` 上使用 `SetTrustedProxies()` 函式來指定可信任的網路位址或網路 CIDR，
+這些來源的請求標頭中與客戶端 IP 相關的資訊將被視為可信任。
+可以是 IPv4 位址、IPv4 CIDR、IPv6 位址或 IPv6 CIDR。
 
-**注意：** 如果您沒有使用上述函式指定可信任的代理，Gin 預設會信任所有代理，這是**不安全的**。同時，如果您不使用任何代理，可以使用 `Engine.SetTrustedProxies(nil)` 來停用此功能，這樣 `Context.ClientIP()` 將直接回傳遠端位址，避免不必要的運算。
+**注意：** 如果您沒有使用上述函式指定可信任的代理，Gin 預設會信任所有代理，
+這是**不安全的**。同時，如果您不使用任何代理，可以使用 `Engine.SetTrustedProxies(nil)`
+來停用此功能，這樣 `Context.ClientIP()` 將直接回傳遠端位址，避免不必要的運算。
 
 ```go
  import (
@@ -96,7 +100,8 @@ Gin 允許您指定哪些標頭可以保存真實的客戶端 IP（如果有的�
  }
 ```
 
-**提醒：** 如果您使用 CDN 服務，可以設定 `Engine.TrustedPlatform` 來跳過 TrustedProxies 檢查，它的優先順序高於 TrustedProxies。
+**提醒：** 如果您使用 CDN 服務，可以設定 `Engine.TrustedPlatform`
+來跳過 TrustedProxies 檢查，它的優先順序高於 TrustedProxies。
 請看以下範例：
 
 ```go

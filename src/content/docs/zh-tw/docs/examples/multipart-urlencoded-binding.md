@@ -35,6 +35,7 @@ func main() {
 ```
 
 使用以下指令進行測試：
+
 ```sh
-$ curl -v --form user=user --form password=password http://localhost:8080/login
+curl -v --form user=user --form password=password http://localhost:8080/login
 ```

@@ -56,4 +56,3 @@ func main() {
   log.Fatal(autotls.RunWithManager(r, &m))
 }
 ```
-

@@ -5,7 +5,9 @@ title: "優雅地重新啟動或停止"
 您想要優雅地重新啟動或停止您的網頁伺服器嗎？
 有幾種方法可以做到。
 
-我們可以使用 [fvbock/endless](https://github.com/fvbock/endless) 來取代預設的 `ListenAndServe`。詳情請參閱問題 [#296](https://github.com/gin-gonic/gin/issues/296)。
+我們可以使用 [fvbock/endless](https://github.com/fvbock/endless)
+來取代預設的 `ListenAndServe`。詳情請參閱問題
+[#296](https://github.com/gin-gonic/gin/issues/296)。
 
 ```go
 import (
@@ -28,10 +30,13 @@ func main() {
 endless 的替代方案：
 
 * [manners](https://github.com/braintree/manners)：一個能優雅關閉的 Go HTTP 伺服器。
-* [graceful](https://github.com/tylerb/graceful)：Graceful 是一個 Go 套件，可讓 http.Handler 伺服器優雅關閉。
+* [graceful](https://github.com/tylerb/graceful)：Graceful 是一個 Go
+  套件，可讓 http.Handler 伺服器優雅關閉。
 * [grace](https://github.com/facebookgo/grace)：Go 伺服器的優雅重啟與零停機部署。
 
-如果您使用 Go 1.8 或更新版本，您可能不需要使用此函式庫！請考慮使用 `http.Server` 內建的 [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) 方法來進行優雅關閉。請參閱 gin 的完整[優雅關閉](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown)範例。
+如果您使用 Go 1.8 或更新版本，您可能不需要使用此函式庫！請考慮使用 `http.Server`
+內建的 [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown)
+方法來進行優雅關閉。請參閱 gin 的完整[優雅關閉](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown)範例。
 
 ```go
 //go:build go1.8
@@ -88,4 +93,3 @@ func main() {
   log.Println("伺服器已退出")
 }
 ```
-

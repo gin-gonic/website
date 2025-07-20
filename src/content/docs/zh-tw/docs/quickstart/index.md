@@ -16,49 +16,50 @@ sidebar:
 
 1. 下載並安裝
 
-```sh
-$ go get -u github.com/gin-gonic/gin
-```
+    ```sh
+    go get -u github.com/gin-gonic/gin
+    ```
 
 2. 在程式碼當中匯入套件
 
-```go
-import "github.com/gin-gonic/gin"
-```
+    ```go
+    import "github.com/gin-gonic/gin"
+    ```
 
-3. （可選的）如果你想要使用像是 `http.StatusOK` 的常數，你會需要匯入 `net/http` 套件
+3. （可選的）如果你想要使用像是 `http.StatusOK` 的常數，
+   你會需要匯入 `net/http` 套件
 
-```go
-import "net/http"
-```
+    ```go
+    import "net/http"
+    ```
 
-1. 新增你的專案資料夾並 `cd` 進入
+4.  新增你的專案資料夾並 `cd` 進入
 
-```sh
-$ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
-   ```
+    ```sh
+    mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
+    ```
 
-2. 複製範本到你的專案
+5.  複製範本到你的專案
 
-```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
-```
+    ```sh
+    curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+    ```
 
-3. 執行你的專案
+6.  執行你的專案
 
-```sh
-$ go run main.go
-```
+    ```sh
+    go run main.go
+    ```
 
 ## 開始使用
 
-> 不確定如何寫和執行 Go 程式碼？ [Click here](https://golang.org/doc/code.html).
+> 不確定如何寫和執行 Go 程式碼？ [查看 Go 文件](https://golang.org/doc/code.html).
 
 第一步，新增一個檔案 `example.go`:
 
 ```sh
 # assume the following codes in example.go file
-$ touch example.go
+touch example.go
 ```
 
 接下來，將下列程式碼放進 `example.go`:
@@ -83,5 +84,5 @@ func main() {
 
 ```shell
 # run example.go and visit 0.0.0.0:8080/ping on browser
-$ go run example.go
+go run example.go
 ```

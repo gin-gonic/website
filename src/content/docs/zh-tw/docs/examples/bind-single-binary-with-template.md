@@ -51,4 +51,6 @@ func loadTemplate() (*template.Template, error) {
 }
 ```
 
-請參閱 [assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01) 目錄中的完整範例。
+請參閱
+[assets-in-binary/example01](https://github.com/gin-gonic/examples/tree/master/assets-in-binary/example01)
+目錄中的完整範例。

@@ -33,4 +33,3 @@ func main() {
 ```sh
 ids: map[b:hello a:1234], names: map[second:tianou first:thinkerou]
 ```
-

@@ -27,7 +27,10 @@ sidebar:
     <h4>實際操作：</h4>
     <div class="video-container">
       <video controls width="100%">
-        <source src="https://github.com/user-attachments/assets/23468aab-a032-4326-9d05-84de86c9128c" type="video/mp4">
+        <source
+          src="https://github.com/user-attachments/assets/23468aab-a032-4326-9d05-84de86c9128c"
+          type="video/mp4"
+        />
         您的瀏覽器不支援 video 標籤。
       </video>
       <p class="video-caption">Go 面試練習平台簡介</p>
@@ -35,7 +38,12 @@ sidebar:
   </div>
 
   <div class="platform-cta">
-    <a href="https://github.com/RezaSi/go-interview-practice" class="btn btn-primary" target="_blank" rel="noopener">
+    <a
+      href="https://github.com/RezaSi/go-interview-practice"
+      class="btn btn-primary"
+      target="_blank"
+      rel="noopener"
+    >
       探索 Gin 挑戰 →
     </a>
   </div>

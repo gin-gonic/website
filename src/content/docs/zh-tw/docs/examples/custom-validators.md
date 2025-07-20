@@ -20,7 +20,8 @@ import (
 // Booking 包含已綁定和已驗證的資料。
 type Booking struct {
   CheckIn  time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
-  CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn,bookabledate" time_format:"2006-01-02"`
+  CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn,bookabledate"
+    time_format:"2006-01-02"`
 }
 
 func bookableDate(
