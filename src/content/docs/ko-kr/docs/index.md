@@ -6,11 +6,13 @@ sidebar:
 
 ## Gin 이란?
 
-Gin은 Go 언어로 작성된 HTTP Web 프레임워크입니다. [Martini](https://github.com/go-martini/martini)와 유사한 API를 제공하지만,최대 40배 빠른 성능을 발휘합니다. 매우 좋은 성능이 필요하다면 Gin을 사용하세요.
+Gin은 Go 언어로 작성된 HTTP Web 프레임워크입니다. [Martini](https://github.com/go-martini/martini)와 유사한 API를 제공하지만,최대 40배 빠른 성능을 발휘합니다. 매우 좋은 성능이 필요하다면 Gin을 사용하세요.
 
 ## Gin의 사용법은?
 
 우리는 API [예제들](https://github.com/gin-gonic/examples)과 [Gin을 사용하는 프로젝트](./users) 리스트를 제공하고 있습니다.
+
+Gin 개념을 실습해보고 싶으신가요? 인터랙티브 챌린지와 튜토리얼을 위해 [학습 자료](./learning-resources)를 확인해보세요.
 
 ## Gin에 기여하기 위해서는?
 

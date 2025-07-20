@@ -12,6 +12,8 @@ Gin is a HTTP web framework written in Go (Golang). It features a Martini-like A
 
 We provide API usage [examples](https://github.com/gin-gonic/examples) and list some publicly known [Gin users](./users).
 
+Looking to practice Gin concepts hands-on? Check out our [Learning Resources](./learning-resources) for interactive challenges and tutorials.
+
 ## How to contribute to Gin?
 
 - Help people on the discussion forums

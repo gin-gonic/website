@@ -12,6 +12,8 @@ Gin adalah framework web yang ditulis menggunakan Go (Golang). Framework ini mem
 
 Kami menyediakan [contoh](https://github.com/gin-gonic/examples) penggunaan API dan daftar beberapa [pengguna Gin](./users) yang sudah dikenal publik.
 
+Ingin berlatih konsep Gin secara langsung? Lihat [Sumber Belajar](./learning-resources) kami untuk tantangan interaktif dan tutorial.
+
 ## Bagaimana cara berkontribusi pada Gin?
 
 - Bantu orang-orang di forum diskusi
