@@ -9,6 +9,7 @@ Gin 使用 [**go-playground/validator/v10**](https://github.com/go-playground/va
 請注意，您需要在所有要綁定的欄位上設定對應的綁定標籤。例如，從 JSON 綁定時，請設定 `json:"fieldname"`。
 
 此外，Gin 還提供了兩組綁定方法：
+
 - **類型** - 必須綁定
   - **方法** - `Bind`、`BindJSON`、`BindXML`、`BindQuery`、`BindYAML`
   - **行為** - 這些方法在底層使用 `MustBindWith`。如果發生綁定錯誤，請求將被中止，並回傳 `c.AbortWithError(400, err).SetType(ErrorTypeBind)`。這會將回應狀態碼設定為 400，並將 `Content-Type` 標頭設定為 `text/plain; charset=utf-8`。請注意，如果您在此之後嘗試設定回應碼，將會出現警告 `[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 400 with 422`。如果您希望對行為有更大的控制權，請考慮使用 `ShouldBind` 的對等方法。

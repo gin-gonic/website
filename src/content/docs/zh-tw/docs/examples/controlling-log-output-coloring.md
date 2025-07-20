@@ -8,18 +8,18 @@ title: "控制日誌輸出的著色"
 
 ```go
 func main() {
-    // 停用日誌顏色
-    gin.DisableConsoleColor()
+  // 停用日誌顏色
+  gin.DisableConsoleColor()
 
-    // 建立一個帶有預設中介軟體的 gin 路由器：
-    // logger 和 recovery (無崩潰) 中介軟體
-    router := gin.Default()
+  // 建立一個帶有預設中介軟體的 gin 路由器：
+  // logger 和 recovery (無崩潰) 中介軟體
+  router := gin.Default()
 
-    router.GET("/ping", func(c *gin.Context) {
-        c.String(200, "pong")
-    })
+  router.GET("/ping", func(c *gin.Context) {
+    c.String(200, "pong")
+  })
 
-    router.Run(":8080")
+  router.Run(":8080")
 }
 ```
 
@@ -27,18 +27,17 @@ func main() {
 
 ```go
 func main() {
-    // 強制日誌顏色
-    gin.ForceConsoleColor()
+  // 強制日誌顏色
+  gin.ForceConsoleColor()
 
-    // 建立一個帶有預設中介軟體的 gin 路由器：
-    // logger 和 recovery (無崩潰) 中介軟體
-    router := gin.Default()
+  // 建立一個帶有預設中介軟體的 gin 路由器：
+  // logger 和 recovery (無崩潰) 中介軟體
+  router := gin.Default()
 
-    router.GET("/ping", func(c *gin.Context) {
-        c.String(200, "pong")
-    })
+  router.GET("/ping", func(c *gin.Context) {
+    c.String(200, "pong")
+  })
 
-    router.Run(":8080")
+  router.Run(":8080")
 }
 ```
-

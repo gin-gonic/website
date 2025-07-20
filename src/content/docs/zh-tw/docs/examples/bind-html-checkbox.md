@@ -10,15 +10,15 @@ main.go
 ...
 
 type myForm struct {
-    Colors []string `form:"colors[]"`
+  Colors []string `form:"colors[]"`
 }
 
 ...
 
 func formHandler(c *gin.Context) {
-    var fakeForm myForm
-    c.ShouldBind(&fakeForm)
-    c.JSON(200, gin.H{"color": fakeForm.Colors})
+  var fakeForm myForm
+  c.ShouldBind(&fakeForm)
+  c.JSON(200, gin.H{"color": fakeForm.Colors})
 }
 
 ...
@@ -45,4 +45,3 @@ form.html
 ```sh
 {"color":["red","green","blue"]}
 ```
-

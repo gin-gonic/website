@@ -77,22 +77,22 @@ Gin 允許您指定哪些標頭可以保存真實的客戶端 IP（如果有的�
 
 ```go
 import (
-  "fmt"
+    "fmt"
 
-  "github.com/gin-gonic/gin"
+    "github.com/gin-gonic/gin"
 )
 
 func main() {
-  router := gin.Default()
-  router.SetTrustedProxies([]string{"192.168.1.2"})
+    router := gin.Default()
+    router.SetTrustedProxies([]string{"192.168.1.2"})
 
-  router.GET("/", func(c *gin.Context) {
-    // 如果客戶端是 192.168.1.2，則使用 X-Forwarded-For
-    // 標頭中可信任的部分來推斷原始客戶端 IP。
-    // 否則，直接回傳客戶端 IP
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
+    router.GET("/", func(c *gin.Context) {
+        // 如果客戶端是 192.168.1.2，則使用 X-Forwarded-For
+        // 標頭中可信任的部分來推斷原始客戶端 IP。
+        // 否則，直接回傳客戶端 IP
+        fmt.Printf("ClientIP: %s\n", c.ClientIP())
+    })
+    router.Run()
 }
 ```
 
@@ -101,30 +101,30 @@ func main() {
 
 ```go
 import (
-  "fmt"
+    "fmt"
 
-  "github.com/gin-gonic/gin"
+    "github.com/gin-gonic/gin"
 )
 
 func main() {
-  router := gin.Default()
-  // 使用預定義的標頭 gin.PlatformXXX
-  // Google App Engine
-  router.TrustedPlatform = gin.PlatformGoogleAppEngine
-  // Cloudflare
-  router.TrustedPlatform = gin.PlatformCloudflare
-  // Fly.io
-  router.TrustedPlatform = gin.PlatformFlyIO
-  // 或者，您可以設定自己的可信任請求標頭。但請確保您的 CDN
-  // 會防止使用者傳遞此標頭！例如，如果您的 CDN 將客戶端 IP
-  // 放在 X-CDN-Client-IP 中：
-  router.TrustedPlatform = "X-CDN-Client-IP"
+    router := gin.Default()
+    // 使用預定義的標頭 gin.PlatformXXX
+    // Google App Engine
+    router.TrustedPlatform = gin.PlatformGoogleAppEngine
+    // Cloudflare
+    router.TrustedPlatform = gin.PlatformCloudflare
+    // Fly.io
+    router.TrustedPlatform = gin.PlatformFlyIO
+    // 或者，您可以設定自己的可信任請求標頭。但請確保您的 CDN
+    // 會防止使用者傳遞此標頭！例如，如果您的 CDN 將客戶端 IP
+    // 放在 X-CDN-Client-IP 中：
+    router.TrustedPlatform = "X-CDN-Client-IP"
 
-  router.GET("/", func(c *gin.Context) {
-    // 如果您設定了 TrustedPlatform，ClientIP() 將會解析
-    // 對應的標頭並直接回傳 IP
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
+    router.GET("/", func(c *gin.Context) {
+        // 如果您設定了 TrustedPlatform，ClientIP() 將會解析
+        // 對應的標頭並直接回傳 IP
+        fmt.Printf("ClientIP: %s\n", c.ClientIP())
+    })
+    router.Run()
 }
 ```

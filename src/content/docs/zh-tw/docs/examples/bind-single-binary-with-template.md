@@ -8,37 +8,37 @@ title: "使用樣板建置單一二進位檔"
 
 ```go
 func main() {
-	r := gin.New()
+  r := gin.New()
 
-	t, err := loadTemplate()
-	if err != nil {
-		panic(err)
-	}
-	r.SetHTMLTemplate(t)
+  t, err := loadTemplate()
+  if err != nil {
+    panic(err)
+  }
+  r.SetHTMLTemplate(t)
 
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
-	})
-	r.Run(":8080")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "/html/index.tmpl", nil)
+  })
+  r.Run(":8080")
 }
 
 // loadTemplate 載入由 go-assets-builder 嵌入的樣板
 func loadTemplate() (*template.Template, error) {
-	t := template.New("")
-	for name, file := range Assets.Files {
-		if file.IsDir() || !strings.HasSuffix(name, ".tmpl") {
-			continue
-		}
-		h, err := ioutil.ReadAll(file)
-		if err != nil {
-			return nil, err
-		}
-		t, err = t.New(name).Parse(string(h))
-		if err != nil {
-			return nil, err
-		}
-	}
-	return t, nil
+  t := template.New("")
+  for name, file := range Assets.Files {
+    if file.IsDir() || !strings.HasSuffix(name, ".tmpl") {
+      continue
+    }
+    h, err := ioutil.ReadAll(file)
+    if err != nil {
+      return nil, err
+    }
+    t, err = t.New(name).Parse(string(h))
+    if err != nil {
+      return nil, err
+    }
+  }
+  return t, nil
 }
 ```
 

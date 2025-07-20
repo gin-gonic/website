@@ -51,4 +51,3 @@ func SomeHandler(c *gin.Context) {
 
 * `c.ShouldBindBodyWith` 會在綁定前將內文儲存到上下文中。這對效能有輕微影響，因此如果您只需呼叫一次綁定，則不應使用此方法。
 * 此功能僅適用於某些格式——`JSON`、`XML`、`MsgPack`、`ProtoBuf`。對於其他格式，如 `Query`、`Form`、`FormPost`、`FormMultipart`，可以多次呼叫 `c.ShouldBind()` 而不會對效能造成任何損害（請參閱 [#1341](https://github.com/gin-gonic/gin/pull/1341)）。
-
