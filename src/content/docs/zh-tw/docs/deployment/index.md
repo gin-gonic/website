@@ -16,7 +16,7 @@ Koyeb 是一個開發者友善的無伺服器平台，可透過基於 Git 的部
 
 Qovery 提供免費的雲端主機托管，包括資料庫、SSL、全球 CDN，以及使用 Git 進行自動部署。
 
-請參照 Qovery 指南來[部署您的 Gin 項目](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/)。
+前往 [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) 來瞭解更多。
 
 ## [Render](https://render.com)
 
