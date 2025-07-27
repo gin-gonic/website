@@ -1,5 +1,5 @@
 ---
-title: "Custom konfigurasi HTTP"
+title: "Konfigurasi HTTP custom"
 ---
 
 Gunakan `http.ListenAndServe()` secara langsung, seperti ini:
