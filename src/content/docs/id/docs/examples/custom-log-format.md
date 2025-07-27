@@ -1,5 +1,5 @@
 ---
-title: "Berkas log custom"
+title: "Berkas log khusus"
 ---
 
 Contohnya:
@@ -10,7 +10,7 @@ func main() {
 	// Middleware LoggerWithFormatter akan menulis log ke gin.DefaultWriter
 	// Secara bawaan gin.DefaultWriter = os.Stdout
 	router.Use(gin.LoggerWithFormatter(func(param gin.LogFormatterParams) string {
-		// format custom Anda
+		// format khusus Anda
 		return fmt.Sprintf("%s - [%s] \"%s %s %s %d %s \"%s\" %s\"\n",
 				param.ClientIP,
 				param.TimeStamp.Format(time.RFC1123),

@@ -1,8 +1,8 @@
 ---
-title: "Custom validators"
+title: "Validator khusus"
 ---
 
-Juga dimungkinkan untuk mendaftarkan custom validator. Lihat [kode contoh](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).
+Juga dimungkinkan untuk mendaftarkan validator khusus. Lihat [kode contoh](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).
 
 ```go
 package main

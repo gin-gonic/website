@@ -1,5 +1,5 @@
 ---
-title: "Custom Middleware"
+title: "Middleware khusus"
 ---
 
 ```go
