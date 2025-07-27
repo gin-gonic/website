@@ -22,7 +22,7 @@ Follow the Koyeb [guide to deploy your Gin projects](https://www.koyeb.com/tutor
 
 Qovery provides free Cloud hosting with databases, SSL, a global CDN, and automatic deploys with Git.
 
-Follow the Qovery guide to [deploy your Gin project](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/).
+See [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) for more information.
 
 ## [Render](https://render.com)
 
