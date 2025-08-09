@@ -1,37 +1,28 @@
 ---
 sidebar:
   order: 6
-title: Deployment
+title: デプロイ
 ---
 
 Gin のプロジェクトはあらゆるクラウドサービス上に簡単にデプロイできます。
 
 ## [Railway](https://www.railway.com)
 
-Railway is a cutting-edge cloud development platform for deploying,
-managing, and scaling applications and services. It simplifies your
-infrastructure stack from servers to observability with a single, scalable,
-easy-to-use platform.
+Railway は、アプリケーションやサービスのデプロイ、管理、スケーリングのための最先端のクラウド開発プラットフォームです。サーバーから監視まで、単一の拡張可能で使いやすいプラットフォームでインフラ構成をシンプルにします。
 
-Follow the Railway [guide to deploy your Gin
-projects](https://docs.railway.com/guides/gin).
+Railway の [Gin プロジェクトのデプロイガイド](https://docs.railway.com/guides/gin)に従ってください。
 
 ## [Koyeb](https://www.koyeb.com)
 
-Koyeb is a developer-friendly serverless platform to deploy apps globally
-with git-based deployment, TLS encryption, native autoscaling, a global edge
-network, and built-in service mesh & discovery.
+Koyeb は開発者フレンドリーなサーバーレスプラットフォームで、Git ベースのデプロイ、TLS 暗号化、ネイティブなオートスケーリング、グローバルエッジネットワーク、組み込みのサービスメッシュ＆ディスカバリーを備えており、アプリケーションをグローバルにデプロイできます。
 
-Follow the Koyeb [guide to deploy your Gin
-projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+Koyeb の [Gin プロジェクトのデプロイガイド](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb)に従ってください。
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery provides free Cloud hosting with databases, SSL, a global CDN, and
-automatic deploys with Git.
+Qovery はデータベース、SSL、グローバル CDN、Git による自動デプロイを備えた無料のクラウドホスティングを提供しています。
 
-Follow the Qovery guide to [deploy your Gin
-project](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/).
+[Gin プロジェクトのデプロイ](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/)に関する Qovery のガイドに従ってください。
 
 ## [Render](https://render.com)
 
@@ -49,63 +40,50 @@ GAE で Go のアプリケーションをデプロイするには 2
 さらに学んだり、より適した環境を探すには[Google App Engine 上での Go
 の使用](https://cloud.google.com/appengine/docs/go/)を参考にしてください。
 
-## Self Hosted
+## セルフホスト
 
-Gin projects can also be deployed in a self-hosted manner. Deployment
-architecture and security considerations vary depending on the target
-environment. The following section only presents a high level overview of
-configuration options to consider when planning the deployment.
+Gin プロジェクトはセルフホスト方式でもデプロイできます。デプロイメントアーキテクチャとセキュリティの考慮事項は、対象となる環境によって異なります。以下のセクションでは、デプロイメントを計画する際に考慮すべき設定オプションの概要のみを説明します。
 
-## Configuration Options
+## 設定オプション
 
-Gin project deployments can be tuned by using environment variables or
-directly in code.
+Gin プロジェクトのデプロイは、環境変数またはコード内で直接設定することができます。
 
-The following environment variables are available for configuring Gin:
+Gin の設定には以下の環境変数が利用可能です:
 
-| Environment Variable | Description                                                                                                                                                                                                   |
+| 環境変数 | 説明 |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PORT                 | The TCP port to listen on when starting the Gin server with `router.Run()` (i.e. without any arguments).                                                                                                      |
-| GIN_MODE             | Set to one of `debug`, `release`, or `test`. Handles management of Gin modes, such as when to emit debug outputs. Can also be set in code using `gin.SetMode(gin.ReleaseMode)` or `gin.SetMode(gin.TestMode)` |
+| PORT | `router.Run()` を使用して Gin サーバーを起動する際に使用する TCP のポート （つまり引数は要らない） |
+| GIN_MODE | `debug`、`release`、`test` のいずれかに設定。デバッグ出力を出すタイミングなど、Gin のモードを管理します。コード内で `gin.SetMode(gin.ReleaseMode)` や `gin.SetMode(gin.TestMode)` を使用して設定することもできます。 |
 
-The following code can be used to configure Gin.
+以下のコードを使用して Gin を設定できます。
 
 ```go
-// Don't specify the bind address or port for Gin. Defaults to binding on all interfaces on port 8080.
-// Can use the `PORT` environment variable to change the listen port when using `Run()` without any arguments.
+// バインドアドレスやポートを指定しない場合、デフォルトでは全てのインターフェースのポート8080にバインドされます。
+// Run() を引数なしで使用する場合、PORT 環境変数を使用してリッスンポートを変更できます。
 router := gin.Default()
 router.Run()
 
-// Specify the bind address and port for Gin.
+// バインドアドレスとポートを指定します。
 router := gin.Default()
 router.Run("192.168.1.100:8080")
 
-// Specify only the listen port. Will bind on all interfaces.
+// リッスンポートのみを指定します。全てのインターフェースにバインドされます。
 router := gin.Default()
 router.Run(":8080")
 
-// Set which IP addresses or CIDRs, are considered to be trusted for setting headers to document real client IP addresses.
-// See the documentation for additional details.
+// 実際のクライアントIPアドレスを設定するヘッダーについて、信頼できるIPアドレスやCIDRを設定します。
+// 詳細はドキュメントを参照してください。
 router := gin.Default()
 router.SetTrustedProxies([]string{"192.168.1.2"})
 ```
 
-## Don't trust all proxies
+## 全てのプロキシを信頼しない
 
-Gin lets you specify which headers to hold the real client IP (if any), as
-well as specifying which proxies (or direct clients) you trust to specify
-one of these headers.
+Gin では、実際のクライアント IP を保持するヘッダー（存在する場合）を指定したり、これらのヘッダーを指定することを信頼するプロキシ（または直接のクライアント）を指定することができます。
 
-Use function `SetTrustedProxies()` on your `gin.Engine` to specify network
-addresses or network CIDRs from where clients which their request headers
-related to client IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs,
-IPv6 addresses or IPv6 CIDRs.
+`gin.Engine` の `SetTrustedProxies()` 関数を使用して、クライアント IP に関連するリクエストヘッダーを信頼できるクライアントのネットワークアドレスやネットワーク CIDR を指定します。これらは IPv4 アドレス、IPv4 CIDR、IPv6 アドレス、または IPv6 CIDR を指定できます。
 
-**Attention:** Gin trust all proxies by default if you don't specify a trusted
-proxy using the function above, **this is NOT safe**. At the same time, if you don't
-use any proxy, you can disable this feature by using `Engine.SetTrustedProxies(nil)`,
-then `Context.ClientIP()` will return the remote address directly to avoid some
-unnecessary computation.
+**注意：** 上記の関数を使用して信頼できるプロキシを指定しない場合、Ginはデフォルトで全てのプロキシを信頼します。これは**安全ではありません**。同時に、プロキシを使用しない場合は、`Engine.SetTrustedProxies(nil)` を使用してこの機能を無効にできます。その場合、不要な計算を避けるため `Context.ClientIP()` は直接リモートアドレスを返します。
 
 ```go
 import (
@@ -119,19 +97,17 @@ func main() {
   router.SetTrustedProxies([]string{"192.168.1.2"})
 
   router.GET("/", func(c *gin.Context) {
-    // If the client is 192.168.1.2, use the X-Forwarded-For
-    // header to deduce the original client IP from the trust-
-    // worthy parts of that header.
-    // Otherwise, simply return the direct client IP
+    // クライアントが 192.168.1.2 の場合、X-Forwarded-For
+    // ヘッダーを使用して、そのヘッダーの信頼できる部分から
+    // 元のクライアント IP を推測します。
+    // それ以外の場合は、直接クライアント IP を返します
     fmt.Printf("ClientIP: %s\n", c.ClientIP())
   })
   router.Run()
 }
 ```
 
-**Notice:** If you are using a CDN service, you can set the `Engine.TrustedPlatform`
-to skip TrustedProxies check, it has a higher priority than TrustedProxies.
-Look at the example below:
+**注意：** CDN サービスを使用している場合、`Engine.TrustedPlatform` を設定することで TrustedProxies のチェックをスキップできます。これは TrustedProxies よりも優先順位が高くなります。以下の例を参照してください:
 
 ```go
 import (
@@ -142,21 +118,21 @@ import (
 
 func main() {
   router := gin.Default()
-  // Use predefined header gin.PlatformXXX
+  // 事前定義されたヘッダー gin.PlatformXXX を使用
   // Google App Engine
   router.TrustedPlatform = gin.PlatformGoogleAppEngine
   // Cloudflare
   router.TrustedPlatform = gin.PlatformCloudflare
   // Fly.io
   router.TrustedPlatform = gin.PlatformFlyIO
-  // Or, you can set your own trusted request header. But be sure your CDN
-  // prevents users from passing this header! For example, if your CDN puts
-  // the client IP in X-CDN-Client-IP:
+  // または、独自の信頼できるリクエストヘッダーを設定できます。ただし、CDNが
+  // ユーザーがこのヘッダーを渡すことを防いでいることを確認してください！
+  // 例えば、CDNがクライアントIPを X-CDN-Client-IP に設定している場合:
   router.TrustedPlatform = "X-CDN-Client-IP"
 
   router.GET("/", func(c *gin.Context) {
-    // If you set TrustedPlatform, ClientIP() will resolve the
-    // corresponding header and return IP directly
+    // TrustedPlatformを設定すると、ClientIP()は対応する
+    // ヘッダーを解決して直接IPを返します
     fmt.Printf("ClientIP: %s\n", c.ClientIP())
   })
   router.Run()
