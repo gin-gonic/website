@@ -17,12 +17,9 @@ endless.ListenAndServe(":4242", router)
 
 endless の代わりは以下があります。
 
-* [manners](https://github.com/braintree/manners): A polite Go HTTP server
-  that shuts down gracefully.
-* [graceful](https://github.com/tylerb/graceful): Graceful is a Go package
-  enabling graceful shutdown of an http.Handler server.
-* [grace](https://github.com/facebookgo/grace): Graceful restart & zero
-  downtime deploy for Go servers.
+* [manners](https://github.com/braintree/manners): 丁寧に終了する礼儀正しい Go HTTP サーバー
+* [graceful](https://github.com/tylerb/graceful): http.Handler サーバーの graceful shutdown を可能にする Go パッケージ
+* [grace](https://github.com/facebookgo/grace): Go サーバーの graceful restart とゼロダウンタイムデプロイを実現
 
 もし Go 1.8 を使っているなら、これらのライブラリを使う必要はないかもしれません！http.Server 組み込みの
 [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown)

@@ -2,10 +2,7 @@
 title: 'HTML をレンダリングする'
 ---
 
-Gin uses the [html/template](https://pkg.go.dev/html/template) package for
-HTML rendering.  For more information about how to use them, including
-available placeholders, see the documentation for
-[text/template](https://pkg.go.dev/text/template)
+Gin は HTML のレンダリングに [html/template](https://pkg.go.dev/html/template) パッケージを使用します。利用可能なプレースホルダーを含む、使用方法の詳細については、[text/template](https://pkg.go.dev/text/template) のドキュメントを参照してください。
 
 LoadHTMLGlob() あるいは LoadHTMLFiles() メソッドを使用してください。
 
@@ -53,7 +50,7 @@ func main() {
 }
 ```
 
-**Note:** Please wrap your HTML template in the `{{define <template-path>}} {{end}}` block and define your template file with the relative path `<template-path>`. Otherwise, GIN will not properly parse the template files.
+**注意：** HTML テンプレートは `{{define <テンプレートパス>}} {{end}}` ブロックで囲み、テンプレートファイルを相対パス `<テンプレートパス>` で定義してください。そうしないと、GIN はテンプレートファイルを正しく解析できません。
 
 templates/posts/index.tmpl
 

@@ -13,6 +13,7 @@ title: クイックスタート
 ## インストール
 
 Gin をインストールするには、まず Go のインストールおよび Go のワークスペースを作ることが必要です。
+go.mod ファイルがない場合は `go mod init gin` で作成してください。
 
 1. ダウンロードしてインストールする
 
@@ -35,7 +36,7 @@ import "net/http"
 4. プロジェクトフォルダを作り、 `cd` で中に入ります。
 
 ```sh
-$ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
+$ mkdir -p project && cd "$_"
 ```
 
 5. 開始用テンプレートをプロジェクトディレクトリにコピーする
@@ -86,7 +87,7 @@ func main() {
 $ go run example.go
 ```
 
-If you prefer to use the `net/http` package, follow the code snippet below
+`net/http` パッケージを使用したい場合は、下記のコードを書きます。
 
 ```go
 package main
@@ -109,5 +110,4 @@ func main() {
 }
 ```
 
-Additional information is available from the [Gin source code
-repository](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).
+詳しい情報は [Gin のソースコードリポジトリ](https://github.com/gin-gonic/gin/blob/master/docs/doc.md) で確認できます。
