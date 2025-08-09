@@ -5,7 +5,7 @@ title: "Usando middleware"
 ```go
 func main() {
 	// Se crea el router por defecto sin ningún middleware
-	r := gin.New()
+	router := gin.New()
 
 	// Middleware global
 	// El middlware Logger escribirá los logs hacia gin.DefaultWriter incluso si se configura GIN_MODE=release.
