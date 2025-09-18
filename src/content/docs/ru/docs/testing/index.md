@@ -37,7 +37,7 @@ func postUser(router *gin.Engine) *gin.Engine {
 
 func main() {
   router := setupRouter()
-  router = postUser(r)
+  router = postUser(router)
   router.Run(":8080")
 }
 ```
