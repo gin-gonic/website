@@ -9,6 +9,7 @@ sidebar:
 
 Gin默认使用 `encoding/json` 作为JSON处理包，但你可以通过在构建时添加标签(tags)来替换为其他JSON库。
 
+
 [go-json](https://github.com/goccy/go-json)
 
 ```sh
@@ -21,7 +22,8 @@ go build -tags=go_json .
 go build -tags=jsoniter .
 ```
 
-[sonic](https://github.com/bytedance/sonic) （你需要确保你的CPU支持AVX指令）
+
+[sonic](https://github.com/bytedance/sonic) (需要确保你的 CPU 支持 AVX 指令集)
 
 ```sh
 $ go build -tags="sonic avx" .

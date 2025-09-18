@@ -5,7 +5,7 @@ title: "ミドルウェアを利用する"
 ```go
 func main() {
 	// デフォルトのミドルウェアが何もない router を作成する
-	r := gin.New()
+	router := gin.New()
 
 	// グローバルなミドルウェア
 	// Logger ミドルウェアは GIN_MODE=release を設定してても、 gin.DefaultWriter にログを出力する

@@ -5,7 +5,7 @@ title: "미들웨어를 사용하기"
 ```go
 func main() {
 	// 기본 미들웨어를 포함하지 않는 라우터를 작성합니다.
-	r := gin.New()
+	router := gin.New()
 
 	// Global middleware
 	// GIN_MODE=release로 하더라도 Logger 미들웨어는 gin.DefaultWriter에 로그를 기록합니다.

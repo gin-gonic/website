@@ -1,5 +1,5 @@
 ---
-title: カスタムミドルウェア
+title: "Middleware khusus"
 ---
 
 ```go
@@ -7,18 +7,18 @@ func Logger() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		t := time.Now()
 
-		// サンプル変数を設定
+		// Atur variabel example
 		c.Set("example", "12345")
 
-		// 要求する前
+		// sebelum permintaan
 
 		c.Next()
 
-		// 要求した後
+		// setelah permintaan
 		latency := time.Since(t)
 		log.Print(latency)
 
-		// 送信中の状態にアクセス
+		// akses status yang sedang kita kirim
 		status := c.Writer.Status()
 		log.Println(status)
 	}
@@ -31,11 +31,11 @@ func main() {
 	r.GET("/test", func(c *gin.Context) {
 		example := c.MustGet("example").(string)
 
-		// "12345" が表示されます
+		// akan mencetak: "12345"
 		log.Println(example)
 	})
 
-	// 0.0.0.0:8080 でリッスンしサーバーを立てます
+	// Jalankan server pada 0.0.0.0:8080
 	r.Run(":8080")
 }
 ```
