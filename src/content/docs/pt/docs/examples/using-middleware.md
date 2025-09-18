@@ -5,7 +5,7 @@ title: "Usar Intermediário"
 ```go
 func main() {
 	// criar um roteador sem nenhum intermediário por padrão
-	r := gin.New()
+	router := gin.New()
 
 	// intermediário global
 	// intermediário registador escreverá os registos ao "gin.DefaultWriter",

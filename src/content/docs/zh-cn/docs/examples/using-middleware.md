@@ -5,7 +5,7 @@ title: "使用中间件"
 ```go
 func main() {
 	// 新建一个没有任何默认中间件的路由
-	r := gin.New()
+	router := gin.New()
 
 	// 全局中间件
 	// Logger 中间件将日志写入 gin.DefaultWriter，即使你将 GIN_MODE 设置为 release。

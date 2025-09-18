@@ -6,7 +6,7 @@ title: "Использование промежуточного ПО"
 ```go
 func main() {
 	// Creates a router without any middleware by default
-	r := gin.New()
+	router := gin.New()
 
 	// Global middleware
 	// Logger middleware will write the logs to gin.DefaultWriter even if you set with GIN_MODE=release.
