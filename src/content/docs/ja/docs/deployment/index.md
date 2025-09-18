@@ -22,7 +22,7 @@ Koyeb の [Gin プロジェクトのデプロイガイド](https://www.koyeb.com
 
 Qovery はデータベース、SSL、グローバル CDN、Git による自動デプロイを備えた無料のクラウドホスティングを提供しています。
 
-[Gin プロジェクトのデプロイ](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/)に関する Qovery のガイドに従ってください。
+See [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) for more information.
 
 ## [Render](https://render.com)
 
