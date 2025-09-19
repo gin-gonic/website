@@ -6,37 +6,37 @@ title: "템플릿을 포함한 단일 바이너리 빌드"
 
 ```go
 func main() {
-	r := gin.New()
+  r := gin.New()
 
-	t, err := loadTemplate()
-	if err != nil {
-		panic(err)
-	}
-	router.SetHTMLTemplate(t)
+  t, err := loadTemplate()
+  if err != nil {
+    panic(err)
+  }
+  router.SetHTMLTemplate(t)
 
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
-	})
-	router.Run(":8080")
+  router.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "/html/index.tmpl", nil)
+  })
+  router.Run(":8080")
 }
 
 // loadTemplate은 go-assets-builder에 의해 임베디드 된 템플릿을 로드합니다
 func loadTemplate() (*template.Template, error) {
-	t := template.New("")
-	for name, file := range Assets.Files {
-		if file.IsDir() || !strings.HasSuffix(name, ".tmpl") {
-			continue
-		}
-		h, err := ioutil.ReadAll(file)
-		if err != nil {
-			return nil, err
-		}
-		t, err = t.New(name).Parse(string(h))
-		if err != nil {
-			return nil, err
-		}
-	}
-	return t, nil
+  t := template.New("")
+  for name, file := range Assets.Files {
+    if file.IsDir() || !strings.HasSuffix(name, ".tmpl") {
+      continue
+    }
+    h, err := ioutil.ReadAll(file)
+    if err != nil {
+      return nil, err
+    }
+    t, err = t.New(name).Parse(string(h))
+    if err != nil {
+      return nil, err
+    }
+  }
+  return t, nil
 }
 ```
 

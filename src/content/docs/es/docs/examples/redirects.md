@@ -6,7 +6,7 @@ Emitir una redirección HTTP es sencillo. Son soportadas las rutas internas o ex
 
 ```go
 router.GET("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
+  c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
 })
 ```
 
@@ -14,7 +14,7 @@ Emitir una redirección HTTP desde POST. Véase en el issue: [#444](https://gith
 
 ```go
 router.POST("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusFound, "/foo")
+  c.Redirect(http.StatusFound, "/foo")
 })
 ```
 

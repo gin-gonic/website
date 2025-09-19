@@ -6,7 +6,7 @@ HTTP リダイレクトするのは簡単です。内部パス、外部URL両方
 
 ```go
 router.GET("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
+  c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
 })
 ```
 
@@ -14,7 +14,7 @@ POSTからのHTTPリダイレクトのissueは [#444](https://github.com/gin-gon
 
 ```go
 router.POST("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusFound, "/foo")
+  c.Redirect(http.StatusFound, "/foo")
 })
 ```
 

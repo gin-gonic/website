@@ -6,20 +6,20 @@ JSONP を使うことで、別のドメインのサーバーからレスポン�
 
 ```go
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	router.GET("/JSONP?callback=x", func(c *gin.Context) {
-		data := map[string]interface{}{
-			"foo": "bar",
-		}
-		
-		//callback は x です。
-		// x({\"foo\":\"bar\"}) が出力されます。
-		c.JSONP(http.StatusOK, data)
-	})
+  router.GET("/JSONP?callback=x", func(c *gin.Context) {
+    data := map[string]interface{}{
+      "foo": "bar",
+    }
+    
+    //callback は x です。
+    // x({\"foo\":\"bar\"}) が出力されます。
+    c.JSONP(http.StatusOK, data)
+  })
 
-	// 0.0.0.0:8080 でサーバーを立てます。
-	router.Run(":8080")
+  // 0.0.0.0:8080 でサーバーを立てます。
+  router.Run(":8080")
 }
 ```
 

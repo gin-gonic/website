@@ -10,21 +10,21 @@ Consulte a questão [#774](https://github.com/gin-gonic/gin/issues/774) e [exemp
 
 ```go
 func main() {
-	router := gin.Default()
-	// definir um limite de memória mais baixa
-	// para formulários de várias partes (o padrão é 32MiB)
-	router.MaxMultipartMemory = 8 << 20  // 8 MiB
-	router.POST("/upload", func(c *gin.Context) {
-		// único ficheiro
-		file, _ := c.FormFile("file")
-		log.Println(file.Filename)
+  router := gin.Default()
+  // definir um limite de memória mais baixa
+  // para formulários de várias partes (o padrão é 32MiB)
+  router.MaxMultipartMemory = 8 << 20  // 8 MiB
+  router.POST("/upload", func(c *gin.Context) {
+    // único ficheiro
+    file, _ := c.FormFile("file")
+    log.Println(file.Filename)
 
-		// Upload the file to specific dst.
-		c.SaveUploadedFile(file, "./files/" + file.Filename)
+    // Upload the file to specific dst.
+    c.SaveUploadedFile(file, "./files/" + file.Filename)
 
-		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
-	})
-	router.Run(":8080")
+    c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
+  })
+  router.Run(":8080")
 }
 ```
 

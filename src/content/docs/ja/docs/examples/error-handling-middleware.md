@@ -20,9 +20,9 @@ title: エラー制御ミドルウェア
 
 ```go
 import (
-	"errors"
-	"net/http"
-	"github.com/gin-gonic/gin"
+  "errors"
+  "net/http"
+  "github.com/gin-gonic/gin"
 )
 
 // ErrorHandlerはエラーを捕捉し、一貫性のあるJSONのエラーレスポンスを返します

@@ -8,21 +8,21 @@ title: "Let's Encrypt 지원"
 package main
 
 import (
-	"log"
+  "log"
 
-	"github.com/gin-gonic/autotls"
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/autotls"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	// Ping handler
-	router.GET("/ping", func(c *gin.Context) {
-		c.String(200, "pong")
-	})
+  // Ping handler
+  router.GET("/ping", func(c *gin.Context) {
+    c.String(200, "pong")
+  })
 
-	log.Fatal(autotls.Run(router, "example1.com", "example2.com"))
+  log.Fatal(autotls.Run(router, "example1.com", "example2.com"))
 }
 ```
 
@@ -32,28 +32,28 @@ autocert 관리자의 커스텀 예제.
 package main
 
 import (
-	"log"
+  "log"
 
-	"github.com/gin-gonic/autotls"
-	"github.com/gin-gonic/gin"
-	"golang.org/x/crypto/acme/autocert"
+  "github.com/gin-gonic/autotls"
+  "github.com/gin-gonic/gin"
+  "golang.org/x/crypto/acme/autocert"
 )
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	// Ping handler
-	router.GET("/ping", func(c *gin.Context) {
-		c.String(200, "pong")
-	})
+  // Ping handler
+  router.GET("/ping", func(c *gin.Context) {
+    c.String(200, "pong")
+  })
 
-	m := autocert.Manager{
-		Prompt:     autocert.AcceptTOS,
-		HostPolicy: autocert.HostWhitelist("example1.com", "example2.com"),
-		Cache:      autocert.DirCache("/var/www/.cache"),
-	}
+  m := autocert.Manager{
+    Prompt:     autocert.AcceptTOS,
+    HostPolicy: autocert.HostWhitelist("example1.com", "example2.com"),
+    Cache:      autocert.DirCache("/var/www/.cache"),
+  }
 
-	log.Fatal(autotls.RunWithManager(r, &m))
+  log.Fatal(autotls.RunWithManager(r, &m))
 }
 ```
 

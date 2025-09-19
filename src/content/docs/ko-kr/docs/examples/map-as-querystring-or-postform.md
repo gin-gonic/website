@@ -11,16 +11,16 @@ names[first]=thinkerou&names[second]=tianou
 
 ```go
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	router.POST("/post", func(c *gin.Context) {
+  router.POST("/post", func(c *gin.Context) {
 
-		ids := c.QueryMap("ids")
-		names := c.PostFormMap("names")
+    ids := c.QueryMap("ids")
+    names := c.PostFormMap("names")
 
-		fmt.Printf("ids: %v; names: %v", ids, names)
-	})
-	router.Run(":8080")
+    fmt.Printf("ids: %v; names: %v", ids, names)
+  })
+  router.Run(":8080")
 }
 ```
 

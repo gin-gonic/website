@@ -34,51 +34,51 @@ endless の代わりは以下があります。
 package main
 
 import (
-	"context"
-	"log"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
+  "context"
+  "log"
+  "net/http"
+  "os"
+  "os/signal"
+  "syscall"
+  "time"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
-	router.GET("/", func(c *gin.Context) {
-		time.Sleep(5 * time.Second)
-		c.String(http.StatusOK, "Welcome Gin Server")
-	})
+  router := gin.Default()
+  router.GET("/", func(c *gin.Context) {
+    time.Sleep(5 * time.Second)
+    c.String(http.StatusOK, "Welcome Gin Server")
+  })
 
-	srv := &http.Server{
-		Addr:    ":8080",
-		Handler: router.Handler(),
-	}
+  srv := &http.Server{
+    Addr:    ":8080",
+    Handler: router.Handler(),
+  }
 
-	go func() {
-		// service connections
-		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Fatalf("listen: %s\n", err)
-		}
-	}()
+  go func() {
+    // service connections
+    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+      log.Fatalf("listen: %s\n", err)
+    }
+  }()
 
-	// シグナル割り込みを待ち、5秒間のタイムアウトでサーバーを正常終了
-	quit := make(chan os.Signal, 1)
-	// kill（引数なし）は既定で syscall.SIGTERM を送ります
-	// kill -2 は syscall.SIGINT です
-	// kill -9 は syscall.SIGKILL ですが捕捉できないため、追加する必要がありません
-	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-	<-quit
-	log.Println("Shutdown Server ...")
+  // シグナル割り込みを待ち、5秒間のタイムアウトでサーバーを正常終了
+  quit := make(chan os.Signal, 1)
+  // kill（引数なし）は既定で syscall.SIGTERM を送ります
+  // kill -2 は syscall.SIGINT です
+  // kill -9 は syscall.SIGKILL ですが捕捉できないため、追加する必要がありません
+  signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+  <-quit
+  log.Println("Shutdown Server ...")
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	if err := srv.Shutdown(ctx); err != nil {
-		log.Println("Server Shutdown:", err)
-	}
-	log.Println("Server exiting")
+  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+  defer cancel()
+  if err := srv.Shutdown(ctx); err != nil {
+    log.Println("Server Shutdown:", err)
+  }
+  log.Println("Server exiting")
 }
 ```
 

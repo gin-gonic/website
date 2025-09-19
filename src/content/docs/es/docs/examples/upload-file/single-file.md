@@ -10,20 +10,20 @@ Issue de referencia [#774](https://github.com/gin-gonic/gin/issues/774) y códig
 
 ```go
 func main() {
-	router := gin.Default()
-	// Establecer un límite de memoria inferior para formularios de multipart (el valor predeterminado es 32 MiB)
-	router.MaxMultipartMemory = 8 << 20  // 8 MiB
-	router.POST("/upload", func(c *gin.Context) {
-		// Archivo individual
-		file, _ := c.FormFile("file")
-		log.Println(file.Filename)
+  router := gin.Default()
+  // Establecer un límite de memoria inferior para formularios de multipart (el valor predeterminado es 32 MiB)
+  router.MaxMultipartMemory = 8 << 20  // 8 MiB
+  router.POST("/upload", func(c *gin.Context) {
+    // Archivo individual
+    file, _ := c.FormFile("file")
+    log.Println(file.Filename)
 
-		// Guarda el archivo recibido a un destino específico
-		c.SaveUploadedFile(file, "./files/" + file.Filename)
+    // Guarda el archivo recibido a un destino específico
+    c.SaveUploadedFile(file, "./files/" + file.Filename)
 
-		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
-	})
-	router.Run(":8080")
+    c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
+  })
+  router.Run(":8080")
 }
 ```
 

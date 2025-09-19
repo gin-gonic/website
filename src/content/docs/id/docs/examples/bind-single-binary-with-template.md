@@ -7,37 +7,37 @@ Anda dapat menggunakan paket pihak ketiga untuk build server menjadi binary tung
 
 ```go
 func main() {
-	r := gin.New()
+  r := gin.New()
 
-	t, err := loadTemplate()
-	if err != nil {
-		panic(err)
-	}
-	router.SetHTMLTemplate(t)
+  t, err := loadTemplate()
+  if err != nil {
+    panic(err)
+  }
+  router.SetHTMLTemplate(t)
 
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "/html/index.tmpl", nil)
-	})
-	router.Run(":8080")
+  router.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "/html/index.tmpl", nil)
+  })
+  router.Run(":8080")
 }
 
 // loadTemplate memuat template yang disematkan oleh go-assets-builder
 func loadTemplate() (*template.Template, error) {
-	t := template.New("")
-	for name, file := range Assets.Files {
-		if file.IsDir() || !strings.HasSuffix(name, ".tmpl") {
-			continue
-		}
-		h, err := ioutil.ReadAll(file)
-		if err != nil {
-			return nil, err
-		}
-		t, err = t.New(name).Parse(string(h))
-		if err != nil {
-			return nil, err
-		}
-	}
-	return t, nil
+  t := template.New("")
+  for name, file := range Assets.Files {
+    if file.IsDir() || !strings.HasSuffix(name, ".tmpl") {
+      continue
+    }
+    h, err := ioutil.ReadAll(file)
+    if err != nil {
+      return nil, err
+    }
+    t, err = t.New(name).Parse(string(h))
+    if err != nil {
+      return nil, err
+    }
+  }
+  return t, nil
 }
 ```
 

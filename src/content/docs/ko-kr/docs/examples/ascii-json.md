@@ -6,19 +6,19 @@ title: "AsciiJSON"
 
 ```go
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	router.GET("/someJSON", func(c *gin.Context) {
-		data := map[string]interface{}{
-			"lang": "GO语言",
-			"tag":  "<br>",
-		}
+  router.GET("/someJSON", func(c *gin.Context) {
+    data := map[string]interface{}{
+      "lang": "GO语言",
+      "tag":  "<br>",
+    }
 
-		// 출력내용 : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
-		c.AsciiJSON(http.StatusOK, data)
-	})
+    // 출력내용 : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
+    c.AsciiJSON(http.StatusOK, data)
+  })
 
-	// 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
-	router.Run(":8080")
+  // 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
+  router.Run(":8080")
 }
 ```

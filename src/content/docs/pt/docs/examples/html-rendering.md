@@ -6,15 +6,15 @@ Usando `LoadHTMLGlob()` ou `LoadHTMLFiles()`:
 
 ```go
 func main() {
-	router := gin.Default()
-	router.LoadHTMLGlob("templates/*")
-	//router.LoadHTMLFiles("templates/template1.html", "templates/template2.html")
-	router.GET("/index", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.tmpl", gin.H{
-			"title": "Main website",
-		})
-	})
-	router.Run(":8080")
+  router := gin.Default()
+  router.LoadHTMLGlob("templates/*")
+  //router.LoadHTMLFiles("templates/template1.html", "templates/template2.html")
+  router.GET("/index", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{
+      "title": "Main website",
+    })
+  })
+  router.Run(":8080")
 }
 ```
 
@@ -22,9 +22,9 @@ templates/index.tmpl
 
 ```html
 <html>
-	<h1>
-		{{ .title }}
-	</h1>
+  <h1>
+    {{ .title }}
+  </h1>
 </html>
 ```
 
@@ -32,19 +32,19 @@ Usando modelos de marcação com o mesmo nome em diretórios diferentes:
 
 ```go
 func main() {
-	router := gin.Default()
-	router.LoadHTMLGlob("templates/**/*")
-	router.GET("/posts/index", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "posts/index.tmpl", gin.H{
-			"title": "Posts",
-		})
-	})
-	router.GET("/users/index", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "users/index.tmpl", gin.H{
-			"title": "Users",
-		})
-	})
-	router.Run(":8080")
+  router := gin.Default()
+  router.LoadHTMLGlob("templates/**/*")
+  router.GET("/posts/index", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "posts/index.tmpl", gin.H{
+      "title": "Posts",
+    })
+  })
+  router.GET("/users/index", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "users/index.tmpl", gin.H{
+      "title": "Users",
+    })
+  })
+  router.Run(":8080")
 }
 ```
 
@@ -53,7 +53,7 @@ templates/posts/index.tmpl
 ```html
 {{ define "posts/index.tmpl" }}
 <html><h1>
-	{{ .title }}
+  {{ .title }}
 </h1>
 <p>Using posts/index.tmpl</p>
 </html>
@@ -65,7 +65,7 @@ templates/users/index.tmpl
 ```html
 {{ define "users/index.tmpl" }}
 <html><h1>
-	{{ .title }}
+  {{ .title }}
 </h1>
 <p>Using users/index.tmpl</p>
 </html>
@@ -80,10 +80,10 @@ Tu podes também usar o teu próprio interpretador de modelo de marcação de HT
 import "html/template"
 
 func main() {
-	router := gin.Default()
-	html := template.Must(template.ParseFiles("file1", "file2"))
-	router.SetHTMLTemplate(html)
-	router.Run(":8080")
+  router := gin.Default()
+  html := template.Must(template.ParseFiles("file1", "file2"))
+  router.SetHTMLTemplate(html)
+  router.Run(":8080")
 }
 ```
 
@@ -92,9 +92,9 @@ func main() {
 Tu podes usar delimitadores personalizados:
 
 ```go
-	router := gin.Default()
-	router.Delims("{[{", "}]}")
-	router.LoadHTMLGlob("/path/to/templates")
+  router := gin.Default()
+  router.Delims("{[{", "}]}")
+  router.LoadHTMLGlob("/path/to/templates")
 ```
 
 ### Funções de Modelo de Marcação Personalizado

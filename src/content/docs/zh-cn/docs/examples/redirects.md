@@ -6,7 +6,7 @@ HTTP 重定向很容易。 内部、外部重定向均支持。
 
 ```go
 router.GET("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
+  c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
 })
 ```
 
@@ -14,7 +14,7 @@ router.GET("/test", func(c *gin.Context) {
 
 ```go
 router.POST("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusFound, "/foo")
+  c.Redirect(http.StatusFound, "/foo")
 })
 ```
 

@@ -6,19 +6,19 @@ Using SecureJSON to prevent json hijacking. Default prepends `"while(1),"` to re
 
 ```go
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	// You can also use your own secure json prefix
-	// router.SecureJsonPrefix(")]}',\n")
+  // You can also use your own secure json prefix
+  // router.SecureJsonPrefix(")]}',\n")
 
-	router.GET("/someJSON", func(c *gin.Context) {
-		names := []string{"lena", "austin", "foo"}
+  router.GET("/someJSON", func(c *gin.Context) {
+    names := []string{"lena", "austin", "foo"}
 
-		// Will output  :   while(1);["lena","austin","foo"]
-		c.SecureJSON(http.StatusOK, names)
-	})
+    // Will output  :   while(1);["lena","austin","foo"]
+    c.SecureJSON(http.StatusOK, names)
+  })
 
-	// Listen and serve on 0.0.0.0:8080
-	router.Run(":8080")
+  // Listen and serve on 0.0.0.0:8080
+  router.Run(":8080")
 }
 ```

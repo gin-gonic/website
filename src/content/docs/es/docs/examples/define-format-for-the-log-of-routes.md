@@ -14,31 +14,31 @@ En el siguiente ejemplo se registran todas las rutas con el paquete estandar de 
 
 ```go
 import (
-	"log"
-	"net/http"
+  "log"
+  "net/http"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
-	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
-		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
-	}
+  router := gin.Default()
+  gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
+    log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
+  }
 
-	router.POST("/foo", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "foo")
-	})
+  router.POST("/foo", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "foo")
+  })
 
-	router.GET("/bar", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "bar")
-	})
+  router.GET("/bar", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "bar")
+  })
 
-	router.GET("/status", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "ok")
-	})
+  router.GET("/status", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "ok")
+  })
 
-	// Escucha y sirve peticiones en 0.0.0.0:8080
-	router.Run(":8080")
+  // Escucha y sirve peticiones en 0.0.0.0:8080
+  router.Run(":8080")
 }
 ```

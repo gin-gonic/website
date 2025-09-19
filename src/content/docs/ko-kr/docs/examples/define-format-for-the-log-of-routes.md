@@ -13,31 +13,31 @@ title: "라우트의 로그 형식을 정의"
 아래의 예제는 모든 라우트에 대해 표준 로그 패키지를 사용하고 있지만, 필요에 따라 적절한 다른 도구를 사용하는 것도 가능합니다.
 ```go
 import (
-	"log"
-	"net/http"
+  "log"
+  "net/http"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
-	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
-		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
-	}
+  router := gin.Default()
+  gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
+    log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
+  }
 
-	router.POST("/foo", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "foo")
-	})
+  router.POST("/foo", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "foo")
+  })
 
-	router.GET("/bar", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "bar")
-	})
+  router.GET("/bar", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "bar")
+  })
 
-	router.GET("/status", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "ok")
-	})
+  router.GET("/status", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "ok")
+  })
 
-	// 서버가 실행 되고 http://0.0.0.0:8080 에서 요청을 기다립니다.
-	router.Run()
+  // 서버가 실행 되고 http://0.0.0.0:8080 에서 요청을 기다립니다.
+  router.Run()
 }
 ```

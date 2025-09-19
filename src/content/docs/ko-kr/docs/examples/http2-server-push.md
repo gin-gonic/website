@@ -8,10 +8,10 @@ http.Pusher는 **go1.8 이상**에서만 지원됩니다. 자세한 정보는 [G
 package main
 
 import (
-	"html/template"
-	"log"
+  "html/template"
+  "log"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 var html = template.Must(template.New("https").Parse(`
@@ -27,24 +27,24 @@ var html = template.Must(template.New("https").Parse(`
 `))
 
 func main() {
-	router := gin.Default()
-	router.Static("/assets", "./assets")
-	router.SetHTMLTemplate(html)
+  router := gin.Default()
+  router.Static("/assets", "./assets")
+  router.SetHTMLTemplate(html)
 
-	router.GET("/", func(c *gin.Context) {
-		if pusher := c.Writer.Pusher(); pusher != nil {
-			// 서버 푸시를 위해 pusher.Push()를 사용합니다
-			if err := pusher.Push("/assets/app.js", nil); err != nil {
-				log.Printf("Failed to push: %v", err)
-			}
-		}
-		c.HTML(200, "https", gin.H{
-			"status": "success",
-		})
-	})
+  router.GET("/", func(c *gin.Context) {
+    if pusher := c.Writer.Pusher(); pusher != nil {
+      // 서버 푸시를 위해 pusher.Push()를 사용합니다
+      if err := pusher.Push("/assets/app.js", nil); err != nil {
+        log.Printf("Failed to push: %v", err)
+      }
+    }
+    c.HTML(200, "https", gin.H{
+      "status": "success",
+    })
+  })
 
-	// 서버가 실행 되고 https://127.0.0.1:8080 에서 요청을 기다립니다.
-	router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
+  // 서버가 실행 되고 https://127.0.0.1:8080 에서 요청을 기다립니다.
+  router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
 

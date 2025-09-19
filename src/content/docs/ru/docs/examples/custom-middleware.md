@@ -5,39 +5,39 @@ title: "Custom Middleware"
 
 ```go
 func Logger() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		t := time.Now()
+  return func(c *gin.Context) {
+    t := time.Now()
 
-		// Set example variable
-		c.Set("example", "12345")
+    // Set example variable
+    c.Set("example", "12345")
 
-		// before request
+    // before request
 
-		c.Next()
+    c.Next()
 
-		// after request
-		latency := time.Since(t)
-		log.Print(latency)
+    // after request
+    latency := time.Since(t)
+    log.Print(latency)
 
-		// access the status we are sending
-		status := c.Writer.Status()
-		log.Println(status)
-	}
+    // access the status we are sending
+    status := c.Writer.Status()
+    log.Println(status)
+  }
 }
 
 func main() {
-	r := gin.New()
-	r.Use(Logger())
+  r := gin.New()
+  r.Use(Logger())
 
-	r.GET("/test", func(c *gin.Context) {
-		example := c.MustGet("example").(string)
+  r.GET("/test", func(c *gin.Context) {
+    example := c.MustGet("example").(string)
 
-		// it would print: "12345"
-		log.Println(example)
-	})
+    // it would print: "12345"
+    log.Println(example)
+  })
 
-	// Listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+  // Listen and serve on 0.0.0.0:8080
+  r.Run(":8080")
 }
 ```
 

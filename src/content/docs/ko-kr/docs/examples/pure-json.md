@@ -8,23 +8,23 @@ title: "PureJSON"
 
 ```go
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	// 유니코드 엔티티 반환
-	router.GET("/json", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"html": "<b>Hello, world!</b>",
-		})
-	})
+  // 유니코드 엔티티 반환
+  router.GET("/json", func(c *gin.Context) {
+    c.JSON(200, gin.H{
+      "html": "<b>Hello, world!</b>",
+    })
+  })
 
-	// 리터럴 문자 반환
-	router.GET("/purejson", func(c *gin.Context) {
-		c.PureJSON(200, gin.H{
-			"html": "<b>Hello, world!</b>",
-		})
-	})
+  // 리터럴 문자 반환
+  router.GET("/purejson", func(c *gin.Context) {
+    c.PureJSON(200, gin.H{
+      "html": "<b>Hello, world!</b>",
+    })
+  })
 
-	// 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
-	router.Run(":8080")
+  // 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
+  router.Run(":8080")
 }
 ```

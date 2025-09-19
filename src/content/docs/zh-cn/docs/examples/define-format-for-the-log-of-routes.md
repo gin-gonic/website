@@ -13,31 +13,31 @@ title: "定义路由日志的格式"
 在下面的示例中，我们使用标准日志包记录所有路由，但你可以使用其他满足你需求的日志工具。
 ```go
 import (
-	"log"
-	"net/http"
+  "log"
+  "net/http"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	router := gin.Default()
-	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
-		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
-	}
+  router := gin.Default()
+  gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
+    log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
+  }
 
-	router.POST("/foo", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "foo")
-	})
+  router.POST("/foo", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "foo")
+  })
 
-	router.GET("/bar", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "bar")
-	})
+  router.GET("/bar", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "bar")
+  })
 
-	router.GET("/status", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "ok")
-	})
+  router.GET("/status", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "ok")
+  })
 
-	// 监听并在 0.0.0.0:8080 上启动服务
-	router.Run()
+  // 监听并在 0.0.0.0:8080 上启动服务
+  router.Run()
 }
 ```

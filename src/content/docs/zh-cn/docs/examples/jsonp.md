@@ -6,19 +6,19 @@ title: "JSONP"
 
 ```go
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	router.GET("/JSONP", func(c *gin.Context) {
-		data := map[string]interface{}{
-			"foo": "bar",
-		}
-		
-		// /JSONP?callback=x
-		// 将输出：x({\"foo\":\"bar\"})
-		c.JSONP(http.StatusOK, data)
-	})
+  router.GET("/JSONP", func(c *gin.Context) {
+    data := map[string]interface{}{
+      "foo": "bar",
+    }
+    
+    // /JSONP?callback=x
+    // 将输出：x({\"foo\":\"bar\"})
+    c.JSONP(http.StatusOK, data)
+  })
 
-	// 监听并在 0.0.0.0:8080 上启动服务
-	router.Run(":8080")
+  // 监听并在 0.0.0.0:8080 上启动服务
+  router.Run(":8080")
 }
 ```

@@ -14,31 +14,31 @@ title: "Определить формат для журнала маршруто
 В примере ниже мы ведем лог всех маршрутов с помощью стандартного пакета лога, но вы можете использовать другие инструменты лога, которые подходят для ваших нужд.
 ```go
 import (
-	"log"
-	"net/http"
+  "log"
+  "net/http"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
-	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
-		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
-	}
+  r := gin.Default()
+  gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
+    log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
+  }
 
-	r.POST("/foo", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "foo")
-	})
+  r.POST("/foo", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "foo")
+  })
 
-	r.GET("/bar", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "bar")
-	})
+  r.GET("/bar", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "bar")
+  })
 
-	r.GET("/status", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "ok")
-	})
+  r.GET("/status", func(c *gin.Context) {
+    c.JSON(http.StatusOK, "ok")
+  })
 
-	// Listen and Server in http://0.0.0.0:8080
-	r.Run()
+  // Listen and Server in http://0.0.0.0:8080
+  r.Run()
 }
 ```

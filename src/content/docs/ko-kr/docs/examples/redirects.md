@@ -6,7 +6,7 @@ HTTP 리다이렉트 하는 것은 간단합니다. 내부와 외부위치를 �
 
 ```go
 router.GET("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
+  c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
 })
 ```
 
@@ -14,7 +14,7 @@ POST 요청에서 HTTP 리다이렉트를 수행하기 – 관련 이슈: [#444]
 
 ```go
 router.POST("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusFound, "/foo")
+  c.Redirect(http.StatusFound, "/foo")
 })
 ```
 

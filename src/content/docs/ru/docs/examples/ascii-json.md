@@ -7,19 +7,19 @@ title: "AsciiJSON"
 
 ```go
 func main() {
-	r := gin.Default()
+  r := gin.Default()
 
-	r.GET("/someJSON", func(c *gin.Context) {
-		data := map[string]interface{}{
-			"lang": "GO语言",
-			"tag":  "<br>",
-		}
+  r.GET("/someJSON", func(c *gin.Context) {
+    data := map[string]interface{}{
+      "lang": "GO语言",
+      "tag":  "<br>",
+    }
 
-		// will output : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
-		c.AsciiJSON(http.StatusOK, data)
-	})
+    // will output : {"lang":"GO\u8bed\u8a00","tag":"\u003cbr\u003e"}
+    c.AsciiJSON(http.StatusOK, data)
+  })
 
-	// Listen and serve on 0.0.0.0:8080
-	r.Run(":8080")
+  // Listen and serve on 0.0.0.0:8080
+  r.Run(":8080")
 }
 ```

@@ -7,7 +7,7 @@ title: "Перенаправления"
 
 ```go
 r.GET("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
+  c.Redirect(http.StatusMovedPermanently, "http://www.google.com/")
 })
 ```
 
@@ -15,7 +15,7 @@ r.GET("/test", func(c *gin.Context) {
 
 ```go
 r.POST("/test", func(c *gin.Context) {
-	c.Redirect(http.StatusFound, "/foo")
+  c.Redirect(http.StatusFound, "/foo")
 })
 ```
 

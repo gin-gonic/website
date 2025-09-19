@@ -23,69 +23,69 @@ También pueden declararse los campos como requeridos. Si un campo tiene declara
 ```go
 // Vincular empleando JSON
 type Login struct {
-	User     string `form:"user" json:"user" xml:"user"  binding:"required"`
-	Password string `form:"password" json:"password" xml:"password" binding:"required"`
+  User     string `form:"user" json:"user" xml:"user"  binding:"required"`
+  Password string `form:"password" json:"password" xml:"password" binding:"required"`
 }
 
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	// Ejemplo para vincular JSON ({"user": "manu", "password": "123"})
-	router.POST("/loginJSON", func(c *gin.Context) {
-		var json Login
-		if err := c.ShouldBindJSON(&json); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-		
-		if json.User != "manu" || json.Password != "123" {
-			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
-			return
-		} 
-		
-		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
-	})
+  // Ejemplo para vincular JSON ({"user": "manu", "password": "123"})
+  router.POST("/loginJSON", func(c *gin.Context) {
+    var json Login
+    if err := c.ShouldBindJSON(&json); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
+    
+    if json.User != "manu" || json.Password != "123" {
+      c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
+      return
+    } 
+    
+    c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
+  })
 
-	// Vincular empleando XML (
-	//	<?xml version="1.0" encoding="UTF-8"?>
-	//	<root>
-	//		<user>manu</user>
-	//		<password>123</password>
-	//	</root>)
-	router.POST("/loginXML", func(c *gin.Context) {
-		var xml Login
-		if err := c.ShouldBindXML(&xml); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-		
-		if xml.User != "manu" || xml.Password != "123" {
-			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
-			return
-		} 
-		
-		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
-	})
+  // Vincular empleando XML (
+  //  <?xml version="1.0" encoding="UTF-8"?>
+  //  <root>
+  //    <user>manu</user>
+  //    <password>123</password>
+  //  </root>)
+  router.POST("/loginXML", func(c *gin.Context) {
+    var xml Login
+    if err := c.ShouldBindXML(&xml); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
+    
+    if xml.User != "manu" || xml.Password != "123" {
+      c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
+      return
+    } 
+    
+    c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
+  })
 
-	// Ejemplo para vincular un formulario HTML (user=manu&password=123)
-	router.POST("/loginForm", func(c *gin.Context) {
-		var form Login
-		// De esta forma se intenta vincular tratando a partir del valor del header content-type.
-		if err := c.ShouldBind(&form); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-		
-		if form.User != "manu" || form.Password != "123" {
-			c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
-			return
-		} 
-		
-		c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
-	})
+  // Ejemplo para vincular un formulario HTML (user=manu&password=123)
+  router.POST("/loginForm", func(c *gin.Context) {
+    var form Login
+    // De esta forma se intenta vincular tratando a partir del valor del header content-type.
+    if err := c.ShouldBind(&form); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
+    
+    if form.User != "manu" || form.Password != "123" {
+      c.JSON(http.StatusUnauthorized, gin.H{"status": "unauthorized"})
+      return
+    } 
+    
+    c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
+  })
 
-	// Escucha y sirve peticiones en 0.0.0.0:8080
-	router.Run(":8080")
+  // Escucha y sirve peticiones en 0.0.0.0:8080
+  router.Run(":8080")
 }
 ```
 
