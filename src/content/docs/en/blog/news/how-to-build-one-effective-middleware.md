@@ -8,9 +8,9 @@ lastUpdated: 2019-02-26
 
 The middleware has two parts:
 
-  - part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens once per application lifetime.
+- part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens once per application lifetime.
 
-  - part two is what executes on every request. For example, a database middleware you simply inject your "global" database object into the context. Once it's inside the context, you can retrieve it from within other middlewares and your handler function.
+- part two is what executes on every request. For example, a database middleware you simply inject your "global" database object into the context. Once it's inside the context, you can retrieve it from within other middlewares and your handler function.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -28,7 +28,7 @@ func funcName(params string) gin.HandlerFunc {
         // --->
         // The following code is an example
         c.Set("TestVar", params)
-        c.Next()    
+        c.Next()
     }
 }
 ```
@@ -39,48 +39,48 @@ Firstly, we have the following example code:
 
 ```go
 func main() {
-	router := gin.Default()
+  router := gin.Default()
 
-	router.Use(globalMiddleware())
+  router.Use(globalMiddleware())
 
-	router.GET("/rest/n/api/*some", mid1(), mid2(), handler)
+  router.GET("/rest/n/api/*some", mid1(), mid2(), handler)
 
-	router.Run()
+  router.Run()
 }
 
 func globalMiddleware() gin.HandlerFunc {
-	fmt.Println("globalMiddleware...1")
+  fmt.Println("globalMiddleware...1")
 
-	return func(c *gin.Context) {
-		fmt.Println("globalMiddleware...2")
-		c.Next()
-		fmt.Println("globalMiddleware...3")
-	}
+  return func(c *gin.Context) {
+    fmt.Println("globalMiddleware...2")
+    c.Next()
+    fmt.Println("globalMiddleware...3")
+  }
 }
 
 func handler(c *gin.Context) {
-	fmt.Println("exec handler.")
+  fmt.Println("exec handler.")
 }
 
 func mid1() gin.HandlerFunc {
-	fmt.Println("mid1...1")
+  fmt.Println("mid1...1")
 
-	return func(c *gin.Context) {
+  return func(c *gin.Context) {
 
-		fmt.Println("mid1...2")
-		c.Next()
-		fmt.Println("mid1...3")
-	}
+    fmt.Println("mid1...2")
+    c.Next()
+    fmt.Println("mid1...3")
+  }
 }
 
 func mid2() gin.HandlerFunc {
-	fmt.Println("mid2...1")
+  fmt.Println("mid2...1")
 
-	return func(c *gin.Context) {
-		fmt.Println("mid2...2")
-		c.Next()
-		fmt.Println("mid2...3")
-	}
+  return func(c *gin.Context) {
+    fmt.Println("mid2...2")
+    c.Next()
+    fmt.Println("mid2...3")
+  }
 }
 ```
 
@@ -139,5 +139,3 @@ mid1...3
     v
 globalMiddleware...3
 ```
-
-

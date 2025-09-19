@@ -20,9 +20,9 @@ If it finds one, it sends a structured JSON response with a proper status code.
 
 ```go
 import (
-	"errors"
-	"net/http"
-	"github.com/gin-gonic/gin"
+  "errors"
+  "net/http"
+  "github.com/gin-gonic/gin"
 )
 
 // ErrorHandler captures errors and returns a consistent JSON error response

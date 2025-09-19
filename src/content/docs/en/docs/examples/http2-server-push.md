@@ -8,10 +8,10 @@ http.Pusher is supported only **go1.8+**. See the [golang blog](https://blog.gol
 package main
 
 import (
-	"html/template"
-	"log"
+  "html/template"
+  "log"
 
-	"github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin"
 )
 
 var html = template.Must(template.New("https").Parse(`
@@ -27,24 +27,24 @@ var html = template.Must(template.New("https").Parse(`
 `))
 
 func main() {
-	router := gin.Default()
-	router.Static("/assets", "./assets")
-	router.SetHTMLTemplate(html)
+  router := gin.Default()
+  router.Static("/assets", "./assets")
+  router.SetHTMLTemplate(html)
 
-	router.GET("/", func(c *gin.Context) {
-		if pusher := c.Writer.Pusher(); pusher != nil {
-			// use pusher.Push() to do server push
-			if err := pusher.Push("/assets/app.js", nil); err != nil {
-				log.Printf("Failed to push: %v", err)
-			}
-		}
-		c.HTML(200, "https", gin.H{
-			"status": "success",
-		})
-	})
+  router.GET("/", func(c *gin.Context) {
+    if pusher := c.Writer.Pusher(); pusher != nil {
+      // use pusher.Push() to do server push
+      if err := pusher.Push("/assets/app.js", nil); err != nil {
+        log.Printf("Failed to push: %v", err)
+      }
+    }
+    c.HTML(200, "https", gin.H{
+      "status": "success",
+    })
+  })
 
-	// Listen and Serve in https://127.0.0.1:8080
-	router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
+  // Listen and Serve in https://127.0.0.1:8080
+  router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
 
