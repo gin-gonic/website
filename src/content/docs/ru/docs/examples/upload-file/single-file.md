@@ -1,6 +1,7 @@
 ---
 title: "Single file"
 ---
+
 Ссылки на проблему [#774](https://github.com/gin-gonic/gin/issues/774) и деталь [пример кода](https://github.com/gin-gonic/examples/tree/master/upload-file/single).
 
 `file.Filename` **НЕ ДОЛЖНО** быть доверенным. См. [`Content-Disposition` на MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition#Directives) и [#1693](https://github.com/gin-gonic/gin/issues/1693)
@@ -18,7 +19,7 @@ func main() {
 		log.Println(file.Filename)
 
 		// Upload the file to specific dst.
-		c.SaveUploadedFile(file, dst)
+		c.SaveUploadedFile(file, "./files/" + file.Filename)
 
 		c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
 	})
