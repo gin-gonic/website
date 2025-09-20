@@ -1,7 +1,7 @@
 ---
 title: "Gin 1.11.0 ha sido lanzado"
 linkTitle: "Gin 1.11.0 ha sido lanzado"
-lastUpdated: 2024-09-20
+lastUpdated: 2025-09-20
 ---
 
 ## Gin v1.11.0
