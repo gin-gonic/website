@@ -7,6 +7,7 @@ lastUpdated: 2024-05-07
 ### CHANGELOG
 
 #### Features
+
   * [`5f458dd`](https://github.com/gin-gonic/gin/commit/5f458dd1a6d631f324e4af9a4f5429ffdf199342): feat(auth): add proxy-server authentication ([#3877](https://github.com/gin-gonic/gin/pull/3877)) ([@EndlessParadox1](https://github.com/EndlessParadox1))
   * [`7a865dc`](https://github.com/gin-gonic/gin/commit/7a865dc): feat(bind): ShouldBindBodyWith shortcut and change doc ([#3871](https://github.com/gin-gonic/gin/pull/3871)) ([@RedCrazyGhost](https://github.com/RedCrazyGhost))
   * [`a182195`](https://github.com/gin-gonic/gin/commit/a182195): feat(binding): Support custom BindUnmarshaler for binding. ([#3933](https://github.com/gin-gonic/gin/pull/3933)) ([@dkkb](https://github.com/dkkb))
