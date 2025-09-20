@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to [Constituent parts](#Constituent-parts) said, when we run the gin process, **part one** will execute firstly and will print the following information:
+According to [Constituent parts](#constituent-parts) said, when we run the gin process, **part one** will execute firstly and will print the following information:
 
 ```go
 globalMiddleware...1
