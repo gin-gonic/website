@@ -4,20 +4,34 @@ sidebar:
   order: 3
 ---
 
-**VM HOST:** Travis
-**Machine:** Ubuntu 16.04.6 LTS x64
-**Date:** May 04th, 2020
-**Version:** Gin v1.6.3
-**Go Version:** 1.14.2 linux/amd64
-**Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
-**Result:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+## Gin Web Framework Performance Benchmarks
 
-Gin uses a custom version of [HttpRouter](https://github.com/julienschmidt/httprouter)
+Benchmarks help developers evaluate the efficiency and resource usage of HTTP router libraries in Go. This page summarizes measurements across many popular frameworks, so you can easily compare their speed and memory consumption.
 
-[See all benchmarks](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
+**Test Environment:**
+
+- **Host Platform:** Travis CI (virtual Linux VM)
+- **Machine Specs:** Ubuntu 16.04.6 LTS x64
+- **Test Date:** May 04th, 2020
+- **Gin Version:** v1.6.3
+- **Go Version:** 1.14.2 (linux/amd64)
+- **Benchmarks Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **Detailed Results:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+
+Gin uses an optimized fork of [HttpRouter](https://github.com/julienschmidt/httprouter) for high performance routing.
+
+If you want to view more test cases, you can check [all benchmarks here](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+
+---
+
+## How to Read the Table
+
+The benchmarks below show various Go frameworks running common HTTP routing tasks.  
+**Lower numbers (time, memory, allocations) are better.**  
+You can use these results for a direct, side-by-side comparison of Gin and alternative routers.
 
 | Test                              | Repetitions | Time (ns/op) | Bytes (B/op) | Allocations (allocs/op) |
-| --------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
+| ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
 | BenchmarkGin_GithubStatic         | 15629472    | 76.7         | 0            | 0                       |
 | BenchmarkAce_GithubStatic         | 15542612    | 75.9         | 0            | 0                       |
 | BenchmarkAero_GithubStatic        | 24777151    | 48.5         | 0            | 0                       |
@@ -109,9 +123,13 @@ Gin uses a custom version of [HttpRouter](https://github.com/julienschmidt/httpr
 | BenchmarkTraffic_GithubAll        | 355         | 3478508      | 820744       | 14114                   |
 | BenchmarkVulcan_GithubAll         | 6885        | 193333       | 19894        | 609                     |
 
-Notes:
+---
 
-- Repetitions: Total repetitions achieved in constant time, higher means more confident result
-- Time: Single repetition duration (ns/op), lower is better
-- Bytes: Heap memory (B/op), lower is better
-- Allocations: Average allocations per repetition (allocs/op), lower is better
+## Benchmark Table Notes
+
+- **Repetitions**: Total repetitions achieved in constant time. Higher numbers mean more confidence in the results.
+- **Time (ns/op)**: Duration for one operation, measured in nanoseconds. Lower is better.
+- **Bytes (B/op)**: Heap memory allocated per operation. Lower means better efficiency.
+- **Allocations (allocs/op)**: Average number of memory allocations per operation. Fewer allocations are better for performance and garbage collection.
+
+For questions or contributions, check our [GitHub repository](https://github.com/gin-gonic/gin).
