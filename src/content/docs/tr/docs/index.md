@@ -6,18 +6,17 @@ sidebar:
 
 ## Gin nedir?
 
-Gin, Go (Golang) ile yazılmış bir HTTP web çerçevesidir. Martini benzeri bir API'ye sahiptir, ancak performans açısından Martini'den 40 kata kadar daha hızlıdır. Çarpıcı bir performansa ihtiyacınız varsa, kendinize biraz Gin alın.
+Gin, Go (Golang) ile yazılmış yüksek performanslı bir HTTP web framework’üdür. Martini framework’ünün API’sinden ilham alan Gin, hız ve verimlilik sunar—Martini’den 40 kata kadar daha hızlıdır. Olağanüstü hız arıyorsanız, Gin sizin çözümünüzdür.
 
-## Gin'i nasıl kullanmalı?
+## Gin ile Başlangıç
 
-API kullanım [örnekleri](https://github.com/gin-gonic/examples) sunuyoruz ve bilinen bazı [Gin kullanıcılarını](./users) listeliyoruz.
+[Örnek](https://github.com/gin-gonic/examples) API kullanımlarını keşfedin ve popüler projeler ile organizasyonların Gin’i nasıl kullandığını [Gin kullanıcıları](./users) vitrininde inceleyin.
 
-Gin kavramlarını pratik yapmaya hazır mısınız? Etkileşimli görevler ve öğreticiler için [Öğrenme Kaynaklarımızı](./learning-resources) inceleyin.
+Daha derinlemesine öğrenmek ister misiniz? Etkileşimli [Öğrenme Kaynaklarımız](./learning-resources) ile uygulamalı öğreticilere ve kodlama görevlerine katılabilirsiniz.
 
-## Gin'e nasıl katkıda bulunmalı?
+## Gin’e Katkıda Bulunmak
 
-* Tartışma forumlarında insanlara yardım edin
-* Gin kullanarak bize başarı hikayelerinizi anlatın
-* Bize Gin'i nasıl iyileştirebileceğimizi söyleyin ve bunu yapmamıza yardımcı olun
-* Mevcut bir kütüphaneye katkıda bulunun
-
+- Tartışma forumlarında diğer yazılımcılara yardımcı olun
+- Gin’in kendi projelerinizde nasıl fark yarattığını ve başarı hikayelerinizi paylaşın
+- İyileştirme veya yeni özellik önerin—fikirlerini ve yardımınızı memnuniyetle karşılıyoruz
+- Gin ekosistemindeki kütüphanelere katkı sağlayın veya mevcutları geliştirin

@@ -6,19 +6,17 @@ sidebar:
 
 ## Gin 是什麼？
 
-Gin 是一個使用 Go (Golang) 寫的 HTTP Web 框架。
-它提供類似 Martini 的 API，但擁有更好的效能——速度快上了 40 倍。
-如果你需要震撼性的效能，給自己來點 Gin 吧。
+Gin 是一個高效能的 Go (Golang) HTTP Web 框架。受到 Martini 框架 API 啟發，Gin 提供極致速度與效能—比 Martini 快上 40 倍。如果你需要卓越的效能，Gin 就是你的最佳選擇。
 
-## 如何使用 Gin？
+## Gin 的入門
 
-我們提供了一些 API 使用 [範例](https://github.com/gin-gonic/examples) 並列出一些知名的 [Gin 使用者](./users)。
+瀏覽我們的 [API 範例](https://github.com/gin-gonic/examples)，看看知名專案和組織如何在 [Gin 使用者](./users) 展示區中應用 Gin。
 
-想要親手練習 Gin 的概念嗎？查看我們的[學習資源](./learning-resources)，裡面有互動式挑戰和教學。
+想更深入學習？試試我們互動式的[學習資源](./learning-resources)，享受實作教學與程式挑戰。
 
-## 如何對 Gin 做出貢獻？
+## 如何貢獻 Gin
 
-- 在論壇上幫助人們
-- 告訴我們你使用 Gin 的成功故事
-- 告訴我們如何可以改進 Gin 並且幫助我們達成
-- 貢獻現有程式庫
+- 在論壇協助其他開發者
+- 分享你成功的案例，以及 Gin 如何幫助你的專案
+- 建議改進功能或提出新點子—我們非常歡迎你的想法，也需要你的協助來實現
+- 為 Gin 生態系的庫貢獻或協助完善現有庫
