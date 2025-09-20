@@ -98,7 +98,7 @@ After running your first Gin application, explore these resources to learn more:
 
 #### 📚 Learning Resources
 
-- **[Gin Quick Start Guide](docs/doc.md)** - Comprehensive tutorial with API examples and build configurations
+- **[Gin Quick Start Guide](./quickstart/)** - Comprehensive tutorial with API examples and build configurations
 - **[Example Repository](https://github.com/gin-gonic/examples)** - Ready-to-run examples demonstrating various Gin use cases:
   - REST API development
   - Authentication & middleware
