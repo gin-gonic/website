@@ -1,68 +1,44 @@
 ---
-title: "快速入門"
+title: "快速開始"
 sidebar:
   order: 2
 ---
 
-在這個快速入門中，我們將從程式碼片段中獲得洞察並學習如何：
+歡迎來到 Gin 的快速開始指南！本指南將逐步帶你完成 Gin 的安裝、專案初始化以及運行第一個 API，協助你快速上手 Web 服務開發。
 
-## 需求
+## 必備條件
 
-- Go 1.16 及更新版本
+- **Go：** 請安裝 1.23 或更高版本。
+- 請確認 Go 已加入你的 `PATH`，並可在終端機中使用。如需安裝協助，請參考[官方文件](https://golang.org/doc/install)。
 
-## 安裝
+---
 
-安裝 Gin 套件前, 你需要先安裝 Go 和準備好你的工作環境。
+## 第一步：安裝 Gin 並初始化專案
 
-1. 下載並安裝
-
-    ```sh
-    go get -u github.com/gin-gonic/gin
-    ```
-
-2. 在程式碼當中匯入套件
-
-    ```go
-    import "github.com/gin-gonic/gin"
-    ```
-
-3. （可選的）如果你想要使用像是 `http.StatusOK` 的常數，
-   你會需要匯入 `net/http` 套件
-
-    ```go
-    import "net/http"
-    ```
-
-4. 新增你的專案資料夾並 `cd` 進入
-
-    ```sh
-    mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
-    ```
-
-5. 複製範本到你的專案
-
-    ```sh
-    curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
-    ```
-
-6. 執行你的專案
-
-    ```sh
-    go run main.go
-    ```
-
-## 開始使用
-
-> 不確定如何寫和執行 Go 程式碼？ [查看 Go 文件](https://golang.org/doc/code.html).
-
-第一步，新增一個檔案 `example.go`:
+先建立專案資料夾並初始化 Go 模組：
 
 ```sh
-# assume the following codes in example.go file
-touch example.go
+mkdir gin-quickstart && cd gin-quickstart
+go mod init gin-quickstart
 ```
 
-接下來，將下列程式碼放進 `example.go`:
+安裝 Gin 套件：
+
+```sh
+go get -u github.com/gin-gonic/gin
+```
+
+---
+
+## 第二步：建立你的第一個 Gin 應用程式
+
+創建 `main.go` 檔案：
+
+```sh
+touch main.go
+```
+
+打開 `main.go` 並貼上以下程式碼：
 
 ```go
 package main
@@ -76,13 +52,60 @@ func main() {
       "message": "pong",
     })
   })
-  router.Run() // listen and serve on 0.0.0.0:8080
+  router.Run() // 預設監聽 0.0.0.0:8080
 }
 ```
 
-然後，你可以透過 `go run example.go` 來執行這個程式碼：
+---
 
-```shell
-# run example.go and visit 0.0.0.0:8080/ping on browser
-go run example.go
+## 第三步：啟動 API 服務
+
+用下列指令啟動服務：
+
+```sh
+go run main.go
 ```
+
+於瀏覽器開啟 [http://localhost:8080/ping](http://localhost:8080/ping) 即可看到：
+
+```json
+{"message":"pong"}
+```
+
+---
+
+## 補充範例：Gin 搭配 net/http 使用
+
+若需使用 `net/http` 套件常數設定回應碼，請一起引入：
+
+```go
+package main
+
+import (
+  "github.com/gin-gonic/gin"
+  "net/http"
+)
+
+func main() {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "message": "pong",
+    })
+  })
+  router.Run()
+}
+```
+
+---
+
+## 小技巧與資源
+
+- 新手入門 Go？請參考[這裡](https://golang.org/doc/code.html)學習 Go 寫作與執行方式。
+- 想要更完整範例？請執行：
+
+  ```sh
+  curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+  ```
+
+- 更多詳細說明可參閱 [Gin 官方文件](https://github.com/gin-gonic/gin/blob/master/docs/doc.md)。

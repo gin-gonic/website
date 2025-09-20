@@ -1,67 +1,44 @@
 ---
 title: "Быстрый старт"
-черновик: false
-вес: 2
+sidebar:
+  order: 2
 ---
 
-В этом кратком руководстве мы извлечем уроки из сегментов кода и узнаем, как:
+Добро пожаловать в руководство по быстрому старту Gin! Здесь вы узнаете, как установить Gin, настроить проект и запустить свой первый API, чтобы уверенно начинать создавать веб-сервисы.
 
 ## Требования
 
-- Go 1.16 или выше
+- **Go**: Версия 1.23 или выше должна быть установлена.
+- Убедитесь, что Go добавлен в переменную окружения `PATH` и работает в вашем терминале. Если нужна помощь с установкой, смотрите [официальную документацию](https://golang.org/doc/install).
 
-## Установка
+---
 
-Чтобы установить пакет Gin, необходимо сначала установить Go и настроить рабочее пространство Go.
+## Шаг 1: Установите Gin и инициализируйте проект
 
-1. Скачайте и установите его:
-
-```sh
-$ go get -u github.com/gin-gonic/gin
-```
-
-2. Импортируйте его в свой код:
-
-```go
-import "github.com/gin-gonic/gin"
-```
-
-3. (Необязательно) Импортируйте `net/http`. Это необходимо, например, при использовании таких констант, как `http.StatusOK`.
-
-```go
-import "net/http"
-```
-
-1. Создайте папку проекта и `cd` в ней
+Создайте новую папку и инициализируйте Go-модуль:
 
 ```sh
-$ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
+mkdir gin-quickstart && cd gin-quickstart
+go mod init gin-quickstart
 ```
 
-2. Скопируйте начальный шаблон в свой проект
+Добавьте Gin в зависимости:
 
 ```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+go get -u github.com/gin-gonic/gin
 ```
 
-3. Запустите свой проект
+---
+
+## Шаг 2: Создайте своё первое приложение на Gin
+
+Создайте файл `main.go`:
 
 ```sh
-$ go run main.go
+touch main.go
 ```
 
-## Начало работы
-
-> Не знаете, как написать и выполнить код Go? [Нажмите здесь](https://golang.org/doc/code.html).
-
-Сначала создайте файл с именем `example.go`:
-
-```sh
-# assume the following codes in example.go file
-$ touch example.go
-```
-
-Затем поместите следующий код в файл `example.go`:
+Откройте `main.go` и добавьте следующий код:
 
 ```go
 package main
@@ -69,19 +46,66 @@ package main
 import "github.com/gin-gonic/gin"
 
 func main() {
-  r := gin.Default()
-  r.GET("/ping", func(c *gin.Context) {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
     c.JSON(200, gin.H{
       "message": "pong",
     })
   })
-  r.Run() // listen and serve on 0.0.0.0:8080
+  router.Run() // по умолчанию слушает 0.0.0.0:8080
 }
 ```
 
-И вы можете запустить код с помощью `go run example.go`:
+---
+
+## Шаг 3: Запустите сервер API
+
+Запустите сервер командой:
 
 ```sh
-# run example.go and visit 0.0.0.0:8080/ping on browser
-$ go run example.go
+go run main.go
 ```
+
+Откройте [http://localhost:8080/ping](http://localhost:8080/ping) в браузере и увидите:
+
+```json
+{"message":"pong"}
+```
+
+---
+
+## Дополнительно: Использование net/http вместе с Gin
+
+Чтобы использовать константы из `net/http` для кодов ответов, импортируйте также этот пакет:
+
+```go
+package main
+
+import (
+  "github.com/gin-gonic/gin"
+  "net/http"
+)
+
+func main() {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "message": "pong",
+    })
+  })
+  router.Run()
+}
+```
+
+---
+
+## Советы и ресурсы
+
+- Впервые используете Go? Узнайте, как писать и запускать код на Go [здесь](https://golang.org/doc/code.html).
+- Для более полного примера воспользуйтесь командой:
+
+  ```sh
+  curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+  ```
+
+- Подробную документацию смотрите в [репозитории Gin](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).

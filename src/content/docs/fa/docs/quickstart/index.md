@@ -4,64 +4,41 @@ sidebar:
   order: 2
 ---
 
-در اینجا ما اطلاعاتی را در کدها دریافت میکنیم و همچنین یاد میگیریم که :
+به راهنمای شروع سریع Gin خوش آمدید! این راهنما شما را قدم‌به‌قدم از نصب Gin، راه‌اندازی پروژه، تا اجرای اولین API همراهی می‌کند تا بتوانید با اعتماد به نفس سرویس‌های وب بسازید.
 
-## الزامات
+## پیش‌نیازها
 
-- Go 1.16 یا بالا تر
+- **Go**: نسخه 1.23 یا بالاتر باید نصب باشد.
+- اطمینان حاصل کنید Go در `PATH` شما قرار دارد و از طریق ترمینال قابل اجراست. برای راهنمای نصب [مستندات رسمی Go را ببینید](https://golang.org/doc/install).
 
-## نصب و راه اندازی
+---
 
-برای نصب پکیج Gin ابتدا باید گو را نصب کنید و محیط خودتون رو تنظیم کنید.
+## گام 1: نصب Gin و راه‌اندازی پروژه
 
-1. دانلود و نصب:
-
-```sh
-$ go get -u github.com/gin-gonic/gin
-```
-
-2. جین را به پروژتون اضافه کنید
-
-```go
-import "github.com/gin-gonic/gin"
-```
-
-3. وارد کنید "net/http" برای متغیر های ثابت مثل http.StatusOK (اختیاری).
-
-```go
-import "net/http"
-```
-
-1. یک پوشه بسازید و وارد اون پوشه بشید
+ابتدا یک پوشه جدید برای پروژه بسازید و یک ماژول Go راه‌اندازی کنید:
 
 ```sh
-$ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
+mkdir gin-quickstart && cd gin-quickstart
+go mod init gin-quickstart
 ```
 
-2. یک الگوی اولیه برای شروع را در داخل پروژه خود کپی کنید
+اضافه کردن Gin به وابستگی‌ها:
 
 ```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+go get -u github.com/gin-gonic/gin
 ```
 
-3. پروژتون رو اجرا کنید
+---
+
+## گام 2: ایجاد اولین برنامه Gin
+
+یک فایل با نام `main.go` بسازید:
 
 ```sh
-$ go run main.go
+touch main.go
 ```
 
-## شروع
-
-> نمیدونید چطور یک کد گو رو اجرا کنید ؟ [اینجا کلیک کنید](https://golang.org/doc/code.html).
-
-ابتدا یک فایل به اسم `example.go` بسازید :
-
-```sh
-# assume the following codes in example.go file
-$ touch example.go
-```
-
-سپس کد های زیر رو توی فایل `example.go` بنویسید :
+فایل `main.go` را باز کنید و کد زیر را وارد نمایید:
 
 ```go
 package main
@@ -75,13 +52,60 @@ func main() {
       "message": "pong",
     })
   })
-  router.Run() // listen and serve on 0.0.0.0:8080
+  router.Run() // به طور پیش‌فرض روی 0.0.0.0:8080 گوش می‌دهد
 }
 ```
 
-حالا میتوانید کد رو با دستور زیر اجرا کنید :
+---
+
+## گام 3: اجرای سرور API
+
+سرور را با دستور زیر اجرا کنید:
 
 ```sh
-# run example.go and visit 0.0.0.0:8080/ping on browser
-$ go run example.go
+go run main.go
 ```
+
+سپس در مرورگر به آدرس [http://localhost:8080/ping](http://localhost:8080/ping) مراجعه کنید و باید خروجی زیر را ببینید:
+
+```json
+{"message":"pong"}
+```
+
+---
+
+## مثال اضافی: استفاده از net/http همراه با Gin
+
+اگر می‌خواهید از ثابت‌های `net/http` برای کدهای پاسخ استفاده کنید، آن را نیز import کنید:
+
+```go
+package main
+
+import (
+  "github.com/gin-gonic/gin"
+  "net/http"
+)
+
+func main() {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "message": "pong",
+    })
+  })
+  router.Run()
+}
+```
+
+---
+
+## نکات و منابع
+
+- تازه‌وارد به Go هستید؟ آموزش نوشتن و اجرای کد Go را [اینجا ببینید](https://golang.org/doc/code.html).
+- برای مثال کامل‌تر می‌توانید از دستور زیر استفاده کنید:
+
+  ```sh
+  curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+  ```
+
+- برای مستندات کامل‌تر، به [مستندات کد منبع Gin](https://github.com/gin-gonic/gin/blob/master/docs/doc.md) مراجعه کنید.

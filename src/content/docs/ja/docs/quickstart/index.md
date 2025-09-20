@@ -1,68 +1,44 @@
 ---
+title: "クイックスタート"
 sidebar:
   order: 2
-title: クイックスタート
 ---
 
-このクイックスタートでは、コードの集まりからの洞察を収集し、どのようにするかを学びます。
+Ginクイックスタートガイドへようこそ！このガイドでは、Ginのインストール、プロジェクトの設定、最初のAPIを作成する手順を分かりやすく紹介します。これにより、安心してWebサービスを構築できます。
 
-## 要件
+## 必要条件
 
-- Gin を利用するには Go 1.16 以上が必要です。
+- **Go**: バージョン1.23以上がインストールされている必要があります。
+- Goがあなたの`PATH`に含まれ、ターミナルから使用できることを確認してください。インストールに困った場合は[公式ドキュメント](https://golang.org/doc/install)をご覧ください。
 
-## インストール
+---
 
-Gin をインストールするには、まず Go のインストールおよび Go のワークスペースを作ることが必要です。
-go.mod ファイルがない場合は `go mod init gin` で作成してください。
+## ステップ1: Ginのインストールとプロジェクトの初期化
 
-1. ダウンロードしてインストールする
-
-```sh
-$ go get -u github.com/gin-gonic/gin
-```
-
-2. コード内でインポートする
-
-```go
-import "github.com/gin-gonic/gin"
-```
-
-3. (オプション) `net/http` をインポートする。`http.StatusOK` のような定数を使用する場合に必要です
-
-```go
-import "net/http"
-```
-
-4. プロジェクトフォルダを作り、 `cd` で中に入ります。
+まず、新しいプロジェクトフォルダを作成し、Goモジュールを初期化します：
 
 ```sh
-$ mkdir -p project && cd "$_"
+mkdir gin-quickstart && cd gin-quickstart
+go mod init gin-quickstart
 ```
 
-5. 開始用テンプレートをプロジェクトディレクトリにコピーする
+Ginパッケージを依存関係に追加します：
 
 ```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+go get -u github.com/gin-gonic/gin
 ```
 
-6. プロジェクトを実行する
+---
+
+## ステップ2: Ginアプリの作成
+
+`main.go`というファイルを作成します：
 
 ```sh
-$ go run main.go
+touch main.go
 ```
 
-## Getting Started
-
-> Go のコードを書いて実行する方法がわからない？ [ここをクリックしてください](https://golang.org/doc/code.html).
-
-まず、`example.go` を作成します。
-
-```sh
-# 後述のコードが、example.go のファイルにあるとします。
-$ touch example.go
-```
-
-次に、下記のコードを `example.go` に書きます。
+`main.go`を開いて、次のコードを追加してください：
 
 ```go
 package main
@@ -76,18 +52,31 @@ func main() {
       "message": "pong",
     })
   })
-  router.Run() // 0.0.0.0:8080 でサーバーを立てます。
+  router.Run() // デフォルトで0.0.0.0:8080で待機します
 }
 ```
 
-そして `go run example.go` でコードを実行します。
+---
+
+## ステップ3: APIサーバの起動
+
+次のコマンドでサーバを起動します：
 
 ```sh
-# example.go を実行し、ブラウザで 0.0.0.0:8080/ping にアクセスする
-$ go run example.go
+go run main.go
 ```
 
-`net/http` パッケージを使用したい場合は、下記のコードを書きます。
+ブラウザで[http://localhost:8080/ping](http://localhost:8080/ping)にアクセスすると、以下が表示されます：
+
+```json
+{"message":"pong"}
+```
+
+---
+
+## 追加例: Ginでnet/httpを使う
+
+レスポンスコードに`net/http`の定数を使いたい場合は、インポートしてください：
 
 ```go
 package main
@@ -99,15 +88,24 @@ import (
 
 func main() {
   router := gin.Default()
-
   router.GET("/ping", func(c *gin.Context) {
     c.JSON(http.StatusOK, gin.H{
       "message": "pong",
     })
   })
-
-  router.Run() // listen and serve on 0.0.0.0:8080
+  router.Run()
 }
 ```
 
-詳しい情報は [Gin のソースコードリポジトリ](https://github.com/gin-gonic/gin/blob/master/docs/doc.md) で確認できます。
+---
+
+## ヒント & リソース
+
+- Goの初心者ですか？Goコードの書き方と実行方法は[こちら](https://golang.org/doc/code.html)。
+- もっと詳しいサンプルが必要なら、次のコマンドを使用してください：
+
+  ```sh
+  curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+  ```
+
+- 詳しいドキュメントは[Gin公式ドキュメント](https://github.com/gin-gonic/gin/blob/master/docs/doc.md)をご覧ください。

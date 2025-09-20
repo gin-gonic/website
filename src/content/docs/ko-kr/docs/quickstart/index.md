@@ -1,81 +1,44 @@
 ---
-title: "퀵 스타트"
+title: "빠른 시작"
 sidebar:
   order: 2
 ---
 
-이 퀵 스타트에서는, 코드에서 통찰력을 얻고 어떤 식으로 할지 배울 것입니다:
+Gin 빠른 시작 가이드에 오신 것을 환영합니다! 이 문서는 Gin 설치, 프로젝트 세팅, 첫 API 실행까지의 모든 단계를 쉽게 따라할 수 있도록 구성되어 있습니다.
 
-## 요구사항
+## 준비 사항
 
-- Go 1.16 이상
+- **Go**: 버전 1.23 이상이 설치되어 있어야 합니다.
+- Go가 `PATH`에 등록되어 있고 터미널에서 실행 가능한지 확인하세요. 설치 방법은 [공식 문서](https://golang.org/doc/install)에서 확인할 수 있습니다.
 
-## 설치
+---
 
-Gin을 설치 하기 위해서는, Go 언어를 설치 한 후 Go workspace를 설정해야 합니다.
+## 1단계: Gin 설치 및 프로젝트 초기화
 
-1. 다운로드 후 설치하기:
-
-```sh
-$ go get -u github.com/gin-gonic/gin
-```
-
-2. 사용할 코드 내에서 임포트 하기:
-
-```go
-import "github.com/gin-gonic/gin"
-```
-
-3. (선택사항) `net/http`를 임포트 하기. `http.StatusOK` 와 같은 상수를 사용하는 경우 필요합니다.
-
-```go
-import "net/http"
-```
-
-### [Govendor](https://github.com/kardianos/govendor)같은 vendor 툴을 사용하기
-
-1. `go get` 을 이용하여 govendor 설치
+새 프로젝트 폴더를 만들고 Go 모듈을 초기화합니다:
 
 ```sh
-$ go get github.com/kardianos/govendor
+mkdir gin-quickstart && cd gin-quickstart
+go mod init gin-quickstart
 ```
-2. 프로젝트 디렉토리를 작성 한 후  `cd` 로 이동하기
+
+Gin 패키지를 설치합니다:
 
 ```sh
-$ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
+go get -u github.com/gin-gonic/gin
 ```
 
-3. Vendor로 프로젝트를 초기화 한 후 Gin을 추가하기
+---
+
+## 2단계: 첫 Gin 앱 만들기
+
+`main.go` 파일을 생성하세요:
 
 ```sh
-$ govendor init
-$ govendor fetch github.com/gin-gonic/gin@v1.3
+touch main.go
 ```
 
-4. 시작 템플릿을 프로젝트에 복사하기
-
-```sh
-$ curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
-```
-
-5. 프로젝트 실행하기
-
-```sh
-$ go run main.go
-```
-
-## 시작하기
-
-> Go 코드 작성 및 실행 방법을 잘 모르시나요? [여기를 클릭하세요](https://golang.org/doc/code.html).
-
-우선 `example.go` 파일을 작성합니다.:
-
-```sh
-# 이후 코드는 example.go 파일에 작성합니다.
-$ touch example.go
-```
-
-다음으로, 아래의 코드를 `example.go` 에 작성합니다.:
+`main.go`에 아래 코드를 추가합니다:
 
 ```go
 package main
@@ -89,13 +52,60 @@ func main() {
       "message": "pong",
     })
   })
-  router.Run() // 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
+  router.Run() // 0.0.0.0:8080에서 기본적으로 서버를 엽니다
 }
 ```
 
-그리고, `go run example.go` 로 코드를 실행합니다.:
+---
+
+## 3단계: API 서버 실행
+
+서버를 실행합니다:
 
 ```sh
-# example.go 를 실행 후, 0.0.0.0:8080/ping 에 접속합니다.
-$ go run example.go
+go run main.go
 ```
+
+브라우저에서 [http://localhost:8080/ping](http://localhost:8080/ping)으로 접근하면 아래와 같은 결과를 볼 수 있습니다:
+
+```json
+{"message":"pong"}
+```
+
+---
+
+## 추가 예제: Gin에서 net/http 활용
+
+응답 코드에 net/http의 상수를 사용하려면 아래와 같이 import 합니다:
+
+```go
+package main
+
+import (
+  "github.com/gin-gonic/gin"
+  "net/http"
+)
+
+func main() {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "message": "pong",
+    })
+  })
+  router.Run()
+}
+```
+
+---
+
+## 팁과 자료
+
+- Go가 처음이라면 [여기](https://golang.org/doc/code.html)에서 코드 작성 및 실행 방법을 확인하세요.
+- 더 완성된 예시가 필요하다면 다음 코드를 참고하세요:
+
+  ```sh
+  curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+  ```
+
+- 자세한 문서는 [Gin 공식 문서](https://github.com/gin-gonic/gin/blob/master/docs/doc.md)에서 확인하세요.
