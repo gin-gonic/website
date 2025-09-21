@@ -1,41 +1,41 @@
 ---
-title: "How to build one effective middleware?"
-linkTitle: "How to build one effective middleware?"
+title: "如何构建一个高效的中间件"
+linkTitle: "如何构建一个高效的中间件"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## 组成部分
 
-The middleware has two parts:
+中间件通常由两部分组成：
 
-  - part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens once per application lifetime.
+- 第一部分仅在中间件初始化时执行一次。在这里，你可以设置全局对象、配置逻辑等——所有只需在应用生命周期中发生一次的事情。
 
-  - part two is what executes on every request. For example, a database middleware you simply inject your "global" database object into the context. Once it's inside the context, you can retrieve it from within other middlewares and your handler function.
+- 第二部分在每个请求时执行。例如，在数据库中间件中，你会将全局数据库对象注入到请求上下文中。一旦注入，其它中间件和处理函数都可以获取并使用它。
 
 ```go
 func funcName(params string) gin.HandlerFunc {
-    // <---
-    // This is part one
-    // --->
-    // The following code is an example
-    if err := check(params); err != nil {
-        panic(err)
-    }
+  // <---
+  // 第一步
+  // --->
+  // 初始化示例：校验输入参数
+  if err := check(params); err != nil {
+      panic(err)
+  }
 
-    return func(c *gin.Context) {
-        // <---
-        // This is part two
-        // --->
-        // The following code is an example
-        c.Set("TestVar", params)
-        c.Next()    
-    }
+  return func(c *gin.Context) {
+    // <---
+    // 第二步
+    // --->
+    // 每次请求执行：注入到上下文
+    c.Set("TestVar", params)
+    c.Next()
+  }
 }
 ```
 
-## Execution process
+## 执行过程
 
-Firstly, we have the following example code:
+来看下下面的代码示例：
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to [Constituent parts](#Constituent-parts) said, when we run the gin process, **part one** will execute firstly and will print the following information:
+根据上述[组成部分](#组成部分)，当运行 Gin 进程时，每个中间件的**第一步**先执行并输出如下信息：
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-And init order is:
+初始化顺序如下：
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When we curl one request `curl -v localhost:8080/rest/n/api/some`, **part two** will execute their middleware and output the following information:
+当你发起请求（如 `curl -v localhost:8080/rest/n/api/some`），每个中间件的**第二步**按顺序执行，输出如下内容：
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, run order is:
+换句话说，执行顺序如下：
 
 ```go
 globalMiddleware...2
@@ -138,6 +138,3 @@ mid1...3
     |
     v
 globalMiddleware...3
-```
-
-

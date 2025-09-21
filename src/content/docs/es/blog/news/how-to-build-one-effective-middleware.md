@@ -1,41 +1,41 @@
 ---
-title: "How to build one effective middleware?"
-linkTitle: "How to build one effective middleware?"
+title: "Cómo construir un middleware efectivo"
+linkTitle: "Cómo construir un middleware efectivo"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## Partes constituyentes
 
-The middleware has two parts:
+Normalmente, un middleware consta de dos partes:
 
-- part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens once per application lifetime.
+- La primera parte se ejecuta una vez, cuando inicializas tu middleware. Aquí es donde configuras objetos globales, lógica de configuración, etc.; todo lo que solo necesita suceder una vez en el ciclo de vida de la aplicación.
 
-- part two is what executes on every request. For example, a database middleware you simply inject your "global" database object into the context. Once it's inside the context, you can retrieve it from within other middlewares and your handler function.
+- La segunda parte se ejecuta en cada petición. Por ejemplo, en un middleware de base de datos, inyectarías tu objeto global de base de datos en el contexto de la solicitud. Una vez en el contexto, otros middlewares y tus funciones controlador pueden recuperarlo y utilizarlo.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
-    // <---
-    // This is part one
-    // --->
-    // The following code is an example
-    if err := check(params); err != nil {
-        panic(err)
-    }
+  // <---
+  // Esta es la primera parte
+  // --->
+  // Ejemplo de inicialización: validar parámetros de entrada
+  if err := check(params); err != nil {
+      panic(err)
+  }
 
-    return func(c *gin.Context) {
-        // <---
-        // This is part two
-        // --->
-        // The following code is an example
-        c.Set("TestVar", params)
-        c.Next()
-    }
+  return func(c *gin.Context) {
+    // <---
+    // Esta es la segunda parte
+    // --->
+    // Ejecución por solicitud: inyectar en el contexto
+    c.Set("TestVar", params)
+    c.Next()
+  }
 }
 ```
 
-## Execution process
+## Proceso de ejecución
 
-Firstly, we have the following example code:
+Veamos el siguiente ejemplo de código:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to [Constituent parts](#Constituent-parts) said, when we run the gin process, **part one** will execute firstly and will print the following information:
+Según la sección [Partes constituyentes](#partes-constituyentes) anterior, cuando ejecutas el proceso Gin, **la primera parte** de cada middleware se ejecuta primero e imprime la siguiente información:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-And init order is:
+El orden de inicialización es:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When we curl one request `curl -v localhost:8080/rest/n/api/some`, **part two** will execute their middleware and output the following information:
+Cuando realizas una solicitud—por ejemplo, `curl -v localhost:8080/rest/n/api/some`—**la segunda parte** de cada middleware se ejecuta en orden y muestra lo siguiente:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, run order is:
+En otras palabras, el orden de ejecución es:
 
 ```go
 globalMiddleware...2
@@ -138,4 +138,3 @@ mid1...3
     |
     v
 globalMiddleware...3
-```

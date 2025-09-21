@@ -1,41 +1,41 @@
 ---
-title: "How to build one effective middleware?"
-linkTitle: "How to build one effective middleware?"
+title: "چگونه یک میان‌افزار مؤثر بسازیم"
+linkTitle: "چگونه یک میان‌افزار مؤثر بسازیم"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## اجزای تشکیل‌دهنده
 
-The middleware has two parts:
+میان‌افزار معمولاً از دو قسمت تشکیل شده است:
 
-  - part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens once per application lifetime.
+- قسمت اول یک بار، هنگام مقداردهی اولیه میان‌افزار اجرا می‌شود. اینجاست که اشیای سراسری، منطق پیکربندی و سایر مواردی که فقط یک بار در طول عمر برنامه باید انجام شوند را تنظیم می‌کنید.
 
-  - part two is what executes on every request. For example, a database middleware you simply inject your "global" database object into the context. Once it's inside the context, you can retrieve it from within other middlewares and your handler function.
+- قسمت دوم در هر درخواست اجرا می‌شود. برای مثال، در یک میان‌افزار پایگاه‌داده، شیء سراسری پایگاه‌داده را به زمینه درخواست تزریق می‌کنید. وقتی در زمینه قرار گرفت، سایر میان‌افزارها و توابع هندلر شما می‌توانند آن را دریافت و استفاده کنند.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
-    // <---
-    // This is part one
-    // --->
-    // The following code is an example
-    if err := check(params); err != nil {
-        panic(err)
-    }
+  // <---
+  // این قسمت اول است
+  // --->
+  // نمونه مقداردهی اولیه: اعتبارسنجی پارامترهای ورودی
+  if err := check(params); err != nil {
+      panic(err)
+  }
 
-    return func(c *gin.Context) {
-        // <---
-        // This is part two
-        // --->
-        // The following code is an example
-        c.Set("TestVar", params)
-        c.Next()    
-    }
+  return func(c *gin.Context) {
+    // <---
+    // این قسمت دوم است
+    // --->
+    // نمونه اجرا برای هر درخواست: تزریق در زمینه
+    c.Set("TestVar", params)
+    c.Next()
+  }
 }
 ```
 
-## Execution process
+## فرآیند اجرا
 
-Firstly, we have the following example code:
+بیایید به مثال کد زیر نگاه کنیم:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to [Constituent parts](#Constituent-parts) said, when we run the gin process, **part one** will execute firstly and will print the following information:
+مطابق بخش [اجزای تشکیل‌دهنده](#اجزای-تشکیل‌دهنده) بالا، هنگام اجرای فرآیند Gin، **قسمت اول** هر میان‌افزار ابتدا اجرا شده و خروجی زیر را چاپ می‌کند:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-And init order is:
+ترتیب مقداردهی اولیه:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When we curl one request `curl -v localhost:8080/rest/n/api/some`, **part two** will execute their middleware and output the following information:
+هنگام ارسال یک درخواست—for مثال `curl -v localhost:8080/rest/n/api/some`—**قسمت دوم** هر میان‌افزار به ترتیب اجرا شده و خروجی زیر را نمایش می‌دهد:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, run order is:
+به عبارت دیگر، ترتیب اجرا به شرح زیر است:
 
 ```go
 globalMiddleware...2
@@ -138,6 +138,3 @@ mid1...3
     |
     v
 globalMiddleware...3
-```
-
-

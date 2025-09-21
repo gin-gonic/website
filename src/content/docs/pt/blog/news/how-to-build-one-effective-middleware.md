@@ -1,41 +1,41 @@
 ---
-title: "Como construir um intermediário efetivo?"
-linkTitle: "Como construir um intermediário efetivo?"
+title: "Como Construir um Middleware Eficaz"
+linkTitle: "Como Construir um Middleware Eficaz"
 lastUpdated: 2019-02-26
 ---
 
-## Partes constituintes
+## Partes Constituintes
 
-O intermediário tem duas partes:
+O middleware geralmente consiste em duas partes:
 
-  - A parte um é a que é executada uma vez, quando inicializares o teu intermediário. É onde defines todos os objetos globais, lógicas etc. Tudo que acontece uma vez por vida de aplicação.
+- A primeira parte executa apenas uma vez, quando inicializa seu middleware. É nesse ponto que você configura objetos globais, lógica de configuração, etc.—tudo que só precisa acontecer uma única vez durante o ciclo de vida da aplicação.
 
-  - A parte dois é a que executa sobre toda requisição. Por exemplo, um intermediário de base de dados que simplesmente injetas o teu objeto de base de dados "global" no contexto. Uma vez dentro do contexto, podes recuperá-lo dentro de outros intermediários e tua função manipuladora:
+- A segunda parte executa a cada requisição. Por exemplo, em um middleware de banco de dados, você injeta seu objeto de banco de dados global no contexto da requisição. Uma vez inserido no contexto, outros middlewares e suas funções manipuladoras podem recuperá-lo e usá-lo.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
-    // <---
-    // Isto é a parte um
-    // --->
-    // O seguinte código é um exemplo
-    if err := check(params); err != nil {
-        panic(err)
-    }
+  // <---
+  // Esta é a primeira parte
+  // --->
+  // Exemplo de inicialização: validar parâmetros de entrada
+  if err := check(params); err != nil {
+      panic(err)
+  }
 
-    return func(c *gin.Context) {
-        // <---
-        // Isto é a parte dois
-        // --->
-        // O seguinte código é um exemplo
-        c.Set("TestVar", params)
-        c.Next()    
-    }
+  return func(c *gin.Context) {
+    // <---
+    // Esta é a segunda parte
+    // --->
+    // Execução por requisição: injeta no contexto
+    c.Set("TestVar", params)
+    c.Next()
+  }
 }
 ```
 
-## Processo de execução
+## Processo de Execução
 
-Primeiramente, temos o seguinte código de exemplo:
+Vamos analisar o seguinte exemplo de código:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-De acordo com as [partes constituintes](#partes-constituintes) disseram, quando executamos o processo de `gin`, a **parte um** executará em primeiro lugar e imprimirá a seguinte informação:
+De acordo com a seção [Partes Constituintes](#partes-constituinte), ao executar o processo Gin, **a primeira parte** de cada middleware é executada antes, imprimindo as seguintes informações:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-E a ordem de inicialização é:
+A ordem de inicialização é:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-Quando ondulamos uma requisição com `curl -v localhost:8080/rest/n/api/some`, a **parte dois** executará os seus intermediários e retornará como saída a seguinte informação:
+Quando você faz uma requisição—por exemplo, `curl -v localhost:8080/rest/n/api/some`—**a segunda parte** de cada middleware é executada em ordem e imprime o seguinte:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-Em outras palavras, a ordem de execução é:
+Ou seja, a ordem de execução é:
 
 ```go
 globalMiddleware...2
@@ -138,6 +138,3 @@ mid1...3
     |
     v
 globalMiddleware...3
-```
-
-

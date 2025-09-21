@@ -1,41 +1,41 @@
 ---
-title: "How to build one effective middleware?"
-linkTitle: "How to build one effective middleware?"
+title: "効果的なミドルウェアの作り方"
+linkTitle: "効果的なミドルウェアの作り方"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## 構成要素
 
-The middleware has two parts:
+ミドルウェアは通常、2つの部分で構成されています：
 
-  - part one is what is executed once, when you initialize your middleware. That's where you set up all the global objects, logicals etc. Everything that happens once per application lifetime.
+- 1つ目の部分は、ミドルウェアを初期化するときに一度だけ実行されます。ここでは、グローバルオブジェクトや設定ロジックなど、アプリケーションのライフサイクル全体で一度だけ必要となる処理を行います。
 
-  - part two is what executes on every request. For example, a database middleware you simply inject your "global" database object into the context. Once it's inside the context, you can retrieve it from within other middlewares and your handler function.
+- 2つ目の部分は、リクエストごとに実行されます。たとえば、データベースミドルウェアの場合、グローバルなデータベースオブジェクトをリクエストコンテキストに注入します。コンテキストに注入されると、他のミドルウェアやハンドラ関数で取得・使用できます。
 
 ```go
 func funcName(params string) gin.HandlerFunc {
-    // <---
-    // This is part one
-    // --->
-    // The following code is an example
-    if err := check(params); err != nil {
-        panic(err)
-    }
+  // <---
+  // ここが第1部
+  // --->
+  // 初期化例：入力パラメータの検証
+  if err := check(params); err != nil {
+      panic(err)
+  }
 
-    return func(c *gin.Context) {
-        // <---
-        // This is part two
-        // --->
-        // The following code is an example
-        c.Set("TestVar", params)
-        c.Next()    
-    }
+  return func(c *gin.Context) {
+    // <---
+    // ここが第2部
+    // --->
+    // リクエストごとの実行例：コンテキストへ注入
+    c.Set("TestVar", params)
+    c.Next()
+  }
 }
 ```
 
-## Execution process
+## 実行プロセス
 
-Firstly, we have the following example code:
+以下のコード例を見てみましょう：
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to [Constituent parts](#Constituent-parts) said, when we run the gin process, **part one** will execute firstly and will print the following information:
+上記の[構成要素](#構成要素)セクションに従ってGinプロセスを実行すると、各ミドルウェアの**第1部**が最初に実行され、次の情報が出力されます：
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-And init order is:
+初期化の順序：
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When we curl one request `curl -v localhost:8080/rest/n/api/some`, **part two** will execute their middleware and output the following information:
+リクエスト（例: `curl -v localhost:8080/rest/n/api/some`）を行うと、各ミドルウェアの**第2部**が順に実行され、下記のように出力されます：
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, run order is:
+つまり、実行順序は次の通りです：
 
 ```go
 globalMiddleware...2
@@ -138,6 +138,3 @@ mid1...3
     |
     v
 globalMiddleware...3
-```
-
-
