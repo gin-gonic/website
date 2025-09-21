@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-De acordo com a seção [Partes Constituintes](#partes-constituinte), ao executar o processo Gin, **a primeira parte** de cada middleware é executada antes, imprimindo as seguintes informações:
+De acordo com a seção [Partes Constituintes](#partes-constituintes), ao executar o processo Gin, **a primeira parte** de cada middleware é executada antes, imprimindo as seguintes informações:
 
 ```go
 globalMiddleware...1
