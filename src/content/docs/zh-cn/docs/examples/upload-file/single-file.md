@@ -14,9 +14,9 @@ func main() {
     file, _ := c.FormFile("file")
     log.Println(file.Filename)
 
-    dst := "./" + file.Filename
+    dst := "./file" + file.Filename
     // 上传文件至指定的完整文件路径
-    c.SaveUploadedFile(file, "./files/" + file.Filename)
+    c.SaveUploadedFile(file, dst)
 
     c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
   })
