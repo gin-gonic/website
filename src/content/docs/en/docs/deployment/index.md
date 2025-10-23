@@ -16,7 +16,7 @@ Follow the Railway [guide to deploy your Gin projects](https://docs.railway.com/
 
 Seenode is a modern cloud platform designed specifically for developers who want to deploy applications quickly and efficiently. It offers git-based deployment, automatic SSL certificates, built-in databases, and a streamlined interface that gets your Gin applications live in minutes.
 
-Follow the Seenode [guide to deploy your Gin projects](https://seenode.com/docsframeworks/go/gin).
+Follow the Seenode [guide to deploy your Gin projects](https://docs.seenode.com/docs/frameworks/go/gin).
 
 ## [Koyeb](https://www.koyeb.com)
 
