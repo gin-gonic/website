@@ -102,6 +102,7 @@ func main() {
 ## 小贴士与资源
 
 - 第一次接触 Go？参考[这里](https://golang.org/doc/code.html)学习 Go 的编码和运行方法。
+- 想要实践 Gin 概念吗？查看我们的[学习资源](../learning-resources)以获取交互式挑战和教程。
 - 想要更完整的示例？请执行：
 
   ```sh
