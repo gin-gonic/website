@@ -101,7 +101,8 @@ func main() {
 
 ## İpuçları ve Kaynaklar
 
-- Go’ya yeni misin? Go kodu yazmayı ve çalıştırmayı [buradan öğrenebilirsin](https://golang.org/doc/code.html).
+- Go'ya yeni misin? Go kodu yazmayı ve çalıştırmayı [buradan öğrenebilirsin](https://golang.org/doc/code.html).
+- Gin kavramlarını pratik yapmaya hazır mısın? Etkileşimli görevler ve öğreticiler için [Öğrenme Kaynaklarımızı](../learning-resources) incele.
 - Daha kapsamlı bir örnek için şu komutu kullanabilirsin:
 
   ```sh

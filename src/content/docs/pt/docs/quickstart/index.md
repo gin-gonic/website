@@ -102,6 +102,7 @@ func main() {
 ## Dicas e recursos
 
 - Novo em Go? Aprenda a escrever e executar código Go [aqui](https://golang.org/doc/code.html).
+- Quer praticar conceitos de Gin de forma interativa? Consulte nossos [Recursos de Aprendizagem](../learning-resources) para desafios interativos e tutoriais.
 - Precisa de um exemplo mais completo? Use:
 
   ```sh

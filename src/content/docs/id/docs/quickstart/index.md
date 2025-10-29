@@ -110,4 +110,10 @@ func main() {
 }
 ```
 
-Informasi tambahan tersedia di [repositori kode sumber Gin](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).
+---
+
+## Tips & Sumber Daya
+
+- Baru mengenal Go? Pelajari cara menulis dan menjalankan kode Go [di sini](https://golang.org/doc/code.html).
+- Ingin berlatih konsep Gin secara langsung? Lihat [Sumber Belajar](../learning-resources) kami untuk tantangan interaktif dan tutorial.
+- Informasi tambahan tersedia di [repositori kode sumber Gin](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).
