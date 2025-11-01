@@ -77,6 +77,32 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
+### Loading templates from an http.FileSystem (v1.11+)
+
+If your templates are embedded or provided by an `http.FileSystem`, use `LoadHTMLFS`:
+
+```go
+import (
+  "embed"
+  "io/fs"
+  "net/http"
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates
+var tmplFS embed.FS
+
+func main() {
+  r := gin.Default()
+  sub, _ := fs.Sub(tmplFS, "templates")
+  r.LoadHTMLFS(http.FS(sub), "**/*.tmpl")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "From FS"})
+  })
+  r.Run(":8080")
+}
+```
+
 ### Custom Template renderer
 
 You can also use your own html template render
@@ -149,6 +175,7 @@ Date: {[{.now | formatAsDate}]}
 ```
 
 Result:
+
 ```sh
 Date: 2017/07/01
 ```
