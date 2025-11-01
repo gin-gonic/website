@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightUtils from "@lorenzo_lewis/starlight-utils";
+import starlightVersions from 'starlight-versions'
 
 import sitemap from "@astrojs/sitemap";
 
@@ -10,18 +11,25 @@ export default defineConfig({
     site: 'https://gin-gonic.com',
 
     integrations: [starlight({
-        plugins: [starlightUtils({
-            multiSidebar: {
+        plugins: [
+            starlightUtils({
+              multiSidebar: {
                 switcherStyle: "horizontalList",
-            },
-        })],
+              },
+            }),
+    
+          
+            // starlightVersions({
+            //   versions: [{ slug: '0.0.1' }],
+            // }),
+          ],
 
         title: 'Gin Web Framework',
         favicon: '/favicon.ico',
         logo: {
             src: "./src/assets/gin.png",
         },
-
+        
         defaultLocale: 'en',
         locales: {
             'en': {
@@ -44,9 +52,9 @@ export default defineConfig({
                 label: "日本語",
                 lang: "ja",
             },
-            "ko-kr": {
+            "ko-KR": {
                 label: "한국어",
-                lang: "ko-kr",
+                lang: "ko-KR",
             },
             "pt": {
                 label: "Português",
@@ -60,23 +68,35 @@ export default defineConfig({
                 label: "Turkish",
                 lang: "tr",
             },
-            "zh-cn": {
+            "zh-CN": {
                 label: "简体中文",
-                lang: "zh-cn",
+                lang: "zh-CN",
             },
-            "zh-tw": {
+            "zh-TW": {
                 label: "繁體中文",
-                lang: "zh-tw",
+                lang: "zh-TW",
             },
             "ar": {
                 label: "عربي",
                 lang: "ar",
             },
+            // "fr": {
+            //     label: "Français",
+            //     lang: "fr",
+            // },
+            // "de": {
+            //     label: "Deutsch",
+            //     lang: "de",
+            // },
         },
 
-        social: {
-            github: 'https://github.com/gin-gonic/gin'
-        },
+        social: [
+            {
+                icon: 'github',
+                href : 'https://github.com/gin-gonic/gin',
+                label: `GitHub`
+            }
+        ],
         sidebar: [
             {
                 label: "Docs",

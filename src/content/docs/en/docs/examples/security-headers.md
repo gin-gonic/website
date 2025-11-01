@@ -44,7 +44,7 @@ func main() {
 }
 ```
 
-You can test it via `curl`: 
+You can test it via `curl`:
 
 ```bash
 // Check Headers
@@ -71,4 +71,28 @@ HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
 Date: Sat, 30 Mar 2024 08:21:09 GMT
 Content-Length: 31
+```
+
+Optionally use [gin helmet](https://github.com/danielkov/gin-helmet) `go get github.com/danielkov/gin-helmet/ginhelmet`
+
+```go
+package main
+
+import (
+    "github.com/gin-gonic/gin"
+    "github.com/danielkov/gin-helmet/ginhelmet"
+)
+
+func main() {
+    r := gin.Default()
+
+    // Use default security headers
+    r.Use(ginhelmet.Default())
+
+    r.GET("/", func(c *gin.Context) {
+        c.JSON(200, gin.H{"message": "Hello, World!"})
+    })
+
+    r.Run()
+}
 ```
