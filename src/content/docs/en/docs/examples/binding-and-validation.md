@@ -20,6 +20,8 @@ When using the Bind-method, Gin tries to infer the binder depending on the Conte
 
 You can also specify that specific fields are required. If a field is decorated with `binding:"required"` and has a empty value when binding, an error will be returned.
 
+If one of the struct fields is itself a struct (nested struct) the fields of that struct will also need to be decorated with `binding:"required"` in order to validate correctly.
+
 ```go
 // Binding from JSON
 type Login struct {
