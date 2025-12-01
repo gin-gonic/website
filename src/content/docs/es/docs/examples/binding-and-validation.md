@@ -20,6 +20,8 @@ Cuando se usa el método de vínculo, Gin tratará de inferir dependiendo del va
 
 También pueden declararse los campos como requeridos. Si un campo tiene declarado el tag `binding:"required"` y el valor viene vacío devolverá un error al tratar de vincularse.
 
+Si uno de los campos del struct es en sí mismo un struct (struct anidado), los campos de ese struct también deberán ser decorados con `binding:"required"` para validar correctamente.
+
 ```go
 // Vincular empleando JSON
 type Login struct {

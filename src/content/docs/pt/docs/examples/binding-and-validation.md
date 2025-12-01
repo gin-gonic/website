@@ -21,6 +21,8 @@ Quando estiveres o método `Bind`, a Gin tenta inferir o vinculador dependendo d
 
 Tu podes também especificar que os campos específicos são obrigatório. Se um campo for decorado com `binding:"required"` e tiver um valor vazio quando estiveres a vincular, um erro será retornado:
 
+Se um dos campos da estrutura for ele próprio uma estrutura (estrutura aninhada), os campos dessa estrutura também precisarão ser decorados com `binding:"required"` para validar corretamente.
+
 ```go
 // Vinculando a partir de JSON
 type Login struct {
