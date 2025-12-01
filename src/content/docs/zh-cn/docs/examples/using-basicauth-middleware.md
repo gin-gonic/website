@@ -3,7 +3,7 @@ title: "使用 BasicAuth 中间件"
 ---
 
 ```go
-// 模拟一些私人数据
+// 模拟一些隐私数据
 var secrets = gin.H{
   "foo":    gin.H{"email": "foo@bar.com", "phone": "123433"},
   "austin": gin.H{"email": "austin@example.com", "phone": "666"},
