@@ -27,6 +27,8 @@ Gin 使用 [**go-playground/validator/v10**](https://github.com/go-playground/va
 
 您還可以指定特定欄位為必填。如果欄位使用 `binding:"required"` 裝飾，但在綁定時值為空，則會回傳錯誤。
 
+如果結構體的某個欄位本身也是一個結構體（巢狀結構體），為了正確驗證，該結構體的欄位也需要添加 `binding:"required"` 標籤。
+
 ```go
 // 從 JSON 綁定
 type Login struct {

@@ -20,6 +20,8 @@ Saat menggunakan metode Bind, Gin mencoba menginferensi binder berdasarkan heade
 
 Anda juga dapat menentukan bahwa field tertentu diperlukan. Jika sebuah field ditandai dengan `binding:"required"` dan memiliki nilai kosong saat binding, sebuah error akan dikembalikan.
 
+Jika salah satu field struct itu sendiri adalah struct (struct bersarang), field dari struct tersebut juga perlu ditandai dengan `binding:"required"` agar dapat divalidasi dengan benar.
+
 ```go
 // Binding dari JSON
 type Login struct {

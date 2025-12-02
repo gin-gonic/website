@@ -21,6 +21,8 @@ Gin提供了两类绑定方法：
 
 你也可以指定必须绑定的字段。 如果一个字段的 tag 加上了 `binding:"required"`，但绑定时是空值, Gin 会报错。
 
+如果结构体的某个字段本身也是一个结构体（嵌套结构体），为了正确验证，该结构体的字段也需要添加 `binding:"required"` 标签。
+
 ```go
 // 绑定 JSON
 type Login struct {

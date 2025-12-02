@@ -20,6 +20,8 @@ Gin は [**go-playground/validator/v10**](https://github.com/go-playground/valid
 
 また、どのフィールドが必須か指定することができます。もしフィールドが、`binding:"required"` 指定されていて、バインディングの際に値が空であれば、エラーが返ります。
 
+構造体のフィールドの1つが構造体自体である場合（ネストされた構造体）、正しく検証するには、その構造体のフィールドにも `binding:"required"` を設定する必要があります。
+
 ```go
 // JSON からバインドする
 type Login struct {

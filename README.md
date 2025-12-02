@@ -1,6 +1,7 @@
 # Gin website
 
 [![Run Deploy](https://github.com/gin-gonic/website/actions/workflows/node.yml/badge.svg)](https://github.com/gin-gonic/website/actions/workflows/node.yml)
+[![Trivy Security Scan](https://github.com/gin-gonic/website/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/gin-gonic/website/actions/workflows/trivy-scan.yml)
 
 Welcome! This repository houses all the assets required to build the Gin website and documentation. We're pleased that you want to contribute! The website is hosted at [https://gin-gonic.com](https://gin-gonic.com).
 

@@ -21,6 +21,8 @@ Gin은 Bind-method를 사용할 때 Content-Type 헤더에 따라 바인더를 �
 
 특정 항목을 필수로 지정할 수도 있습니다. 항목이 `binding:"required"`로 설정되어 있으나, 바인딩 할 값이 비어 있다면 에러가 반환됩니다.
 
+구조체의 필드 중 하나가 그 자체로 구조체인 경우(중첩 구조체), 올바르게 검증하려면 해당 구조체의 필드에도 `binding:"required"`를 추가해야 합니다.
+
 ```go
 // JSON 바인딩
 type Login struct {
