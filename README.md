@@ -28,7 +28,14 @@ See the [official Astro documentation](https://docs.astro.build/en/getting-start
 To run the site locally when you have Hugo installed:
 
 ```sh
-npm install
+git clone https://github.com/<your-username>/website.git # your fork url
+cd website
+
+# ensure you have node installed
+node -v
+# else https://nodejs.org/en/download
+
+npm install 
 npm run dev
 ```
 
