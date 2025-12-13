@@ -79,20 +79,20 @@ Optionally, use [gin helmet](https://github.com/danielkov/gin-helmet) `go get gi
 package main
 
 import (
-    "github.com/gin-gonic/gin"
-    "github.com/danielkov/gin-helmet/ginhelmet"
+  "github.com/gin-gonic/gin"
+  "github.com/danielkov/gin-helmet/ginhelmet"
 )
 
 func main() {
-    r := gin.Default()
+  r := gin.Default()
 
-    // Use default security headers
-    r.Use(ginhelmet.Default())
+  // Use default security headers
+  r.Use(ginhelmet.Default())
 
-    r.GET("/", func(c *gin.Context) {
-        c.JSON(200, gin.H{"message": "Hello, World!"})
-    })
+  r.GET("/", func(c *gin.Context) {
+    c.JSON(200, gin.H{"message": "Hello, World!"})
+  })
 
-    r.Run()
+  r.Run()
 }
 ```
