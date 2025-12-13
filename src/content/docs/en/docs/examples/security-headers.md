@@ -73,7 +73,7 @@ Date: Sat, 30 Mar 2024 08:21:09 GMT
 Content-Length: 31
 ```
 
-Optionally use [gin helmet](https://github.com/danielkov/gin-helmet) `go get github.com/danielkov/gin-helmet/ginhelmet`
+Optionally, use [gin helmet](https://github.com/danielkov/gin-helmet) `go get github.com/danielkov/gin-helmet/ginhelmet`
 
 ```go
 package main
