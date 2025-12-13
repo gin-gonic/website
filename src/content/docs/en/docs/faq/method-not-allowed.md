@@ -4,7 +4,7 @@ title: Method Not Allowed FAQ
 
 Gin returns error 404 when I access a route with an unsupported HTTP method. How can I make it return 405 Method Not Allowed instead?
 
-Configure the following option in your Gin router `r.HandleMethodNotAllowed = true`. This will make Gin return a 405 Method Not Allowed response when a route exists but does not support the requested HTTP method.:
+Configure the following option in your Gin router `r.HandleMethodNotAllowed = true`. This will make Gin return a 405 Method Not Allowed response when a route exists but does not support the requested HTTP method:
 
 ```go
 package main
