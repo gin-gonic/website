@@ -72,6 +72,34 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
+**Примечание:** Пожалуйста, оберните ваш HTML-шаблон в блок `{{define <template-path>}} {{end}}` и определите файл шаблона с относительным путем `<template-path>`. В противном случае GIN не сможет правильно разобрать файлы шаблонов.
+
+### Загрузка шаблонов из http.FileSystem (v1.11+)
+
+Если ваши шаблоны встроены или предоставляются `http.FileSystem`, используйте `LoadHTMLFS`:
+
+```go
+import (
+  "embed"
+  "io/fs"
+  "net/http"
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates
+var tmplFS embed.FS
+
+func main() {
+  r := gin.Default()
+  sub, _ := fs.Sub(tmplFS, "templates")
+  r.LoadHTMLFS(http.FS(sub), "**/*.tmpl")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "From FS"})
+  })
+  r.Run(":8080")
+}
+```
+
 ### Пользовательский рендерер шаблонов
 
 Вы также можете использовать собственный рендерер html-шаблонов

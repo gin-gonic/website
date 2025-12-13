@@ -1,8 +1,11 @@
 ---
-title: "HTML 渲染"
+title: "عرض HTML"
 ---
 
-使用 LoadHTMLGlob() 或者 LoadHTMLFiles()
+يستخدم Gin حزمة [html/template](https://pkg.go.dev/html/template) لعرض HTML.
+لمزيد من المعلومات حول كيفية استخدامها، بما في ذلك العناصر النائبة المتاحة، راجع وثائق [text/template](https://pkg.go.dev/text/template)
+
+استخدم LoadHTMLGlob() أو LoadHTMLFiles() لتحديد ملفات HTML المراد تحميلها.
 
 ```go
 func main() {
@@ -28,7 +31,7 @@ templates/index.tmpl
 </html>
 ```
 
-使用不同目录下名称相同的模板
+استخدام قوالب بنفس الاسم في مجلدات مختلفة
 
 ```go
 func main() {
@@ -47,6 +50,8 @@ func main() {
   router.Run(":8080")
 }
 ```
+
+**ملاحظة:** يرجى تغليف قالب HTML الخاص بك في كتلة `{{define <template-path>}} {{end}}` وتعريف ملف القالب بالمسار النسبي `<template-path>`. وإلا فلن يتمكن GIN من تحليل ملفات القالب بشكل صحيح.
 
 templates/posts/index.tmpl
 
@@ -72,11 +77,9 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-**注意：** 请将您的 HTML 模板包装在 `{{define <template-path>}} {{end}}` 块中，并使用相对路径 `<template-path>` 定义您的模板文件。否则，GIN 将无法正确解析模板文件。
+### تحميل القوالب من http.FileSystem (الإصدار 1.11+)
 
-### 从 http.FileSystem 加载模板 (v1.11+)
-
-如果您的模板是嵌入的或由 `http.FileSystem` 提供，请使用 `LoadHTMLFS`：
+إذا كانت قوالبك مضمنة أو مقدمة من `http.FileSystem`، استخدم `LoadHTMLFS`:
 
 ```go
 import (
@@ -100,9 +103,9 @@ func main() {
 }
 ```
 
-#### 自定义模板渲染器
+### عارض قوالب مخصص
 
-你可以使用自定义的 html 模板渲染
+يمكنك أيضًا استخدام عارض قوالب HTML الخاص بك
 
 ```go
 import "html/template"
@@ -115,9 +118,9 @@ func main() {
 }
 ```
 
-#### 自定义分隔符
+### محددات مخصصة
 
-你可以使用自定义分隔
+يمكنك استخدام محددات مخصصة
 
 ```go
   router := gin.Default()
@@ -125,9 +128,9 @@ func main() {
   router.LoadHTMLGlob("/path/to/templates")
 ```
 
-#### 自定义模板功能
+### دوال قوالب مخصصة
 
-查看详细[示例代码](https://github.com/gin-gonic/examples/tree/master/template)。
+راجع [الكود المثال](https://github.com/gin-gonic/examples/tree/master/template) بالتفصيل.
 
 main.go
 
@@ -171,7 +174,8 @@ raw.tmpl
 Date: {[{.now | formatAsDate}]}
 ```
 
-结果：
+النتيجة:
+
 ```sh
 Date: 2017/07/01
 ```

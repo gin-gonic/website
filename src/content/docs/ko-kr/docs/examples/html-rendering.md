@@ -72,6 +72,34 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
+**참고:** HTML 템플릿을 `{{define <template-path>}} {{end}}` 블록으로 감싸고, 템플릿 파일을 상대 경로 `<template-path>`로 정의해주세요. 그렇지 않으면 GIN이 템플릿 파일을 올바르게 파싱하지 못합니다.
+
+### http.FileSystem에서 템플릿 로딩 (v1.11+)
+
+템플릿이 임베드되어 있거나 `http.FileSystem`에서 제공되는 경우 `LoadHTMLFS`를 사용하세요:
+
+```go
+import (
+  "embed"
+  "io/fs"
+  "net/http"
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates
+var tmplFS embed.FS
+
+func main() {
+  r := gin.Default()
+  sub, _ := fs.Sub(tmplFS, "templates")
+  r.LoadHTMLFS(http.FS(sub), "**/*.tmpl")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "From FS"})
+  })
+  r.Run(":8080")
+}
+```
+
 ### 커스텀 템플릿 렌더링 엔진
 
 독자적인 HTML 템플릿 렌더링 엔진을 사용하는 것도 가능합니다.

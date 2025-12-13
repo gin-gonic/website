@@ -21,7 +21,12 @@ func main() {
       "html": "<b>Hello, world!</b>",
     })
   })
-  
+
+  // 提前中止并返回 PureJSON 响应和状态码 (v1.11+)
+  router.GET("/abort_purejson", func(c *gin.Context) {
+    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
+  })
+
   // 监听并在 0.0.0.0:8080 上启动服务
   router.Run(":8080")
 }

@@ -21,7 +21,12 @@ func main() {
       "html": "<b>Hello, world!</b>",
     })
   })
-  
+
+  // Abortar antecipadamente com resposta PureJSON e código de status (v1.11+)
+  router.GET("/abort_purejson", func(c *gin.Context) {
+    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
+  })
+
   // ouvir e servir no 0.0.0.0:8080
   router.Run(":8080")
 }

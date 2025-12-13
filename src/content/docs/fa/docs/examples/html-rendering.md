@@ -72,7 +72,35 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-### Custom Template renderer
+**توجه:** لطفاً قالب HTML خود را در بلوک `{{define <template-path>}} {{end}}` قرار دهید و فایل قالب خود را با مسیر نسبی `<template-path>` تعریف کنید. در غیر این صورت، GIN نمی‌تواند فایل‌های قالب را به درستی تجزیه کند.
+
+### بارگذاری قالب‌ها از http.FileSystem (نسخه 1.11+)
+
+اگر قالب‌های شما جاسازی شده یا توسط یک `http.FileSystem` ارائه می‌شوند، از `LoadHTMLFS` استفاده کنید:
+
+```go
+import (
+  "embed"
+  "io/fs"
+  "net/http"
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates
+var tmplFS embed.FS
+
+func main() {
+  r := gin.Default()
+  sub, _ := fs.Sub(tmplFS, "templates")
+  r.LoadHTMLFS(http.FS(sub), "**/*.tmpl")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "From FS"})
+  })
+  r.Run(":8080")
+}
+```
+
+### رندر کننده قالب سفارشی
 
 You can also use your own html template render
 

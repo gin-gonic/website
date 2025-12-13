@@ -22,7 +22,12 @@ func main() {
       "html": "<b>Hello, world!</b>",
     })
   })
-  
+
+  // PureJSON yanıtı ve durum kodu ile erken iptal (v1.11+)
+  router.GET("/abort_purejson", func(c *gin.Context) {
+    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
+  })
+
   // listen and serve on 0.0.0.0:8080
   router.Run(":8080")
 }

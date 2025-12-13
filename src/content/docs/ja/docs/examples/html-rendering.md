@@ -76,6 +76,32 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
+### http.FileSystem からテンプレートを読み込む (v1.11+)
+
+テンプレートが埋め込まれているか、`http.FileSystem` から提供されている場合は、`LoadHTMLFS` を使用してください：
+
+```go
+import (
+  "embed"
+  "io/fs"
+  "net/http"
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates
+var tmplFS embed.FS
+
+func main() {
+  r := gin.Default()
+  sub, _ := fs.Sub(tmplFS, "templates")
+  r.LoadHTMLFS(http.FS(sub), "**/*.tmpl")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "From FS"})
+  })
+  r.Run(":8080")
+}
+```
+
 ### カスタムテンプレートエンジン
 
 独自のHTMLテンプレートエンジンを使うこともできます。

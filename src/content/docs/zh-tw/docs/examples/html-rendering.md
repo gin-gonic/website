@@ -78,6 +78,34 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
+**注意：** 請將您的 HTML 樣板包裝在 `{{define <template-path>}} {{end}}` 區塊中，並使用相對路徑 `<template-path>` 定義您的樣板檔案。否則，GIN 將無法正確解析樣板檔案。
+
+### 從 http.FileSystem 載入樣板 (v1.11+)
+
+如果您的樣板是嵌入的或由 `http.FileSystem` 提供，請使用 `LoadHTMLFS`：
+
+```go
+import (
+  "embed"
+  "io/fs"
+  "net/http"
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates
+var tmplFS embed.FS
+
+func main() {
+  r := gin.Default()
+  sub, _ := fs.Sub(tmplFS, "templates")
+  r.LoadHTMLFS(http.FS(sub), "**/*.tmpl")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "From FS"})
+  })
+  r.Run(":8080")
+}
+```
+
 #### 自訂樣板渲染器
 
 您也可以使用自己的 HTML 樣板渲染器

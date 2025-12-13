@@ -1,8 +1,8 @@
 ---
-title: "Cookie"
+title: "ملفات تعريف الارتباط (Cookie)"
 ---
 
-設定和取得 cookie。
+تعيين وقراءة ملفات تعريف الارتباط.
 
 ```go
 import (
@@ -17,29 +17,29 @@ func main() {
 
   router.GET("/cookie", func(c *gin.Context) {
 
-      cookie, err := c.Cookie("gin_cookie")
+    cookie, err := c.Cookie("gin_cookie")
 
-      if err != nil {
-          cookie = "NotSet"
-          c.SetCookie("gin_cookie", "test", 3600, "/", "localhost", false, true)
-      }
+    if err != nil {
+      cookie = "NotSet"
+      c.SetCookie("gin_cookie", "test", 3600, "/", "localhost", false, true)
+    }
 
-      fmt.Printf("Cookie 值：%s \n", cookie)
+    fmt.Printf("Cookie value: %s \n", cookie)
   })
 
   router.Run()
 }
 ```
 
-將 max age 設定為 -1 來刪除 cookie。
+حذف ملف تعريف الارتباط عن طريق تعيين max age إلى -1.
 
 ```go
 c.SetCookie("gin_cookie", "test", -1, "/", "localhost", false, true)
 ```
 
-### 透過 http.Cookie 設定 cookie (v1.11+)
+### تعيين ملف تعريف الارتباط عبر http.Cookie (الإصدار 1.11+)
 
-Gin 也支援使用 `*http.Cookie` 來設定 cookie，可以存取 `Expires`、`MaxAge`、`SameSite` 和 `Partitioned` 等欄位。
+يدعم Gin أيضًا تعيين ملفات تعريف الارتباط باستخدام `*http.Cookie`، مما يتيح الوصول إلى حقول مثل `Expires` و `MaxAge` و `SameSite` و `Partitioned`.
 
 ```go
 import (

@@ -46,7 +46,7 @@ func main() {
 Puede probarlo mediante `curl`:
 
 ```bash
-// ヘッダーのチェック
+// Verificar encabezados
 
 curl localhost:8080/ping -I
 
@@ -62,7 +62,7 @@ X-Xss-Protection: 1; mode=block
 Date: Sat, 30 Mar 2024 08:20:44 GMT
 Content-Length: 18
 
-// ホスト・ヘッダー・インジェクションのチェック
+// Verificar inyección de encabezado de host
 
 curl localhost:8080/ping -I -H "Host:neti.ee"
 
@@ -70,4 +70,28 @@ HTTP/1.1 400 Bad Request
 Content-Type: application/json; charset=utf-8
 Date: Sat, 30 Mar 2024 08:21:09 GMT
 Content-Length: 31
+```
+
+Opcionalmente, use [gin helmet](https://github.com/danielkov/gin-helmet) `go get github.com/danielkov/gin-helmet/ginhelmet`
+
+```go
+package main
+
+import (
+  "github.com/gin-gonic/gin"
+  "github.com/danielkov/gin-helmet/ginhelmet"
+)
+
+func main() {
+  r := gin.Default()
+
+  // Usar encabezados de seguridad predeterminados
+  r.Use(ginhelmet.Default())
+
+  r.GET("/", func(c *gin.Context) {
+    c.JSON(200, gin.H{"message": "Hello, World!"})
+  })
+
+  r.Run()
+}
 ```

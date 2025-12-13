@@ -72,6 +72,34 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
+**Nota:** Por favor, envolva seu modelo HTML no bloco `{{define <template-path>}} {{end}}` e defina seu arquivo de modelo com o caminho relativo `<template-path>`. Caso contrário, o GIN não conseguirá analisar os arquivos de modelo corretamente.
+
+### Carregando modelos de um http.FileSystem (v1.11+)
+
+Se seus modelos estão incorporados ou são fornecidos por um `http.FileSystem`, use `LoadHTMLFS`:
+
+```go
+import (
+  "embed"
+  "io/fs"
+  "net/http"
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates
+var tmplFS embed.FS
+
+func main() {
+  r := gin.Default()
+  sub, _ := fs.Sub(tmplFS, "templates")
+  r.LoadHTMLFS(http.FS(sub), "**/*.tmpl")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "From FS"})
+  })
+  r.Run(":8080")
+}
+```
+
 ### Interpretador de Modelo de Marcação Personalizado
 
 Tu podes também usar o teu próprio interpretador de modelo de marcação de HTML:

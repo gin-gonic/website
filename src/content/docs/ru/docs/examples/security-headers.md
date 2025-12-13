@@ -73,3 +73,27 @@ Content-Type: application/json; charset=utf-8
 Date: Sat, 30 Mar 2024 08:21:09 GMT
 Content-Length: 31
 ```
+
+По желанию используйте [gin helmet](https://github.com/danielkov/gin-helmet) `go get github.com/danielkov/gin-helmet/ginhelmet`
+
+```go
+package main
+
+import (
+  "github.com/gin-gonic/gin"
+  "github.com/danielkov/gin-helmet/ginhelmet"
+)
+
+func main() {
+  r := gin.Default()
+
+  // Использовать заголовки безопасности по умолчанию
+  r.Use(ginhelmet.Default())
+
+  r.GET("/", func(c *gin.Context) {
+    c.JSON(200, gin.H{"message": "Hello, World!"})
+  })
+
+  r.Run()
+}
+```

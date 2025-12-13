@@ -72,7 +72,35 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
-### Custom Template renderer
+**Not:** Lütfen HTML şablonunuzu `{{define <template-path>}} {{end}}` bloğuyla sarmalayın ve şablon dosyanızı `<template-path>` göreli yoluyla tanımlayın. Aksi takdirde, GIN şablon dosyalarını düzgün şekilde ayrıştıramaz.
+
+### http.FileSystem'dan şablon yükleme (v1.11+)
+
+Şablonlarınız gömülü ise veya bir `http.FileSystem` tarafından sağlanıyorsa, `LoadHTMLFS` kullanın:
+
+```go
+import (
+  "embed"
+  "io/fs"
+  "net/http"
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates
+var tmplFS embed.FS
+
+func main() {
+  r := gin.Default()
+  sub, _ := fs.Sub(tmplFS, "templates")
+  r.LoadHTMLFS(http.FS(sub), "**/*.tmpl")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "From FS"})
+  })
+  r.Run(":8080")
+}
+```
+
+### Özel Şablon oluşturucu
 
 You can also use your own html template render
 

@@ -1,8 +1,8 @@
 ---
-title: "보안 헤더"
+title: "رؤوس الأمان"
 ---
 
-일반적인 보안 취약점으로부터 웹 애플리케이션을 보호하려면 보안 헤더를 사용하는 것이 중요합니다. 이 예에서는 Gin 애플리케이션에 보안 헤더를 추가하는 방법과 호스트 헤더 인젝션 관련 공격(SSRF, 오픈 리디렉션)을 방지하는 방법을 설명합니다.
+من المهم استخدام رؤوس الأمان لحماية تطبيق الويب الخاص بك من الثغرات الأمنية الشائعة. يوضح لك هذا المثال كيفية إضافة رؤوس الأمان إلى تطبيق Gin الخاص بك وكيفية تجنب الهجمات المتعلقة بـ Host Header Injection (SSRF، Open Redirection).
 
 ```go
 package main
@@ -18,7 +18,7 @@ func main() {
 
   expectedHost := "localhost:8080"
 
-  // Setup Security Headers
+  // إعداد رؤوس الأمان
   r.Use(func(c *gin.Context) {
     if c.Request.Host != expectedHost {
       c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid host header"})
@@ -40,15 +40,14 @@ func main() {
     })
   })
 
-  r.Run() // listen and serve on 0.0.0.0:8080
+  r.Run() // الاستماع والخدمة على 0.0.0.0:8080
 }
 ```
 
-`curl` 로 테스트할 수 있습니다:
-
+يمكنك اختباره عبر `curl`:
 
 ```bash
-// 헤더 확인
+// فحص الرؤوس
 
 curl localhost:8080/ping -I
 
@@ -64,7 +63,7 @@ X-Xss-Protection: 1; mode=block
 Date: Sat, 30 Mar 2024 08:20:44 GMT
 Content-Length: 18
 
-// 호스트 헤더 주입 확인
+// فحص Host Header Injection
 
 curl localhost:8080/ping -I -H "Host:neti.ee"
 
@@ -74,7 +73,7 @@ Date: Sat, 30 Mar 2024 08:21:09 GMT
 Content-Length: 31
 ```
 
-선택적으로 [gin helmet](https://github.com/danielkov/gin-helmet)을 사용할 수 있습니다 `go get github.com/danielkov/gin-helmet/ginhelmet`
+اختياريًا، استخدم [gin helmet](https://github.com/danielkov/gin-helmet) `go get github.com/danielkov/gin-helmet/ginhelmet`
 
 ```go
 package main
@@ -87,7 +86,7 @@ import (
 func main() {
   r := gin.Default()
 
-  // 기본 보안 헤더 사용
+  // استخدام رؤوس الأمان الافتراضية
   r.Use(ginhelmet.Default())
 
   r.GET("/", func(c *gin.Context) {

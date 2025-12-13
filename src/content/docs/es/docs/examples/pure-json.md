@@ -21,17 +21,13 @@ func main() {
       "html": "<b>Hello, world!</b>",
     })
   })
-  
+
+  // Abortar temprano con una respuesta PureJSON y código de estado (v1.11+)
+  router.GET("/abort_purejson", func(c *gin.Context) {
+    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
+  })
+
   // Escucha y sirve peticiones en 0.0.0.0:8080
   router.Run(":8080")
 }
-```
-
-Utilizando `curl` tenemos:
-```
-curl http://localhost:8080/purejson
-{"html":"<b>Hello, world!</b>"}
-
-curl http://localhost:8080/json
-{"html":"\u003cb\u003eHello, world!\u003c/b\u003e"}%
 ```

@@ -23,7 +23,12 @@ func main() {
       "html": "<b>Hello, world!</b>",
     })
   })
-  
+
+  // Досрочное прерывание с ответом PureJSON и кодом состояния (v1.11+)
+  r.GET("/abort_purejson", func(c *gin.Context) {
+    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
+  })
+
   // listen and serve on 0.0.0.0:8080
   r.Run(":8080")
 }

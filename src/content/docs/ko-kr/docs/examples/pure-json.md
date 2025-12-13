@@ -24,6 +24,11 @@ func main() {
     })
   })
 
+  // PureJSON 응답과 상태 코드로 조기 중단 (v1.11+)
+  router.GET("/abort_purejson", func(c *gin.Context) {
+    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
+  })
+
   // 서버가 실행 되고 0.0.0.0:8080 에서 요청을 기다립니다.
   router.Run(":8080")
 }

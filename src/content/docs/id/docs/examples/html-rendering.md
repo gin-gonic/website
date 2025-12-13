@@ -77,6 +77,32 @@ templates/users/index.tmpl
 {{ end }}
 ```
 
+### Memuat templat dari http.FileSystem (v1.11+)
+
+Jika templat Anda di-embed atau disediakan oleh `http.FileSystem`, gunakan `LoadHTMLFS`:
+
+```go
+import (
+  "embed"
+  "io/fs"
+  "net/http"
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates
+var tmplFS embed.FS
+
+func main() {
+  r := gin.Default()
+  sub, _ := fs.Sub(tmplFS, "templates")
+  r.LoadHTMLFS(http.FS(sub), "**/*.tmpl")
+  r.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", gin.H{"title": "From FS"})
+  })
+  r.Run(":8080")
+}
+```
+
 ### Perender Templat Khusus
 
 Anda juga dapat menggunakan perender templat html Anda sendiri.

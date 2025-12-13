@@ -23,7 +23,12 @@ func main() {
       "html": "<b>Hello, world!</b>",
     })
   })
-  
+
+  // PureJSON レスポンスとステータスコードで早期に中断 (v1.11+)
+  router.GET("/abort_purejson", func(c *gin.Context) {
+    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
+  })
+
   // 0.0.0.0:8080 でサーバーを立てます。
   router.Run(":8080")
 }
