@@ -8,13 +8,13 @@ sidebar:
 
 ### 개발 중 라이브 리로드를 활성화하려면 어떻게 하나요?
 
-[Air](https://github.com/cosmtrek/air)를 사용하여 개발 중 자동 라이브 리로드를 구현합니다. Air는 파일을 감시하고 변경이 감지되면 애플리케이션을 자동으로 재빌드/재시작합니다.
+[Air](https://github.com/air-verse/air)를 사용하여 개발 중 자동 라이브 리로드를 구현합니다. Air는 파일을 감시하고 변경이 감지되면 애플리케이션을 자동으로 재빌드/재시작합니다.
 
 **설치:**
 
 ```sh
 # Air 전역 설치
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 ```
 
 **설정:**

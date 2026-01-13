@@ -8,13 +8,13 @@ sidebar:
 
 ### How do I enable live reload during development?
 
-Use [Air](https://github.com/cosmtrek/air) for automatic live reloading during development. Air watches your files and rebuilds/restarts your application when changes are detected.
+Use [Air](https://github.com/air-verse/air) for automatic live reloading during development. Air watches your files and rebuilds/restarts your application when changes are detected.
 
 **Installation:**
 
 ```sh
 # Install Air globally
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 ```
 
 **Setup:**

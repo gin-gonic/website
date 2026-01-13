@@ -8,13 +8,13 @@ sidebar:
 
 ### 開発中にライブリロードを有効にするには？
 
-[Air](https://github.com/cosmtrek/air) を使用して、開発中の自動ライブリロードを実現します。Air はファイルを監視し、変更が検出されるとアプリケーションを自動的に再ビルド/再起動します。
+[Air](https://github.com/air-verse/air) を使用して、開発中の自動ライブリロードを実現します。Air はファイルを監視し、変更が検出されるとアプリケーションを自動的に再ビルド/再起動します。
 
 **インストール：**
 
 ```sh
 # Air をグローバルにインストール
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 ```
 
 **セットアップ：**
