@@ -8,7 +8,7 @@ Welcome to the Gin quickstart! This guide walks you through installing Gin, sett
 
 ## Prerequisites
 
-- **Go**: Version 1.23 or higher should be installed.
+- **Go version**: Gin requires [Go](https://go.dev/) version [1.24](https://go.dev/doc/devel/release#go1.24) or above
 - Confirm Go is in your `PATH` and usable from your terminal. For Go installation help, [see official docs](https://go.dev/doc/install).
 
 ---
