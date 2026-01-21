@@ -8,7 +8,7 @@ Pada quickstart ini, kita akan mendapatkan pengetahuan dari beberapa contoh kode
 
 ## Persyaratan
 
-- Go 1.16 atau di atasnya
+- **Versi Go**: Gin memerlukan [Go](https://go.dev/) versi [1.24](https://go.dev/doc/devel/release#go1.24) atau lebih tinggi
 
 ## Instalasi
 

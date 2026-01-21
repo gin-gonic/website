@@ -8,7 +8,7 @@ Gin Hızlı Başlangıç rehberine hoş geldiniz! Bu rehberde Gin’in kurulumu,
 
 ## Ön Gereksinimler
 
-- **Go**: 1.23 veya üzeri bir sürüm kurulu olmalıdır.
+- **Go sürümü**: Gin, [Go](https://go.dev/) sürümü [1.24](https://go.dev/doc/devel/release#go1.24) veya üstünü gerektirir
 - Go’nun `PATH`'inize ekli olduğundan ve terminalden çalıştığından emin olun. Kurulum için [resmi belgeleri inceleyin](https://golang.org/doc/install).
 
 ---

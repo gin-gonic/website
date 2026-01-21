@@ -8,7 +8,7 @@ sidebar:
 
 ## 必備條件
 
-- **Go：** 請安裝 1.23 或更高版本。
+- **Go 版本**：Gin 需要 [Go](https://go.dev/) 版本 [1.24](https://go.dev/doc/devel/release#go1.24) 或更高
 - 請確認 Go 已加入你的 `PATH`，並可在終端機中使用。如需安裝協助，請參考[官方文件](https://golang.org/doc/install)。
 
 ---

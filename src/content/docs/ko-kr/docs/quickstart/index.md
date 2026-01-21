@@ -8,7 +8,7 @@ Gin 빠른 시작 가이드에 오신 것을 환영합니다! 이 문서는 Gin 
 
 ## 준비 사항
 
-- **Go**: 버전 1.23 이상이 설치되어 있어야 합니다.
+- **Go 버전**: Gin은 [Go](https://go.dev/) 버전 [1.24](https://go.dev/doc/devel/release#go1.24) 이상이 필요합니다
 - Go가 `PATH`에 등록되어 있고 터미널에서 실행 가능한지 확인하세요. 설치 방법은 [공식 문서](https://golang.org/doc/install)에서 확인할 수 있습니다.
 
 ---

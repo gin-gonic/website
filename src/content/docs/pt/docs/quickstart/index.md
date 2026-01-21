@@ -8,7 +8,7 @@ Bem-vindo ao Guia Rápido do Gin! Este guia mostra passo a passo como instalar o
 
 ## Pré-requisitos
 
-- **Go**: versão 1.23 ou superior instalada.
+- **Versão do Go**: O Gin requer [Go](https://go.dev/) versão [1.24](https://go.dev/doc/devel/release#go1.24) ou superior
 - Garanta que o Go está no seu `PATH` e pode ser usado no terminal. Para saber como instalar, veja a [documentação oficial](https://golang.org/doc/install).
 
 ---

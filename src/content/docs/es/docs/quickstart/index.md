@@ -8,7 +8,7 @@ sidebar:
 
 ## Prerrequisitos
 
-- **Go**: Debes tener instalada la versión 1.23 o superior.
+- **Versión de Go**: Gin requiere [Go](https://go.dev/) versión [1.24](https://go.dev/doc/devel/release#go1.24) o superior
 - Asegúrate de que Go esté en tu `PATH` y que puedas usarlo en la terminal. Si necesitas ayuda para instalarlo, [consulta la documentación oficial](https://golang.org/doc/install).
 
 ---
