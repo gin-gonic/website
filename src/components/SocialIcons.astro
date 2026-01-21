@@ -1,0 +1,20 @@
+---
+import DefaultSocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
+import GitHubStars from './GitHubStars.astro';
+import type { Props } from '@astrojs/starlight/props';
+
+const { ...props } = Astro.props;
+---
+
+<div class="social-icons-wrapper">
+  <GitHubStars />
+  <DefaultSocialIcons {...props} />
+</div>
+
+<style>
+  .social-icons-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+</style>

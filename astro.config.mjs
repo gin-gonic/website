@@ -99,6 +99,9 @@ export default defineConfig({
       customCss: ["./src/styles/custom.css"],
       lastUpdated: true,
       credits: false, // Opcional
+      components: {
+        SocialIcons: "./src/components/SocialIcons.astro",
+      },
     }),
     sitemap(),
   ],
