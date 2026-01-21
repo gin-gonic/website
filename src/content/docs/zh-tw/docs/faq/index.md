@@ -8,13 +8,13 @@ sidebar:
 
 ### 如何在開發時啟用即時重載？
 
-使用 [Air](https://github.com/cosmtrek/air) 在開發時自動即時重載。Air 會監控你的檔案，並在偵測到變更時自動重新建置/重啟你的應用程式。
+使用 [Air](https://github.com/air-verse/air) 在開發時自動即時重載。Air 會監控你的檔案，並在偵測到變更時自動重新建置/重啟你的應用程式。
 
 **安裝：**
 
 ```sh
 # 全域安裝 Air
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 ```
 
 **設定：**

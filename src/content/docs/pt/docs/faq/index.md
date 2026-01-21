@@ -8,13 +8,13 @@ sidebar:
 
 ### Como habilito o recarregamento ao vivo durante o desenvolvimento?
 
-Use [Air](https://github.com/cosmtrek/air) para recarregamento automático ao vivo durante o desenvolvimento. O Air observa seus arquivos e reconstrói/reinicia sua aplicação quando mudanças são detectadas.
+Use [Air](https://github.com/air-verse/air) para recarregamento automático ao vivo durante o desenvolvimento. O Air observa seus arquivos e reconstrói/reinicia sua aplicação quando mudanças são detectadas.
 
 **Instalação:**
 
 ```sh
 # Instalar Air globalmente
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 ```
 
 **Configuração:**

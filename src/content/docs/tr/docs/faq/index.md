@@ -8,13 +8,13 @@ sidebar:
 
 ### Geliştirme sırasında canlı yeniden yüklemeyi nasıl etkinleştiririm?
 
-Geliştirme sırasında otomatik canlı yeniden yükleme için [Air](https://github.com/cosmtrek/air) kullanın. Air dosyalarınızı izler ve değişiklikler algılandığında uygulamanızı otomatik olarak yeniden derler/yeniden başlatır.
+Geliştirme sırasında otomatik canlı yeniden yükleme için [Air](https://github.com/air-verse/air) kullanın. Air dosyalarınızı izler ve değişiklikler algılandığında uygulamanızı otomatik olarak yeniden derler/yeniden başlatır.
 
 **Kurulum:**
 
 ```sh
 # Air'i global olarak yükleyin
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 ```
 
 **Kurulum:**

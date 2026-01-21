@@ -8,13 +8,13 @@ sidebar:
 
 ### 如何在开发时启用实时重载？
 
-使用 [Air](https://github.com/cosmtrek/air) 在开发时自动实时重载。Air 会监控你的文件，并在检测到更改时自动重新构建/重启你的应用程序。
+使用 [Air](https://github.com/air-verse/air) 在开发时自动实时重载。Air 会监控你的文件，并在检测到更改时自动重新构建/重启你的应用程序。
 
 **安装：**
 
 ```sh
 # 全局安装 Air
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 ```
 
 **配置：**

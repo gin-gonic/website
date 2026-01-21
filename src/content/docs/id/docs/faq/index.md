@@ -8,13 +8,13 @@ sidebar:
 
 ### Bagaimana cara mengaktifkan live reload saat pengembangan?
 
-Gunakan [Air](https://github.com/cosmtrek/air) untuk live reload otomatis selama pengembangan. Air memantau file Anda dan secara otomatis membangun ulang/memulai ulang aplikasi saat perubahan terdeteksi.
+Gunakan [Air](https://github.com/air-verse/air) untuk live reload otomatis selama pengembangan. Air memantau file Anda dan secara otomatis membangun ulang/memulai ulang aplikasi saat perubahan terdeteksi.
 
 **Instalasi:**
 
 ```sh
 # Instal Air secara global
-go install github.com/cosmtrek/air@latest
+go install github.com/air-verse/air@latest
 ```
 
 **Pengaturan:**
