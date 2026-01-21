@@ -16,6 +16,7 @@ Use these examples as a reference to structure real-world APIs using Gin.
 ## 🧭 What you’ll learn
 
 In this section, you will find examples covering:
+
 - **Server Basics**: Running a server, routing, and configuration.
 - **Request Handling**: Binding JSON, XML, and form data.
 - **Middleware**: Using built-in and custom middleware.
@@ -29,6 +30,7 @@ In this section, you will find examples covering:
 **Goal:** Start a Gin server and handle a basic request.
 
 ### Steps
+
 1. Create a router
 2. Define a route
 3. Start the server
@@ -39,13 +41,14 @@ package main
 import "github.com/gin-gonic/gin"
 
 func main() {
-	r := gin.Default()
+  r := gin.Default()
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+  r.GET("/ping", func(c *gin.Context) {
+    c.JSON(200, gin.H{
+      "message": "pong",
+    })
+  })
 
-	r.Run(":8080") // http://localhost:8080
+  r.Run(":8080") // http://localhost:8080
 }
+```
