@@ -6,7 +6,7 @@ title: "Live Reloading with Air"
 This project demonstrates how to use [Air](https://github.com/air-verse/air) for live reloading in a [Gin](https://github.com/gin-gonic/gin) application. Air automatically rebuilds and restarts your application whenever you modify a file, significantly speeding up the development process.
 
 ## Requirements
-- [Go](https://go.dev/) (version 1.22 or higher recommended)
+- [Go](https://go.dev/) (version 1.24 or higher recommended)
 - [Air](https://github.com/air-verse/air)
 
 ## Setup
