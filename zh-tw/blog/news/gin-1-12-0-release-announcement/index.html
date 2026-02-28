@@ -114,60 +114,60 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 <h3 id="-主要功能">🌟 主要功能</h3>
 <ul>
 <li>
-<p>**BSON 協議支援：**渲染層現已支援 BSON 編碼，為更高效的二進位資料交換打開了大門 (#4145)。</p>
+<p>**BSON 協議支援：**渲染層現已支援 BSON 編碼，為更高效的二進位資料交換打開了大門 (<a href="https://github.com/gin-gonic/gin/pull/4145">#4145</a>)。</p>
 </li>
 <li>
 <p>**新的 Context 方法：**兩個新的輔助方法使錯誤處理更加清晰和符合習慣：</p>
 <ul>
-<li><code dir="auto">GetError</code> 和 <code dir="auto">GetErrorSlice</code> 用於從 context 中型別安全地檢索錯誤 (#4502)</li>
-<li><code dir="auto">Delete</code> 方法用於從 context 中移除鍵 (#38e7651)</li>
+<li><code dir="auto">GetError</code> 和 <code dir="auto">GetErrorSlice</code> 用於從 context 中型別安全地檢索錯誤 (<a href="https://github.com/gin-gonic/gin/pull/4502">#4502</a>)</li>
+<li><code dir="auto">Delete</code> 方法用於從 context 中移除鍵 (<a href="https://github.com/gin-gonic/gin/commit/38e7651">#38e7651</a>)</li>
 </ul>
 </li>
 <li>
-<p>**靈活的綁定：**URI 和查詢綁定現已支援 <code dir="auto">encoding.UnmarshalText</code>，為您提供更多對自訂型別反序列化的控制 (#4203)。</p>
+<p>**靈活的綁定：**URI 和查詢綁定現已支援 <code dir="auto">encoding.UnmarshalText</code>，為您提供更多對自訂型別反序列化的控制 (<a href="https://github.com/gin-gonic/gin/pull/4203">#4203</a>)。</p>
 </li>
 <li>
-<p>**轉義路徑選項：**新的引擎選項允許您選擇使用轉義（原始）請求路徑進行路由 (#4420)。</p>
+<p>**轉義路徑選項：**新的引擎選項允許您選擇使用轉義（原始）請求路徑進行路由 (<a href="https://github.com/gin-gonic/gin/pull/4420">#4420</a>)。</p>
 </li>
 <li>
-<p><strong>協定緩衝區內容協商：</strong><code dir="auto">context</code> 現已支援協定緩衝區作為可協商的內容型別，使 gRPC 風格的回應更容易整合 (#4423)。</p>
+<p><strong>協定緩衝區內容協商：</strong><code dir="auto">context</code> 現已支援協定緩衝區作為可協商的內容型別，使 gRPC 風格的回應更容易整合 (<a href="https://github.com/gin-gonic/gin/pull/4423">#4423</a>)。</p>
 </li>
 <li>
-<p>**Logger 中的彩色延遲顯示：**預設 logger 現以彩色呈現延遲，使您更容易一眼識別慢請求 (#4146)。</p>
+<p>**Logger 中的彩色延遲顯示：**預設 logger 現以彩色呈現延遲，使您更容易一眼識別慢請求 (<a href="https://github.com/gin-gonic/gin/pull/4146">#4146</a>)。</p>
 </li>
 </ul>
 <h3 id="-效能與增強">🚀 效能與增強</h3>
 <ul>
 <li>**路由樹優化：**對基數樹的多項改進減少了配置並加快了路徑解析：
 <ul>
-<li><code dir="auto">findCaseInsensitivePath</code> 中的更少配置 (#4417)</li>
-<li>使用 <code dir="auto">strings.Count</code> 進行高效的路徑解析 (#4246)</li>
-<li>在 <code dir="auto">redirectTrailingSlash</code> 中用自訂函式替換正規表達式 (#4414)</li>
+<li><code dir="auto">findCaseInsensitivePath</code> 中的更少配置 (<a href="https://github.com/gin-gonic/gin/pull/4417">#4417</a>)</li>
+<li>使用 <code dir="auto">strings.Count</code> 進行高效的路徑解析 (<a href="https://github.com/gin-gonic/gin/pull/4246">#4246</a>)</li>
+<li>在 <code dir="auto">redirectTrailingSlash</code> 中用自訂函式替換正規表達式 (<a href="https://github.com/gin-gonic/gin/pull/4414">#4414</a>)</li>
 </ul>
 </li>
-<li>**復原優化：**堆疊追蹤讀取現已更加高效 (#4466)。</li>
-<li>**Logger 改進：**現可透過設定跳過查詢字串輸出 (#4547)。</li>
-<li>**Unix Socket 信任：**當請求透過 Unix socket 到達時，<code dir="auto">X-Forwarded-For</code> 標頭現已始終受信任 (#3359)。</li>
-<li>**Flush 安全性：**當底層 <code dir="auto">http.ResponseWriter</code> 未實現 <code dir="auto">http.Flusher</code> 時，<code dir="auto">Flush()</code> 不再當機 (#4479)。</li>
-<li>**程式碼品質重構：**使用 <code dir="auto">maps.Copy</code> 和 <code dir="auto">maps.Clone</code> 的更清晰的 map 處理，用具名常數替換魔術數字，現代化的 range-over-int 迴圈等 (#4352、#4333、#4529、#4392)。</li>
+<li>**復原優化：**堆疊追蹤讀取現已更加高效 (<a href="https://github.com/gin-gonic/gin/pull/4466">#4466</a>)。</li>
+<li>**Logger 改進：**現可透過設定跳過查詢字串輸出 (<a href="https://github.com/gin-gonic/gin/pull/4547">#4547</a>)。</li>
+<li>**Unix Socket 信任：**當請求透過 Unix socket 到達時，<code dir="auto">X-Forwarded-For</code> 標頭現已始終受信任 (<a href="https://github.com/gin-gonic/gin/pull/3359">#3359</a>)。</li>
+<li>**Flush 安全性：**當底層 <code dir="auto">http.ResponseWriter</code> 未實現 <code dir="auto">http.Flusher</code> 時，<code dir="auto">Flush()</code> 不再當機 (<a href="https://github.com/gin-gonic/gin/pull/4479">#4479</a>)。</li>
+<li>**程式碼品質重構：**使用 <code dir="auto">maps.Copy</code> 和 <code dir="auto">maps.Clone</code> 的更清晰的 map 處理，用具名常數替換魔術數字，現代化的 range-over-int 迴圈等 (<a href="https://github.com/gin-gonic/gin/pull/4352">#4352</a>, <a href="https://github.com/gin-gonic/gin/pull/4333">#4333</a>, <a href="https://github.com/gin-gonic/gin/pull/4529">#4529</a>, <a href="https://github.com/gin-gonic/gin/pull/4392">#4392</a>)。</li>
 </ul>
 <h3 id="-錯誤修復">🐛 錯誤修復</h3>
 <ul>
-<li>**路由當機已修復：**修復了啟用 <code dir="auto">RedirectFixedPath</code> 時 <code dir="auto">findCaseInsensitivePathRec</code> 中的當機 (#4535)。</li>
-<li><strong>Data 渲染中的 Content-Length：</strong><code dir="auto">Data.Render</code> 現已正確寫入 <code dir="auto">Content-Length</code> 標頭 (#4206)。</li>
-<li><strong>多標頭的 ClientIP：</strong><code dir="auto">ClientIP</code> 現已正確處理具有多個 <code dir="auto">X-Forwarded-For</code> 標頭值的請求 (#4472)。</li>
-<li>**綁定邊界情況：**修復了綁定中的空值錯誤 (#2169) 並改進了表單綁定中的空切片/陣列處理 (#4380)。</li>
-<li>**文字冒號路由：**帶有文字冒號的路由現已正確地與 <code dir="auto">engine.Handler()</code> 配合工作 (#4415)。</li>
-<li><strong>檔案描述符洩漏：</strong><code dir="auto">RunFd</code> 現已正確關閉 <code dir="auto">os.File</code> 句柄以防止資源洩漏 (#4422)。</li>
-<li>**Hijack 行為：**優化了 hijack 行為以正確模型化回應生命週期 (#4373)。</li>
-<li><strong>復原：</strong><code dir="auto">http.ErrAbortHandler</code> 現已如預期那樣在復原中介軟體中被抑制 (#4336)。</li>
-<li>**偵錯版本不符：**修復了在偵錯模式下報告的不正確版本字串 (#4403)。</li>
+<li>**路由當機已修復：**修復了啟用 <code dir="auto">RedirectFixedPath</code> 時 <code dir="auto">findCaseInsensitivePathRec</code> 中的當機 (<a href="https://github.com/gin-gonic/gin/pull/4535">#4535</a>)。</li>
+<li><strong>Data 渲染中的 Content-Length：</strong><code dir="auto">Data.Render</code> 現已正確寫入 <code dir="auto">Content-Length</code> 標頭 (<a href="https://github.com/gin-gonic/gin/pull/4206">#4206</a>)。</li>
+<li><strong>多標頭的 ClientIP：</strong><code dir="auto">ClientIP</code> 現已正確處理具有多個 <code dir="auto">X-Forwarded-For</code> 標頭值的請求 (<a href="https://github.com/gin-gonic/gin/pull/4472">#4472</a>)。</li>
+<li>**綁定邊界情況：**修復了綁定中的空值錯誤 (<a href="https://github.com/gin-gonic/gin/pull/2169">#2169</a>) 並改進了表單綁定中的空切片/陣列處理 (<a href="https://github.com/gin-gonic/gin/pull/4380">#4380</a>)。</li>
+<li>**文字冒號路由：**帶有文字冒號的路由現已正確地與 <code dir="auto">engine.Handler()</code> 配合工作 (<a href="https://github.com/gin-gonic/gin/pull/4415">#4415</a>)。</li>
+<li><strong>檔案描述符洩漏：</strong><code dir="auto">RunFd</code> 現已正確關閉 <code dir="auto">os.File</code> 句柄以防止資源洩漏 (<a href="https://github.com/gin-gonic/gin/pull/4422">#4422</a>)。</li>
+<li>**Hijack 行為：**優化了 hijack 行為以正確模型化回應生命週期 (<a href="https://github.com/gin-gonic/gin/pull/4373">#4373</a>)。</li>
+<li><strong>復原：</strong><code dir="auto">http.ErrAbortHandler</code> 現已如預期那樣在復原中介軟體中被抑制 (<a href="https://github.com/gin-gonic/gin/pull/4336">#4336</a>)。</li>
+<li>**偵錯版本不符：**修復了在偵錯模式下報告的不正確版本字串 (<a href="https://github.com/gin-gonic/gin/pull/4403">#4403</a>)。</li>
 </ul>
 <h3 id="-建置相依性與-ci-更新">🔧 建置、相依性與 CI 更新</h3>
 <ul>
-<li>**Go 1.25 最低版本：**最低支援的 Go 版本現為 <strong>1.25</strong>，CI 工作流程也已相應更新 (#4550)。</li>
-<li>**BSON 相依性升級：**BSON 綁定相依性已升級至 <code dir="auto">mongo-driver</code> v2 (#4549)。</li>
+<li>**Go 1.25 最低版本：**最低支援的 Go 版本現為 <strong>1.25</strong>，CI 工作流程也已相應更新 (<a href="https://github.com/gin-gonic/gin/pull/4550">#4550</a>)。</li>
+<li>**BSON 相依性升級：**BSON 綁定相依性已升級至 <code dir="auto">mongo-driver</code> v2 (<a href="https://github.com/gin-gonic/gin/pull/4549">#4549</a>)。</li>
 </ul>
 <hr>
 <p>Gin 1.12.0 反映了我們社群的奉獻——貢獻者、審核者和使用者。感謝您在每個版本中使 Gin 變得更好。</p>
-<p>準備好試用 Gin 1.12.0 了嗎？在 GitHub 上升級並告訴我們您的想法！</p> </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n"> <a href="https://github.com/gin-gonic/website/edit/master/src/content/docs/zh-tw/blog/news/gin-1-12-0-release-announcement.md" class="sl-flex print:hidden astro-eez2twj6"><svg aria-hidden="true" class="astro-eez2twj6 astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg> 編輯頁面</a> <p>最後更新於： <time datetime="2026-02-28T00:00:00.000Z">2026年2月28日</time></p> </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/zh-tw/blog/news/gin-1-11-0-release-announcement/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> 前一則 <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Gin 1.11.0 發布！HTTP/3、表單改進、效能提升及更多</span> </span> </a> <a href="/zh-tw/blog/news/how-to-build-one-effective-middleware/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> 下一則 <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">如何建立一個有效的中介軟體</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>
+<p>準備好試用 Gin 1.12.0 了嗎？<a href="https://github.com/gin-gonic/gin/releases/tag/v1.12.0">在 GitHub 上升級</a>並告訴我們您的想法！</p> </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n"> <a href="https://github.com/gin-gonic/website/edit/master/src/content/docs/zh-tw/blog/news/gin-1-12-0-release-announcement.md" class="sl-flex print:hidden astro-eez2twj6"><svg aria-hidden="true" class="astro-eez2twj6 astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg> 編輯頁面</a> <p>最後更新於： <time datetime="2026-02-28T00:00:00.000Z">2026年2月28日</time></p> </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/zh-tw/blog/news/gin-1-11-0-release-announcement/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> 前一則 <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Gin 1.11.0 發布！HTTP/3、表單改進、效能提升及更多</span> </span> </a> <a href="/zh-tw/blog/news/how-to-build-one-effective-middleware/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> 下一則 <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">如何建立一個有效的中介軟體</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

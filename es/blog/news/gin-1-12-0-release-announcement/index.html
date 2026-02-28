@@ -114,60 +114,60 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 <h3 id="-características-clave">🌟 Características Clave</h3>
 <ul>
 <li>
-<p><strong>Compatibilidad con Protocolo BSON:</strong> La capa de renderizado ahora admite codificación BSON, abriendo la puerta a un intercambio de datos binarios más eficiente (#4145).</p>
+<p><strong>Compatibilidad con Protocolo BSON:</strong> La capa de renderizado ahora admite codificación BSON, abriendo la puerta a un intercambio de datos binarios más eficiente (<a href="https://github.com/gin-gonic/gin/pull/4145">#4145</a>).</p>
 </li>
 <li>
 <p><strong>Nuevos Métodos de Context:</strong> Dos nuevos auxiliares hacen que el manejo de errores sea más limpio e idiomático:</p>
 <ul>
-<li><code dir="auto">GetError</code> y <code dir="auto">GetErrorSlice</code> para la recuperación de errores de tipo seguro desde el contexto (#4502)</li>
-<li>Método <code dir="auto">Delete</code> para eliminar claves del contexto (#38e7651)</li>
+<li><code dir="auto">GetError</code> y <code dir="auto">GetErrorSlice</code> para la recuperación de errores de tipo seguro desde el contexto (<a href="https://github.com/gin-gonic/gin/pull/4502">#4502</a>)</li>
+<li>Método <code dir="auto">Delete</code> para eliminar claves del contexto (<a href="https://github.com/gin-gonic/gin/commit/38e7651">#38e7651</a>)</li>
 </ul>
 </li>
 <li>
-<p><strong>Enlace Flexible:</strong> El enlace de URI y consulta ahora respeta <code dir="auto">encoding.UnmarshalText</code>, dándole más control sobre la deserialización de tipos personalizados (#4203).</p>
+<p><strong>Enlace Flexible:</strong> El enlace de URI y consulta ahora respeta <code dir="auto">encoding.UnmarshalText</code>, dándole más control sobre la deserialización de tipos personalizados (<a href="https://github.com/gin-gonic/gin/pull/4203">#4203</a>).</p>
 </li>
 <li>
-<p><strong>Opción de Ruta Escapada:</strong> Una nueva opción de motor te permite optar por usar la ruta de solicitud escapada (cruda) para el enrutamiento (#4420).</p>
+<p><strong>Opción de Ruta Escapada:</strong> Una nueva opción de motor te permite optar por usar la ruta de solicitud escapada (cruda) para el enrutamiento (<a href="https://github.com/gin-gonic/gin/pull/4420">#4420</a>).</p>
 </li>
 <li>
-<p><strong>Búferes de Protocolo en Negociación de Contenido:</strong> <code dir="auto">context</code> ahora admite Búferes de Protocolo como tipo de contenido negociable, facilitando la integración de respuestas de estilo gRPC (#4423).</p>
+<p><strong>Búferes de Protocolo en Negociación de Contenido:</strong> <code dir="auto">context</code> ahora admite Búferes de Protocolo como tipo de contenido negociable, facilitando la integración de respuestas de estilo gRPC (<a href="https://github.com/gin-gonic/gin/pull/4423">#4423</a>).</p>
 </li>
 <li>
-<p><strong>Latencia Colorizada en Logger:</strong> El logger predeterminado ahora representa la latencia con color, facilitando la identificación de solicitudes lentas de un vistazo (#4146).</p>
+<p><strong>Latencia Colorizada en Logger:</strong> El logger predeterminado ahora representa la latencia con color, facilitando la identificación de solicitudes lentas de un vistazo (<a href="https://github.com/gin-gonic/gin/pull/4146">#4146</a>).</p>
 </li>
 </ul>
 <h3 id="-rendimiento-y-mejoras">🚀 Rendimiento y Mejoras</h3>
 <ul>
 <li><strong>Optimizaciones del Árbol de Enrutamiento:</strong> Múltiples mejoras al árbol radix reducen asignaciones y aceleran el análisis de rutas:
 <ul>
-<li>Menos asignaciones en <code dir="auto">findCaseInsensitivePath</code> (#4417)</li>
-<li>Análisis de rutas usando <code dir="auto">strings.Count</code> para eficiencia (#4246)</li>
-<li>Expresiones regulares reemplazadas con funciones personalizadas en <code dir="auto">redirectTrailingSlash</code> (#4414)</li>
+<li>Menos asignaciones en <code dir="auto">findCaseInsensitivePath</code> (<a href="https://github.com/gin-gonic/gin/pull/4417">#4417</a>)</li>
+<li>Análisis de rutas usando <code dir="auto">strings.Count</code> para eficiencia (<a href="https://github.com/gin-gonic/gin/pull/4246">#4246</a>)</li>
+<li>Expresiones regulares reemplazadas con funciones personalizadas en <code dir="auto">redirectTrailingSlash</code> (<a href="https://github.com/gin-gonic/gin/pull/4414">#4414</a>)</li>
 </ul>
 </li>
-<li><strong>Optimización de Recuperación:</strong> La lectura de seguimiento de pila ahora es más eficiente (#4466).</li>
-<li><strong>Mejoras del Logger:</strong> La salida de cadena de consulta ahora se puede omitir mediante configuración (#4547).</li>
-<li><strong>Confianza de Socket Unix:</strong> Los encabezados <code dir="auto">X-Forwarded-For</code> ahora siempre son de confianza cuando las solicitudes llegan a través de un socket Unix (#3359).</li>
-<li><strong>Seguridad de Flush:</strong> <code dir="auto">Flush()</code> ya no genera pánico cuando el <code dir="auto">http.ResponseWriter</code> subyacente no implementa <code dir="auto">http.Flusher</code> (#4479).</li>
-<li><strong>Refactorizaciones de Calidad de Código:</strong> Manejo de mapas más limpio con <code dir="auto">maps.Copy</code> y <code dir="auto">maps.Clone</code>, constantes nombradas reemplazando números mágicos, bucles range-over-int modernizados y más (#4352, #4333, #4529, #4392).</li>
+<li><strong>Optimización de Recuperación:</strong> La lectura de seguimiento de pila ahora es más eficiente (<a href="https://github.com/gin-gonic/gin/pull/4466">#4466</a>).</li>
+<li><strong>Mejoras del Logger:</strong> La salida de cadena de consulta ahora se puede omitir mediante configuración (<a href="https://github.com/gin-gonic/gin/pull/4547">#4547</a>).</li>
+<li><strong>Confianza de Socket Unix:</strong> Los encabezados <code dir="auto">X-Forwarded-For</code> ahora siempre son de confianza cuando las solicitudes llegan a través de un socket Unix (<a href="https://github.com/gin-gonic/gin/pull/3359">#3359</a>).</li>
+<li><strong>Seguridad de Flush:</strong> <code dir="auto">Flush()</code> ya no genera pánico cuando el <code dir="auto">http.ResponseWriter</code> subyacente no implementa <code dir="auto">http.Flusher</code> (<a href="https://github.com/gin-gonic/gin/pull/4479">#4479</a>).</li>
+<li><strong>Refactorizaciones de Calidad de Código:</strong> Manejo de mapas más limpio con <code dir="auto">maps.Copy</code> y <code dir="auto">maps.Clone</code>, constantes nombradas reemplazando números mágicos, bucles range-over-int modernizados y más (<a href="https://github.com/gin-gonic/gin/pull/4352">#4352</a>, <a href="https://github.com/gin-gonic/gin/pull/4333">#4333</a>, <a href="https://github.com/gin-gonic/gin/pull/4529">#4529</a>, <a href="https://github.com/gin-gonic/gin/pull/4392">#4392</a>).</li>
 </ul>
 <h3 id="-correcciones-de-errores">🐛 Correcciones de Errores</h3>
 <ul>
-<li><strong>Pánico del Enrutador Corregido:</strong> Se resolvió un pánico en <code dir="auto">findCaseInsensitivePathRec</code> cuando <code dir="auto">RedirectFixedPath</code> está habilitado (#4535).</li>
-<li><strong>Content-Length en Renderizado de Datos:</strong> <code dir="auto">Data.Render</code> ahora escriba correctamente el encabezado <code dir="auto">Content-Length</code> (#4206).</li>
-<li><strong>ClientIP con Múltiples Encabezados:</strong> <code dir="auto">ClientIP</code> ahora maneja correctamente solicitudes con múltiples valores de encabezado <code dir="auto">X-Forwarded-For</code> (#4472).</li>
-<li><strong>Casos Límite de Enlace:</strong> Se corrigieron errores de valor vacío en enlace (#2169) y se mejoró el manejo de matrices/slices vacíos en enlace de formulario (#4380).</li>
-<li><strong>Rutas con Dos Puntos Literales:</strong> Las rutas con dos puntos literales ahora funcionan correctamente con <code dir="auto">engine.Handler()</code> (#4415).</li>
-<li><strong>Fuga de Descriptor de Archivo:</strong> <code dir="auto">RunFd</code> ahora cierra correctamente el identificador <code dir="auto">os.File</code> para prevenir fugas de recursos (#4422).</li>
-<li><strong>Comportamiento de Hijack:</strong> Se refinó el comportamiento de hijack para modelar correctamente el ciclo de vida de la respuesta (#4373).</li>
-<li><strong>Recuperación:</strong> <code dir="auto">http.ErrAbortHandler</code> ahora se suprime en el middleware de recuperación como se pretendía (#4336).</li>
-<li><strong>Versión Debug No Coincidente:</strong> Se corrigió una cadena de versión incorrecta reportada en modo de depuración (#4403).</li>
+<li><strong>Pánico del Enrutador Corregido:</strong> Se resolvió un pánico en <code dir="auto">findCaseInsensitivePathRec</code> cuando <code dir="auto">RedirectFixedPath</code> está habilitado (<a href="https://github.com/gin-gonic/gin/pull/4535">#4535</a>).</li>
+<li><strong>Content-Length en Renderizado de Datos:</strong> <code dir="auto">Data.Render</code> ahora escriba correctamente el encabezado <code dir="auto">Content-Length</code> (<a href="https://github.com/gin-gonic/gin/pull/4206">#4206</a>).</li>
+<li><strong>ClientIP con Múltiples Encabezados:</strong> <code dir="auto">ClientIP</code> ahora maneja correctamente solicitudes con múltiples valores de encabezado <code dir="auto">X-Forwarded-For</code> (<a href="https://github.com/gin-gonic/gin/pull/4472">#4472</a>).</li>
+<li><strong>Casos Límite de Enlace:</strong> Se corrigieron errores de valor vacío en enlace (<a href="https://github.com/gin-gonic/gin/pull/2169">#2169</a>) y se mejoró el manejo de matrices/slices vacíos en enlace de formulario (<a href="https://github.com/gin-gonic/gin/pull/4380">#4380</a>).</li>
+<li><strong>Rutas con Dos Puntos Literales:</strong> Las rutas con dos puntos literales ahora funcionan correctamente con <code dir="auto">engine.Handler()</code> (<a href="https://github.com/gin-gonic/gin/pull/4415">#4415</a>).</li>
+<li><strong>Fuga de Descriptor de Archivo:</strong> <code dir="auto">RunFd</code> ahora cierra correctamente el identificador <code dir="auto">os.File</code> para prevenir fugas de recursos (<a href="https://github.com/gin-gonic/gin/pull/4422">#4422</a>).</li>
+<li><strong>Comportamiento de Hijack:</strong> Se refinó el comportamiento de hijack para modelar correctamente el ciclo de vida de la respuesta (<a href="https://github.com/gin-gonic/gin/pull/4373">#4373</a>).</li>
+<li><strong>Recuperación:</strong> <code dir="auto">http.ErrAbortHandler</code> ahora se suprime en el middleware de recuperación como se pretendía (<a href="https://github.com/gin-gonic/gin/pull/4336">#4336</a>).</li>
+<li><strong>Versión Debug No Coincidente:</strong> Se corrigió una cadena de versión incorrecta reportada en modo de depuración (<a href="https://github.com/gin-gonic/gin/pull/4403">#4403</a>).</li>
 </ul>
 <h3 id="-actualizaciones-de-compilación-dependencia-e-ic">🔧 Actualizaciones de Compilación, Dependencia e IC</h3>
 <ul>
-<li><strong>Mínimo de Go 1.25:</strong> La versión mínima de Go compatible ahora es <strong>1.25</strong>, con flujos de trabajo de CI actualizados en consecuencia (#4550).</li>
-<li><strong>Actualización de Dependencia BSON:</strong> La dependencia de enlace BSON ha sido actualizada a <code dir="auto">mongo-driver</code> v2 (#4549).</li>
+<li><strong>Mínimo de Go 1.25:</strong> La versión mínima de Go compatible ahora es <strong>1.25</strong>, con flujos de trabajo de CI actualizados en consecuencia (<a href="https://github.com/gin-gonic/gin/pull/4550">#4550</a>).</li>
+<li><strong>Actualización de Dependencia BSON:</strong> La dependencia de enlace BSON ha sido actualizada a <code dir="auto">mongo-driver</code> v2 (<a href="https://github.com/gin-gonic/gin/pull/4549">#4549</a>).</li>
 </ul>
 <hr>
 <p>Gin 1.12.0 refleja la dedicación de nuestra comunidad: colaboradores, revisores y usuarios por igual. ¡Gracias por hacer que Gin sea mejor con cada lanzamiento!</p>
-<p>¿Listo para probar Gin 1.12.0? ¡Actualiza en GitHub y cuéntanos qué piensas!</p> </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n"> <a href="https://github.com/gin-gonic/website/edit/master/src/content/docs/es/blog/news/gin-1-12-0-release-announcement.md" class="sl-flex print:hidden astro-eez2twj6"><svg aria-hidden="true" class="astro-eez2twj6 astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg> Edita esta página</a> <p>Última actualización: <time datetime="2026-02-28T00:00:00.000Z">28 feb 2026</time></p> </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/es/blog/news/gin-1-11-0-release-announcement/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> Página anterior <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">¡Gin 1.11.0 ha llegado! HTTP/3, mejoras de formularios, rendimiento y más</span> </span> </a> <a href="/es/blog/news/how-to-build-one-effective-middleware/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> Siguiente página <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Cómo construir un middleware efectivo</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>
+<p>¿Listo para probar Gin 1.12.0? ¡<a href="https://github.com/gin-gonic/gin/releases/tag/v1.12.0">Actualiza en GitHub</a> y cuéntanos qué piensas!</p> </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n"> <a href="https://github.com/gin-gonic/website/edit/master/src/content/docs/es/blog/news/gin-1-12-0-release-announcement.md" class="sl-flex print:hidden astro-eez2twj6"><svg aria-hidden="true" class="astro-eez2twj6 astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg> Edita esta página</a> <p>Última actualización: <time datetime="2026-02-28T00:00:00.000Z">28 feb 2026</time></p> </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/es/blog/news/gin-1-11-0-release-announcement/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> Página anterior <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">¡Gin 1.11.0 ha llegado! HTTP/3, mejoras de formularios, rendimiento y más</span> </span> </a> <a href="/es/blog/news/how-to-build-one-effective-middleware/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> Siguiente página <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Cómo construir un middleware efectivo</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>

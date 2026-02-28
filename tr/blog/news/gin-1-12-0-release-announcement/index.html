@@ -114,60 +114,60 @@ svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-si
 <h3 id="-ana-özellikler">🌟 Ana Özellikler</h3>
 <ul>
 <li>
-<p><strong>BSON Protokol Desteği:</strong> İşleme katmanı artık BSON kodlamasını destekliyor; daha verimli ikili veri alışverişinin kapısını açıyor (#4145).</p>
+<p><strong>BSON Protokol Desteği:</strong> İşleme katmanı artık BSON kodlamasını destekliyor; daha verimli ikili veri alışverişinin kapısını açıyor (<a href="https://github.com/gin-gonic/gin/pull/4145">#4145</a>).</p>
 </li>
 <li>
 <p><strong>Yeni Context Yöntemleri:</strong> İki yeni yardımcı, hata işlemeyi daha temiz ve deyimsel hale getirir:</p>
 <ul>
-<li>Bağlamdan tür güvenli hata alınması için <code dir="auto">GetError</code> ve <code dir="auto">GetErrorSlice</code> (#4502)</li>
-<li>Bağlamdan anahtarları kaldırmak için <code dir="auto">Delete</code> yöntemi (#38e7651)</li>
+<li>Bağlamdan tür güvenli hata alınması için <code dir="auto">GetError</code> ve <code dir="auto">GetErrorSlice</code> (<a href="https://github.com/gin-gonic/gin/pull/4502">#4502</a>)</li>
+<li>Bağlamdan anahtarları kaldırmak için <code dir="auto">Delete</code> yöntemi (<a href="https://github.com/gin-gonic/gin/commit/38e7651">#38e7651</a>)</li>
 </ul>
 </li>
 <li>
-<p><strong>Esnek Bağlama:</strong> URI ve sorgu bağlama artık <code dir="auto">encoding.UnmarshalText</code> öğesine uyuyor; özel tür seri durumdan çıkarma üzerinde daha fazla kontrol sağlıyor (#4203).</p>
+<p><strong>Esnek Bağlama:</strong> URI ve sorgu bağlama artık <code dir="auto">encoding.UnmarshalText</code> öğesine uyuyor; özel tür seri durumdan çıkarma üzerinde daha fazla kontrol sağlıyor (<a href="https://github.com/gin-gonic/gin/pull/4203">#4203</a>).</p>
 </li>
 <li>
-<p><strong>Kaçan Yol Seçeneği:</strong> Yeni bir motor seçeneği, yönlendirme için kaçan (ham) istek yolunu kullanmayı seçmenizi sağlar (#4420).</p>
+<p><strong>Kaçan Yol Seçeneği:</strong> Yeni bir motor seçeneği, yönlendirme için kaçan (ham) istek yolunu kullanmayı seçmenizi sağlar (<a href="https://github.com/gin-gonic/gin/pull/4420">#4420</a>).</p>
 </li>
 <li>
-<p><strong>İçerik Müzakeresinde Protocol Buffers:</strong> <code dir="auto">context</code> artık Protocol Buffers’ı müzakere edilebilir bir içerik türü olarak destekliyor ve gRPC tarzı yanıtlar tümleştirmeyi kolaylaştırıyor (#4423).</p>
+<p><strong>İçerik Müzakeresinde Protocol Buffers:</strong> <code dir="auto">context</code> artık Protocol Buffers’ı müzakere edilebilir bir içerik türü olarak destekliyor ve gRPC tarzı yanıtlar tümleştirmeyi kolaylaştırıyor (<a href="https://github.com/gin-gonic/gin/pull/4423">#4423</a>).</p>
 </li>
 <li>
-<p><strong>Logger’da Renklendirilmiş Gecikme:</strong> Varsayılan günlükçü artık gecikmeyi renkle işliyor; yavaş istekleri bir bakışta tespit etmeyi kolaylaştırıyor (#4146).</p>
+<p><strong>Logger’da Renklendirilmiş Gecikme:</strong> Varsayılan günlükçü artık gecikmeyi renkle işliyor; yavaş istekleri bir bakışta tespit etmeyi kolaylaştırıyor (<a href="https://github.com/gin-gonic/gin/pull/4146">#4146</a>).</p>
 </li>
 </ul>
 <h3 id="-performans-ve-i̇yileştirmeler">🚀 Performans ve İyileştirmeler</h3>
 <ul>
 <li><strong>Yönlendirici Ağacı Optimizasyonları:</strong> Radix ağacında yapılan birden fazla iyileştirme, ayırmaları azaltır ve yol ayrıştırmasını hızlandırır:
 <ul>
-<li><code dir="auto">findCaseInsensitivePath</code> içinde daha az ayırma (#4417)</li>
-<li>Verimlilik için <code dir="auto">strings.Count</code> kullanarak yol ayrıştırması (#4246)</li>
-<li><code dir="auto">redirectTrailingSlash</code> içinde normal ifadeler özel işlevlerle değiştirildi (#4414)</li>
+<li><code dir="auto">findCaseInsensitivePath</code> içinde daha az ayırma (<a href="https://github.com/gin-gonic/gin/pull/4417">#4417</a>)</li>
+<li>Verimlilik için <code dir="auto">strings.Count</code> kullanarak yol ayrıştırması (<a href="https://github.com/gin-gonic/gin/pull/4246">#4246</a>)</li>
+<li><code dir="auto">redirectTrailingSlash</code> içinde normal ifadeler özel işlevlerle değiştirildi (<a href="https://github.com/gin-gonic/gin/pull/4414">#4414</a>)</li>
 </ul>
 </li>
-<li><strong>Kurtarma Optimizasyonu:</strong> Yığın izi okuma artık daha verimli (#4466).</li>
-<li><strong>Logger İyileştirmeleri:</strong> Sorgu dizesi çıkışı artık yapılandırma yoluyla atlanabilir (#4547).</li>
-<li><strong>Unix Soket Güveni:</strong> Unix soketi üzerinden istekler geldiğinde <code dir="auto">X-Forwarded-For</code> başlıkları artık her zaman güvenilir (#3359).</li>
-<li><strong>Temizleme Güvenliği:</strong> Temel <code dir="auto">http.ResponseWriter</code> <code dir="auto">http.Flusher</code> uygulamadığında <code dir="auto">Flush()</code> artık panik oluşturmuyor (#4479).</li>
-<li><strong>Kod Kalitesi Yeniden Düzenlemesi:</strong> <code dir="auto">maps.Copy</code> ve <code dir="auto">maps.Clone</code> ile daha temiz harita işleme, sihirli sayıları değiştiren adlandırılmış sabitler, modernize edilmiş range-over-int döngüleri ve daha fazlası (#4352, #4333, #4529, #4392).</li>
+<li><strong>Kurtarma Optimizasyonu:</strong> Yığın izi okuma artık daha verimli (<a href="https://github.com/gin-gonic/gin/pull/4466">#4466</a>).</li>
+<li><strong>Logger İyileştirmeleri:</strong> Sorgu dizesi çıkışı artık yapılandırma yoluyla atlanabilir (<a href="https://github.com/gin-gonic/gin/pull/4547">#4547</a>).</li>
+<li><strong>Unix Soket Güveni:</strong> Unix soketi üzerinden istekler geldiğinde <code dir="auto">X-Forwarded-For</code> başlıkları artık her zaman güvenilir (<a href="https://github.com/gin-gonic/gin/pull/3359">#3359</a>).</li>
+<li><strong>Temizleme Güvenliği:</strong> Temel <code dir="auto">http.ResponseWriter</code> <code dir="auto">http.Flusher</code> uygulamadığında <code dir="auto">Flush()</code> artık panik oluşturmuyor (<a href="https://github.com/gin-gonic/gin/pull/4479">#4479</a>).</li>
+<li><strong>Kod Kalitesi Yeniden Düzenlemesi:</strong> <code dir="auto">maps.Copy</code> ve <code dir="auto">maps.Clone</code> ile daha temiz harita işleme, sihirli sayıları değiştiren adlandırılmış sabitler, modernize edilmiş range-over-int döngüleri ve daha fazlası (<a href="https://github.com/gin-gonic/gin/pull/4352">#4352</a>, <a href="https://github.com/gin-gonic/gin/pull/4333">#4333</a>, <a href="https://github.com/gin-gonic/gin/pull/4529">#4529</a>, <a href="https://github.com/gin-gonic/gin/pull/4392">#4392</a>).</li>
 </ul>
 <h3 id="-hata-düzeltmeleri">🐛 Hata Düzeltmeleri</h3>
 <ul>
-<li><strong>Yönlendirici Paniği Düzeltildi:</strong> <code dir="auto">RedirectFixedPath</code> etkinleştirildiğinde <code dir="auto">findCaseInsensitivePathRec</code> içinde meydana gelen panik çözüldü (#4535).</li>
-<li><strong>Veri İşlemesinde Content-Length:</strong> <code dir="auto">Data.Render</code> artık <code dir="auto">Content-Length</code> başlığını doğru yazıyor (#4206).</li>
-<li><strong>Birden Fazla Başlıklı ClientIP:</strong> <code dir="auto">ClientIP</code> artık birden fazla <code dir="auto">X-Forwarded-For</code> başlığı değeri olan istekleri doğru şekilde işliyor (#4472).</li>
-<li><strong>Bağlama Kenar Durumları:</strong> Bağlamada boş değer hatası düzeltildi (#2169) ve form bağlamasında boş dilim/dizi işlemesi iyileştirildi (#4380).</li>
-<li><strong>Literal Iki Nokta Rotaları:</strong> Literal iki nokta içeren rotalar artık <code dir="auto">engine.Handler()</code> ile doğru şekilde çalışıyor (#4415).</li>
-<li><strong>Dosya Tanımlayıcısı Sızıntısı:</strong> <code dir="auto">RunFd</code> artık kaynak sızıntısını önlemek için <code dir="auto">os.File</code> işlemcisini doğru şekilde kapatıyor (#4422).</li>
-<li><strong>Hijack Davranışı:</strong> Hijack davranışı, yanıt yaşam döngüsünü doğru şekilde modellemek için iyileştirildi (#4373).</li>
-<li><strong>Kurtarma:</strong> <code dir="auto">http.ErrAbortHandler</code> artık amaçlandığı gibi kurtarma ara yazılımında bastırılıyor (#4336).</li>
-<li><strong>Hata Ayıklama Sürüm Uyuşmazlığı:</strong> Hata ayıklama modunda bildirilen yanlış sürüm dizesi düzeltildi (#4403).</li>
+<li><strong>Yönlendirici Paniği Düzeltildi:</strong> <code dir="auto">RedirectFixedPath</code> etkinleştirildiğinde <code dir="auto">findCaseInsensitivePathRec</code> içinde meydana gelen panik çözüldü (<a href="https://github.com/gin-gonic/gin/pull/4535">#4535</a>).</li>
+<li><strong>Veri İşlemesinde Content-Length:</strong> <code dir="auto">Data.Render</code> artık <code dir="auto">Content-Length</code> başlığını doğru yazıyor (<a href="https://github.com/gin-gonic/gin/pull/4206">#4206</a>).</li>
+<li><strong>Birden Fazla Başlıklı ClientIP:</strong> <code dir="auto">ClientIP</code> artık birden fazla <code dir="auto">X-Forwarded-For</code> başlığı değeri olan istekleri doğru şekilde işliyor (<a href="https://github.com/gin-gonic/gin/pull/4472">#4472</a>).</li>
+<li><strong>Bağlama Kenar Durumları:</strong> Bağlamada boş değer hatası düzeltildi (<a href="https://github.com/gin-gonic/gin/pull/2169">#2169</a>) ve form bağlamasında boş dilim/dizi işlemesi iyileştirildi (<a href="https://github.com/gin-gonic/gin/pull/4380">#4380</a>).</li>
+<li><strong>Literal Iki Nokta Rotaları:</strong> Literal iki nokta içeren rotalar artık <code dir="auto">engine.Handler()</code> ile doğru şekilde çalışıyor (<a href="https://github.com/gin-gonic/gin/pull/4415">#4415</a>).</li>
+<li><strong>Dosya Tanımlayıcısı Sızıntısı:</strong> <code dir="auto">RunFd</code> artık kaynak sızıntısını önlemek için <code dir="auto">os.File</code> işlemcisini doğru şekilde kapatıyor (<a href="https://github.com/gin-gonic/gin/pull/4422">#4422</a>).</li>
+<li><strong>Hijack Davranışı:</strong> Hijack davranışı, yanıt yaşam döngüsünü doğru şekilde modellemek için iyileştirildi (<a href="https://github.com/gin-gonic/gin/pull/4373">#4373</a>).</li>
+<li><strong>Kurtarma:</strong> <code dir="auto">http.ErrAbortHandler</code> artık amaçlandığı gibi kurtarma ara yazılımında bastırılıyor (<a href="https://github.com/gin-gonic/gin/pull/4336">#4336</a>).</li>
+<li><strong>Hata Ayıklama Sürüm Uyuşmazlığı:</strong> Hata ayıklama modunda bildirilen yanlış sürüm dizesi düzeltildi (<a href="https://github.com/gin-gonic/gin/pull/4403">#4403</a>).</li>
 </ul>
 <h3 id="-derleme-bağımlılık-ve-ci-güncellemeleri">🔧 Derleme, Bağımlılık ve CI Güncellemeleri</h3>
 <ul>
-<li><strong>Go 1.25 Minimum:</strong> Minimum desteklenen Go sürümü artık <strong>1.25</strong> olup, CI iş akışları buna göre güncellenmiştir (#4550).</li>
-<li><strong>BSON Bağımlılığı Yükseltmesi:</strong> BSON bağlama bağımlılığı <code dir="auto">mongo-driver</code> v2 öğesine yükseltilmiştir (#4549).</li>
+<li><strong>Go 1.25 Minimum:</strong> Minimum desteklenen Go sürümü artık <strong>1.25</strong> olup, CI iş akışları buna göre güncellenmiştir (<a href="https://github.com/gin-gonic/gin/pull/4550">#4550</a>).</li>
+<li><strong>BSON Bağımlılığı Yükseltmesi:</strong> BSON bağlama bağımlılığı <code dir="auto">mongo-driver</code> v2 öğesine yükseltilmiştir (<a href="https://github.com/gin-gonic/gin/pull/4549">#4549</a>).</li>
 </ul>
 <hr>
 <p>Gin 1.12.0, topluluğumuzun — katkıda bulunanlar, gözden geçirenler ve kullanıcılar — adanmışlığını yansıtır. Her sürümde Gin’i daha iyi hale getirdiğiniz için teşekkür ederiz.</p>
-<p>Gin 1.12.0’ı denemeye hazır mısınız? GitHub’ta yükseltme yapın ve bize ne düşündüğünüzü söyleyin!</p> </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n"> <a href="https://github.com/gin-gonic/website/edit/master/src/content/docs/tr/blog/news/gin-1-12-0-release-announcement.md" class="sl-flex print:hidden astro-eez2twj6"><svg aria-hidden="true" class="astro-eez2twj6 astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg> Sayfayı düzenle</a> <p>Son güncelleme: <time datetime="2026-02-28T00:00:00.000Z">28 Şub 2026</time></p> </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/tr/blog/news/gin-1-11-0-release-announcement/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> Önceki <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Gin 1.11.0 Yayında! HTTP/3, Form Geliştirmeleri, Performans ve Daha Fazlası</span> </span> </a> <a href="/tr/blog/news/how-to-build-one-effective-middleware/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> Sonraki <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Etkili Bir Middleware Nasıl Oluşturulur</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>
+<p>Gin 1.12.0’ı denemeye hazır mısınız? <a href="https://github.com/gin-gonic/gin/releases/tag/v1.12.0">GitHub’ta yükseltme yapın</a> ve bize ne düşündüğünüzü söyleyin!</p> </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n"> <a href="https://github.com/gin-gonic/website/edit/master/src/content/docs/tr/blog/news/gin-1-12-0-release-announcement.md" class="sl-flex print:hidden astro-eez2twj6"><svg aria-hidden="true" class="astro-eez2twj6 astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.2em;"><path d="M22 7.24a1 1 0 0 0-.29-.71l-4.24-4.24a1 1 0 0 0-1.1-.22 1 1 0 0 0-.32.22l-2.83 2.83L2.29 16.05a1 1 0 0 0-.29.71V21a1 1 0 0 0 1 1h4.24a1 1 0 0 0 .76-.29l10.87-10.93L21.71 8c.1-.1.17-.2.22-.33a1 1 0 0 0 0-.24v-.14l.07-.05ZM6.83 20H4v-2.83l9.93-9.93 2.83 2.83L6.83 20ZM18.17 8.66l-2.83-2.83 1.42-1.41 2.82 2.82-1.41 1.42Z"/></svg> Sayfayı düzenle</a> <p>Son güncelleme: <time datetime="2026-02-28T00:00:00.000Z">28 Şub 2026</time></p> </div> <div class="pagination-links print:hidden astro-u2l5gyhi" dir="ltr"> <a href="/tr/blog/news/gin-1-11-0-release-announcement/" rel="prev" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17 11H9.41l3.3-3.29a1.004 1.004 0 1 0-1.42-1.42l-5 5a1 1 0 0 0-.21.33 1 1 0 0 0 0 .76 1 1 0 0 0 .21.33l5 5a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095L9.41 13H17a1 1 0 0 0 0-2Z"/></svg>  <span class="astro-u2l5gyhi"> Önceki <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Gin 1.11.0 Yayında! HTTP/3, Form Geliştirmeleri, Performans ve Daha Fazlası</span> </span> </a> <a href="/tr/blog/news/how-to-build-one-effective-middleware/" rel="next" class="astro-u2l5gyhi"> <svg aria-hidden="true" class="astro-u2l5gyhi astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.5rem;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg>  <span class="astro-u2l5gyhi"> Sonraki <br class="astro-u2l5gyhi"> <span class="link-title astro-u2l5gyhi">Etkili Bir Middleware Nasıl Oluşturulur</span> </span> </a> </div>   </footer>  </div> </div>   </main> </div> </div>  </div> </div>  </body></html>
