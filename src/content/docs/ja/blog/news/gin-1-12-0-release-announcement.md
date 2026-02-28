@@ -10,51 +10,51 @@ lastUpdated: 2026-02-28
 
 ### 🌟 主な機能
 
-- **BSON プロトコルサポート：**レンダリングレイヤーが BSON エンコーディングをサポートするようになり、より効率的なバイナリデータ交換の扉が開きました (#4145)。
+- **BSON プロトコルサポート：**レンダリングレイヤーが BSON エンコーディングをサポートするようになり、より効率的なバイナリデータ交換の扉が開きました ([#4145](https://github.com/gin-gonic/gin/pull/4145))。
 
 - **新しい Context メソッド：**2 つの新しいヘルパーメソッドにより、エラーハンドリングがより明確で慣用的になります：
-  - `GetError` および `GetErrorSlice` により context から型安全なエラー取得が可能に (#4502)
-  - context からキーを削除する `Delete` メソッド (#38e7651)
+  - `GetError` および `GetErrorSlice` により context から型安全なエラー取得が可能に ([#4502](https://github.com/gin-gonic/gin/pull/4502))
+  - context からキーを削除する `Delete` メソッド ([#38e7651](https://github.com/gin-gonic/gin/commit/38e7651))
 
-- **柔軟なバインディング：**URI とクエリバインディングが `encoding.UnmarshalText` に対応し、カスタム型のデシリアライゼーションをより細かく制御できるようになりました (#4203)。
+- **柔軟なバインディング：**URI とクエリバインディングが `encoding.UnmarshalText` に対応し、カスタム型のデシリアライゼーションをより細かく制御できるようになりました ([#4203](https://github.com/gin-gonic/gin/pull/4203))。
 
-- **エスケープパスオプション：**新しいエンジンオプションにより、ルーティングにエスケープされた（生の）リクエストパスを使用することを選択できます (#4420)。
+- **エスケープパスオプション：**新しいエンジンオプションにより、ルーティングにエスケープされた（生の）リクエストパスを使用することを選択できます ([#4420](https://github.com/gin-gonic/gin/pull/4420))。
 
-- **コンテンツネゴシエーションでの Protocol Buffers：**`context` が Protocol Buffers をコンテンツタイプとしてサポートするようになり、gRPC スタイルのレスポンスの統合がより簡単になりました (#4423)。
+- **コンテンツネゴシエーションでの Protocol Buffers：**`context` が Protocol Buffers をコンテンツタイプとしてサポートするようになり、gRPC スタイルのレスポンスの統合がより簡単になりました ([#4423](https://github.com/gin-gonic/gin/pull/4423))。
 
-- **Logger での色付き遅延表示：**デフォルトのロガーが遅延を色で表示するようになり、遅いリクエストを一目で識別できるようになりました (#4146)。
+- **Logger での色付き遅延表示：**デフォルトのロガーが遅延を色で表示するようになり、遅いリクエストを一目で識別できるようになりました ([#4146](https://github.com/gin-gonic/gin/pull/4146))。
 
 ### 🚀 パフォーマンスと改善
 
 - **ルータツリーの最適化：**基数木への複数の改善により、アロケーションを削減し、パス解析を高速化：
-  - `findCaseInsensitivePath` でのアロケーション削減 (#4417)
-  - `strings.Count` を使用した効率的なパス解析 (#4246)
-  - `redirectTrailingSlash` での正規表現をカスタム関数に置き換え (#4414)
-- **リカバリ最適化：**スタックトレース読み込みがより効率的に (#4466)。
-- **Logger 改善：**設定によりクエリ文字列の出力をスキップ可能に (#4547)。
-- **Unix Socket 信頼：**Unix socket 経由でのリクエスト到着時、`X-Forwarded-For` ヘッダーが常に信頼されるようになりました (#3359)。
-- **Flush の安全性：**基礎となる `http.ResponseWriter` が `http.Flusher` を実装していない場合、`Flush()` がパニックを起こさなくなりました (#4479)。
-- **コード品質の改善：**`maps.Copy` と `maps.Clone` を使用したより明確なマップ処理、マジックナンバーを名前付き定数に置き換え、range-over-int ループの現代化など (#4352、#4333、#4529、#4392)。
+  - `findCaseInsensitivePath` でのアロケーション削減 ([#4417](https://github.com/gin-gonic/gin/pull/4417))
+  - `strings.Count` を使用した効率的なパス解析 ([#4246](https://github.com/gin-gonic/gin/pull/4246))
+  - `redirectTrailingSlash` での正規表現をカスタム関数に置き換え ([#4414](https://github.com/gin-gonic/gin/pull/4414))
+- **リカバリ最適化：**スタックトレース読み込みがより効率的に ([#4466](https://github.com/gin-gonic/gin/pull/4466))。
+- **Logger 改善：**設定によりクエリ文字列の出力をスキップ可能に ([#4547](https://github.com/gin-gonic/gin/pull/4547))。
+- **Unix Socket 信頼：**Unix socket 経由でのリクエスト到着時、`X-Forwarded-For` ヘッダーが常に信頼されるようになりました ([#3359](https://github.com/gin-gonic/gin/pull/3359))。
+- **Flush の安全性：**基礎となる `http.ResponseWriter` が `http.Flusher` を実装していない場合、`Flush()` がパニックを起こさなくなりました ([#4479](https://github.com/gin-gonic/gin/pull/4479))。
+- **コード品質の改善：**`maps.Copy` と `maps.Clone` を使用したより明確なマップ処理、マジックナンバーを名前付き定数に置き換え、range-over-int ループの現代化など ([#4352](https://github.com/gin-gonic/gin/pull/4352), [#4333](https://github.com/gin-gonic/gin/pull/4333), [#4529](https://github.com/gin-gonic/gin/pull/4529), [#4392](https://github.com/gin-gonic/gin/pull/4392))。
 
 ### 🐛 バグ修正
 
-- **ルータパニック修正：**`RedirectFixedPath` が有効な場合の `findCaseInsensitivePathRec` でのパニックを解決 (#4535)。
-- **Data レンダリングの Content-Length：**`Data.Render` が `Content-Length` ヘッダーを正しく書き込むようになりました (#4206)。
-- **複数ヘッダーの ClientIP：**`ClientIP` が複数の `X-Forwarded-For` ヘッダー値を持つリクエストを正しく処理するようになりました (#4472)。
-- **バインディングのエッジケース：**バインディングの空値エラーを修正 (#2169) し、フォームバインディングの空スライス/配列処理を改善 (#4380)。
-- **リテラルコロンルート：**リテラルコロンを含むルートが `engine.Handler()` で正しく動作するようになりました (#4415)。
-- **ファイルディスクリプタリーク：**`RunFd` が `os.File` ハンドルを正しくクローズするようになり、リソースリークが防止されました (#4422)。
-- **Hijack 動作：**Hijack 動作を改善し、レスポンスライフサイクルを正しくモデル化 (#4373)。
-- **リカバリ：**`http.ErrAbortHandler` がリカバリミドルウェアで意図した通りに抑制されるようになりました (#4336)。
-- **デバッグ版バージョン不一致：**デバッグモードで報告される不正なバージョン文字列を修正 (#4403)。
+- **ルータパニック修正：**`RedirectFixedPath` が有効な場合の `findCaseInsensitivePathRec` でのパニックを解決 ([#4535](https://github.com/gin-gonic/gin/pull/4535))。
+- **Data レンダリングの Content-Length：**`Data.Render` が `Content-Length` ヘッダーを正しく書き込むようになりました ([#4206](https://github.com/gin-gonic/gin/pull/4206))。
+- **複数ヘッダーの ClientIP：**`ClientIP` が複数の `X-Forwarded-For` ヘッダー値を持つリクエストを正しく処理するようになりました ([#4472](https://github.com/gin-gonic/gin/pull/4472))。
+- **バインディングのエッジケース：**バインディングの空値エラーを修正 ([#2169](https://github.com/gin-gonic/gin/pull/2169)) し、フォームバインディングの空スライス/配列処理を改善 ([#4380](https://github.com/gin-gonic/gin/pull/4380))。
+- **リテラルコロンルート：**リテラルコロンを含むルートが `engine.Handler()` で正しく動作するようになりました ([#4415](https://github.com/gin-gonic/gin/pull/4415))。
+- **ファイルディスクリプタリーク：**`RunFd` が `os.File` ハンドルを正しくクローズするようになり、リソースリークが防止されました ([#4422](https://github.com/gin-gonic/gin/pull/4422))。
+- **Hijack 動作：**Hijack 動作を改善し、レスポンスライフサイクルを正しくモデル化 ([#4373](https://github.com/gin-gonic/gin/pull/4373))。
+- **リカバリ：**`http.ErrAbortHandler` がリカバリミドルウェアで意図した通りに抑制されるようになりました ([#4336](https://github.com/gin-gonic/gin/pull/4336))。
+- **デバッグ版バージョン不一致：**デバッグモードで報告される不正なバージョン文字列を修正 ([#4403](https://github.com/gin-gonic/gin/pull/4403))。
 
 ### 🔧 ビルド、依存関係、CI 更新
 
-- **Go 1.25 最小版：**最小サポート Go バージョンが **1.25** になり、CI ワークフローも更新されました (#4550)。
-- **BSON 依存関係のアップグレード：**BSON バインディング依存関係が `mongo-driver` v2 にアップグレードされました (#4549)。
+- **Go 1.25 最小版：**最小サポート Go バージョンが **1.25** になり、CI ワークフローも更新されました ([#4550](https://github.com/gin-gonic/gin/pull/4550))。
+- **BSON 依存関係のアップグレード：**BSON バインディング依存関係が `mongo-driver` v2 にアップグレードされました ([#4549](https://github.com/gin-gonic/gin/pull/4549))。
 
 ---
 
 Gin 1.12.0 は、貢献者、レビュアー、ユーザーを含むコミュニティの献身を反映しています。すべてのリリースで Gin をより良くしてくれてありがとうございます。
 
-Gin 1.12.0 を試してみませんか？GitHub でアップグレードして、ご意見をお聞かせください！
+Gin 1.12.0 を試してみませんか？[GitHub でアップグレード](https://github.com/gin-gonic/gin/releases/tag/v1.12.0)して、ご意見をお聞かせください！
