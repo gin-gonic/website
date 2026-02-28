@@ -50,7 +50,7 @@ We're thrilled to announce the release of Gin v1.12.0, packed with new features,
 
 ### 🔧 Build, Dependency & CI Updates
 
-- **Go 1.24 Minimum:** The minimum supported Go version is now **1.24**, with CI updated to test against Go 1.25+ ([#4388](https://github.com/gin-gonic/gin/pull/4388), [#4550](https://github.com/gin-gonic/gin/pull/4550)).
+- **Go 1.25 Minimum:** The minimum supported Go version is now **1.25**, with CI workflows updated accordingly ([#4388](https://github.com/gin-gonic/gin/pull/4388), [#4550](https://github.com/gin-gonic/gin/pull/4550)).
 - **BSON Dependency Upgrade:** The BSON binding dependency has been upgraded to `mongo-driver` v2 ([#4549](https://github.com/gin-gonic/gin/pull/4549)).
 
 ---
