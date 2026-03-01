@@ -49,7 +49,7 @@ export default defineConfig({
         },
         "ko-kr": {
           label: "한국어",
-          lang: "ko-kr",
+          lang: "ko-KR",
         },
         pt: {
           label: "Português",
@@ -65,11 +65,11 @@ export default defineConfig({
         },
         "zh-cn": {
           label: "简体中文",
-          lang: "zh-cn",
+          lang: "zh-CN",
         },
         "zh-tw": {
           label: "繁體中文",
-          lang: "zh-tw",
+          lang: "zh-TW",
         },
         ar: {
           label: "عربي",
