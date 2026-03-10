@@ -1,0 +1,60 @@
+---
+title: "الإعلان عن Gin 1.12.0: دعم BSON وتحسينات Context والأداء والمزيد"
+linkTitle: "إعلان إصدار Gin 1.12.0"
+lastUpdated: 2026-02-28
+---
+
+## وصل Gin v1.12.0
+
+يسرنا الإعلان عن إطلاق Gin v1.12.0، المليء بالميزات الجديدة وتحسينات الأداء الكبيرة وعدد من إصلاحات الأخطاء. يعمق هذا الإصدار دعم Gin للبروتوكولات الحديثة ويحسن تجربة المطور ويستمر في تقاليد المشروع بالبقاء سريعًا وخفيفًا.
+
+### 🌟 الميزات الرئيسية
+
+- **دعم بروتوكول BSON:** تدعم طبقة العرض الآن ترميز BSON، مما يفتح الباب أمام تبادل بيانات ثنائي أكثر كفاءة ([#4145](https://github.com/gin-gonic/gin/pull/4145)).
+
+- **طرق Context الجديدة:** يجعل مساعدان جديدان معالجة الأخطاء أنظف وأكثر طبيعية:
+  - `GetError` و `GetErrorSlice` لاسترجاع الأخطاء بأمان النوع من السياق ([#4502](https://github.com/gin-gonic/gin/pull/4502))
+  - طريقة `Delete` لإزالة المفاتيح من السياق ([#38e7651](https://github.com/gin-gonic/gin/commit/38e7651))
+
+- **الربط المرن:** يحترم ربط URI والاستعلام الآن `encoding.UnmarshalText`، مما يمنحك تحكمًا أكثر على فك تسلسل الأنواع المخصصة ([#4203](https://github.com/gin-gonic/gin/pull/4203)).
+
+- **خيار المسار المهرب:** يتيح لك خيار محرك جديد اختيار استخدام مسار الطلب المهرب (الخام) للتوجيه ([#4420](https://github.com/gin-gonic/gin/pull/4420)).
+
+- **Protocol Buffers في التفاوض على المحتوى:** يدعم `context` الآن Protocol Buffers كنوع محتوى قابل للتفاوض، مما يسهل دمج الاستجابات بأسلوب gRPC ([#4423](https://github.com/gin-gonic/gin/pull/4423)).
+
+- **الكمون الملون في Logger:** يعرض المسجل الافتراضي الآن زمن الكمون بالألوان، مما يسهل اكتشاف الطلبات البطيئة للوهلة الأولى ([#4146](https://github.com/gin-gonic/gin/pull/4146)).
+
+### 🚀 الأداء والتحسينات
+
+- **تحسينات شجرة التوجيه:** تقلل تحسينات متعددة لشجرة جذور التخصيصات وتسرع تحليل المسار:
+  - تخصيصات أقل في `findCaseInsensitivePath` ([#4417](https://github.com/gin-gonic/gin/pull/4417))
+  - تحليل المسار باستخدام `strings.Count` للكفاءة ([#4246](https://github.com/gin-gonic/gin/pull/4246))
+  - تم استبدال التعبيرات العادية بوظائف مخصصة في `redirectTrailingSlash` ([#4414](https://github.com/gin-gonic/gin/pull/4414))
+- **تحسين الاسترجاع:** أصبح قراءة تتبع المكدس أكثر كفاءة الآن ([#4466](https://github.com/gin-gonic/gin/pull/4466)).
+- **تحسينات Logger:** يمكن الآن تخطي مخرجات سلسلة الاستعلام عبر التكوين ([#4547](https://github.com/gin-gonic/gin/pull/4547)).
+- **ثقة مقبس Unix:** يتم الآن تصديق رؤوس `X-Forwarded-For` دائمًا عند وصول الطلبات عبر مقبس Unix ([#3359](https://github.com/gin-gonic/gin/pull/3359)).
+- **أمان Flush:** لا يزيد `Flush()` الآن من الذعر عندما لا ينفذ `http.ResponseWriter` الأساسي `http.Flusher` ([#4479](https://github.com/gin-gonic/gin/pull/4479)).
+- **تحسينات جودة الكود:** معالجة خريطة أنظف مع `maps.Copy` و `maps.Clone`، ثوابت مسماة تحل محل الأرقام السحرية، حلقات range-over-int حديثة والمزيد ([#4352](https://github.com/gin-gonic/gin/pull/4352), [#4333](https://github.com/gin-gonic/gin/pull/4333), [#4529](https://github.com/gin-gonic/gin/pull/4529), [#4392](https://github.com/gin-gonic/gin/pull/4392)).
+
+### 🐛 إصلاحات الأخطاء
+
+- **إصلاح ذعر التوجيه:** تم حل الذعر في `findCaseInsensitivePathRec` عندما يكون `RedirectFixedPath` مفعلاً ([#4535](https://github.com/gin-gonic/gin/pull/4535)).
+- **Content-Length في عرض البيانات:** يكتب `Data.Render` الآن رأس `Content-Length` بشكل صحيح ([#4206](https://github.com/gin-gonic/gin/pull/4206)).
+- **ClientIP مع رؤوس متعددة:** يتعامل `ClientIP` الآن بشكل صحيح مع الطلبات التي تحتوي على قيم رأس `X-Forwarded-For` متعددة ([#4472](https://github.com/gin-gonic/gin/pull/4472)).
+- **حالات الربط الحدية:** تم إصلاح أخطاء القيمة الفارغة في الربط ([#2169](https://github.com/gin-gonic/gin/pull/2169)) وتحسين معالجة الشرائح/المصفوفات الفارغة في ربط النموذج ([#4380](https://github.com/gin-gonic/gin/pull/4380)).
+- **مسارات القولون الحرفية:** تعمل المسارات التي تحتوي على القولون الحرفي الآن بشكل صحيح مع `engine.Handler()` ([#4415](https://github.com/gin-gonic/gin/pull/4415)).
+- **تسرب واصف الملف:** يغلق `RunFd` الآن مقبض `os.File` بشكل صحيح لمنع تسرب الموارد ([#4422](https://github.com/gin-gonic/gin/pull/4422)).
+- **سلوك Hijack:** تم تحسين سلوك الخطف لنمذجة دورة حياة الاستجابة بشكل صحيح ([#4373](https://github.com/gin-gonic/gin/pull/4373)).
+- **الاسترجاع:** يتم الآن قمع `http.ErrAbortHandler` في برنامج وسيط الاسترجاع كما هو مقصود ([#4336](https://github.com/gin-gonic/gin/pull/4336)).
+- **عدم تطابق إصدار Debug:** تم إصلاح سلسلة إصدار غير صحيحة تم الإبلاغ عنها في وضع تصحيح الأخطاء ([#4403](https://github.com/gin-gonic/gin/pull/4403)).
+
+### 🔧 تحديثات البناء والاعتماد و CI
+
+- **الحد الأدنى Go 1.25:** إن الحد الأدنى لإصدار Go المدعوم الآن هو **1.25**، مع تحديث سير عمل CI وفقًا لذلك ([#4550](https://github.com/gin-gonic/gin/pull/4550)).
+- **ترقية اعتماد BSON:** تم ترقية اعتماد ربط BSON إلى `mongo-driver` v2 ([#4549](https://github.com/gin-gonic/gin/pull/4549)).
+
+---
+
+يعكس Gin 1.12.0 تفاني مجتمعنا — المساهمون والمراجعون والمستخدمون على حد سواء. شكرًا لجعل Gin أفضل مع كل إصدار.
+
+هل أنت مستعد لتجربة Gin 1.12.0؟ [قم بالترقية على GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.12.0) وأخبرنا برأيك!
