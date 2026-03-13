@@ -1,7 +1,7 @@
 ---
 title: "FAQ"
 sidebar:
-  order: 9
+  order: 15
 ---
 
 ## General Questions

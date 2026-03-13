@@ -1,7 +1,7 @@
 ---
 title: "Learning Resources"
 sidebar:
-  order: 7
+  order: 13
 ---
 
 ## Interactive Learning Platforms
