@@ -1,7 +1,7 @@
 ---
 title: "Users"
 sidebar:
-  order: 8
+  order: 14
 ---
 
 ## Awesome Project Lists
