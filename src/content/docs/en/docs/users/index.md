@@ -1,8 +1,10 @@
 ---
 title: "Users"
 sidebar:
-  order: 8
+  order: 14
 ---
+
+Gin is used in production by companies and open-source projects of all sizes. Below is a selection of notable projects built with Gin. If your project uses Gin, we would love to add it to this list.
 
 ## Awesome Project Lists
 
@@ -13,3 +15,9 @@ sidebar:
 - [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
 - [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per WebSocket.
 - [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
+- [drone](https://github.com/harness/drone): A container-native, Continuous Delivery platform built on Go.
+- [go-admin](https://github.com/GoAdminGroup/go-admin): A data visualization and admin panel framework for Go.
+
+## Submit your project
+
+Using Gin in production or for an open-source project? Open a pull request on the [gin-gonic/website](https://github.com/gin-gonic/website) repository to add your project to this page.

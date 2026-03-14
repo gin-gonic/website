@@ -1,8 +1,10 @@
 ---
 title: "Benchmarks"
 sidebar:
-  order: 3
+  order: 12
 ---
+
+> **Historical Data:** These benchmarks were collected in May 2020 using Gin v1.6.3 and Go 1.14.2. Framework performance may have changed significantly since then. For up-to-date benchmark results, see the [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) repository.
 
 ## Gin Web Framework Performance Benchmarks
 

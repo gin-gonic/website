@@ -83,7 +83,68 @@ export default defineConfig({
       sidebar: [
         {
           label: "Docs",
-          autogenerate: { directory: "docs" },
+          items: [
+            {
+              label: "Introduction",
+              slug: "docs/introduction",
+            },
+            {
+              label: "Quickstart",
+              slug: "docs/quickstart",
+            },
+            {
+              label: "Routing",
+              autogenerate: { directory: "docs/routing" },
+            },
+            {
+              label: "Binding",
+              autogenerate: { directory: "docs/binding" },
+            },
+            {
+              label: "Rendering",
+              autogenerate: { directory: "docs/rendering" },
+            },
+            {
+              label: "Middleware",
+              autogenerate: { directory: "docs/middleware" },
+            },
+            {
+              label: "Logging",
+              autogenerate: { directory: "docs/logging" },
+            },
+            {
+              label: "Server Configuration",
+              autogenerate: { directory: "docs/server-config" },
+            },
+            {
+              label: "Testing",
+              slug: "docs/testing",
+            },
+            {
+              label: "Deployment",
+              slug: "docs/deployment",
+            },
+            {
+              label: "Build Tags",
+              autogenerate: { directory: "docs/build-tags" },
+            },
+            {
+              label: "Benchmarks",
+              slug: "docs/benchmarks",
+            },
+            {
+              label: "Learning Resources",
+              slug: "docs/learning-resources",
+            },
+            {
+              label: "Users",
+              slug: "docs/users",
+            },
+            {
+              label: "FAQ",
+              autogenerate: { directory: "docs/faq" },
+            },
+          ],
         },
         {
           label: "Blog",
