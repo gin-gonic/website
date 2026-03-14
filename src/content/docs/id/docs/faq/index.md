@@ -1,19 +1,18 @@
 ---
-title: "FAQ"
+title: "Pertanyaan Umum"
 sidebar:
-  order: 9
+  order: 15
 ---
 
 ## Pertanyaan Umum
 
-### Bagaimana cara mengaktifkan live reload saat pengembangan?
+### Bagaimana cara mengaktifkan live reload selama pengembangan?
 
-Gunakan [Air](https://github.com/air-verse/air) untuk live reload otomatis selama pengembangan. Air memantau file Anda dan secara otomatis membangun ulang/memulai ulang aplikasi saat perubahan terdeteksi.
+Gunakan [Air](https://github.com/air-verse/air) untuk live reloading otomatis selama pengembangan. Air memantau file Anda dan membangun ulang/memulai ulang aplikasi Anda ketika perubahan terdeteksi.
 
 **Instalasi:**
 
 ```sh
-# Instal Air secara global
 go install github.com/air-verse/air@latest
 ```
 
@@ -25,65 +24,13 @@ Buat file konfigurasi `.air.toml` di root proyek Anda:
 air init
 ```
 
-Ini menghasilkan konfigurasi default. Anda dapat menyesuaikannya untuk proyek Gin Anda:
-
-```toml
-# .air.toml
-root = "."
-testdata_dir = "testdata"
-tmp_dir = "tmp"
-
-[build]
-  args_bin = []
-  bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ."
-  delay = 1000
-  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
-  exclude_file = []
-  exclude_regex = ["_test.go"]
-  exclude_unchanged = false
-  follow_symlink = false
-  full_bin = ""
-  include_dir = []
-  include_ext = ["go", "tpl", "tmpl", "html"]
-  include_file = []
-  kill_delay = "0s"
-  log = "build-errors.log"
-  poll = false
-  poll_interval = 0
-  rerun = false
-  rerun_delay = 500
-  send_interrupt = false
-  stop_on_error = false
-
-[color]
-  app = ""
-  build = "yellow"
-  main = "magenta"
-  runner = "green"
-  watcher = "cyan"
-
-[log]
-  main_only = false
-  time = false
-
-[misc]
-  clean_on_exit = false
-
-[screen]
-  clear_on_rebuild = false
-  keep_scroll = true
-```
-
-**Penggunaan:**
-
-Cukup jalankan `air` di direktori proyek Anda alih-alih `go run`:
+Lalu jalankan `air` di direktori proyek Anda alih-alih `go run`:
 
 ```sh
 air
 ```
 
-Air sekarang akan memantau file `.go` Anda dan secara otomatis membangun ulang/memulai ulang aplikasi Gin Anda saat ada perubahan.
+Air akan memantau file `.go` Anda dan secara otomatis membangun ulang/memulai ulang aplikasi Gin Anda saat ada perubahan. Lihat [dokumentasi Air](https://github.com/air-verse/air) untuk opsi konfigurasi.
 
 ### Bagaimana cara menangani CORS di Gin?
 
@@ -102,10 +49,10 @@ import (
 func main() {
   r := gin.Default()
 
-  // Konfigurasi CORS default
+  // Default CORS configuration
   r.Use(cors.Default())
 
-  // Atau kustomisasi pengaturan CORS
+  // Or customize CORS settings
   r.Use(cors.New(cors.Config{
     AllowOrigins:     []string{"https://example.com"},
     AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
@@ -123,6 +70,8 @@ func main() {
 }
 ```
 
+Untuk gambaran keamanan lengkap, lihat [Praktik terbaik keamanan](/id/docs/middleware/security-guide/).
+
 ### Bagaimana cara menyajikan file statis?
 
 Gunakan `Static()` atau `StaticFS()` untuk menyajikan file statis:
@@ -131,37 +80,34 @@ Gunakan `Static()` atau `StaticFS()` untuk menyajikan file statis:
 func main() {
   r := gin.Default()
 
-  // Sajikan file dari direktori ./assets di /assets/*
+  // Serve files from ./assets directory at /assets/*
   r.Static("/assets", "./assets")
 
-  // Sajikan satu file
+  // Serve a single file
   r.StaticFile("/favicon.ico", "./resources/favicon.ico")
 
-  // Sajikan dari filesystem tertanam (Go 1.16+)
+  // Serve from embedded filesystem (Go 1.16+)
   r.StaticFS("/public", http.FS(embedFS))
 
   r.Run()
 }
 ```
 
-Lihat [contoh menyajikan file statis](../examples/serving-static-files/) untuk detail lebih lanjut.
+Lihat [Menyajikan data dari file](/id/docs/rendering/serving-data-from-file/) untuk detail lebih lanjut.
 
 ### Bagaimana cara menangani upload file?
 
-Gunakan `FormFile()` untuk file tunggal atau `MultipartForm()` untuk beberapa file:
+Gunakan `FormFile()` untuk file tunggal atau `MultipartForm()` untuk banyak file:
 
 ```go
-// Upload file tunggal
+// Single file upload
 r.POST("/upload", func(c *gin.Context) {
   file, _ := c.FormFile("file")
-
-  // Simpan file
   c.SaveUploadedFile(file, "./uploads/"+file.Filename)
-
-  c.String(200, "File %s berhasil diupload", file.Filename)
+  c.String(200, "File %s uploaded successfully", file.Filename)
 })
 
-// Upload beberapa file
+// Multiple files upload
 r.POST("/upload-multiple", func(c *gin.Context) {
   form, _ := c.MultipartForm()
   files := form.File["files"]
@@ -169,16 +115,15 @@ r.POST("/upload-multiple", func(c *gin.Context) {
   for _, file := range files {
     c.SaveUploadedFile(file, "./uploads/"+file.Filename)
   }
-
-  c.String(200, "%d file diupload", len(files))
+  c.String(200, "%d files uploaded", len(files))
 })
 ```
 
-Lihat [contoh upload file](../examples/upload-file/) untuk detail lebih lanjut.
+Lihat dokumentasi [Upload file](/id/docs/routing/upload-file/) untuk detail lebih lanjut.
 
 ### Bagaimana cara mengimplementasikan autentikasi dengan JWT?
 
-Gunakan [gin-contrib/jwt](https://github.com/gin-contrib/jwt) atau implementasikan middleware kustom:
+Gunakan [gin-contrib/jwt](https://github.com/gin-contrib/jwt) atau implementasikan middleware kustom. Berikut contoh minimal:
 
 ```go
 package main
@@ -198,29 +143,16 @@ type Claims struct {
   jwt.RegisteredClaims
 }
 
-func GenerateToken(username string) (string, error) {
-  claims := Claims{
-    Username: username,
-    RegisteredClaims: jwt.RegisteredClaims{
-      ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
-      IssuedAt:  jwt.NewNumericDate(time.Now()),
-    },
-  }
-
-  token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-  return token.SignedString(jwtSecret)
-}
-
 func AuthMiddleware() gin.HandlerFunc {
   return func(c *gin.Context) {
     tokenString := c.GetHeader("Authorization")
     if tokenString == "" {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Token otorisasi tidak ada"})
+      c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing authorization token"})
       c.Abort()
       return
     }
 
-    // Hapus prefix "Bearer " jika ada
+    // Remove "Bearer " prefix if present
     if len(tokenString) > 7 && tokenString[:7] == "Bearer " {
       tokenString = tokenString[7:]
     }
@@ -230,7 +162,7 @@ func AuthMiddleware() gin.HandlerFunc {
     })
 
     if err != nil || !token.Valid {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Token tidak valid"})
+      c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
       c.Abort()
       return
     }
@@ -238,171 +170,58 @@ func AuthMiddleware() gin.HandlerFunc {
     if claims, ok := token.Claims.(*Claims); ok {
       c.Set("username", claims.Username)
       c.Next()
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Token claims tidak valid"})
-      c.Abort()
     }
   }
-}
-
-func main() {
-  r := gin.Default()
-
-  r.POST("/login", func(c *gin.Context) {
-    var credentials struct {
-      Username string `json:"username"`
-      Password string `json:"password"`
-    }
-
-    if err := c.BindJSON(&credentials); err != nil {
-      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-      return
-    }
-
-    // Validasi kredensial (implementasikan logika Anda sendiri)
-    if credentials.Username == "admin" && credentials.Password == "password" {
-      token, _ := GenerateToken(credentials.Username)
-      c.JSON(http.StatusOK, gin.H{"token": token})
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Kredensial tidak valid"})
-    }
-  })
-
-  // Route yang dilindungi
-  authorized := r.Group("/")
-  authorized.Use(AuthMiddleware())
-  {
-    authorized.GET("/profile", func(c *gin.Context) {
-      username := c.MustGet("username").(string)
-      c.JSON(http.StatusOK, gin.H{"username": username})
-    })
-  }
-
-  r.Run()
 }
 ```
 
-### Bagaimana cara mengatur logging request?
+Untuk autentikasi berbasis session, lihat [Manajemen session](/id/docs/middleware/session-management/).
 
-Gin menyertakan middleware logger default. Kustomisasi atau gunakan structured logging:
+### Bagaimana cara mengatur logging permintaan?
+
+Gin menyertakan middleware logger default melalui `gin.Default()`. Untuk logging JSON terstruktur di produksi, lihat [Logging terstruktur](/id/docs/logging/structured-logging/).
+
+Untuk kustomisasi log dasar:
 
 ```go
-package main
-
-import (
-  "log"
-  "time"
-
-  "github.com/gin-gonic/gin"
-)
-
-// Middleware logger kustom
-func Logger() gin.HandlerFunc {
-  return func(c *gin.Context) {
-    start := time.Now()
-    path := c.Request.URL.Path
-
-    c.Next()
-
-    latency := time.Since(start)
-    statusCode := c.Writer.Status()
-    clientIP := c.ClientIP()
-    method := c.Request.Method
-
-    log.Printf("[GIN] %s | %3d | %13v | %15s | %-7s %s",
-      time.Now().Format("2006/01/02 - 15:04:05"),
-      statusCode,
-      latency,
-      clientIP,
-      method,
-      path,
-    )
-  }
-}
-
-func main() {
-  r := gin.New()
-  r.Use(Logger())
-  r.Use(gin.Recovery())
-
-  r.GET("/ping", func(c *gin.Context) {
-    c.JSON(200, gin.H{"message": "pong"})
-  })
-
-  r.Run()
-}
+r := gin.New()
+r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+  SkipPaths: []string{"/healthz"},
+}))
+r.Use(gin.Recovery())
 ```
 
-Untuk logging lebih lanjut, lihat [contoh format log kustom](../examples/custom-log-format/).
+Lihat bagian [Logging](/id/docs/logging/) untuk semua opsi termasuk format kustom, output file, dan melewati query string.
 
-### Bagaimana cara menangani graceful shutdown?
+### Bagaimana cara menangani shutdown graceful?
 
-Implementasikan graceful shutdown untuk menutup koneksi dengan benar:
+Lihat [Restart atau stop graceful](/id/docs/server-config/graceful-restart-or-stop/) untuk panduan lengkap dengan contoh kode.
+
+### Mengapa saya mendapatkan "404 Not Found" alih-alih "405 Method Not Allowed"?
+
+Secara default, Gin mengembalikan 404 untuk rute yang tidak mendukung metode HTTP yang diminta. Atur `HandleMethodNotAllowed = true` untuk mengembalikan 405 sebagai gantinya:
 
 ```go
-package main
+r := gin.Default()
+r.HandleMethodNotAllowed = true
 
-import (
-  "context"
-  "log"
-  "net/http"
-  "os"
-  "os/signal"
-  "syscall"
-  "time"
+r.GET("/ping", func(c *gin.Context) {
+  c.JSON(200, gin.H{"message": "pong"})
+})
 
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  r := gin.Default()
-
-  r.GET("/", func(c *gin.Context) {
-    time.Sleep(5 * time.Second)
-    c.String(http.StatusOK, "Selamat datang!")
-  })
-
-  srv := &http.Server{
-    Addr:    ":8080",
-    Handler: r,
-  }
-
-  // Jalankan server di goroutine
-  go func() {
-    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-      log.Fatalf("listen: %s\n", err)
-    }
-  }()
-
-  // Tunggu sinyal interrupt untuk graceful shutdown server
-  quit := make(chan os.Signal, 1)
-  signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-  <-quit
-  log.Println("Mematikan server...")
-
-  // Beri request yang tertunda 5 detik untuk selesai
-  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-  defer cancel()
-
-  if err := srv.Shutdown(ctx); err != nil {
-    log.Fatal("Server dipaksa shutdown:", err)
-  }
-
-  log.Println("Server keluar")
-}
+r.Run()
 ```
 
-Lihat [contoh graceful restart atau stop](../examples/graceful-restart-or-stop/) untuk detail lebih lanjut.
+```sh
+$ curl -X POST localhost:8080/ping
 
-### Mengapa saya mendapat "404 Not Found" alih-alih "405 Method Not Allowed"?
+HTTP/1.1 405 Method Not Allowed
+Allow: GET
+```
 
-Secara default, Gin mengembalikan 404 untuk route yang tidak mendukung metode HTTP yang diminta. Untuk mengembalikan 405 Method Not Allowed, aktifkan opsi `HandleMethodNotAllowed`.
+### Bagaimana cara mengikat parameter query dan data POST bersamaan?
 
-Lihat [FAQ Method Not Allowed](./method-not-allowed/) untuk detail.
-
-### Bagaimana cara bind parameter query dan data POST bersamaan?
-
-Gunakan `ShouldBind()` yang secara otomatis memilih binding berdasarkan content type:
+Gunakan `ShouldBind()` yang secara otomatis memilih binding berdasarkan tipe konten:
 
 ```go
 type User struct {
@@ -413,7 +232,6 @@ type User struct {
 
 r.POST("/user", func(c *gin.Context) {
   var user User
-  // Bind parameter query dan request body (JSON/form)
   if err := c.ShouldBind(&user); err != nil {
     c.JSON(400, gin.H{"error": err.Error()})
     return
@@ -422,9 +240,9 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-Untuk kontrol lebih, lihat [contoh bind query atau post](../examples/bind-query-or-post/).
+Lihat bagian [Binding](/id/docs/binding/) untuk semua opsi binding.
 
-### Bagaimana cara memvalidasi data request?
+### Bagaimana cara memvalidasi data permintaan?
 
 Gin menggunakan [go-playground/validator](https://github.com/go-playground/validator) untuk validasi. Tambahkan tag validasi ke struct Anda:
 
@@ -441,110 +259,44 @@ r.POST("/user", func(c *gin.Context) {
     c.JSON(400, gin.H{"error": err.Error()})
     return
   }
-  c.JSON(200, gin.H{"message": "User valid"})
+  c.JSON(200, gin.H{"message": "User is valid"})
 })
 ```
 
-Untuk validator kustom, lihat [contoh validator kustom](../examples/custom-validators/).
+Lihat [Binding dan validasi](/id/docs/binding/binding-and-validation/) untuk validator kustom dan penggunaan lanjutan.
 
-### Bagaimana cara menjalankan Gin dalam mode production?
+### Bagaimana cara menjalankan Gin dalam mode produksi?
 
-Set variabel environment `GIN_MODE` ke `release`:
+Atur variabel lingkungan `GIN_MODE` ke `release`:
 
 ```sh
 export GIN_MODE=release
-# atau
+# or
 GIN_MODE=release ./your-app
 ```
 
-Atau set secara programatik:
+Atau atur secara programatis:
 
 ```go
 gin.SetMode(gin.ReleaseMode)
 ```
 
-Mode release:
-
-- Menonaktifkan logging debug
-- Meningkatkan performa
-- Sedikit mengurangi ukuran binary
+Mode release menonaktifkan logging debug dan meningkatkan performa.
 
 ### Bagaimana cara menangani koneksi database dengan Gin?
 
-Gunakan dependency injection atau context untuk berbagi koneksi database:
-
-```go
-package main
-
-import (
-  "database/sql"
-
-  "github.com/gin-gonic/gin"
-  _ "github.com/lib/pq"
-)
-
-func main() {
-  db, err := sql.Open("postgres", "postgres://user:pass@localhost/dbname")
-  if err != nil {
-    panic(err)
-  }
-  defer db.Close()
-
-  r := gin.Default()
-
-  // Metode 1: Pass db ke handler
-  r.GET("/users", func(c *gin.Context) {
-    var users []string
-    rows, _ := db.Query("SELECT name FROM users")
-    defer rows.Close()
-
-    for rows.Next() {
-      var name string
-      rows.Scan(&name)
-      users = append(users, name)
-    }
-
-    c.JSON(200, users)
-  })
-
-  // Metode 2: Gunakan middleware untuk inject db
-  r.Use(func(c *gin.Context) {
-    c.Set("db", db)
-    c.Next()
-  })
-
-  r.Run()
-}
-```
-
-Untuk ORM, pertimbangkan menggunakan [GORM](https://gorm.io/) dengan Gin.
+Lihat [Integrasi database](/id/docs/server-config/database/) untuk panduan lengkap yang mencakup `database/sql`, GORM, connection pooling, dan pola dependency injection.
 
 ### Bagaimana cara menguji handler Gin?
 
-Gunakan `net/http/httptest` untuk menguji route Anda:
+Gunakan `net/http/httptest` untuk menguji rute Anda:
 
 ```go
-package main
-
-import (
-  "net/http"
-  "net/http/httptest"
-  "testing"
-
-  "github.com/gin-gonic/gin"
-  "github.com/stretchr/testify/assert"
-)
-
-func SetupRouter() *gin.Engine {
-  r := gin.Default()
-  r.GET("/ping", func(c *gin.Context) {
+func TestPingRoute(t *testing.T) {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
     c.JSON(200, gin.H{"message": "pong"})
   })
-  return r
-}
-
-func TestPingRoute(t *testing.T) {
-  router := SetupRouter()
 
   w := httptest.NewRecorder()
   req, _ := http.NewRequest("GET", "/ping", nil)
@@ -555,86 +307,78 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-Lihat [dokumentasi testing](../testing/) untuk contoh lebih lanjut.
+Lihat dokumentasi [Pengujian](/id/docs/testing/) untuk contoh lebih lanjut.
 
 ## Pertanyaan Performa
 
-### Bagaimana cara mengoptimalkan Gin untuk traffic tinggi?
+### Bagaimana cara mengoptimalkan Gin untuk lalu lintas tinggi?
 
-1. **Gunakan mode release**: Set `GIN_MODE=release`
-2. **Nonaktifkan middleware yang tidak perlu**: Hanya gunakan yang Anda butuhkan
-3. **Gunakan `gin.New()` alih-alih `gin.Default()`** jika Anda ingin kontrol manual atas middleware
-4. **Connection pooling**: Konfigurasi connection pool database dengan benar
-5. **Caching**: Implementasikan caching untuk data yang sering diakses
-6. **Load balancing**: Gunakan reverse proxy (nginx, HAProxy)
-7. **Profiling**: Gunakan pprof Go untuk mengidentifikasi bottleneck
+1. **Use Release Mode**: Set `GIN_MODE=release`
+2. **Disable unnecessary middleware**: Only use what you need
+3. **Use `gin.New()` instead of `gin.Default()`** for manual middleware control
+4. **Connection pooling**: Configure database connection pools (see [Database integration](/en/docs/server-config/database/))
+5. **Caching**: Implement caching for frequently accessed data
+6. **Load balancing**: Use reverse proxy (nginx, HAProxy)
+7. **Profiling**: Use Go's pprof to identify bottlenecks
+8. **Monitoring**: Set up [metrics and monitoring](/en/docs/server-config/metrics/) to track performance
 
-```go
-r := gin.New()
-r.Use(gin.Recovery()) // Hanya gunakan middleware recovery
+### Apakah Gin siap produksi?
 
-// Set batas connection pool
-db.SetMaxOpenConns(25)
-db.SetMaxIdleConns(5)
-db.SetConnMaxLifetime(5 * time.Minute)
-```
+Ya. Gin digunakan di produksi oleh banyak perusahaan dan telah teruji dalam skala besar. Lihat [Pengguna](/id/docs/users/) untuk contoh proyek yang menggunakan Gin di produksi.
 
-### Apakah Gin siap untuk production?
+## Pemecahan Masalah
 
-Ya! Gin digunakan dalam production oleh banyak perusahaan dan telah teruji dalam skala besar. Ini adalah salah satu framework web Go paling populer dengan:
+### Mengapa parameter rute saya tidak berfungsi?
 
-- Pemeliharaan aktif dan komunitas
-- Ekosistem middleware yang luas
-- Benchmark performa yang sangat baik
-- Kompatibilitas mundur yang kuat
-
-## Troubleshooting
-
-### Mengapa parameter route saya tidak berfungsi?
-
-Pastikan parameter route menggunakan sintaks `:` dan diekstrak dengan benar:
+Pastikan parameter rute menggunakan sintaks `:` dan diekstrak dengan benar:
 
 ```go
-// Benar
+// Correct
 r.GET("/user/:id", func(c *gin.Context) {
   id := c.Param("id")
   c.String(200, "User ID: %s", id)
 })
 
-// Salah: /user/{id} atau /user/<id>
+// Not: /user/{id} or /user/<id>
 ```
+
+Lihat [Parameter di path](/id/docs/routing/param-in-path/) untuk detail.
 
 ### Mengapa middleware saya tidak dieksekusi?
 
-Middleware harus didaftarkan sebelum route atau grup route:
+Middleware harus didaftarkan sebelum rute atau grup rute:
 
 ```go
-// Urutan yang benar
+// Correct order
 r := gin.New()
-r.Use(MyMiddleware()) // Daftarkan middleware dulu
-r.GET("/ping", handler) // Kemudian route
+r.Use(MyMiddleware()) // Register middleware first
+r.GET("/ping", handler) // Then routes
 
-// Untuk grup route
+// For route groups
 auth := r.Group("/admin")
-auth.Use(AuthMiddleware()) // Middleware untuk grup ini
+auth.Use(AuthMiddleware()) // Middleware for this group
 {
   auth.GET("/dashboard", handler)
 }
 ```
 
-### Mengapa binding request gagal?
+Lihat [Menggunakan middleware](/id/docs/middleware/using-middleware/) untuk detail.
+
+### Mengapa binding permintaan gagal?
 
 Alasan umum:
 
 1. **Tag binding hilang**: Tambahkan tag `json:"field"` atau `form:"field"`
-2. **Content-Type tidak cocok**: Pastikan client mengirim header Content-Type yang benar
+2. **Content-Type tidak cocok**: Pastikan klien mengirim header Content-Type yang benar
 3. **Error validasi**: Periksa tag validasi dan persyaratan
-4. **Field tidak diekspor**: Hanya field struct yang diekspor (huruf kapital) yang di-bind
+4. **Field yang tidak diekspor**: Hanya field struct yang diekspor (huruf kapital) yang diikat
 
 ```go
 type User struct {
-  Name  string `json:"name" binding:"required"` // ✓ Benar
-  Email string `json:"email"`                    // ✓ Benar
-  age   int    `json:"age"`                      // ✗ Tidak akan di-bind (tidak diekspor)
+  Name  string `json:"name" binding:"required"` // ✓ Correct
+  Email string `json:"email"`                    // ✓ Correct
+  age   int    `json:"age"`                      // ✗ Won't bind (unexported)
 }
 ```
+
+Lihat [Binding dan validasi](/id/docs/binding/binding-and-validation/) untuk detail.

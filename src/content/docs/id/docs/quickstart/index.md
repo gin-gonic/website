@@ -1,68 +1,44 @@
 ---
-title: "Quickstart"
+title: "Memulai Cepat"
 sidebar:
   order: 2
 ---
 
-Pada quickstart ini, kita akan mendapatkan pengetahuan dari beberapa contoh kode dan belajar caranya:
+Selamat datang di panduan memulai cepat Gin! Panduan ini akan memandu Anda memasang Gin, menyiapkan proyek, dan menjalankan API pertama Anda—sehingga Anda dapat mulai membangun layanan web dengan percaya diri.
 
-## Persyaratan
+## Prasyarat
 
-- **Versi Go**: Gin memerlukan [Go](https://go.dev/) versi [1.24](https://go.dev/doc/devel/release#go1.24) atau lebih tinggi
+- **Versi Go**: Gin membutuhkan [Go](https://go.dev/) versi [1.25](https://go.dev/doc/devel/release#go1.25) atau lebih baru
+- Pastikan Go ada di `PATH` Anda dan dapat digunakan dari terminal. Untuk bantuan instalasi Go, [lihat dokumentasi resmi](https://go.dev/doc/install).
 
-## Instalasi
+---
 
-Untuk menginstal paket Gin, Anda perlu menginstal Go dan mengatur workspace Go Anda terlebih dahulu.
-Jika Anda belum memiliki file go.mod, buat dengan `go mod init gin`.
+## Langkah 1: Instal Gin dan Inisialisasi Proyek Anda
 
-1. Unduh dan instal:
+Mulai dengan membuat folder proyek baru dan menginisialisasi modul Go:
+
+```sh
+mkdir gin-quickstart && cd gin-quickstart
+go mod init gin-quickstart
+```
+
+Tambahkan Gin sebagai dependensi:
 
 ```sh
 go get -u github.com/gin-gonic/gin
 ```
 
-2. Impor di dalam kode Anda:
+---
 
-```go
-import "github.com/gin-gonic/gin"
-```
+## Langkah 2: Buat Aplikasi Gin Pertama Anda
 
-3. (Opsional) Impor `net/http`. Ini diperlukan, misalnya jika menggunakan konstanta seperti `http.StatusOK`.
-
-```go
-import "net/http"
-```
-
-4. Buat folder proyek Anda dan masuk ke dalamnya dengan `cd`
+Buat file bernama `main.go`:
 
 ```sh
-mkdir -p project && cd "$_"
+touch main.go
 ```
 
-5. Salin template awal ke dalam proyek Anda
-
-```sh
-curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
-```
-
-6. Jalankan proyek Anda
-
-```sh
-go run main.go
-```
-
-## Memulai
-
-> Tidak tahu cara menulis dan menjalankan kode Go? [Klik di sini](https://golang.org/doc/code.html).
-
-Pertama, buat file `example.go`:
-
-```sh
-# asumsikan kode berikut ada di dalam file example.go
-$ touch example.go
-```
-
-Selanjutnya, masukkan kode berikut ke dalam `example.go`:
+Buka `main.go` dan tambahkan kode berikut:
 
 ```go
 package main
@@ -76,18 +52,31 @@ func main() {
       "message": "pong",
     })
   })
-  router.Run() // jalankan server pada 0.0.0.0:8080
+  router.Run() // listens on 0.0.0.0:8080 by default
 }
 ```
 
-Dan, Anda dapat menjalankan kode melalui `go run example.go`:
+---
+
+## Langkah 3: Jalankan Server API Anda
+
+Jalankan server Anda dengan:
 
 ```sh
-# jalankan example.go dan kunjungi 0.0.0.0:8080/ping di browser
-$ go run example.go
+go run main.go
 ```
 
-Jika Anda lebih memilih untuk menggunakan paket `net/http`, ikuti contoh kode di bawah ini
+Buka [http://localhost:8080/ping](http://localhost:8080/ping) di browser Anda, dan Anda akan melihat:
+
+```json
+{"message":"pong"}
+```
+
+---
+
+## Contoh Tambahan: Menggunakan net/http dengan Gin
+
+Jika Anda ingin menggunakan konstanta `net/http` untuk kode respons, impor juga paket tersebut:
 
 ```go
 package main
@@ -99,14 +88,12 @@ import (
 
 func main() {
   router := gin.Default()
-
   router.GET("/ping", func(c *gin.Context) {
     c.JSON(http.StatusOK, gin.H{
       "message": "pong",
     })
   })
-
-  router.Run() // jalankan server pada 0.0.0.0:8080
+  router.Run()
 }
 ```
 
@@ -114,6 +101,12 @@ func main() {
 
 ## Tips & Sumber Daya
 
-- Baru mengenal Go? Pelajari cara menulis dan menjalankan kode Go [di sini](https://golang.org/doc/code.html).
+- Baru mengenal Go? Pelajari cara menulis dan menjalankan kode Go di [dokumentasi resmi Go](https://go.dev/doc/code).
 - Ingin berlatih konsep Gin secara langsung? Lihat [Sumber Belajar](../learning-resources) kami untuk tantangan interaktif dan tutorial.
-- Informasi tambahan tersedia di [repositori kode sumber Gin](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).
+- Butuh contoh berfitur lengkap? Coba buat scaffold dengan:
+
+  ```sh
+  curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
+  ```
+
+- Untuk dokumentasi lebih detail, kunjungi [dokumentasi kode sumber Gin](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).

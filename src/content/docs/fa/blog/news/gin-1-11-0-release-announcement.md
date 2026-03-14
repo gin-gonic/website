@@ -1,52 +1,52 @@
 ---
-title: "انتشار Gin 1.11.0: پشتیبانی HTTP/3، بهبود فرم، عملکرد و بیشتر"
-linkTitle: "اطلاعیه نسخه Gin 1.11.0"
+title: "Announcing Gin 1.11.0: HTTP/3, Form Improvements, Performance & More"
+linkTitle: "Gin 1.11.0 Release Announcement"
 lastUpdated: 2025-09-21
 ---
 
-## Gin v1.11.0 منتشر شد
+## Gin v1.11.0 Has Arrived
 
-با خوشحالی اعلام می‌کنیم که Gin نسخه 1.11.0 منتشر شده است؛ این نسخه مجموعه‌ای از قابلیت‌های جدید، بهبود عملکرد و رفع اشکالات را برای این فریمورک محبوب Go به همراه دارد. هدف Gin حفظ سرعت، انعطاف‌پذیری و توسعه مدرن در Go است.
+We're excited to announce the release of Gin v1.11.0, bringing a major set of new features, performance tweaks, and bug fixes to the beloved web framework. This release continues Gin's commitment to speed, flexibility, and modern Go development.
 
-### 🌟 ویژگی‌های مهم
+### 🌟 Key Features
 
-- **پشتیبانی آزمایشی از HTTP/3:** حالا Gin از HTTP/3 به صورت آزمایشی با استفاده از [quic-go](https://github.com/quic-go/quic-go) پشتیبانی می‌کند. اگر مشتاق آزمایش جدیدترین پروتکل‌های وب هستید، فرصت را از دست ندهید. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
+- **Experimental HTTP/3 Support:** Gin now supports experimental HTTP/3 via [quic-go](https://github.com/quic-go/quic-go)! If you're eager to try the latest web transport protocols, now's your chance. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
 
-- **بهبود binding فرم:** پیشرفت‌های مهم در اتصال فرم:
-  - پشتیبانی از فرمت مجموعه آرایه‌ای در فرم‌ها ([#3986](https://github.com/gin-gonic/gin/pull/3986))
-  - پشتیبانی از Unmarshal سفارشی برای slice رشته در تگ فرم ([#3970](https://github.com/gin-gonic/gin/pull/3970))
-  - مقادیر پیش‌فرض برای مجموعه‌ها ([#4048](https://github.com/gin-gonic/gin/pull/4048))
+- **Better Form Binding:** We've made big improvements to form binding:
+  - Support for array collection formats in forms ([#3986](https://github.com/gin-gonic/gin/pull/3986))
+  - Custom string slice unmarshalling for form tags ([#3970](https://github.com/gin-gonic/gin/pull/3970))
+  - Default values for collections ([#4048](https://github.com/gin-gonic/gin/pull/4048))
 
-- **پشتیبانی بهتر از انواع binding:** اضافه شدن روش جدید `BindPlain` برای دریافت متن ساده ([#3904](https://github.com/gin-gonic/gin/pull/3904)) و پشتیبانی از unixMilli و unixMicro ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
+- **Enhanced Binding Types:** Bind plain text easily with the new `BindPlain` method ([#3904](https://github.com/gin-gonic/gin/pull/3904)), plus support for unixMilli and unixMicro formats ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
 
-- **بهبود API کانتکست:** اکنون `GetXxx` از انواع بیشتری از داده‌های بومی Go پشتیبانی می‌کند ([#3633](https://github.com/gin-gonic/gin/pull/3633)) و استخراج داده‌های امن‌تر را ممکن می‌کند.
+- **Context API Improvements:** `GetXxx` now supports more native Go types ([#3633](https://github.com/gin-gonic/gin/pull/3633)), making type-safe context data retrieval easier.
 
-- **بهبود سیستم فایل:** کامپوننت جدید `OnlyFilesFS` اکنون export شده، تست شده و مستند شده است ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
+- **Filesystem Updates:** The new `OnlyFilesFS` is now exported, tested, and documented ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
 
-### 🚀 بهبودها و عملکرد
+### 🚀 Performance & Enhancements
 
-- **پردازش سریع‌تر داده‌های فرم:** بهینه‌سازی داخلی برای تجزیه داده‌های فرم باعث افزایش سرعت شده است ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
-- بازنگری در هسته، رندرینگ و منطق کانتکست جهت افزایش پایداری و وضوح ([فهرست کامل PR‌ها در changelog](../releases/release111.md)).
+- **Faster Form Data Handling:** Internal optimizations for form parsing boost performance ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
+- Refactored core, rendering, and context logic for robustness and clarity ([full PR list in changelog](../releases/release111.md)).
 
-### 🐛 رفع اشکال‌ها
+### 🐛 Bug Fixes
 
-- **میدل‌ویرهای قابل اعتمادتر:** رفع یک باگ نادر که باعث ورود مجدد ناخواسته به میدل‌ویر می‌شد ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
-- پایداری بهتر در binding فرم‌های TOML ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
-- رفع مشکل panic هنگام مدیریت درخواست‌هایی با "method not allowed" روی درخت خالی ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
-- بهبود‌های کلی در مدیریت کانتکست، شرایط race و موارد دیگر.
+- **Middleware Reliability:** Fixed a rare bug where middleware could re-enter unexpectedly ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
+- Improved TOML form binding stability ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
+- No more panics when handling "method not allowed" requests on empty trees ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
+- General improvements to context handling, race conditions, and more.
 
-### 🔧 بروزرسانی‌های Build، وابستگی‌ها و CI
+### 🔧 Build, Dependency & CI Updates
 
-- پشتیبانی از **Go 1.25** در CI/CD و فعال‌سازی linterهای جدید برای کیفیت بیشتر کد ([#4341](https://github.com/gin-gonic/gin/pull/4341)، [#4010](https://github.com/gin-gonic/gin/pull/4010)).
-- یکپارچگی اسکن آسیب‌پذیری Trivy با CI ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
-- بروزرسانی‌های متعدد وابستگی مانند `sonic`، `setup-go`، `quic-go` و غیره.
+- Support for **Go 1.25** in CI/CD workflows, plus new linters enabled for stricter code health ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010)).
+- Trivy vulnerability scanning now integrated with CI ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
+- Multiple dependency upgrades, including `sonic`, `setup-go`, `quic-go`, and others.
 
-### 📖 مستندات
+### 📖 Documentation
 
-- توسعه داکیومنت‌ها، بروزرسانی changelog، بهبود نمونه‌های کد و گرامر انگلیسی، و اضافه شدن داکیومنت پرتغالی ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
+- Expanded documentation, updated changelogs, improved grammar and code samples, and new Portuguese docs ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
 
 ---
 
-Gin 1.11.0 نتیجه فعالیت مستمر جامعه و توسعه‌دهندگان آن است. از همه مشارکت‌کنندگان، گزارش‌دهندگان باگ و کاربران که Gin را پیشرفته نگه می‌دارند سپاسگزاریم.
+Gin 1.11.0 is a testament to our active community and continuous development. We appreciate every contributor, issue reporter, and user who keeps Gin sharp and relevant for modern web applications.
 
-آماده نصب Gin 1.11.0 هستید؟ [از گیت‌هاب بروزرسانی کنید!](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) منتظر بازخوردهای شما هستیم!
+Ready to try Gin 1.11.0? [Upgrade on GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) and let us know what you think!

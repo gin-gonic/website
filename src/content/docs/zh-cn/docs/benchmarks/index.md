@@ -1,15 +1,39 @@
 ---
-title: "基准测试"
+title: "Benchmarks"
 sidebar:
-  order: 3
+  order: 12
 ---
 
-Gin 使用了自定义版本的 [HttpRouter](https://github.com/julienschmidt/httprouter)
+> **Historical Data:** These benchmarks were collected in May 2020 using Gin v1.6.3 and Go 1.14.2. Framework performance may have changed significantly since then. For up-to-date benchmark results, see the [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) repository.
 
-[查看所有基准测试](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
+## Gin Web Framework Performance Benchmarks
+
+Benchmarks help developers evaluate the efficiency and resource usage of HTTP router libraries in Go. This page summarizes measurements across many popular frameworks, so you can easily compare their speed and memory consumption.
+
+**Test Environment:**
+
+- **Host Platform:** Travis CI (virtual Linux VM)
+- **Machine Specs:** Ubuntu 16.04.6 LTS x64
+- **Test Date:** May 04th, 2020
+- **Gin Version:** v1.6.3
+- **Go Version:** 1.14.2 (linux/amd64)
+- **Benchmarks Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **Detailed Results:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+
+Gin uses an optimized fork of [HttpRouter](https://github.com/julienschmidt/httprouter) for high performance routing.
+
+If you want to view more test cases, you can check [all benchmarks here](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+
+---
+
+## How to Read the Table
+
+The benchmarks below show various Go frameworks running common HTTP routing tasks.  
+**Lower numbers (time, memory, allocations) are better.**  
+You can use these results for a direct, side-by-side comparison of Gin and alternative routers.
 
 | Test                              | Repetitions | Time (ns/op) | Bytes (B/op) | Allocations (allocs/op) |
-| --------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
+| ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
 | BenchmarkGin_GithubStatic         | 15629472    | 76.7         | 0            | 0                       |
 | BenchmarkAce_GithubStatic         | 15542612    | 75.9         | 0            | 0                       |
 | BenchmarkAero_GithubStatic        | 24777151    | 48.5         | 0            | 0                       |
@@ -101,7 +125,13 @@ Gin 使用了自定义版本的 [HttpRouter](https://github.com/julienschmidt/ht
 | BenchmarkTraffic_GithubAll        | 355         | 3478508      | 820744       | 14114                   |
 | BenchmarkVulcan_GithubAll         | 6885        | 193333       | 19894        | 609                     |
 
-- (1)：在一定的时间内实现的总调用数，越高越好
-- (2)：单次操作耗时（ns/op），越低越好
-- (3)：堆内存分配 （B/op）, 越低越好
-- (4)：每次操作的平均内存分配次数（allocs/op），越低越好
+---
+
+## Benchmark Table Notes
+
+- **Repetitions**: Total repetitions achieved in constant time. Higher numbers mean more confidence in the results.
+- **Time (ns/op)**: Duration for one operation, measured in nanoseconds. Lower is better.
+- **Bytes (B/op)**: Heap memory allocated per operation. Lower means better efficiency.
+- **Allocations (allocs/op)**: Average number of memory allocations per operation. Fewer allocations are better for performance and garbage collection.
+
+For questions or contributions, check our [GitHub repository](https://github.com/gin-gonic/gin).

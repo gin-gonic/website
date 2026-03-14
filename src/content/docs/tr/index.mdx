@@ -1,13 +1,13 @@
 ---
 title: Gin Web Framework
-description: The fastest full-featured web framework for Go. Crystal clear.
+description: Go için en hızlı, tam özellikli web framework'ü. Kristal berraklığında.
 template: splash
 hero:
-  tagline: Go ile yazılmış, en hızlı, tam teşekküllü ve kristal berraklığında bir web çerçevesi.
+  tagline: Go için en hızlı, tam özellikli web framework'ü. Kristal berraklığında.
   image:
     file: ../../../assets/gin.png
   actions:
-    - text: Daha Fazla Öğren
+    - text: Dokümantasyonu oku
       link: /tr/docs/
       icon: right-arrow
     - text: İndir
@@ -18,33 +18,33 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Gin nedir?
+## Gin Nedir?
 
-Gin, Golang'da yazılmış bir web çerçevesidir. Martini benzeri bir API'ye sahiptir, ancak performans açısından Martini'den 40 kata kadar daha hızlıdır. Performans ve üretkenliğe ihtiyacınız varsa Gin'i seveceksiniz.
+Gin, Golang ile yazılmış bir web framework'üdür. Martini benzeri bir API sunar, ancak Martini'den 40 kata kadar daha hızlı performans sağlar. Performans ve verimlilik istiyorsanız, Gin'i seveceksiniz.
 
 <CardGrid>
 	<Card title="Hızlı" icon="rocket">
-		Radix ağacı tabanlı routing, küçük bellek ayak izi. Reflection yok. Öngörülebilir API performansı.
+		Radix ağacı tabanlı yönlendirme, küçük bellek ayak izi. Yansıma (reflection) yok. Öngörülebilir API performansı.
 	</Card>
-	<Card icon="seti:plan" title="Middleware desteği">
-		Gelen bir HTTP isteği, bir middleware zinciri ve son eylem tarafından işlenebilir. Örneğin: Logger, Authorization, GZIP ve son olarak veritabanına bir mesaj gönderin.
+	<Card title="Ara katman desteği" icon="seti:plan">
+		Gelen bir HTTP isteği, bir ara katman zinciri ve son eylem tarafından işlenebilir. Örneğin: Logger, Yetkilendirme, GZIP ve son olarak veritabanına mesaj gönderme.
 	</Card>
-	<Card icon="seti:lock" title="Çökmeye Dirençli">
-		Gin, bir HTTP isteği sırasında oluşan bir paniği yakalayabilir ve düzeltebilir. Bu şekilde sunucunuz her zaman çalışacaktır. Ayrıca bir paniği Sentry'ye bildirmek de mümkündür.
+	<Card title="Çökme koruması" icon="seti:lock">
+		Gin, bir HTTP isteği sırasında oluşan panic'i yakalayabilir ve kurtarabilir. Bu sayede sunucunuz her zaman erişilebilir olur. Ayrıca bu panic'i örneğin Sentry'ye raporlamak da mümkündür!
 	</Card>
-	<Card icon="approve-check-circle" title="JSON doğrulama">
-		Gin, bir isteğin JSON'ını ayrıştırabilir ve doğrulayabilir. Örneğin gerekli değerlerin varlığını kontrol edebilir.
+	<Card title="JSON doğrulama" icon="approve-check-circle">
+		Gin, bir isteğin JSON'ını ayrıştırabilir ve doğrulayabilir; örneğin zorunlu değerlerin varlığını kontrol edebilir.
 	</Card>
-	<Card icon="puzzle" title="Route gruplama">
-		Routelarınızı daha iyi düzenleyin. Authorization gerektiren veya gerektirmeyen, farklı API sürümlerini kolayca düzenleyin. Ayrıca, gruplar performansı düşürmeden sınırsız olarak iç içe yerleştirilebilir.
+	<Card title="Rota gruplama" icon="puzzle">
+		Rotalarınızı daha iyi düzenleyin. Yetkilendirme gerektiren ve gerektirmeyen, farklı API sürümleri. Ayrıca gruplar, performans kaybı olmadan sınırsız şekilde iç içe yerleştirilebilir.
 	</Card>
-	<Card icon="open-book" title="Hata yönetimi">
-		Gin, bir HTTP isteği sırasında meydana gelen tüm hataları toplamak için uygun bir yol sağlar. Sonunda, middleware bunları bir log dosyasına veya bir veritabanına yazabilir ve ağ üzerinden gönderebilir.
+	<Card title="Hata yönetimi" icon="open-book">
+		Gin, bir HTTP isteği sırasında oluşan tüm hataları toplamak için kullanışlı bir yol sağlar. Sonunda, bir ara katman bunları bir log dosyasına, veritabanına yazabilir ve ağ üzerinden gönderebilir.
 	</Card>
-	<Card icon="seti:json" title="Hazır rendering">
+	<Card title="Yerleşik işleme" icon="seti:json">
 		Gin, JSON, XML ve HTML işleme için kullanımı kolay bir API sağlar.
 	</Card>
-	<Card icon="seti:html" title="Genişletilebilir">
-		Yeni middleware oluşturmak çok kolaydır, sadece örnek kodları inceleyin.
+	<Card title="Genişletilebilir" icon="seti:html">
+		Yeni bir ara katman oluşturmak çok kolay, örnek koda göz atmanız yeterli.
 	</Card>
 </CardGrid>

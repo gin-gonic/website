@@ -1,93 +1,40 @@
 ---
 title: "FAQ"
 sidebar:
-  order: 9
+  order: 15
 ---
 
-## 常见问题
+## General Questions
 
-### 如何在开发时启用实时重载？
+### How do I enable live reload during development?
 
-使用 [Air](https://github.com/air-verse/air) 在开发时自动实时重载。Air 会监控你的文件，并在检测到更改时自动重新构建/重启你的应用程序。
+Use [Air](https://github.com/air-verse/air) for automatic live reloading during development. Air watches your files and rebuilds/restarts your application when changes are detected.
 
-**安装：**
+**Installation:**
 
 ```sh
-# 全局安装 Air
 go install github.com/air-verse/air@latest
 ```
 
-**配置：**
+**Setup:**
 
-在项目根目录创建 `.air.toml` 配置文件：
+Create a `.air.toml` configuration file in your project root:
 
 ```sh
 air init
 ```
 
-这会生成一个默认配置。你可以根据你的 Gin 项目自定义：
-
-```toml
-# .air.toml
-root = "."
-testdata_dir = "testdata"
-tmp_dir = "tmp"
-
-[build]
-  args_bin = []
-  bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ."
-  delay = 1000
-  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
-  exclude_file = []
-  exclude_regex = ["_test.go"]
-  exclude_unchanged = false
-  follow_symlink = false
-  full_bin = ""
-  include_dir = []
-  include_ext = ["go", "tpl", "tmpl", "html"]
-  include_file = []
-  kill_delay = "0s"
-  log = "build-errors.log"
-  poll = false
-  poll_interval = 0
-  rerun = false
-  rerun_delay = 500
-  send_interrupt = false
-  stop_on_error = false
-
-[color]
-  app = ""
-  build = "yellow"
-  main = "magenta"
-  runner = "green"
-  watcher = "cyan"
-
-[log]
-  main_only = false
-  time = false
-
-[misc]
-  clean_on_exit = false
-
-[screen]
-  clear_on_rebuild = false
-  keep_scroll = true
-```
-
-**使用：**
-
-在项目目录中运行 `air` 代替 `go run`：
+Then run `air` in your project directory instead of `go run`:
 
 ```sh
 air
 ```
 
-Air 现在会监控你的 `.go` 文件，并在更改时自动重新构建/重启你的 Gin 应用程序。
+Air will watch your `.go` files and automatically rebuild/restart your Gin application on changes. See the [Air documentation](https://github.com/air-verse/air) for configuration options.
 
-### 如何在 Gin 中处理 CORS？
+### How do I handle CORS in Gin?
 
-使用官方的 [gin-contrib/cors](https://github.com/gin-contrib/cors) 中间件：
+Use the official [gin-contrib/cors](https://github.com/gin-contrib/cors) middleware:
 
 ```go
 package main
@@ -102,10 +49,10 @@ import (
 func main() {
   r := gin.Default()
 
-  // 默认 CORS 配置
+  // Default CORS configuration
   r.Use(cors.Default())
 
-  // 或自定义 CORS 配置
+  // Or customize CORS settings
   r.Use(cors.New(cors.Config{
     AllowOrigins:     []string{"https://example.com"},
     AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
@@ -123,45 +70,44 @@ func main() {
 }
 ```
 
-### 如何提供静态文件？
+For a complete security overview, see [Security best practices](/en/docs/middleware/security-guide/).
 
-使用 `Static()` 或 `StaticFS()` 来提供静态文件：
+### How do I serve static files?
+
+Use `Static()` or `StaticFS()` to serve static files:
 
 ```go
 func main() {
   r := gin.Default()
 
-  // 在 /assets/* 路径提供 ./assets 目录的文件
+  // Serve files from ./assets directory at /assets/*
   r.Static("/assets", "./assets")
 
-  // 提供单个文件
+  // Serve a single file
   r.StaticFile("/favicon.ico", "./resources/favicon.ico")
 
-  // 从嵌入式文件系统提供（Go 1.16+）
+  // Serve from embedded filesystem (Go 1.16+)
   r.StaticFS("/public", http.FS(embedFS))
 
   r.Run()
 }
 ```
 
-详细信息请参阅[提供静态文件示例](../examples/serving-static-files/)。
+See [Serving data from file](/en/docs/rendering/serving-data-from-file/) for more details.
 
-### 如何处理文件上传？
+### How do I handle file uploads?
 
-使用 `FormFile()` 处理单个文件，或使用 `MultipartForm()` 处理多个文件：
+Use `FormFile()` for single files or `MultipartForm()` for multiple files:
 
 ```go
-// 单个文件上传
+// Single file upload
 r.POST("/upload", func(c *gin.Context) {
   file, _ := c.FormFile("file")
-
-  // 保存文件
   c.SaveUploadedFile(file, "./uploads/"+file.Filename)
-
-  c.String(200, "文件 %s 上传成功", file.Filename)
+  c.String(200, "File %s uploaded successfully", file.Filename)
 })
 
-// 多文件上传
+// Multiple files upload
 r.POST("/upload-multiple", func(c *gin.Context) {
   form, _ := c.MultipartForm()
   files := form.File["files"]
@@ -169,16 +115,15 @@ r.POST("/upload-multiple", func(c *gin.Context) {
   for _, file := range files {
     c.SaveUploadedFile(file, "./uploads/"+file.Filename)
   }
-
-  c.String(200, "已上传 %d 个文件", len(files))
+  c.String(200, "%d files uploaded", len(files))
 })
 ```
 
-详细信息请参阅[上传文件示例](../examples/upload-file/)。
+See the [Upload file](/en/docs/routing/upload-file/) documentation for more details.
 
-### 如何使用 JWT 实现身份验证？
+### How do I implement authentication with JWT?
 
-使用 [gin-contrib/jwt](https://github.com/gin-contrib/jwt) 或实现自定义中间件：
+Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware. Here's a minimal example:
 
 ```go
 package main
@@ -198,29 +143,16 @@ type Claims struct {
   jwt.RegisteredClaims
 }
 
-func GenerateToken(username string) (string, error) {
-  claims := Claims{
-    Username: username,
-    RegisteredClaims: jwt.RegisteredClaims{
-      ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
-      IssuedAt:  jwt.NewNumericDate(time.Now()),
-    },
-  }
-
-  token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-  return token.SignedString(jwtSecret)
-}
-
 func AuthMiddleware() gin.HandlerFunc {
   return func(c *gin.Context) {
     tokenString := c.GetHeader("Authorization")
     if tokenString == "" {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "缺少授权 token"})
+      c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing authorization token"})
       c.Abort()
       return
     }
 
-    // 移除 "Bearer " 前缀（如果存在）
+    // Remove "Bearer " prefix if present
     if len(tokenString) > 7 && tokenString[:7] == "Bearer " {
       tokenString = tokenString[7:]
     }
@@ -230,7 +162,7 @@ func AuthMiddleware() gin.HandlerFunc {
     })
 
     if err != nil || !token.Valid {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "无效的 token"})
+      c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
       c.Abort()
       return
     }
@@ -238,171 +170,58 @@ func AuthMiddleware() gin.HandlerFunc {
     if claims, ok := token.Claims.(*Claims); ok {
       c.Set("username", claims.Username)
       c.Next()
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "无效的 token claims"})
-      c.Abort()
     }
   }
-}
-
-func main() {
-  r := gin.Default()
-
-  r.POST("/login", func(c *gin.Context) {
-    var credentials struct {
-      Username string `json:"username"`
-      Password string `json:"password"`
-    }
-
-    if err := c.BindJSON(&credentials); err != nil {
-      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-      return
-    }
-
-    // 验证凭证（实现你自己的逻辑）
-    if credentials.Username == "admin" && credentials.Password == "password" {
-      token, _ := GenerateToken(credentials.Username)
-      c.JSON(http.StatusOK, gin.H{"token": token})
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "无效的凭证"})
-    }
-  })
-
-  // 受保护的路由
-  authorized := r.Group("/")
-  authorized.Use(AuthMiddleware())
-  {
-    authorized.GET("/profile", func(c *gin.Context) {
-      username := c.MustGet("username").(string)
-      c.JSON(http.StatusOK, gin.H{"username": username})
-    })
-  }
-
-  r.Run()
 }
 ```
 
-### 如何设置请求日志记录？
+For session-based authentication, see [Session management](/en/docs/middleware/session-management/).
 
-Gin 包含默认的日志记录中间件。自定义它或使用结构化日志记录：
+### How do I set up request logging?
+
+Gin includes a default logger middleware via `gin.Default()`. For structured JSON logging in production, see [Structured logging](/en/docs/logging/structured-logging/).
+
+For basic log customization:
 
 ```go
-package main
-
-import (
-  "log"
-  "time"
-
-  "github.com/gin-gonic/gin"
-)
-
-// 自定义日志记录中间件
-func Logger() gin.HandlerFunc {
-  return func(c *gin.Context) {
-    start := time.Now()
-    path := c.Request.URL.Path
-
-    c.Next()
-
-    latency := time.Since(start)
-    statusCode := c.Writer.Status()
-    clientIP := c.ClientIP()
-    method := c.Request.Method
-
-    log.Printf("[GIN] %s | %3d | %13v | %15s | %-7s %s",
-      time.Now().Format("2006/01/02 - 15:04:05"),
-      statusCode,
-      latency,
-      clientIP,
-      method,
-      path,
-    )
-  }
-}
-
-func main() {
-  r := gin.New()
-  r.Use(Logger())
-  r.Use(gin.Recovery())
-
-  r.GET("/ping", func(c *gin.Context) {
-    c.JSON(200, gin.H{"message": "pong"})
-  })
-
-  r.Run()
-}
+r := gin.New()
+r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+  SkipPaths: []string{"/healthz"},
+}))
+r.Use(gin.Recovery())
 ```
 
-更高级的日志记录，请参阅[自定义日志格式示例](../examples/custom-log-format/)。
+See the [Logging](/en/docs/logging/) section for all options including custom formats, file output, and skipping query strings.
 
-### 如何处理优雅关闭？
+### How do I handle graceful shutdown?
 
-实现优雅关闭以正确关闭连接：
+See [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/) for a complete guide with code examples.
+
+### Why am I getting "404 Not Found" instead of "405 Method Not Allowed"?
+
+By default, Gin returns 404 for routes that don't support the requested HTTP method. Set `HandleMethodNotAllowed = true` to return 405 instead:
 
 ```go
-package main
+r := gin.Default()
+r.HandleMethodNotAllowed = true
 
-import (
-  "context"
-  "log"
-  "net/http"
-  "os"
-  "os/signal"
-  "syscall"
-  "time"
+r.GET("/ping", func(c *gin.Context) {
+  c.JSON(200, gin.H{"message": "pong"})
+})
 
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  r := gin.Default()
-
-  r.GET("/", func(c *gin.Context) {
-    time.Sleep(5 * time.Second)
-    c.String(http.StatusOK, "欢迎！")
-  })
-
-  srv := &http.Server{
-    Addr:    ":8080",
-    Handler: r,
-  }
-
-  // 在 goroutine 中运行服务器
-  go func() {
-    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-      log.Fatalf("监听: %s\n", err)
-    }
-  }()
-
-  // 等待中断信号以优雅地关闭服务器
-  quit := make(chan os.Signal, 1)
-  signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-  <-quit
-  log.Println("正在关闭服务器...")
-
-  // 给未完成的请求 5 秒钟完成
-  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-  defer cancel()
-
-  if err := srv.Shutdown(ctx); err != nil {
-    log.Fatal("服务器强制关闭:", err)
-  }
-
-  log.Println("服务器退出")
-}
+r.Run()
 ```
 
-详细信息请参阅[优雅重启或停止示例](../examples/graceful-restart-or-stop/)。
+```sh
+$ curl -X POST localhost:8080/ping
 
-### 为什么我得到「404 Not Found」而不是「405 Method Not Allowed」？
+HTTP/1.1 405 Method Not Allowed
+Allow: GET
+```
 
-默认情况下，Gin 会对不支持请求的 HTTP 方法的路由返回 404。要返回 405 Method Not Allowed，请启用 `HandleMethodNotAllowed` 选项。
+### How do I bind query parameters and POST data together?
 
-详细信息请参阅 [Method Not Allowed 常见问题](./method-not-allowed/)。
-
-### 如何同时绑定查询参数和 POST 数据？
-
-使用 `ShouldBind()`，它会根据内容类型自动选择绑定方式：
+Use `ShouldBind()` which automatically selects the binding based on content type:
 
 ```go
 type User struct {
@@ -413,7 +232,6 @@ type User struct {
 
 r.POST("/user", func(c *gin.Context) {
   var user User
-  // 绑定查询参数和请求体（JSON/表单）
   if err := c.ShouldBind(&user); err != nil {
     c.JSON(400, gin.H{"error": err.Error()})
     return
@@ -422,11 +240,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-更多控制，请参阅[绑定查询或 POST 示例](../examples/bind-query-or-post/)。
+See the [Binding](/en/docs/binding/) section for all binding options.
 
-### 如何验证请求数据？
+### How do I validate request data?
 
-Gin 使用 [go-playground/validator](https://github.com/go-playground/validator) 进行验证。在你的结构体中添加验证标签：
+Gin uses [go-playground/validator](https://github.com/go-playground/validator) for validation. Add validation tags to your structs:
 
 ```go
 type User struct {
@@ -441,110 +259,44 @@ r.POST("/user", func(c *gin.Context) {
     c.JSON(400, gin.H{"error": err.Error()})
     return
   }
-  c.JSON(200, gin.H{"message": "用户有效"})
+  c.JSON(200, gin.H{"message": "User is valid"})
 })
 ```
 
-自定义验证器请参阅[自定义验证器示例](../examples/custom-validators/)。
+See [Binding and validation](/en/docs/binding/binding-and-validation/) for custom validators and advanced usage.
 
-### 如何在生产模式运行 Gin？
+### How do I run Gin in production mode?
 
-将 `GIN_MODE` 环境变量设置为 `release`：
+Set the `GIN_MODE` environment variable to `release`:
 
 ```sh
 export GIN_MODE=release
-# 或
+# or
 GIN_MODE=release ./your-app
 ```
 
-或以编程方式设置：
+Or set it programmatically:
 
 ```go
 gin.SetMode(gin.ReleaseMode)
 ```
 
-发布模式：
+Release mode disables debug logging and improves performance.
 
-- 禁用调试日志
-- 提升性能
-- 稍微减少二进制文件大小
+### How do I handle database connections with Gin?
 
-### 如何在 Gin 中处理数据库连接？
+See [Database integration](/en/docs/server-config/database/) for a complete guide covering `database/sql`, GORM, connection pooling, and dependency injection patterns.
 
-使用依赖注入或上下文来共享数据库连接：
+### How do I test Gin handlers?
 
-```go
-package main
-
-import (
-  "database/sql"
-
-  "github.com/gin-gonic/gin"
-  _ "github.com/lib/pq"
-)
-
-func main() {
-  db, err := sql.Open("postgres", "postgres://user:pass@localhost/dbname")
-  if err != nil {
-    panic(err)
-  }
-  defer db.Close()
-
-  r := gin.Default()
-
-  // 方法 1：将 db 传递给处理器
-  r.GET("/users", func(c *gin.Context) {
-    var users []string
-    rows, _ := db.Query("SELECT name FROM users")
-    defer rows.Close()
-
-    for rows.Next() {
-      var name string
-      rows.Scan(&name)
-      users = append(users, name)
-    }
-
-    c.JSON(200, users)
-  })
-
-  // 方法 2：使用中间件注入 db
-  r.Use(func(c *gin.Context) {
-    c.Set("db", db)
-    c.Next()
-  })
-
-  r.Run()
-}
-```
-
-ORM 请考虑搭配 Gin 使用 [GORM](https://gorm.io/)。
-
-### 如何测试 Gin 处理器？
-
-使用 `net/http/httptest` 测试你的路由：
+Use `net/http/httptest` to test your routes:
 
 ```go
-package main
-
-import (
-  "net/http"
-  "net/http/httptest"
-  "testing"
-
-  "github.com/gin-gonic/gin"
-  "github.com/stretchr/testify/assert"
-)
-
-func SetupRouter() *gin.Engine {
-  r := gin.Default()
-  r.GET("/ping", func(c *gin.Context) {
+func TestPingRoute(t *testing.T) {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
     c.JSON(200, gin.H{"message": "pong"})
   })
-  return r
-}
-
-func TestPingRoute(t *testing.T) {
-  router := SetupRouter()
 
   w := httptest.NewRecorder()
   req, _ := http.NewRequest("GET", "/ping", nil)
@@ -555,86 +307,78 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-更多示例请参阅[测试文档](../testing/)。
+See the [Testing](/en/docs/testing/) documentation for more examples.
 
-## 性能问题
+## Performance Questions
 
-### 如何针对高流量优化 Gin？
+### How do I optimize Gin for high traffic?
 
-1. **使用发布模式**：设置 `GIN_MODE=release`
-2. **禁用不必要的中间件**：只使用你需要的
-3. **使用 `gin.New()` 代替 `gin.Default()`**，如果你想要手动控制中间件
-4. **连接池**：正确配置数据库连接池
-5. **缓存**：对常访问的数据实现缓存
-6. **负载均衡**：使用反向代理（nginx、HAProxy）
-7. **性能分析**：使用 Go 的 pprof 找出瓶颈
+1. **Use Release Mode**: Set `GIN_MODE=release`
+2. **Disable unnecessary middleware**: Only use what you need
+3. **Use `gin.New()` instead of `gin.Default()`** for manual middleware control
+4. **Connection pooling**: Configure database connection pools (see [Database integration](/en/docs/server-config/database/))
+5. **Caching**: Implement caching for frequently accessed data
+6. **Load balancing**: Use reverse proxy (nginx, HAProxy)
+7. **Profiling**: Use Go's pprof to identify bottlenecks
+8. **Monitoring**: Set up [metrics and monitoring](/en/docs/server-config/metrics/) to track performance
 
-```go
-r := gin.New()
-r.Use(gin.Recovery()) // 只使用 recovery 中间件
+### Is Gin production-ready?
 
-// 设置连接池限制
-db.SetMaxOpenConns(25)
-db.SetMaxIdleConns(5)
-db.SetConnMaxLifetime(5 * time.Minute)
-```
+Yes. Gin is used in production by many companies and has been battle-tested at scale. See [Users](/en/docs/users/) for examples of projects using Gin in production.
 
-### Gin 可以用于生产环境吗？
+## Troubleshooting
 
-是的！Gin 被许多公司在生产环境中使用，并经过大规模实战测试。它是最受欢迎的 Go Web 框架之一，具有：
+### Why are my route parameters not working?
 
-- 积极维护和社区
-- 广泛的中间件生态系统
-- 出色的性能基准测试
-- 强大的向后兼容性
-
-## 故障排除
-
-### 为什么我的路由参数不起作用？
-
-确保路由参数使用 `:` 语法并正确提取：
+Ensure route parameters use `:` syntax and are properly extracted:
 
 ```go
-// 正确
+// Correct
 r.GET("/user/:id", func(c *gin.Context) {
   id := c.Param("id")
-  c.String(200, "用户 ID: %s", id)
+  c.String(200, "User ID: %s", id)
 })
 
-// 错误：/user/{id} 或 /user/<id>
+// Not: /user/{id} or /user/<id>
 ```
 
-### 为什么我的中间件没有执行？
+See [Parameters in path](/en/docs/routing/param-in-path/) for details.
 
-中间件必须在路由或路由组之前注册：
+### Why is my middleware not executing?
+
+Middleware must be registered before routes or route groups:
 
 ```go
-// 正确顺序
+// Correct order
 r := gin.New()
-r.Use(MyMiddleware()) // 先注册中间件
-r.GET("/ping", handler) // 然后是路由
+r.Use(MyMiddleware()) // Register middleware first
+r.GET("/ping", handler) // Then routes
 
-// 对于路由组
+// For route groups
 auth := r.Group("/admin")
-auth.Use(AuthMiddleware()) // 此组的中间件
+auth.Use(AuthMiddleware()) // Middleware for this group
 {
   auth.GET("/dashboard", handler)
 }
 ```
 
-### 为什么请求绑定失败？
+See [Using middleware](/en/docs/middleware/using-middleware/) for details.
 
-常见原因：
+### Why is request binding failing?
 
-1. **缺少绑定标签**：添加 `json:"field"` 或 `form:"field"` 标签
-2. **Content-Type 不匹配**：确保客户端发送正确的 Content-Type 头
-3. **验证错误**：检查验证标签和要求
-4. **未导出字段**：只有导出的（大写开头）结构体字段会被绑定
+Common reasons:
+
+1. **Missing binding tags**: Add `json:"field"` or `form:"field"` tags
+2. **Content-Type mismatch**: Ensure client sends correct Content-Type header
+3. **Validation errors**: Check validation tags and requirements
+4. **Unexported fields**: Only exported (capitalized) struct fields are bound
 
 ```go
 type User struct {
-  Name  string `json:"name" binding:"required"` // ✓ 正确
-  Email string `json:"email"`                    // ✓ 正确
-  age   int    `json:"age"`                      // ✗ 不会绑定（未导出）
+  Name  string `json:"name" binding:"required"` // ✓ Correct
+  Email string `json:"email"`                    // ✓ Correct
+  age   int    `json:"age"`                      // ✗ Won't bind (unexported)
 }
 ```
+
+See [Binding and validation](/en/docs/binding/binding-and-validation/) for details.

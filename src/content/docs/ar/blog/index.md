@@ -1,9 +1,11 @@
 ---
-title: "المقالات"
+title: "Blog"
 sidebar:
   order: 30
 ---
 
-هذا هو قسم **المقالات**. ويضم فئتين: الأخبار والإصدارات.
 
-سيتم عرض الملفات في هذه الأدلة بترتيب زمني عكسي.
+This is the **blog** section. It has two categories: News and Releases.
+
+Files in these directories will be listed in reverse chronological order.
+

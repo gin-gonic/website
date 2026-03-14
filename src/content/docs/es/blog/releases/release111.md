@@ -1,75 +1,75 @@
 ---
-title: "Gin 1.11.0 ha sido lanzado"
-linkTitle: "Gin 1.11.0 ha sido lanzado"
+title: "Gin 1.11.0 is released"
+linkTitle: "Gin 1.11.0 is released"
 lastUpdated: 2025-09-20
 ---
 
 ## Gin v1.11.0
 
-### Características
+### Features
 
-* feat(gin): Soporte experimental para HTTP/3 utilizando quic-go/quic-go ([#3210](https://github.com/gin-gonic/gin/pull/3210))
-* feat(form): agregado formato de colección de arreglos en enlace de formularios ([#3986](https://github.com/gin-gonic/gin/pull/3986)), añadido slice de cadenas personalizado para deserialización de etiqueta form ([#3970](https://github.com/gin-gonic/gin/pull/3970))
-* feat(binding): añadido BindPlain ([#3904](https://github.com/gin-gonic/gin/pull/3904))
-* feat(fs): Exportar, probar y documentar OnlyFilesFS ([#3939](https://github.com/gin-gonic/gin/pull/3939))
-* feat(binding): soporte para unixMilli y unixMicro ([#4190](https://github.com/gin-gonic/gin/pull/4190))
-* feat(form): soporte de valores por defecto para colecciones en enlace de formularios ([#4048](https://github.com/gin-gonic/gin/pull/4048))
-* feat(context): GetXxx ahora admite más tipos nativos de Go ([#3633](https://github.com/gin-gonic/gin/pull/3633))
+* feat(gin): Experimental support for HTTP/3 using quic-go/quic-go ([#3210](https://github.com/gin-gonic/gin/pull/3210))
+* feat(form): add array collection format in form binding ([#3986](https://github.com/gin-gonic/gin/pull/3986)), add custom string slice for form tag unmarshal ([#3970](https://github.com/gin-gonic/gin/pull/3970))
+* feat(binding): add BindPlain ([#3904](https://github.com/gin-gonic/gin/pull/3904))
+* feat(fs): Export, test and document OnlyFilesFS ([#3939](https://github.com/gin-gonic/gin/pull/3939))
+* feat(binding): add support for unixMilli and unixMicro ([#4190](https://github.com/gin-gonic/gin/pull/4190))
+* feat(form): Support default values for collections in form binding ([#4048](https://github.com/gin-gonic/gin/pull/4048))
+* feat(context): GetXxx added support for more go native types ([#3633](https://github.com/gin-gonic/gin/pull/3633))
 
-### Mejoras
+### Enhancements
 
-* perf(context): optimizar el rendimiento de getMapFromFormData ([#4339](https://github.com/gin-gonic/gin/pull/4339))
-* refactor(tree): reemplazar string(/) con "/" en node.insertChild ([#4354](https://github.com/gin-gonic/gin/pull/4354))
-* refactor(render): eliminar el parámetro headers de writeHeader ([#4353](https://github.com/gin-gonic/gin/pull/4353))
-* refactor(context): simplificar funciones "GetType()" ([#4080](https://github.com/gin-gonic/gin/pull/4080))
-* refactor(slice): simplificar el método Error de SliceValidationError ([#3910](https://github.com/gin-gonic/gin/pull/3910))
-* refactor(context): evitar el uso doble de filepath.Dir en SaveUploadedFile ([#4181](https://github.com/gin-gonic/gin/pull/4181))
-* refactor(context): refactorizar manejo del contexto y mejorar robustez de pruebas ([#4066](https://github.com/gin-gonic/gin/pull/4066))
-* refactor(binding): utilizar strings.Cut para reemplazar strings.Index ([#3522](https://github.com/gin-gonic/gin/pull/3522))
-* refactor(context): añadir un parámetro de permiso opcional a SaveUploadedFile ([#4068](https://github.com/gin-gonic/gin/pull/4068))
-* refactor(context): verificar que URL no sea nulo en initQueryCache() ([#3969](https://github.com/gin-gonic/gin/pull/3969))
-* refactor(context): lógica de juicio YAML en Negotiate ([#3966](https://github.com/gin-gonic/gin/pull/3966))
-* tree: reemplazar 'min' personalizado por versión oficial ([#3975](https://github.com/gin-gonic/gin/pull/3975))
-* context: eliminar uso redundante de filepath.Dir ([#4181](https://github.com/gin-gonic/gin/pull/4181))
+* perf(context): optimize getMapFromFormData performance ([#4339](https://github.com/gin-gonic/gin/pull/4339))
+* refactor(tree): replace string(/) with "/" in node.insertChild ([#4354](https://github.com/gin-gonic/gin/pull/4354))
+* refactor(render): remove headers parameter from writeHeader ([#4353](https://github.com/gin-gonic/gin/pull/4353))
+* refactor(context): simplify "GetType()" functions ([#4080](https://github.com/gin-gonic/gin/pull/4080))
+* refactor(slice): simplify SliceValidationError Error method ([#3910](https://github.com/gin-gonic/gin/pull/3910))
+* refactor(context):Avoid using filepath.Dir twice in SaveUploadedFile ([#4181](https://github.com/gin-gonic/gin/pull/4181))
+* refactor(context): refactor context handling and improve test robustness ([#4066](https://github.com/gin-gonic/gin/pull/4066))
+* refactor(binding): use strings.Cut to replace strings.Index ([#3522](https://github.com/gin-gonic/gin/pull/3522))
+* refactor(context): add an optional permission parameter to SaveUploadedFile ([#4068](https://github.com/gin-gonic/gin/pull/4068))
+* refactor(context): verify URL is Non-nil in initQueryCache() ([#3969](https://github.com/gin-gonic/gin/pull/3969))
+* refactor(context): YAML judgment logic in Negotiate ([#3966](https://github.com/gin-gonic/gin/pull/3966))
+* tree: replace the self-defined 'min' to official one ([#3975](https://github.com/gin-gonic/gin/pull/3975))
+* context: Remove redundant filepath.Dir usage ([#4181](https://github.com/gin-gonic/gin/pull/4181))
 
-### Corrección de errores
+### Bug Fixes
 
-* fix: prevenir reentrada de middleware en HandleContext ([#3987](https://github.com/gin-gonic/gin/pull/3987))
-* fix(binding): prevenir decodificación duplicada y agregar validación en decodeToml ([#4193](https://github.com/gin-gonic/gin/pull/4193))
-* fix(gin): evitar pánico al manejar método no permitido en árbol vacío ([#4003](https://github.com/gin-gonic/gin/pull/4003))
-* fix(gin): advertencia de carrera de datos para modo gin ([#1580](https://github.com/gin-gonic/gin/pull/1580))
-* fix(context): verificar que URL no sea nulo en initQueryCache() ([#3969](https://github.com/gin-gonic/gin/pull/3969))
-* fix(context): lógica de juicio YAML en Negotiate ([#3966](https://github.com/gin-gonic/gin/pull/3966))
-* fix(context): comprobar si el manejador es nulo ([#3413](https://github.com/gin-gonic/gin/pull/3413))
-* fix(readme): corregir enlace roto con la documentación en inglés ([#4222](https://github.com/gin-gonic/gin/pull/4222))
-* fix(tree): mantener la información de pánico consistente cuando falla la construcción de tipo comodín ([#4077](https://github.com/gin-gonic/gin/pull/4077))
+* fix: prevent middleware re-entry issue in HandleContext ([#3987](https://github.com/gin-gonic/gin/pull/3987))
+* fix(binding): prevent duplicate decoding and add validation in decodeToml ([#4193](https://github.com/gin-gonic/gin/pull/4193))
+* fix(gin): Do not panic when handling method not allowed on empty tree ([#4003](https://github.com/gin-gonic/gin/pull/4003))
+* fix(gin): data race warning for gin mode ([#1580](https://github.com/gin-gonic/gin/pull/1580))
+* fix(context): verify URL is Non-nil in initQueryCache() ([#3969](https://github.com/gin-gonic/gin/pull/3969))
+* fix(context): YAML judgment logic in Negotiate ([#3966](https://github.com/gin-gonic/gin/pull/3966))
+* fix(context): check handler is nil ([#3413](https://github.com/gin-gonic/gin/pull/3413))
+* fix(readme): fix broken link to English documentation ([#4222](https://github.com/gin-gonic/gin/pull/4222))
+* fix(tree): Keep panic infos consistent when wildcard type build faild ([#4077](https://github.com/gin-gonic/gin/pull/4077))
 
-### Actualizaciones del proceso de construcción / CI
+### Build process updates / CI
 
-* ci: integrar escaneo de vulnerabilidades Trivy al flujo de CI ([#4359](https://github.com/gin-gonic/gin/pull/4359))
-* ci: soporte para Go 1.25 en CI/CD ([#4341](https://github.com/gin-gonic/gin/pull/4341))
-* build(deps): actualizar github.com/bytedance/sonic de v1.13.2 a v1.14.0 ([#4342](https://github.com/gin-gonic/gin/pull/4342))
-* ci: agregar versión Go 1.24 a GitHub Actions ([#4154](https://github.com/gin-gonic/gin/pull/4154))
-* build: actualizar versión mínima de Go para Gin a 1.21 ([#3960](https://github.com/gin-gonic/gin/pull/3960))
-* ci(lint): habilitar nuevos linters (testifylint, usestdlibvars, perfsprint, etc.) ([#4010](https://github.com/gin-gonic/gin/pull/4010), [#4091](https://github.com/gin-gonic/gin/pull/4091), [#4090](https://github.com/gin-gonic/gin/pull/4090))
-* ci(lint): actualizar flujos de trabajo y mejorar consistencia en solicitudes de prueba ([#4126](https://github.com/gin-gonic/gin/pull/4126))
+* ci: integrate Trivy vulnerability scanning into CI workflow ([#4359](https://github.com/gin-gonic/gin/pull/4359))
+* ci: support Go 1.25 in CI/CD ([#4341](https://github.com/gin-gonic/gin/pull/4341))
+* build(deps): upgrade github.com/bytedance/sonic from v1.13.2 to v1.14.0 ([#4342](https://github.com/gin-gonic/gin/pull/4342))
+* ci: add Go version 1.24 to GitHub Actions ([#4154](https://github.com/gin-gonic/gin/pull/4154))
+* build: update Gin minimum Go version to 1.21 ([#3960](https://github.com/gin-gonic/gin/pull/3960))
+* ci(lint): enable new linters (testifylint, usestdlibvars, perfsprint, etc.) ([#4010](https://github.com/gin-gonic/gin/pull/4010), [#4091](https://github.com/gin-gonic/gin/pull/4091), [#4090](https://github.com/gin-gonic/gin/pull/4090))
+* ci(lint): update workflows and improve test request consistency ([#4126](https://github.com/gin-gonic/gin/pull/4126))
 
-### Actualizaciones de dependencias
+### Dependency updates
 
-* chore(deps): actualizar google.golang.org/protobuf de 1.36.6 a 1.36.9 ([#4346](https://github.com/gin-gonic/gin/pull/4346), [#4356](https://github.com/gin-gonic/gin/pull/4356))
-* chore(deps): actualizar github.com/stretchr/testify de 1.10.0 a 1.11.1 ([#4347](https://github.com/gin-gonic/gin/pull/4347))
-* chore(deps): actualizar actions/setup-go de 5 a 6 ([#4351](https://github.com/gin-gonic/gin/pull/4351))
-* chore(deps): actualizar github.com/quic-go/quic-go de 0.53.0 a 0.54.0 ([#4328](https://github.com/gin-gonic/gin/pull/4328))
-* chore(deps): actualizar golang.org/x/net de 0.33.0 a 0.38.0 ([#4178](https://github.com/gin-gonic/gin/pull/4178), [#4221](https://github.com/gin-gonic/gin/pull/4221))
-* chore(deps): actualizar github.com/go-playground/validator/v10 de 10.20.0 a 10.22.1 ([#4052](https://github.com/gin-gonic/gin/pull/4052))
+* chore(deps): bump google.golang.org/protobuf from 1.36.6 to 1.36.9 ([#4346](https://github.com/gin-gonic/gin/pull/4346), [#4356](https://github.com/gin-gonic/gin/pull/4356))
+* chore(deps): bump github.com/stretchr/testify from 1.10.0 to 1.11.1 ([#4347](https://github.com/gin-gonic/gin/pull/4347))
+* chore(deps): bump actions/setup-go from 5 to 6 ([#4351](https://github.com/gin-gonic/gin/pull/4351))
+* chore(deps): bump github.com/quic-go/quic-go from 0.53.0 to 0.54.0 ([#4328](https://github.com/gin-gonic/gin/pull/4328))
+* chore(deps): bump golang.org/x/net from 0.33.0 to 0.38.0 ([#4178](https://github.com/gin-gonic/gin/pull/4178), [#4221](https://github.com/gin-gonic/gin/pull/4221))
+* chore(deps): bump github.com/go-playground/validator/v10 from 10.20.0 to 10.22.1 ([#4052](https://github.com/gin-gonic/gin/pull/4052))
 
-### Actualizaciones de documentación
+### Documentation updates
 
-* docs(changelog): actualizar notas de la versión para Gin v1.10.1 ([#4360](https://github.com/gin-gonic/gin/pull/4360))
-* docs: correcciones de errores gramaticales en inglés y frases incómodas en doc/doc.md ([#4207](https://github.com/gin-gonic/gin/pull/4207))
-* docs: actualizar documentación y notas de la versión para Gin v1.10.0 ([#3953](https://github.com/gin-gonic/gin/pull/3953))
-* docs: corregir error tipográfico en Gin Quick Start ([#3997](https://github.com/gin-gonic/gin/pull/3997))
-* docs: corregir problemas en comentarios y enlaces ([#4205](https://github.com/gin-gonic/gin/pull/4205), [#3938](https://github.com/gin-gonic/gin/pull/3938))
-* docs: corregir ejemplo de código de grupo de rutas ([#4020](https://github.com/gin-gonic/gin/pull/4020))
-* docs(readme): añadir documentación en portugués ([#4078](https://github.com/gin-gonic/gin/pull/4078))
-* docs(context): corregir algunos nombres de funciones en comentarios ([#4079](https://github.com/gin-gonic/gin/pull/4079))
+* docs(changelog): update release notes for Gin v1.10.1 ([#4360](https://github.com/gin-gonic/gin/pull/4360))
+* docs: Fixing English grammar mistakes and awkward sentence structure in doc/doc.md ([#4207](https://github.com/gin-gonic/gin/pull/4207))
+* docs: update documentation and release notes for Gin v1.10.0 ([#3953](https://github.com/gin-gonic/gin/pull/3953))
+* docs: fix typo in Gin Quick Start ([#3997](https://github.com/gin-gonic/gin/pull/3997))
+* docs: fix comment and link issues ([#4205](https://github.com/gin-gonic/gin/pull/4205), [#3938](https://github.com/gin-gonic/gin/pull/3938))
+* docs: fix route group example code ([#4020](https://github.com/gin-gonic/gin/pull/4020))
+* docs(readme): add Portuguese documentation ([#4078](https://github.com/gin-gonic/gin/pull/4078))
+* docs(context): fix some function names in comment ([#4079](https://github.com/gin-gonic/gin/pull/4079))

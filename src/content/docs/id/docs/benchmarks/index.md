@@ -1,23 +1,39 @@
 ---
-title: "Benchmarks"
+title: "Benchmark"
 sidebar:
-  order: 3
+  order: 12
 ---
 
-**HOST VM:** Travis
-**Mesin:** Ubuntu 16.04.6 LTS x64
-**Tanggal:** 04 Mei 2020
-**Versi:** Gin v1.6.3
-**Versi Go:** 1.14.2 linux/amd64
-**Sumber:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
-**Hasil:** [Lihat gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) atau [hasil Travis](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+> **Data Historis:** Benchmark ini dikumpulkan pada Mei 2020 menggunakan Gin v1.6.3 dan Go 1.14.2. Performa framework mungkin telah berubah secara signifikan sejak saat itu. Untuk hasil benchmark terbaru, lihat repositori [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark).
 
-Gin menggunakan versi custom dari [HttpRouter](https://github.com/julienschmidt/httprouter)
+## Benchmark Performa Gin Web Framework
 
-[Lihat semua benchmark](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
+Benchmark membantu pengembang mengevaluasi efisiensi dan penggunaan sumber daya pustaka router HTTP di Go. Halaman ini merangkum pengukuran di banyak framework populer, sehingga Anda dapat dengan mudah membandingkan kecepatan dan konsumsi memori mereka.
+
+**Test Environment:**
+
+- **Host Platform:** Travis CI (virtual Linux VM)
+- **Machine Specs:** Ubuntu 16.04.6 LTS x64
+- **Test Date:** May 04th, 2020
+- **Gin Version:** v1.6.3
+- **Go Version:** 1.14.2 (linux/amd64)
+- **Benchmarks Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **Detailed Results:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+
+Gin uses an optimized fork of [HttpRouter](https://github.com/julienschmidt/httprouter) for high performance routing.
+
+If you want to view more test cases, you can check [all benchmarks here](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+
+---
+
+## Cara Membaca Tabel
+
+Benchmark di bawah ini menunjukkan berbagai framework Go yang menjalankan tugas routing HTTP umum.
+**Angka lebih rendah (waktu, memori, alokasi) lebih baik.**
+Anda dapat menggunakan hasil ini untuk perbandingan langsung Gin dan router alternatif.
 
 | Test                              | Repetitions | Time (ns/op) | Bytes (B/op) | Allocations (allocs/op) |
-| --------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
+| ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
 | BenchmarkGin_GithubStatic         | 15629472    | 76.7         | 0            | 0                       |
 | BenchmarkAce_GithubStatic         | 15542612    | 75.9         | 0            | 0                       |
 | BenchmarkAero_GithubStatic        | 24777151    | 48.5         | 0            | 0                       |
@@ -109,9 +125,13 @@ Gin menggunakan versi custom dari [HttpRouter](https://github.com/julienschmidt/
 | BenchmarkTraffic_GithubAll        | 355         | 3478508      | 820744       | 14114                   |
 | BenchmarkVulcan_GithubAll         | 6885        | 193333       | 19894        | 609                     |
 
-Catatan:
+---
 
-- Repetitions: Total pengulangan yang dicapai dalam waktu konstan, semakin tinggi berarti hasil semakin meyakinkan
-- Time: Durasi per pengulangan tunggal (ns/op), semakin rendah semakin baik
-- Bytes: Memori heap (B/op), semakin rendah semakin baik
-- Allocations: Rata-rata alokasi per pengulangan (allocs/op), semakin rendah semakin baik
+## Catatan Tabel Benchmark
+
+- **Repetisi**: Total repetisi yang dicapai dalam waktu konstan. Angka lebih tinggi berarti lebih percaya diri pada hasil.
+- **Waktu (ns/op)**: Durasi untuk satu operasi, diukur dalam nanodetik. Lebih rendah lebih baik.
+- **Byte (B/op)**: Memori heap yang dialokasikan per operasi. Lebih rendah berarti efisiensi lebih baik.
+- **Alokasi (allocs/op)**: Jumlah rata-rata alokasi memori per operasi. Lebih sedikit alokasi lebih baik untuk performa dan garbage collection.
+
+Untuk pertanyaan atau kontribusi, lihat [repositori GitHub](https://github.com/gin-gonic/gin) kami.

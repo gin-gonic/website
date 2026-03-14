@@ -1,34 +1,46 @@
 ---
-title: "Deploy etme"
+title: "Deployment"
 sidebar:
-  order: 6
+  order: 10
 ---
 
-Gin projeleri herhangi bir bulut sağlayıcısına kolayca deploy edilebilir.
+Gin projects can be deployed easily on any cloud provider.
+
+## [Railway](https://www.railway.com)
+
+Railway is a cutting-edge cloud development platform for deploying, managing, and scaling applications and services. It simplifies your infrastructure stack from servers to observability with a single, scalable, easy-to-use platform.
+
+Follow the Railway [guide to deploy your Gin projects](https://docs.railway.com/guides/gin).
+
+## [Seenode](https://seenode.com)
+
+Seenode is a modern cloud platform designed specifically for developers who want to deploy applications quickly and efficiently. It offers git-based deployment, automatic SSL certificates, built-in databases, and a streamlined interface that gets your Gin applications live in minutes.
+
+Follow the Seenode [guide to deploy your Gin projects](https://seenode.com/docs/frameworks/go/gin).
 
 ## [Koyeb](https://www.koyeb.com)
 
-Koyeb, git tabanlı, TLS şifreleme, yerel otomatik ölçeklendirme, küresel uç ağ ve yerleşik hizmet ağı ve keşfi ile uygulamaları küresel olarak dağıtmak/deploy etmek için geliştirici dostu sunucusuz bir platformdur.
+Koyeb is a developer-friendly serverless platform to deploy apps globally with git-based deployment, TLS encryption, native autoscaling, a global edge network, and built-in service mesh & discovery.
 
-Koyeb'i takip edin [guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+Follow the Koyeb [guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery; veri tabanı, SSL'i, küresel CDN'i olan ve Git ile otomatik deploy için ücretsiz bulut ortamı sağlar.
+Qovery provides free Cloud hosting with databases, SSL, a global CDN, and automatic deploys with Git.
 
-[Gin projenizi deploy etmek](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/) için Qovery kılavuzunu izleyin.
+See [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) for more information.
 
 ## [Render](https://render.com)
 
-Render; Go, tam yönetilebilen SSL, veritabanları, sıfır kesintili deploy, HTTP/2 ve websocket desteği için yerel destek sunan modern bir bulut platformudur.
+Render is a modern cloud platform that offers native support for Go, fully managed SSL, databases, zero-downtime deploys, HTTP/2, and websocket support.
 
-Render'ı takip edin [Gin projelerini dağıtma kılavuzu.](https://render.com/docs/deploy-go-gin).
+Follow the Render [guide to deploying Gin projects](https://render.com/docs/deploy-go-gin).
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE, Go uygulamalarını dağıtmanın iki yönteme sahiptir. Standart ortamın kullanımı daha kolaydır ancak daha az özelleştirilebilir ve güvenlik nedenleriyle [syscalls](https://github.com/gin-gonic/gin/issues/1639) gibi sistem çağrılarını önler.
+GAE has two ways to deploy Go applications. The standard environment is easier to use but less customizable and prevents [syscalls](https://github.com/gin-gonic/gin/issues/1639) for security reasons. The flexible environment can run any framework or library.
 
-Daha fazla bilgi edinin ve tercih ettiğiniz ortamı şuradan seçin: [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+Learn more and pick your preferred environment at [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
 
 ## Self Hosted
 
@@ -67,75 +79,4 @@ router := gin.Default()
 router.SetTrustedProxies([]string{"192.168.1.2"})
 ```
 
-## Don't trust all proxies
-
-Gin lets you specify which headers to hold the real client IP (if any),
-as well as specifying which proxies (or direct clients) you trust to
-specify one of these headers.
-
-Use function `SetTrustedProxies()` on your `gin.Engine` to specify network addresses
-or network CIDRs from where clients which their request headers related to client
-IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs, IPv6 addresses or
-IPv6 CIDRs.
-
-**Attention:** Gin trust all proxies by default if you don't specify a trusted
-proxy using the function above, **this is NOT safe**. At the same time, if you don't
-use any proxy, you can disable this feature by using `Engine.SetTrustedProxies(nil)`,
-then `Context.ClientIP()` will return the remote address directly to avoid some
-unnecessary computation.
-
-```go
-import (
-  "fmt"
-
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  router := gin.Default()
-  router.SetTrustedProxies([]string{"192.168.1.2"})
-
-  router.GET("/", func(c *gin.Context) {
-    // If the client is 192.168.1.2, use the X-Forwarded-For
-    // header to deduce the original client IP from the trust-
-    // worthy parts of that header.
-    // Otherwise, simply return the direct client IP
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
-}
-```
-
-**Notice:** If you are using a CDN service, you can set the `Engine.TrustedPlatform`
-to skip TrustedProxies check, it has a higher priority than TrustedProxies.
-Look at the example below:
-
-```go
-import (
-  "fmt"
-
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  router := gin.Default()
-  // Use predefined header gin.PlatformXXX
-  // Google App Engine
-  router.TrustedPlatform = gin.PlatformGoogleAppEngine
-  // Cloudflare
-  router.TrustedPlatform = gin.PlatformCloudflare
-  // Fly.io
-  router.TrustedPlatform = gin.PlatformFlyIO
-  // Or, you can set your own trusted request header. But be sure your CDN
-  // prevents users from passing this header! For example, if your CDN puts
-  // the client IP in X-CDN-Client-IP:
-  router.TrustedPlatform = "X-CDN-Client-IP"
-
-  router.GET("/", func(c *gin.Context) {
-    // If you set TrustedPlatform, ClientIP() will resolve the
-    // corresponding header and return IP directly
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
-}
-```
+For information on configuring trusted proxies, see [Trusted Proxies](/en/docs/server-config/trusted-proxies/).

@@ -1,60 +1,60 @@
 ---
-title: "宣布 Gin 1.12.0：BSON 支持、Context 改进、性能提升及更多功能"
-linkTitle: "Gin 1.12.0 发布公告"
+title: "Announcing Gin 1.12.0: BSON Support, Context Improvements, Performance & More"
+linkTitle: "Gin 1.12.0 Release Announcement"
 lastUpdated: 2026-02-28
 ---
 
-## Gin v1.12.0 已正式发布
+## Gin v1.12.0 Has Arrived
 
-我们荣幸地宣布 Gin v1.12.0 的发布，它包含新功能、显著的性能改进和一系列错误修复。此版本加深了 Gin 对现代协议的支持，完善了开发者体验，并延续了项目保持快速和轻量级的传统。
+We're thrilled to announce the release of Gin v1.12.0, packed with new features, meaningful performance improvements, and a solid round of bug fixes. This release deepens Gin's support for modern protocols, refines the developer experience, and continues the project's tradition of staying fast and lean.
 
-### 🌟 主要功能
+### 🌟 Key Features
 
-- **BSON 协议支持：**渲染层现已支持 BSON 编码，为更高效的二进制数据交换打开了大门 ([#4145](https://github.com/gin-gonic/gin/pull/4145))。
+- **BSON Protocol Support:** The render layer now supports BSON encoding, opening the door to more efficient binary data exchange ([#4145](https://github.com/gin-gonic/gin/pull/4145)).
 
-- **新的 Context 方法：**两个新的辅助方法使错误处理更加清晰和符合习惯：
-  - `GetError` 和 `GetErrorSlice` 用于从 context 中类型安全地检索错误 ([#4502](https://github.com/gin-gonic/gin/pull/4502))
-  - `Delete` 方法用于从 context 中移除键 ([#38e7651](https://github.com/gin-gonic/gin/commit/38e7651))
+- **New Context Methods:** Two new helpers make error handling cleaner and more idiomatic:
+  - `GetError` and `GetErrorSlice` for type-safe error retrieval from context ([#4502](https://github.com/gin-gonic/gin/pull/4502))
+  - `Delete` method for removing keys from context ([#38e7651](https://github.com/gin-gonic/gin/commit/38e7651))
 
-- **灵活的绑定：**URI 和查询绑定现已支持 `encoding.UnmarshalText`，为您提供更多对自定义类型反序列化的控制 ([#4203](https://github.com/gin-gonic/gin/pull/4203))。
+- **Flexible Binding:** URI and query binding now honor `encoding.UnmarshalText`, giving you more control over custom type deserialization ([#4203](https://github.com/gin-gonic/gin/pull/4203)).
 
-- **转义路径选项：**新的引擎选项允许您选择使用转义（原始）请求路径进行路由 ([#4420](https://github.com/gin-gonic/gin/pull/4420))。
+- **Escaped Path Option:** A new engine option lets you opt into using the escaped (raw) request path for routing ([#4420](https://github.com/gin-gonic/gin/pull/4420)).
 
-- **协议缓冲区内容协商：**`context` 现已支持协议缓冲区作为可协商的内容类型，使 gRPC 风格的响应更容易集成 ([#4423](https://github.com/gin-gonic/gin/pull/4423))。
+- **Protocol Buffers in Content Negotiation:** `context` now supports Protocol Buffers as a negotiable content type, making gRPC-style responses easier to integrate ([#4423](https://github.com/gin-gonic/gin/pull/4423)).
 
-- **Logger 中的彩色延迟显示：**默认 logger 现以彩色呈现延迟，使您更容易一眼识别慢请求 ([#4146](https://github.com/gin-gonic/gin/pull/4146))。
+- **Colorized Latency in Logger:** The default logger now renders latency with color, making it easier to spot slow requests at a glance ([#4146](https://github.com/gin-gonic/gin/pull/4146)).
 
-### 🚀 性能与增强
+### 🚀 Performance & Enhancements
 
-- **路由树优化：**对基数树的多项改进减少了分配并加快了路径解析：
-  - `findCaseInsensitivePath` 中的更少分配 ([#4417](https://github.com/gin-gonic/gin/pull/4417))
-  - 使用 `strings.Count` 进行高效的路径解析 ([#4246](https://github.com/gin-gonic/gin/pull/4246))
-  - 在 `redirectTrailingSlash` 中用自定义函数替换正则表达式 ([#4414](https://github.com/gin-gonic/gin/pull/4414))
-- **恢复优化：**堆栈跟踪读取现已更加高效 ([#4466](https://github.com/gin-gonic/gin/pull/4466))。
-- **Logger 改进：**现可通过配置跳过查询字符串输出 ([#4547](https://github.com/gin-gonic/gin/pull/4547))。
-- **Unix Socket 信任：**当请求通过 Unix socket 到达时，`X-Forwarded-For` 头现已始终受信任 ([#3359](https://github.com/gin-gonic/gin/pull/3359))。
-- **Flush 安全性：**当底层 `http.ResponseWriter` 未实现 `http.Flusher` 时，`Flush()` 不再崩溃 ([#4479](https://github.com/gin-gonic/gin/pull/4479))。
-- **代码质量重构：**使用 `maps.Copy` 和 `maps.Clone` 的更清晰的 map 处理，用命名常量替换魔术数字，现代化的 range-over-int 循环等 ([#4352](https://github.com/gin-gonic/gin/pull/4352), [#4333](https://github.com/gin-gonic/gin/pull/4333), [#4529](https://github.com/gin-gonic/gin/pull/4529), [#4392](https://github.com/gin-gonic/gin/pull/4392))。
+- **Router Tree Optimizations:** Multiple improvements to the radix tree reduce allocations and speed up path parsing:
+  - Fewer allocations in `findCaseInsensitivePath` ([#4417](https://github.com/gin-gonic/gin/pull/4417))
+  - Path parsing using `strings.Count` for efficiency ([#4246](https://github.com/gin-gonic/gin/pull/4246))
+  - Regex replaced with custom functions in `redirectTrailingSlash` ([#4414](https://github.com/gin-gonic/gin/pull/4414))
+- **Recovery Optimization:** Stack trace reading is now more efficient ([#4466](https://github.com/gin-gonic/gin/pull/4466)).
+- **Logger Improvements:** Query string output can now be skipped via configuration ([#4547](https://github.com/gin-gonic/gin/pull/4547)).
+- **Unix Socket Trust:** `X-Forwarded-For` headers are now always trusted when requests arrive over a Unix socket ([#3359](https://github.com/gin-gonic/gin/pull/3359)).
+- **Flush Safety:** `Flush()` no longer panics when the underlying `http.ResponseWriter` does not implement `http.Flusher` ([#4479](https://github.com/gin-gonic/gin/pull/4479)).
+- **Code Quality Refactors:** Cleaner map handling with `maps.Copy` and `maps.Clone`, named constants replacing magic numbers, modernized range-over-int loops, and more ([#4352](https://github.com/gin-gonic/gin/pull/4352), [#4333](https://github.com/gin-gonic/gin/pull/4333), [#4529](https://github.com/gin-gonic/gin/pull/4529), [#4392](https://github.com/gin-gonic/gin/pull/4392)).
 
-### 🐛 错误修复
+### 🐛 Bug Fixes
 
-- **路由崩溃已修复：**修复了启用 `RedirectFixedPath` 时 `findCaseInsensitivePathRec` 中的崩溃 ([#4535](https://github.com/gin-gonic/gin/pull/4535))。
-- **Data 渲染中的 Content-Length：**`Data.Render` 现已正确写入 `Content-Length` 头 ([#4206](https://github.com/gin-gonic/gin/pull/4206))。
-- **多头部的 ClientIP：**`ClientIP` 现已正确处理具有多个 `X-Forwarded-For` 头值的请求 ([#4472](https://github.com/gin-gonic/gin/pull/4472))。
-- **绑定边界情况：**修复了绑定中的空值错误 ([#2169](https://github.com/gin-gonic/gin/pull/2169)) 并改进了表单绑定中的空切片/数组处理 ([#4380](https://github.com/gin-gonic/gin/pull/4380))。
-- **文字冒号路由：**带有文字冒号的路由现已正确地与 `engine.Handler()` 配合工作 ([#4415](https://github.com/gin-gonic/gin/pull/4415))。
-- **文件描述符泄漏：**`RunFd` 现已正确关闭 `os.File` 句柄以防止资源泄漏 ([#4422](https://github.com/gin-gonic/gin/pull/4422))。
-- **Hijack 行为：**优化了 hijack 行为以正确模型化响应生命周期 ([#4373](https://github.com/gin-gonic/gin/pull/4373))。
-- **恢复：**`http.ErrAbortHandler` 现已如预期那样在恢复中间件中被抑制 ([#4336](https://github.com/gin-gonic/gin/pull/4336))。
-- **调试版本不匹配：**修复了在调试模式下报告的不正确版本字符串 ([#4403](https://github.com/gin-gonic/gin/pull/4403))。
+- **Router Panic Fixed:** Resolved a panic in `findCaseInsensitivePathRec` when `RedirectFixedPath` is enabled ([#4535](https://github.com/gin-gonic/gin/pull/4535)).
+- **Content-Length in Data Render:** `Data.Render` now correctly writes the `Content-Length` header ([#4206](https://github.com/gin-gonic/gin/pull/4206)).
+- **ClientIP with Multiple Headers:** `ClientIP` now correctly handles requests with multiple `X-Forwarded-For` header values ([#4472](https://github.com/gin-gonic/gin/pull/4472)).
+- **Binding Edge Cases:** Fixed empty value errors in binding ([#2169](https://github.com/gin-gonic/gin/pull/2169)) and improved empty slice/array handling in form binding ([#4380](https://github.com/gin-gonic/gin/pull/4380)).
+- **Literal Colon Routes:** Routes with literal colons now work correctly with `engine.Handler()` ([#4415](https://github.com/gin-gonic/gin/pull/4415)).
+- **File Descriptor Leak:** `RunFd` now closes the `os.File` handle properly to prevent resource leaks ([#4422](https://github.com/gin-gonic/gin/pull/4422)).
+- **Hijack Behavior:** Refined hijack behavior to correctly model the response lifecycle ([#4373](https://github.com/gin-gonic/gin/pull/4373)).
+- **Recovery:** `http.ErrAbortHandler` is now suppressed in the recovery middleware as intended ([#4336](https://github.com/gin-gonic/gin/pull/4336)).
+- **Debug Version Mismatch:** Fixed an incorrect version string reported in debug mode ([#4403](https://github.com/gin-gonic/gin/pull/4403)).
 
-### 🔧 构建、依赖与 CI 更新
+### 🔧 Build, Dependency & CI Updates
 
-- **Go 1.25 最低版本：**最低支持的 Go 版本现为 **1.25**，CI 工作流也已相应更新 ([#4550](https://github.com/gin-gonic/gin/pull/4550))。
-- **BSON 依赖升级：**BSON 绑定依赖已升级至 `mongo-driver` v2 ([#4549](https://github.com/gin-gonic/gin/pull/4549))。
+- **Go 1.25 Minimum:** The minimum supported Go version is now **1.25**, with CI workflows updated accordingly ([#4550](https://github.com/gin-gonic/gin/pull/4550)).
+- **BSON Dependency Upgrade:** The BSON binding dependency has been upgraded to `mongo-driver` v2 ([#4549](https://github.com/gin-gonic/gin/pull/4549)).
 
 ---
 
-Gin 1.12.0 反映了我们社区的奉献——贡献者、审阅者和用户。感谢您在每个版本中使 Gin 变得更好。
+Gin 1.12.0 reflects the dedication of our community — contributors, reviewers, and users alike. Thank you for making Gin better with every release.
 
-准备好试用 Gin 1.12.0 了吗？[在 GitHub 上升级](https://github.com/gin-gonic/gin/releases/tag/v1.12.0)并告诉我们您的想法！
+Ready to try Gin 1.12.0? [Upgrade on GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.12.0) and let us know what you think!

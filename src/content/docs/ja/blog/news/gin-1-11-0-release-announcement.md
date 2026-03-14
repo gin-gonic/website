@@ -1,52 +1,52 @@
 ---
-title: "Gin 1.11.0リリース！HTTP/3、フォーム機能改善、パフォーマンス向上など"
-linkTitle: "Gin 1.11.0リリース発表"
+title: "Announcing Gin 1.11.0: HTTP/3, Form Improvements, Performance & More"
+linkTitle: "Gin 1.11.0 Release Announcement"
 lastUpdated: 2025-09-21
 ---
 
-## Gin v1.11.0が登場
+## Gin v1.11.0 Has Arrived
 
-人気のGo WebフレームワークGinの新バージョン1.11.0が、数々の新機能、パフォーマンス改善、バグ修正を携えてリリースされました。今回のリリースも、Ginの高速性・柔軟性・モダン開発の追求が反映されています。
+We're excited to announce the release of Gin v1.11.0, bringing a major set of new features, performance tweaks, and bug fixes to the beloved web framework. This release continues Gin's commitment to speed, flexibility, and modern Go development.
 
-### 🌟 主な新機能
+### 🌟 Key Features
 
-- **実験的HTTP/3対応:** Ginは[quic-go](https://github.com/quic-go/quic-go)経由で実験的にHTTP/3をサポート！最新のWebプロトコルを試したい方はぜひ。([#3210](https://github.com/gin-gonic/gin/pull/3210))
+- **Experimental HTTP/3 Support:** Gin now supports experimental HTTP/3 via [quic-go](https://github.com/quic-go/quic-go)! If you're eager to try the latest web transport protocols, now's your chance. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
 
-- **フォームバインディングの強化:**
-  - フォームでの配列コレクション形式に対応 ([#3986](https://github.com/gin-gonic/gin/pull/3986))
-  - フォームタグの文字列sliceカスタムアンマーシャル対応 ([#3970](https://github.com/gin-gonic/gin/pull/3970))
-  - コレクションのデフォルト値対応 ([#4048](https://github.com/gin-gonic/gin/pull/4048))
+- **Better Form Binding:** We've made big improvements to form binding:
+  - Support for array collection formats in forms ([#3986](https://github.com/gin-gonic/gin/pull/3986))
+  - Custom string slice unmarshalling for form tags ([#3970](https://github.com/gin-gonic/gin/pull/3970))
+  - Default values for collections ([#4048](https://github.com/gin-gonic/gin/pull/4048))
 
-- **バインディング型の拡張:** 新たに`BindPlain`でプレーンテキストを簡単にバインディング ([#3904](https://github.com/gin-gonic/gin/pull/3904))、unixMilli・unixMicro形式もサポート ([#4190](https://github.com/gin-gonic/gin/pull/4190))。
+- **Enhanced Binding Types:** Bind plain text easily with the new `BindPlain` method ([#3904](https://github.com/gin-gonic/gin/pull/3904)), plus support for unixMilli and unixMicro formats ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
 
-- **Context APIの改善:** `GetXxx`がGoネイティブ型の取得にさらに対応し、型安全なデータ取り扱いが容易に ([#3633](https://github.com/gin-gonic/gin/pull/3633))。
+- **Context API Improvements:** `GetXxx` now supports more native Go types ([#3633](https://github.com/gin-gonic/gin/pull/3633)), making type-safe context data retrieval easier.
 
-- **ファイルシステム拡張:** 新しい `OnlyFilesFS` がエクスポートされ、テスト・ドキュメントも充実 ([#3939](https://github.com/gin-gonic/gin/pull/3939))。
+- **Filesystem Updates:** The new `OnlyFilesFS` is now exported, tested, and documented ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
 
-### 🚀 パフォーマンス＆強化
+### 🚀 Performance & Enhancements
 
-- **フォームデータのより高速な処理:** フォーム解析が内部で最適化され、処理性能が向上 ([#4339](https://github.com/gin-gonic/gin/pull/4339))。
-- コア・レンダリング・Contextロジックのリファクタリング、堅牢性と明瞭さ向上（[PR一覧はchangelog参照](../releases/release111.md)）。
+- **Faster Form Data Handling:** Internal optimizations for form parsing boost performance ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
+- Refactored core, rendering, and context logic for robustness and clarity ([full PR list in changelog](../releases/release111.md)).
 
-### 🐛 バグ修正
+### 🐛 Bug Fixes
 
-- **ミドルウェアの信頼性向上:** まれなミドルウェア再エントリ問題が修正されました ([#3987](https://github.com/gin-gonic/gin/pull/3987))。
-- TOMLフォームバインディングの安定性向上 ([#4193](https://github.com/gin-gonic/gin/pull/4193))。
-- 空のツリー上での“method not allowed”リクエストでpanicしなくなりました ([#4003](https://github.com/gin-gonic/gin/pull/4003))。
-- Context競合や各種安定性も着実に改善。
+- **Middleware Reliability:** Fixed a rare bug where middleware could re-enter unexpectedly ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
+- Improved TOML form binding stability ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
+- No more panics when handling "method not allowed" requests on empty trees ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
+- General improvements to context handling, race conditions, and more.
 
-### 🔧 ビルド・依存関係・CIの更新
+### 🔧 Build, Dependency & CI Updates
 
-- CI/CDで**Go 1.25**サポート、より厳格なコード品質lintersの追加 ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010))。
-- CIにTrivy脆弱性スキャンを統合 ([#4359](https://github.com/gin-gonic/gin/pull/4359))。
-- sonic、setup-go、quic-goなど依存パッケージのアップデートも多数。
+- Support for **Go 1.25** in CI/CD workflows, plus new linters enabled for stricter code health ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010)).
+- Trivy vulnerability scanning now integrated with CI ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
+- Multiple dependency upgrades, including `sonic`, `setup-go`, `quic-go`, and others.
 
-### 📖 ドキュメント更新
+### 📖 Documentation
 
-- ドキュメント拡充、changelog更新、サンプルや文法改善、新たにポルトガル語版も追加 ([#4078](https://github.com/gin-gonic/gin/pull/4078))。
+- Expanded documentation, updated changelogs, improved grammar and code samples, and new Portuguese docs ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
 
 ---
 
-Gin 1.11.0はコミュニティの活力と継続的な開発の証です。全てのコントリビューター、バグ報告者、そしてユーザーの皆さまに感謝します。Ginを現代Web開発の最前線で活かしてくださり、ありがとうございます。
+Gin 1.11.0 is a testament to our active community and continuous development. We appreciate every contributor, issue reporter, and user who keeps Gin sharp and relevant for modern web applications.
 
-Gin 1.11.0をぜひお試しください！[GitHubでアップグレード](https://github.com/gin-gonic/gin/releases/tag/v1.11.0)。フィードバックもお待ちしています。
+Ready to try Gin 1.11.0? [Upgrade on GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) and let us know what you think!

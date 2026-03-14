@@ -1,16 +1,16 @@
 ---
 title: Gin Web Framework
-description: The fastest full-featured web framework for Go. Crystal clear.
+description: O framework web mais rápido e completo para Go. Cristalino.
 template: splash
 hero:
-  tagline: A mais rápida e completa abstração de web em Go. Transparente.
+  tagline: O framework web mais rápido e completo para Go. Cristalino.
   image:
     file: ../../../assets/gin.png
   actions:
-    - text: Aprenda mais
+    - text: Leia a documentação
       link: /pt/docs/
       icon: right-arrow
-    - text: Descarregar
+    - text: Download
       link: https://github.com/gin-gonic/gin/releases
       icon: external
       variant: minimal
@@ -18,33 +18,33 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## O que é a Gin?
+## O que é o Gin?
 
-A Gin é uma abstração de web escrita em Golang. Ela apresenta uma API parecida com a Martini, mais com desempenho mais alto, 40 vezes mais rápida do que a Martini. Se precisas de desempenho e produtividade, amarás a Gin.
+Gin é um framework web escrito em Golang. Possui uma API semelhante ao Martini, mas com desempenho até 40 vezes mais rápido que o Martini. Se você precisa de desempenho e produtividade, vai adorar o Gin.
 
 <CardGrid>
-	<Card title="Fast" icon="rocket">
-		Árvore de roteamento baseada em Radix, pouco consumo de memória. Sem reflexão. Desempenho de API previsível.
+	<Card title="Rápido" icon="rocket">
+		Roteamento baseado em árvore radix, baixo consumo de memória. Sem reflection. Desempenho de API previsível.
 	</Card>
-	<Card icon="seti:plan" title="Suporte à Intermediário">
-		Uma requisição futura de HTTP pode ser manipulada por uma cadeia de intermediários e pela ação final. Por exemplo: Registador, Autorização, GZIP e finalmente publicar uma mensagem na BD.
+	<Card title="Suporte a middleware" icon="seti:plan">
+		Uma requisição HTTP recebida pode ser tratada por uma cadeia de middlewares e pela ação final. Por exemplo: Logger, Autorização, GZIP e, por fim, publicar uma mensagem no banco de dados.
 	</Card>
-	<Card icon="seti:lock" title="Livre de Avaria">
-		A Gin pode capturar um pânico que ocorreu durante uma requisição de HTTP e recuperá-lo. Deste maneira, o teu servidor estará sempre disponível. Também é possível informar este pânico ao Sentry por exemplo!
+	<Card title="À prova de falhas" icon="seti:lock">
+		O Gin pode capturar um panic ocorrido durante uma requisição HTTP e recuperá-lo. Dessa forma, seu servidor estará sempre disponível. Também é possível reportar esse panic para o Sentry, por exemplo!
 	</Card>
-	<Card icon="approve-check-circle" title="Validação de JSON">
-		A Gin pode analisar e validar o JSON de uma requisição, verificando, por exemplo, a existência de valores obrigatórios.
+	<Card title="Validação de JSON" icon="approve-check-circle">
+		O Gin pode analisar e validar o JSON de uma requisição, verificando, por exemplo, a existência de valores obrigatórios.
 	</Card>
-	<Card icon="puzzle" title="Agrupamento de Rotas">
-		Organiza melhor as tuas rotas. Autorização obrigatória vs não obrigatória, diferentes versões de API. Além disso, grupos podem ser encaixados infinitamente sem a degradação do desempenho.
+	<Card title="Agrupamento de rotas" icon="puzzle">
+		Organize suas rotas de forma melhor. Com ou sem autorização, diferentes versões de API. Além disso, os grupos podem ser aninhados infinitamente sem degradar o desempenho.
 	</Card>
-	<Card icon="open-book" title="Gestão de Erro">
-		A Gin fornece uma maneira conveniente de coletar todos os erros ocorridos durante uma requisição de HTTP. Eventualmente, o intermediário pode escrevê-los em um ficheiro de registo, em uma base de dados e enviá-los através da rede.
+	<Card title="Gerenciamento de erros" icon="open-book">
+		O Gin oferece uma maneira conveniente de coletar todos os erros ocorridos durante uma requisição HTTP. Eventualmente, um middleware pode gravá-los em um arquivo de log, em um banco de dados ou enviá-los pela rede.
 	</Card>
-	<Card icon="seti:json" title="Interpretação Embutida">
-		A Gin fornece uma API fácil de utilizar para interpretação de JSON, XML e HTML.
+	<Card title="Renderização integrada" icon="seti:json">
+		O Gin fornece uma API fácil de usar para renderização de JSON, XML e HTML.
 	</Card>
-	<Card icon="seti:html" title="Extensível">
-		A criação de um novo intermediário é tão fácil, apenas consulte o código de exemplo.
+	<Card title="Extensível" icon="seti:html">
+		Criar novos middlewares é muito fácil, basta conferir o código de exemplo.
 	</Card>
 </CardGrid>

@@ -1,47 +1,58 @@
 ---
-title: "效能評估"
+title: "基準測試"
 sidebar:
-  order: 3
+  order: 12
 ---
 
-Gin 使用自訂版本的 [HttpRouter](https://github.com/julienschmidt/httprouter)
+> **歷史資料：** 這些基準測試於 2020 年 5 月使用 Gin v1.6.3 和 Go 1.14.2 收集。框架效能自那時起可能已有顯著變化。如需最新的基準測試結果，請參閱 [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) 儲存庫。
 
-[查看所有效能評估](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)
+## Gin Web 框架效能基準測試
 
-| Benchmark name                 |       (1) |             (2) |          (3) |             (4) |
-| ------------------------------ | ---------:| ---------------:| ------------:| ---------------:|
-| BenchmarkGin_GithubAll         | **43550** | **27364 ns/op** |   **0 B/op** | **0 allocs/op** |
-| BenchmarkAce_GithubAll         |     40543 |     29670 ns/op |       0 B/op |     0 allocs/op |
-| BenchmarkAero_GithubAll        |     57632 |     20648 ns/op |       0 B/op |     0 allocs/op |
-| BenchmarkBear_GithubAll        |      9234 |    216179 ns/op |   86448 B/op |   943 allocs/op |
-| BenchmarkBeego_GithubAll       |      7407 |    243496 ns/op |   71456 B/op |   609 allocs/op |
-| BenchmarkBone_GithubAll        |       420 |   2922835 ns/op |  720160 B/op |  8620 allocs/op |
-| BenchmarkChi_GithubAll         |      7620 |    238331 ns/op |   87696 B/op |   609 allocs/op |
-| BenchmarkDenco_GithubAll       |     18355 |     64494 ns/op |   20224 B/op |   167 allocs/op |
-| BenchmarkEcho_GithubAll        |     31251 |     38479 ns/op |       0 B/op |     0 allocs/op |
-| BenchmarkGocraftWeb_GithubAll  |      4117 |    300062 ns/op |  131656 B/op |  1686 allocs/op |
-| BenchmarkGoji_GithubAll        |      3274 |    416158 ns/op |   56112 B/op |   334 allocs/op |
-| BenchmarkGojiv2_GithubAll      |      1402 |    870518 ns/op |  352720 B/op |  4321 allocs/op |
-| BenchmarkGoJsonRest_GithubAll  |      2976 |    401507 ns/op |  134371 B/op |  2737 allocs/op |
-| BenchmarkGoRestful_GithubAll   |       410 |   2913158 ns/op |  910144 B/op |  2938 allocs/op |
-| BenchmarkGorillaMux_GithubAll  |       346 |   3384987 ns/op |  251650 B/op |  1994 allocs/op |
-| BenchmarkGowwwRouter_GithubAll |     10000 |    143025 ns/op |   72144 B/op |   501 allocs/op |
-| BenchmarkHttpRouter_GithubAll  |     55938 |     21360 ns/op |       0 B/op |     0 allocs/op |
-| BenchmarkHttpTreeMux_GithubAll |     10000 |    153944 ns/op |   65856 B/op |   671 allocs/op |
-| BenchmarkKocha_GithubAll       |     10000 |    106315 ns/op |   23304 B/op |   843 allocs/op |
-| BenchmarkLARS_GithubAll        |     47779 |     25084 ns/op |       0 B/op |     0 allocs/op |
-| BenchmarkMacaron_GithubAll     |      3266 |    371907 ns/op |  149409 B/op |  1624 allocs/op |
-| BenchmarkMartini_GithubAll     |       331 |   3444706 ns/op |  226551 B/op |  2325 allocs/op |
-| BenchmarkPat_GithubAll         |       273 |   4381818 ns/op | 1483152 B/op | 26963 allocs/op |
-| BenchmarkPossum_GithubAll      |     10000 |    164367 ns/op |   84448 B/op |   609 allocs/op |
-| BenchmarkR2router_GithubAll    |     10000 |    160220 ns/op |   77328 B/op |   979 allocs/op |
-| BenchmarkRivet_GithubAll       |     14625 |     82453 ns/op |   16272 B/op |   167 allocs/op |
-| BenchmarkTango_GithubAll       |      6255 |    279611 ns/op |   63826 B/op |  1618 allocs/op |
-| BenchmarkTigerTonic_GithubAll  |      2008 |    687874 ns/op |  193856 B/op |  4474 allocs/op |
-| BenchmarkTraffic_GithubAll     |       355 |   3478508 ns/op |  820744 B/op | 14114 allocs/op |
-| BenchmarkVulcan_GithubAll      |      6885 |    193333 ns/op |   19894 B/op |   609 allocs/op |
+基準測試幫助開發者評估 Go 中 HTTP 路由器函式庫的效率和資源使用。本頁面總結了許多流行框架的測量結果，讓你可以輕鬆比較它們的速度和記憶體消耗。
 
-- （1）在固定時間內達到的重複執行次數，數值越高代表對結果越有信心
-- （2）單次執行所需時間（ns/op），數值越低越好
-- （3）使用的 Heap 記憶體（B/op），數值越低越好
-- （4）每次執行的平均配置次數（allocs/op），數值越低越好
+**測試環境：**
+
+- **主機平台：** Travis CI（虛擬 Linux VM）
+- **機器規格：** Ubuntu 16.04.6 LTS x64
+- **測試日期：** 2020 年 5 月 4 日
+- **Gin 版本：** v1.6.3
+- **Go 版本：** 1.14.2（linux/amd64）
+- **基準測試來源：** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **詳細結果：** [查看 gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) 或 [Travis 結果](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+
+Gin 使用 [HttpRouter](https://github.com/julienschmidt/httprouter) 的最佳化分支來實現高效能路由。
+
+如果你想查看更多測試案例，可以查看[所有基準測試](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)。
+
+---
+
+## 如何閱讀表格
+
+以下基準測試展示了各種 Go 框架執行常見 HTTP 路由任務的結果。
+**數字越低（時間、記憶體、配置次數）越好。**
+你可以使用這些結果直接並排比較 Gin 和其他路由器。
+
+| 測試                              | 重複次數 | 時間 (ns/op) | 位元組 (B/op) | 配置次數 (allocs/op) |
+| ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
+| BenchmarkGin_GithubStatic         | 15629472    | 76.7         | 0            | 0                       |
+| BenchmarkAce_GithubStatic         | 15542612    | 75.9         | 0            | 0                       |
+| BenchmarkAero_GithubStatic        | 24777151    | 48.5         | 0            | 0                       |
+| BenchmarkBear_GithubStatic        | 2788894     | 435          | 120          | 3                       |
+| BenchmarkBeego_GithubStatic       | 1000000     | 1064         | 352          | 3                       |
+| BenchmarkBone_GithubStatic        | 93507       | 12838        | 2880         | 60                      |
+| BenchmarkChi_GithubStatic         | 1387743     | 860          | 432          | 3                       |
+| BenchmarkDenco_GithubStatic       | 39384996    | 30.4         | 0            | 0                       |
+| BenchmarkEcho_GithubStatic        | 12076382    | 99.1         | 0            | 0                       |
+| BenchmarkGin_GithubParam          | 9132032     | 131          | 0            | 0                       |
+| BenchmarkGin_GithubAll            | 43550       | 27364        | 0            | 0                       |
+
+---
+
+## 基準測試表格說明
+
+- **重複次數**：在固定時間內達成的總重複次數。數字越高代表結果越有信心。
+- **時間 (ns/op)**：一次操作的持續時間，以奈秒為單位。越低越好。
+- **位元組 (B/op)**：每次操作配置的堆積記憶體。越低代表效率越好。
+- **配置次數 (allocs/op)**：每次操作的平均記憶體配置次數。配置次數越少對效能和垃圾回收越好。
+
+如有問題或貢獻，請查看我們的 [GitHub 儲存庫](https://github.com/gin-gonic/gin)。

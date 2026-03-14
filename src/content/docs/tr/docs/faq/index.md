@@ -1,93 +1,40 @@
 ---
 title: "FAQ"
 sidebar:
-  order: 9
+  order: 15
 ---
 
-## Genel Sorular
+## General Questions
 
-### Geliştirme sırasında canlı yeniden yüklemeyi nasıl etkinleştiririm?
+### How do I enable live reload during development?
 
-Geliştirme sırasında otomatik canlı yeniden yükleme için [Air](https://github.com/air-verse/air) kullanın. Air dosyalarınızı izler ve değişiklikler algılandığında uygulamanızı otomatik olarak yeniden derler/yeniden başlatır.
+Use [Air](https://github.com/air-verse/air) for automatic live reloading during development. Air watches your files and rebuilds/restarts your application when changes are detected.
 
-**Kurulum:**
+**Installation:**
 
 ```sh
-# Air'i global olarak yükleyin
 go install github.com/air-verse/air@latest
 ```
 
-**Kurulum:**
+**Setup:**
 
-Proje kök dizininizde bir `.air.toml` yapılandırma dosyası oluşturun:
+Create a `.air.toml` configuration file in your project root:
 
 ```sh
 air init
 ```
 
-Bu varsayılan bir yapılandırma oluşturur. Gin projeniz için özelleştirebilirsiniz:
-
-```toml
-# .air.toml
-root = "."
-testdata_dir = "testdata"
-tmp_dir = "tmp"
-
-[build]
-  args_bin = []
-  bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ."
-  delay = 1000
-  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
-  exclude_file = []
-  exclude_regex = ["_test.go"]
-  exclude_unchanged = false
-  follow_symlink = false
-  full_bin = ""
-  include_dir = []
-  include_ext = ["go", "tpl", "tmpl", "html"]
-  include_file = []
-  kill_delay = "0s"
-  log = "build-errors.log"
-  poll = false
-  poll_interval = 0
-  rerun = false
-  rerun_delay = 500
-  send_interrupt = false
-  stop_on_error = false
-
-[color]
-  app = ""
-  build = "yellow"
-  main = "magenta"
-  runner = "green"
-  watcher = "cyan"
-
-[log]
-  main_only = false
-  time = false
-
-[misc]
-  clean_on_exit = false
-
-[screen]
-  clear_on_rebuild = false
-  keep_scroll = true
-```
-
-**Kullanım:**
-
-Proje dizininizde `go run` yerine `air` çalıştırın:
+Then run `air` in your project directory instead of `go run`:
 
 ```sh
 air
 ```
 
-Air artık `.go` dosyalarınızı izleyecek ve değişikliklerde Gin uygulamanızı otomatik olarak yeniden derleyip/yeniden başlatacak.
+Air will watch your `.go` files and automatically rebuild/restart your Gin application on changes. See the [Air documentation](https://github.com/air-verse/air) for configuration options.
 
-### Gin'de CORS'u nasıl yönetirim?
+### How do I handle CORS in Gin?
 
-Resmi [gin-contrib/cors](https://github.com/gin-contrib/cors) middleware'ini kullanın:
+Use the official [gin-contrib/cors](https://github.com/gin-contrib/cors) middleware:
 
 ```go
 package main
@@ -102,10 +49,10 @@ import (
 func main() {
   r := gin.Default()
 
-  // Varsayılan CORS yapılandırması
+  // Default CORS configuration
   r.Use(cors.Default())
 
-  // Veya CORS ayarlarını özelleştirin
+  // Or customize CORS settings
   r.Use(cors.New(cors.Config{
     AllowOrigins:     []string{"https://example.com"},
     AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
@@ -123,45 +70,44 @@ func main() {
 }
 ```
 
-### Statik dosyaları nasıl sunarım?
+For a complete security overview, see [Security best practices](/en/docs/middleware/security-guide/).
 
-Statik dosyaları sunmak için `Static()` veya `StaticFS()` kullanın:
+### How do I serve static files?
+
+Use `Static()` or `StaticFS()` to serve static files:
 
 ```go
 func main() {
   r := gin.Default()
 
-  // /assets/* yolunda ./assets dizinindeki dosyaları sun
+  // Serve files from ./assets directory at /assets/*
   r.Static("/assets", "./assets")
 
-  // Tek bir dosya sun
+  // Serve a single file
   r.StaticFile("/favicon.ico", "./resources/favicon.ico")
 
-  // Gömülü dosya sisteminden sun (Go 1.16+)
+  // Serve from embedded filesystem (Go 1.16+)
   r.StaticFS("/public", http.FS(embedFS))
 
   r.Run()
 }
 ```
 
-Daha fazla ayrıntı için [statik dosya sunma örneğine](../examples/serving-static-files/) bakın.
+See [Serving data from file](/en/docs/rendering/serving-data-from-file/) for more details.
 
-### Dosya yüklemeyi nasıl yönetirim?
+### How do I handle file uploads?
 
-Tek dosya için `FormFile()` veya birden fazla dosya için `MultipartForm()` kullanın:
+Use `FormFile()` for single files or `MultipartForm()` for multiple files:
 
 ```go
-// Tek dosya yükleme
+// Single file upload
 r.POST("/upload", func(c *gin.Context) {
   file, _ := c.FormFile("file")
-
-  // Dosyayı kaydet
   c.SaveUploadedFile(file, "./uploads/"+file.Filename)
-
-  c.String(200, "Dosya %s başarıyla yüklendi", file.Filename)
+  c.String(200, "File %s uploaded successfully", file.Filename)
 })
 
-// Çoklu dosya yükleme
+// Multiple files upload
 r.POST("/upload-multiple", func(c *gin.Context) {
   form, _ := c.MultipartForm()
   files := form.File["files"]
@@ -169,16 +115,15 @@ r.POST("/upload-multiple", func(c *gin.Context) {
   for _, file := range files {
     c.SaveUploadedFile(file, "./uploads/"+file.Filename)
   }
-
-  c.String(200, "%d dosya yüklendi", len(files))
+  c.String(200, "%d files uploaded", len(files))
 })
 ```
 
-Daha fazla ayrıntı için [dosya yükleme örneklerine](../examples/upload-file/) bakın.
+See the [Upload file](/en/docs/routing/upload-file/) documentation for more details.
 
-### JWT ile kimlik doğrulamayı nasıl uygularım?
+### How do I implement authentication with JWT?
 
-[gin-contrib/jwt](https://github.com/gin-contrib/jwt) kullanın veya özel middleware uygulayın:
+Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware. Here's a minimal example:
 
 ```go
 package main
@@ -198,29 +143,16 @@ type Claims struct {
   jwt.RegisteredClaims
 }
 
-func GenerateToken(username string) (string, error) {
-  claims := Claims{
-    Username: username,
-    RegisteredClaims: jwt.RegisteredClaims{
-      ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
-      IssuedAt:  jwt.NewNumericDate(time.Now()),
-    },
-  }
-
-  token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-  return token.SignedString(jwtSecret)
-}
-
 func AuthMiddleware() gin.HandlerFunc {
   return func(c *gin.Context) {
     tokenString := c.GetHeader("Authorization")
     if tokenString == "" {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Yetkilendirme token'ı eksik"})
+      c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing authorization token"})
       c.Abort()
       return
     }
 
-    // "Bearer " önekini kaldır (varsa)
+    // Remove "Bearer " prefix if present
     if len(tokenString) > 7 && tokenString[:7] == "Bearer " {
       tokenString = tokenString[7:]
     }
@@ -230,7 +162,7 @@ func AuthMiddleware() gin.HandlerFunc {
     })
 
     if err != nil || !token.Valid {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Geçersiz token"})
+      c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
       c.Abort()
       return
     }
@@ -238,171 +170,58 @@ func AuthMiddleware() gin.HandlerFunc {
     if claims, ok := token.Claims.(*Claims); ok {
       c.Set("username", claims.Username)
       c.Next()
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Geçersiz token claims"})
-      c.Abort()
     }
   }
-}
-
-func main() {
-  r := gin.Default()
-
-  r.POST("/login", func(c *gin.Context) {
-    var credentials struct {
-      Username string `json:"username"`
-      Password string `json:"password"`
-    }
-
-    if err := c.BindJSON(&credentials); err != nil {
-      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-      return
-    }
-
-    // Kimlik bilgilerini doğrula (kendi mantığınızı uygulayın)
-    if credentials.Username == "admin" && credentials.Password == "password" {
-      token, _ := GenerateToken(credentials.Username)
-      c.JSON(http.StatusOK, gin.H{"token": token})
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Geçersiz kimlik bilgileri"})
-    }
-  })
-
-  // Korumalı rotalar
-  authorized := r.Group("/")
-  authorized.Use(AuthMiddleware())
-  {
-    authorized.GET("/profile", func(c *gin.Context) {
-      username := c.MustGet("username").(string)
-      c.JSON(http.StatusOK, gin.H{"username": username})
-    })
-  }
-
-  r.Run()
 }
 ```
 
-### İstek günlüğünü nasıl ayarlarım?
+For session-based authentication, see [Session management](/en/docs/middleware/session-management/).
 
-Gin varsayılan bir logger middleware içerir. Özelleştirin veya yapılandırılmış günlük kullanın:
+### How do I set up request logging?
+
+Gin includes a default logger middleware via `gin.Default()`. For structured JSON logging in production, see [Structured logging](/en/docs/logging/structured-logging/).
+
+For basic log customization:
 
 ```go
-package main
-
-import (
-  "log"
-  "time"
-
-  "github.com/gin-gonic/gin"
-)
-
-// Özel logger middleware
-func Logger() gin.HandlerFunc {
-  return func(c *gin.Context) {
-    start := time.Now()
-    path := c.Request.URL.Path
-
-    c.Next()
-
-    latency := time.Since(start)
-    statusCode := c.Writer.Status()
-    clientIP := c.ClientIP()
-    method := c.Request.Method
-
-    log.Printf("[GIN] %s | %3d | %13v | %15s | %-7s %s",
-      time.Now().Format("2006/01/02 - 15:04:05"),
-      statusCode,
-      latency,
-      clientIP,
-      method,
-      path,
-    )
-  }
-}
-
-func main() {
-  r := gin.New()
-  r.Use(Logger())
-  r.Use(gin.Recovery())
-
-  r.GET("/ping", func(c *gin.Context) {
-    c.JSON(200, gin.H{"message": "pong"})
-  })
-
-  r.Run()
-}
+r := gin.New()
+r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+  SkipPaths: []string{"/healthz"},
+}))
+r.Use(gin.Recovery())
 ```
 
-Daha gelişmiş günlükleme için [özel günlük formatı örneğine](../examples/custom-log-format/) bakın.
+See the [Logging](/en/docs/logging/) section for all options including custom formats, file output, and skipping query strings.
 
-### Graceful shutdown'u nasıl yönetirim?
+### How do I handle graceful shutdown?
 
-Bağlantıları düzgün kapatmak için graceful shutdown uygulayın:
+See [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/) for a complete guide with code examples.
+
+### Why am I getting "404 Not Found" instead of "405 Method Not Allowed"?
+
+By default, Gin returns 404 for routes that don't support the requested HTTP method. Set `HandleMethodNotAllowed = true` to return 405 instead:
 
 ```go
-package main
+r := gin.Default()
+r.HandleMethodNotAllowed = true
 
-import (
-  "context"
-  "log"
-  "net/http"
-  "os"
-  "os/signal"
-  "syscall"
-  "time"
+r.GET("/ping", func(c *gin.Context) {
+  c.JSON(200, gin.H{"message": "pong"})
+})
 
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  r := gin.Default()
-
-  r.GET("/", func(c *gin.Context) {
-    time.Sleep(5 * time.Second)
-    c.String(http.StatusOK, "Hoş geldiniz!")
-  })
-
-  srv := &http.Server{
-    Addr:    ":8080",
-    Handler: r,
-  }
-
-  // Sunucuyu goroutine'de çalıştır
-  go func() {
-    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-      log.Fatalf("dinleme: %s\n", err)
-    }
-  }()
-
-  // Sunucuyu graceful şekilde kapatmak için kesme sinyalini bekle
-  quit := make(chan os.Signal, 1)
-  signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-  <-quit
-  log.Println("Sunucu kapatılıyor...")
-
-  // Bekleyen isteklere tamamlanmaları için 5 saniye ver
-  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-  defer cancel()
-
-  if err := srv.Shutdown(ctx); err != nil {
-    log.Fatal("Sunucu zorla kapatıldı:", err)
-  }
-
-  log.Println("Sunucu sonlandı")
-}
+r.Run()
 ```
 
-Daha fazla ayrıntı için [graceful restart veya stop örneğine](../examples/graceful-restart-or-stop/) bakın.
+```sh
+$ curl -X POST localhost:8080/ping
 
-### Neden "405 Method Not Allowed" yerine "404 Not Found" alıyorum?
+HTTP/1.1 405 Method Not Allowed
+Allow: GET
+```
 
-Varsayılan olarak, Gin istenen HTTP yöntemini desteklemeyen rotalar için 404 döndürür. 405 Method Not Allowed döndürmek için `HandleMethodNotAllowed` seçeneğini etkinleştirin.
+### How do I bind query parameters and POST data together?
 
-Ayrıntılar için [Method Not Allowed FAQ](./method-not-allowed/) sayfasına bakın.
-
-### Sorgu parametrelerini ve POST verilerini birlikte nasıl bağlarım?
-
-İçerik türüne göre bağlamayı otomatik olarak seçen `ShouldBind()` kullanın:
+Use `ShouldBind()` which automatically selects the binding based on content type:
 
 ```go
 type User struct {
@@ -413,7 +232,6 @@ type User struct {
 
 r.POST("/user", func(c *gin.Context) {
   var user User
-  // Sorgu parametrelerini ve istek gövdesini (JSON/form) bağla
   if err := c.ShouldBind(&user); err != nil {
     c.JSON(400, gin.H{"error": err.Error()})
     return
@@ -422,11 +240,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-Daha fazla kontrol için [sorgu veya post bağlama örneğine](../examples/bind-query-or-post/) bakın.
+See the [Binding](/en/docs/binding/) section for all binding options.
 
-### İstek verilerini nasıl doğrularım?
+### How do I validate request data?
 
-Gin doğrulama için [go-playground/validator](https://github.com/go-playground/validator) kullanır. Struct'larınıza doğrulama etiketleri ekleyin:
+Gin uses [go-playground/validator](https://github.com/go-playground/validator) for validation. Add validation tags to your structs:
 
 ```go
 type User struct {
@@ -441,110 +259,44 @@ r.POST("/user", func(c *gin.Context) {
     c.JSON(400, gin.H{"error": err.Error()})
     return
   }
-  c.JSON(200, gin.H{"message": "Kullanıcı geçerli"})
+  c.JSON(200, gin.H{"message": "User is valid"})
 })
 ```
 
-Özel doğrulayıcılar için [özel doğrulayıcılar örneğine](../examples/custom-validators/) bakın.
+See [Binding and validation](/en/docs/binding/binding-and-validation/) for custom validators and advanced usage.
 
-### Gin'i production modunda nasıl çalıştırırım?
+### How do I run Gin in production mode?
 
-`GIN_MODE` ortam değişkenini `release` olarak ayarlayın:
+Set the `GIN_MODE` environment variable to `release`:
 
 ```sh
 export GIN_MODE=release
-# veya
+# or
 GIN_MODE=release ./your-app
 ```
 
-Veya programatik olarak ayarlayın:
+Or set it programmatically:
 
 ```go
 gin.SetMode(gin.ReleaseMode)
 ```
 
-Release modu:
+Release mode disables debug logging and improves performance.
 
-- Hata ayıklama günlüğünü devre dışı bırakır
-- Performansı artırır
-- Binary boyutunu biraz azaltır
+### How do I handle database connections with Gin?
 
-### Gin ile veritabanı bağlantılarını nasıl yönetirim?
+See [Database integration](/en/docs/server-config/database/) for a complete guide covering `database/sql`, GORM, connection pooling, and dependency injection patterns.
 
-Veritabanı bağlantılarını paylaşmak için bağımlılık enjeksiyonu veya context kullanın:
+### How do I test Gin handlers?
 
-```go
-package main
-
-import (
-  "database/sql"
-
-  "github.com/gin-gonic/gin"
-  _ "github.com/lib/pq"
-)
-
-func main() {
-  db, err := sql.Open("postgres", "postgres://user:pass@localhost/dbname")
-  if err != nil {
-    panic(err)
-  }
-  defer db.Close()
-
-  r := gin.Default()
-
-  // Yöntem 1: db'yi handler'lara geç
-  r.GET("/users", func(c *gin.Context) {
-    var users []string
-    rows, _ := db.Query("SELECT name FROM users")
-    defer rows.Close()
-
-    for rows.Next() {
-      var name string
-      rows.Scan(&name)
-      users = append(users, name)
-    }
-
-    c.JSON(200, users)
-  })
-
-  // Yöntem 2: db enjekte etmek için middleware kullan
-  r.Use(func(c *gin.Context) {
-    c.Set("db", db)
-    c.Next()
-  })
-
-  r.Run()
-}
-```
-
-ORM'ler için Gin ile [GORM](https://gorm.io/) kullanmayı düşünün.
-
-### Gin handler'larını nasıl test ederim?
-
-Rotalarınızı test etmek için `net/http/httptest` kullanın:
+Use `net/http/httptest` to test your routes:
 
 ```go
-package main
-
-import (
-  "net/http"
-  "net/http/httptest"
-  "testing"
-
-  "github.com/gin-gonic/gin"
-  "github.com/stretchr/testify/assert"
-)
-
-func SetupRouter() *gin.Engine {
-  r := gin.Default()
-  r.GET("/ping", func(c *gin.Context) {
+func TestPingRoute(t *testing.T) {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
     c.JSON(200, gin.H{"message": "pong"})
   })
-  return r
-}
-
-func TestPingRoute(t *testing.T) {
-  router := SetupRouter()
 
   w := httptest.NewRecorder()
   req, _ := http.NewRequest("GET", "/ping", nil)
@@ -555,86 +307,78 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-Daha fazla örnek için [test dokümantasyonuna](../testing/) bakın.
+See the [Testing](/en/docs/testing/) documentation for more examples.
 
-## Performans Soruları
+## Performance Questions
 
-### Yüksek trafik için Gin'i nasıl optimize ederim?
+### How do I optimize Gin for high traffic?
 
-1. **Release modunu kullanın**: `GIN_MODE=release` ayarlayın
-2. **Gereksiz middleware'i devre dışı bırakın**: Sadece ihtiyacınız olanı kullanın
-3. **Middleware üzerinde manuel kontrol istiyorsanız `gin.Default()` yerine `gin.New()` kullanın**
-4. **Bağlantı havuzu**: Veritabanı bağlantı havuzlarını düzgün yapılandırın
-5. **Önbellek**: Sık erişilen veriler için önbellek uygulayın
-6. **Yük dengeleme**: Reverse proxy (nginx, HAProxy) kullanın
-7. **Profilleme**: Darboğazları belirlemek için Go'nun pprof'unu kullanın
+1. **Use Release Mode**: Set `GIN_MODE=release`
+2. **Disable unnecessary middleware**: Only use what you need
+3. **Use `gin.New()` instead of `gin.Default()`** for manual middleware control
+4. **Connection pooling**: Configure database connection pools (see [Database integration](/en/docs/server-config/database/))
+5. **Caching**: Implement caching for frequently accessed data
+6. **Load balancing**: Use reverse proxy (nginx, HAProxy)
+7. **Profiling**: Use Go's pprof to identify bottlenecks
+8. **Monitoring**: Set up [metrics and monitoring](/en/docs/server-config/metrics/) to track performance
 
-```go
-r := gin.New()
-r.Use(gin.Recovery()) // Sadece recovery middleware kullan
+### Is Gin production-ready?
 
-// Bağlantı havuzu limitlerini ayarla
-db.SetMaxOpenConns(25)
-db.SetMaxIdleConns(5)
-db.SetConnMaxLifetime(5 * time.Minute)
-```
+Yes. Gin is used in production by many companies and has been battle-tested at scale. See [Users](/en/docs/users/) for examples of projects using Gin in production.
 
-### Gin production için hazır mı?
+## Troubleshooting
 
-Evet! Gin birçok şirket tarafından production'da kullanılmaktadır ve ölçekte savaş testi yapılmıştır. En popüler Go web framework'lerinden biridir:
+### Why are my route parameters not working?
 
-- Aktif bakım ve topluluk
-- Kapsamlı middleware ekosistemi
-- Mükemmel performans benchmarkları
-- Güçlü geriye dönük uyumluluk
-
-## Sorun Giderme
-
-### Rota parametrelerim neden çalışmıyor?
-
-Rota parametrelerinin `:` sözdizimini kullandığından ve düzgün çıkarıldığından emin olun:
+Ensure route parameters use `:` syntax and are properly extracted:
 
 ```go
-// Doğru
+// Correct
 r.GET("/user/:id", func(c *gin.Context) {
   id := c.Param("id")
-  c.String(200, "Kullanıcı ID: %s", id)
+  c.String(200, "User ID: %s", id)
 })
 
-// Yanlış: /user/{id} veya /user/<id>
+// Not: /user/{id} or /user/<id>
 ```
 
-### Middleware'm neden çalışmıyor?
+See [Parameters in path](/en/docs/routing/param-in-path/) for details.
 
-Middleware rotalardan veya rota gruplarından önce kaydedilmelidir:
+### Why is my middleware not executing?
+
+Middleware must be registered before routes or route groups:
 
 ```go
-// Doğru sıra
+// Correct order
 r := gin.New()
-r.Use(MyMiddleware()) // Önce middleware kaydet
-r.GET("/ping", handler) // Sonra rotalar
+r.Use(MyMiddleware()) // Register middleware first
+r.GET("/ping", handler) // Then routes
 
-// Rota grupları için
+// For route groups
 auth := r.Group("/admin")
-auth.Use(AuthMiddleware()) // Bu grup için middleware
+auth.Use(AuthMiddleware()) // Middleware for this group
 {
   auth.GET("/dashboard", handler)
 }
 ```
 
-### İstek bağlama neden başarısız oluyor?
+See [Using middleware](/en/docs/middleware/using-middleware/) for details.
 
-Yaygın nedenler:
+### Why is request binding failing?
 
-1. **Bağlama etiketleri eksik**: `json:"field"` veya `form:"field"` etiketleri ekleyin
-2. **Content-Type uyumsuzluğu**: İstemcinin doğru Content-Type başlığı gönderdiğinden emin olun
-3. **Doğrulama hataları**: Doğrulama etiketlerini ve gereksinimleri kontrol edin
-4. **Export edilmemiş alanlar**: Sadece export edilmiş (büyük harfle başlayan) struct alanları bağlanır
+Common reasons:
+
+1. **Missing binding tags**: Add `json:"field"` or `form:"field"` tags
+2. **Content-Type mismatch**: Ensure client sends correct Content-Type header
+3. **Validation errors**: Check validation tags and requirements
+4. **Unexported fields**: Only exported (capitalized) struct fields are bound
 
 ```go
 type User struct {
-  Name  string `json:"name" binding:"required"` // ✓ Doğru
-  Email string `json:"email"`                    // ✓ Doğru
-  age   int    `json:"age"`                      // ✗ Bağlanmayacak (export edilmemiş)
+  Name  string `json:"name" binding:"required"` // ✓ Correct
+  Email string `json:"email"`                    // ✓ Correct
+  age   int    `json:"age"`                      // ✗ Won't bind (unexported)
 }
 ```
+
+See [Binding and validation](/en/docs/binding/binding-and-validation/) for details.

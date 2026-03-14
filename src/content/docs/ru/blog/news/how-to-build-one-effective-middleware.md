@@ -1,41 +1,41 @@
 ---
-title: "Как создать эффективный middleware"
-linkTitle: "Как создать эффективный middleware"
+title: "How to Build an Effective Middleware"
+linkTitle: "How to Build an Effective Middleware"
 lastUpdated: 2019-02-26
 ---
 
-## Составные части
+## Constituent parts
 
-Middleware обычно состоит из двух частей:
+Middleware typically consists of two parts:
 
-- Первая часть выполняется один раз — при инициализации вашего middleware. Здесь вы настраиваете глобальные объекты, конфигурационную логику и т.д. — всё, что должно происходить только один раз за время жизни приложения.
+- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
 
-- Вторая часть выполняется при каждой обработке запроса. Например, в middleware для базы данных вы можете внедрить глобальный объект базы данных в контекст запроса. После этого другие middleware и функции-обработчики могут получить и использовать его.
+- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
   // <---
-  // Это первая часть
+  // This is part one
   // --->
-  // Пример инициализации: проверка входных параметров
+  // Example initialization: validate input params
   if err := check(params); err != nil {
       panic(err)
   }
 
   return func(c *gin.Context) {
     // <---
-    // Это вторая часть
+    // This is part two
     // --->
-    // Пример выполнения на каждый запрос: внедрение в контекст
+    // Example execution per request: inject into context
     c.Set("TestVar", params)
     c.Next()
   }
 }
 ```
 
-## Процесс выполнения
+## Execution process
 
-Рассмотрим следующий пример кода:
+Let's look at the following example code:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-Согласно разделу [Составные части](#составные-части), когда вы запускаете процесс Gin, **первая часть** каждого middleware выполняется первой, и отображается следующая информация:
+According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-Порядок инициализации:
+The initialization order is:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-Когда вы отправляете запрос — например, `curl -v localhost:8080/rest/n/api/some` — **вторая часть** каждого middleware выполняется по порядку и выводит следующее:
+When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-То есть порядок выполнения такой:
+In other words, the execution order is:
 
 ```go
 globalMiddleware...2
@@ -138,3 +138,4 @@ mid1...3
     |
     v
 globalMiddleware...3
+```

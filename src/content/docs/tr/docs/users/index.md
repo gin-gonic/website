@@ -1,21 +1,23 @@
 ---
-title: "Kullanıcılar"
+title: "Users"
 sidebar:
-  order: 8
+  order: 14
 ---
 
-##### [Gin](https://github.com/gin-gonic/gin) web çerçevesini kullanan harika proje listeleri:
+Gin is used in production by companies and open-source projects of all sizes. Below is a selection of notable projects built with Gin. If your project uses Gin, we would love to add it to this list.
 
-* [gorush](https://github.com/appleboy/gorush): Go'da yazılmış bir anında iletme bildirim sunucusu.
+## Awesome Project Lists
 
-* [fnproject](https://github.com/fnproject/fn): Container native, buluttan bağımsız sunucusuz platform.
+- [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
+- [fnproject](https://github.com/fnproject/fn): The container native, cloud agnostic serverless platform.
+- [photoprism](https://github.com/photoprism/photoprism): AI-Powered Photos App for the Decentralized Web.
+- [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
+- [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
+- [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per WebSocket.
+- [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
+- [drone](https://github.com/harness/drone): A container-native, Continuous Delivery platform built on Go.
+- [go-admin](https://github.com/GoAdminGroup/go-admin): A data visualization and admin panel framework for Go.
 
-* [photoprism](https://github.com/photoprism/photoprism): Go ve Google TensorFlow tarafından desteklenen kişisel fotoğraf yönetimi.
+## Submit your project
 
-* [krakend](https://github.com/devopsfaith/krakend): Middlewarelere sahip ultra performanslı API Gateway'i.
-
-* [picfit](https://github.com/thoas/picfit): Go'da yazılmış bir görüntü yeniden boyutlandırma sunucusu.
-
-* [gotify](https://github.com/gotify/server): Web soketi başına gerçek zamanlı olarak mesaj göndermek ve almak için basit bir sunucu.
-
-* [cds](https://github.com/ovh/cds): Kurumsal Düzeyde Continuous Delivery ve DevOps Otomasyonu Açık Kaynak Platformu.
+Using Gin in production or for an open-source project? Open a pull request on the [gin-gonic/website](https://github.com/gin-gonic/website) repository to add your project to this page.

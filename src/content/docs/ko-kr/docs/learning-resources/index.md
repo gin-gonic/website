@@ -1,42 +1,67 @@
 ---
-title: "학습 자료"
+title: "Learning Resources"
 sidebar:
-  order: 7
+  order: 13
 ---
 
-## 인터랙티브 학습 플랫폼
+## Official Resources
 
-실습을 통해 Gin 개념을 연습하고 싶으신가요? 커뮤니티 주도 학습 자료를 소개합니다:
+These are maintained by the Gin team and are the most authoritative sources of information.
 
-### Go Interview Practice - Gin 챌린지
+- **[Gin GitHub Repository](https://github.com/gin-gonic/gin)** -- Source code, issue tracker, and the latest release notes.
+- **[Gin Examples Repository](https://github.com/gin-gonic/examples)** -- A collection of self-contained example projects covering common use cases such as file uploads, graceful shutdown, JWT authentication, and more.
+- **[Gin API Reference (pkg.go.dev)](https://pkg.go.dev/github.com/gin-gonic/gin)** -- Auto-generated API documentation for every exported type and function.
 
-공식 문서를 보완하는 점진적인 Gin 챌린지를 제공하는 포괄적인 플랫폼:
+## Go Language Resources
+
+A solid understanding of Go itself will make working with Gin much easier.
+
+- **[A Tour of Go](https://go.dev/tour/)** -- The official interactive introduction to Go.
+- **[Effective Go](https://go.dev/doc/effective_go)** -- Best practices and idiomatic patterns for writing Go code.
+- **[Go by Example](https://gobyexample.com/)** -- Annotated example programs covering Go fundamentals.
+- **[Go Standard Library Documentation](https://pkg.go.dev/std)** -- Reference for every package in the standard library, including `net/http`, which Gin builds on.
+
+## Tutorials and Articles
+
+Community-written guides that walk through building real applications with Gin.
+
+- **[Building a RESTful API with Go and Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- An official Go tutorial that uses Gin to build a simple web service.
+- **[Build a REST API with Go, Gin, and GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- Covers project layout, database integration, and deployment.
+
+## Interactive Learning Platforms
+
+Looking to practice Gin concepts through hands-on exercises? Here are some community-driven learning resources:
+
+### Go Interview Practice - Gin Challenges
+
+A comprehensive platform offering progressive Gin challenges that complement the official documentation:
 
 <div class="learning-platform-showcase">
   <div class="platform-features">
-    <h4>학습 내용:</h4>
+    <h4>What You'll Learn:</h4>
     <ul>
-      <li>기본 라우팅 및 HTTP 메서드</li>
-      <li>미들웨어 구현 및 패턴</li>
-      <li>요청 검증 및 오류 처리</li>
-      <li>인증 및 보안 실습</li>
+      <li>Basic routing and HTTP methods</li>
+      <li>Middleware implementation and patterns</li>
+      <li>Request validation and error handling</li>
+      <li>Authentication and security practices</li>
     </ul>
   </div>
 
   <div class="platform-demo">
-    <h4>실제 동작 보기:</h4>
+    <h4>See It In Action:</h4>
     <div class="video-container">
       <video controls width="100%">
         <source src="https://github.com/user-attachments/assets/23468aab-a032-4326-9d05-84de86c9128c" type="video/mp4">
-        브라우저가 비디오 태그를 지원하지 않습니다.
+        Your browser does not support the video tag.
       </video>
-      <p class="video-caption">Go Interview Practice 플랫폼에 대한 간단한 소개</p>
+      <p class="video-caption">A brief introduction to the Go Interview Practice platform</p>
     </div>
   </div>
 
   <div class="platform-cta">
     <a href="https://github.com/RezaSi/go-interview-practice" class="btn btn-primary" target="_blank" rel="noopener">
-      Gin 챌린지 탐색 →
+      Explore Gin Challenges →
     </a>
   </div>
-</div> 
+</div>
+--

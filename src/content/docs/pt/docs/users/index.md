@@ -1,23 +1,23 @@
 ---
-title: "Utilizadores"
+title: "Usuários"
 sidebar:
-  order: 8
+  order: 14
 ---
 
-#### Uma lista projetos incríveis usando a abstração de web [Gin](https://github.com/gin-gonic/gin):
+O Gin é usado em produção por empresas e projetos de código aberto de todos os tamanhos. Abaixo está uma seleção de projetos notáveis construídos com Gin. Se o seu projeto usa Gin, adoraríamos adicioná-lo a esta lista.
 
-* [gorush](https://github.com/appleboy/gorush): Um servidor de empurrar notificação escrito em Go.
+## Lista de Projetos Incríveis
 
-* [fnproject](https://github.com/fnproject/fn): O contentor nativo, plataforma sem servidor agnóstica da nuvem.
+- [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
+- [fnproject](https://github.com/fnproject/fn): The container native, cloud agnostic serverless platform.
+- [photoprism](https://github.com/photoprism/photoprism): AI-Powered Photos App for the Decentralized Web.
+- [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
+- [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
+- [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per WebSocket.
+- [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
+- [drone](https://github.com/harness/drone): A container-native, Continuous Delivery platform built on Go.
+- [go-admin](https://github.com/GoAdminGroup/go-admin): A data visualization and admin panel framework for Go.
 
-* [photoprism](https://github.com/photoprism/photoprism): Gestão de fotografia pessoal alimentada pela Go e Google TensorFlow.
+## Envie seu projeto
 
-* [krakend](https://github.com/devopsfaith/krakend): Porta de API radicalmente otimizada com intermediários.
-
-* [picfit](https://github.com/thoas/picfit): Um servidor de redimensionamento de imagem escrito em Go.
-
-* [gotify](https://github.com/gotify/server): Um servidor simples para transmissão e recebimento de mensagens em tempo real por tomada da web (web socket).
-
-* [cds](https://github.com/ovh/cds): Entrega Contínuas de Nível Empresarial e Plataforma de Código Aberto de Automação de DevOps. 
-
-* [go-admin](https://github.com/go-admin-team/go-admin): É uma abstração de fundo central baseada na Go.
+Usando o Gin em produção ou para um projeto de código aberto? Abra um pull request no repositório [gin-gonic/website](https://github.com/gin-gonic/website) para adicionar seu projeto a esta página.

@@ -1,21 +1,21 @@
 ---
-title: "Inicio Rápido"
+title: "Inicio rápido"
 sidebar:
   order: 2
 ---
 
-¡Bienvenido a la guía rápida de Gin! Esta guía te lleva paso a paso por la instalación de Gin, la configuración de tu proyecto y la creación de tu primera API, para que empieces a construir servicios web con confianza.
+¡Bienvenido al inicio rápido de Gin! Esta guía te lleva a través de la instalación de Gin, la configuración de un proyecto y la ejecución de tu primera API, para que puedas comenzar a construir servicios web con confianza.
 
-## Prerrequisitos
+## Requisitos previos
 
-- **Versión de Go**: Gin requiere [Go](https://go.dev/) versión [1.24](https://go.dev/doc/devel/release#go1.24) o superior
-- Asegúrate de que Go esté en tu `PATH` y que puedas usarlo en la terminal. Si necesitas ayuda para instalarlo, [consulta la documentación oficial](https://golang.org/doc/install).
+- **Versión de Go**: Gin requiere [Go](https://go.dev/) versión [1.25](https://go.dev/doc/devel/release#go1.25) o superior
+- Confirma que Go está en tu `PATH` y es utilizable desde tu terminal. Para ayuda con la instalación de Go, [consulta la documentación oficial](https://go.dev/doc/install).
 
 ---
 
-## Paso 1: Instala Gin e inicializa tu proyecto
+## Paso 1: Instalar Gin e inicializar tu proyecto
 
-Primero, crea una nueva carpeta para tu proyecto e inicializa un módulo de Go:
+Comienza creando una nueva carpeta de proyecto e inicializando un módulo de Go:
 
 ```sh
 mkdir gin-quickstart && cd gin-quickstart
@@ -30,7 +30,7 @@ go get -u github.com/gin-gonic/gin
 
 ---
 
-## Paso 2: Crea tu primera app con Gin
+## Paso 2: Crea tu primera aplicación Gin
 
 Crea un archivo llamado `main.go`:
 
@@ -52,7 +52,7 @@ func main() {
       "message": "pong",
     })
   })
-  router.Run() // escucha en 0.0.0.0:8080 por defecto
+  router.Run() // listens on 0.0.0.0:8080 by default
 }
 ```
 
@@ -60,13 +60,13 @@ func main() {
 
 ## Paso 3: Ejecuta tu servidor API
 
-Inicia el servidor con:
+Inicia tu servidor con:
 
 ```sh
 go run main.go
 ```
 
-Abre [http://localhost:8080/ping](http://localhost:8080/ping) en tu navegador y deberías ver:
+Navega a [http://localhost:8080/ping](http://localhost:8080/ping) en tu navegador, y deberías ver:
 
 ```json
 {"message":"pong"}
@@ -74,9 +74,9 @@ Abre [http://localhost:8080/ping](http://localhost:8080/ping) en tu navegador y 
 
 ---
 
-## Ejemplo adicional: Usar net/http con Gin
+## Ejemplo adicional: Usando net/http con Gin
 
-Si quieres usar constantes de `net/http` para los códigos de respuesta, impórtalo también:
+Si deseas usar las constantes de `net/http` para los códigos de respuesta, impórtalo también:
 
 ```go
 package main
@@ -101,12 +101,12 @@ func main() {
 
 ## Consejos y recursos
 
-- ¿Nuevo en Go? Aprende cómo escribir y ejecutar código Go [aquí](https://golang.org/doc/code.html).
-- ¿Quieres practicar conceptos de Gin de forma interactiva? Consulta nuestros [Recursos de Aprendizaje](../learning-resources) para desafíos y tutoriales interactivos.
-- ¿Quieres un ejemplo más completo? Puedes usar:
+- ¿Nuevo en Go? Aprende cómo escribir y ejecutar código Go en la [documentación oficial de Go](https://go.dev/doc/code).
+- ¿Quieres practicar conceptos de Gin de forma práctica? Consulta nuestros [Recursos de aprendizaje](../learning-resources) para desafíos interactivos y tutoriales.
+- ¿Necesitas un ejemplo completo? Intenta generar uno con:
 
   ```sh
   curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
   ```
 
-- Para documentación detallada, visita los [docs del código fuente de Gin](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).
+- Para documentación más detallada, visita la [documentación del código fuente de Gin](https://github.com/gin-gonic/gin/blob/master/docs/doc.md).

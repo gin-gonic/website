@@ -4,39 +4,39 @@ sidebar:
   order: 20
 ---
 
-Gin, [Go](https://go.dev/) ile yazılmış yüksek performanslı bir HTTP web framework'üdür. Martini benzeri bir API sunar ancak [httprouter](https://github.com/julienschmidt/httprouter) sayesinde Martini'den çok daha hızlıdır—40 kata kadar daha yüksek performans. Gin, hız ve geliştirici verimliliğinin kritik olduğu REST API'ler, web uygulamaları ve mikro servisler geliştirmek için tasarlanmıştır.
+Gin, [Go](https://go.dev/) ile yazılmış yüksek performanslı bir HTTP web framework'üdür. Martini benzeri bir API sunar ancak [httprouter](https://github.com/julienschmidt/httprouter) sayesinde 40 kata kadar daha iyi performans sağlar. Gin, hız ve geliştirici verimliliğinin önemli olduğu REST API'leri, web uygulamaları ve mikro hizmetler oluşturmak için tasarlanmıştır.
 
-**Neden Gin?**
+**Neden Gin'i seçmelisiniz?**
 
-Gin, Express.js tarzı yönlendirme yapısının sadeliğini Go'nun performansı ile birleştirerek şunlar için ideal bir seçenektir:
+Gin, Express.js tarzı yönlendirmenin basitliğini Go'nun performans özellikleriyle birleştirir ve şunlar için idealdir:
 
-- Yüksek hızlı REST API geliştirme
-- Çok sayıda eşzamanlı isteği karşılayan mikro servisler oluşturma
-- Hızlı yanıt gerektiren web uygulamaları geliştirme
-- En az yapılandırma ile web servislerini hızlıca prototipleme
+- Yüksek verimli REST API'leri oluşturma
+- Çok sayıda eşzamanlı isteği işlemesi gereken mikro hizmetler geliştirme
+- Hızlı yanıt süreleri gerektiren web uygulamaları oluşturma
+- Minimum şablon koduyla hızlıca web servisleri prototipleme
 
-**Gin'in Başlıca Özellikleri:**
+**Gin'in temel özellikleri:**
 
-- **Sıfır bellek tahsisi ile yönlendirme** – Yığın ayırtıcı olmadan son derece verimli yönlendirme
-- **Yüksek performans** – Benchmarkt'larda diğer Go web framework'lerine kıyasla üstün hız
-- **Ara katman (middleware) desteği** – Kimlik doğrulama, loglama, CORS vb. için genişletilebilir sistem
-- **Çökme korumalı (Crash-free)** – Dahili kurtarma ara katmanı ile sunucu hatalardan dolayı kapanmaz
-- **JSON doğrulama** – Otomatik JSON request/response bağlama ve doğrulama
-- **Rota gruplama** – İlgili rotaların bir arada gruplanması ve ortak middleware uygulanması
-- **Hata yönetimi** – Merkezî hata işleme ve loglama
-- **Yerleşik render** – JSON, XML, HTML şablonları ve daha fazlası için destek
-- **Genişletilebilir** – Büyük topluluk middleware ve eklenti ekosistemi
+- **Sıfır tahsisli yönlendirici** - Son derece bellek verimli yönlendirme, heap tahsisi yok
+- **Yüksek performans** - Karşılaştırma testleri diğer Go web framework'lerine kıyasla üstün hız gösterir
+- **Ara katman desteği** - Kimlik doğrulama, loglama, CORS vb. için genişletilebilir ara katman sistemi
+- **Çökme koruması** - Yerleşik kurtarma ara katmanı, panic'lerin sunucunuzu çökertmesini önler
+- **JSON doğrulama** - Otomatik istek/yanıt JSON bağlama ve doğrulama
+- **Rota gruplama** - İlgili rotaları düzenleyin ve ortak ara katman uygulayın
+- **Hata yönetimi** - Merkezi hata işleme ve loglama
+- **Yerleşik işleme** - JSON, XML, HTML şablonları ve daha fazlası için destek
+- **Genişletilebilir** - Geniş topluluk ara katman ve eklenti ekosistemi
 
-## Başlangıç
+## Başlarken
 
-### Ön Gereksinimler
+### Ön Koşullar
 
-- **Go sürümü:** Gin, [Go](https://go.dev/) sürüm [1.23](https://go.dev/doc/devel/release#go1.23.0) veya sonrasını gerektirir
-- **Temel Go bilgisi:** Go dili söz dizimi ve paket yönetimine hâkim olmak faydalı olur
+- **Go sürümü**: Gin, [Go](https://go.dev/) sürüm [1.25](https://go.dev/doc/devel/release#go1.25) veya üstünü gerektirir
+- **Temel Go bilgisi**: Go sözdizimi ve paket yönetimi hakkında bilgi sahibi olmak faydalıdır
 
 ### Kurulum
 
-[Go Modül desteği](https://go.dev/wiki/Modules#how-to-use-modules) ile kodunuzda Gin'i import edin; derleme sırasında Go otomatik olarak indirecektir:
+[Go'nun modül desteği](https://go.dev/wiki/Modules#how-to-use-modules) ile kodunuzda Gin'i içe aktarmanız yeterlidir ve Go derleme sırasında otomatik olarak indirecektir:
 
 ```go
 import "github.com/gin-gonic/gin"
@@ -44,7 +44,7 @@ import "github.com/gin-gonic/gin"
 
 ### İlk Gin Uygulamanız
 
-Gin'in sadeliğini gösteren tam bir örnek:
+İşte Gin'in basitliğini gösteren eksiksiz bir örnek:
 
 ```go
 package main
@@ -56,24 +56,24 @@ import (
 )
 
 func main() {
-  // Varsayılan middleware'leriyle (logger ve recovery) Gin router oluştur
+  // Create a Gin router with default middleware (logger and recovery)
   r := gin.Default()
-  
-  // Basit bir GET endpoint tanımla
+
+  // Define a simple GET endpoint
   r.GET("/ping", func(c *gin.Context) {
-    // JSON yanıtı döndür
+    // Return JSON response
     c.JSON(http.StatusOK, gin.H{
       "message": "pong",
     })
   })
-  
-  // Sunucuyu 8080 portunda başlat (varsayılan)
-  // Sunucu 0.0.0.0:8080'de dinler (Windows'da localhost:8080)
+
+  // Start server on port 8080 (default)
+  // Server will listen on 0.0.0.0:8080 (localhost:8080 on Windows)
   r.Run()
 }
 ```
 
-**Uygulamanın çalıştırılması:**
+**Uygulamayı çalıştırma:**
 
 1. Yukarıdaki kodu `main.go` olarak kaydedin
 2. Uygulamayı çalıştırın:
@@ -82,42 +82,42 @@ func main() {
    go run main.go
    ```
 
-3. Tarayıcınızı açıp [`http://localhost:8080/ping`](http://localhost:8080/ping) adresine girin
-4. Şu çıktıyı göreceksiniz: `{"message":"pong"}`
+3. Tarayıcınızı açın ve [`http://localhost:8080/ping`](http://localhost:8080/ping) adresini ziyaret edin
+4. Şunu görmelisiniz: `{"message":"pong"}`
 
-**Örnekten Öğrenilecekler:**
+**Bu örneğin gösterdiği şeyler:**
 
-- Varsayılan middleware'li Gin router oluşturmak
-- Basit handler fonksiyonlarla HTTP endpoint tanımlama
-- JSON yanıtı döndürmek
-- HTTP sunucusu başlatmak
+- Varsayılan ara katman ile bir Gin yönlendiricisi oluşturma
+- Basit işleyici fonksiyonlarıyla HTTP uç noktaları tanımlama
+- JSON yanıtları döndürme
+- Bir HTTP sunucusu başlatma
 
 ### Sonraki Adımlar
 
-İlk Gin uygulamanızdan sonra daha fazlasını öğrenmek için aşağıdaki kaynakları inceleyin:
+İlk Gin uygulamanızı çalıştırdıktan sonra, daha fazla bilgi edinmek için bu kaynakları keşfedin:
 
-#### 📚 Öğrenme Kaynakları
+#### Öğrenme Kaynakları
 
-- **[Gin Hızlı Başlangıç Kılavuzu](./quickstart/)** – API örnekleri ve derleme ayarlarıyla kapsamlı bir eğitim
-- **[Örnek Repo](https://github.com/gin-gonic/examples)** – Farklı Gin kullanım senaryolarını gösteren hazır örnekler:
+- **[Gin Hızlı Başlangıç Kılavuzu](./quickstart/)** - API örnekleri ve derleme yapılandırmalarını içeren kapsamlı rehber
+- **[Örnek Deposu](https://github.com/gin-gonic/examples)** - Çeşitli Gin kullanım senaryolarını gösteren çalıştırmaya hazır örnekler:
   - REST API geliştirme
-  - Kimlik doğrulama & middleware
-  - Dosya yükleme/indirme
+  - Kimlik doğrulama ve ara katman
+  - Dosya yükleme ve indirme
   - WebSocket bağlantıları
-  - Şablon render etme
+  - Şablon işleme
 
 ### Resmi Eğitimler
 
-- [Go.dev Eğitim: Go ve Gin ile RESTful API geliştirme](https://go.dev/doc/tutorial/web-service-gin)
+- [Go.dev Eğitimi: Go ve Gin ile RESTful API Geliştirme](https://go.dev/doc/tutorial/web-service-gin)
 
-## 🔌 Middleware Ekosistemi
+## Ara Katman Ekosistemi
 
-Gin, yaygın web geliştirme ihtiyaçları için zengin topluluk middleware'lerine sahiptir. Topluluk katkılı middleware'leri keşfedin:
+Gin, yaygın web geliştirme ihtiyaçları için zengin bir ara katman ekosistemine sahiptir. Topluluk tarafından geliştirilen ara katmanları keşfedin:
 
-- **[gin-contrib](https://github.com/gin-contrib)** – Resmi middleware koleksiyonu, şunları içerir:
-  - Kimlik doğrulama (JWT, Basic Auth, Session)
-  - CORS, hız sınırlama, sıkıştırma
-  - Loglama, metrik, tracing
-  - Statik dosya servisi, şablon motorları
-  
-- **[gin-gonic/contrib](https://github.com/gin-gonic/contrib)** – Ek topluluk middleware'leri
+- **[gin-contrib](https://github.com/gin-contrib)** - Resmi ara katman koleksiyonu, içerir:
+  - Kimlik doğrulama (JWT, Basic Auth, Sessions)
+  - CORS, Hız sınırlama, Sıkıştırma
+  - Loglama, Metrikler, İzleme
+  - Statik dosya sunma, Şablon motorları
+
+- **[gin-gonic/contrib](https://github.com/gin-gonic/contrib)** - Ek topluluk ara katmanları

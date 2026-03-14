@@ -1,52 +1,52 @@
 ---
-title: "Вышел Gin 1.11.0: HTTP/3, улучшения форм, производительность и многое другое"
-linkTitle: "Анонс релиза Gin 1.11.0"
+title: "Announcing Gin 1.11.0: HTTP/3, Form Improvements, Performance & More"
+linkTitle: "Gin 1.11.0 Release Announcement"
 lastUpdated: 2025-09-21
 ---
 
-## Gin v1.11.0 — уже здесь
+## Gin v1.11.0 Has Arrived
 
-С радостью объявляем о выходе Gin v1.11.0 — обновления, которое приносит множество новых возможностей, усовершенствований и исправлений для популярного Go-фреймворка. Gin продолжает быть эталоном скорости, гибкости и современного подхода к разработке.
+We're excited to announce the release of Gin v1.11.0, bringing a major set of new features, performance tweaks, and bug fixes to the beloved web framework. This release continues Gin's commitment to speed, flexibility, and modern Go development.
 
-### 🌟 Основные новшества
+### 🌟 Key Features
 
-- **Экспериментальная поддержка HTTP/3:** Gin теперь поддерживает экспериментальный HTTP/3 через [quic-go](https://github.com/quic-go/quic-go)! Самое время попробовать новые протоколы. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
+- **Experimental HTTP/3 Support:** Gin now supports experimental HTTP/3 via [quic-go](https://github.com/quic-go/quic-go)! If you're eager to try the latest web transport protocols, now's your chance. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
 
-- **Улучшения привязки форм:** Множество нововведений в form binding:
-  - Поддержка коллекций в формах через формат массива ([#3986](https://github.com/gin-gonic/gin/pull/3986))
-  - Кастомный unmarshal для слайса строк в тегах формы ([#3970](https://github.com/gin-gonic/gin/pull/3970))
-  - Значения по умолчанию для коллекций ([#4048](https://github.com/gin-gonic/gin/pull/4048))
+- **Better Form Binding:** We've made big improvements to form binding:
+  - Support for array collection formats in forms ([#3986](https://github.com/gin-gonic/gin/pull/3986))
+  - Custom string slice unmarshalling for form tags ([#3970](https://github.com/gin-gonic/gin/pull/3970))
+  - Default values for collections ([#4048](https://github.com/gin-gonic/gin/pull/4048))
 
-- **Расширенная привязка типов:** Новый метод `BindPlain` для простого текста ([#3904](https://github.com/gin-gonic/gin/pull/3904)), поддержка unixMilli и unixMicro ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
+- **Enhanced Binding Types:** Bind plain text easily with the new `BindPlain` method ([#3904](https://github.com/gin-gonic/gin/pull/3904)), plus support for unixMilli and unixMicro formats ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
 
-- **API Context теперь лучше:** Методы `GetXxx` поддерживают больше Go-типов ([#3633](https://github.com/gin-gonic/gin/pull/3633)) для безопасного получения данных из context.
+- **Context API Improvements:** `GetXxx` now supports more native Go types ([#3633](https://github.com/gin-gonic/gin/pull/3633)), making type-safe context data retrieval easier.
 
-- **Обновления файловой системы:** Новый OnlyFilesFS экспортирован, протестирован и задокументирован ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
+- **Filesystem Updates:** The new `OnlyFilesFS` is now exported, tested, and documented ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
 
-### 🚀 Производительность и улучшения
+### 🚀 Performance & Enhancements
 
-- **Более быстрая обработка форм:** Внутренние оптимизации ускоряют работу с данными формы ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
-- Рефакторинг ядра, рендера и логики context для надежности и чистоты ([весь список PR — в changelog](../releases/release111.md)).
+- **Faster Form Data Handling:** Internal optimizations for form parsing boost performance ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
+- Refactored core, rendering, and context logic for robustness and clarity ([full PR list in changelog](../releases/release111.md)).
 
-### 🐛 Исправления ошибок
+### 🐛 Bug Fixes
 
-- **Стабильная работа middleware:** Исправлена редкая проблема повторного выполнения middleware ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
-- Более стабильная привязка TOML-форм ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
-- Больше нет panic при обработке "method not allowed" на пустом дереве ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
-- Общие улучшения обработки context, гонок и пр.
+- **Middleware Reliability:** Fixed a rare bug where middleware could re-enter unexpectedly ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
+- Improved TOML form binding stability ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
+- No more panics when handling "method not allowed" requests on empty trees ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
+- General improvements to context handling, race conditions, and more.
 
-### 🔧 Build, зависимости и обновления CI
+### 🔧 Build, Dependency & CI Updates
 
-- Поддержка **Go 1.25** в CI/CD, дополнительные линтеры для качества ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010)).
-- Интеграция Trivy для проверки уязвимостей ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
-- Обновления зависимостей: sonic, setup-go, quic-go и др.
+- Support for **Go 1.25** in CI/CD workflows, plus new linters enabled for stricter code health ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010)).
+- Trivy vulnerability scanning now integrated with CI ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
+- Multiple dependency upgrades, including `sonic`, `setup-go`, `quic-go`, and others.
 
-### 📖 Обновления документации
+### 📖 Documentation
 
-- Расширенные docs, changelogs, улучшения примеров и текста; появился португальский перевод ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
+- Expanded documentation, updated changelogs, improved grammar and code samples, and new Portuguese docs ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
 
 ---
 
-Gin 1.11.0 — результат активности сообщества и постоянной работы над проектом. Спасибо всем участникам, репортерам и пользователям, которые делают Gin актуальным и мощным для современных веб-приложений.
+Gin 1.11.0 is a testament to our active community and continuous development. We appreciate every contributor, issue reporter, and user who keeps Gin sharp and relevant for modern web applications.
 
-Готовы попробовать Gin 1.11.0? [Обновляйтесь на GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) и делитесь впечатлениями!
+Ready to try Gin 1.11.0? [Upgrade on GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) and let us know what you think!

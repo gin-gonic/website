@@ -1,0 +1,72 @@
+---
+title: "تحديد حجم الرفع"
+sidebar:
+  order: 3
+---
+
+يوضح هذا المثال كيفية استخدام `http.MaxBytesReader` لتقييد الحد الأقصى لحجم الملفات المرفوعة بشكل صارم وإرجاع حالة `413` عند تجاوز الحد.
+
+راجع [الكود النموذجي](https://github.com/gin-gonic/examples/blob/master/upload-file/limit-bytes/main.go) التفصيلي.
+
+## كيف يعمل
+
+1. **تحديد الحد** -- ثابت `MaxUploadSize` (1 ميجابايت) يُعيّن الحد الأقصى للرفع.
+2. **فرض الحد** -- يلف `http.MaxBytesReader` `c.Request.Body`. إذا أرسل العميل بايتات أكثر من المسموح، يتوقف القارئ ويُرجع خطأ.
+3. **التحليل والتحقق** -- يُشغّل `c.Request.ParseMultipartForm` القراءة. يتحقق الكود من `*http.MaxBytesError` لإرجاع حالة `413 Request Entity Too Large` مع رسالة واضحة.
+
+```go
+package main
+
+import (
+  "fmt"
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
+const (
+  MaxUploadSize = 1 << 20 // 1 MB
+)
+
+func uploadHandler(c *gin.Context) {
+  // Wrap the body reader so only MaxUploadSize bytes are allowed
+  c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, MaxUploadSize)
+
+  // Parse multipart form
+  if err := c.Request.ParseMultipartForm(MaxUploadSize); err != nil {
+    if _, ok := err.(*http.MaxBytesError); ok {
+      c.JSON(http.StatusRequestEntityTooLarge, gin.H{
+        "error": fmt.Sprintf("file too large (max: %d bytes)", MaxUploadSize),
+      })
+      return
+    }
+    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    return
+  }
+
+  file, _, err := c.Request.FormFile("file")
+  if err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": "file form required"})
+    return
+  }
+  defer file.Close()
+
+  c.JSON(http.StatusOK, gin.H{
+    "message": "upload successful",
+  })
+}
+
+func main() {
+  r := gin.Default()
+  r.POST("/upload", uploadHandler)
+  r.Run(":8080")
+}
+```
+
+كيفية استخدام `curl`:
+
+```sh
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/Users/appleboy/test.zip" \
+  -H "Content-Type: multipart/form-data"
+```

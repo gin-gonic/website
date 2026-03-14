@@ -1,41 +1,41 @@
 ---
-title: "如何建立一個有效的中介軟體"
-linkTitle: "如何建立一個有效的中介軟體"
+title: "如何建構有效的中介軟體"
+linkTitle: "如何建構有效的中介軟體"
 lastUpdated: 2019-02-26
 ---
 
-## 組成部分
+## Constituent parts
 
-中介軟體一般由兩部分構成：
+Middleware typically consists of two parts:
 
-- 第一部分在你初始化中介軟體時只會執行一次。這裡可以設定全域物件、組態邏輯等——所有只需要在應用程式生命週期執行一次的內容。
+- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
 
-- 第二部分則在每次請求時執行。例如，在資料庫中介軟體中，你會將全域資料庫物件注入到請求 context。注入後，其他中介軟體及處理函式都能取得並使用它。
+- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
   // <---
-  // 這是第一部分
+  // This is part one
   // --->
-  // 初始化範例：驗證輸入參數
+  // Example initialization: validate input params
   if err := check(params); err != nil {
       panic(err)
   }
 
   return func(c *gin.Context) {
     // <---
-    // 這是第二部分
+    // This is part two
     // --->
-    // 每次請求執行：注入到 context
+    // Example execution per request: inject into context
     c.Set("TestVar", params)
     c.Next()
   }
 }
 ```
 
-## 執行流程
+## Execution process
 
-讓我們看看以下範例程式碼：
+Let's look at the following example code:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-依據前述[組成部分](#組成部分)章節，當你執行 Gin 程序時，每個中介軟體的**第一部分**會先執行，並輸出以下資訊：
+According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-初始化順序：
+The initialization order is:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-當你發起請求（如 `curl -v localhost:8080/rest/n/api/some`），每個中介軟體的**第二部分**會按照順序執行，輸出如下內容：
+When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-換句話說，執行順序如下：
+In other words, the execution order is:
 
 ```go
 globalMiddleware...2
@@ -138,3 +138,4 @@ mid1...3
     |
     v
 globalMiddleware...3
+```

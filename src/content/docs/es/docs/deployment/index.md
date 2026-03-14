@@ -1,39 +1,63 @@
 ---
 title: "Despliegue"
 sidebar:
-  order: 6
+  order: 10
 ---
 
-Los proyectos en Gin pueden ser desplegados fácilmente en cualquier proveedor en la nube.
+Los proyectos Gin pueden desplegarse fácilmente en cualquier proveedor de nube.
+
+## [Railway](https://www.railway.com)
+
+Railway es una plataforma de desarrollo en la nube de vanguardia para desplegar, gestionar y escalar aplicaciones y servicios. Simplifica tu stack de infraestructura desde servidores hasta observabilidad con una plataforma única, escalable y fácil de usar.
+
+Sigue la [guía de Railway para desplegar tus proyectos Gin](https://docs.railway.com/guides/gin).
+
+## [Seenode](https://seenode.com)
+
+Seenode es una plataforma en la nube moderna diseñada específicamente para desarrolladores que quieren desplegar aplicaciones rápida y eficientemente. Ofrece despliegue basado en git, certificados SSL automáticos, bases de datos integradas y una interfaz optimizada que pone tus aplicaciones Gin en línea en minutos.
+
+Sigue la [guía de Seenode para desplegar tus proyectos Gin](https://seenode.com/docs/frameworks/go/gin).
+
+## [Koyeb](https://www.koyeb.com)
+
+Koyeb es una plataforma serverless amigable para desarrolladores para desplegar apps globalmente con despliegue basado en git, cifrado TLS, autoescalado nativo, una red edge global y service mesh y descubrimiento integrados.
+
+Sigue la [guía de Koyeb para desplegar tus proyectos Gin](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+
+## [Qovery](https://www.qovery.com)
+
+Qovery proporciona hosting gratuito en la nube con bases de datos, SSL, CDN global y despliegues automáticos con Git.
+
+Consulta [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) para más información.
 
 ## [Render](https://render.com)
 
-Render es una plataforma moderna en la nube que ofrece soporte nativo para Go, SSL totalmente administrado, bases de datos, despliegues con disponibilidad ininterrumpida, HTTP/2 y soporte websockets.
+Render es una plataforma en la nube moderna que ofrece soporte nativo para Go, SSL completamente gestionado, bases de datos, despliegues sin tiempo de inactividad, soporte HTTP/2 y websocket.
 
-Sigue la [guía para desplegar proyectos Gin en Render](https://render.com/docs/deploy-go-gin).
+Sigue la [guía de Render para desplegar proyectos Gin](https://render.com/docs/deploy-go-gin).
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-Google App Engine tiene dos formas de implementar aplicaciones Go. El entorno estándar es más fácil de usar, pero menos personalizable y evita [llamadas al sistema](https://github.com/gin-gonic/gin/issues/1639) por razones de seguridad. El entorno flexible puede ejecutar cualquier framework o librería.
+GAE tiene dos formas de desplegar aplicaciones Go. El entorno estándar es más fácil de usar pero menos personalizable y previene [syscalls](https://github.com/gin-gonic/gin/issues/1639) por razones de seguridad. El entorno flexible puede ejecutar cualquier framework o biblioteca.
 
-Conoce más información y elije el entorno preferido en [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+Aprende más y elige tu entorno preferido en [Go en Google App Engine](https://cloud.google.com/appengine/docs/go/).
 
-## Self Hosted
+## Auto-alojado
 
-Gin projects can also be deployed in a self-hosted manner. Deployment architecture and security considerations vary depending on the target environment. The following section only presents a high level overview of configuration options to consider when planning the deployment.
+Los proyectos Gin también pueden desplegarse de forma auto-alojada. La arquitectura de despliegue y las consideraciones de seguridad varían dependiendo del entorno objetivo. La siguiente sección solo presenta una visión general de alto nivel de las opciones de configuración a considerar al planificar el despliegue.
 
-## Configuration Options
+## Opciones de configuración
 
-Gin project deployments can be tuned by using environment variables or directly in code.
+Los despliegues de proyectos Gin pueden ajustarse usando variables de entorno o directamente en el código.
 
-The following environment variables are available for configuring Gin:
+Las siguientes variables de entorno están disponibles para configurar Gin:
 
-| Environment Variable | Description                                                                                                                                                                                                   |
+| Variable de entorno | Descripción                                                                                                                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PORT                 | The TCP port to listen on when starting the Gin server with `router.Run()` (i.e. without any arguments).                                                                                                      |
-| GIN_MODE             | Set to one of `debug`, `release`, or `test`. Handles management of Gin modes, such as when to emit debug outputs. Can also be set in code using `gin.SetMode(gin.ReleaseMode)` or `gin.SetMode(gin.TestMode)` |
+| PORT                 | El puerto TCP para escuchar al iniciar el servidor Gin con `router.Run()` (es decir, sin argumentos).                                                                                                      |
+| GIN_MODE             | Establecer a `debug`, `release` o `test`. Gestiona los modos de Gin, como cuándo emitir salidas de depuración. También puede establecerse en código usando `gin.SetMode(gin.ReleaseMode)` o `gin.SetMode(gin.TestMode)` |
 
-The following code can be used to configure Gin.
+El siguiente código puede usarse para configurar Gin.
 
 ```go
 // Don't specify the bind address or port for Gin. Defaults to binding on all interfaces on port 8080.
@@ -55,75 +79,4 @@ router := gin.Default()
 router.SetTrustedProxies([]string{"192.168.1.2"})
 ```
 
-## Don't trust all proxies
-
-Gin lets you specify which headers to hold the real client IP (if any),
-as well as specifying which proxies (or direct clients) you trust to
-specify one of these headers.
-
-Use function `SetTrustedProxies()` on your `gin.Engine` to specify network addresses
-or network CIDRs from where clients which their request headers related to client
-IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs, IPv6 addresses or
-IPv6 CIDRs.
-
-**Attention:** Gin trust all proxies by default if you don't specify a trusted
-proxy using the function above, **this is NOT safe**. At the same time, if you don't
-use any proxy, you can disable this feature by using `Engine.SetTrustedProxies(nil)`,
-then `Context.ClientIP()` will return the remote address directly to avoid some
-unnecessary computation.
-
-```go
-import (
-  "fmt"
-
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  router := gin.Default()
-  router.SetTrustedProxies([]string{"192.168.1.2"})
-
-  router.GET("/", func(c *gin.Context) {
-    // If the client is 192.168.1.2, use the X-Forwarded-For
-    // header to deduce the original client IP from the trust-
-    // worthy parts of that header.
-    // Otherwise, simply return the direct client IP
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
-}
-```
-
-**Notice:** If you are using a CDN service, you can set the `Engine.TrustedPlatform`
-to skip TrustedProxies check, it has a higher priority than TrustedProxies.
-Look at the example below:
-
-```go
-import (
-  "fmt"
-
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  router := gin.Default()
-  // Use predefined header gin.PlatformXXX
-  // Google App Engine
-  router.TrustedPlatform = gin.PlatformGoogleAppEngine
-  // Cloudflare
-  router.TrustedPlatform = gin.PlatformCloudflare
-  // Fly.io
-  router.TrustedPlatform = gin.PlatformFlyIO
-  // Or, you can set your own trusted request header. But be sure your CDN
-  // prevents users from passing this header! For example, if your CDN puts
-  // the client IP in X-CDN-Client-IP:
-  router.TrustedPlatform = "X-CDN-Client-IP"
-
-  router.GET("/", func(c *gin.Context) {
-    // If you set TrustedPlatform, ClientIP() will resolve the
-    // corresponding header and return IP directly
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
-}
-```
+Para información sobre la configuración de proxies de confianza, consulta [Proxies de confianza](/es/docs/server-config/trusted-proxies/).

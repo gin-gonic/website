@@ -1,52 +1,52 @@
 ---
-title: "Gin 1.11.0 發布！HTTP/3、表單改進、效能提升及更多"
+title: "Gin 1.11.0 發布公告：HTTP/3、表單改進、效能提升及更多"
 linkTitle: "Gin 1.11.0 發布公告"
 lastUpdated: 2025-09-21
 ---
 
-## Gin v1.11.0 正式登場
+## Gin v1.11.0 Has Arrived
 
-我們非常高興宣布 Gin v1.11.0 正式推出，帶來大量新功能、效能優化與錯誤修正，讓這個受歡迎的 Go Web 框架持續進化。Gin 致力於速度、彈性與現代 Go 開發。
+We're excited to announce the release of Gin v1.11.0, bringing a major set of new features, performance tweaks, and bug fixes to the beloved web framework. This release continues Gin's commitment to speed, flexibility, and modern Go development.
 
-### 🌟 亮點功能
+### 🌟 Key Features
 
-- **實驗性 HTTP/3 支援：** Gin 現在透過 [quic-go](https://github.com/quic-go/quic-go) 提供 HTTP/3 的實驗性支援！想嘗鮮最新網路協議，現在正是時候。([#3210](https://github.com/gin-gonic/gin/pull/3210))
+- **Experimental HTTP/3 Support:** Gin now supports experimental HTTP/3 via [quic-go](https://github.com/quic-go/quic-go)! If you're eager to try the latest web transport protocols, now's your chance. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
 
-- **表單綁定大幅提升：**
-  - 表單綁定支援陣列集合格式 ([#3986](https://github.com/gin-gonic/gin/pull/3986))
-  - 表單標籤自訂字串切片解碼 ([#3970](https://github.com/gin-gonic/gin/pull/3970))
-  - 集合類型支援預設值 ([#4048](https://github.com/gin-gonic/gin/pull/4048))
+- **Better Form Binding:** We've made big improvements to form binding:
+  - Support for array collection formats in forms ([#3986](https://github.com/gin-gonic/gin/pull/3986))
+  - Custom string slice unmarshalling for form tags ([#3970](https://github.com/gin-gonic/gin/pull/3970))
+  - Default values for collections ([#4048](https://github.com/gin-gonic/gin/pull/4048))
 
-- **Binding 類型升級：** 新增 `BindPlain` 方法可輕鬆綁定純文字 ([#3904](https://github.com/gin-gonic/gin/pull/3904))，同時支援 unixMilli 及 unixMicro 格式 ([#4190](https://github.com/gin-gonic/gin/pull/4190))。
+- **Enhanced Binding Types:** Bind plain text easily with the new `BindPlain` method ([#3904](https://github.com/gin-gonic/gin/pull/3904)), plus support for unixMilli and unixMicro formats ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
 
-- **Context API 強化：** `GetXxx` 現已支援更多原生 Go 類型 ([#3633](https://github.com/gin-gonic/gin/pull/3633))，資料取得更型安全。
+- **Context API Improvements:** `GetXxx` now supports more native Go types ([#3633](https://github.com/gin-gonic/gin/pull/3633)), making type-safe context data retrieval easier.
 
-- **檔案系統擴充：** 新 `OnlyFilesFS` 已完整導出、測試並撰寫文件 ([#3939](https://github.com/gin-gonic/gin/pull/3939))。
+- **Filesystem Updates:** The new `OnlyFilesFS` is now exported, tested, and documented ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
 
-### 🚀 效能＆強化
+### 🚀 Performance & Enhancements
 
-- **表單資料處理更快：** 表單解析優化，效能加倍 ([#4339](https://github.com/gin-gonic/gin/pull/4339))。
-- 核心、渲染與 context 邏輯重構，加強穩定性及易讀性（[PR 完整列表見 changelog](../releases/release111.md)）。
+- **Faster Form Data Handling:** Internal optimizations for form parsing boost performance ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
+- Refactored core, rendering, and context logic for robustness and clarity ([full PR list in changelog](../releases/release111.md)).
 
-### 🐛 Bug 修正
+### 🐛 Bug Fixes
 
-- **中介軟體更可靠：** 已修復稀有的 middleware re-entry 問題 ([#3987](https://github.com/gin-gonic/gin/pull/3987))。
-- TOML 表單綁定更加穩固 ([#4193](https://github.com/gin-gonic/gin/pull/4193))。
-- 處理空路樹 “method not allowed” 請求不再 panic ([#4003](https://github.com/gin-gonic/gin/pull/4003))。
-- Context 與競爭條件等部分也持續優化狀態。
+- **Middleware Reliability:** Fixed a rare bug where middleware could re-enter unexpectedly ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
+- Improved TOML form binding stability ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
+- No more panics when handling "method not allowed" requests on empty trees ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
+- General improvements to context handling, race conditions, and more.
 
-### 🔧 Build 流程、依賴及 CI 更新
+### 🔧 Build, Dependency & CI Updates
 
-- CI/CD 現已支援 **Go 1.25**，並啟用更多嚴格 linter 確保程式品質 ([#4341](https://github.com/gin-gonic/gin/pull/4341)，[#4010](https://github.com/gin-gonic/gin/pull/4010))。
-- Trivy 漏洞掃描整合進 CI ([#4359](https://github.com/gin-gonic/gin/pull/4359))。
-- sonic、setup-go、quic-go 等多項依賴升級。
+- Support for **Go 1.25** in CI/CD workflows, plus new linters enabled for stricter code health ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010)).
+- Trivy vulnerability scanning now integrated with CI ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
+- Multiple dependency upgrades, including `sonic`, `setup-go`, `quic-go`, and others.
 
-### 📖 文件更新
+### 📖 Documentation
 
-- 文檔擴充、changelog 更新、語法與範例優化，此外新增葡萄牙語文件 ([#4078](https://github.com/gin-gonic/gin/pull/4078))。
+- Expanded documentation, updated changelogs, improved grammar and code samples, and new Portuguese docs ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
 
 ---
 
-Gin 1.11.0 是社群活躍與持續開發的最佳見證。感謝所有貢獻者、回報者與用戶，讓 Gin 一直緊跟現代應用腳步。
+Gin 1.11.0 is a testament to our active community and continuous development. We appreciate every contributor, issue reporter, and user who keeps Gin sharp and relevant for modern web applications.
 
-準備好體驗 Gin 1.11.0？[立即在 GitHub 升級](https://github.com/gin-gonic/gin/releases/tag/v1.11.0)，歡迎隨時提供回饋！
+Ready to try Gin 1.11.0? [Upgrade on GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) and let us know what you think!

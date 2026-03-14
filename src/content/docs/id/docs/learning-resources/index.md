@@ -1,42 +1,67 @@
 ---
 title: "Sumber Belajar"
 sidebar:
-  order: 7
+  order: 13
 ---
 
-## Platform Pembelajaran Interaktif
+## Sumber Resmi
 
-Ingin berlatih konsep Gin melalui latihan praktis? Berikut adalah beberapa sumber belajar yang digerakkan oleh komunitas:
+Ini dipelihara oleh tim Gin dan merupakan sumber informasi yang paling otoritatif.
 
-### Go Interview Practice - Tantangan Gin
+- **[Gin GitHub Repository](https://github.com/gin-gonic/gin)** -- Source code, issue tracker, and the latest release notes.
+- **[Gin Examples Repository](https://github.com/gin-gonic/examples)** -- A collection of self-contained example projects covering common use cases such as file uploads, graceful shutdown, JWT authentication, and more.
+- **[Gin API Reference (pkg.go.dev)](https://pkg.go.dev/github.com/gin-gonic/gin)** -- Auto-generated API documentation for every exported type and function.
 
-Platform komprehensif yang menawarkan tantangan Gin progresif yang melengkapi dokumentasi resmi:
+## Sumber Bahasa Go
+
+Pemahaman yang kuat tentang Go itu sendiri akan membuat bekerja dengan Gin jauh lebih mudah.
+
+- **[A Tour of Go](https://go.dev/tour/)** -- The official interactive introduction to Go.
+- **[Effective Go](https://go.dev/doc/effective_go)** -- Best practices and idiomatic patterns for writing Go code.
+- **[Go by Example](https://gobyexample.com/)** -- Annotated example programs covering Go fundamentals.
+- **[Go Standard Library Documentation](https://pkg.go.dev/std)** -- Reference for every package in the standard library, including `net/http`, which Gin builds on.
+
+## Tutorial dan Artikel
+
+Panduan yang ditulis komunitas yang memandu pembuatan aplikasi nyata dengan Gin.
+
+- **[Building a RESTful API with Go and Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- An official Go tutorial that uses Gin to build a simple web service.
+- **[Build a REST API with Go, Gin, and GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- Covers project layout, database integration, and deployment.
+
+## Platform Belajar Interaktif
+
+Ingin berlatih konsep Gin melalui latihan praktik? Berikut beberapa sumber belajar yang didorong komunitas:
+
+### Go Interview Practice - Gin Challenges
+
+A comprehensive platform offering progressive Gin challenges that complement the official documentation:
 
 <div class="learning-platform-showcase">
   <div class="platform-features">
-    <h4>Apa yang akan Anda pelajari:</h4>
+    <h4>What You'll Learn:</h4>
     <ul>
-      <li>Routing dasar dan metode HTTP</li>
-      <li>Implementasi middleware dan pola</li>
-      <li>Validasi permintaan dan penanganan kesalahan</li>
-      <li>Praktik autentikasi dan keamanan</li>
+      <li>Basic routing and HTTP methods</li>
+      <li>Middleware implementation and patterns</li>
+      <li>Request validation and error handling</li>
+      <li>Authentication and security practices</li>
     </ul>
   </div>
 
   <div class="platform-demo">
-    <h4>Lihat dalam aksi:</h4>
+    <h4>See It In Action:</h4>
     <div class="video-container">
       <video controls width="100%">
         <source src="https://github.com/user-attachments/assets/23468aab-a032-4326-9d05-84de86c9128c" type="video/mp4">
-        Browser Anda tidak mendukung tag video.
+        Your browser does not support the video tag.
       </video>
-      <p class="video-caption">Pengenalan singkat tentang platform Go Interview Practice</p>
+      <p class="video-caption">A brief introduction to the Go Interview Practice platform</p>
     </div>
   </div>
 
   <div class="platform-cta">
     <a href="https://github.com/RezaSi/go-interview-practice" class="btn btn-primary" target="_blank" rel="noopener">
-      Jelajahi Tantangan Gin →
+      Explore Gin Challenges →
     </a>
   </div>
-</div> 
+</div>
+--

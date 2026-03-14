@@ -1,41 +1,41 @@
 ---
-title: "Etkili Bir Middleware Nasıl Oluşturulur"
-linkTitle: "Etkili Bir Middleware Nasıl Oluşturulur"
+title: "How to Build an Effective Middleware"
+linkTitle: "How to Build an Effective Middleware"
 lastUpdated: 2019-02-26
 ---
 
-## Bileşenler
+## Constituent parts
 
-Middleware tipik olarak iki bölümden oluşur:
+Middleware typically consists of two parts:
 
-- İlk bölüm, middleware'inizi başlattığınızda bir kez çalışır. Burada global nesneleri, yapılandırma mantığını vb. ayarlarsınız; uygulamanın yaşam döngüsünde yalnızca bir kez olması gereken her şey burada gerçekleşir.
+- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
 
-- İkinci bölüm ise her istekte çalışır. Örneğin bir veritabanı middleware'inde, global veritabanı nesnenizi istek bağlamına enjekte edersiniz. Bağlamda olduğunda, diğer middleware'ler ve handler fonksiyonlarınız bunu alıp kullanabilir.
+- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
   // <---
-  // Bu birinci bölüm
+  // This is part one
   // --->
-  // Örnek başlatma: parametrelerin doğrulanması
+  // Example initialization: validate input params
   if err := check(params); err != nil {
       panic(err)
   }
 
   return func(c *gin.Context) {
     // <---
-    // Bu ikinci bölüm
+    // This is part two
     // --->
-    // Her istek için örnek yürütme: bağlama enjekte et
+    // Example execution per request: inject into context
     c.Set("TestVar", params)
     c.Next()
   }
 }
 ```
 
-## Çalışma süreci
+## Execution process
 
-Şimdi aşağıdaki örnek koda bakalım:
+Let's look at the following example code:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-[Yukarıdaki bileşenler](#bileşenler) bölümüne göre, Gin sürecini başlattığınızda her middleware'in **birinci bölümü** önce çalışır ve aşağıdaki bilgileri yazdırır:
+According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-Başlatma sırası:
+The initialization order is:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-Bir istek gönderdiğinizde—ör: `curl -v localhost:8080/rest/n/api/some`—her middleware'in **ikinci bölümü** sırayla çalışır ve aşağıdaki çıktıyı verir:
+When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-Yani, yürütme sırası şöyledir:
+In other words, the execution order is:
 
 ```go
 globalMiddleware...2
@@ -138,3 +138,4 @@ mid1...3
     |
     v
 globalMiddleware...3
+```

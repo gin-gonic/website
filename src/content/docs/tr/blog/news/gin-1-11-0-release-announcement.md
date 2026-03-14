@@ -1,52 +1,52 @@
 ---
-title: "Gin 1.11.0 Yayında! HTTP/3, Form Geliştirmeleri, Performans ve Daha Fazlası"
-linkTitle: "Gin 1.11.0 Sürüm Duyurusu"
+title: "Announcing Gin 1.11.0: HTTP/3, Form Improvements, Performance & More"
+linkTitle: "Gin 1.11.0 Release Announcement"
 lastUpdated: 2025-09-21
 ---
 
-## Gin v1.11.0 Yayınlandı
+## Gin v1.11.0 Has Arrived
 
-Popüler web framework’ümüz Gin’in 1.11.0 sürümünün büyük bir dizi yeni özellik, performans iyileştirmeleri ve hata düzeltmeleri ile yayında olduğunu duyurmaktan heyecan duyuyoruz. Bu sürümle birlikte Gin’in hız ve esneklik konusundaki kararlılığı devam ediyor.
+We're excited to announce the release of Gin v1.11.0, bringing a major set of new features, performance tweaks, and bug fixes to the beloved web framework. This release continues Gin's commitment to speed, flexibility, and modern Go development.
 
-### 🌟 Öne Çıkan Özellikler
+### 🌟 Key Features
 
-- **Deneysel HTTP/3 Desteği:** Gin artık [quic-go](https://github.com/quic-go/quic-go) ile deneysel HTTP/3 desteği sunuyor! En yeni web protokollerini denemek istiyorsanız işte fırsatınız. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
+- **Experimental HTTP/3 Support:** Gin now supports experimental HTTP/3 via [quic-go](https://github.com/quic-go/quic-go)! If you're eager to try the latest web transport protocols, now's your chance. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
 
-- **Form Binding İyileştirmeleri:** Form binding tarafında büyük yenilikler:
-  - Formlarda dizi (array) koleksiyon formatlarına destek ([#3986](https://github.com/gin-gonic/gin/pull/3986))
-  - Form etiketinde string slice unmarshalling desteği ([#3970](https://github.com/gin-gonic/gin/pull/3970))
-  - Koleksiyonlar için varsayılan değer desteği ([#4048](https://github.com/gin-gonic/gin/pull/4048))
+- **Better Form Binding:** We've made big improvements to form binding:
+  - Support for array collection formats in forms ([#3986](https://github.com/gin-gonic/gin/pull/3986))
+  - Custom string slice unmarshalling for form tags ([#3970](https://github.com/gin-gonic/gin/pull/3970))
+  - Default values for collections ([#4048](https://github.com/gin-gonic/gin/pull/4048))
 
-- **Binding Tiplerinde Gelişmeler:** Yeni `BindPlain` metodu ile düz metin bağlama kolaylığı ([#3904](https://github.com/gin-gonic/gin/pull/3904)), unixMilli ve unixMicro formatı desteği ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
+- **Enhanced Binding Types:** Bind plain text easily with the new `BindPlain` method ([#3904](https://github.com/gin-gonic/gin/pull/3904)), plus support for unixMilli and unixMicro formats ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
 
-- **Context API İyileştirmeleri:** `GetXxx` artık daha fazla Go yerel tipini destekliyor ([#3633](https://github.com/gin-gonic/gin/pull/3633)), böylece context verilerini tip güvenli biçimde almak artık daha kolay.
+- **Context API Improvements:** `GetXxx` now supports more native Go types ([#3633](https://github.com/gin-gonic/gin/pull/3633)), making type-safe context data retrieval easier.
 
-- **Dosya Sistemi Güncellemeleri:** Yeni `OnlyFilesFS` artık export edildi, testi yapıldı ve dokümantasyonu tamamlandı ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
+- **Filesystem Updates:** The new `OnlyFilesFS` is now exported, tested, and documented ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
 
-### 🚀 Performans ve Diğer Geliştirmeler
+### 🚀 Performance & Enhancements
 
-- **Daha Hızlı Form Verisi İşleme:** Form verisi ayrıştırmasında içsel optimizasyonlar performansı artırıyor ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
-- Çekirdek, render ve context mantığında daha fazla sağlamlık ve netlik için yeniden düzenlemeler ([tam PR listesi için changelog](../releases/release111.md)).
+- **Faster Form Data Handling:** Internal optimizations for form parsing boost performance ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
+- Refactored core, rendering, and context logic for robustness and clarity ([full PR list in changelog](../releases/release111.md)).
 
-### 🐛 Hata Düzeltmeleri
+### 🐛 Bug Fixes
 
-- **Middleware Güvenilirliği:** Nadiren oluşan middleware tekrar giriş hatası giderildi ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
-- TOML form binding stabilitesi artırıldı ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
-- Boş ağaçlar üzerinde “method not allowed” isteği işlerken oluşan panic hatası artık yok ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
-- Context yönetimi, veri yarışları ve daha fazlası için genel iyileştirmeler.
+- **Middleware Reliability:** Fixed a rare bug where middleware could re-enter unexpectedly ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
+- Improved TOML form binding stability ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
+- No more panics when handling "method not allowed" requests on empty trees ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
+- General improvements to context handling, race conditions, and more.
 
-### 🔧 Derleme, Bağımlılıklar ve CI Güncellemeleri
+### 🔧 Build, Dependency & CI Updates
 
-- **Go 1.25** desteği ve yeni linter’lar CI/CD süreçlerinde devreye alındı ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010)).
-- Trivy güvenlik taraması CI ile entegre edildi ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
-- `sonic`, `setup-go`, `quic-go` ve diğerlerinde çoklu bağımlılık güncellemeleri.
+- Support for **Go 1.25** in CI/CD workflows, plus new linters enabled for stricter code health ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010)).
+- Trivy vulnerability scanning now integrated with CI ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
+- Multiple dependency upgrades, including `sonic`, `setup-go`, `quic-go`, and others.
 
-### 📖 Dokümantasyon
+### 📖 Documentation
 
-- Genişletilmiş dokümantasyon, güncellenmiş changeloglar, örnek ve dil bilgisi iyileştirmeleri, ayrıca yeni Portekizce dokümanlar ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
+- Expanded documentation, updated changelogs, improved grammar and code samples, and new Portuguese docs ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
 
 ---
 
-Gin 1.11.0, aktif topluluğumuzun ve sürekli geliştirmelerimizin bir göstergesidir. Katkı veren herkese, hata raporlayanlara ve Gin’i modern web uygulamaları için ilgili tutan tüm kullanıcılara teşekkürler!
+Gin 1.11.0 is a testament to our active community and continuous development. We appreciate every contributor, issue reporter, and user who keeps Gin sharp and relevant for modern web applications.
 
-Gin 1.11.0’ı kullanmaya hazır mısınız? [GitHub’dan hemen güncelleyin](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) ve yorumlarınızı bizimle paylaşın!
+Ready to try Gin 1.11.0? [Upgrade on GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) and let us know what you think!

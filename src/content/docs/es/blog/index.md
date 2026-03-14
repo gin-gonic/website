@@ -5,7 +5,7 @@ sidebar:
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+Esta es la sección del **blog**. Tiene dos categorías: Noticias y Lanzamientos.
 
-Files in these directories will be listed in reverse chronological order.
+Los archivos en estos directorios se listarán en orden cronológico inverso.
 
