@@ -28,3 +28,4 @@ The filename reported by the client (`file.Filename`) **should not** be trusted.
 
 - [**Single file**](./single-file/) -- Upload and save a single file per request.
 - [**Multiple files**](./multiple-file/) -- Upload and save multiple files in one request.
+- [**Limit upload size**](./limit-bytes/) -- Restrict upload size using `http.MaxBytesReader`.
