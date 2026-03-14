@@ -1,7 +1,7 @@
 ---
 title: "Testing"
 sidebar:
-  order: 11
+  order: 9
 ---
 
 ## How to write test case for Gin?

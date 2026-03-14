@@ -1,7 +1,7 @@
 ---
 title: "Routing"
 sidebar:
-  order: 5
+  order: 3
 ---
 
 Gin provides a powerful routing system built on [httprouter](https://github.com/julienschmidt/httprouter) for high-performance URL matching with zero memory allocations.

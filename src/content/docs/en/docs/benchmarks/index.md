@@ -1,7 +1,7 @@
 ---
 title: "Benchmarks"
 sidebar:
-  order: 3
+  order: 12
 ---
 
 ## Gin Web Framework Performance Benchmarks

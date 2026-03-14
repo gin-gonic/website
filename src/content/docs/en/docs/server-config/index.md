@@ -1,7 +1,7 @@
 ---
 title: "Server Configuration"
 sidebar:
-  order: 10
+  order: 8
 ---
 
 Gin offers flexible server configuration options including custom HTTP settings, TLS/SSL support, running multiple services, graceful shutdown, HTTP/2 server push, and proxy trust configuration.

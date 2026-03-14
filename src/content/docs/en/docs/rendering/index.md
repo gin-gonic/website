@@ -1,7 +1,7 @@
 ---
 title: "Rendering"
 sidebar:
-  order: 9
+  order: 5
 ---
 
 Gin supports rendering responses in multiple formats including JSON, XML, YAML, ProtoBuf, HTML, and more. This section covers the various rendering options available and how to serve static files and data.
