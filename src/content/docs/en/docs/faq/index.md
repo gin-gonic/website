@@ -13,7 +13,6 @@ Use [Air](https://github.com/air-verse/air) for automatic live reloading during 
 **Installation:**
 
 ```sh
-# Install Air globally
 go install github.com/air-verse/air@latest
 ```
 
@@ -25,65 +24,13 @@ Create a `.air.toml` configuration file in your project root:
 air init
 ```
 
-This generates a default configuration. You can customize it for your Gin project:
-
-```toml
-# .air.toml
-root = "."
-testdata_dir = "testdata"
-tmp_dir = "tmp"
-
-[build]
-  args_bin = []
-  bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ."
-  delay = 1000
-  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
-  exclude_file = []
-  exclude_regex = ["_test.go"]
-  exclude_unchanged = false
-  follow_symlink = false
-  full_bin = ""
-  include_dir = []
-  include_ext = ["go", "tpl", "tmpl", "html"]
-  include_file = []
-  kill_delay = "0s"
-  log = "build-errors.log"
-  poll = false
-  poll_interval = 0
-  rerun = false
-  rerun_delay = 500
-  send_interrupt = false
-  stop_on_error = false
-
-[color]
-  app = ""
-  build = "yellow"
-  main = "magenta"
-  runner = "green"
-  watcher = "cyan"
-
-[log]
-  main_only = false
-  time = false
-
-[misc]
-  clean_on_exit = false
-
-[screen]
-  clear_on_rebuild = false
-  keep_scroll = true
-```
-
-**Usage:**
-
-Simply run `air` in your project directory instead of `go run`:
+Then run `air` in your project directory instead of `go run`:
 
 ```sh
 air
 ```
 
-Air will now watch your `.go` files and automatically rebuild/restart your Gin application on changes.
+Air will watch your `.go` files and automatically rebuild/restart your Gin application on changes. See the [Air documentation](https://github.com/air-verse/air) for configuration options.
 
 ### How do I handle CORS in Gin?
 
@@ -94,17 +41,17 @@ package main
 
 import (
   "time"
-  
+
   "github.com/gin-contrib/cors"
   "github.com/gin-gonic/gin"
 )
 
 func main() {
   r := gin.Default()
-  
+
   // Default CORS configuration
   r.Use(cors.Default())
-  
+
   // Or customize CORS settings
   r.Use(cors.New(cors.Config{
     AllowOrigins:     []string{"https://example.com"},
@@ -114,14 +61,16 @@ func main() {
     AllowCredentials: true,
     MaxAge:           12 * time.Hour,
   }))
-  
+
   r.GET("/ping", func(c *gin.Context) {
     c.JSON(200, gin.H{"message": "pong"})
   })
-  
+
   r.Run()
 }
 ```
+
+For a complete security overview, see [Security best practices](/en/docs/middleware/security-guide/).
 
 ### How do I serve static files?
 
@@ -130,21 +79,21 @@ Use `Static()` or `StaticFS()` to serve static files:
 ```go
 func main() {
   r := gin.Default()
-  
+
   // Serve files from ./assets directory at /assets/*
   r.Static("/assets", "./assets")
-  
+
   // Serve a single file
   r.StaticFile("/favicon.ico", "./resources/favicon.ico")
-  
+
   // Serve from embedded filesystem (Go 1.16+)
   r.StaticFS("/public", http.FS(embedFS))
-  
+
   r.Run()
 }
 ```
 
-See the [Serving static files example](../examples/serving-static-files/) for more details.
+See [Serving data from file](/en/docs/rendering/serving-data-from-file/) for more details.
 
 ### How do I handle file uploads?
 
@@ -154,10 +103,7 @@ Use `FormFile()` for single files or `MultipartForm()` for multiple files:
 // Single file upload
 r.POST("/upload", func(c *gin.Context) {
   file, _ := c.FormFile("file")
-  
-  // Save the file
   c.SaveUploadedFile(file, "./uploads/"+file.Filename)
-  
   c.String(200, "File %s uploaded successfully", file.Filename)
 })
 
@@ -165,20 +111,19 @@ r.POST("/upload", func(c *gin.Context) {
 r.POST("/upload-multiple", func(c *gin.Context) {
   form, _ := c.MultipartForm()
   files := form.File["files"]
-  
+
   for _, file := range files {
     c.SaveUploadedFile(file, "./uploads/"+file.Filename)
   }
-  
   c.String(200, "%d files uploaded", len(files))
 })
 ```
 
-See the [Upload file examples](../examples/upload-file/) for more details.
+See the [Upload file](/en/docs/routing/upload-file/) documentation for more details.
 
 ### How do I implement authentication with JWT?
 
-Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware:
+Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware. Here's a minimal example:
 
 ```go
 package main
@@ -186,7 +131,7 @@ package main
 import (
   "net/http"
   "time"
-  
+
   "github.com/gin-gonic/gin"
   "github.com/golang-jwt/jwt/v5"
 )
@@ -198,19 +143,6 @@ type Claims struct {
   jwt.RegisteredClaims
 }
 
-func GenerateToken(username string) (string, error) {
-  claims := Claims{
-    Username: username,
-    RegisteredClaims: jwt.RegisteredClaims{
-      ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
-      IssuedAt:  jwt.NewNumericDate(time.Now()),
-    },
-  }
-  
-  token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-  return token.SignedString(jwtSecret)
-}
-
 func AuthMiddleware() gin.HandlerFunc {
   return func(c *gin.Context) {
     tokenString := c.GetHeader("Authorization")
@@ -219,182 +151,53 @@ func AuthMiddleware() gin.HandlerFunc {
       c.Abort()
       return
     }
-    
+
     // Remove "Bearer " prefix if present
     if len(tokenString) > 7 && tokenString[:7] == "Bearer " {
       tokenString = tokenString[7:]
     }
-    
+
     token, err := jwt.ParseWithClaims(tokenString, &Claims{}, func(token *jwt.Token) (interface{}, error) {
       return jwtSecret, nil
     })
-    
+
     if err != nil || !token.Valid {
       c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
       c.Abort()
       return
     }
-    
+
     if claims, ok := token.Claims.(*Claims); ok {
       c.Set("username", claims.Username)
       c.Next()
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token claims"})
-      c.Abort()
     }
   }
-}
-
-func main() {
-  r := gin.Default()
-  
-  r.POST("/login", func(c *gin.Context) {
-    var credentials struct {
-      Username string `json:"username"`
-      Password string `json:"password"`
-    }
-    
-    if err := c.BindJSON(&credentials); err != nil {
-      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-      return
-    }
-    
-    // Validate credentials (implement your own logic)
-    if credentials.Username == "admin" && credentials.Password == "password" {
-      token, _ := GenerateToken(credentials.Username)
-      c.JSON(http.StatusOK, gin.H{"token": token})
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid credentials"})
-    }
-  })
-  
-  // Protected routes
-  authorized := r.Group("/")
-  authorized.Use(AuthMiddleware())
-  {
-    authorized.GET("/profile", func(c *gin.Context) {
-      username := c.MustGet("username").(string)
-      c.JSON(http.StatusOK, gin.H{"username": username})
-    })
-  }
-  
-  r.Run()
 }
 ```
+
+For session-based authentication, see [Session management](/en/docs/middleware/session-management/).
 
 ### How do I set up request logging?
 
-Gin includes a default logger middleware. Customize it or use structured logging:
+Gin includes a default logger middleware via `gin.Default()`. For structured JSON logging in production, see [Structured logging](/en/docs/logging/structured-logging/).
+
+For basic log customization:
 
 ```go
-package main
-
-import (
-  "log"
-  "time"
-  
-  "github.com/gin-gonic/gin"
-)
-
-// Custom logger middleware
-func Logger() gin.HandlerFunc {
-  return func(c *gin.Context) {
-    start := time.Now()
-    path := c.Request.URL.Path
-    
-    c.Next()
-    
-    latency := time.Since(start)
-    statusCode := c.Writer.Status()
-    clientIP := c.ClientIP()
-    method := c.Request.Method
-    
-    log.Printf("[GIN] %s | %3d | %13v | %15s | %-7s %s",
-      time.Now().Format("2006/01/02 - 15:04:05"),
-      statusCode,
-      latency,
-      clientIP,
-      method,
-      path,
-    )
-  }
-}
-
-func main() {
-  r := gin.New()
-  r.Use(Logger())
-  r.Use(gin.Recovery())
-  
-  r.GET("/ping", func(c *gin.Context) {
-    c.JSON(200, gin.H{"message": "pong"})
-  })
-  
-  r.Run()
-}
+r := gin.New()
+r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+  SkipPaths: []string{"/healthz"},
+}))
+r.Use(gin.Recovery())
 ```
 
-For more advanced logging, see the [Custom log format example](../examples/custom-log-format/).
+See the [Logging](/en/docs/logging/) section for all options including custom formats, file output, and skipping query strings.
 
 ### How do I handle graceful shutdown?
 
-Implement graceful shutdown to properly close connections:
+See [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/) for a complete guide with code examples.
 
-```go
-package main
-
-import (
-  "context"
-  "log"
-  "net/http"
-  "os"
-  "os/signal"
-  "syscall"
-  "time"
-  
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  r := gin.Default()
-  
-  r.GET("/", func(c *gin.Context) {
-    time.Sleep(5 * time.Second)
-    c.String(http.StatusOK, "Welcome!")
-  })
-  
-  srv := &http.Server{
-    Addr:    ":8080",
-    Handler: r,
-  }
-  
-  // Run server in a goroutine
-  go func() {
-    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-      log.Fatalf("listen: %s\n", err)
-    }
-  }()
-  
-  // Wait for interrupt signal to gracefully shutdown the server
-  quit := make(chan os.Signal, 1)
-  signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-  <-quit
-  log.Println("Shutting down server...")
-  
-  // Give outstanding requests 5 seconds to complete
-  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-  defer cancel()
-  
-  if err := srv.Shutdown(ctx); err != nil {
-    log.Fatal("Server forced to shutdown:", err)
-  }
-  
-  log.Println("Server exiting")
-}
-```
-
-See the [Graceful restart or stop example](../examples/graceful-restart-or-stop/) for more details.
-
-### Why am I getting  "404 Not Found" instead of "405 Method Not Allowed"?
+### Why am I getting "404 Not Found" instead of "405 Method Not Allowed"?
 
 By default, Gin returns 404 for routes that don't support the requested HTTP method. To return 405 Method Not Allowed, enable the `HandleMethodNotAllowed` option.
 
@@ -413,7 +216,6 @@ type User struct {
 
 r.POST("/user", func(c *gin.Context) {
   var user User
-  // Binds query params and request body (JSON/form)
   if err := c.ShouldBind(&user); err != nil {
     c.JSON(400, gin.H{"error": err.Error()})
     return
@@ -422,7 +224,7 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-For more control, see [Bind query or post example](../examples/bind-query-or-post/).
+See the [Binding](/en/docs/binding/) section for all binding options.
 
 ### How do I validate request data?
 
@@ -445,7 +247,7 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-For custom validators, see [Custom validators example](../examples/custom-validators/).
+See [Binding and validation](/en/docs/binding/binding-and-validation/) for custom validators and advanced usage.
 
 ### How do I run Gin in production mode?
 
@@ -463,99 +265,33 @@ Or set it programmatically:
 gin.SetMode(gin.ReleaseMode)
 ```
 
-Release mode:
-
-- Disables debug logging
-- Improves performance
-- Reduces binary size slightly
+Release mode disables debug logging and improves performance.
 
 ### How do I handle database connections with Gin?
 
-Use dependency injection or context to share database connections:
-
-```go
-package main
-
-import (
-  "database/sql"
-  
-  "github.com/gin-gonic/gin"
-  _ "github.com/lib/pq"
-)
-
-func main() {
-  db, err := sql.Open("postgres", "postgres://user:pass@localhost/dbname")
-  if err != nil {
-    panic(err)
-  }
-  defer db.Close()
-  
-  r := gin.Default()
-  
-  // Method 1: Pass db to handlers
-  r.GET("/users", func(c *gin.Context) {
-    var users []string
-    rows, _ := db.Query("SELECT name FROM users")
-    defer rows.Close()
-    
-    for rows.Next() {
-      var name string
-      rows.Scan(&name)
-      users = append(users, name)
-    }
-    
-    c.JSON(200, users)
-  })
-  
-  // Method 2: Use middleware to inject db
-  r.Use(func(c *gin.Context) {
-    c.Set("db", db)
-    c.Next()
-  })
-  
-  r.Run()
-}
-```
-
-For ORMs, consider [GORM](https://gorm.io/) with Gin.
+See [Database integration](/en/docs/server-config/database/) for a complete guide covering `database/sql`, GORM, connection pooling, and dependency injection patterns.
 
 ### How do I test Gin handlers?
 
 Use `net/http/httptest` to test your routes:
 
 ```go
-package main
-
-import (
-  "net/http"
-  "net/http/httptest"
-  "testing"
-  
-  "github.com/gin-gonic/gin"
-  "github.com/stretchr/testify/assert"
-)
-
-func SetupRouter() *gin.Engine {
-  r := gin.Default()
-  r.GET("/ping", func(c *gin.Context) {
+func TestPingRoute(t *testing.T) {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
     c.JSON(200, gin.H{"message": "pong"})
   })
-  return r
-}
 
-func TestPingRoute(t *testing.T) {
-  router := SetupRouter()
-  
   w := httptest.NewRecorder()
   req, _ := http.NewRequest("GET", "/ping", nil)
   router.ServeHTTP(w, req)
-  
+
   assert.Equal(t, 200, w.Code)
   assert.Contains(t, w.Body.String(), "pong")
 }
 ```
 
-See the [Testing documentation](../testing/) for more examples.
+See the [Testing](/en/docs/testing/) documentation for more examples.
 
 ## Performance Questions
 
@@ -563,30 +299,16 @@ See the [Testing documentation](../testing/) for more examples.
 
 1. **Use Release Mode**: Set `GIN_MODE=release`
 2. **Disable unnecessary middleware**: Only use what you need
-3. **Use `gin.New()` instead of `gin.Default()`** if you want manual middleware control
-4. **Connection pooling**: Configure database connection pools properly
+3. **Use `gin.New()` instead of `gin.Default()`** for manual middleware control
+4. **Connection pooling**: Configure database connection pools (see [Database integration](/en/docs/server-config/database/))
 5. **Caching**: Implement caching for frequently accessed data
 6. **Load balancing**: Use reverse proxy (nginx, HAProxy)
 7. **Profiling**: Use Go's pprof to identify bottlenecks
-
-```go
-r := gin.New()
-r.Use(gin.Recovery()) // Only use recovery middleware
-
-// Set connection pool limits
-db.SetMaxOpenConns(25)
-db.SetMaxIdleConns(5)
-db.SetConnMaxLifetime(5 * time.Minute)
-```
+8. **Monitoring**: Set up [metrics and monitoring](/en/docs/server-config/metrics/) to track performance
 
 ### Is Gin production-ready?
 
-Yes! Gin is used in production by many companies and has been battle-tested at scale. It's one of the most popular Go web frameworks with:
-
-- Active maintenance and community
-- Extensive middleware ecosystem
-- Excellent performance benchmarks
-- Strong backwards compatibility
+Yes. Gin is used in production by many companies and has been battle-tested at scale. See [Users](/en/docs/users/) for examples of projects using Gin in production.
 
 ## Troubleshooting
 
@@ -603,6 +325,8 @@ r.GET("/user/:id", func(c *gin.Context) {
 
 // Not: /user/{id} or /user/<id>
 ```
+
+See [Parameters in path](/en/docs/routing/param-in-path/) for details.
 
 ### Why is my middleware not executing?
 
@@ -622,6 +346,8 @@ auth.Use(AuthMiddleware()) // Middleware for this group
 }
 ```
 
+See [Using middleware](/en/docs/middleware/using-middleware/) for details.
+
 ### Why is request binding failing?
 
 Common reasons:
@@ -638,3 +364,5 @@ type User struct {
   age   int    `json:"age"`                      // ✗ Won't bind (unexported)
 }
 ```
+
+See [Binding and validation](/en/docs/binding/binding-and-validation/) for details.

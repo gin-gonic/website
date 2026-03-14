@@ -4,6 +4,13 @@ sidebar:
   order: 3
 ---
 
+Query string parameters are the key-value pairs that appear after the `?` in a URL (for example, `/search?q=gin&page=2`). Gin provides two methods to read them:
+
+- `c.Query("key")` returns the value of the query parameter, or an **empty string** if the key is not present.
+- `c.DefaultQuery("key", "default")` returns the value, or the specified **default value** if the key is not present.
+
+Both methods are shortcuts for accessing `c.Request.URL.Query()` with less boilerplate.
+
 ```go
 func main() {
   router := gin.Default()
@@ -18,6 +25,22 @@ func main() {
   })
   router.Run(":8080")
 }
+```
+
+### Test it
+
+```sh
+# Both parameters provided
+curl "http://localhost:8080/welcome?firstname=Jane&lastname=Doe"
+# Output: Hello Jane Doe
+
+# Missing firstname -- uses default value "Guest"
+curl "http://localhost:8080/welcome?lastname=Doe"
+# Output: Hello Guest Doe
+
+# No parameters at all
+curl "http://localhost:8080/welcome"
+# Output: Hello Guest
 ```
 
 ## See also
