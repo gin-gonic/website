@@ -1,6 +1,7 @@
 ---
 title: "ファイルアップロード"
 sidebar:
+  label: "ファイルアップロード"
   order: 7
 ---
 

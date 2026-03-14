@@ -1,6 +1,7 @@
 ---
 title: "檔案上傳"
 sidebar:
+  label: "檔案上傳"
   order: 7
 ---
 

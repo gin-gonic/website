@@ -1,6 +1,7 @@
 ---
 title: "Subir archivos"
 sidebar:
+  label: "Subir archivos"
   order: 7
 ---
 

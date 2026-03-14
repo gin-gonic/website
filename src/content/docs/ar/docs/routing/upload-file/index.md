@@ -1,6 +1,7 @@
 ---
 title: "رفع الملفات"
 sidebar:
+  label: "رفع الملفات"
   order: 7
 ---
 

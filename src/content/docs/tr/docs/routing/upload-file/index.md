@@ -1,6 +1,7 @@
 ---
 title: "Dosya yükleme"
 sidebar:
+  label: "Dosya yükleme"
   order: 7
 ---
 
