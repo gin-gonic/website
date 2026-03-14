@@ -1,10 +1,10 @@
 ---
-title: "Gin 1.3.0 is released"
-linkTitle: "Gin 1.3.0 is released"
+title: "تم إصدار Gin 1.3.0"
+linkTitle: "تم إصدار Gin 1.3.0"
 lastUpdated: 2018-08-14
 ---
 
-### CHANGELOG
+### سجل التغييرات
 
 - [NEW] Add [`func (*Context) QueryMap`](https://pkg.go.dev/github.com/gin-gonic/gin#Context.QueryMap), [`func (*Context) GetQueryMap`](https://pkg.go.dev/github.com/gin-gonic/gin#Context.GetQueryMap), [`func (*Context) PostFormMap`](https://pkg.go.dev/github.com/gin-gonic/gin#Context.PostFormMap) and [`func (*Context) GetPostFormMap`](https://pkg.go.dev/github.com/gin-gonic/gin#Context.GetPostFormMap) to support `type map[string]string` as query string or form parameters, see [#1383](https://github.com/gin-gonic/gin/pull/1383)
 - [NEW] Add [`func (*Context) AsciiJSON`](https://pkg.go.dev/github.com/gin-gonic/gin#Context.AsciiJSON), see [#1358](https://github.com/gin-gonic/gin/pull/1358)

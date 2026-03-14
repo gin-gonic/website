@@ -4,11 +4,11 @@ sidebar:
   order: 13
 ---
 
-Exposing application metrics allows you to monitor request rates, latencies, error rates, and resource usage in production. [Prometheus](https://prometheus.io/) is the most common monitoring system used with Go applications.
+公開應用程式指標讓你可以在正式環境中監控請求速率、延遲時間、錯誤率和資源使用情況。[Prometheus](https://prometheus.io/) 是與 Go 應用程式搭配使用最常見的監控系統。
 
-## Using gin-contrib/openmetrics
+## 使用 gin-contrib/openmetrics
 
-The [gin-contrib/openmetrics](https://github.com/gin-contrib/openmetrics) middleware provides a ready-to-use Prometheus metrics endpoint:
+[gin-contrib/openmetrics](https://github.com/gin-contrib/openmetrics) 中介軟體提供了開箱即用的 Prometheus 指標端點：
 
 ```sh
 go get github.com/gin-contrib/openmetrics
@@ -36,9 +36,9 @@ func main() {
 }
 ```
 
-## Custom Prometheus metrics
+## 自訂 Prometheus 指標
 
-For more control, use the [prometheus/client_golang](https://github.com/prometheus/client_golang) library directly:
+如需更多控制，可以直接使用 [prometheus/client_golang](https://github.com/prometheus/client_golang) 函式庫：
 
 ```go
 package main
@@ -106,23 +106,23 @@ func main() {
 ```
 
 :::note
-Use `c.FullPath()` (e.g., `/user/:id`) instead of `c.Request.URL.Path` (e.g., `/user/123`) for the path label. This prevents high-cardinality labels that can overwhelm Prometheus.
+在路徑標籤中使用 `c.FullPath()`（例如 `/user/:id`）而非 `c.Request.URL.Path`（例如 `/user/123`）。這可以防止高基數標籤導致 Prometheus 負荷過大。
 :::
 
-## Key metrics to monitor
+## 需要監控的關鍵指標
 
-For a production Gin application, track these metrics:
+對於正式環境的 Gin 應用程式，追蹤以下指標：
 
-| Metric | Type | Purpose |
+| 指標 | 類型 | 用途 |
 |--------|------|---------|
-| `http_requests_total` | Counter | Total request count by method, path, status |
-| `http_request_duration_seconds` | Histogram | Request latency distribution |
-| `http_requests_in_flight` | Gauge | Currently processing requests |
-| `http_response_size_bytes` | Histogram | Response body sizes |
+| `http_requests_total` | Counter | 按方法、路徑、狀態碼統計的請求總數 |
+| `http_request_duration_seconds` | Histogram | 請求延遲分布 |
+| `http_requests_in_flight` | Gauge | 目前正在處理的請求數 |
+| `http_response_size_bytes` | Histogram | 回應主體大小 |
 
-## Serving metrics on a separate port
+## 在獨立連接埠上提供指標
 
-In production, serve metrics on a separate port to keep them internal:
+在正式環境中，在獨立的連接埠上提供指標以保持其內部存取：
 
 ```go
 package main
@@ -152,11 +152,11 @@ func main() {
 }
 ```
 
-This way, you can expose port 8080 publicly while keeping port 9090 internal to your infrastructure.
+這樣你就可以將 8080 連接埠公開暴露，同時讓 9090 連接埠保持在基礎設施內部。
 
-## Prometheus scrape configuration
+## Prometheus 抓取配置
 
-Add your application to the Prometheus configuration:
+將你的應用程式新增到 Prometheus 配置中：
 
 ```yaml
 # prometheus.yml
@@ -167,7 +167,7 @@ scrape_configs:
       - targets: ["localhost:9090"]
 ```
 
-## Testing
+## 測試
 
 ```sh
 # Generate some traffic
@@ -177,7 +177,7 @@ curl http://localhost:8080/ping
 curl http://localhost:9090/metrics
 ```
 
-You should see output like:
+你應該會看到類似以下的輸出：
 
 ```
 # HELP http_requests_total Total number of HTTP requests
@@ -190,7 +190,7 @@ http_request_duration_seconds_bucket{method="GET",path="/ping",le="0.005"} 1
 ...
 ```
 
-## See also
+## 另請參閱
 
-- [Health Checks](/en/docs/server-config/health-check/)
-- [Run multiple service](/en/docs/server-config/run-multiple-service/)
+- [健康檢查](/zh-tw/docs/server-config/health-check/)
+- [執行多個服務](/zh-tw/docs/server-config/run-multiple-service/)

@@ -1,40 +1,40 @@
 ---
-title: "FAQ"
+title: "سوالات متداول"
 sidebar:
   order: 15
 ---
 
-## General Questions
+## سوالات عمومی
 
-### How do I enable live reload during development?
+### چگونه بارگذاری مجدد خودکار را در حین توسعه فعال کنم؟
 
-Use [Air](https://github.com/air-verse/air) for automatic live reloading during development. Air watches your files and rebuilds/restarts your application when changes are detected.
+از [Air](https://github.com/air-verse/air) برای بارگذاری مجدد خودکار در حین توسعه استفاده کنید. Air فایل‌های شما را نظارت می‌کند و هنگام تشخیص تغییرات، برنامه شما را بازسازی/راه‌اندازی مجدد می‌کند.
 
-**Installation:**
+**نصب:**
 
 ```sh
 go install github.com/air-verse/air@latest
 ```
 
-**Setup:**
+**راه‌اندازی:**
 
-Create a `.air.toml` configuration file in your project root:
+یک فایل پیکربندی `.air.toml` در ریشه پروژه خود ایجاد کنید:
 
 ```sh
 air init
 ```
 
-Then run `air` in your project directory instead of `go run`:
+سپس `air` را در پوشه پروژه خود به جای `go run` اجرا کنید:
 
 ```sh
 air
 ```
 
-Air will watch your `.go` files and automatically rebuild/restart your Gin application on changes. See the [Air documentation](https://github.com/air-verse/air) for configuration options.
+Air فایل‌های `.go` شما را نظارت کرده و به طور خودکار برنامه Gin شما را هنگام تغییرات بازسازی/راه‌اندازی مجدد می‌کند. برای گزینه‌های پیکربندی [مستندات Air](https://github.com/air-verse/air) را ببینید.
 
-### How do I handle CORS in Gin?
+### چگونه CORS را در Gin مدیریت کنم؟
 
-Use the official [gin-contrib/cors](https://github.com/gin-contrib/cors) middleware:
+از میان‌افزار رسمی [gin-contrib/cors](https://github.com/gin-contrib/cors) استفاده کنید:
 
 ```go
 package main
@@ -70,11 +70,11 @@ func main() {
 }
 ```
 
-For a complete security overview, see [Security best practices](/en/docs/middleware/security-guide/).
+برای مرور کامل امنیتی، [بهترین روش‌های امنیتی](/fa/docs/middleware/security-guide/) را ببینید.
 
-### How do I serve static files?
+### چگونه فایل‌های استاتیک را ارائه دهم؟
 
-Use `Static()` or `StaticFS()` to serve static files:
+از `Static()` یا `StaticFS()` برای ارائه فایل‌های استاتیک استفاده کنید:
 
 ```go
 func main() {
@@ -93,11 +93,11 @@ func main() {
 }
 ```
 
-See [Serving data from file](/en/docs/rendering/serving-data-from-file/) for more details.
+برای جزئیات بیشتر [ارائه داده از فایل](/fa/docs/rendering/serving-data-from-file/) را ببینید.
 
-### How do I handle file uploads?
+### چگونه آپلود فایل را مدیریت کنم؟
 
-Use `FormFile()` for single files or `MultipartForm()` for multiple files:
+از `FormFile()` برای فایل‌های تکی یا `MultipartForm()` برای فایل‌های متعدد استفاده کنید:
 
 ```go
 // Single file upload
@@ -119,11 +119,11 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 })
 ```
 
-See the [Upload file](/en/docs/routing/upload-file/) documentation for more details.
+برای جزئیات بیشتر مستندات [آپلود فایل](/fa/docs/routing/upload-file/) را ببینید.
 
-### How do I implement authentication with JWT?
+### چگونه احراز هویت JWT را پیاده‌سازی کنم؟
 
-Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware. Here's a minimal example:
+از [gin-contrib/jwt](https://github.com/gin-contrib/jwt) استفاده کنید یا میان‌افزار سفارشی پیاده‌سازی کنید. در اینجا یک مثال ساده آمده است:
 
 ```go
 package main
@@ -175,13 +175,13 @@ func AuthMiddleware() gin.HandlerFunc {
 }
 ```
 
-For session-based authentication, see [Session management](/en/docs/middleware/session-management/).
+برای احراز هویت مبتنی بر نشست، [مدیریت نشست](/fa/docs/middleware/session-management/) را ببینید.
 
-### How do I set up request logging?
+### چگونه لاگ‌گذاری درخواست‌ها را تنظیم کنم؟
 
-Gin includes a default logger middleware via `gin.Default()`. For structured JSON logging in production, see [Structured logging](/en/docs/logging/structured-logging/).
+Gin شامل یک میان‌افزار لاگر پیش‌فرض از طریق `gin.Default()` است. برای لاگ‌گذاری ساختاریافته JSON در تولید، [لاگ‌گذاری ساختاریافته](/fa/docs/logging/structured-logging/) را ببینید.
 
-For basic log customization:
+برای سفارشی‌سازی لاگ پایه:
 
 ```go
 r := gin.New()
@@ -191,15 +191,15 @@ r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
 r.Use(gin.Recovery())
 ```
 
-See the [Logging](/en/docs/logging/) section for all options including custom formats, file output, and skipping query strings.
+بخش [لاگ‌گذاری](/fa/docs/logging/) را برای تمام گزینه‌ها شامل فرمت‌های سفارشی، خروجی فایل و رد شدن از رشته‌های پرس‌وجو ببینید.
 
-### How do I handle graceful shutdown?
+### چگونه خاموشی آرام را مدیریت کنم؟
 
-See [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/) for a complete guide with code examples.
+[راه‌اندازی مجدد یا توقف آرام](/fa/docs/server-config/graceful-restart-or-stop/) را برای راهنمای کامل با مثال‌های کد ببینید.
 
-### Why am I getting "404 Not Found" instead of "405 Method Not Allowed"?
+### چرا به جای "405 Method Not Allowed" پیام "404 Not Found" دریافت می‌کنم؟
 
-By default, Gin returns 404 for routes that don't support the requested HTTP method. Set `HandleMethodNotAllowed = true` to return 405 instead:
+به طور پیش‌فرض، Gin برای مسیرهایی که از متد HTTP درخواستی پشتیبانی نمی‌کنند 404 برمی‌گرداند. `HandleMethodNotAllowed = true` را تنظیم کنید تا به جای آن 405 برگرداند:
 
 ```go
 r := gin.Default()
@@ -219,9 +219,9 @@ HTTP/1.1 405 Method Not Allowed
 Allow: GET
 ```
 
-### How do I bind query parameters and POST data together?
+### چگونه پارامترهای پرس‌وجو و داده‌های POST را با هم متصل کنم؟
 
-Use `ShouldBind()` which automatically selects the binding based on content type:
+از `ShouldBind()` استفاده کنید که به طور خودکار اتصال را بر اساس نوع محتوا انتخاب می‌کند:
 
 ```go
 type User struct {
@@ -240,11 +240,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See the [Binding](/en/docs/binding/) section for all binding options.
+بخش [اتصال داده](/fa/docs/binding/) را برای تمام گزینه‌های اتصال ببینید.
 
-### How do I validate request data?
+### چگونه داده‌های درخواست را اعتبارسنجی کنم؟
 
-Gin uses [go-playground/validator](https://github.com/go-playground/validator) for validation. Add validation tags to your structs:
+Gin از [go-playground/validator](https://github.com/go-playground/validator) برای اعتبارسنجی استفاده می‌کند. تگ‌های اعتبارسنجی را به structهای خود اضافه کنید:
 
 ```go
 type User struct {
@@ -263,11 +263,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for custom validators and advanced usage.
+[اتصال و اعتبارسنجی](/fa/docs/binding/binding-and-validation/) را برای اعتبارسنج‌های سفارشی و استفاده پیشرفته ببینید.
 
-### How do I run Gin in production mode?
+### چگونه Gin را در حالت تولید اجرا کنم؟
 
-Set the `GIN_MODE` environment variable to `release`:
+متغیر محیطی `GIN_MODE` را به `release` تنظیم کنید:
 
 ```sh
 export GIN_MODE=release
@@ -275,21 +275,21 @@ export GIN_MODE=release
 GIN_MODE=release ./your-app
 ```
 
-Or set it programmatically:
+یا به صورت برنامه‌ای تنظیم کنید:
 
 ```go
 gin.SetMode(gin.ReleaseMode)
 ```
 
-Release mode disables debug logging and improves performance.
+حالت release لاگ‌گذاری اشکال‌زدایی را غیرفعال کرده و عملکرد را بهبود می‌بخشد.
 
-### How do I handle database connections with Gin?
+### چگونه اتصالات پایگاه داده را با Gin مدیریت کنم؟
 
-See [Database integration](/en/docs/server-config/database/) for a complete guide covering `database/sql`, GORM, connection pooling, and dependency injection patterns.
+[یکپارچه‌سازی پایگاه داده](/fa/docs/server-config/database/) را برای راهنمای کامل شامل `database/sql`، GORM، connection pooling و الگوهای تزریق وابستگی ببینید.
 
-### How do I test Gin handlers?
+### چگونه handlerهای Gin را تست کنم؟
 
-Use `net/http/httptest` to test your routes:
+از `net/http/httptest` برای تست مسیرهای خود استفاده کنید:
 
 ```go
 func TestPingRoute(t *testing.T) {
@@ -307,30 +307,30 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-See the [Testing](/en/docs/testing/) documentation for more examples.
+مستندات [تست](/fa/docs/testing/) را برای مثال‌های بیشتر ببینید.
 
-## Performance Questions
+## سوالات عملکرد
 
-### How do I optimize Gin for high traffic?
+### چگونه Gin را برای ترافیک بالا بهینه کنم؟
 
-1. **Use Release Mode**: Set `GIN_MODE=release`
-2. **Disable unnecessary middleware**: Only use what you need
-3. **Use `gin.New()` instead of `gin.Default()`** for manual middleware control
-4. **Connection pooling**: Configure database connection pools (see [Database integration](/en/docs/server-config/database/))
-5. **Caching**: Implement caching for frequently accessed data
-6. **Load balancing**: Use reverse proxy (nginx, HAProxy)
-7. **Profiling**: Use Go's pprof to identify bottlenecks
-8. **Monitoring**: Set up [metrics and monitoring](/en/docs/server-config/metrics/) to track performance
+1. **از حالت Release استفاده کنید**: `GIN_MODE=release` را تنظیم کنید
+2. **میان‌افزارهای غیرضروری را غیرفعال کنید**: فقط از آنچه نیاز دارید استفاده کنید
+3. **از `gin.New()` به جای `gin.Default()`** برای کنترل دستی میان‌افزار استفاده کنید
+4. **Connection pooling**: pool اتصالات پایگاه داده را پیکربندی کنید (ببینید [یکپارچه‌سازی پایگاه داده](/fa/docs/server-config/database/))
+5. **کش‌گذاری**: کش‌گذاری را برای داده‌هایی که مکرراً دسترسی می‌شوند پیاده‌سازی کنید
+6. **توزیع بار**: از پروکسی معکوس (nginx، HAProxy) استفاده کنید
+7. **پروفایلینگ**: از pprof در Go برای شناسایی گلوگاه‌ها استفاده کنید
+8. **نظارت**: [متریک‌ها و نظارت](/fa/docs/server-config/metrics/) را برای ردیابی عملکرد تنظیم کنید
 
-### Is Gin production-ready?
+### آیا Gin آماده تولید است؟
 
-Yes. Gin is used in production by many companies and has been battle-tested at scale. See [Users](/en/docs/users/) for examples of projects using Gin in production.
+بله. Gin توسط بسیاری از شرکت‌ها در تولید استفاده می‌شود و در مقیاس آزموده شده است. [کاربران](/fa/docs/users/) را برای مثال‌هایی از پروژه‌هایی که Gin را در تولید استفاده می‌کنند ببینید.
 
-## Troubleshooting
+## عیب‌یابی
 
-### Why are my route parameters not working?
+### چرا پارامترهای مسیر من کار نمی‌کنند؟
 
-Ensure route parameters use `:` syntax and are properly extracted:
+مطمئن شوید پارامترهای مسیر از سینتکس `:` استفاده می‌کنند و به درستی استخراج می‌شوند:
 
 ```go
 // Correct
@@ -342,11 +342,11 @@ r.GET("/user/:id", func(c *gin.Context) {
 // Not: /user/{id} or /user/<id>
 ```
 
-See [Parameters in path](/en/docs/routing/param-in-path/) for details.
+برای جزئیات [پارامترها در مسیر](/fa/docs/routing/param-in-path/) را ببینید.
 
-### Why is my middleware not executing?
+### چرا میان‌افزار من اجرا نمی‌شود؟
 
-Middleware must be registered before routes or route groups:
+میان‌افزار باید قبل از مسیرها یا گروه‌های مسیر ثبت شود:
 
 ```go
 // Correct order
@@ -362,16 +362,16 @@ auth.Use(AuthMiddleware()) // Middleware for this group
 }
 ```
 
-See [Using middleware](/en/docs/middleware/using-middleware/) for details.
+برای جزئیات [استفاده از میان‌افزار](/fa/docs/middleware/using-middleware/) را ببینید.
 
-### Why is request binding failing?
+### چرا اتصال درخواست ناموفق است؟
 
-Common reasons:
+دلایل رایج:
 
-1. **Missing binding tags**: Add `json:"field"` or `form:"field"` tags
-2. **Content-Type mismatch**: Ensure client sends correct Content-Type header
-3. **Validation errors**: Check validation tags and requirements
-4. **Unexported fields**: Only exported (capitalized) struct fields are bound
+1. **تگ‌های اتصال گمشده**: تگ‌های `json:"field"` یا `form:"field"` اضافه کنید
+2. **عدم تطابق Content-Type**: مطمئن شوید کلاینت هدر Content-Type صحیح ارسال می‌کند
+3. **خطاهای اعتبارسنجی**: تگ‌های اعتبارسنجی و الزامات را بررسی کنید
+4. **فیلدهای unexported**: فقط فیلدهای struct با حرف بزرگ (exported) متصل می‌شوند
 
 ```go
 type User struct {
@@ -381,4 +381,4 @@ type User struct {
 }
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for details.
+برای جزئیات [اتصال و اعتبارسنجی](/fa/docs/binding/binding-and-validation/) را ببینید.

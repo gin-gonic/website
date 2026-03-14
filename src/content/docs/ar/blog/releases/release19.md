@@ -1,10 +1,10 @@
 ---
-title: "Gin 1.9.0 is released"
-linkTitle: "Gin 1.9.0 is released"
+title: "تم إصدار Gin 1.9.0"
+linkTitle: "تم إصدار Gin 1.9.0"
 lastUpdated: 2023-02-21
 ---
 
-### CHANGELOG
+### سجل التغييرات
 
 #### BREAK CHANGES
   * Stop useless panicking in context and render ([#2150](https://github.com/gin-gonic/gin/pull/2150))

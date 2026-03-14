@@ -26,12 +26,12 @@ go build -tags=nomsgpack,go_json .
 
 ### Tags de build disponíveis
 
-| Tag | Effect |
+| Tag | Efeito |
 |---|---|
-| `go_json` | Replaces `encoding/json` with [go-json](https://github.com/goccy/go-json) |
-| `jsoniter` | Replaces `encoding/json` with [jsoniter](https://github.com/json-iterator/go) |
-| `sonic avx` | Replaces `encoding/json` with [sonic](https://github.com/bytedance/sonic) (requires AVX CPU instructions) |
-| `nomsgpack` | Disables MsgPack rendering support |
+| `go_json` | Substitui `encoding/json` por [go-json](https://github.com/goccy/go-json) |
+| `jsoniter` | Substitui `encoding/json` por [jsoniter](https://github.com/json-iterator/go) |
+| `sonic avx` | Substitui `encoding/json` por [sonic](https://github.com/bytedance/sonic) (requer instruções de CPU AVX) |
+| `nomsgpack` | Desabilita o suporte à renderização MsgPack |
 
 :::note
 Tags de build afetam apenas como o Gin é compilado. O código da sua aplicação (handlers de rota, middleware, etc.) não precisa mudar quando você troca as tags.

@@ -1,52 +1,52 @@
 ---
-title: "Announcing Gin 1.11.0: HTTP/3, Form Improvements, Performance & More"
-linkTitle: "Gin 1.11.0 Release Announcement"
+title: "الإعلان عن Gin 1.11.0: دعم HTTP/3، تحسينات النماذج، الأداء والمزيد"
+linkTitle: "إعلان إصدار Gin 1.11.0"
 lastUpdated: 2025-09-21
 ---
 
-## Gin v1.11.0 Has Arrived
+## وصل Gin v1.11.0
 
-We're excited to announce the release of Gin v1.11.0, bringing a major set of new features, performance tweaks, and bug fixes to the beloved web framework. This release continues Gin's commitment to speed, flexibility, and modern Go development.
+يسعدنا الإعلان عن إصدار Gin v1.11.0، الذي يجلب مجموعة كبيرة من الميزات الجديدة وتحسينات الأداء وإصلاحات الأخطاء لإطار العمل المحبوب. يواصل هذا الإصدار التزام Gin بالسرعة والمرونة وتطوير Go الحديث.
 
-### 🌟 Key Features
+### الميزات الرئيسية
 
-- **Experimental HTTP/3 Support:** Gin now supports experimental HTTP/3 via [quic-go](https://github.com/quic-go/quic-go)! If you're eager to try the latest web transport protocols, now's your chance. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
+- **دعم HTTP/3 التجريبي:** يدعم Gin الآن HTTP/3 التجريبي عبر [quic-go](https://github.com/quic-go/quic-go)! إذا كنت متحمساً لتجربة أحدث بروتوكولات نقل الويب، فهذه فرصتك. ([#3210](https://github.com/gin-gonic/gin/pull/3210))
 
-- **Better Form Binding:** We've made big improvements to form binding:
-  - Support for array collection formats in forms ([#3986](https://github.com/gin-gonic/gin/pull/3986))
-  - Custom string slice unmarshalling for form tags ([#3970](https://github.com/gin-gonic/gin/pull/3970))
-  - Default values for collections ([#4048](https://github.com/gin-gonic/gin/pull/4048))
+- **ربط نماذج أفضل:** أجرينا تحسينات كبيرة على ربط النماذج:
+  - دعم تنسيقات مجموعات المصفوفات في النماذج ([#3986](https://github.com/gin-gonic/gin/pull/3986))
+  - إلغاء تسلسل مخصص لشرائح السلاسل النصية لعلامات النماذج ([#3970](https://github.com/gin-gonic/gin/pull/3970))
+  - قيم افتراضية للمجموعات ([#4048](https://github.com/gin-gonic/gin/pull/4048))
 
-- **Enhanced Binding Types:** Bind plain text easily with the new `BindPlain` method ([#3904](https://github.com/gin-gonic/gin/pull/3904)), plus support for unixMilli and unixMicro formats ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
+- **أنواع ربط محسّنة:** اربط النص العادي بسهولة مع طريقة `BindPlain` الجديدة ([#3904](https://github.com/gin-gonic/gin/pull/3904))، بالإضافة إلى دعم تنسيقات unixMilli وunixMicro ([#4190](https://github.com/gin-gonic/gin/pull/4190)).
 
-- **Context API Improvements:** `GetXxx` now supports more native Go types ([#3633](https://github.com/gin-gonic/gin/pull/3633)), making type-safe context data retrieval easier.
+- **تحسينات واجهة Context البرمجية:** `GetXxx` يدعم الآن المزيد من أنواع Go الأصلية ([#3633](https://github.com/gin-gonic/gin/pull/3633))، مما يجعل استرداد بيانات السياق الآمن من حيث النوع أسهل.
 
-- **Filesystem Updates:** The new `OnlyFilesFS` is now exported, tested, and documented ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
+- **تحديثات نظام الملفات:** `OnlyFilesFS` الجديد مُصدّر الآن ومُختبر وموثّق ([#3939](https://github.com/gin-gonic/gin/pull/3939)).
 
-### 🚀 Performance & Enhancements
+### الأداء والتحسينات
 
-- **Faster Form Data Handling:** Internal optimizations for form parsing boost performance ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
-- Refactored core, rendering, and context logic for robustness and clarity ([full PR list in changelog](../releases/release111.md)).
+- **معالجة بيانات النماذج أسرع:** تحسينات داخلية لتحليل النماذج تعزز الأداء ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
+- إعادة هيكلة النواة والعرض ومنطق السياق لمزيد من المتانة والوضوح ([قائمة PR الكاملة في سجل التغييرات](../releases/release111.md)).
 
-### 🐛 Bug Fixes
+### إصلاحات الأخطاء
 
-- **Middleware Reliability:** Fixed a rare bug where middleware could re-enter unexpectedly ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
-- Improved TOML form binding stability ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
-- No more panics when handling "method not allowed" requests on empty trees ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
-- General improvements to context handling, race conditions, and more.
+- **موثوقية الوسيطات:** إصلاح خطأ نادر حيث يمكن أن تعيد الوسيطات الدخول بشكل غير متوقع ([#3987](https://github.com/gin-gonic/gin/pull/3987)).
+- تحسين استقرار ربط نماذج TOML ([#4193](https://github.com/gin-gonic/gin/pull/4193)).
+- لا مزيد من حالات الذعر عند معالجة طلبات "الطريقة غير مسموح بها" على أشجار فارغة ([#4003](https://github.com/gin-gonic/gin/pull/4003)).
+- تحسينات عامة في معالجة السياق وحالات السباق والمزيد.
 
-### 🔧 Build, Dependency & CI Updates
+### تحديثات البناء والاعتماديات وCI
 
-- Support for **Go 1.25** in CI/CD workflows, plus new linters enabled for stricter code health ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010)).
-- Trivy vulnerability scanning now integrated with CI ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
-- Multiple dependency upgrades, including `sonic`, `setup-go`, `quic-go`, and others.
+- دعم **Go 1.25** في سير عمل CI/CD، بالإضافة إلى تفعيل محللات كود جديدة لصحة كود أكثر صرامة ([#4341](https://github.com/gin-gonic/gin/pull/4341)، [#4010](https://github.com/gin-gonic/gin/pull/4010)).
+- فحص الثغرات بواسطة Trivy مدمج الآن مع CI ([#4359](https://github.com/gin-gonic/gin/pull/4359)).
+- ترقيات اعتماديات متعددة، بما في ذلك `sonic` و`setup-go` و`quic-go` وغيرها.
 
-### 📖 Documentation
+### التوثيق
 
-- Expanded documentation, updated changelogs, improved grammar and code samples, and new Portuguese docs ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
+- توثيق موسّع، سجلات تغييرات محدّثة، تحسين القواعد النحوية وعينات الكود، وتوثيق جديد بالبرتغالية ([#4078](https://github.com/gin-gonic/gin/pull/4078)).
 
 ---
 
-Gin 1.11.0 is a testament to our active community and continuous development. We appreciate every contributor, issue reporter, and user who keeps Gin sharp and relevant for modern web applications.
+Gin 1.11.0 شهادة على مجتمعنا النشط والتطوير المستمر. نقدّر كل مساهم ومُبلّغ عن المشاكل ومستخدم يبقي Gin حاداً ومناسباً لتطبيقات الويب الحديثة.
 
-Ready to try Gin 1.11.0? [Upgrade on GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) and let us know what you think!
+هل أنت مستعد لتجربة Gin 1.11.0؟ [قم بالترقية على GitHub](https://github.com/gin-gonic/gin/releases/tag/v1.11.0) وأخبرنا برأيك!

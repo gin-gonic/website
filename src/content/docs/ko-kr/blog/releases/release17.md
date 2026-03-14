@@ -1,6 +1,6 @@
 ---
-title: "Gin 1.7.0 is released"
-linkTitle: "Gin 1.7.0 is released"
+title: "Gin 1.7.0 릴리스"
+linkTitle: "Gin 1.7.0 릴리스"
 lastUpdated: 2021-04-08
 ---
 

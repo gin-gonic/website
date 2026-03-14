@@ -1,16 +1,16 @@
 ---
-title: "Testing"
+title: "Test"
 sidebar:
   order: 9
 ---
 
-## How to write test case for Gin?
+## Gin için test senaryosu nasıl yazılır?
 
-The `net/http/httptest` package is the preferred way for HTTP testing.
+`net/http/httptest` paketi, HTTP testi için tercih edilen yöntemdir.
 
-### Suppress debug output
+### Hata ayıklama çıktısını bastırma
 
-Call `gin.SetMode(gin.TestMode)` before creating the router in your tests. This suppresses the debug-level route registration logs that Gin prints by default, keeping your test output clean. You can place this in `TestMain` so it applies to all tests in the package:
+Testlerinizde yönlendiriciyi oluşturmadan önce `gin.SetMode(gin.TestMode)` çağrısı yapın. Bu, Gin'in varsayılan olarak yazdırdığı hata ayıklama düzeyindeki rota kayıt loglarını bastırarak test çıktınızı temiz tutar. Bunu `TestMain`'e yerleştirerek paketteki tüm testlere uygulanmasını sağlayabilirsiniz:
 
 ```go
 func TestMain(m *testing.M) {
@@ -19,7 +19,7 @@ func TestMain(m *testing.M) {
 }
 ```
 
-### Example application
+### Örnek uygulama
 
 ```go
 package main
@@ -55,7 +55,7 @@ func main() {
 }
 ```
 
-### Basic tests
+### Temel testler
 
 ```go
 package main
@@ -103,9 +103,9 @@ func TestPostUser(t *testing.T) {
 }
 ```
 
-### Table-driven tests
+### Tablo tabanlı testler
 
-Table-driven tests let you cover many input/output combinations without duplicating test logic. This pattern is idiomatic Go and works well with Gin:
+Tablo tabanlı testler, test mantığını tekrarlamadan birçok girdi/çıktı kombinasyonunu kapsamanızı sağlar. Bu kalıp, deyimsel Go'dur ve Gin ile iyi çalışır:
 
 ```go
 func TestPingRouteTableDriven(t *testing.T) {
@@ -137,9 +137,9 @@ func TestPingRouteTableDriven(t *testing.T) {
 }
 ```
 
-### Testing middleware
+### Ara katman testi
 
-To test a middleware in isolation, create a minimal router with the middleware applied and a simple handler that records the result:
+Bir ara katmanı izole olarak test etmek için, ara katmanın uygulandığı minimal bir yönlendirici ve sonucu kaydeden basit bir işleyici oluşturun:
 
 ```go
 func TestAuthMiddleware(t *testing.T) {

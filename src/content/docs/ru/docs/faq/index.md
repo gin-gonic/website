@@ -4,37 +4,37 @@ sidebar:
   order: 15
 ---
 
-## General Questions
+## Общие вопросы
 
-### How do I enable live reload during development?
+### Как включить автоперезагрузку при разработке?
 
-Use [Air](https://github.com/air-verse/air) for automatic live reloading during development. Air watches your files and rebuilds/restarts your application when changes are detected.
+Используйте [Air](https://github.com/air-verse/air) для автоматической перезагрузки при разработке. Air отслеживает ваши файлы и пересобирает/перезапускает приложение при обнаружении изменений.
 
-**Installation:**
+**Установка:**
 
 ```sh
 go install github.com/air-verse/air@latest
 ```
 
-**Setup:**
+**Настройка:**
 
-Create a `.air.toml` configuration file in your project root:
+Создайте файл конфигурации `.air.toml` в корне вашего проекта:
 
 ```sh
 air init
 ```
 
-Then run `air` in your project directory instead of `go run`:
+Затем запустите `air` в директории проекта вместо `go run`:
 
 ```sh
 air
 ```
 
-Air will watch your `.go` files and automatically rebuild/restart your Gin application on changes. See the [Air documentation](https://github.com/air-verse/air) for configuration options.
+Air будет отслеживать ваши файлы `.go` и автоматически пересобирать/перезапускать ваше приложение Gin при изменениях. Смотрите [документацию Air](https://github.com/air-verse/air) для параметров конфигурации.
 
-### How do I handle CORS in Gin?
+### Как настроить CORS в Gin?
 
-Use the official [gin-contrib/cors](https://github.com/gin-contrib/cors) middleware:
+Используйте официальный middleware [gin-contrib/cors](https://github.com/gin-contrib/cors):
 
 ```go
 package main
@@ -70,11 +70,11 @@ func main() {
 }
 ```
 
-For a complete security overview, see [Security best practices](/en/docs/middleware/security-guide/).
+Полный обзор безопасности см. в разделе [Лучшие практики безопасности](/ru/docs/middleware/security-guide/).
 
-### How do I serve static files?
+### Как раздавать статические файлы?
 
-Use `Static()` or `StaticFS()` to serve static files:
+Используйте `Static()` или `StaticFS()` для раздачи статических файлов:
 
 ```go
 func main() {
@@ -93,11 +93,11 @@ func main() {
 }
 ```
 
-See [Serving data from file](/en/docs/rendering/serving-data-from-file/) for more details.
+Подробнее см. [Раздача данных из файла](/ru/docs/rendering/serving-data-from-file/).
 
-### How do I handle file uploads?
+### Как обрабатывать загрузку файлов?
 
-Use `FormFile()` for single files or `MultipartForm()` for multiple files:
+Используйте `FormFile()` для одного файла или `MultipartForm()` для нескольких файлов:
 
 ```go
 // Single file upload
@@ -119,11 +119,11 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 })
 ```
 
-See the [Upload file](/en/docs/routing/upload-file/) documentation for more details.
+Подробнее см. документацию [Загрузка файлов](/ru/docs/routing/upload-file/).
 
-### How do I implement authentication with JWT?
+### Как реализовать аутентификацию с JWT?
 
-Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware. Here's a minimal example:
+Используйте [gin-contrib/jwt](https://github.com/gin-contrib/jwt) или реализуйте пользовательский middleware. Вот минимальный пример:
 
 ```go
 package main
@@ -175,13 +175,13 @@ func AuthMiddleware() gin.HandlerFunc {
 }
 ```
 
-For session-based authentication, see [Session management](/en/docs/middleware/session-management/).
+Для аутентификации на основе сессий см. [Управление сессиями](/ru/docs/middleware/session-management/).
 
-### How do I set up request logging?
+### Как настроить логирование запросов?
 
-Gin includes a default logger middleware via `gin.Default()`. For structured JSON logging in production, see [Structured logging](/en/docs/logging/structured-logging/).
+Gin включает middleware логирования по умолчанию через `gin.Default()`. Для структурированного JSON-логирования в продакшене см. [Структурированное логирование](/ru/docs/logging/structured-logging/).
 
-For basic log customization:
+Для базовой настройки логов:
 
 ```go
 r := gin.New()
@@ -191,15 +191,15 @@ r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
 r.Use(gin.Recovery())
 ```
 
-See the [Logging](/en/docs/logging/) section for all options including custom formats, file output, and skipping query strings.
+Все варианты, включая пользовательские форматы, вывод в файл и исключение строк запроса, см. в разделе [Логирование](/ru/docs/logging/).
 
-### How do I handle graceful shutdown?
+### Как реализовать плавную остановку?
 
-See [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/) for a complete guide with code examples.
+См. [Плавная перезагрузка или остановка](/ru/docs/server-config/graceful-restart-or-stop/) для полного руководства с примерами кода.
 
-### Why am I getting "404 Not Found" instead of "405 Method Not Allowed"?
+### Почему я получаю "404 Not Found" вместо "405 Method Not Allowed"?
 
-By default, Gin returns 404 for routes that don't support the requested HTTP method. Set `HandleMethodNotAllowed = true` to return 405 instead:
+По умолчанию Gin возвращает 404 для маршрутов, которые не поддерживают запрашиваемый HTTP-метод. Установите `HandleMethodNotAllowed = true`, чтобы возвращать 405:
 
 ```go
 r := gin.Default()
@@ -219,9 +219,9 @@ HTTP/1.1 405 Method Not Allowed
 Allow: GET
 ```
 
-### How do I bind query parameters and POST data together?
+### Как привязать параметры запроса и POST-данные одновременно?
 
-Use `ShouldBind()` which automatically selects the binding based on content type:
+Используйте `ShouldBind()`, который автоматически выбирает привязку на основе типа контента:
 
 ```go
 type User struct {
@@ -240,11 +240,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See the [Binding](/en/docs/binding/) section for all binding options.
+Все варианты привязки см. в разделе [Привязка данных](/ru/docs/binding/).
 
-### How do I validate request data?
+### Как валидировать данные запроса?
 
-Gin uses [go-playground/validator](https://github.com/go-playground/validator) for validation. Add validation tags to your structs:
+Gin использует [go-playground/validator](https://github.com/go-playground/validator) для валидации. Добавьте теги валидации к вашим структурам:
 
 ```go
 type User struct {
@@ -263,33 +263,33 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for custom validators and advanced usage.
+Пользовательские валидаторы и продвинутое использование см. в разделе [Привязка модели и валидация](/ru/docs/binding/binding-and-validation/).
 
-### How do I run Gin in production mode?
+### Как запустить Gin в продакшен-режиме?
 
-Set the `GIN_MODE` environment variable to `release`:
+Установите переменную окружения `GIN_MODE` в значение `release`:
 
 ```sh
 export GIN_MODE=release
-# or
+# или
 GIN_MODE=release ./your-app
 ```
 
-Or set it programmatically:
+Или установите программно:
 
 ```go
 gin.SetMode(gin.ReleaseMode)
 ```
 
-Release mode disables debug logging and improves performance.
+Режим release отключает отладочное логирование и улучшает производительность.
 
-### How do I handle database connections with Gin?
+### Как обрабатывать подключения к базе данных с Gin?
 
-See [Database integration](/en/docs/server-config/database/) for a complete guide covering `database/sql`, GORM, connection pooling, and dependency injection patterns.
+См. [Интеграция с базой данных](/ru/docs/server-config/database/) для полного руководства, охватывающего `database/sql`, GORM, пул соединений и паттерны внедрения зависимостей.
 
-### How do I test Gin handlers?
+### Как тестировать обработчики Gin?
 
-Use `net/http/httptest` to test your routes:
+Используйте `net/http/httptest` для тестирования маршрутов:
 
 ```go
 func TestPingRoute(t *testing.T) {
@@ -307,30 +307,30 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-See the [Testing](/en/docs/testing/) documentation for more examples.
+Больше примеров см. в документации [Тестирование](/ru/docs/testing/).
 
-## Performance Questions
+## Вопросы о производительности
 
-### How do I optimize Gin for high traffic?
+### Как оптимизировать Gin для высокой нагрузки?
 
-1. **Use Release Mode**: Set `GIN_MODE=release`
-2. **Disable unnecessary middleware**: Only use what you need
-3. **Use `gin.New()` instead of `gin.Default()`** for manual middleware control
-4. **Connection pooling**: Configure database connection pools (see [Database integration](/en/docs/server-config/database/))
-5. **Caching**: Implement caching for frequently accessed data
-6. **Load balancing**: Use reverse proxy (nginx, HAProxy)
-7. **Profiling**: Use Go's pprof to identify bottlenecks
-8. **Monitoring**: Set up [metrics and monitoring](/en/docs/server-config/metrics/) to track performance
+1. **Используйте режим Release**: Установите `GIN_MODE=release`
+2. **Отключите ненужные middleware**: Используйте только то, что вам нужно
+3. **Используйте `gin.New()` вместо `gin.Default()`** для ручного управления middleware
+4. **Пул соединений**: Настройте пулы соединений к базе данных (см. [Интеграция с базой данных](/ru/docs/server-config/database/))
+5. **Кеширование**: Реализуйте кеширование для часто запрашиваемых данных
+6. **Балансировка нагрузки**: Используйте обратный прокси (nginx, HAProxy)
+7. **Профилирование**: Используйте pprof из Go для выявления узких мест
+8. **Мониторинг**: Настройте [метрики и мониторинг](/ru/docs/server-config/metrics/) для отслеживания производительности
 
-### Is Gin production-ready?
+### Готов ли Gin к продакшену?
 
-Yes. Gin is used in production by many companies and has been battle-tested at scale. See [Users](/en/docs/users/) for examples of projects using Gin in production.
+Да. Gin используется в продакшене многими компаниями и проверен под высокими нагрузками. Примеры проектов, использующих Gin в продакшене, см. в разделе [Пользователи](/ru/docs/users/).
 
-## Troubleshooting
+## Устранение неполадок
 
-### Why are my route parameters not working?
+### Почему мои параметры маршрута не работают?
 
-Ensure route parameters use `:` syntax and are properly extracted:
+Убедитесь, что параметры маршрута используют синтаксис `:` и правильно извлекаются:
 
 ```go
 // Correct
@@ -342,11 +342,11 @@ r.GET("/user/:id", func(c *gin.Context) {
 // Not: /user/{id} or /user/<id>
 ```
 
-See [Parameters in path](/en/docs/routing/param-in-path/) for details.
+Подробнее см. [Параметры в пути](/ru/docs/routing/param-in-path/).
 
-### Why is my middleware not executing?
+### Почему мой middleware не выполняется?
 
-Middleware must be registered before routes or route groups:
+Middleware должен быть зарегистрирован до маршрутов или групп маршрутов:
 
 ```go
 // Correct order
@@ -362,23 +362,23 @@ auth.Use(AuthMiddleware()) // Middleware for this group
 }
 ```
 
-See [Using middleware](/en/docs/middleware/using-middleware/) for details.
+Подробнее см. [Использование middleware](/ru/docs/middleware/using-middleware/).
 
-### Why is request binding failing?
+### Почему привязка запроса не работает?
 
-Common reasons:
+Частые причины:
 
-1. **Missing binding tags**: Add `json:"field"` or `form:"field"` tags
-2. **Content-Type mismatch**: Ensure client sends correct Content-Type header
-3. **Validation errors**: Check validation tags and requirements
-4. **Unexported fields**: Only exported (capitalized) struct fields are bound
+1. **Отсутствуют теги привязки**: Добавьте теги `json:"field"` или `form:"field"`
+2. **Несоответствие Content-Type**: Убедитесь, что клиент отправляет правильный заголовок Content-Type
+3. **Ошибки валидации**: Проверьте теги и правила валидации
+4. **Неэкспортируемые поля**: Привязываются только экспортируемые (с заглавной буквы) поля структуры
 
 ```go
 type User struct {
-  Name  string `json:"name" binding:"required"` // ✓ Correct
-  Email string `json:"email"`                    // ✓ Correct
-  age   int    `json:"age"`                      // ✗ Won't bind (unexported)
+  Name  string `json:"name" binding:"required"` // Correct
+  Email string `json:"email"`                    // Correct
+  age   int    `json:"age"`                      // Won't bind (unexported)
 }
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for details.
+Подробнее см. [Привязка модели и валидация](/ru/docs/binding/binding-and-validation/).

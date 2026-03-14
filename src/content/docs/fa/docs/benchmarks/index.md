@@ -1,38 +1,38 @@
 ---
-title: "Benchmarks"
+title: "بنچمارک‌ها"
 sidebar:
   order: 12
 ---
 
-> **Historical Data:** These benchmarks were collected in May 2020 using Gin v1.6.3 and Go 1.14.2. Framework performance may have changed significantly since then. For up-to-date benchmark results, see the [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) repository.
+> **داده‌های تاریخی:** این بنچمارک‌ها در ماه می ۲۰۲۰ با استفاده از Gin نسخه v1.6.3 و Go نسخه 1.14.2 جمع‌آوری شده‌اند. عملکرد فریم‌ورک‌ها ممکن است از آن زمان به طور قابل توجهی تغییر کرده باشد. برای نتایج به‌روز بنچمارک، مخزن [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) را ببینید.
 
-## Gin Web Framework Performance Benchmarks
+## بنچمارک‌های عملکرد فریم‌ورک وب Gin
 
-Benchmarks help developers evaluate the efficiency and resource usage of HTTP router libraries in Go. This page summarizes measurements across many popular frameworks, so you can easily compare their speed and memory consumption.
+بنچمارک‌ها به توسعه‌دهندگان کمک می‌کنند کارایی و مصرف منابع کتابخانه‌های مسیریاب HTTP در Go را ارزیابی کنند. این صفحه اندازه‌گیری‌ها را در بسیاری از فریم‌ورک‌های محبوب خلاصه می‌کند تا بتوانید به راحتی سرعت و مصرف حافظه آن‌ها را مقایسه کنید.
 
-**Test Environment:**
+**محیط تست:**
 
-- **Host Platform:** Travis CI (virtual Linux VM)
-- **Machine Specs:** Ubuntu 16.04.6 LTS x64
-- **Test Date:** May 04th, 2020
-- **Gin Version:** v1.6.3
-- **Go Version:** 1.14.2 (linux/amd64)
-- **Benchmarks Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
-- **Detailed Results:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+- **پلتفرم میزبان:** Travis CI (ماشین مجازی لینوکس)
+- **مشخصات سیستم:** Ubuntu 16.04.6 LTS x64
+- **تاریخ تست:** ۴ می ۲۰۲۰
+- **نسخه Gin:** v1.6.3
+- **نسخه Go:** 1.14.2 (linux/amd64)
+- **منبع بنچمارک‌ها:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **نتایج جزئی:** [مشاهده gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) یا [نتیجه Travis](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
 
-Gin uses an optimized fork of [HttpRouter](https://github.com/julienschmidt/httprouter) for high performance routing.
+Gin از یک fork بهینه‌سازی شده از [HttpRouter](https://github.com/julienschmidt/httprouter) برای مسیریابی با عملکرد بالا استفاده می‌کند.
 
-If you want to view more test cases, you can check [all benchmarks here](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+اگر می‌خواهید موارد تست بیشتری را مشاهده کنید، می‌توانید [تمام بنچمارک‌ها را اینجا](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md) بررسی کنید.
 
 ---
 
-## How to Read the Table
+## نحوه خواندن جدول
 
-The benchmarks below show various Go frameworks running common HTTP routing tasks.  
-**Lower numbers (time, memory, allocations) are better.**  
-You can use these results for a direct, side-by-side comparison of Gin and alternative routers.
+بنچمارک‌های زیر فریم‌ورک‌های مختلف Go را در اجرای وظایف رایج مسیریابی HTTP نشان می‌دهند.
+**اعداد کمتر (زمان، حافظه، تخصیص‌ها) بهتر هستند.**
+می‌توانید از این نتایج برای مقایسه مستقیم و کنار هم Gin و سایر مسیریاب‌ها استفاده کنید.
 
-| Test                              | Repetitions | Time (ns/op) | Bytes (B/op) | Allocations (allocs/op) |
+| تست                              | تکرارها | زمان (ns/op) | بایت (B/op) | تخصیص‌ها (allocs/op) |
 | ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
 | BenchmarkGin_GithubStatic         | 15629472    | 76.7         | 0            | 0                       |
 | BenchmarkAce_GithubStatic         | 15542612    | 75.9         | 0            | 0                       |
@@ -127,11 +127,11 @@ You can use these results for a direct, side-by-side comparison of Gin and alter
 
 ---
 
-## Benchmark Table Notes
+## توضیحات جدول بنچمارک
 
-- **Repetitions**: Total repetitions achieved in constant time. Higher numbers mean more confidence in the results.
-- **Time (ns/op)**: Duration for one operation, measured in nanoseconds. Lower is better.
-- **Bytes (B/op)**: Heap memory allocated per operation. Lower means better efficiency.
-- **Allocations (allocs/op)**: Average number of memory allocations per operation. Fewer allocations are better for performance and garbage collection.
+- **تکرارها**: تعداد کل تکرارهای انجام شده در زمان ثابت. اعداد بالاتر به معنای اطمینان بیشتر در نتایج است.
+- **زمان (ns/op)**: مدت زمان یک عملیات، اندازه‌گیری شده بر حسب نانوثانیه. کمتر بهتر است.
+- **بایت (B/op)**: حافظه heap تخصیص یافته در هر عملیات. کمتر به معنای کارایی بهتر است.
+- **تخصیص‌ها (allocs/op)**: میانگین تعداد تخصیص حافظه در هر عملیات. تخصیص‌های کمتر برای عملکرد و جمع‌آوری زباله بهتر است.
 
-For questions or contributions, check our [GitHub repository](https://github.com/gin-gonic/gin).
+برای سوالات یا مشارکت، [مخزن GitHub](https://github.com/gin-gonic/gin) ما را بررسی کنید.

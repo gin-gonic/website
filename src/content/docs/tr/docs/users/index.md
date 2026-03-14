@@ -1,23 +1,23 @@
 ---
-title: "Users"
+title: "Kullanıcılar"
 sidebar:
   order: 14
 ---
 
-Gin is used in production by companies and open-source projects of all sizes. Below is a selection of notable projects built with Gin. If your project uses Gin, we would love to add it to this list.
+Gin, her ölçekteki şirketler ve açık kaynak projeler tarafından üretimde kullanılmaktadır. Aşağıda Gin ile oluşturulan önemli projelerin bir seçkisi bulunmaktadır. Projeniz Gin kullanıyorsa, bu listeye eklememizden memnuniyet duyarız.
 
-## Awesome Project Lists
+## Harika Proje Listesi
 
-- [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
-- [fnproject](https://github.com/fnproject/fn): The container native, cloud agnostic serverless platform.
-- [photoprism](https://github.com/photoprism/photoprism): AI-Powered Photos App for the Decentralized Web.
-- [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
-- [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
-- [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per WebSocket.
-- [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
-- [drone](https://github.com/harness/drone): A container-native, Continuous Delivery platform built on Go.
-- [go-admin](https://github.com/GoAdminGroup/go-admin): A data visualization and admin panel framework for Go.
+- [gorush](https://github.com/appleboy/gorush): Go ile yazılmış bir push bildirim sunucusu.
+- [fnproject](https://github.com/fnproject/fn): Konteyner tabanlı, bulut bağımsız sunucusuz platform.
+- [photoprism](https://github.com/photoprism/photoprism): Merkeziyetsiz Web için yapay zeka destekli fotoğraf uygulaması.
+- [krakend](https://github.com/devopsfaith/krakend): Ara katmanlı ultra performanslı API Gateway.
+- [picfit](https://github.com/thoas/picfit): Go ile yazılmış bir resim boyutlandırma sunucusu.
+- [gotify](https://github.com/gotify/server): WebSocket üzerinden gerçek zamanlı mesaj gönderme ve alma için basit bir sunucu.
+- [cds](https://github.com/ovh/cds): Kurumsal düzeyde Sürekli Teslim ve DevOps Otomasyon Açık Kaynak Platformu.
+- [drone](https://github.com/harness/drone): Go üzerine kurulu konteyner tabanlı Sürekli Teslim platformu.
+- [go-admin](https://github.com/GoAdminGroup/go-admin): Go için veri görselleştirme ve yönetim paneli framework'ü.
 
-## Submit your project
+## Projenizi gönderin
 
-Using Gin in production or for an open-source project? Open a pull request on the [gin-gonic/website](https://github.com/gin-gonic/website) repository to add your project to this page.
+Gin'i üretimde veya açık kaynak bir projede mi kullanıyorsunuz? Projenizi bu sayfaya eklemek için [gin-gonic/website](https://github.com/gin-gonic/website) deposuna bir pull request açın.

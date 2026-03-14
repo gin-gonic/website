@@ -1,18 +1,18 @@
 ---
-title: "Build with JSON replacement"
+title: "Сборка с заменой JSON"
 sidebar:
   order: 1
 ---
 
-Gin uses the standard library `encoding/json` package for JSON serialization and deserialization by default. The standard library encoder is well-tested and fully compatible, but it is not the fastest option available. If JSON performance is a bottleneck in your application -- for example, in high-throughput APIs that serialize large response payloads -- you can swap in a faster drop-in replacement at build time using build tags. No code changes are required.
+Gin по умолчанию использует стандартный пакет `encoding/json` для сериализации и десериализации JSON. Стандартный кодировщик хорошо протестирован и полностью совместим, но он не является самым быстрым доступным вариантом. Если производительность JSON является узким местом в вашем приложении — например, в высоконагруженных API, которые сериализуют большие объёмы данных в ответах — вы можете подключить более быструю замену на этапе сборки с помощью тегов сборки. Изменения в коде не требуются.
 
-## Available replacements
+## Доступные замены
 
-Gin supports three alternative JSON encoders. Each one implements the same interface that Gin expects, so your handlers, middleware, and binding logic continue to work without modification.
+Gin поддерживает три альтернативных JSON-кодировщика. Каждый из них реализует тот же интерфейс, который ожидает Gin, поэтому ваши обработчики, middleware и логика привязки продолжат работать без изменений.
 
 ### go-json
 
-[go-json](https://github.com/goccy/go-json) is a pure-Go JSON encoder that offers significant performance improvements over `encoding/json` while maintaining full compatibility. It works on all platforms and architectures.
+[go-json](https://github.com/goccy/go-json) — это JSON-кодировщик на чистом Go, который обеспечивает значительное улучшение производительности по сравнению с `encoding/json`, сохраняя полную совместимость. Работает на всех платформах и архитектурах.
 
 ```sh
 go build -tags=go_json .
@@ -20,7 +20,7 @@ go build -tags=go_json .
 
 ### jsoniter
 
-[jsoniter](https://github.com/json-iterator/go) (json-iterator) is another pure-Go, high-performance JSON library. It is API-compatible with `encoding/json` and provides a flexible configuration system for advanced use cases.
+[jsoniter](https://github.com/json-iterator/go) (json-iterator) — ещё одна высокопроизводительная JSON-библиотека на чистом Go. Она совместима с API `encoding/json` и предоставляет гибкую систему конфигурации для продвинутых сценариев использования.
 
 ```sh
 go build -tags=jsoniter .
@@ -28,40 +28,40 @@ go build -tags=jsoniter .
 
 ### sonic
 
-[sonic](https://github.com/bytedance/sonic) is a blazing-fast JSON encoder developed by ByteDance. It uses JIT compilation and SIMD instructions to achieve maximum throughput, making it the fastest option among the three.
+[sonic](https://github.com/bytedance/sonic) — это сверхбыстрый JSON-кодировщик, разработанный ByteDance. Он использует JIT-компиляцию и SIMD-инструкции для достижения максимальной пропускной способности, что делает его самым быстрым вариантом из трёх.
 
 ```sh
 go build -tags="sonic avx" .
 ```
 
 :::note
-Sonic requires a CPU with AVX instruction support. This is available on most modern x86_64 processors (Intel Sandy Bridge and later, AMD Bulldozer and later), but it will not work on ARM architectures or older x86 hardware. If your deployment target does not support AVX, use go-json or jsoniter instead.
+Sonic требует процессор с поддержкой инструкций AVX. Они доступны на большинстве современных процессоров x86_64 (Intel Sandy Bridge и новее, AMD Bulldozer и новее), но не будет работать на архитектурах ARM или старом оборудовании x86. Если ваша целевая платформа не поддерживает AVX, используйте go-json или jsoniter.
 :::
 
-## Choosing a replacement
+## Выбор замены
 
-| Encoder | Platform support | Key strength |
+| Кодировщик | Поддержка платформ | Ключевое преимущество |
 |---|---|---|
-| `encoding/json` (default) | All | Maximum compatibility, no extra dependency |
-| go-json | All | Good speedup, pure Go, broad compatibility |
-| jsoniter | All | Good speedup, flexible configuration |
-| sonic | x86_64 with AVX only | Highest throughput via JIT and SIMD |
+| `encoding/json` (по умолчанию) | Все | Максимальная совместимость, без дополнительных зависимостей |
+| go-json | Все | Хорошее ускорение, чистый Go, широкая совместимость |
+| jsoniter | Все | Хорошее ускорение, гибкая конфигурация |
+| sonic | Только x86_64 с AVX | Максимальная пропускная способность через JIT и SIMD |
 
-For most applications, **go-json** is a safe and effective choice -- it works everywhere and provides meaningful performance gains. Choose **sonic** when you need maximum JSON throughput and your servers run on x86_64 hardware. Choose **jsoniter** if you need its specific configuration features or are already using it elsewhere in your codebase.
+Для большинства приложений **go-json** — безопасный и эффективный выбор: он работает везде и обеспечивает заметный прирост производительности. Выбирайте **sonic**, когда вам нужна максимальная пропускная способность JSON, а ваши серверы работают на оборудовании x86_64. Выбирайте **jsoniter**, если вам нужны его специфические возможности конфигурации или вы уже используете его в другом месте вашего кода.
 
-## Verifying the replacement
+## Проверка замены
 
-You can confirm that the replacement is active by comparing serialization performance with a simple benchmark, or by checking the binary's symbol table:
+Вы можете убедиться, что замена активна, сравнив производительность сериализации с помощью простого бенчмарка или проверив таблицу символов бинарного файла:
 
 ```sh
-# Build with go-json
+# Сборка с go-json
 go build -tags=go_json -o myapp .
 
-# Check that go-json symbols are present
+# Проверка наличия символов go-json
 go tool nm myapp | grep goccy
 ```
 
-The build tag also works with other Go commands:
+Тег сборки также работает с другими командами Go:
 
 ```sh
 go run -tags=go_json .
@@ -69,5 +69,5 @@ go test -tags=go_json ./...
 ```
 
 :::note
-Only use one JSON replacement tag at a time. If you specify multiple JSON tags (e.g., `-tags=go_json,jsoniter`), the behavior is undefined. The `nomsgpack` tag can be safely combined with any JSON replacement tag.
+Используйте только один тег замены JSON за раз. Если вы укажете несколько JSON-тегов (например, `-tags=go_json,jsoniter`), поведение не определено. Тег `nomsgpack` можно безопасно комбинировать с любым тегом замены JSON.
 :::

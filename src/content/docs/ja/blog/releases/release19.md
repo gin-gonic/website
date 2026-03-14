@@ -1,36 +1,36 @@
 ---
-title: "Gin 1.9.0 is released"
-linkTitle: "Gin 1.9.0 is released"
+title: "Gin 1.9.0 がリリースされました"
+linkTitle: "Gin 1.9.0 がリリースされました"
 lastUpdated: 2023-02-21
 ---
 
-### CHANGELOG
+### 変更履歴
 
-#### BREAK CHANGES
-  * Stop useless panicking in context and render ([#2150](https://github.com/gin-gonic/gin/pull/2150))
+#### 破壊的変更
+  * contextとrenderでの不要なpanicを停止 ([#2150](https://github.com/gin-gonic/gin/pull/2150))
 
-#### BUG FIXES
-  * Fix(router): tree bug where loop index is not decremented ([#3460](https://github.com/gin-gonic/gin/pull/3460))
-  * Fix(context): panic on NegotiateFormat - index out of range ([#3397](https://github.com/gin-gonic/gin/pull/3397))
-  * Add escape logic for header ([#3500](https://github.com/gin-gonic/gin/pull/3500) and [#3503](https://github.com/gin-gonic/gin/pull/3503))
+#### バグ修正
+  * 修正(router): ループインデックスがデクリメントされないツリーのバグ ([#3460](https://github.com/gin-gonic/gin/pull/3460))
+  * 修正(context): NegotiateFormatでのpanic - インデックスが範囲外 ([#3397](https://github.com/gin-gonic/gin/pull/3397))
+  * ヘッダーのエスケープロジックを追加 ([#3500](https://github.com/gin-gonic/gin/pull/3500)および[#3503](https://github.com/gin-gonic/gin/pull/3503))
 
-#### SECURITY
-  * Fix the GO-2022-0969 and GO-2022-0288 vulnerabilities ([#3333](https://github.com/gin-gonic/gin/pull/3333))
-  * Fix(security): vulnerability GO-2023-1571 ([#3505](https://github.com/gin-gonic/gin/pull/3505))
+#### セキュリティ
+  * GO-2022-0969およびGO-2022-0288の脆弱性を修正 ([#3333](https://github.com/gin-gonic/gin/pull/3333))
+  * 修正(security): 脆弱性GO-2023-1571 ([#3505](https://github.com/gin-gonic/gin/pull/3505))
 
-#### ENHANCEMENTS
-  * Feat: add sonic json support ([#3184](https://github.com/gin-gonic/gin/pull/3184))
-  * Chore(file): Creates a directory named path ([#3316](https://github.com/gin-gonic/gin/pull/3316))
-  * Fix: modify interface check way ([#3327](https://github.com/gin-gonic/gin/pull/3327))
-  * Remove deprecated of package io/ioutil ([#3395](https://github.com/gin-gonic/gin/pull/3395))
-  * Refactor: avoid calling strings.ToLower twice ([#3433](https://github.com/gin-gonic/gin/pull/3343))
-  * Console logger HTTP status code bug fixed ([#3453](https://github.com/gin-gonic/gin/pull/3453))
-  * Chore(yaml): upgrade dependency to v3 version ([#3456](https://github.com/gin-gonic/gin/pull/3456))
-  * Chore(router): match method added to routergroup for multiple HTTP methods supporting ([#3464](https://github.com/gin-gonic/gin/pull/3464))
-  * Chore(http): add support for go1.20 http.rwUnwrapper to gin.responseWriter ([#3489](https://github.com/gin-gonic/gin/pull/3489))
+#### 機能強化
+  * Feat: sonic JSONサポートを追加 ([#3184](https://github.com/gin-gonic/gin/pull/3184))
+  * Chore(file): pathという名前のディレクトリを作成 ([#3316](https://github.com/gin-gonic/gin/pull/3316))
+  * 修正: インターフェースチェック方法を変更 ([#3327](https://github.com/gin-gonic/gin/pull/3327))
+  * 非推奨のio/ioutilパッケージを削除 ([#3395](https://github.com/gin-gonic/gin/pull/3395))
+  * リファクタリング: strings.ToLowerの二重呼び出しを回避 ([#3433](https://github.com/gin-gonic/gin/pull/3343))
+  * コンソールロガーのHTTPステータスコードのバグを修正 ([#3453](https://github.com/gin-gonic/gin/pull/3453))
+  * Chore(yaml): 依存関係をv3バージョンにアップグレード ([#3456](https://github.com/gin-gonic/gin/pull/3456))
+  * Chore(router): 複数のHTTPメソッドをサポートするためroutergroupにmatchメソッドを追加 ([#3464](https://github.com/gin-gonic/gin/pull/3464))
+  * Chore(http): gin.responseWriterにgo1.20のhttp.rwUnwrapperサポートを追加 ([#3489](https://github.com/gin-gonic/gin/pull/3489))
 
-#### DOCS
-  * Docs: update markdown format ([#3260](https://github.com/gin-gonic/gin/pull/3260))
-  * Docs(readme): Add the TOML rendering example ([#3400](https://github.com/gin-gonic/gin/pull/3400))
-  * Docs(readme): move more example to docs/doc.md ([#3449](https://github.com/gin-gonic/gin/pull/3449))
-  * Docs: update markdown format ([#3446](https://github.com/gin-gonic/gin/pull/3446))
+#### ドキュメント
+  * Docs: markdownフォーマットを更新 ([#3260](https://github.com/gin-gonic/gin/pull/3260))
+  * Docs(readme): TOMLレンダリングの例を追加 ([#3400](https://github.com/gin-gonic/gin/pull/3400))
+  * Docs(readme): より多くの例をdocs/doc.mdに移動 ([#3449](https://github.com/gin-gonic/gin/pull/3449))
+  * Docs: markdownフォーマットを更新 ([#3446](https://github.com/gin-gonic/gin/pull/3446))

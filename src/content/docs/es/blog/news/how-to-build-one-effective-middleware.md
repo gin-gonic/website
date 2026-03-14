@@ -1,16 +1,16 @@
 ---
-title: "How to Build an Effective Middleware"
-linkTitle: "How to Build an Effective Middleware"
+title: "Cómo construir un middleware efectivo"
+linkTitle: "Cómo construir un middleware efectivo"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## Partes constituyentes
 
-Middleware typically consists of two parts:
+Un middleware generalmente consta de dos partes:
 
-- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
+- La primera parte se ejecuta una sola vez, cuando inicializas tu middleware. Aquí es donde configuras objetos globales, lógica de configuración, etc., todo lo que solo necesita ocurrir una vez durante el tiempo de vida de la aplicación.
 
-- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
+- La segunda parte se ejecuta en cada solicitud. Por ejemplo, en un middleware de base de datos, inyectarías tu objeto de base de datos global en el contexto de la solicitud. Una vez que está en el contexto, otros middlewares y tus funciones handler pueden recuperarlo y usarlo.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -33,9 +33,9 @@ func funcName(params string) gin.HandlerFunc {
 }
 ```
 
-## Execution process
+## Proceso de ejecución
 
-Let's look at the following example code:
+Veamos el siguiente código de ejemplo:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
+Según la sección [Partes constituyentes](#partes-constituyentes) anterior, cuando ejecutas el proceso Gin, **la primera parte** de cada middleware se ejecuta primero e imprime la siguiente información:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-The initialization order is:
+El orden de inicialización es:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
+Cuando haces una solicitud, por ejemplo, `curl -v localhost:8080/rest/n/api/some`, **la segunda parte** de cada middleware se ejecuta en orden y produce la siguiente salida:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, the execution order is:
+En otras palabras, el orden de ejecución es:
 
 ```go
 globalMiddleware...2

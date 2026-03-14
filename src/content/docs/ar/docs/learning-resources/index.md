@@ -1,67 +1,66 @@
 ---
-title: "Learning Resources"
+title: "مصادر التعلم"
 sidebar:
   order: 13
 ---
 
-## Official Resources
+## المصادر الرسمية
 
-These are maintained by the Gin team and are the most authoritative sources of information.
+يتم صيانتها من قبل فريق Gin وهي المصادر الأكثر موثوقية للمعلومات.
 
-- **[Gin GitHub Repository](https://github.com/gin-gonic/gin)** -- Source code, issue tracker, and the latest release notes.
-- **[Gin Examples Repository](https://github.com/gin-gonic/examples)** -- A collection of self-contained example projects covering common use cases such as file uploads, graceful shutdown, JWT authentication, and more.
-- **[Gin API Reference (pkg.go.dev)](https://pkg.go.dev/github.com/gin-gonic/gin)** -- Auto-generated API documentation for every exported type and function.
+- **[مستودع Gin على GitHub](https://github.com/gin-gonic/gin)** -- الكود المصدري، متتبع المشاكل، وأحدث ملاحظات الإصدار.
+- **[مستودع أمثلة Gin](https://github.com/gin-gonic/examples)** -- مجموعة من مشاريع أمثلة مستقلة تغطي حالات الاستخدام الشائعة مثل رفع الملفات والإيقاف الرشيق ومصادقة JWT والمزيد.
+- **[مرجع واجهة Gin البرمجية (pkg.go.dev)](https://pkg.go.dev/github.com/gin-gonic/gin)** -- توثيق واجهة برمجية مُولّد تلقائياً لكل نوع ودالة مُصدّرة.
 
-## Go Language Resources
+## مصادر لغة Go
 
-A solid understanding of Go itself will make working with Gin much easier.
+الفهم الجيد للغة Go نفسها سيجعل العمل مع Gin أسهل بكثير.
 
-- **[A Tour of Go](https://go.dev/tour/)** -- The official interactive introduction to Go.
-- **[Effective Go](https://go.dev/doc/effective_go)** -- Best practices and idiomatic patterns for writing Go code.
-- **[Go by Example](https://gobyexample.com/)** -- Annotated example programs covering Go fundamentals.
-- **[Go Standard Library Documentation](https://pkg.go.dev/std)** -- Reference for every package in the standard library, including `net/http`, which Gin builds on.
+- **[جولة في Go](https://go.dev/tour/)** -- المقدمة التفاعلية الرسمية للغة Go.
+- **[Go الفعّال](https://go.dev/doc/effective_go)** -- أفضل الممارسات والأنماط الاصطلاحية لكتابة كود Go.
+- **[Go بالأمثلة](https://gobyexample.com/)** -- برامج أمثلة مشروحة تغطي أساسيات Go.
+- **[توثيق مكتبة Go القياسية](https://pkg.go.dev/std)** -- مرجع لكل حزمة في المكتبة القياسية، بما في ذلك `net/http` التي يبني عليها Gin.
 
-## Tutorials and Articles
+## الدروس والمقالات
 
-Community-written guides that walk through building real applications with Gin.
+أدلة كتبها المجتمع ترشدك خلال بناء تطبيقات حقيقية مع Gin.
 
-- **[Building a RESTful API with Go and Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- An official Go tutorial that uses Gin to build a simple web service.
-- **[Build a REST API with Go, Gin, and GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- Covers project layout, database integration, and deployment.
+- **[بناء واجهة RESTful API مع Go و Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- درس رسمي من Go يستخدم Gin لبناء خدمة ويب بسيطة.
+- **[بناء واجهة REST API مع Go و Gin و GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- يغطي تنظيم المشروع والتكامل مع قاعدة البيانات والنشر.
 
-## Interactive Learning Platforms
+## منصات التعلم التفاعلي
 
-Looking to practice Gin concepts through hands-on exercises? Here are some community-driven learning resources:
+هل تبحث عن ممارسة مفاهيم Gin من خلال تمارين عملية؟ إليك بعض مصادر التعلم المدفوعة من المجتمع:
 
-### Go Interview Practice - Gin Challenges
+### Go Interview Practice - تحديات Gin
 
-A comprehensive platform offering progressive Gin challenges that complement the official documentation:
+منصة شاملة تقدم تحديات Gin تدريجية تكمّل التوثيق الرسمي:
 
 <div class="learning-platform-showcase">
   <div class="platform-features">
-    <h4>What You'll Learn:</h4>
+    <h4>ما ستتعلمه:</h4>
     <ul>
-      <li>Basic routing and HTTP methods</li>
-      <li>Middleware implementation and patterns</li>
-      <li>Request validation and error handling</li>
-      <li>Authentication and security practices</li>
+      <li>التوجيه الأساسي وطرق HTTP</li>
+      <li>تنفيذ الوسيطات وأنماطها</li>
+      <li>التحقق من الطلبات ومعالجة الأخطاء</li>
+      <li>ممارسات المصادقة والأمان</li>
     </ul>
   </div>
 
   <div class="platform-demo">
-    <h4>See It In Action:</h4>
+    <h4>شاهدها عملياً:</h4>
     <div class="video-container">
       <video controls width="100%">
         <source src="https://github.com/user-attachments/assets/23468aab-a032-4326-9d05-84de86c9128c" type="video/mp4">
-        Your browser does not support the video tag.
+        متصفحك لا يدعم عنصر الفيديو.
       </video>
-      <p class="video-caption">A brief introduction to the Go Interview Practice platform</p>
+      <p class="video-caption">مقدمة موجزة لمنصة Go Interview Practice</p>
     </div>
   </div>
 
   <div class="platform-cta">
     <a href="https://github.com/RezaSi/go-interview-practice" class="btn btn-primary" target="_blank" rel="noopener">
-      Explore Gin Challenges →
+      استكشف تحديات Gin →
     </a>
   </div>
 </div>
---

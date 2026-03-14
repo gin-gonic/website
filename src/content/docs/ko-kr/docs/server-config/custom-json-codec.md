@@ -1,13 +1,13 @@
 ---
-title: "Custom JSON codec at runtime"
+title: "런타임 커스텀 JSON 코덱"
 sidebar:
   order: 2
 ---
 
-Gin supports custom JSON serialization and deserialization logic without using compile tags.
+Gin은 컴파일 태그를 사용하지 않고도 커스텀 JSON 직렬화 및 역직렬화 로직을 지원합니다.
 
-1. Define a custom struct that implements the `json.Core` interface.
-2. Before your engine starts, assign values to `json.API` using the custom struct.
+1. `json.Core` 인터페이스를 구현하는 커스텀 구조체를 정의합니다.
+2. 엔진이 시작되기 전에 커스텀 구조체를 사용하여 `json.API`에 값을 할당합니다.
 
 ```go
 package main
@@ -49,10 +49,10 @@ func (j customJsonApi) NewDecoder(reader io.Reader) json.Decoder {
 }
 
 func main() {
-  // Replace the default json api
+  // 기본 json api 교체
   json.API = customJsonApi{}
 
-  // Start your gin engine
+  // gin 엔진 시작
   router := gin.Default()
   router.Run(":8080")
 }

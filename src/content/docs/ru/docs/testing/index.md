@@ -1,16 +1,16 @@
 ---
-title: "Testing"
+title: "Тестирование"
 sidebar:
   order: 9
 ---
 
-## How to write test case for Gin?
+## Как писать тесты для Gin?
 
-The `net/http/httptest` package is the preferred way for HTTP testing.
+Пакет `net/http/httptest` — предпочтительный способ HTTP-тестирования.
 
-### Suppress debug output
+### Подавление отладочного вывода
 
-Call `gin.SetMode(gin.TestMode)` before creating the router in your tests. This suppresses the debug-level route registration logs that Gin prints by default, keeping your test output clean. You can place this in `TestMain` so it applies to all tests in the package:
+Вызовите `gin.SetMode(gin.TestMode)` перед созданием маршрутизатора в ваших тестах. Это подавляет логи регистрации маршрутов уровня debug, которые Gin выводит по умолчанию, сохраняя вывод тестов чистым. Вы можете поместить это в `TestMain`, чтобы применить ко всем тестам в пакете:
 
 ```go
 func TestMain(m *testing.M) {
@@ -19,7 +19,7 @@ func TestMain(m *testing.M) {
 }
 ```
 
-### Example application
+### Пример приложения
 
 ```go
 package main
@@ -55,7 +55,7 @@ func main() {
 }
 ```
 
-### Basic tests
+### Базовые тесты
 
 ```go
 package main
@@ -103,9 +103,9 @@ func TestPostUser(t *testing.T) {
 }
 ```
 
-### Table-driven tests
+### Табличные тесты
 
-Table-driven tests let you cover many input/output combinations without duplicating test logic. This pattern is idiomatic Go and works well with Gin:
+Табличные тесты позволяют покрыть множество комбинаций входных и выходных данных без дублирования логики тестов. Этот паттерн является идиоматическим для Go и хорошо работает с Gin:
 
 ```go
 func TestPingRouteTableDriven(t *testing.T) {
@@ -137,9 +137,9 @@ func TestPingRouteTableDriven(t *testing.T) {
 }
 ```
 
-### Testing middleware
+### Тестирование middleware
 
-To test a middleware in isolation, create a minimal router with the middleware applied and a simple handler that records the result:
+Чтобы протестировать middleware изолированно, создайте минимальный маршрутизатор с применённым middleware и простым обработчиком, который фиксирует результат:
 
 ```go
 func TestAuthMiddleware(t *testing.T) {

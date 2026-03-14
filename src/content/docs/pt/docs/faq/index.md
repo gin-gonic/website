@@ -8,33 +8,33 @@ sidebar:
 
 ### Como habilito o live reload durante o desenvolvimento?
 
-Use [Air](https://github.com/air-verse/air) for automatic live reloading during development. Air watches your files and rebuilds/restarts your application when changes are detected.
+Use [Air](https://github.com/air-verse/air) para recarregamento automático em tempo real durante o desenvolvimento. O Air monitora seus arquivos e reconstrói/reinicia sua aplicação quando mudanças são detectadas.
 
-**Installation:**
+**Instalação:**
 
 ```sh
 go install github.com/air-verse/air@latest
 ```
 
-**Setup:**
+**Configuração:**
 
-Create a `.air.toml` configuration file in your project root:
+Crie um arquivo de configuração `.air.toml` na raiz do seu projeto:
 
 ```sh
 air init
 ```
 
-Then run `air` in your project directory instead of `go run`:
+Em seguida, execute `air` no diretório do seu projeto em vez de `go run`:
 
 ```sh
 air
 ```
 
-Air will watch your `.go` files and automatically rebuild/restart your Gin application on changes. See the [Air documentation](https://github.com/air-verse/air) for configuration options.
+O Air monitorará seus arquivos `.go` e automaticamente reconstruirá/reiniciará sua aplicação Gin quando houver mudanças. Veja a [documentação do Air](https://github.com/air-verse/air) para opções de configuração.
 
 ### Como lidar com CORS no Gin?
 
-Use the official [gin-contrib/cors](https://github.com/gin-contrib/cors) middleware:
+Use o middleware oficial [gin-contrib/cors](https://github.com/gin-contrib/cors):
 
 ```go
 package main
@@ -70,11 +70,11 @@ func main() {
 }
 ```
 
-For a complete security overview, see [Security best practices](/en/docs/middleware/security-guide/).
+Para uma visão geral completa de segurança, veja [Melhores práticas de segurança](/pt/docs/middleware/security-guide/).
 
 ### Como servir arquivos estáticos?
 
-Use `Static()` or `StaticFS()` to serve static files:
+Use `Static()` ou `StaticFS()` para servir arquivos estáticos:
 
 ```go
 func main() {
@@ -93,11 +93,11 @@ func main() {
 }
 ```
 
-See [Serving data from file](/en/docs/rendering/serving-data-from-file/) for more details.
+Veja [Servindo dados de arquivo](/pt/docs/rendering/serving-data-from-file/) para mais detalhes.
 
 ### Como lidar com upload de arquivos?
 
-Use `FormFile()` for single files or `MultipartForm()` for multiple files:
+Use `FormFile()` para arquivos únicos ou `MultipartForm()` para múltiplos arquivos:
 
 ```go
 // Single file upload
@@ -119,11 +119,11 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 })
 ```
 
-See the [Upload file](/en/docs/routing/upload-file/) documentation for more details.
+Veja a documentação de [Upload de arquivos](/pt/docs/routing/upload-file/) para mais detalhes.
 
 ### Como implementar autenticação com JWT?
 
-Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware. Here's a minimal example:
+Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) ou implemente middleware customizado. Aqui está um exemplo mínimo:
 
 ```go
 package main
@@ -175,13 +175,13 @@ func AuthMiddleware() gin.HandlerFunc {
 }
 ```
 
-For session-based authentication, see [Session management](/en/docs/middleware/session-management/).
+Para autenticação baseada em sessão, veja [Gerenciamento de sessões](/pt/docs/middleware/session-management/).
 
 ### Como configurar logging de requisições?
 
-Gin includes a default logger middleware via `gin.Default()`. For structured JSON logging in production, see [Structured logging](/en/docs/logging/structured-logging/).
+O Gin inclui um middleware de logger padrão via `gin.Default()`. Para logging JSON estruturado em produção, veja [Logging estruturado](/pt/docs/logging/structured-logging/).
 
-For basic log customization:
+Para customização básica de log:
 
 ```go
 r := gin.New()
@@ -191,15 +191,15 @@ r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
 r.Use(gin.Recovery())
 ```
 
-See the [Logging](/en/docs/logging/) section for all options including custom formats, file output, and skipping query strings.
+Veja a seção [Logging](/pt/docs/logging/) para todas as opções incluindo formatos customizados, saída para arquivo e omissão de query strings.
 
 ### Como lidar com desligamento gracioso?
 
-See [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/) for a complete guide with code examples.
+Veja [Reinicialização ou parada graciosa](/pt/docs/server-config/graceful-restart-or-stop/) para um guia completo com exemplos de código.
 
 ### Por que estou recebendo "404 Not Found" em vez de "405 Method Not Allowed"?
 
-By default, Gin returns 404 for routes that don't support the requested HTTP method. Set `HandleMethodNotAllowed = true` to return 405 instead:
+Por padrão, o Gin retorna 404 para rotas que não suportam o método HTTP requisitado. Defina `HandleMethodNotAllowed = true` para retornar 405 em vez disso:
 
 ```go
 r := gin.Default()
@@ -221,7 +221,7 @@ Allow: GET
 
 ### Como vincular parâmetros de query e dados POST juntos?
 
-Use `ShouldBind()` which automatically selects the binding based on content type:
+Use `ShouldBind()` que seleciona automaticamente o binding baseado no tipo de conteúdo:
 
 ```go
 type User struct {
@@ -240,11 +240,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See the [Binding](/en/docs/binding/) section for all binding options.
+Veja a seção [Binding](/pt/docs/binding/) para todas as opções de binding.
 
 ### Como validar dados da requisição?
 
-Gin uses [go-playground/validator](https://github.com/go-playground/validator) for validation. Add validation tags to your structs:
+O Gin usa [go-playground/validator](https://github.com/go-playground/validator) para validação. Adicione tags de validação às suas structs:
 
 ```go
 type User struct {
@@ -263,11 +263,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for custom validators and advanced usage.
+Veja [Binding e validação](/pt/docs/binding/binding-and-validation/) para validadores customizados e uso avançado.
 
 ### Como executar o Gin em modo de produção?
 
-Set the `GIN_MODE` environment variable to `release`:
+Defina a variável de ambiente `GIN_MODE` como `release`:
 
 ```sh
 export GIN_MODE=release
@@ -275,21 +275,21 @@ export GIN_MODE=release
 GIN_MODE=release ./your-app
 ```
 
-Or set it programmatically:
+Ou defina programaticamente:
 
 ```go
 gin.SetMode(gin.ReleaseMode)
 ```
 
-Release mode disables debug logging and improves performance.
+O modo release desabilita o logging de debug e melhora o desempenho.
 
 ### Como lidar com conexões de banco de dados com o Gin?
 
-See [Database integration](/en/docs/server-config/database/) for a complete guide covering `database/sql`, GORM, connection pooling, and dependency injection patterns.
+Veja [Integração com banco de dados](/pt/docs/server-config/database/) para um guia completo cobrindo `database/sql`, GORM, pool de conexões e padrões de injeção de dependência.
 
 ### Como testar handlers do Gin?
 
-Use `net/http/httptest` to test your routes:
+Use `net/http/httptest` para testar suas rotas:
 
 ```go
 func TestPingRoute(t *testing.T) {
@@ -307,20 +307,20 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-See the [Testing](/en/docs/testing/) documentation for more examples.
+Veja a documentação de [Testes](/pt/docs/testing/) para mais exemplos.
 
 ## Perguntas sobre Desempenho
 
 ### Como otimizar o Gin para alto tráfego?
 
-1. **Use Release Mode**: Set `GIN_MODE=release`
-2. **Disable unnecessary middleware**: Only use what you need
-3. **Use `gin.New()` instead of `gin.Default()`** for manual middleware control
-4. **Connection pooling**: Configure database connection pools (see [Database integration](/en/docs/server-config/database/))
-5. **Caching**: Implement caching for frequently accessed data
-6. **Load balancing**: Use reverse proxy (nginx, HAProxy)
-7. **Profiling**: Use Go's pprof to identify bottlenecks
-8. **Monitoring**: Set up [metrics and monitoring](/en/docs/server-config/metrics/) to track performance
+1. **Use o modo Release**: Defina `GIN_MODE=release`
+2. **Desabilite middleware desnecessário**: Use apenas o que você precisa
+3. **Use `gin.New()` em vez de `gin.Default()`** para controle manual de middleware
+4. **Pool de conexões**: Configure pools de conexão do banco de dados (veja [Integração com banco de dados](/pt/docs/server-config/database/))
+5. **Cache**: Implemente cache para dados acessados frequentemente
+6. **Balanceamento de carga**: Use proxy reverso (nginx, HAProxy)
+7. **Profiling**: Use o pprof do Go para identificar gargalos
+8. **Monitoramento**: Configure [métricas e monitoramento](/pt/docs/server-config/metrics/) para acompanhar o desempenho
 
 ### O Gin está pronto para produção?
 
@@ -330,7 +330,7 @@ Sim. O Gin é usado em produção por muitas empresas e foi testado em batalha e
 
 ### Por que meus parâmetros de rota não estão funcionando?
 
-Ensure route parameters use `:` syntax and are properly extracted:
+Certifique-se de que os parâmetros de rota usam a sintaxe `:` e são extraídos corretamente:
 
 ```go
 // Correct
@@ -342,11 +342,11 @@ r.GET("/user/:id", func(c *gin.Context) {
 // Not: /user/{id} or /user/<id>
 ```
 
-See [Parameters in path](/en/docs/routing/param-in-path/) for details.
+Veja [Parâmetros no caminho](/pt/docs/routing/param-in-path/) para detalhes.
 
 ### Por que meu middleware não está executando?
 
-Middleware must be registered before routes or route groups:
+O middleware deve ser registrado antes das rotas ou grupos de rotas:
 
 ```go
 // Correct order
@@ -362,16 +362,16 @@ auth.Use(AuthMiddleware()) // Middleware for this group
 }
 ```
 
-See [Using middleware](/en/docs/middleware/using-middleware/) for details.
+Veja [Usando middleware](/pt/docs/middleware/using-middleware/) para detalhes.
 
 ### Por que o binding de requisição está falhando?
 
 Razões comuns:
 
-1. **Missing binding tags**: Add `json:"field"` or `form:"field"` tags
-2. **Content-Type mismatch**: Ensure client sends correct Content-Type header
-3. **Validation errors**: Check validation tags and requirements
-4. **Unexported fields**: Only exported (capitalized) struct fields are bound
+1. **Tags de binding ausentes**: Adicione tags `json:"field"` ou `form:"field"`
+2. **Content-Type incompatível**: Certifique-se de que o cliente envia o header Content-Type correto
+3. **Erros de validação**: Verifique as tags de validação e requisitos
+4. **Campos não exportados**: Apenas campos exportados (com letra maiúscula) da struct são vinculados
 
 ```go
 type User struct {
@@ -381,4 +381,4 @@ type User struct {
 }
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for details.
+Veja [Binding e validação](/pt/docs/binding/binding-and-validation/) para detalhes.

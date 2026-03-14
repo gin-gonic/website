@@ -1,23 +1,23 @@
 ---
-title: "Users"
+title: "المستخدمون"
 sidebar:
   order: 14
 ---
 
-Gin is used in production by companies and open-source projects of all sizes. Below is a selection of notable projects built with Gin. If your project uses Gin, we would love to add it to this list.
+يُستخدم Gin في بيئات الإنتاج من قبل شركات ومشاريع مفتوحة المصدر بمختلف الأحجام. فيما يلي مجموعة مختارة من المشاريع البارزة المبنية باستخدام Gin. إذا كان مشروعك يستخدم Gin، يسعدنا إضافته إلى هذه القائمة.
 
-## Awesome Project Lists
+## قائمة المشاريع المميزة
 
-- [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
-- [fnproject](https://github.com/fnproject/fn): The container native, cloud agnostic serverless platform.
-- [photoprism](https://github.com/photoprism/photoprism): AI-Powered Photos App for the Decentralized Web.
-- [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
-- [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
-- [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per WebSocket.
-- [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
-- [drone](https://github.com/harness/drone): A container-native, Continuous Delivery platform built on Go.
-- [go-admin](https://github.com/GoAdminGroup/go-admin): A data visualization and admin panel framework for Go.
+- [gorush](https://github.com/appleboy/gorush): خادم إشعارات دفع مكتوب بلغة Go.
+- [fnproject](https://github.com/fnproject/fn): منصة بدون خادم أصلية للحاويات ومحايدة للسحابة.
+- [photoprism](https://github.com/photoprism/photoprism): تطبيق صور مدعوم بالذكاء الاصطناعي للويب اللامركزي.
+- [krakend](https://github.com/devopsfaith/krakend): بوابة API فائقة الأداء مع وسيطات.
+- [picfit](https://github.com/thoas/picfit): خادم تغيير حجم الصور مكتوب بلغة Go.
+- [gotify](https://github.com/gotify/server): خادم بسيط لإرسال واستقبال الرسائل في الوقت الفعلي عبر WebSocket.
+- [cds](https://github.com/ovh/cds): منصة مفتوحة المصدر للتسليم المستمر وأتمتة DevOps على مستوى المؤسسات.
+- [drone](https://github.com/harness/drone): منصة تسليم مستمر أصلية للحاويات مبنية بلغة Go.
+- [go-admin](https://github.com/GoAdminGroup/go-admin): إطار عمل لتصوير البيانات ولوحة الإدارة للغة Go.
 
-## Submit your project
+## أضف مشروعك
 
-Using Gin in production or for an open-source project? Open a pull request on the [gin-gonic/website](https://github.com/gin-gonic/website) repository to add your project to this page.
+هل تستخدم Gin في بيئة الإنتاج أو في مشروع مفتوح المصدر؟ افتح طلب سحب في مستودع [gin-gonic/website](https://github.com/gin-gonic/website) لإضافة مشروعك إلى هذه الصفحة.

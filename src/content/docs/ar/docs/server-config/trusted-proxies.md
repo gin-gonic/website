@@ -1,33 +1,24 @@
 ---
-title: "Trusted proxies"
+title: "الوكلاء الموثوقون"
 sidebar:
   order: 8
 ---
 
-Gin lets you specify which headers to hold the real client IP (if any),
-as well as specifying which proxies (or direct clients) you trust to
-specify one of these headers.
+يتيح لك Gin تحديد الترويسات التي تحمل عنوان IP الحقيقي للعميل (إن وُجدت)، بالإضافة إلى تحديد الوكلاء (أو العملاء المباشرين) الذين تثق بهم لتعيين إحدى هذه الترويسات.
 
-### Why trusted proxy configuration matters
+### لماذا تكوين الوكلاء الموثوقين مهم
 
-When your application sits behind a reverse proxy (Nginx, HAProxy, a cloud load balancer, etc.), the proxy forwards the original client's IP address in headers like `X-Forwarded-For` or `X-Real-Ip`. The problem is that **any client can set these headers**. Without proper trusted proxy configuration, an attacker can forge `X-Forwarded-For` to:
+عندما يكون تطبيقك خلف وكيل عكسي (Nginx، HAProxy، موازن حمل سحابي، إلخ)، يمرر الوكيل عنوان IP الأصلي للعميل في ترويسات مثل `X-Forwarded-For` أو `X-Real-Ip`. المشكلة هي أن **أي عميل يمكنه تعيين هذه الترويسات**. بدون تكوين وكلاء موثوقين صحيح، يمكن للمهاجم تزوير `X-Forwarded-For` من أجل:
 
-- **Bypass IP-based access controls** -- If your application restricts certain routes to an internal IP range (e.g., `10.0.0.0/8`), an attacker can send `X-Forwarded-For: 10.0.0.1` from a public IP and bypass the restriction entirely.
-- **Poison logs and audit trails** -- Forged IPs make incident investigation unreliable because you can no longer trace requests back to the real source.
-- **Evade rate limiting** -- If rate limiting is keyed on `ClientIP()`, each request can claim a different IP address to avoid being throttled.
+- **تجاوز ضوابط الوصول المبنية على IP** -- إذا كان تطبيقك يقيّد مسارات معينة لنطاق IP داخلي (مثل `10.0.0.0/8`)، يمكن للمهاجم إرسال `X-Forwarded-For: 10.0.0.1` من IP عام وتجاوز القيد بالكامل.
+- **تسميم السجلات ومسارات التدقيق** -- عناوين IP المزورة تجعل التحقيق في الحوادث غير موثوق لأنه لم يعد بإمكانك تتبع الطلبات إلى مصدرها الحقيقي.
+- **التهرب من تحديد المعدل** -- إذا كان تحديد المعدل مبنياً على `ClientIP()`، يمكن لكل طلب ادعاء عنوان IP مختلف لتجنب التقييد.
 
-`SetTrustedProxies` solves this by telling Gin which network addresses are legitimate proxies. When `ClientIP()` parses the `X-Forwarded-For` chain, it only trusts entries added by those proxies and discards anything a client may have prepended. If a request arrives directly (not from a trusted proxy), the forwarding headers are ignored entirely and the raw remote address is used.
+تحل `SetTrustedProxies` هذه المشكلة بإخبار Gin بعناوين الشبكة التي هي وكلاء شرعيين. عندما يحلل `ClientIP()` سلسلة `X-Forwarded-For`، يثق فقط بالإدخالات المضافة من تلك الوكلاء ويتجاهل أي شيء قد يكون العميل أضافه. إذا وصل طلب مباشرة (ليس من وكيل موثوق)، يتم تجاهل ترويسات التمرير بالكامل ويُستخدم العنوان البعيد الخام.
 
-Use function `SetTrustedProxies()` on your `gin.Engine` to specify network addresses
-or network CIDRs from where clients which their request headers related to client
-IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs, IPv6 addresses or
-IPv6 CIDRs.
+استخدم دالة `SetTrustedProxies()` على `gin.Engine` لتحديد عناوين الشبكة أو نطاقات CIDR التي يمكن الوثوق بترويسات طلباتها المتعلقة بعنوان IP للعميل. يمكن أن تكون عناوين IPv4 أو نطاقات CIDR لـ IPv4 أو عناوين IPv6 أو نطاقات CIDR لـ IPv6.
 
-**Attention:** Gin trusts all proxies by default if you don't specify a trusted
-proxy using the function above, **this is NOT safe**. At the same time, if you don't
-use any proxy, you can disable this feature by using `Engine.SetTrustedProxies(nil)`,
-then `Context.ClientIP()` will return the remote address directly to avoid some
-unnecessary computation.
+**تنبيه:** يثق Gin بجميع الوكلاء افتراضياً إذا لم تحدد وكيلاً موثوقاً باستخدام الدالة أعلاه، **هذا ليس آمناً**. في نفس الوقت، إذا لم تستخدم أي وكيل، يمكنك تعطيل هذه الميزة باستخدام `Engine.SetTrustedProxies(nil)`، وعندها سيُرجع `Context.ClientIP()` العنوان البعيد مباشرة لتجنب بعض الحسابات غير الضرورية.
 
 ```go
 import (
@@ -51,9 +42,8 @@ func main() {
 }
 ```
 
-**Notice:** If you are using a CDN service, you can set the `Engine.TrustedPlatform`
-to skip TrustedProxies check, it has a higher priority than TrustedProxies.
-Look at the example below:
+**ملاحظة:** إذا كنت تستخدم خدمة CDN، يمكنك تعيين `Engine.TrustedPlatform` لتخطي فحص TrustedProxies، فله أولوية أعلى من TrustedProxies.
+انظر المثال أدناه:
 
 ```go
 import (

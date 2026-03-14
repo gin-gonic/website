@@ -1,11 +1,11 @@
 ---
-title: "Blog"
+title: "المدونة"
 sidebar:
   order: 30
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+هذا هو قسم **المدونة**. يحتوي على فئتين: الأخبار والإصدارات.
 
-Files in these directories will be listed in reverse chronological order.
+يتم عرض الملفات في هذه المجلدات بترتيب زمني عكسي.
 

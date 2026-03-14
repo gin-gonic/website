@@ -1,12 +1,12 @@
 ---
-title: "Gin 1.5.0 is released"
-linkTitle: "Gin 1.5.0 is released"
+title: "Gin 1.5.0 ha sido publicado"
+linkTitle: "Gin 1.5.0 ha sido publicado"
 lastUpdated: 2019-11-28
 ---
 
 ### CHANGELOG
 
-#### Feature
+#### Características
 
 - [NEW] Now you can parse the inline lowercase start structure [#1893](https://github.com/gin-gonic/gin/pull/1893)
 - [NEW] **[Break-Backward]** Hold matched route full path in the Context [#1826](https://github.com/gin-gonic/gin/pull/1826)
@@ -18,7 +18,7 @@ lastUpdated: 2019-11-28
 - [NEW] Add DisallowUnknownFields() in gin.Context.BindJSON() [#2028](https://github.com/gin-gonic/gin/pull/2028)
 - [NEW] Use specific `net.Listener` with Engine.RunListener() [#2023](https://github.com/gin-gonic/gin/pull/2023)
 
-#### Bug fix
+#### Correcciones de errores
 
 - [FIX] Use DefaultWriter and DefaultErrorWriter for debug messages [#1891](https://github.com/gin-gonic/gin/pull/1891)
 - [FIX] Some code improvements [#1909](https://github.com/gin-gonic/gin/pull/1909)

@@ -149,7 +149,7 @@ func main() {
 }
 ```
 
-> **Note:** The broadcast example above writes to multiple connections while holding a read lock. For production use, consider sending messages through a channel per client to avoid blocking the broadcast loop on a slow connection. See the [gorilla/websocket chat example](https://github.com/gorilla/websocket/tree/main/examples/chat) for a production-ready pattern.
+> **Nota:** O exemplo de broadcast acima escreve em múltiplas conexões enquanto mantém um read lock. Para uso em produção, considere enviar mensagens através de um canal por cliente para evitar bloquear o loop de broadcast em uma conexão lenta. Veja o [exemplo de chat do gorilla/websocket](https://github.com/gorilla/websocket/tree/main/examples/chat) para um padrão pronto para produção.
 
 ## Upgrade e Configuração de Conexão
 
@@ -174,7 +174,7 @@ var upgrader = websocket.Upgrader{
 }
 ```
 
-You can also set response headers during the upgrade:
+Você também pode definir headers de resposta durante o upgrade:
 
 ```go
 func handleWebSocket(c *gin.Context) {
@@ -244,16 +244,16 @@ func handleWebSocket(c *gin.Context) {
 
 Sempre feche conexões e libere recursos quando terminar:
 
-- Use `defer conn.Close()` immediately after a successful upgrade.
-- Remove connections from any shared data structures (such as the hub in the chat example) when the read loop exits.
-- Set read and write deadlines to prevent goroutine leaks from idle connections.
+- Use `defer conn.Close()` imediatamente após um upgrade bem-sucedido.
+- Remova conexões de quaisquer estruturas de dados compartilhadas (como o hub no exemplo de chat) quando o loop de leitura terminar.
+- Defina deadlines de leitura e escrita para prevenir vazamento de goroutines de conexões ociosas.
 
 ### Escritas Concorrentes
 
 O pacote `gorilla/websocket` **não** suporta escritas concorrentes em uma única conexão. Se múltiplas goroutines precisam escrever, serialize o acesso com uma dessas abordagens:
 
-- **Mutex:** Protect writes with a `sync.Mutex`.
-- **Channel:** Funnel all outgoing messages through a single channel consumed by one writer goroutine.
+- **Mutex:** Proteja escritas com um `sync.Mutex`.
+- **Canal:** Canalize todas as mensagens de saída através de um único canal consumido por uma goroutine de escrita.
 
 A abordagem por canal é geralmente preferida porque lida naturalmente com back-pressure e mantém a lógica de escrita em um único lugar.
 
@@ -289,11 +289,11 @@ curl --include \
   http://localhost:8080/ws
 ```
 
-> For interactive testing, `wscat` is more convenient than curl because it handles the WebSocket framing protocol automatically.
+> Para testes interativos, `wscat` é mais conveniente que curl porque lida com o protocolo de framing do WebSocket automaticamente.
 
 ## Veja Também
 
-- [gorilla/websocket documentation](https://pkg.go.dev/github.com/gorilla/websocket)
-- [gorilla/websocket chat example](https://github.com/gorilla/websocket/tree/main/examples/chat) -- production-ready chat with per-client write goroutines
-- [RFC 6455 -- The WebSocket Protocol](https://datatracker.ietf.org/doc/html/rfc6455)
-- [Custom HTTP configuration](/docs/en/docs/server-config/custom-http-config/) -- customizing the underlying HTTP server used with Gin
+- [Documentação do gorilla/websocket](https://pkg.go.dev/github.com/gorilla/websocket)
+- [Exemplo de chat do gorilla/websocket](https://github.com/gorilla/websocket/tree/main/examples/chat) -- chat pronto para produção com goroutines de escrita por cliente
+- [RFC 6455 -- O Protocolo WebSocket](https://datatracker.ietf.org/doc/html/rfc6455)
+- [Configuração HTTP customizada](/pt/docs/server-config/custom-http-config/) -- personalizando o servidor HTTP subjacente usado com Gin

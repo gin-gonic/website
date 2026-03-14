@@ -4,19 +4,19 @@ sidebar:
   order: 9
 ---
 
-Gin does not include a built-in WebSocket implementation, but it integrates seamlessly with the [gorilla/websocket](https://github.com/gorilla/websocket) package. Because Gin handlers receive the underlying `http.ResponseWriter` and `*http.Request`, you can upgrade any Gin route to a WebSocket connection with minimal effort.
+Gin 不包含內建的 WebSocket 實作，但可以與 [gorilla/websocket](https://github.com/gorilla/websocket) 套件無縫整合。由於 Gin 處理函式接收底層的 `http.ResponseWriter` 和 `*http.Request`，你可以用最少的程式碼將任何 Gin 路由升級為 WebSocket 連線。
 
-## Installation
+## 安裝
 
-Install the `gorilla/websocket` package:
+安裝 `gorilla/websocket` 套件：
 
 ```bash
 go get github.com/gorilla/websocket
 ```
 
-## Basic Echo Server
+## 基本回聲伺服器
 
-The simplest WebSocket server reads a message from the client and echoes it back. This is a good starting point for understanding the upgrade process.
+最簡單的 WebSocket 伺服器從客戶端讀取訊息並將其回傳。這是了解升級過程的良好起點。
 
 ```go
 package main
@@ -66,9 +66,9 @@ func main() {
 }
 ```
 
-## Chat Broadcast Example
+## 聊天廣播範例
 
-A more practical example: a simple chat server that broadcasts every incoming message to all connected clients.
+一個更實用的範例：一個簡單的聊天伺服器，將每個傳入的訊息廣播給所有已連線的客戶端。
 
 ```go
 package main
@@ -149,11 +149,11 @@ func main() {
 }
 ```
 
-> **Note:** The broadcast example above writes to multiple connections while holding a read lock. For production use, consider sending messages through a channel per client to avoid blocking the broadcast loop on a slow connection. See the [gorilla/websocket chat example](https://github.com/gorilla/websocket/tree/main/examples/chat) for a production-ready pattern.
+> **注意：** 上面的廣播範例在持有讀鎖的同時寫入多個連線。在正式環境中，考慮透過每個客戶端的 channel 傳送訊息，以避免慢速連線阻塞廣播迴圈。請參閱 [gorilla/websocket 聊天範例](https://github.com/gorilla/websocket/tree/main/examples/chat) 以獲取適用於正式環境的模式。
 
-## Connection Upgrade and Configuration
+## 連線升級與配置
 
-The `websocket.Upgrader` controls how HTTP connections are upgraded to WebSocket. Key fields:
+`websocket.Upgrader` 控制 HTTP 連線如何升級為 WebSocket。關鍵欄位：
 
 ```go
 var upgrader = websocket.Upgrader{
@@ -174,7 +174,7 @@ var upgrader = websocket.Upgrader{
 }
 ```
 
-You can also set response headers during the upgrade:
+你也可以在升級過程中設定回應標頭：
 
 ```go
 func handleWebSocket(c *gin.Context) {
@@ -191,11 +191,11 @@ func handleWebSocket(c *gin.Context) {
 }
 ```
 
-## Best Practices
+## 最佳實務
 
-### Ping/Pong for Connection Health
+### Ping/Pong 連線健康檢測
 
-WebSocket connections can go stale silently. Use ping/pong frames to detect dead connections:
+WebSocket 連線可能會無聲地變得過時。使用 ping/pong 幀來偵測失效的連線：
 
 ```go
 import "time"
@@ -240,44 +240,44 @@ func handleWebSocket(c *gin.Context) {
 }
 ```
 
-### Connection Cleanup
+### 連線清理
 
-Always close connections and release resources when done:
+完成後務必關閉連線並釋放資源：
 
-- Use `defer conn.Close()` immediately after a successful upgrade.
-- Remove connections from any shared data structures (such as the hub in the chat example) when the read loop exits.
-- Set read and write deadlines to prevent goroutine leaks from idle connections.
+- 在成功升級後立即使用 `defer conn.Close()`。
+- 當讀取迴圈結束時，從任何共享的資料結構（如聊天範例中的 hub）中移除連線。
+- 設定讀取和寫入截止時間，以防止閒置連線造成 goroutine 洩露。
 
-### Concurrent Writes
+### 並發寫入
 
-The `gorilla/websocket` package does **not** support concurrent writes to a single connection. If multiple goroutines need to write, serialize access with one of these approaches:
+`gorilla/websocket` 套件**不**支援對單一連線的並發寫入。如果多個 goroutine 需要寫入，請使用以下方式之一序列化存取：
 
-- **Mutex:** Protect writes with a `sync.Mutex`.
-- **Channel:** Funnel all outgoing messages through a single channel consumed by one writer goroutine.
+- **Mutex：** 使用 `sync.Mutex` 保護寫入操作。
+- **Channel：** 將所有傳出的訊息透過單一 channel 傳送，由一個寫入器 goroutine 消費。
 
-The channel approach is generally preferred because it naturally handles back-pressure and keeps the writing logic in one place.
+Channel 方式通常是首選，因為它自然地處理背壓並將寫入邏輯集中在一處。
 
-## Testing
+## 測試
 
-### Using wscat
+### 使用 wscat
 
-[wscat](https://github.com/websockets/wscat) is a command-line WebSocket client. Install it with npm:
+[wscat](https://github.com/websockets/wscat) 是一個命令列 WebSocket 客戶端。使用 npm 安裝：
 
 ```bash
 npm install -g wscat
 ```
 
-Connect to your server:
+連線到你的伺服器：
 
 ```bash
 wscat -c ws://localhost:8080/ws
 ```
 
-Type a message and press Enter. The echo server will send it back.
+輸入訊息並按 Enter。回聲伺服器會將其回傳。
 
-### Using curl
+### 使用 curl
 
-curl 7.86+ supports WebSocket. Send a message to the echo server:
+curl 7.86+ 支援 WebSocket。向回聲伺服器傳送訊息：
 
 ```bash
 curl --include \
@@ -289,11 +289,11 @@ curl --include \
   http://localhost:8080/ws
 ```
 
-> For interactive testing, `wscat` is more convenient than curl because it handles the WebSocket framing protocol automatically.
+> 對於互動式測試，`wscat` 比 curl 更方便，因為它會自動處理 WebSocket 幀協定。
 
-## See Also
+## 另請參閱
 
-- [gorilla/websocket documentation](https://pkg.go.dev/github.com/gorilla/websocket)
-- [gorilla/websocket chat example](https://github.com/gorilla/websocket/tree/main/examples/chat) -- production-ready chat with per-client write goroutines
-- [RFC 6455 -- The WebSocket Protocol](https://datatracker.ietf.org/doc/html/rfc6455)
-- [Custom HTTP configuration](/docs/en/docs/server-config/custom-http-config/) -- customizing the underlying HTTP server used with Gin
+- [gorilla/websocket 文件](https://pkg.go.dev/github.com/gorilla/websocket)
+- [gorilla/websocket 聊天範例](https://github.com/gorilla/websocket/tree/main/examples/chat) -- 適用於正式環境的聊天，使用每個客戶端獨立的寫入 goroutine
+- [RFC 6455 -- WebSocket 協定](https://datatracker.ietf.org/doc/html/rfc6455)
+- [自訂 HTTP 配置](/zh-tw/docs/server-config/custom-http-config/) -- 自訂與 Gin 搭配使用的底層 HTTP 伺服器

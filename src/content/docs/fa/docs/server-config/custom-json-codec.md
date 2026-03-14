@@ -1,13 +1,13 @@
 ---
-title: "Custom JSON codec at runtime"
+title: "کدک JSON سفارشی در زمان اجرا"
 sidebar:
   order: 2
 ---
 
-Gin supports custom JSON serialization and deserialization logic without using compile tags.
+Gin از منطق سریال‌سازی و deserialization سفارشی JSON بدون استفاده از تگ‌های کامپایل پشتیبانی می‌کند.
 
-1. Define a custom struct that implements the `json.Core` interface.
-2. Before your engine starts, assign values to `json.API` using the custom struct.
+1. یک struct سفارشی تعریف کنید که رابط `json.Core` را پیاده‌سازی کند.
+2. قبل از شروع موتور، مقادیر را با استفاده از struct سفارشی به `json.API` اختصاص دهید.
 
 ```go
 package main

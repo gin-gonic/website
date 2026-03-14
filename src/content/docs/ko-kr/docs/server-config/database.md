@@ -1,14 +1,14 @@
 ---
-title: "Database Integration"
+title: "데이터베이스 통합"
 sidebar:
   order: 10
 ---
 
-Most real-world Gin applications need a database. This guide covers how to structure database access cleanly, configure connection pooling, and apply patterns that keep your handlers testable and your connections healthy.
+대부분의 실제 Gin 애플리케이션에는 데이터베이스가 필요합니다. 이 가이드에서는 데이터베이스 접근을 깔끔하게 구조화하고, 커넥션 풀링을 설정하고, 핸들러를 테스트 가능하게 유지하며 연결을 건강하게 유지하는 패턴을 다룹니다.
 
-## Using database/sql with Gin
+## Gin에서 database/sql 사용하기
 
-The Go standard library `database/sql` package works well with Gin. Open the connection once in `main` and pass it to your handlers.
+Go 표준 라이브러리 `database/sql` 패키지는 Gin과 잘 작동합니다. `main`에서 한 번 연결을 열고 핸들러에 전달합니다.
 
 ```go
 package main
@@ -29,7 +29,7 @@ func main() {
 	}
 	defer db.Close()
 
-	// Verify the connection is alive
+	// 연결이 살아있는지 확인
 	if err := db.Ping(); err != nil {
 		log.Fatal(err)
 	}
@@ -54,11 +54,11 @@ func main() {
 }
 ```
 
-Always pass `c.Request.Context()` to database calls so that queries are cancelled automatically when the client disconnects.
+클라이언트가 연결을 끊으면 쿼리가 자동으로 취소되도록 항상 `c.Request.Context()`를 데이터베이스 호출에 전달하세요.
 
-## Connection pooling configuration
+## 커넥션 풀 설정
 
-The `database/sql` package maintains a pool of connections internally. For production workloads, configure the pool to match your database and traffic profile.
+`database/sql` 패키지는 내부적으로 커넥션 풀을 유지합니다. 프로덕션 워크로드의 경우, 데이터베이스와 트래픽 프로필에 맞게 풀을 설정하세요.
 
 ```go
 db, err := sql.Open("postgres", dsn)
@@ -66,29 +66,29 @@ if err != nil {
 	log.Fatal(err)
 }
 
-// Maximum number of open connections to the database.
+// 데이터베이스에 대한 최대 열린 연결 수.
 db.SetMaxOpenConns(25)
 
-// Maximum number of idle connections retained in the pool.
+// 풀에 유지되는 최대 유휴 연결 수.
 db.SetMaxIdleConns(10)
 
-// Maximum amount of time a connection may be reused.
+// 연결이 재사용될 수 있는 최대 시간.
 db.SetConnMaxLifetime(5 * time.Minute)
 
-// Maximum amount of time a connection may sit idle before being closed.
+// 연결이 닫히기 전에 유휴 상태로 있을 수 있는 최대 시간.
 db.SetConnMaxIdleTime(1 * time.Minute)
 ```
 
-- `SetMaxOpenConns` prevents your application from overwhelming the database server under high load.
-- `SetMaxIdleConns` keeps warm connections ready so new requests avoid the cost of dialling.
-- `SetConnMaxLifetime` rotates connections so your app picks up DNS changes and does not hold stale server-side sessions.
-- `SetConnMaxIdleTime` closes connections that have been idle too long, freeing resources on both sides.
+- `SetMaxOpenConns`는 높은 부하에서 애플리케이션이 데이터베이스 서버를 압도하는 것을 방지합니다.
+- `SetMaxIdleConns`는 새 요청이 연결 수립 비용을 피하도록 따뜻한 연결을 유지합니다.
+- `SetConnMaxLifetime`은 연결을 순환하여 앱이 DNS 변경을 반영하고 오래된 서버 측 세션을 보유하지 않도록 합니다.
+- `SetConnMaxIdleTime`은 너무 오래 유휴 상태인 연결을 닫아 양측의 리소스를 해제합니다.
 
-## Dependency injection patterns
+## 의존성 주입 패턴
 
-### Closure
+### 클로저
 
-The simplest approach is to close over the `*sql.DB` in your handler functions.
+가장 간단한 접근 방식은 핸들러 함수에서 `*sql.DB`를 클로저로 닫는 것입니다.
 
 ```go
 package main
@@ -136,9 +136,9 @@ func main() {
 }
 ```
 
-### Middleware
+### 미들웨어
 
-Store the connection in the Gin context so any handler can retrieve it.
+Gin context에 연결을 저장하여 모든 핸들러가 가져올 수 있도록 합니다.
 
 ```go
 func DatabaseMiddleware(db *sql.DB) gin.HandlerFunc {
@@ -157,7 +157,7 @@ func main() {
 
 	r.GET("/users/:id", func(c *gin.Context) {
 		db := c.MustGet("db").(*sql.DB)
-		// use db...
+		// db 사용...
 		_ = db
 	})
 
@@ -165,9 +165,9 @@ func main() {
 }
 ```
 
-### Struct with methods
+### 메서드를 가진 구조체
 
-Group related handlers into a struct that holds the database handle. This approach scales well when you have many handlers that share the same dependencies.
+관련 핸들러를 데이터베이스 핸들을 보유하는 구조체로 그룹화합니다. 이 접근 방식은 동일한 의존성을 공유하는 핸들러가 많을 때 잘 확장됩니다.
 
 ```go
 type UserHandler struct {
@@ -196,11 +196,11 @@ func main() {
 }
 ```
 
-The closure and struct patterns are generally preferred over middleware because they provide compile-time type safety and avoid type assertions at runtime.
+클로저와 구조체 패턴은 컴파일 타임 타입 안전성을 제공하고 런타임 타입 어설션을 피하므로 일반적으로 미들웨어보다 선호됩니다.
 
-## Using GORM with Gin
+## Gin에서 GORM 사용하기
 
-[GORM](https://gorm.io) is a popular Go ORM. It wraps `database/sql` and adds migrations, associations, and a query builder.
+[GORM](https://gorm.io)은 인기 있는 Go ORM입니다. `database/sql`을 래핑하고 마이그레이션, 관계, 쿼리 빌더를 추가합니다.
 
 ```go
 package main
@@ -226,7 +226,7 @@ func main() {
 		panic("failed to connect to database")
 	}
 
-	// Auto-migrate the schema
+	// 스키마 자동 마이그레이션
 	db.AutoMigrate(&Product{})
 
 	r := gin.Default()
@@ -257,11 +257,11 @@ func main() {
 }
 ```
 
-## Transaction handling in request handlers
+## 요청 핸들러에서의 트랜잭션 처리
 
-When a request needs to perform multiple writes that must succeed or fail together, use a database transaction.
+요청이 함께 성공하거나 실패해야 하는 여러 쓰기를 수행해야 할 때 데이터베이스 트랜잭션을 사용합니다.
 
-### With database/sql
+### database/sql 사용
 
 ```go
 r.POST("/transfer", func(c *gin.Context) {
@@ -270,7 +270,7 @@ r.POST("/transfer", func(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "could not begin transaction"})
 		return
 	}
-	// Ensure rollback runs if we return early due to an error.
+	// 오류로 인해 일찍 반환하는 경우 롤백이 실행되도록 보장.
 	defer tx.Rollback()
 
 	_, err = tx.ExecContext(c.Request.Context(),
@@ -296,7 +296,7 @@ r.POST("/transfer", func(c *gin.Context) {
 })
 ```
 
-### With GORM
+### GORM 사용
 
 ```go
 r.POST("/transfer", func(c *gin.Context) {
@@ -320,19 +320,19 @@ r.POST("/transfer", func(c *gin.Context) {
 })
 ```
 
-GORM's `Transaction` method handles `Begin`, `Commit`, and `Rollback` automatically based on the returned error.
+GORM의 `Transaction` 메서드는 반환된 오류에 따라 `Begin`, `Commit`, `Rollback`을 자동으로 처리합니다.
 
-## Best practices
+## 모범 사례
 
-- **Initialize the database connection in `main`** and share it via closures, a struct, or middleware. Never open a new connection per request.
-- **Always use parameterized queries.** Pass user input as arguments (`$1`, `?`) rather than concatenating strings. This prevents SQL injection.
-- **Configure the connection pool for production.** Set `MaxOpenConns`, `MaxIdleConns`, and `ConnMaxLifetime` to values that match your database server limits and expected traffic.
-- **Handle connection errors gracefully.** Call `db.Ping()` at startup to fail fast. In handlers, return meaningful HTTP status codes and avoid leaking internal error details to clients.
-- **Pass the request context to queries.** Use `c.Request.Context()` so that long-running queries are cancelled when the client disconnects or a timeout fires.
-- **Close `*sql.Rows` with `defer`.** Failing to close rows leaks connections back to the pool.
+- **`main`에서 데이터베이스 연결을 초기화**하고 클로저, 구조체 또는 미들웨어를 통해 공유하세요. 요청당 새 연결을 열지 마세요.
+- **항상 매개변수화된 쿼리를 사용하세요.** 문자열을 연결하는 대신 사용자 입력을 인수(`$1`, `?`)로 전달하세요. 이렇게 하면 SQL 인젝션을 방지합니다.
+- **프로덕션을 위해 커넥션 풀을 설정하세요.** `MaxOpenConns`, `MaxIdleConns`, `ConnMaxLifetime`을 데이터베이스 서버 제한과 예상 트래픽에 맞는 값으로 설정하세요.
+- **연결 오류를 우아하게 처리하세요.** 시작 시 `db.Ping()`을 호출하여 빠르게 실패하세요. 핸들러에서는 의미 있는 HTTP 상태 코드를 반환하고 내부 오류 세부 정보가 클라이언트에 유출되지 않도록 하세요.
+- **쿼리에 요청 context를 전달하세요.** `c.Request.Context()`를 사용하여 클라이언트가 연결을 끊거나 타임아웃이 발생하면 장시간 실행 쿼리가 취소되도록 하세요.
+- **`defer`로 `*sql.Rows`를 닫으세요.** rows를 닫지 않으면 풀에 연결이 누수됩니다.
 
-## See also
+## 참고
 
-- [Custom HTTP configuration](/en/docs/server-config/custom-http-config/)
-- [Custom Middleware](/en/docs/middleware/custom-middleware/)
-- [Using middleware](/en/docs/middleware/using-middleware/)
+- [커스텀 HTTP 설정](/ko-kr/docs/server-config/custom-http-config/)
+- [커스텀 미들웨어](/ko-kr/docs/middleware/custom-middleware/)
+- [미들웨어 사용하기](/ko-kr/docs/middleware/using-middleware/)

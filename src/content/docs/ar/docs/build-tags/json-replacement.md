@@ -1,18 +1,18 @@
 ---
-title: "Build with JSON replacement"
+title: "البناء مع استبدال JSON"
 sidebar:
   order: 1
 ---
 
-Gin uses the standard library `encoding/json` package for JSON serialization and deserialization by default. The standard library encoder is well-tested and fully compatible, but it is not the fastest option available. If JSON performance is a bottleneck in your application -- for example, in high-throughput APIs that serialize large response payloads -- you can swap in a faster drop-in replacement at build time using build tags. No code changes are required.
+يستخدم Gin حزمة `encoding/json` من المكتبة القياسية لتسلسل وإلغاء تسلسل JSON افتراضياً. مُرمّز المكتبة القياسية مُختبر جيداً ومتوافق بالكامل، لكنه ليس الخيار الأسرع المتاح. إذا كان أداء JSON يمثل عنق زجاجة في تطبيقك -- مثلاً في واجهات برمجية عالية الإنتاجية تقوم بتسلسل حمولات استجابة كبيرة -- يمكنك استبداله ببديل أسرع في وقت البناء باستخدام علامات البناء. لا يلزم إجراء تغييرات في الكود.
 
-## Available replacements
+## البدائل المتاحة
 
-Gin supports three alternative JSON encoders. Each one implements the same interface that Gin expects, so your handlers, middleware, and binding logic continue to work without modification.
+يدعم Gin ثلاثة مُرمّزات JSON بديلة. كل واحد ينفّذ نفس الواجهة التي يتوقعها Gin، لذا تستمر معالجاتك ووسيطاتك ومنطق الربط في العمل دون تعديل.
 
 ### go-json
 
-[go-json](https://github.com/goccy/go-json) is a pure-Go JSON encoder that offers significant performance improvements over `encoding/json` while maintaining full compatibility. It works on all platforms and architectures.
+[go-json](https://github.com/goccy/go-json) هو مُرمّز JSON مكتوب بالكامل بلغة Go يوفر تحسينات أداء كبيرة مقارنة بـ `encoding/json` مع الحفاظ على التوافق الكامل. يعمل على جميع المنصات والبنيات.
 
 ```sh
 go build -tags=go_json .
@@ -20,7 +20,7 @@ go build -tags=go_json .
 
 ### jsoniter
 
-[jsoniter](https://github.com/json-iterator/go) (json-iterator) is another pure-Go, high-performance JSON library. It is API-compatible with `encoding/json` and provides a flexible configuration system for advanced use cases.
+[jsoniter](https://github.com/json-iterator/go) (json-iterator) هو مكتبة JSON أخرى عالية الأداء مكتوبة بالكامل بلغة Go. متوافقة مع واجهة `encoding/json` البرمجية وتوفر نظام تكوين مرن لحالات الاستخدام المتقدمة.
 
 ```sh
 go build -tags=jsoniter .
@@ -28,30 +28,30 @@ go build -tags=jsoniter .
 
 ### sonic
 
-[sonic](https://github.com/bytedance/sonic) is a blazing-fast JSON encoder developed by ByteDance. It uses JIT compilation and SIMD instructions to achieve maximum throughput, making it the fastest option among the three.
+[sonic](https://github.com/bytedance/sonic) هو مُرمّز JSON فائق السرعة طوّرته ByteDance. يستخدم تجميع JIT وتعليمات SIMD لتحقيق أقصى إنتاجية، مما يجعله الخيار الأسرع بين الثلاثة.
 
 ```sh
 go build -tags="sonic avx" .
 ```
 
 :::note
-Sonic requires a CPU with AVX instruction support. This is available on most modern x86_64 processors (Intel Sandy Bridge and later, AMD Bulldozer and later), but it will not work on ARM architectures or older x86 hardware. If your deployment target does not support AVX, use go-json or jsoniter instead.
+يتطلب Sonic معالجاً يدعم تعليمات AVX. هذا متاح في معظم معالجات x86_64 الحديثة (Intel Sandy Bridge وما بعده، AMD Bulldozer وما بعده)، لكنه لن يعمل على بنيات ARM أو أجهزة x86 القديمة. إذا كان هدف النشر لا يدعم AVX، استخدم go-json أو jsoniter بدلاً من ذلك.
 :::
 
-## Choosing a replacement
+## اختيار البديل
 
-| Encoder | Platform support | Key strength |
+| المُرمّز | دعم المنصات | القوة الرئيسية |
 |---|---|---|
-| `encoding/json` (default) | All | Maximum compatibility, no extra dependency |
-| go-json | All | Good speedup, pure Go, broad compatibility |
-| jsoniter | All | Good speedup, flexible configuration |
-| sonic | x86_64 with AVX only | Highest throughput via JIT and SIMD |
+| `encoding/json` (الافتراضي) | الكل | أقصى توافق، بدون اعتماديات إضافية |
+| go-json | الكل | تسريع جيد، Go نقي، توافق واسع |
+| jsoniter | الكل | تسريع جيد، تكوين مرن |
+| sonic | x86_64 مع AVX فقط | أعلى إنتاجية عبر JIT و SIMD |
 
-For most applications, **go-json** is a safe and effective choice -- it works everywhere and provides meaningful performance gains. Choose **sonic** when you need maximum JSON throughput and your servers run on x86_64 hardware. Choose **jsoniter** if you need its specific configuration features or are already using it elsewhere in your codebase.
+لمعظم التطبيقات، يُعد **go-json** خياراً آمناً وفعّالاً -- يعمل في كل مكان ويوفر مكاسب أداء ملموسة. اختر **sonic** عندما تحتاج أقصى إنتاجية JSON وخوادمك تعمل على أجهزة x86_64. اختر **jsoniter** إذا كنت تحتاج ميزات التكوين الخاصة به أو تستخدمه بالفعل في مكان آخر في قاعدة الكود.
 
-## Verifying the replacement
+## التحقق من البديل
 
-You can confirm that the replacement is active by comparing serialization performance with a simple benchmark, or by checking the binary's symbol table:
+يمكنك التأكد من أن البديل نشط بمقارنة أداء التسلسل باختبار بسيط، أو بفحص جدول الرموز في الملف الثنائي:
 
 ```sh
 # Build with go-json
@@ -61,7 +61,7 @@ go build -tags=go_json -o myapp .
 go tool nm myapp | grep goccy
 ```
 
-The build tag also works with other Go commands:
+تعمل علامة البناء أيضاً مع أوامر Go الأخرى:
 
 ```sh
 go run -tags=go_json .
@@ -69,5 +69,5 @@ go test -tags=go_json ./...
 ```
 
 :::note
-Only use one JSON replacement tag at a time. If you specify multiple JSON tags (e.g., `-tags=go_json,jsoniter`), the behavior is undefined. The `nomsgpack` tag can be safely combined with any JSON replacement tag.
+استخدم علامة استبدال JSON واحدة فقط في كل مرة. إذا حددت علامات JSON متعددة (مثل `-tags=go_json,jsoniter`)، يكون السلوك غير محدد. يمكن دمج علامة `nomsgpack` بأمان مع أي علامة استبدال JSON.
 :::

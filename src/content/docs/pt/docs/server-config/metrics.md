@@ -113,12 +113,12 @@ Use `c.FullPath()` (ex.: `/user/:id`) em vez de `c.Request.URL.Path` (ex.: `/use
 
 Para uma aplicação Gin em produção, acompanhe estas métricas:
 
-| Metric | Type | Purpose |
+| Métrica | Tipo | Propósito |
 |--------|------|---------|
-| `http_requests_total` | Counter | Total request count by method, path, status |
-| `http_request_duration_seconds` | Histogram | Request latency distribution |
-| `http_requests_in_flight` | Gauge | Currently processing requests |
-| `http_response_size_bytes` | Histogram | Response body sizes |
+| `http_requests_total` | Counter | Contagem total de requisições por método, caminho e status |
+| `http_request_duration_seconds` | Histogram | Distribuição de latência das requisições |
+| `http_requests_in_flight` | Gauge | Requisições sendo processadas atualmente |
+| `http_response_size_bytes` | Histogram | Tamanhos do corpo da resposta |
 
 ## Servindo métricas em uma porta separada
 

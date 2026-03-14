@@ -1,14 +1,14 @@
 ---
-title: "Metrics and Monitoring"
+title: "Метрики и мониторинг"
 sidebar:
   order: 13
 ---
 
-Exposing application metrics allows you to monitor request rates, latencies, error rates, and resource usage in production. [Prometheus](https://prometheus.io/) is the most common monitoring system used with Go applications.
+Экспорт метрик приложения позволяет отслеживать частоту запросов, задержки, частоту ошибок и использование ресурсов в продакшене. [Prometheus](https://prometheus.io/) — наиболее распространённая система мониторинга, используемая с приложениями на Go.
 
-## Using gin-contrib/openmetrics
+## Использование gin-contrib/openmetrics
 
-The [gin-contrib/openmetrics](https://github.com/gin-contrib/openmetrics) middleware provides a ready-to-use Prometheus metrics endpoint:
+Middleware [gin-contrib/openmetrics](https://github.com/gin-contrib/openmetrics) предоставляет готовый к использованию эндпоинт метрик Prometheus:
 
 ```sh
 go get github.com/gin-contrib/openmetrics
@@ -36,9 +36,9 @@ func main() {
 }
 ```
 
-## Custom Prometheus metrics
+## Пользовательские метрики Prometheus
 
-For more control, use the [prometheus/client_golang](https://github.com/prometheus/client_golang) library directly:
+Для большего контроля используйте библиотеку [prometheus/client_golang](https://github.com/prometheus/client_golang) напрямую:
 
 ```go
 package main
@@ -106,23 +106,23 @@ func main() {
 ```
 
 :::note
-Use `c.FullPath()` (e.g., `/user/:id`) instead of `c.Request.URL.Path` (e.g., `/user/123`) for the path label. This prevents high-cardinality labels that can overwhelm Prometheus.
+Используйте `c.FullPath()` (например, `/user/:id`) вместо `c.Request.URL.Path` (например, `/user/123`) для метки пути. Это предотвращает создание меток с высокой кардинальностью, которые могут перегрузить Prometheus.
 :::
 
-## Key metrics to monitor
+## Ключевые метрики для мониторинга
 
-For a production Gin application, track these metrics:
+Для приложения Gin в продакшене отслеживайте следующие метрики:
 
-| Metric | Type | Purpose |
+| Метрика | Тип | Назначение |
 |--------|------|---------|
-| `http_requests_total` | Counter | Total request count by method, path, status |
-| `http_request_duration_seconds` | Histogram | Request latency distribution |
-| `http_requests_in_flight` | Gauge | Currently processing requests |
-| `http_response_size_bytes` | Histogram | Response body sizes |
+| `http_requests_total` | Counter | Общее количество запросов по методу, пути, статусу |
+| `http_request_duration_seconds` | Histogram | Распределение задержек запросов |
+| `http_requests_in_flight` | Gauge | Запросы, обрабатываемые в данный момент |
+| `http_response_size_bytes` | Histogram | Размеры тел ответов |
 
-## Serving metrics on a separate port
+## Метрики на отдельном порту
 
-In production, serve metrics on a separate port to keep them internal:
+В продакшене раздавайте метрики на отдельном порту, чтобы они были доступны только внутри:
 
 ```go
 package main
@@ -152,11 +152,11 @@ func main() {
 }
 ```
 
-This way, you can expose port 8080 publicly while keeping port 9090 internal to your infrastructure.
+Таким образом, вы можете открыть порт 8080 публично, а порт 9090 оставить внутренним для вашей инфраструктуры.
 
-## Prometheus scrape configuration
+## Конфигурация сбора метрик Prometheus
 
-Add your application to the Prometheus configuration:
+Добавьте ваше приложение в конфигурацию Prometheus:
 
 ```yaml
 # prometheus.yml
@@ -167,7 +167,7 @@ scrape_configs:
       - targets: ["localhost:9090"]
 ```
 
-## Testing
+## Тестирование
 
 ```sh
 # Generate some traffic
@@ -177,7 +177,7 @@ curl http://localhost:8080/ping
 curl http://localhost:9090/metrics
 ```
 
-You should see output like:
+Вы должны увидеть вывод вроде:
 
 ```
 # HELP http_requests_total Total number of HTTP requests
@@ -190,7 +190,7 @@ http_request_duration_seconds_bucket{method="GET",path="/ping",le="0.005"} 1
 ...
 ```
 
-## See also
+## Смотрите также
 
-- [Health Checks](/en/docs/server-config/health-check/)
-- [Run multiple service](/en/docs/server-config/run-multiple-service/)
+- [Проверки работоспособности](/ru/docs/server-config/health-check/)
+- [Запуск нескольких сервисов](/ru/docs/server-config/run-multiple-service/)

@@ -1,16 +1,16 @@
 ---
-title: "How to Build an Effective Middleware"
-linkTitle: "How to Build an Effective Middleware"
+title: "نحوه ساخت یک میان‌افزار مؤثر"
+linkTitle: "نحوه ساخت یک میان‌افزار مؤثر"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## اجزای تشکیل‌دهنده
 
-Middleware typically consists of two parts:
+میان‌افزار معمولاً از دو بخش تشکیل شده است:
 
-- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
+- بخش اول یک بار اجرا می‌شود، زمانی که میان‌افزار خود را مقداردهی اولیه می‌کنید. اینجاست که اشیاء سراسری، منطق پیکربندی و غیره را تنظیم می‌کنید -- همه چیزی که فقط یک بار در طول عمر برنامه نیاز به اتفاق افتادن دارد.
 
-- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
+- بخش دوم در هر درخواست اجرا می‌شود. مثلاً در یک میان‌افزار پایگاه داده، شیء سراسری پایگاه داده خود را به context درخواست تزریق می‌کنید. وقتی در context قرار گرفت، سایر میان‌افزارها و توابع handler شما می‌توانند آن را بازیابی و استفاده کنند.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -33,9 +33,9 @@ func funcName(params string) gin.HandlerFunc {
 }
 ```
 
-## Execution process
+## فرآیند اجرا
 
-Let's look at the following example code:
+بیایید کد مثال زیر را بررسی کنیم:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
+بر اساس بخش [اجزای تشکیل‌دهنده](#اجزای-تشکیلدهنده) بالا، وقتی فرآیند Gin را اجرا می‌کنید، ابتدا **بخش اول** هر میان‌افزار اجرا شده و اطلاعات زیر را چاپ می‌کند:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-The initialization order is:
+ترتیب مقداردهی اولیه به شکل زیر است:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
+وقتی درخواستی ارسال می‌کنید -- مثلاً `curl -v localhost:8080/rest/n/api/some` -- **بخش دوم** هر میان‌افزار به ترتیب اجرا شده و خروجی زیر را تولید می‌کند:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, the execution order is:
+به عبارت دیگر، ترتیب اجرا به شکل زیر است:
 
 ```go
 globalMiddleware...2

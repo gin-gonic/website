@@ -1,22 +1,22 @@
 ---
-title: "Gin 1.8.0 is released"
-linkTitle: "Gin 1.8.0 is released"
+title: "Gin 1.8.0 ha sido publicado"
+linkTitle: "Gin 1.8.0 ha sido publicado"
 lastUpdated: 2022-05-30
 ---
 
 ### CHANGELOG
 
-#### Break Changes
+#### Cambios incompatibles
   * TrustedProxies: Add default IPv6 support and refactor ([#2967](https://github.com/gin-gonic/gin/pull/2967)). Please replace `RemoteIP() (net.IP, bool)` with `RemoteIP() net.IP`
   * gin.Context with fallback value from gin.Context.Request.Context() ([#2751](https://github.com/gin-gonic/gin/pull/2751))
 
-#### BUGFIXES
+#### CORRECCIONES DE ERRORES
   * Fixed SetOutput() panics on go 1.17 ([#2861](https://github.com/gin-gonic/gin/pull/2861))
   * Fix: wrong when wildcard follows named param ([#2983](https://github.com/gin-gonic/gin/pull/2983))
   * Fix: missing sameSite when do context.reset() ([#3123](https://github.com/gin-gonic/gin/pull/3123))
 
 
-#### ENHANCEMENTS
+#### MEJORAS
   * Use Header() instead of deprecated HeaderMap ([#2694](https://github.com/gin-gonic/gin/pull/2694))
   * RouterGroup.Handle regular match optimization of http method ([#2685](https://github.com/gin-gonic/gin/pull/2685))
   * Add support go-json, another drop-in json replacement ([#2680](https://github.com/gin-gonic/gin/pull/2680))
@@ -40,5 +40,5 @@ lastUpdated: 2022-05-30
   * Add TOML binding for gin ([#3081](https://github.com/gin-gonic/gin/pull/3081))
   * IPv6 add default trusted proxies ([#3033](https://github.com/gin-gonic/gin/pull/3033))
 
-#### DOCS
+#### DOCUMENTACIÓN
   * Add note about nomsgpack tag to the readme ([#2703](https://github.com/gin-gonic/gin/pull/2703))

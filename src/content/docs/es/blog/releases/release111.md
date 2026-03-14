@@ -1,12 +1,12 @@
 ---
-title: "Gin 1.11.0 is released"
-linkTitle: "Gin 1.11.0 is released"
+title: "Gin 1.11.0 ha sido publicado"
+linkTitle: "Gin 1.11.0 ha sido publicado"
 lastUpdated: 2025-09-20
 ---
 
 ## Gin v1.11.0
 
-### Features
+### Características
 
 * feat(gin): Experimental support for HTTP/3 using quic-go/quic-go ([#3210](https://github.com/gin-gonic/gin/pull/3210))
 * feat(form): add array collection format in form binding ([#3986](https://github.com/gin-gonic/gin/pull/3986)), add custom string slice for form tag unmarshal ([#3970](https://github.com/gin-gonic/gin/pull/3970))
@@ -16,7 +16,7 @@ lastUpdated: 2025-09-20
 * feat(form): Support default values for collections in form binding ([#4048](https://github.com/gin-gonic/gin/pull/4048))
 * feat(context): GetXxx added support for more go native types ([#3633](https://github.com/gin-gonic/gin/pull/3633))
 
-### Enhancements
+### Mejoras
 
 * perf(context): optimize getMapFromFormData performance ([#4339](https://github.com/gin-gonic/gin/pull/4339))
 * refactor(tree): replace string(/) with "/" in node.insertChild ([#4354](https://github.com/gin-gonic/gin/pull/4354))
@@ -32,7 +32,7 @@ lastUpdated: 2025-09-20
 * tree: replace the self-defined 'min' to official one ([#3975](https://github.com/gin-gonic/gin/pull/3975))
 * context: Remove redundant filepath.Dir usage ([#4181](https://github.com/gin-gonic/gin/pull/4181))
 
-### Bug Fixes
+### Correcciones de errores
 
 * fix: prevent middleware re-entry issue in HandleContext ([#3987](https://github.com/gin-gonic/gin/pull/3987))
 * fix(binding): prevent duplicate decoding and add validation in decodeToml ([#4193](https://github.com/gin-gonic/gin/pull/4193))
@@ -44,7 +44,7 @@ lastUpdated: 2025-09-20
 * fix(readme): fix broken link to English documentation ([#4222](https://github.com/gin-gonic/gin/pull/4222))
 * fix(tree): Keep panic infos consistent when wildcard type build faild ([#4077](https://github.com/gin-gonic/gin/pull/4077))
 
-### Build process updates / CI
+### Actualizaciones del proceso de compilación / CI
 
 * ci: integrate Trivy vulnerability scanning into CI workflow ([#4359](https://github.com/gin-gonic/gin/pull/4359))
 * ci: support Go 1.25 in CI/CD ([#4341](https://github.com/gin-gonic/gin/pull/4341))
@@ -54,7 +54,7 @@ lastUpdated: 2025-09-20
 * ci(lint): enable new linters (testifylint, usestdlibvars, perfsprint, etc.) ([#4010](https://github.com/gin-gonic/gin/pull/4010), [#4091](https://github.com/gin-gonic/gin/pull/4091), [#4090](https://github.com/gin-gonic/gin/pull/4090))
 * ci(lint): update workflows and improve test request consistency ([#4126](https://github.com/gin-gonic/gin/pull/4126))
 
-### Dependency updates
+### Actualizaciones de dependencias
 
 * chore(deps): bump google.golang.org/protobuf from 1.36.6 to 1.36.9 ([#4346](https://github.com/gin-gonic/gin/pull/4346), [#4356](https://github.com/gin-gonic/gin/pull/4356))
 * chore(deps): bump github.com/stretchr/testify from 1.10.0 to 1.11.1 ([#4347](https://github.com/gin-gonic/gin/pull/4347))
@@ -63,7 +63,7 @@ lastUpdated: 2025-09-20
 * chore(deps): bump golang.org/x/net from 0.33.0 to 0.38.0 ([#4178](https://github.com/gin-gonic/gin/pull/4178), [#4221](https://github.com/gin-gonic/gin/pull/4221))
 * chore(deps): bump github.com/go-playground/validator/v10 from 10.20.0 to 10.22.1 ([#4052](https://github.com/gin-gonic/gin/pull/4052))
 
-### Documentation updates
+### Actualizaciones de documentación
 
 * docs(changelog): update release notes for Gin v1.10.1 ([#4360](https://github.com/gin-gonic/gin/pull/4360))
 * docs: Fixing English grammar mistakes and awkward sentence structure in doc/doc.md ([#4207](https://github.com/gin-gonic/gin/pull/4207))

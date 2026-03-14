@@ -4,9 +4,9 @@ sidebar:
   order: 6
 ---
 
-> **Note:** HTTP/2 Server Push has been deprecated by major browsers (Chrome removed support in 2022). Consider using `103 Early Hints` or `<link rel="preload">` instead. This example is kept for reference.
+> **توجه:** HTTP/2 Server Push توسط مرورگرهای اصلی منسوخ شده است (Chrome پشتیبانی را در ۲۰۲۲ حذف کرد). استفاده از `103 Early Hints` یا `<link rel="preload">` را در نظر بگیرید. این مثال برای مرجع نگهداری شده است.
 
-http.Pusher is supported only **go1.8+**. See the [golang blog](https://blog.golang.org/h2push) for detail information.
+http.Pusher فقط در **go1.8+** پشتیبانی می‌شود. برای اطلاعات جزئی [بلاگ golang](https://blog.golang.org/h2push) را ببینید.
 
 ```go
 package main
@@ -51,4 +51,3 @@ func main() {
   router.RunTLS(":8080", "./testdata/server.pem", "./testdata/server.key")
 }
 ```
-

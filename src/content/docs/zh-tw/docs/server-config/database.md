@@ -79,10 +79,10 @@ db.SetConnMaxLifetime(5 * time.Minute)
 db.SetConnMaxIdleTime(1 * time.Minute)
 ```
 
-- `SetMaxOpenConns` prevents your application from overwhelming the database server under high load.
-- `SetMaxIdleConns` keeps warm connections ready so new requests avoid the cost of dialling.
-- `SetConnMaxLifetime` rotates connections so your app picks up DNS changes and does not hold stale server-side sessions.
-- `SetConnMaxIdleTime` closes connections that have been idle too long, freeing resources on both sides.
+- `SetMaxOpenConns` 防止你的應用程式在高負載下壓垮資料庫伺服器。
+- `SetMaxIdleConns` 保持暖連線就緒，這樣新請求就不需要建立連線的成本。
+- `SetConnMaxLifetime` 輪替連線，讓你的應用程式能取得 DNS 變更，且不會持有過時的伺服器端 Session。
+- `SetConnMaxIdleTime` 關閉閒置過久的連線，釋放雙方的資源。
 
 ## 依賴注入模式
 

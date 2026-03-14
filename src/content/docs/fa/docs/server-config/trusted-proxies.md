@@ -1,33 +1,24 @@
 ---
-title: "Trusted proxies"
+title: "پروکسی‌های مورد اعتماد"
 sidebar:
   order: 8
 ---
 
-Gin lets you specify which headers to hold the real client IP (if any),
-as well as specifying which proxies (or direct clients) you trust to
-specify one of these headers.
+Gin به شما اجازه می‌دهد مشخص کنید کدام هدرها IP واقعی کلاینت را نگهداری می‌کنند (در صورت وجود)، و همچنین مشخص کنید به کدام پروکسی‌ها (یا کلاینت‌های مستقیم) برای تنظیم یکی از این هدرها اعتماد دارید.
 
-### Why trusted proxy configuration matters
+### چرا پیکربندی پروکسی مورد اعتماد مهم است
 
-When your application sits behind a reverse proxy (Nginx, HAProxy, a cloud load balancer, etc.), the proxy forwards the original client's IP address in headers like `X-Forwarded-For` or `X-Real-Ip`. The problem is that **any client can set these headers**. Without proper trusted proxy configuration, an attacker can forge `X-Forwarded-For` to:
+وقتی برنامه شما پشت یک پروکسی معکوس (Nginx، HAProxy، متعادل‌کننده بار ابری و غیره) قرار دارد، پروکسی آدرس IP اصلی کلاینت را در هدرهایی مانند `X-Forwarded-For` یا `X-Real-Ip` ارسال می‌کند. مشکل این است که **هر کلاینتی می‌تواند این هدرها را تنظیم کند**. بدون پیکربندی مناسب پروکسی مورد اعتماد، یک مهاجم می‌تواند `X-Forwarded-For` را جعل کند تا:
 
-- **Bypass IP-based access controls** -- If your application restricts certain routes to an internal IP range (e.g., `10.0.0.0/8`), an attacker can send `X-Forwarded-For: 10.0.0.1` from a public IP and bypass the restriction entirely.
-- **Poison logs and audit trails** -- Forged IPs make incident investigation unreliable because you can no longer trace requests back to the real source.
-- **Evade rate limiting** -- If rate limiting is keyed on `ClientIP()`, each request can claim a different IP address to avoid being throttled.
+- **کنترل‌های دسترسی مبتنی بر IP را دور بزند** -- اگر برنامه شما مسیرهای خاصی را به محدوده IP داخلی (مثلاً `10.0.0.0/8`) محدود می‌کند، مهاجم می‌تواند `X-Forwarded-For: 10.0.0.1` را از یک IP عمومی ارسال کرده و محدودیت را کاملاً دور بزند.
+- **لاگ‌ها و رد حسابرسی را مسموم کند** -- IPهای جعلی بررسی حوادث را غیرقابل اعتماد می‌کنند زیرا دیگر نمی‌توانید درخواست‌ها را به منبع واقعی ردیابی کنید.
+- **محدودیت نرخ را فرار کند** -- اگر محدودیت نرخ بر اساس `ClientIP()` کلید خورده باشد، هر درخواست می‌تواند یک آدرس IP متفاوت ادعا کند تا از throttle شدن جلوگیری کند.
 
-`SetTrustedProxies` solves this by telling Gin which network addresses are legitimate proxies. When `ClientIP()` parses the `X-Forwarded-For` chain, it only trusts entries added by those proxies and discards anything a client may have prepended. If a request arrives directly (not from a trusted proxy), the forwarding headers are ignored entirely and the raw remote address is used.
+`SetTrustedProxies` این مشکل را با گفتن به Gin حل می‌کند که کدام آدرس‌های شبکه پروکسی‌های مشروع هستند. وقتی `ClientIP()` زنجیره `X-Forwarded-For` را تجزیه می‌کند، فقط به ورودی‌هایی که توسط آن پروکسی‌ها اضافه شده‌اند اعتماد می‌کند و هر چیزی که کلاینت ممکن است اضافه کرده باشد را نادیده می‌گیرد.
 
-Use function `SetTrustedProxies()` on your `gin.Engine` to specify network addresses
-or network CIDRs from where clients which their request headers related to client
-IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs, IPv6 addresses or
-IPv6 CIDRs.
+از تابع `SetTrustedProxies()` روی `gin.Engine` خود برای مشخص کردن آدرس‌های شبکه یا CIDRهای شبکه استفاده کنید که کلاینت‌ها از آن‌ها هدرهای درخواست مربوط به IP کلاینت قابل اعتماد هستند. آن‌ها می‌توانند آدرس‌های IPv4، CIDRهای IPv4، آدرس‌های IPv6 یا CIDRهای IPv6 باشند.
 
-**Attention:** Gin trusts all proxies by default if you don't specify a trusted
-proxy using the function above, **this is NOT safe**. At the same time, if you don't
-use any proxy, you can disable this feature by using `Engine.SetTrustedProxies(nil)`,
-then `Context.ClientIP()` will return the remote address directly to avoid some
-unnecessary computation.
+**توجه:** Gin به طور پیش‌فرض به تمام پروکسی‌ها اعتماد می‌کند اگر با استفاده از تابع بالا یک پروکسی مورد اعتماد مشخص نکنید، **این ایمن نیست**. در عین حال، اگر از هیچ پروکسی‌ای استفاده نمی‌کنید، می‌توانید این ویژگی را با استفاده از `Engine.SetTrustedProxies(nil)` غیرفعال کنید، سپس `Context.ClientIP()` آدرس remote را مستقیماً برمی‌گرداند تا از محاسبات غیرضروری جلوگیری شود.
 
 ```go
 import (
@@ -51,9 +42,7 @@ func main() {
 }
 ```
 
-**Notice:** If you are using a CDN service, you can set the `Engine.TrustedPlatform`
-to skip TrustedProxies check, it has a higher priority than TrustedProxies.
-Look at the example below:
+**توجه:** اگر از سرویس CDN استفاده می‌کنید، می‌توانید `Engine.TrustedPlatform` را تنظیم کنید تا بررسی TrustedProxies را رد کنید، این اولویت بالاتری از TrustedProxies دارد. مثال زیر را ببینید:
 
 ```go
 import (

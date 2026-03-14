@@ -1,63 +1,63 @@
 ---
-title: "Deployment"
+title: "استقرار"
 sidebar:
   order: 10
 ---
 
-Gin projects can be deployed easily on any cloud provider.
+پروژه‌های Gin به راحتی روی هر ارائه‌دهنده ابری قابل استقرار هستند.
 
 ## [Railway](https://www.railway.com)
 
-Railway is a cutting-edge cloud development platform for deploying, managing, and scaling applications and services. It simplifies your infrastructure stack from servers to observability with a single, scalable, easy-to-use platform.
+Railway یک پلتفرم توسعه ابری پیشرفته برای استقرار، مدیریت و مقیاس‌بندی برنامه‌ها و سرویس‌ها است. این پلتفرم پشته زیرساخت شما را از سرورها تا قابلیت مشاهده با یک پلتفرم واحد، مقیاس‌پذیر و آسان ساده می‌کند.
 
-Follow the Railway [guide to deploy your Gin projects](https://docs.railway.com/guides/gin).
+راهنمای Railway برای [استقرار پروژه‌های Gin](https://docs.railway.com/guides/gin) را دنبال کنید.
 
 ## [Seenode](https://seenode.com)
 
-Seenode is a modern cloud platform designed specifically for developers who want to deploy applications quickly and efficiently. It offers git-based deployment, automatic SSL certificates, built-in databases, and a streamlined interface that gets your Gin applications live in minutes.
+Seenode یک پلتفرم ابری مدرن است که به طور خاص برای توسعه‌دهندگانی طراحی شده که می‌خواهند برنامه‌ها را سریع و کارآمد مستقر کنند. استقرار مبتنی بر git، گواهی‌های SSL خودکار، پایگاه‌های داده داخلی و یک رابط ساده ارائه می‌دهد که برنامه‌های Gin شما را در عرض چند دقیقه فعال می‌کند.
 
-Follow the Seenode [guide to deploy your Gin projects](https://seenode.com/docs/frameworks/go/gin).
+راهنمای Seenode برای [استقرار پروژه‌های Gin](https://seenode.com/docs/frameworks/go/gin) را دنبال کنید.
 
 ## [Koyeb](https://www.koyeb.com)
 
-Koyeb is a developer-friendly serverless platform to deploy apps globally with git-based deployment, TLS encryption, native autoscaling, a global edge network, and built-in service mesh & discovery.
+Koyeb یک پلتفرم serverless دوستدار توسعه‌دهنده برای استقرار جهانی برنامه‌ها با استقرار مبتنی بر git، رمزنگاری TLS، مقیاس‌بندی خودکار بومی، شبکه edge جهانی و service mesh و discovery داخلی است.
 
-Follow the Koyeb [guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+راهنمای Koyeb برای [استقرار پروژه‌های Gin](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb) را دنبال کنید.
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery provides free Cloud hosting with databases, SSL, a global CDN, and automatic deploys with Git.
+Qovery میزبانی رایگان ابری با پایگاه‌های داده، SSL، CDN جهانی و استقرار خودکار با Git ارائه می‌دهد.
 
-See [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) for more information.
+برای اطلاعات بیشتر [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) را ببینید.
 
 ## [Render](https://render.com)
 
-Render is a modern cloud platform that offers native support for Go, fully managed SSL, databases, zero-downtime deploys, HTTP/2, and websocket support.
+Render یک پلتفرم ابری مدرن است که پشتیبانی بومی از Go، SSL کاملاً مدیریت شده، پایگاه‌های داده، استقرار بدون قطعی، HTTP/2 و پشتیبانی websocket ارائه می‌دهد.
 
-Follow the Render [guide to deploying Gin projects](https://render.com/docs/deploy-go-gin).
+راهنمای Render برای [استقرار پروژه‌های Gin](https://render.com/docs/deploy-go-gin) را دنبال کنید.
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE has two ways to deploy Go applications. The standard environment is easier to use but less customizable and prevents [syscalls](https://github.com/gin-gonic/gin/issues/1639) for security reasons. The flexible environment can run any framework or library.
+GAE دو روش برای استقرار برنامه‌های Go دارد. محیط استاندارد استفاده آسان‌تری دارد اما قابلیت سفارشی‌سازی کمتری دارد و به دلایل امنیتی [فراخوانی‌های سیستمی](https://github.com/gin-gonic/gin/issues/1639) را ممنوع می‌کند. محیط انعطاف‌پذیر می‌تواند هر فریم‌ورک یا کتابخانه‌ای را اجرا کند.
 
-Learn more and pick your preferred environment at [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+بیشتر بیاموزید و محیط مورد نظر خود را در [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/) انتخاب کنید.
 
-## Self Hosted
+## میزبانی شخصی
 
-Gin projects can also be deployed in a self-hosted manner. Deployment architecture and security considerations vary depending on the target environment. The following section only presents a high level overview of configuration options to consider when planning the deployment.
+پروژه‌های Gin همچنین می‌توانند به صورت خودمیزبان مستقر شوند. معماری استقرار و ملاحظات امنیتی بسته به محیط هدف متفاوت است. بخش زیر فقط یک نمای کلی از گزینه‌های پیکربندی قابل بررسی هنگام برنامه‌ریزی استقرار ارائه می‌دهد.
 
-## Configuration Options
+## گزینه‌های پیکربندی
 
-Gin project deployments can be tuned by using environment variables or directly in code.
+استقرار پروژه‌های Gin با استفاده از متغیرهای محیطی یا مستقیماً در کد قابل تنظیم است.
 
-The following environment variables are available for configuring Gin:
+متغیرهای محیطی زیر برای پیکربندی Gin موجود هستند:
 
-| Environment Variable | Description                                                                                                                                                                                                   |
+| متغیر محیطی | توضیحات |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PORT                 | The TCP port to listen on when starting the Gin server with `router.Run()` (i.e. without any arguments).                                                                                                      |
-| GIN_MODE             | Set to one of `debug`, `release`, or `test`. Handles management of Gin modes, such as when to emit debug outputs. Can also be set in code using `gin.SetMode(gin.ReleaseMode)` or `gin.SetMode(gin.TestMode)` |
+| PORT                 | پورت TCP برای گوش دادن هنگام شروع سرور Gin با `router.Run()` (یعنی بدون آرگومان). |
+| GIN_MODE             | یکی از `debug`، `release` یا `test` را تنظیم کنید. مدیریت حالت‌های Gin مانند زمان تولید خروجی‌های اشکال‌زدایی را کنترل می‌کند. همچنین می‌توان در کد با `gin.SetMode(gin.ReleaseMode)` یا `gin.SetMode(gin.TestMode)` تنظیم کرد. |
 
-The following code can be used to configure Gin.
+کد زیر می‌تواند برای پیکربندی Gin استفاده شود.
 
 ```go
 // Don't specify the bind address or port for Gin. Defaults to binding on all interfaces on port 8080.
@@ -79,4 +79,4 @@ router := gin.Default()
 router.SetTrustedProxies([]string{"192.168.1.2"})
 ```
 
-For information on configuring trusted proxies, see [Trusted Proxies](/en/docs/server-config/trusted-proxies/).
+برای اطلاعات درباره پیکربندی پروکسی‌های مورد اعتماد، [پروکسی‌های مورد اعتماد](/fa/docs/server-config/trusted-proxies/) را ببینید.

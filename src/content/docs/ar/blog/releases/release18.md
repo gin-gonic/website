@@ -1,10 +1,10 @@
 ---
-title: "Gin 1.8.0 is released"
-linkTitle: "Gin 1.8.0 is released"
+title: "تم إصدار Gin 1.8.0"
+linkTitle: "تم إصدار Gin 1.8.0"
 lastUpdated: 2022-05-30
 ---
 
-### CHANGELOG
+### سجل التغييرات
 
 #### Break Changes
   * TrustedProxies: Add default IPv6 support and refactor ([#2967](https://github.com/gin-gonic/gin/pull/2967)). Please replace `RemoteIP() (net.IP, bool)` with `RemoteIP() net.IP`

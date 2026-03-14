@@ -1,10 +1,10 @@
 ---
-title: "Gin 1.6.0 is released"
-linkTitle: "Gin 1.6.0 is released"
+title: "تم إصدار Gin 1.6.0"
+linkTitle: "تم إصدار Gin 1.6.0"
 lastUpdated: 2020-03-22
 ---
 
-### CHANGELOG
+### سجل التغييرات
 
 #### BREAKING
   * chore(performance): Improve performance for adding RemoveExtraSlash flag [#2159](https://github.com/gin-gonic/gin/pull/2159)

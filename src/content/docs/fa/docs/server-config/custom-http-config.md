@@ -1,10 +1,10 @@
 ---
-title: "Custom HTTP configuration"
+title: "پیکربندی HTTP سفارشی"
 sidebar:
   order: 1
 ---
 
-Use `http.ListenAndServe()` directly, like this:
+از `http.ListenAndServe()` مستقیماً استفاده کنید، مانند:
 
 ```go
 import "net/http"
@@ -14,7 +14,7 @@ func main() {
   http.ListenAndServe(":8080", router)
 }
 ```
-or
+یا
 
 ```go
 import "net/http"

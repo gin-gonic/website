@@ -1,14 +1,14 @@
 ---
-title: "Metrics and Monitoring"
+title: "متریک‌ها و نظارت"
 sidebar:
   order: 13
 ---
 
-Exposing application metrics allows you to monitor request rates, latencies, error rates, and resource usage in production. [Prometheus](https://prometheus.io/) is the most common monitoring system used with Go applications.
+نمایش متریک‌های برنامه به شما امکان نظارت بر نرخ درخواست‌ها، تأخیرها، نرخ خطا و مصرف منابع در تولید را می‌دهد. [Prometheus](https://prometheus.io/) رایج‌ترین سیستم نظارت استفاده شده با برنامه‌های Go است.
 
-## Using gin-contrib/openmetrics
+## استفاده از gin-contrib/openmetrics
 
-The [gin-contrib/openmetrics](https://github.com/gin-contrib/openmetrics) middleware provides a ready-to-use Prometheus metrics endpoint:
+میان‌افزار [gin-contrib/openmetrics](https://github.com/gin-contrib/openmetrics) یک نقطه پایانی متریک‌های Prometheus آماده استفاده ارائه می‌دهد:
 
 ```sh
 go get github.com/gin-contrib/openmetrics
@@ -36,9 +36,9 @@ func main() {
 }
 ```
 
-## Custom Prometheus metrics
+## متریک‌های سفارشی Prometheus
 
-For more control, use the [prometheus/client_golang](https://github.com/prometheus/client_golang) library directly:
+برای کنترل بیشتر، مستقیماً از کتابخانه [prometheus/client_golang](https://github.com/prometheus/client_golang) استفاده کنید:
 
 ```go
 package main
@@ -106,23 +106,23 @@ func main() {
 ```
 
 :::note
-Use `c.FullPath()` (e.g., `/user/:id`) instead of `c.Request.URL.Path` (e.g., `/user/123`) for the path label. This prevents high-cardinality labels that can overwhelm Prometheus.
+از `c.FullPath()` (مثلاً `/user/:id`) به جای `c.Request.URL.Path` (مثلاً `/user/123`) برای برچسب مسیر استفاده کنید. این از برچسب‌های با cardinality بالا که می‌توانند Prometheus را تحت فشار قرار دهند جلوگیری می‌کند.
 :::
 
-## Key metrics to monitor
+## متریک‌های کلیدی برای نظارت
 
-For a production Gin application, track these metrics:
+برای یک برنامه Gin تولیدی، این متریک‌ها را ردیابی کنید:
 
-| Metric | Type | Purpose |
+| متریک | نوع | هدف |
 |--------|------|---------|
-| `http_requests_total` | Counter | Total request count by method, path, status |
-| `http_request_duration_seconds` | Histogram | Request latency distribution |
-| `http_requests_in_flight` | Gauge | Currently processing requests |
-| `http_response_size_bytes` | Histogram | Response body sizes |
+| `http_requests_total` | Counter | تعداد کل درخواست‌ها بر اساس متد، مسیر، وضعیت |
+| `http_request_duration_seconds` | Histogram | توزیع تأخیر درخواست |
+| `http_requests_in_flight` | Gauge | درخواست‌های در حال پردازش |
+| `http_response_size_bytes` | Histogram | حجم بدنه پاسخ |
 
-## Serving metrics on a separate port
+## ارائه متریک‌ها روی پورت جداگانه
 
-In production, serve metrics on a separate port to keep them internal:
+در تولید، متریک‌ها را روی پورت جداگانه ارائه دهید تا داخلی بمانند:
 
 ```go
 package main
@@ -152,11 +152,11 @@ func main() {
 }
 ```
 
-This way, you can expose port 8080 publicly while keeping port 9090 internal to your infrastructure.
+به این ترتیب، می‌توانید پورت 8080 را به صورت عمومی در معرض قرار دهید در حالی که پورت 9090 داخلی زیرساخت شما باقی می‌ماند.
 
-## Prometheus scrape configuration
+## پیکربندی scrape در Prometheus
 
-Add your application to the Prometheus configuration:
+برنامه خود را به پیکربندی Prometheus اضافه کنید:
 
 ```yaml
 # prometheus.yml
@@ -167,7 +167,7 @@ scrape_configs:
       - targets: ["localhost:9090"]
 ```
 
-## Testing
+## تست
 
 ```sh
 # Generate some traffic
@@ -177,7 +177,7 @@ curl http://localhost:8080/ping
 curl http://localhost:9090/metrics
 ```
 
-You should see output like:
+باید خروجی مانند زیر ببینید:
 
 ```
 # HELP http_requests_total Total number of HTTP requests
@@ -190,7 +190,7 @@ http_request_duration_seconds_bucket{method="GET",path="/ping",le="0.005"} 1
 ...
 ```
 
-## See also
+## همچنین ببینید
 
-- [Health Checks](/en/docs/server-config/health-check/)
-- [Run multiple service](/en/docs/server-config/run-multiple-service/)
+- [بررسی سلامت](/fa/docs/server-config/health-check/)
+- [اجرای سرویس‌های متعدد](/fa/docs/server-config/run-multiple-service/)

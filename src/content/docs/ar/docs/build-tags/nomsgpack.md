@@ -1,43 +1,43 @@
 ---
-title: "Build without MsgPack"
+title: "البناء بدون MsgPack"
 sidebar:
   order: 2
 ---
 
-[MsgPack](https://msgpack.org/) (MessagePack) is a compact binary serialization format -- think of it as a faster, smaller alternative to JSON. Gin includes MsgPack rendering and binding support by default, which means your application can accept and return MsgPack-encoded data out of the box using `c.Bind()` and `c.Render()` with the appropriate content type.
+[MsgPack](https://msgpack.org/) (MessagePack) هو تنسيق تسلسل ثنائي مضغوط -- فكر فيه كبديل أسرع وأصغر لـ JSON. يتضمن Gin دعم عرض وربط MsgPack افتراضياً، مما يعني أن تطبيقك يمكنه قبول وإرجاع بيانات مُرمّزة بـ MsgPack مباشرة باستخدام `c.Bind()` و`c.Render()` مع نوع المحتوى المناسب.
 
-However, many applications only use JSON and never need MsgPack. In that case, the MsgPack dependency adds unnecessary weight to your compiled binary. You can strip it out with the `nomsgpack` build tag.
+ومع ذلك، العديد من التطبيقات تستخدم JSON فقط ولا تحتاج MsgPack أبداً. في هذه الحالة، يضيف اعتماد MsgPack وزناً غير ضروري للملف الثنائي المُترجم. يمكنك إزالته باستخدام علامة البناء `nomsgpack`.
 
-## Building without MsgPack
+## البناء بدون MsgPack
 
-Pass the `nomsgpack` tag to `go build`:
+مرر علامة `nomsgpack` إلى `go build`:
 
 ```sh
 go build -tags=nomsgpack .
 ```
 
-This also works with other Go commands:
+هذا يعمل أيضاً مع أوامر Go الأخرى:
 
 ```sh
 go run -tags=nomsgpack .
 go test -tags=nomsgpack ./...
 ```
 
-## What changes
+## ما الذي يتغير
 
-When you build with `nomsgpack`, Gin excludes the MsgPack rendering and binding code at compile time. This has a few practical effects:
+عند البناء باستخدام `nomsgpack`، يستبعد Gin كود عرض وربط MsgPack في وقت التجميع. لهذا عدة تأثيرات عملية:
 
-- The compiled binary is smaller because the MsgPack serialization library is not linked in.
-- Any handler that attempts to render or bind MsgPack data will no longer work. If you use `c.ProtoBuf()` or other non-MsgPack renderers, those are unaffected.
-- All JSON, XML, YAML, TOML, and ProtoBuf features continue to work normally.
+- الملف الثنائي المُترجم أصغر لأن مكتبة تسلسل MsgPack لا تُربط.
+- أي معالج يحاول عرض أو ربط بيانات MsgPack لن يعمل بعد الآن. إذا كنت تستخدم `c.ProtoBuf()` أو عارضات أخرى غير MsgPack، فلن تتأثر.
+- جميع ميزات JSON وXML وYAML وTOML وProtoBuf تستمر في العمل بشكل طبيعي.
 
 :::note
-If your API does not serve MsgPack responses and you do not call `c.MsgPack()` anywhere, it is safe to use this tag. Your existing JSON and HTML handlers will behave identically.
+إذا كانت واجهتك البرمجية لا تقدم استجابات MsgPack ولا تستدعي `c.MsgPack()` في أي مكان، فمن الآمن استخدام هذه العلامة. ستتصرف معالجات JSON وHTML الحالية بشكل مطابق.
 :::
 
-## Verifying the result
+## التحقق من النتيجة
 
-You can confirm the binary size reduction by comparing builds:
+يمكنك التأكد من تقليل حجم الملف الثنائي بمقارنة البنائين:
 
 ```sh
 # Standard build
@@ -49,4 +49,4 @@ go build -tags=nomsgpack -o gin-app-nomsgpack .
 ls -lh gin-app-nomsgpack
 ```
 
-The exact savings depend on your application, but removing MsgPack typically shaves a small amount off the final binary. For more background, see the [original pull request](https://github.com/gin-gonic/gin/pull/1852).
+يعتمد التوفير الدقيق على تطبيقك، لكن إزالة MsgPack عادةً تقتطع مقداراً صغيراً من الملف الثنائي النهائي. لمزيد من المعلومات، راجع [طلب السحب الأصلي](https://github.com/gin-gonic/gin/pull/1852).

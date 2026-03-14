@@ -4,13 +4,13 @@ linkTitle: "如何建構有效的中介軟體"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## 組成部分
 
-Middleware typically consists of two parts:
+中介軟體通常由兩個部分組成：
 
-- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
+- 第一部分在你初始化中介軟體時執行一次。這是你設定全域物件、配置邏輯等的地方——所有只需要在應用程式生命週期中發生一次的事情。
 
-- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
+- 第二部分在每次請求時執行。例如，在資料庫中介軟體中，你會將全域資料庫物件注入到請求上下文中。一旦它在上下文中，其他中介軟體和處理函式就可以擷取和使用它。
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -33,9 +33,9 @@ func funcName(params string) gin.HandlerFunc {
 }
 ```
 
-## Execution process
+## 執行流程
 
-Let's look at the following example code:
+讓我們來看以下範例程式碼：
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
+根據上面的[組成部分](#組成部分)章節，當你執行 Gin 程序時，每個中介軟體的**第一部分**會先執行並列印以下資訊：
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-The initialization order is:
+初始化順序為：
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
+當你發送請求時——例如 `curl -v localhost:8080/rest/n/api/some`——每個中介軟體的**第二部分**會依序執行並輸出以下內容：
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, the execution order is:
+換句話說，執行順序為：
 
 ```go
 globalMiddleware...2

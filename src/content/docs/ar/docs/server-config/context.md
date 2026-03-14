@@ -1,14 +1,14 @@
 ---
-title: "Context and Cancellation"
+title: "السياق والإلغاء"
 sidebar:
   order: 11
 ---
 
-Every Gin handler receives a `*gin.Context`, which wraps Go's standard `context.Context` along with request and response helpers. Understanding how to use the underlying context correctly is essential for building production applications that handle timeouts, cancellation, and resource cleanup properly.
+كل معالج في Gin يستقبل `*gin.Context`، الذي يلف `context.Context` القياسي في Go مع مساعدات الطلب والاستجابة. فهم كيفية استخدام السياق الأساسي بشكل صحيح أمر أساسي لبناء تطبيقات إنتاجية تتعامل مع المهل الزمنية والإلغاء وتنظيف الموارد بشكل صحيح.
 
-## Accessing the request context
+## الوصول إلى سياق الطلب
 
-The standard `context.Context` for the current request is available through `c.Request.Context()`. This is the context you should pass to any downstream call -- database queries, HTTP requests, or other I/O operations.
+`context.Context` القياسي للطلب الحالي متاح عبر `c.Request.Context()`. هذا هو السياق الذي يجب تمريره إلى أي استدعاء لاحق -- استعلامات قاعدة البيانات، طلبات HTTP، أو عمليات الإدخال/الإخراج الأخرى.
 
 ```go
 package main
@@ -36,9 +36,9 @@ func main() {
 }
 ```
 
-## Request timeouts
+## مهل الطلبات الزمنية
 
-You can apply a timeout to individual requests using a middleware. When the timeout expires, the context is cancelled and any downstream call that respects context cancellation will return immediately.
+يمكنك تطبيق مهلة زمنية على الطلبات الفردية باستخدام وسيط. عند انتهاء المهلة، يتم إلغاء السياق وأي استدعاء لاحق يحترم إلغاء السياق سيعود فوراً.
 
 ```go
 package main
@@ -85,9 +85,9 @@ func main() {
 }
 ```
 
-## Passing context to database queries
+## تمرير السياق إلى استعلامات قاعدة البيانات
 
-Database drivers in Go accept a `context.Context` as the first argument. Always pass the request context so that queries are automatically cancelled if the client disconnects or the request times out.
+تقبل برامج تشغيل قواعد البيانات في Go `context.Context` كأول وسيطة. مرر دائماً سياق الطلب حتى يتم إلغاء الاستعلامات تلقائياً إذا قطع العميل الاتصال أو انتهت مهلة الطلب.
 
 ```go
 package main
@@ -126,9 +126,9 @@ func main() {
 }
 ```
 
-## Passing context to outbound HTTP calls
+## تمرير السياق إلى طلبات HTTP الصادرة
 
-When your handler calls external services, pass the request context so that outbound calls are cancelled together with the incoming request.
+عندما يستدعي معالجك خدمات خارجية، مرر سياق الطلب حتى يتم إلغاء الاستدعاءات الصادرة مع الطلب الوارد.
 
 ```go
 package main
@@ -167,9 +167,9 @@ func main() {
 }
 ```
 
-## Handling client disconnection
+## التعامل مع قطع اتصال العميل
 
-When a client closes the connection (e.g., navigates away or cancels a request), the request context is cancelled. You can detect this in long-running handlers to stop work early and free resources.
+عندما يغلق العميل الاتصال (مثلاً ينتقل بعيداً أو يلغي طلباً)، يتم إلغاء سياق الطلب. يمكنك اكتشاف ذلك في المعالجات طويلة التشغيل لإيقاف العمل مبكراً وتحرير الموارد.
 
 ```go
 package main
@@ -204,21 +204,21 @@ func main() {
 }
 ```
 
-## Best practices
+## أفضل الممارسات
 
-- **Always propagate the request context.** Pass `c.Request.Context()` to every function that accepts a `context.Context` -- database calls, HTTP clients, gRPC calls, and any I/O operation. This ensures cancellation and timeouts propagate through the entire call chain.
+- **انشر سياق الطلب دائماً.** مرر `c.Request.Context()` إلى كل دالة تقبل `context.Context` -- استدعاءات قاعدة البيانات، عملاء HTTP، استدعاءات gRPC، وأي عملية إدخال/إخراج. هذا يضمن انتشار الإلغاء والمهل الزمنية عبر سلسلة الاستدعاءات بالكامل.
 
-- **Do not store `*gin.Context` in structs or pass it across goroutine boundaries.** `gin.Context` is tied to the HTTP request/response lifecycle and is not safe for concurrent use. Instead, extract the values you need (request context, parameters, headers) before spawning goroutines.
+- **لا تخزّن `*gin.Context` في هياكل أو تمررها عبر حدود goroutine.** `gin.Context` مرتبط بدورة حياة طلب/استجابة HTTP وليس آمناً للاستخدام المتزامن. بدلاً من ذلك، استخرج القيم التي تحتاجها (سياق الطلب، المعاملات، الترويسات) قبل إنشاء goroutines.
 
-- **Set timeouts at the middleware level.** A timeout middleware gives you a single place to enforce deadlines across all routes, rather than duplicating timeout logic in every handler.
+- **عيّن المهل الزمنية على مستوى الوسيط.** وسيط المهل الزمنية يمنحك مكاناً واحداً لفرض المواعيد النهائية عبر جميع المسارات، بدلاً من تكرار منطق المهلة في كل معالج.
 
-- **Use `context.WithValue` sparingly.** Prefer `c.Set()` and `c.Get()` within Gin handlers. Reserve `context.WithValue` for values that need to cross package boundaries through standard library interfaces.
+- **استخدم `context.WithValue` باعتدال.** فضّل `c.Set()` و`c.Get()` داخل معالجات Gin. احتفظ بـ `context.WithValue` للقيم التي تحتاج عبور حدود الحزم عبر واجهات المكتبة القياسية.
 
-## Common pitfalls
+## الأخطاء الشائعة
 
-### Using `gin.Context` in goroutines
+### استخدام `gin.Context` في goroutines
 
-`gin.Context` is reused across requests for performance. If you need to access it from a goroutine, you **must** call `c.Copy()` to create a read-only copy. Using the original `gin.Context` in a goroutine leads to data races and unpredictable behaviour.
+يُعاد استخدام `gin.Context` عبر الطلبات للأداء. إذا احتجت الوصول إليه من goroutine، **يجب** استدعاء `c.Copy()` لإنشاء نسخة للقراءة فقط. استخدام `gin.Context` الأصلي في goroutine يؤدي إلى سباقات بيانات وسلوك غير متوقع.
 
 ```go
 package main
@@ -254,13 +254,13 @@ func main() {
 }
 ```
 
-### Ignoring context cancellation
+### تجاهل إلغاء السياق
 
-If your handler does not check `ctx.Done()`, it will keep running even after the client has disconnected, wasting CPU and memory. Always use context-aware APIs (`QueryRowContext`, `NewRequestWithContext`, `select` on `ctx.Done()`) so work stops as soon as the context is cancelled.
+إذا لم يتحقق معالجك من `ctx.Done()`، سيستمر في العمل حتى بعد قطع العميل للاتصال، مما يهدر وحدة المعالجة المركزية والذاكرة. استخدم دائماً واجهات برمجة مدركة للسياق (`QueryRowContext`، `NewRequestWithContext`، `select` على `ctx.Done()`) حتى يتوقف العمل بمجرد إلغاء السياق.
 
-### Writing the response after context cancellation
+### الكتابة إلى الاستجابة بعد إلغاء السياق
 
-Once a context is cancelled, avoid writing to `c.Writer`. The connection may already be closed, and writes will fail silently or panic. Check `ctx.Err()` before writing if your handler performs long-running work.
+بمجرد إلغاء السياق، تجنب الكتابة إلى `c.Writer`. قد يكون الاتصال مغلقاً بالفعل، وستفشل الكتابة بصمت أو تسبب حالة ذعر. تحقق من `ctx.Err()` قبل الكتابة إذا كان معالجك ينفذ عملاً طويل التشغيل.
 
 ```go
 func handler(c *gin.Context) {

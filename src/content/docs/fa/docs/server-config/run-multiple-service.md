@@ -1,10 +1,10 @@
 ---
-title: "Run multiple service"
+title: "اجرای سرویس‌های متعدد"
 sidebar:
   order: 4
 ---
 
-See the [question](https://github.com/gin-gonic/gin/issues/346) and try the following example:
+[سوال](https://github.com/gin-gonic/gin/issues/346) را ببینید و مثال زیر را امتحان کنید:
 
 ```go
 package main
@@ -82,4 +82,3 @@ func main() {
   }
 }
 ```
-

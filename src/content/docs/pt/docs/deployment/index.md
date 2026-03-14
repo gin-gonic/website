@@ -8,39 +8,39 @@ Projetos Gin podem ser implantados facilmente em qualquer provedor de nuvem.
 
 ## [Railway](https://www.railway.com)
 
-Railway is a cutting-edge cloud development platform for deploying, managing, and scaling applications and services. It simplifies your infrastructure stack from servers to observability with a single, scalable, easy-to-use platform.
+Railway é uma plataforma de desenvolvimento em nuvem de ponta para implantar, gerenciar e escalar aplicações e serviços. Ela simplifica sua pilha de infraestrutura, desde servidores até observabilidade, com uma plataforma única, escalável e fácil de usar.
 
-Follow the Railway [guide to deploy your Gin projects](https://docs.railway.com/guides/gin).
+Siga o [guia do Railway para implantar seus projetos Gin](https://docs.railway.com/guides/gin).
 
 ## [Seenode](https://seenode.com)
 
-Seenode is a modern cloud platform designed specifically for developers who want to deploy applications quickly and efficiently. It offers git-based deployment, automatic SSL certificates, built-in databases, and a streamlined interface that gets your Gin applications live in minutes.
+Seenode é uma plataforma de nuvem moderna projetada especificamente para desenvolvedores que desejam implantar aplicações de forma rápida e eficiente. Oferece implantação baseada em git, certificados SSL automáticos, bancos de dados integrados e uma interface simplificada que coloca suas aplicações Gin no ar em minutos.
 
-Follow the Seenode [guide to deploy your Gin projects](https://seenode.com/docs/frameworks/go/gin).
+Siga o [guia do Seenode para implantar seus projetos Gin](https://seenode.com/docs/frameworks/go/gin).
 
 ## [Koyeb](https://www.koyeb.com)
 
-Koyeb is a developer-friendly serverless platform to deploy apps globally with git-based deployment, TLS encryption, native autoscaling, a global edge network, and built-in service mesh & discovery.
+Koyeb é uma plataforma serverless amigável para desenvolvedores, para implantar aplicações globalmente com implantação baseada em git, criptografia TLS, autoescalonamento nativo, uma rede de borda global e service mesh e descoberta integrados.
 
-Follow the Koyeb [guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+Siga o [guia do Koyeb para implantar seus projetos Gin](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery provides free Cloud hosting with databases, SSL, a global CDN, and automatic deploys with Git.
+Qovery oferece hospedagem em nuvem gratuita com bancos de dados, SSL, CDN global e implantações automáticas com Git.
 
-See [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) for more information.
+Veja [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) para mais informações.
 
 ## [Render](https://render.com)
 
-Render is a modern cloud platform that offers native support for Go, fully managed SSL, databases, zero-downtime deploys, HTTP/2, and websocket support.
+Render é uma plataforma de nuvem moderna que oferece suporte nativo para Go, SSL totalmente gerenciado, bancos de dados, implantações sem downtime, HTTP/2 e suporte a websocket.
 
-Follow the Render [guide to deploying Gin projects](https://render.com/docs/deploy-go-gin).
+Siga o [guia do Render para implantar projetos Gin](https://render.com/docs/deploy-go-gin).
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE has two ways to deploy Go applications. The standard environment is easier to use but less customizable and prevents [syscalls](https://github.com/gin-gonic/gin/issues/1639) for security reasons. The flexible environment can run any framework or library.
+O GAE possui duas formas de implantar aplicações Go. O ambiente padrão é mais fácil de usar, mas menos customizável e impede [syscalls](https://github.com/gin-gonic/gin/issues/1639) por motivos de segurança. O ambiente flexível pode executar qualquer framework ou biblioteca.
 
-Learn more and pick your preferred environment at [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+Saiba mais e escolha seu ambiente preferido em [Go no Google App Engine](https://cloud.google.com/appengine/docs/go/).
 
 ## Auto-hospedado
 
@@ -52,10 +52,10 @@ Implantações de projetos Gin podem ser ajustadas usando variáveis de ambiente
 
 As seguintes variáveis de ambiente estão disponíveis para configurar o Gin:
 
-| Environment Variable | Description                                                                                                                                                                                                   |
+| Variável de Ambiente | Descrição                                                                                                                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PORT                 | The TCP port to listen on when starting the Gin server with `router.Run()` (i.e. without any arguments).                                                                                                      |
-| GIN_MODE             | Set to one of `debug`, `release`, or `test`. Handles management of Gin modes, such as when to emit debug outputs. Can also be set in code using `gin.SetMode(gin.ReleaseMode)` or `gin.SetMode(gin.TestMode)` |
+| PORT                 | A porta TCP para escutar ao iniciar o servidor Gin com `router.Run()` (ou seja, sem nenhum argumento).                                                                                                      |
+| GIN_MODE             | Defina como `debug`, `release` ou `test`. Gerencia os modos do Gin, como quando emitir saídas de debug. Também pode ser definido no código usando `gin.SetMode(gin.ReleaseMode)` ou `gin.SetMode(gin.TestMode)` |
 
 O seguinte código pode ser usado para configurar o Gin.
 

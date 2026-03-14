@@ -1,18 +1,18 @@
 ---
-title: "Build with JSON replacement"
+title: "ساخت با جایگزین JSON"
 sidebar:
   order: 1
 ---
 
-Gin uses the standard library `encoding/json` package for JSON serialization and deserialization by default. The standard library encoder is well-tested and fully compatible, but it is not the fastest option available. If JSON performance is a bottleneck in your application -- for example, in high-throughput APIs that serialize large response payloads -- you can swap in a faster drop-in replacement at build time using build tags. No code changes are required.
+Gin به طور پیش‌فرض از پکیج `encoding/json` کتابخانه استاندارد برای سریال‌سازی و deserialization JSON استفاده می‌کند. رمزگذار کتابخانه استاندارد به خوبی تست شده و کاملاً سازگار است، اما سریع‌ترین گزینه موجود نیست. اگر عملکرد JSON یک گلوگاه در برنامه شماست -- مثلاً در APIهای با توان عملیاتی بالا که بارهای پاسخ بزرگ را سریال‌سازی می‌کنند -- می‌توانید یک جایگزین سریع‌تر را در زمان ساخت با استفاده از تگ‌های ساخت تعویض کنید. نیازی به تغییر کد نیست.
 
-## Available replacements
+## جایگزین‌های موجود
 
-Gin supports three alternative JSON encoders. Each one implements the same interface that Gin expects, so your handlers, middleware, and binding logic continue to work without modification.
+Gin از سه رمزگذار جایگزین JSON پشتیبانی می‌کند. هر کدام همان رابطی را که Gin انتظار دارد پیاده‌سازی می‌کند، بنابراین handlerها، میان‌افزار و منطق اتصال شما بدون تغییر به کار خود ادامه می‌دهند.
 
 ### go-json
 
-[go-json](https://github.com/goccy/go-json) is a pure-Go JSON encoder that offers significant performance improvements over `encoding/json` while maintaining full compatibility. It works on all platforms and architectures.
+[go-json](https://github.com/goccy/go-json) یک رمزگذار JSON خالص Go است که بهبود عملکرد قابل توجهی نسبت به `encoding/json` ارائه می‌دهد و در عین حال سازگاری کامل را حفظ می‌کند. روی تمام پلتفرم‌ها و معماری‌ها کار می‌کند.
 
 ```sh
 go build -tags=go_json .
@@ -20,7 +20,7 @@ go build -tags=go_json .
 
 ### jsoniter
 
-[jsoniter](https://github.com/json-iterator/go) (json-iterator) is another pure-Go, high-performance JSON library. It is API-compatible with `encoding/json` and provides a flexible configuration system for advanced use cases.
+[jsoniter](https://github.com/json-iterator/go) (json-iterator) یک کتابخانه JSON دیگر با عملکرد بالا و خالص Go است. با API سازگار با `encoding/json` و یک سیستم پیکربندی انعطاف‌پذیر برای موارد استفاده پیشرفته.
 
 ```sh
 go build -tags=jsoniter .
@@ -28,30 +28,30 @@ go build -tags=jsoniter .
 
 ### sonic
 
-[sonic](https://github.com/bytedance/sonic) is a blazing-fast JSON encoder developed by ByteDance. It uses JIT compilation and SIMD instructions to achieve maximum throughput, making it the fastest option among the three.
+[sonic](https://github.com/bytedance/sonic) یک رمزگذار JSON بسیار سریع است که توسط ByteDance توسعه یافته است. از کامپایل JIT و دستورات SIMD برای دستیابی به حداکثر توان عملیاتی استفاده می‌کند و آن را سریع‌ترین گزینه در بین این سه می‌سازد.
 
 ```sh
 go build -tags="sonic avx" .
 ```
 
 :::note
-Sonic requires a CPU with AVX instruction support. This is available on most modern x86_64 processors (Intel Sandy Bridge and later, AMD Bulldozer and later), but it will not work on ARM architectures or older x86 hardware. If your deployment target does not support AVX, use go-json or jsoniter instead.
+Sonic نیاز به پردازنده با پشتیبانی از دستورات AVX دارد. این در اکثر پردازنده‌های مدرن x86_64 (Intel Sandy Bridge و بعد از آن، AMD Bulldozer و بعد از آن) موجود است، اما روی معماری‌های ARM یا سخت‌افزار قدیمی x86 کار نخواهد کرد. اگر محیط استقرار شما از AVX پشتیبانی نمی‌کند، از go-json یا jsoniter استفاده کنید.
 :::
 
-## Choosing a replacement
+## انتخاب جایگزین
 
-| Encoder | Platform support | Key strength |
+| رمزگذار | پشتیبانی پلتفرم | نقطه قوت کلیدی |
 |---|---|---|
-| `encoding/json` (default) | All | Maximum compatibility, no extra dependency |
-| go-json | All | Good speedup, pure Go, broad compatibility |
-| jsoniter | All | Good speedup, flexible configuration |
-| sonic | x86_64 with AVX only | Highest throughput via JIT and SIMD |
+| `encoding/json` (پیش‌فرض) | همه | حداکثر سازگاری، بدون وابستگی اضافی |
+| go-json | همه | افزایش سرعت خوب، خالص Go، سازگاری گسترده |
+| jsoniter | همه | افزایش سرعت خوب، پیکربندی انعطاف‌پذیر |
+| sonic | فقط x86_64 با AVX | بالاترین توان عملیاتی از طریق JIT و SIMD |
 
-For most applications, **go-json** is a safe and effective choice -- it works everywhere and provides meaningful performance gains. Choose **sonic** when you need maximum JSON throughput and your servers run on x86_64 hardware. Choose **jsoniter** if you need its specific configuration features or are already using it elsewhere in your codebase.
+برای اکثر برنامه‌ها، **go-json** یک انتخاب امن و مؤثر است -- همه جا کار می‌کند و بهبود عملکرد معناداری ارائه می‌دهد. **sonic** را زمانی انتخاب کنید که نیاز به حداکثر توان عملیاتی JSON دارید و سرورهای شما روی سخت‌افزار x86_64 اجرا می‌شوند. **jsoniter** را انتخاب کنید اگر نیاز به ویژگی‌های پیکربندی خاص آن دارید یا قبلاً در جای دیگری از کد خود از آن استفاده می‌کنید.
 
-## Verifying the replacement
+## تأیید جایگزین
 
-You can confirm that the replacement is active by comparing serialization performance with a simple benchmark, or by checking the binary's symbol table:
+می‌توانید با مقایسه عملکرد سریال‌سازی با یک بنچمارک ساده یا بررسی جدول نمادهای باینری تأیید کنید که جایگزین فعال است:
 
 ```sh
 # Build with go-json
@@ -61,7 +61,7 @@ go build -tags=go_json -o myapp .
 go tool nm myapp | grep goccy
 ```
 
-The build tag also works with other Go commands:
+تگ ساخت با سایر دستورات Go نیز کار می‌کند:
 
 ```sh
 go run -tags=go_json .
@@ -69,5 +69,5 @@ go test -tags=go_json ./...
 ```
 
 :::note
-Only use one JSON replacement tag at a time. If you specify multiple JSON tags (e.g., `-tags=go_json,jsoniter`), the behavior is undefined. The `nomsgpack` tag can be safely combined with any JSON replacement tag.
+فقط از یک تگ جایگزین JSON در هر زمان استفاده کنید. اگر چندین تگ JSON مشخص کنید (مثلاً `-tags=go_json,jsoniter`)، رفتار تعریف نشده است. تگ `nomsgpack` می‌تواند با هر تگ جایگزین JSON به طور ایمن ترکیب شود.
 :::

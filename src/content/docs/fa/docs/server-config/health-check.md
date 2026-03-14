@@ -1,14 +1,14 @@
 ---
-title: "Health Checks"
+title: "بررسی سلامت"
 sidebar:
   order: 12
 ---
 
-Health check endpoints allow load balancers, orchestrators like Kubernetes, and monitoring systems to verify your application is running and ready to serve traffic. A typical setup includes two endpoints: **liveness** (is the process alive?) and **readiness** (is it ready to accept requests?).
+نقاط پایانی بررسی سلامت به متعادل‌کننده‌های بار، ارکستراتورهایی مانند Kubernetes و سیستم‌های نظارت اجازه می‌دهند تأیید کنند برنامه شما در حال اجرا و آماده ارائه ترافیک است. یک تنظیم معمولی شامل دو نقطه پایانی است: **liveness** (آیا فرآیند زنده است؟) و **readiness** (آیا آماده پذیرش درخواست‌ها است؟).
 
-## Basic health check
+## بررسی سلامت پایه
 
-A simple health endpoint that returns 200 OK:
+یک نقطه پایانی سلامت ساده که 200 OK برمی‌گرداند:
 
 ```go
 package main
@@ -34,12 +34,12 @@ func main() {
 }
 ```
 
-## Liveness vs readiness
+## Liveness در مقابل readiness
 
-In Kubernetes and similar environments, you typically need two types of health checks:
+در Kubernetes و محیط‌های مشابه، معمولاً به دو نوع بررسی سلامت نیاز دارید:
 
-- **Liveness probe** — checks if the application process is alive. If it fails, the container is restarted.
-- **Readiness probe** — checks if the application is ready to handle traffic. If it fails, traffic is temporarily stopped but the container is not restarted.
+- **Liveness probe** -- بررسی می‌کند آیا فرآیند برنامه زنده است. اگر شکست بخورد، container راه‌اندازی مجدد می‌شود.
+- **Readiness probe** -- بررسی می‌کند آیا برنامه آماده مدیریت ترافیک است. اگر شکست بخورد، ترافیک به طور موقت متوقف می‌شود اما container راه‌اندازی مجدد نمی‌شود.
 
 ```go
 package main
@@ -95,9 +95,9 @@ func main() {
 }
 ```
 
-## Kubernetes configuration
+## پیکربندی Kubernetes
 
-Configure probes in your Kubernetes deployment manifest:
+probeها را در مانیفست استقرار Kubernetes خود پیکربندی کنید:
 
 ```yaml
 apiVersion: apps/v1
@@ -126,9 +126,9 @@ spec:
             periodSeconds: 5
 ```
 
-## Checking multiple dependencies
+## بررسی وابستگی‌های متعدد
 
-For applications with multiple dependencies, check each one and report detailed status:
+برای برنامه‌هایی با وابستگی‌های متعدد، هر کدام را بررسی کنید و وضعیت جزئی گزارش دهید:
 
 ```go
 package main
@@ -184,10 +184,10 @@ func (h *HealthChecker) CheckHealth(c *gin.Context) {
 ```
 
 :::note
-Always set a timeout on health check handlers. A hanging database connection should not block the health check indefinitely — return unhealthy instead.
+همیشه یک timeout روی handlerهای بررسی سلامت تنظیم کنید. یک اتصال پایگاه داده معلق نباید بررسی سلامت را به طور نامحدود مسدود کند -- به جای آن unhealthy برگردانید.
 :::
 
-## Testing
+## تست
 
 ```sh
 # Check liveness
@@ -197,7 +197,7 @@ curl -i http://localhost:8080/healthz
 curl -i http://localhost:8080/readyz
 ```
 
-Expected output:
+خروجی مورد انتظار:
 
 ```
 HTTP/1.1 200 OK
@@ -206,7 +206,7 @@ Content-Type: application/json; charset=utf-8
 {"status":"ready"}
 ```
 
-## See also
+## همچنین ببینید
 
-- [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/)
-- [Deployment](/en/docs/deployment/)
+- [راه‌اندازی مجدد یا توقف آرام](/fa/docs/server-config/graceful-restart-or-stop/)
+- [استقرار](/fa/docs/deployment/)

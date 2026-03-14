@@ -1,6 +1,6 @@
 ---
-title: "Gin 1.12.0 is released"
-linkTitle: "Gin 1.12.0 is released"
+title: "Gin 1.12.0 已发布"
+linkTitle: "Gin 1.12.0 已发布"
 lastUpdated: 2026-02-28
 ---
 

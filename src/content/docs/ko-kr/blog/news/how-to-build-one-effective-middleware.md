@@ -1,41 +1,41 @@
 ---
-title: "How to Build an Effective Middleware"
-linkTitle: "How to Build an Effective Middleware"
+title: "효과적인 미들웨어 구축 방법"
+linkTitle: "효과적인 미들웨어 구축 방법"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## 구성 요소
 
-Middleware typically consists of two parts:
+미들웨어는 일반적으로 두 부분으로 구성됩니다:
 
-- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
+- 첫 번째 부분은 미들웨어를 초기화할 때 한 번 실행됩니다. 여기서 글로벌 객체, 설정 로직 등 애플리케이션의 수명 동안 한 번만 발생해야 하는 모든 것을 설정합니다.
 
-- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
+- 두 번째 부분은 모든 요청에서 실행됩니다. 예를 들어, 데이터베이스 미들웨어에서는 글로벌 데이터베이스 객체를 요청 컨텍스트에 주입합니다. 컨텍스트에 들어가면 다른 미들웨어와 핸들러 함수가 이를 검색하고 사용할 수 있습니다.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
   // <---
-  // This is part one
+  // 이것은 첫 번째 부분입니다
   // --->
-  // Example initialization: validate input params
+  // 예제 초기화: 입력 매개변수 유효성 검사
   if err := check(params); err != nil {
       panic(err)
   }
 
   return func(c *gin.Context) {
     // <---
-    // This is part two
+    // 이것은 두 번째 부분입니다
     // --->
-    // Example execution per request: inject into context
+    // 요청별 실행 예제: 컨텍스트에 주입
     c.Set("TestVar", params)
     c.Next()
   }
 }
 ```
 
-## Execution process
+## 실행 과정
 
-Let's look at the following example code:
+다음 예제 코드를 살펴보겠습니다:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
+위의 [구성 요소](#구성-요소) 섹션에 따르면, Gin 프로세스를 실행할 때 각 미들웨어의 **첫 번째 부분**이 먼저 실행되고 다음 정보를 출력합니다:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-The initialization order is:
+초기화 순서는 다음과 같습니다:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
+요청을 보내면(예: `curl -v localhost:8080/rest/n/api/some`) 각 미들웨어의 **두 번째 부분**이 순서대로 실행되며 다음을 출력합니다:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, the execution order is:
+즉, 실행 순서는 다음과 같습니다:
 
 ```go
 globalMiddleware...2

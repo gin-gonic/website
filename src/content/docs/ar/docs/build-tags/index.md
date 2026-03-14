@@ -1,45 +1,45 @@
 ---
-title: "Build Tags"
+title: "علامات البناء"
 sidebar:
   order: 11
 ---
 
-Go [build tags](https://pkg.go.dev/go/build#hdr-Build_Constraints) (also called build constraints) are directives that tell the Go compiler to include or exclude files during compilation. Gin uses build tags to let you swap out internal implementations or disable optional features at compile time, without changing any application code.
+[علامات البناء](https://pkg.go.dev/go/build#hdr-Build_Constraints) في Go (تُسمى أيضاً قيود البناء) هي توجيهات تخبر مترجم Go بتضمين أو استبعاد ملفات أثناء التجميع. يستخدم Gin علامات البناء للسماح لك باستبدال التنفيذات الداخلية أو تعطيل الميزات الاختيارية في وقت التجميع، دون تغيير أي كود في التطبيق.
 
-This is useful in several scenarios:
+هذا مفيد في عدة سيناريوهات:
 
-- **Performance optimization** -- Replace the default `encoding/json` package with a faster third-party encoder to speed up JSON serialization in your API.
-- **Binary size reduction** -- Strip out features you do not use, such as MsgPack rendering, to produce a smaller compiled binary.
-- **Deployment tuning** -- Choose different encoders for different environments (e.g., a high-throughput production build vs. a standard development build).
+- **تحسين الأداء** -- استبدال حزمة `encoding/json` الافتراضية بمُرمّز طرف ثالث أسرع لتسريع تسلسل JSON في واجهتك البرمجية.
+- **تقليل حجم الملف الثنائي** -- إزالة الميزات التي لا تستخدمها، مثل عرض MsgPack، لإنتاج ملف ثنائي مُترجم أصغر.
+- **ضبط النشر** -- اختيار مُرمّزات مختلفة لبيئات مختلفة (مثلاً بناء إنتاج عالي الإنتاجية مقابل بناء تطوير قياسي).
 
-Build tags are passed to the Go toolchain with the `-tags` flag:
+تُمرر علامات البناء إلى سلسلة أدوات Go باستخدام علم `-tags`:
 
 ```sh
 go build -tags=<tag_name> .
 ```
 
-You can combine multiple tags by separating them with commas:
+يمكنك دمج علامات متعددة بفصلها بفواصل:
 
 ```sh
 go build -tags=nomsgpack,go_json .
 ```
 
-### Available build tags
+### علامات البناء المتاحة
 
-| Tag | Effect |
+| العلامة | التأثير |
 |---|---|
-| `go_json` | Replaces `encoding/json` with [go-json](https://github.com/goccy/go-json) |
-| `jsoniter` | Replaces `encoding/json` with [jsoniter](https://github.com/json-iterator/go) |
-| `sonic avx` | Replaces `encoding/json` with [sonic](https://github.com/bytedance/sonic) (requires AVX CPU instructions) |
-| `nomsgpack` | Disables MsgPack rendering support |
+| `go_json` | تستبدل `encoding/json` بـ [go-json](https://github.com/goccy/go-json) |
+| `jsoniter` | تستبدل `encoding/json` بـ [jsoniter](https://github.com/json-iterator/go) |
+| `sonic avx` | تستبدل `encoding/json` بـ [sonic](https://github.com/bytedance/sonic) (تتطلب تعليمات AVX للمعالج) |
+| `nomsgpack` | تعطّل دعم عرض MsgPack |
 
 :::note
-Build tags only affect how Gin is compiled. Your application code (route handlers, middleware, etc.) does not need to change when you switch tags.
+تؤثر علامات البناء فقط على كيفية تجميع Gin. لا يحتاج كود تطبيقك (معالجات المسارات، الوسيطات، إلخ) إلى التغيير عند تبديل العلامات.
 :::
 
-## In this section
+## في هذا القسم
 
-The pages below cover each build tag in detail:
+تغطي الصفحات أدناه كل علامة بناء بالتفصيل:
 
-- [**Build with JSON replacement**](./json-replacement/) -- Replace the default JSON encoder with go-json, jsoniter, or sonic for faster serialization.
-- [**Build without MsgPack**](./nomsgpack/) -- Disable MsgPack rendering with the `nomsgpack` build tag to reduce binary size.
+- [**البناء مع استبدال JSON**](./json-replacement/) -- استبدال مُرمّز JSON الافتراضي بـ go-json أو jsoniter أو sonic لتسلسل أسرع.
+- [**البناء بدون MsgPack**](./nomsgpack/) -- تعطيل عرض MsgPack باستخدام علامة البناء `nomsgpack` لتقليل حجم الملف الثنائي.

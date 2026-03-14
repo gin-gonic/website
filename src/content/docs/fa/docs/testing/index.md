@@ -1,16 +1,16 @@
 ---
-title: "Testing"
+title: "تست"
 sidebar:
   order: 9
 ---
 
-## How to write test case for Gin?
+## نحوه نوشتن تست برای Gin
 
-The `net/http/httptest` package is the preferred way for HTTP testing.
+پکیج `net/http/httptest` روش ترجیحی برای تست HTTP است.
 
-### Suppress debug output
+### مخفی کردن خروجی اشکال‌زدایی
 
-Call `gin.SetMode(gin.TestMode)` before creating the router in your tests. This suppresses the debug-level route registration logs that Gin prints by default, keeping your test output clean. You can place this in `TestMain` so it applies to all tests in the package:
+قبل از ایجاد روتر در تست‌های خود `gin.SetMode(gin.TestMode)` را فراخوانی کنید. این لاگ‌های ثبت مسیر سطح debug را که Gin به طور پیش‌فرض چاپ می‌کند مخفی می‌کند و خروجی تست شما را تمیز نگه می‌دارد. می‌توانید این را در `TestMain` قرار دهید تا روی تمام تست‌های پکیج اعمال شود:
 
 ```go
 func TestMain(m *testing.M) {
@@ -19,7 +19,7 @@ func TestMain(m *testing.M) {
 }
 ```
 
-### Example application
+### مثال برنامه
 
 ```go
 package main
@@ -55,7 +55,7 @@ func main() {
 }
 ```
 
-### Basic tests
+### تست‌های پایه
 
 ```go
 package main
@@ -103,9 +103,9 @@ func TestPostUser(t *testing.T) {
 }
 ```
 
-### Table-driven tests
+### تست‌های جدول‌محور
 
-Table-driven tests let you cover many input/output combinations without duplicating test logic. This pattern is idiomatic Go and works well with Gin:
+تست‌های جدول‌محور به شما اجازه می‌دهند ترکیبات ورودی/خروجی بسیاری را بدون تکرار منطق تست پوشش دهید. این الگو در Go اصطلاحی است و با Gin به خوبی کار می‌کند:
 
 ```go
 func TestPingRouteTableDriven(t *testing.T) {
@@ -137,9 +137,9 @@ func TestPingRouteTableDriven(t *testing.T) {
 }
 ```
 
-### Testing middleware
+### تست میان‌افزار
 
-To test a middleware in isolation, create a minimal router with the middleware applied and a simple handler that records the result:
+برای تست یک میان‌افزار به صورت مجزا، یک روتر حداقلی با میان‌افزار اعمال شده و یک handler ساده که نتیجه را ثبت می‌کند ایجاد کنید:
 
 ```go
 func TestAuthMiddleware(t *testing.T) {

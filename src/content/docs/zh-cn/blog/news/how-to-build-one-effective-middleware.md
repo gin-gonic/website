@@ -1,16 +1,16 @@
 ---
-title: "How to Build an Effective Middleware"
-linkTitle: "How to Build an Effective Middleware"
+title: "如何构建一个有效的中间件"
+linkTitle: "如何构建一个有效的中间件"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## 组成部分
 
-Middleware typically consists of two parts:
+中间件通常由两部分组成：
 
-- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
+- 第一部分在初始化中间件时执行一次。在这里设置全局对象、配置逻辑等——所有只需要在应用生命周期中发生一次的事情。
 
-- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
+- 第二部分在每个请求时执行。例如，在数据库中间件中，你会将全局数据库对象注入到请求上下文中。一旦它在上下文中，其他中间件和处理函数就可以检索和使用它。
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -33,9 +33,9 @@ func funcName(params string) gin.HandlerFunc {
 }
 ```
 
-## Execution process
+## 执行过程
 
-Let's look at the following example code:
+让我们看下面的示例代码：
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
+根据上面[组成部分](#组成部分)中的说明，当你运行 Gin 进程时，每个中间件的**第一部分**首先执行，并打印以下信息：
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-The initialization order is:
+初始化顺序为：
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
+当你发起请求时——例如 `curl -v localhost:8080/rest/n/api/some`——每个中间件的**第二部分**按顺序执行，并输出以下内容：
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, the execution order is:
+换句话说，执行顺序为：
 
 ```go
 globalMiddleware...2

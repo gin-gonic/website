@@ -1,22 +1,22 @@
 ---
-title: "Gin 1.8.0 is released"
-linkTitle: "Gin 1.8.0 is released"
+title: "Gin 1.8.0 yayınlandı"
+linkTitle: "Gin 1.8.0 yayınlandı"
 lastUpdated: 2022-05-30
 ---
 
-### CHANGELOG
+### DEĞİŞİKLİK GÜNLÜĞÜ
 
-#### Break Changes
-  * TrustedProxies: Add default IPv6 support and refactor ([#2967](https://github.com/gin-gonic/gin/pull/2967)). Please replace `RemoteIP() (net.IP, bool)` with `RemoteIP() net.IP`
+#### Kırılma Değişiklikleri
+  * TrustedProxies: Add default IPv6 support and refactor ([#2967](https://github.com/gin-gonic/gin/pull/2967)). Lütfen `RemoteIP() (net.IP, bool)` yerine `RemoteIP() net.IP` kullanın
   * gin.Context with fallback value from gin.Context.Request.Context() ([#2751](https://github.com/gin-gonic/gin/pull/2751))
 
-#### BUGFIXES
+#### HATA DÜZELTMELERİ
   * Fixed SetOutput() panics on go 1.17 ([#2861](https://github.com/gin-gonic/gin/pull/2861))
   * Fix: wrong when wildcard follows named param ([#2983](https://github.com/gin-gonic/gin/pull/2983))
   * Fix: missing sameSite when do context.reset() ([#3123](https://github.com/gin-gonic/gin/pull/3123))
 
 
-#### ENHANCEMENTS
+#### İYİLEŞTİRMELER
   * Use Header() instead of deprecated HeaderMap ([#2694](https://github.com/gin-gonic/gin/pull/2694))
   * RouterGroup.Handle regular match optimization of http method ([#2685](https://github.com/gin-gonic/gin/pull/2685))
   * Add support go-json, another drop-in json replacement ([#2680](https://github.com/gin-gonic/gin/pull/2680))
@@ -40,5 +40,5 @@ lastUpdated: 2022-05-30
   * Add TOML binding for gin ([#3081](https://github.com/gin-gonic/gin/pull/3081))
   * IPv6 add default trusted proxies ([#3033](https://github.com/gin-gonic/gin/pull/3033))
 
-#### DOCS
+#### BELGELER
   * Add note about nomsgpack tag to the readme ([#2703](https://github.com/gin-gonic/gin/pull/2703))

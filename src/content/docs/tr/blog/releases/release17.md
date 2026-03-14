@@ -1,19 +1,19 @@
 ---
-title: "Gin 1.7.0 is released"
-linkTitle: "Gin 1.7.0 is released"
+title: "Gin 1.7.0 yayınlandı"
+linkTitle: "Gin 1.7.0 yayınlandı"
 lastUpdated: 2021-04-08
 ---
 
-### CHANGELOG
+### DEĞİŞİKLİK GÜNLÜĞÜ
 
 
-#### BUGFIXES
+#### HATA DÜZELTMELERİ
   * Fix compile error from [#2572](https://github.com/gin-gonic/gin/pull/2572) ([#2600](https://github.com/gin-gonic/gin/pull/2600))
   * Fix: print headers without Authorization header on broken pipe ([#2528](https://github.com/gin-gonic/gin/pull/2528))
   * Fix(tree): reassign fullpath when register new node ([#2366](https://github.com/gin-gonic/gin/pull/2366))
 
 
-#### ENHANCEMENTS
+#### İYİLEŞTİRMELER
   * Support params and exact routes without creating conflicts ([#2663](https://github.com/gin-gonic/gin/pull/2663))
   * Chore: improve render string performance ([#2365](https://github.com/gin-gonic/gin/pull/2365))
   * Sync route tree to httprouter latest code ([#2368](https://github.com/gin-gonic/gin/pull/2368))

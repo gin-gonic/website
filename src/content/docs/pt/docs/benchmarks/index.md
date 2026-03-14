@@ -11,19 +11,19 @@ sidebar:
 
 Benchmarks ajudam desenvolvedores a avaliar a eficiência e o uso de recursos das bibliotecas de roteamento HTTP em Go. Esta página resume medições de muitos frameworks populares, para que você possa comparar facilmente sua velocidade e consumo de memória.
 
-**Test Environment:**
+**Ambiente de teste:**
 
-- **Host Platform:** Travis CI (virtual Linux VM)
-- **Machine Specs:** Ubuntu 16.04.6 LTS x64
-- **Test Date:** May 04th, 2020
-- **Gin Version:** v1.6.3
-- **Go Version:** 1.14.2 (linux/amd64)
-- **Benchmarks Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
-- **Detailed Results:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+- **Plataforma de hospedagem:** Travis CI (VM Linux virtual)
+- **Especificações da máquina:** Ubuntu 16.04.6 LTS x64
+- **Data do teste:** 04 de maio de 2020
+- **Versão do Gin:** v1.6.3
+- **Versão do Go:** 1.14.2 (linux/amd64)
+- **Fonte dos benchmarks:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **Resultados detalhados:** [Veja o gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) ou [resultado do Travis](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
 
-Gin uses an optimized fork of [HttpRouter](https://github.com/julienschmidt/httprouter) for high performance routing.
+O Gin usa um fork otimizado do [HttpRouter](https://github.com/julienschmidt/httprouter) para roteamento de alto desempenho.
 
-If you want to view more test cases, you can check [all benchmarks here](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+Se você quiser ver mais casos de teste, pode conferir [todos os benchmarks aqui](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
 
 ---
 

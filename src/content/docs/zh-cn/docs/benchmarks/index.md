@@ -1,36 +1,36 @@
 ---
-title: "Benchmarks"
+title: "基准测试"
 sidebar:
   order: 12
 ---
 
-> **Historical Data:** These benchmarks were collected in May 2020 using Gin v1.6.3 and Go 1.14.2. Framework performance may have changed significantly since then. For up-to-date benchmark results, see the [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) repository.
+> **历史数据：** 这些基准测试数据收集于 2020 年 5 月，使用 Gin v1.6.3 和 Go 1.14.2。自那时起，框架性能可能已发生重大变化。有关最新的基准测试结果，请参阅 [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) 仓库。
 
-## Gin Web Framework Performance Benchmarks
+## Gin Web 框架性能基准测试
 
-Benchmarks help developers evaluate the efficiency and resource usage of HTTP router libraries in Go. This page summarizes measurements across many popular frameworks, so you can easily compare their speed and memory consumption.
+基准测试帮助开发者评估 Go 中 HTTP 路由库的效率和资源使用情况。本页汇总了许多流行框架的测量数据，方便你轻松比较它们的速度和内存消耗。
 
-**Test Environment:**
+**测试环境：**
 
-- **Host Platform:** Travis CI (virtual Linux VM)
-- **Machine Specs:** Ubuntu 16.04.6 LTS x64
-- **Test Date:** May 04th, 2020
-- **Gin Version:** v1.6.3
-- **Go Version:** 1.14.2 (linux/amd64)
-- **Benchmarks Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
-- **Detailed Results:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+- **主机平台：** Travis CI（虚拟 Linux 虚拟机）
+- **机器规格：** Ubuntu 16.04.6 LTS x64
+- **测试日期：** 2020 年 5 月 4 日
+- **Gin 版本：** v1.6.3
+- **Go 版本：** 1.14.2 (linux/amd64)
+- **基准测试来源：** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **详细结果：** [查看 gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) 或 [Travis 结果](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
 
-Gin uses an optimized fork of [HttpRouter](https://github.com/julienschmidt/httprouter) for high performance routing.
+Gin 使用 [HttpRouter](https://github.com/julienschmidt/httprouter) 的优化分支来实现高性能路由。
 
-If you want to view more test cases, you can check [all benchmarks here](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+如果你想查看更多测试用例，可以在[这里查看所有基准测试](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)。
 
 ---
 
-## How to Read the Table
+## 如何阅读表格
 
-The benchmarks below show various Go frameworks running common HTTP routing tasks.  
-**Lower numbers (time, memory, allocations) are better.**  
-You can use these results for a direct, side-by-side comparison of Gin and alternative routers.
+下面的基准测试展示了各种 Go 框架运行常见 HTTP 路由任务的情况。
+**数值越低（时间、内存、分配次数）越好。**
+你可以使用这些结果对 Gin 和其他路由器进行直接的对比比较。
 
 | Test                              | Repetitions | Time (ns/op) | Bytes (B/op) | Allocations (allocs/op) |
 | ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
@@ -127,11 +127,11 @@ You can use these results for a direct, side-by-side comparison of Gin and alter
 
 ---
 
-## Benchmark Table Notes
+## 基准测试表格说明
 
-- **Repetitions**: Total repetitions achieved in constant time. Higher numbers mean more confidence in the results.
-- **Time (ns/op)**: Duration for one operation, measured in nanoseconds. Lower is better.
-- **Bytes (B/op)**: Heap memory allocated per operation. Lower means better efficiency.
-- **Allocations (allocs/op)**: Average number of memory allocations per operation. Fewer allocations are better for performance and garbage collection.
+- **重复次数（Repetitions）**：在固定时间内完成的总重复次数。数值越高，结果的可信度越高。
+- **时间（ns/op）**：一次操作的耗时，以纳秒为单位。越低越好。
+- **字节（B/op）**：每次操作分配的堆内存。越低表示效率越高。
+- **分配次数（allocs/op）**：每次操作的平均内存分配次数。分配次数越少，对性能和垃圾回收越好。
 
-For questions or contributions, check our [GitHub repository](https://github.com/gin-gonic/gin).
+如有问题或贡献，请查看我们的 [GitHub 仓库](https://github.com/gin-gonic/gin)。

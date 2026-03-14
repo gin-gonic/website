@@ -12,7 +12,7 @@ O Gin suporta três encoders JSON alternativos. Cada um implementa a mesma inter
 
 ### go-json
 
-[go-json](https://github.com/goccy/go-json) is a pure-Go JSON encoder that offers significant performance improvements over `encoding/json` while maintaining full compatibility. It works on all platforms and architectures.
+[go-json](https://github.com/goccy/go-json) é um encoder JSON puro em Go que oferece melhorias significativas de desempenho em relação ao `encoding/json` mantendo total compatibilidade. Funciona em todas as plataformas e arquiteturas.
 
 ```sh
 go build -tags=go_json .
@@ -20,7 +20,7 @@ go build -tags=go_json .
 
 ### jsoniter
 
-[jsoniter](https://github.com/json-iterator/go) (json-iterator) is another pure-Go, high-performance JSON library. It is API-compatible with `encoding/json` and provides a flexible configuration system for advanced use cases.
+[jsoniter](https://github.com/json-iterator/go) (json-iterator) é outra biblioteca JSON pura em Go de alto desempenho. É compatível com a API do `encoding/json` e fornece um sistema de configuração flexível para casos de uso avançados.
 
 ```sh
 go build -tags=jsoniter .
@@ -28,24 +28,24 @@ go build -tags=jsoniter .
 
 ### sonic
 
-[sonic](https://github.com/bytedance/sonic) is a blazing-fast JSON encoder developed by ByteDance. It uses JIT compilation and SIMD instructions to achieve maximum throughput, making it the fastest option among the three.
+[sonic](https://github.com/bytedance/sonic) é um encoder JSON extremamente rápido desenvolvido pela ByteDance. Utiliza compilação JIT e instruções SIMD para alcançar o máximo de vazão, tornando-o a opção mais rápida entre as três.
 
 ```sh
 go build -tags="sonic avx" .
 ```
 
 :::note
-Sonic requires a CPU with AVX instruction support. This is available on most modern x86_64 processors (Intel Sandy Bridge and later, AMD Bulldozer and later), but it will not work on ARM architectures or older x86 hardware. If your deployment target does not support AVX, use go-json or jsoniter instead.
+O Sonic requer uma CPU com suporte a instruções AVX. Isso está disponível na maioria dos processadores x86_64 modernos (Intel Sandy Bridge e posteriores, AMD Bulldozer e posteriores), mas não funcionará em arquiteturas ARM ou hardware x86 mais antigo. Se seu alvo de implantação não suporta AVX, use go-json ou jsoniter em vez disso.
 :::
 
 ## Escolhendo uma substituição
 
-| Encoder | Platform support | Key strength |
+| Encoder | Suporte a plataformas | Ponto forte |
 |---|---|---|
-| `encoding/json` (default) | All | Maximum compatibility, no extra dependency |
-| go-json | All | Good speedup, pure Go, broad compatibility |
-| jsoniter | All | Good speedup, flexible configuration |
-| sonic | x86_64 with AVX only | Highest throughput via JIT and SIMD |
+| `encoding/json` (padrão) | Todas | Máxima compatibilidade, sem dependência extra |
+| go-json | Todas | Boa aceleração, puro Go, ampla compatibilidade |
+| jsoniter | Todas | Boa aceleração, configuração flexível |
+| sonic | Apenas x86_64 com AVX | Maior vazão via JIT e SIMD |
 
 Para a maioria das aplicações, **go-json** é uma escolha segura e eficaz -- funciona em todos os lugares e fornece ganhos de desempenho significativos. Escolha **sonic** quando precisar de vazão máxima de JSON e seus servidores rodarem em hardware x86_64. Escolha **jsoniter** se precisar de seus recursos específicos de configuração ou já estiver usando-o em outro lugar no seu código.
 
@@ -69,5 +69,5 @@ go test -tags=go_json ./...
 ```
 
 :::note
-Use apenas uma tag de substituição JSON por vez. Se você especificar múltiplas tags JSON (ex.: `-tags=go_json,jsoniter`), o comportamento é indefinido. A tag `nomsgpack` pode ser combinada com segurança com qualquer tag de substituição JSON.
+Use apenas uma tag de substituição de JSON por vez. Se você especificar múltiplas tags JSON (ex.: `-tags=go_json,jsoniter`), o comportamento é indefinido. A tag `nomsgpack` pode ser combinada com segurança com qualquer tag de substituição de JSON.
 :::

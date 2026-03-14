@@ -1,45 +1,45 @@
 ---
-title: "Build Tags"
+title: "تگ‌های ساخت"
 sidebar:
   order: 11
 ---
 
-Go [build tags](https://pkg.go.dev/go/build#hdr-Build_Constraints) (also called build constraints) are directives that tell the Go compiler to include or exclude files during compilation. Gin uses build tags to let you swap out internal implementations or disable optional features at compile time, without changing any application code.
+[تگ‌های ساخت](https://pkg.go.dev/go/build#hdr-Build_Constraints) Go (که به آن‌ها محدودیت‌های ساخت نیز گفته می‌شود) دستورالعمل‌هایی هستند که به کامپایلر Go می‌گویند فایل‌ها را در حین کامپایل شامل یا حذف کند. Gin از تگ‌های ساخت استفاده می‌کند تا به شما اجازه دهد پیاده‌سازی‌های داخلی را تعویض کنید یا ویژگی‌های اختیاری را در زمان کامپایل غیرفعال کنید، بدون تغییر در کد برنامه.
 
-This is useful in several scenarios:
+این در چندین سناریو مفید است:
 
-- **Performance optimization** -- Replace the default `encoding/json` package with a faster third-party encoder to speed up JSON serialization in your API.
-- **Binary size reduction** -- Strip out features you do not use, such as MsgPack rendering, to produce a smaller compiled binary.
-- **Deployment tuning** -- Choose different encoders for different environments (e.g., a high-throughput production build vs. a standard development build).
+- **بهینه‌سازی عملکرد** -- جایگزینی پکیج پیش‌فرض `encoding/json` با یک رمزگذار شخص ثالث سریع‌تر برای افزایش سرعت سریال‌سازی JSON در API شما.
+- **کاهش حجم باینری** -- حذف ویژگی‌هایی که استفاده نمی‌کنید، مانند رندرینگ MsgPack، برای تولید باینری کامپایل شده کوچک‌تر.
+- **تنظیم استقرار** -- انتخاب رمزگذارهای مختلف برای محیط‌های مختلف (مثلاً ساخت تولیدی با توان عملیاتی بالا در مقابل ساخت توسعه استاندارد).
 
-Build tags are passed to the Go toolchain with the `-tags` flag:
+تگ‌های ساخت با فلگ `-tags` به ابزار Go ارسال می‌شوند:
 
 ```sh
 go build -tags=<tag_name> .
 ```
 
-You can combine multiple tags by separating them with commas:
+می‌توانید چندین تگ را با جدا کردن آن‌ها با کاما ترکیب کنید:
 
 ```sh
 go build -tags=nomsgpack,go_json .
 ```
 
-### Available build tags
+### تگ‌های ساخت موجود
 
-| Tag | Effect |
+| تگ | اثر |
 |---|---|
-| `go_json` | Replaces `encoding/json` with [go-json](https://github.com/goccy/go-json) |
-| `jsoniter` | Replaces `encoding/json` with [jsoniter](https://github.com/json-iterator/go) |
-| `sonic avx` | Replaces `encoding/json` with [sonic](https://github.com/bytedance/sonic) (requires AVX CPU instructions) |
-| `nomsgpack` | Disables MsgPack rendering support |
+| `go_json` | جایگزینی `encoding/json` با [go-json](https://github.com/goccy/go-json) |
+| `jsoniter` | جایگزینی `encoding/json` با [jsoniter](https://github.com/json-iterator/go) |
+| `sonic avx` | جایگزینی `encoding/json` با [sonic](https://github.com/bytedance/sonic) (نیاز به دستورات AVX پردازنده) |
+| `nomsgpack` | غیرفعال کردن پشتیبانی رندرینگ MsgPack |
 
 :::note
-Build tags only affect how Gin is compiled. Your application code (route handlers, middleware, etc.) does not need to change when you switch tags.
+تگ‌های ساخت فقط بر نحوه کامپایل Gin تأثیر می‌گذارند. کد برنامه شما (handlerهای مسیر، میان‌افزار و غیره) نیازی به تغییر ندارد وقتی تگ‌ها را عوض می‌کنید.
 :::
 
-## In this section
+## در این بخش
 
-The pages below cover each build tag in detail:
+صفحات زیر هر تگ ساخت را به تفصیل پوشش می‌دهند:
 
-- [**Build with JSON replacement**](./json-replacement/) -- Replace the default JSON encoder with go-json, jsoniter, or sonic for faster serialization.
-- [**Build without MsgPack**](./nomsgpack/) -- Disable MsgPack rendering with the `nomsgpack` build tag to reduce binary size.
+- [**ساخت با جایگزین JSON**](./json-replacement/) -- جایگزینی رمزگذار پیش‌فرض JSON با go-json، jsoniter یا sonic برای سریال‌سازی سریع‌تر.
+- [**ساخت بدون MsgPack**](./nomsgpack/) -- غیرفعال کردن رندرینگ MsgPack با تگ ساخت `nomsgpack` برای کاهش حجم باینری.

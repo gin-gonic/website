@@ -1,16 +1,16 @@
 ---
-title: "How to Build an Effective Middleware"
-linkTitle: "How to Build an Effective Middleware"
+title: "Etkili Bir Ara Katman Nasıl Oluşturulur"
+linkTitle: "Etkili Bir Ara Katman Nasıl Oluşturulur"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## Yapısal Bileşenler
 
-Middleware typically consists of two parts:
+Ara katman genellikle iki bölümden oluşur:
 
-- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
+- İlk bölüm, ara katmanınızı başlattığınızda bir kez çalışır. Burası genel nesneleri, yapılandırma mantığını vb. kurduğunuz yerdir -- uygulamanın ömrü boyunca yalnızca bir kez gerçekleşmesi gereken her şey.
 
-- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
+- İkinci bölüm her istekte çalışır. Örneğin, bir veritabanı ara katmanında, genel veritabanı nesnenizi istek context'ine enjekte edersiniz. Context'e yerleştirildikten sonra, diğer ara katmanlar ve işleyici fonksiyonlarınız onu alıp kullanabilir.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -33,9 +33,9 @@ func funcName(params string) gin.HandlerFunc {
 }
 ```
 
-## Execution process
+## Yürütme Süreci
 
-Let's look at the following example code:
+Aşağıdaki örnek koda bakalım:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
+Yukarıdaki [Yapısal Bileşenler](#yapısal-bileşenler) bölümüne göre, Gin sürecini çalıştırdığınızda her ara katmanın **birinci bölümü** önce çalışır ve aşağıdaki bilgileri yazdırır:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-The initialization order is:
+Başlatma sırası şöyledir:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
+Bir istek yaptığınızda -- örneğin `curl -v localhost:8080/rest/n/api/some` -- her ara katmanın **ikinci bölümü** sırasıyla çalışır ve aşağıdaki çıktıyı üretir:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, the execution order is:
+Başka bir deyişle, yürütme sırası şöyledir:
 
 ```go
 globalMiddleware...2

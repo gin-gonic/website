@@ -1,6 +1,6 @@
 ---
-title: "Announcing Gin 1.11.0: HTTP/3, Form Improvements, Performance & More"
-linkTitle: "Gin 1.11.0 Release Announcement"
+title: "معرفی Gin 1.11.0: HTTP/3، بهبود فرم‌ها، عملکرد و موارد بیشتر"
+linkTitle: "اعلام انتشار Gin 1.11.0"
 lastUpdated: 2025-09-21
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: "Gin 1.8.0 is released"
-linkTitle: "Gin 1.8.0 is released"
+title: "Вышел Gin 1.8.0"
+linkTitle: "Вышел Gin 1.8.0"
 lastUpdated: 2022-05-30
 ---
 

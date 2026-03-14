@@ -4,60 +4,60 @@ sidebar:
   order: 10
 ---
 
-Gin projects can be deployed easily on any cloud provider.
+Gin 项目可以轻松部署到任何云服务提供商。
 
 ## [Railway](https://www.railway.com)
 
-Railway is a cutting-edge cloud development platform for deploying, managing, and scaling applications and services. It simplifies your infrastructure stack from servers to observability with a single, scalable, easy-to-use platform.
+Railway 是一个前沿的云开发平台，用于部署、管理和扩展应用和服务。它通过一个可扩展、易于使用的平台简化了从服务器到可观测性的整个基础设施栈。
 
-Follow the Railway [guide to deploy your Gin projects](https://docs.railway.com/guides/gin).
+请参阅 Railway [部署 Gin 项目的指南](https://docs.railway.com/guides/gin)。
 
 ## [Seenode](https://seenode.com)
 
-Seenode is a modern cloud platform designed specifically for developers who want to deploy applications quickly and efficiently. It offers git-based deployment, automatic SSL certificates, built-in databases, and a streamlined interface that gets your Gin applications live in minutes.
+Seenode 是一个专为希望快速高效部署应用的开发者设计的现代云平台。它提供基于 Git 的部署、自动 SSL 证书、内置数据库和简洁的界面，让你的 Gin 应用在几分钟内上线。
 
-Follow the Seenode [guide to deploy your Gin projects](https://seenode.com/docs/frameworks/go/gin).
+请参阅 Seenode [部署 Gin 项目的指南](https://seenode.com/docs/frameworks/go/gin)。
 
 ## [Koyeb](https://www.koyeb.com)
 
-Koyeb is a developer-friendly serverless platform to deploy apps globally with git-based deployment, TLS encryption, native autoscaling, a global edge network, and built-in service mesh & discovery.
+Koyeb 是一个开发者友好的 Serverless 平台，支持基于 Git 的部署、TLS 加密、原生自动扩展、全球边缘网络以及内置的服务网格和服务发现，可在全球范围内部署应用。
 
-Follow the Koyeb [guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+请参阅 Koyeb [部署 Gin 项目的指南](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb)。
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery provides free Cloud hosting with databases, SSL, a global CDN, and automatic deploys with Git.
+Qovery 提供免费的云托管服务，包含数据库、SSL、全球 CDN 和基于 Git 的自动部署。
 
-See [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) for more information.
+更多信息请参阅 [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/)。
 
 ## [Render](https://render.com)
 
-Render is a modern cloud platform that offers native support for Go, fully managed SSL, databases, zero-downtime deploys, HTTP/2, and websocket support.
+Render 是一个现代云平台，提供对 Go 的原生支持、完全托管的 SSL、数据库、零停机部署、HTTP/2 和 WebSocket 支持。
 
-Follow the Render [guide to deploying Gin projects](https://render.com/docs/deploy-go-gin).
+请参阅 Render [部署 Gin 项目的指南](https://render.com/docs/deploy-go-gin)。
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE has two ways to deploy Go applications. The standard environment is easier to use but less customizable and prevents [syscalls](https://github.com/gin-gonic/gin/issues/1639) for security reasons. The flexible environment can run any framework or library.
+GAE 有两种方式来部署 Go 应用。标准环境更易于使用，但自定义性较低，并且出于安全原因会阻止 [syscalls](https://github.com/gin-gonic/gin/issues/1639)。灵活环境可以运行任何框架或库。
 
-Learn more and pick your preferred environment at [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+在 [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/) 了解更多信息并选择你偏好的环境。
 
-## Self Hosted
+## 自托管
 
-Gin projects can also be deployed in a self-hosted manner. Deployment architecture and security considerations vary depending on the target environment. The following section only presents a high level overview of configuration options to consider when planning the deployment.
+Gin 项目也可以以自托管的方式部署。部署架构和安全考虑因目标环境而异。以下部分仅概述了在规划部署时需要考虑的配置选项。
 
-## Configuration Options
+## 配置选项
 
-Gin project deployments can be tuned by using environment variables or directly in code.
+Gin 项目的部署可以通过环境变量或直接在代码中进行调整。
 
-The following environment variables are available for configuring Gin:
+以下环境变量可用于配置 Gin：
 
-| Environment Variable | Description                                                                                                                                                                                                   |
+| 环境变量 | 描述 |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PORT                 | The TCP port to listen on when starting the Gin server with `router.Run()` (i.e. without any arguments).                                                                                                      |
-| GIN_MODE             | Set to one of `debug`, `release`, or `test`. Handles management of Gin modes, such as when to emit debug outputs. Can also be set in code using `gin.SetMode(gin.ReleaseMode)` or `gin.SetMode(gin.TestMode)` |
+| PORT                 | 使用 `router.Run()`（即不带任何参数）启动 Gin 服务器时要监听的 TCP 端口。 |
+| GIN_MODE             | 设置为 `debug`、`release` 或 `test` 之一。用于管理 Gin 模式，例如何时输出调试信息。也可以在代码中使用 `gin.SetMode(gin.ReleaseMode)` 或 `gin.SetMode(gin.TestMode)` 设置。 |
 
-The following code can be used to configure Gin.
+以下代码可用于配置 Gin。
 
 ```go
 // Don't specify the bind address or port for Gin. Defaults to binding on all interfaces on port 8080.
@@ -79,4 +79,4 @@ router := gin.Default()
 router.SetTrustedProxies([]string{"192.168.1.2"})
 ```
 
-For information on configuring trusted proxies, see [Trusted Proxies](/en/docs/server-config/trusted-proxies/).
+有关配置可信代理的信息，请参阅[可信代理](/zh-cn/docs/server-config/trusted-proxies/)。

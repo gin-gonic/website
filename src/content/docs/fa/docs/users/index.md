@@ -1,23 +1,23 @@
 ---
-title: "Users"
+title: "کاربران"
 sidebar:
   order: 14
 ---
 
-Gin is used in production by companies and open-source projects of all sizes. Below is a selection of notable projects built with Gin. If your project uses Gin, we would love to add it to this list.
+Gin توسط شرکت‌ها و پروژه‌های متن‌باز با اندازه‌های مختلف در تولید استفاده می‌شود. در زیر مجموعه‌ای از پروژه‌های قابل توجه ساخته شده با Gin آمده است. اگر پروژه شما از Gin استفاده می‌کند، خوشحال می‌شویم آن را به این لیست اضافه کنیم.
 
-## Awesome Project Lists
+## لیست پروژه‌های برتر
 
-- [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
-- [fnproject](https://github.com/fnproject/fn): The container native, cloud agnostic serverless platform.
-- [photoprism](https://github.com/photoprism/photoprism): AI-Powered Photos App for the Decentralized Web.
-- [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
-- [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
-- [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per WebSocket.
-- [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
-- [drone](https://github.com/harness/drone): A container-native, Continuous Delivery platform built on Go.
-- [go-admin](https://github.com/GoAdminGroup/go-admin): A data visualization and admin panel framework for Go.
+- [gorush](https://github.com/appleboy/gorush): سرور اعلان push نوشته شده با Go.
+- [fnproject](https://github.com/fnproject/fn): پلتفرم serverless بومی container و مستقل از ابر.
+- [photoprism](https://github.com/photoprism/photoprism): برنامه عکس مبتنی بر هوش مصنوعی برای وب غیرمتمرکز.
+- [krakend](https://github.com/devopsfaith/krakend): دروازه API بسیار سریع با میان‌افزارها.
+- [picfit](https://github.com/thoas/picfit): سرور تغییر اندازه تصویر نوشته شده با Go.
+- [gotify](https://github.com/gotify/server): سرور ساده برای ارسال و دریافت پیام‌ها در لحظه از طریق WebSocket.
+- [cds](https://github.com/ovh/cds): پلتفرم متن‌باز تحویل مداوم و اتوماسیون DevOps سطح سازمانی.
+- [drone](https://github.com/harness/drone): پلتفرم تحویل مداوم بومی container ساخته شده با Go.
+- [go-admin](https://github.com/GoAdminGroup/go-admin): فریم‌ورک مصورسازی داده و پنل مدیریت برای Go.
 
-## Submit your project
+## ارسال پروژه خود
 
-Using Gin in production or for an open-source project? Open a pull request on the [gin-gonic/website](https://github.com/gin-gonic/website) repository to add your project to this page.
+از Gin در تولید یا برای یک پروژه متن‌باز استفاده می‌کنید؟ یک pull request در مخزن [gin-gonic/website](https://github.com/gin-gonic/website) باز کنید تا پروژه خود را به این صفحه اضافه کنید.

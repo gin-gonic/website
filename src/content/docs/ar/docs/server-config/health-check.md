@@ -1,14 +1,14 @@
 ---
-title: "Health Checks"
+title: "فحوصات الصحة"
 sidebar:
   order: 12
 ---
 
-Health check endpoints allow load balancers, orchestrators like Kubernetes, and monitoring systems to verify your application is running and ready to serve traffic. A typical setup includes two endpoints: **liveness** (is the process alive?) and **readiness** (is it ready to accept requests?).
+تسمح نقاط نهاية فحص الصحة لموازنات الحمل والمنسّقين مثل Kubernetes وأنظمة المراقبة بالتحقق من أن تطبيقك يعمل وجاهز لخدمة حركة المرور. يتضمن الإعداد النموذجي نقطتي نهاية: **الحيوية** (هل العملية حية؟) و**الجاهزية** (هل هي جاهزة لقبول الطلبات؟).
 
-## Basic health check
+## فحص صحة أساسي
 
-A simple health endpoint that returns 200 OK:
+نقطة نهاية صحة بسيطة تُرجع 200 OK:
 
 ```go
 package main
@@ -34,12 +34,12 @@ func main() {
 }
 ```
 
-## Liveness vs readiness
+## الحيوية مقابل الجاهزية
 
-In Kubernetes and similar environments, you typically need two types of health checks:
+في Kubernetes والبيئات المشابهة، تحتاج عادةً إلى نوعين من فحوصات الصحة:
 
-- **Liveness probe** — checks if the application process is alive. If it fails, the container is restarted.
-- **Readiness probe** — checks if the application is ready to handle traffic. If it fails, traffic is temporarily stopped but the container is not restarted.
+- **فحص الحيوية** -- يتحقق مما إذا كانت عملية التطبيق حية. إذا فشل، يتم إعادة تشغيل الحاوية.
+- **فحص الجاهزية** -- يتحقق مما إذا كان التطبيق جاهزاً للتعامل مع حركة المرور. إذا فشل، يتم إيقاف حركة المرور مؤقتاً لكن لا تتم إعادة تشغيل الحاوية.
 
 ```go
 package main
@@ -95,9 +95,9 @@ func main() {
 }
 ```
 
-## Kubernetes configuration
+## تكوين Kubernetes
 
-Configure probes in your Kubernetes deployment manifest:
+كوّن الفحوصات في ملف نشر Kubernetes:
 
 ```yaml
 apiVersion: apps/v1
@@ -126,9 +126,9 @@ spec:
             periodSeconds: 5
 ```
 
-## Checking multiple dependencies
+## فحص اعتماديات متعددة
 
-For applications with multiple dependencies, check each one and report detailed status:
+للتطبيقات ذات الاعتماديات المتعددة، تحقق من كل واحدة وأبلغ عن الحالة بالتفصيل:
 
 ```go
 package main
@@ -184,10 +184,10 @@ func (h *HealthChecker) CheckHealth(c *gin.Context) {
 ```
 
 :::note
-Always set a timeout on health check handlers. A hanging database connection should not block the health check indefinitely — return unhealthy instead.
+عيّن دائماً مهلة زمنية على معالجات فحص الصحة. اتصال قاعدة بيانات معلّق يجب ألا يحظر فحص الصحة إلى أجل غير مسمى -- أرجع حالة غير صحية بدلاً من ذلك.
 :::
 
-## Testing
+## الاختبار
 
 ```sh
 # Check liveness
@@ -197,7 +197,7 @@ curl -i http://localhost:8080/healthz
 curl -i http://localhost:8080/readyz
 ```
 
-Expected output:
+المخرجات المتوقعة:
 
 ```
 HTTP/1.1 200 OK
@@ -206,7 +206,7 @@ Content-Type: application/json; charset=utf-8
 {"status":"ready"}
 ```
 
-## See also
+## انظر أيضاً
 
-- [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/)
-- [Deployment](/en/docs/deployment/)
+- [إعادة التشغيل أو الإيقاف الرشيق](/ar/docs/server-config/graceful-restart-or-stop/)
+- [النشر](/ar/docs/deployment/)

@@ -1,12 +1,12 @@
 ---
-title: "Gin 1.11.0 is released"
-linkTitle: "Gin 1.11.0 is released"
+title: "تم إصدار Gin 1.11.0"
+linkTitle: "تم إصدار Gin 1.11.0"
 lastUpdated: 2025-09-20
 ---
 
 ## Gin v1.11.0
 
-### Features
+### الميزات
 
 * feat(gin): Experimental support for HTTP/3 using quic-go/quic-go ([#3210](https://github.com/gin-gonic/gin/pull/3210))
 * feat(form): add array collection format in form binding ([#3986](https://github.com/gin-gonic/gin/pull/3986)), add custom string slice for form tag unmarshal ([#3970](https://github.com/gin-gonic/gin/pull/3970))
@@ -16,7 +16,7 @@ lastUpdated: 2025-09-20
 * feat(form): Support default values for collections in form binding ([#4048](https://github.com/gin-gonic/gin/pull/4048))
 * feat(context): GetXxx added support for more go native types ([#3633](https://github.com/gin-gonic/gin/pull/3633))
 
-### Enhancements
+### التحسينات
 
 * perf(context): optimize getMapFromFormData performance ([#4339](https://github.com/gin-gonic/gin/pull/4339))
 * refactor(tree): replace string(/) with "/" in node.insertChild ([#4354](https://github.com/gin-gonic/gin/pull/4354))
@@ -32,7 +32,7 @@ lastUpdated: 2025-09-20
 * tree: replace the self-defined 'min' to official one ([#3975](https://github.com/gin-gonic/gin/pull/3975))
 * context: Remove redundant filepath.Dir usage ([#4181](https://github.com/gin-gonic/gin/pull/4181))
 
-### Bug Fixes
+### إصلاحات الأخطاء
 
 * fix: prevent middleware re-entry issue in HandleContext ([#3987](https://github.com/gin-gonic/gin/pull/3987))
 * fix(binding): prevent duplicate decoding and add validation in decodeToml ([#4193](https://github.com/gin-gonic/gin/pull/4193))

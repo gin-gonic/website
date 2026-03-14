@@ -1,23 +1,23 @@
 ---
-title: "Users"
+title: "사용자"
 sidebar:
   order: 14
 ---
 
-Gin is used in production by companies and open-source projects of all sizes. Below is a selection of notable projects built with Gin. If your project uses Gin, we would love to add it to this list.
+Gin은 모든 규모의 기업과 오픈소스 프로젝트에서 프로덕션에 사용되고 있습니다. 아래는 Gin으로 구축된 주요 프로젝트의 일부입니다. 프로젝트에서 Gin을 사용하고 있다면, 이 목록에 추가하고 싶습니다.
 
-## Awesome Project Lists
+## 주요 프로젝트 목록
 
-- [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
-- [fnproject](https://github.com/fnproject/fn): The container native, cloud agnostic serverless platform.
-- [photoprism](https://github.com/photoprism/photoprism): AI-Powered Photos App for the Decentralized Web.
-- [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
-- [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
-- [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per WebSocket.
-- [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
-- [drone](https://github.com/harness/drone): A container-native, Continuous Delivery platform built on Go.
-- [go-admin](https://github.com/GoAdminGroup/go-admin): A data visualization and admin panel framework for Go.
+- [gorush](https://github.com/appleboy/gorush): Go로 작성된 푸시 알림 서버.
+- [fnproject](https://github.com/fnproject/fn): 컨테이너 네이티브, 클라우드 비의존적 서버리스 플랫폼.
+- [photoprism](https://github.com/photoprism/photoprism): 분산 웹을 위한 AI 기반 사진 앱.
+- [krakend](https://github.com/devopsfaith/krakend): 미들웨어를 갖춘 초고성능 API Gateway.
+- [picfit](https://github.com/thoas/picfit): Go로 작성된 이미지 리사이징 서버.
+- [gotify](https://github.com/gotify/server): WebSocket을 통해 실시간으로 메시지를 주고받는 간단한 서버.
+- [cds](https://github.com/ovh/cds): 엔터프라이즈급 지속적 배포 및 DevOps 자동화 오픈소스 플랫폼.
+- [drone](https://github.com/harness/drone): Go로 구축된 컨테이너 네이티브 지속적 배포 플랫폼.
+- [go-admin](https://github.com/GoAdminGroup/go-admin): Go를 위한 데이터 시각화 및 관리자 패널 프레임워크.
 
-## Submit your project
+## 프로젝트 제출
 
-Using Gin in production or for an open-source project? Open a pull request on the [gin-gonic/website](https://github.com/gin-gonic/website) repository to add your project to this page.
+프로덕션이나 오픈소스 프로젝트에서 Gin을 사용하고 있나요? [gin-gonic/website](https://github.com/gin-gonic/website) 저장소에 풀 리퀘스트를 열어 이 페이지에 프로젝트를 추가하세요.

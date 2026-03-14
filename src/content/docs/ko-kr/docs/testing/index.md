@@ -1,16 +1,16 @@
 ---
-title: "Testing"
+title: "테스트"
 sidebar:
   order: 9
 ---
 
-## How to write test case for Gin?
+## Gin의 테스트 케이스 작성 방법
 
-The `net/http/httptest` package is the preferred way for HTTP testing.
+`net/http/httptest` 패키지는 HTTP 테스트에 권장되는 방법입니다.
 
-### Suppress debug output
+### 디버그 출력 억제
 
-Call `gin.SetMode(gin.TestMode)` before creating the router in your tests. This suppresses the debug-level route registration logs that Gin prints by default, keeping your test output clean. You can place this in `TestMain` so it applies to all tests in the package:
+테스트에서 라우터를 생성하기 전에 `gin.SetMode(gin.TestMode)`를 호출하세요. 이는 Gin이 기본적으로 출력하는 디버그 수준의 라우트 등록 로그를 억제하여 테스트 출력을 깔끔하게 유지합니다. `TestMain`에 배치하면 패키지의 모든 테스트에 적용됩니다:
 
 ```go
 func TestMain(m *testing.M) {
@@ -19,7 +19,7 @@ func TestMain(m *testing.M) {
 }
 ```
 
-### Example application
+### 예제 애플리케이션
 
 ```go
 package main
@@ -55,7 +55,7 @@ func main() {
 }
 ```
 
-### Basic tests
+### 기본 테스트
 
 ```go
 package main
@@ -81,14 +81,14 @@ func TestPingRoute(t *testing.T) {
   assert.Equal(t, "pong", w.Body.String())
 }
 
-// Test for POST /user/add
+// POST /user/add 테스트
 func TestPostUser(t *testing.T) {
   router := setupRouter()
   router = postUser(router)
 
   w := httptest.NewRecorder()
 
-  // Create an example user for testing
+  // 테스트용 사용자 예제 생성
   exampleUser := User{
     Username: "test_name",
     Gender:   "male",
@@ -98,14 +98,14 @@ func TestPostUser(t *testing.T) {
   router.ServeHTTP(w, req)
 
   assert.Equal(t, 200, w.Code)
-  // Compare the response body with the json data of exampleUser
+  // 응답 바디를 exampleUser의 json 데이터와 비교
   assert.Equal(t, string(userJson), w.Body.String())
 }
 ```
 
-### Table-driven tests
+### 테이블 기반 테스트
 
-Table-driven tests let you cover many input/output combinations without duplicating test logic. This pattern is idiomatic Go and works well with Gin:
+테이블 기반 테스트는 테스트 로직을 중복하지 않고 많은 입력/출력 조합을 다룰 수 있게 합니다. 이 패턴은 관용적 Go이며 Gin과 잘 작동합니다:
 
 ```go
 func TestPingRouteTableDriven(t *testing.T) {
@@ -118,8 +118,8 @@ func TestPingRouteTableDriven(t *testing.T) {
     wantCode   int
     wantBody   string
   }{
-    {"ping endpoint", "GET", "/ping", 200, "pong"},
-    {"not found", "GET", "/nonexistent", 404, ""},
+    {"ping 엔드포인트", "GET", "/ping", 200, "pong"},
+    {"찾을 수 없음", "GET", "/nonexistent", 404, ""},
   }
 
   for _, tt := range tests {
@@ -137,29 +137,29 @@ func TestPingRouteTableDriven(t *testing.T) {
 }
 ```
 
-### Testing middleware
+### 미들웨어 테스트
 
-To test a middleware in isolation, create a minimal router with the middleware applied and a simple handler that records the result:
+미들웨어를 독립적으로 테스트하려면 미들웨어가 적용된 최소한의 라우터와 결과를 기록하는 간단한 핸들러를 생성합니다:
 
 ```go
 func TestAuthMiddleware(t *testing.T) {
   gin.SetMode(gin.TestMode)
 
-  // Create a router with the middleware under test
+  // 테스트 대상 미들웨어가 적용된 라우터 생성
   router := gin.New()
-  router.Use(AuthRequired()) // your middleware
+  router.Use(AuthRequired()) // 미들웨어
 
   router.GET("/protected", func(c *gin.Context) {
     c.String(200, "ok")
   })
 
-  // Test without credentials -- expect 401
+  // 자격 증명 없이 테스트 -- 401 기대
   w := httptest.NewRecorder()
   req, _ := http.NewRequest("GET", "/protected", nil)
   router.ServeHTTP(w, req)
   assert.Equal(t, 401, w.Code)
 
-  // Test with valid credentials -- expect 200
+  // 유효한 자격 증명으로 테스트 -- 200 기대
   w = httptest.NewRecorder()
   req, _ = http.NewRequest("GET", "/protected", nil)
   req.Header.Set("Authorization", "Bearer valid-token")

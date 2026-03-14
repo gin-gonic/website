@@ -1,38 +1,38 @@
 ---
-title: "Benchmarks"
+title: "Karşılaştırma Testleri"
 sidebar:
   order: 12
 ---
 
-> **Historical Data:** These benchmarks were collected in May 2020 using Gin v1.6.3 and Go 1.14.2. Framework performance may have changed significantly since then. For up-to-date benchmark results, see the [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) repository.
+> **Tarihi Veriler:** Bu karşılaştırma testleri Mayıs 2020'de Gin v1.6.3 ve Go 1.14.2 kullanılarak toplanmıştır. Framework performansı o zamandan bu yana önemli ölçüde değişmiş olabilir. Güncel karşılaştırma sonuçları için [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) deposuna bakın.
 
-## Gin Web Framework Performance Benchmarks
+## Gin Web Framework Performans Karşılaştırma Testleri
 
-Benchmarks help developers evaluate the efficiency and resource usage of HTTP router libraries in Go. This page summarizes measurements across many popular frameworks, so you can easily compare their speed and memory consumption.
+Karşılaştırma testleri, geliştiricilerin Go'daki HTTP yönlendirici kütüphanelerinin verimliliğini ve kaynak kullanımını değerlendirmesine yardımcı olur. Bu sayfa, birçok popüler framework'ün ölçümlerini özetler, böylece hızlarını ve bellek tüketimlerini kolayca karşılaştırabilirsiniz.
 
-**Test Environment:**
+**Test Ortamı:**
 
-- **Host Platform:** Travis CI (virtual Linux VM)
-- **Machine Specs:** Ubuntu 16.04.6 LTS x64
-- **Test Date:** May 04th, 2020
-- **Gin Version:** v1.6.3
-- **Go Version:** 1.14.2 (linux/amd64)
-- **Benchmarks Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
-- **Detailed Results:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+- **Ana Platform:** Travis CI (sanal Linux VM)
+- **Makine Özellikleri:** Ubuntu 16.04.6 LTS x64
+- **Test Tarihi:** 04 Mayıs 2020
+- **Gin Sürümü:** v1.6.3
+- **Go Sürümü:** 1.14.2 (linux/amd64)
+- **Karşılaştırma Kaynağı:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **Ayrıntılı Sonuçlar:** [Gist'e bakın](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) veya [Travis sonucu](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
 
-Gin uses an optimized fork of [HttpRouter](https://github.com/julienschmidt/httprouter) for high performance routing.
+Gin, yüksek performanslı yönlendirme için [HttpRouter](https://github.com/julienschmidt/httprouter)'ın optimize edilmiş bir çatalını kullanır.
 
-If you want to view more test cases, you can check [all benchmarks here](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+Daha fazla test senaryosu görüntülemek istiyorsanız, [tüm karşılaştırmaları buradan](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md) kontrol edebilirsiniz.
 
 ---
 
-## How to Read the Table
+## Tabloyu Nasıl Okumalı
 
-The benchmarks below show various Go frameworks running common HTTP routing tasks.  
-**Lower numbers (time, memory, allocations) are better.**  
-You can use these results for a direct, side-by-side comparison of Gin and alternative routers.
+Aşağıdaki karşılaştırma testleri, çeşitli Go framework'lerinin yaygın HTTP yönlendirme görevlerini çalıştırmasını gösterir.
+**Daha düşük sayılar (süre, bellek, tahsisler) daha iyidir.**
+Bu sonuçları Gin ve alternatif yönlendiricilerin doğrudan, yan yana karşılaştırması için kullanabilirsiniz.
 
-| Test                              | Repetitions | Time (ns/op) | Bytes (B/op) | Allocations (allocs/op) |
+| Test                              | Tekrarlar | Süre (ns/op) | Bayt (B/op) | Tahsisler (allocs/op) |
 | ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
 | BenchmarkGin_GithubStatic         | 15629472    | 76.7         | 0            | 0                       |
 | BenchmarkAce_GithubStatic         | 15542612    | 75.9         | 0            | 0                       |
@@ -127,11 +127,11 @@ You can use these results for a direct, side-by-side comparison of Gin and alter
 
 ---
 
-## Benchmark Table Notes
+## Karşılaştırma Tablosu Notları
 
-- **Repetitions**: Total repetitions achieved in constant time. Higher numbers mean more confidence in the results.
-- **Time (ns/op)**: Duration for one operation, measured in nanoseconds. Lower is better.
-- **Bytes (B/op)**: Heap memory allocated per operation. Lower means better efficiency.
-- **Allocations (allocs/op)**: Average number of memory allocations per operation. Fewer allocations are better for performance and garbage collection.
+- **Tekrarlar**: Sabit sürede elde edilen toplam tekrar sayısı. Daha yüksek sayılar sonuçlarda daha fazla güven anlamına gelir.
+- **Süre (ns/op)**: Bir işlem için geçen süre, nanosaniye cinsinden ölçülür. Düşük daha iyidir.
+- **Bayt (B/op)**: İşlem başına ayrılan heap belleği. Düşük daha iyi verimlilik demektir.
+- **Tahsisler (allocs/op)**: İşlem başına ortalama bellek tahsis sayısı. Daha az tahsis, performans ve çöp toplama için daha iyidir.
 
-For questions or contributions, check our [GitHub repository](https://github.com/gin-gonic/gin).
+Sorularınız veya katkılarınız için [GitHub deposumuzu](https://github.com/gin-gonic/gin) kontrol edin.

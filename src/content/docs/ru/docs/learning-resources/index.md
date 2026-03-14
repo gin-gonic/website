@@ -1,67 +1,66 @@
 ---
-title: "Learning Resources"
+title: "Учебные ресурсы"
 sidebar:
   order: 13
 ---
 
-## Official Resources
+## Официальные ресурсы
 
-These are maintained by the Gin team and are the most authoritative sources of information.
+Они поддерживаются командой Gin и являются наиболее авторитетными источниками информации.
 
-- **[Gin GitHub Repository](https://github.com/gin-gonic/gin)** -- Source code, issue tracker, and the latest release notes.
-- **[Gin Examples Repository](https://github.com/gin-gonic/examples)** -- A collection of self-contained example projects covering common use cases such as file uploads, graceful shutdown, JWT authentication, and more.
-- **[Gin API Reference (pkg.go.dev)](https://pkg.go.dev/github.com/gin-gonic/gin)** -- Auto-generated API documentation for every exported type and function.
+- **[Репозиторий Gin на GitHub](https://github.com/gin-gonic/gin)** -- Исходный код, трекер задач и последние примечания к выпускам.
+- **[Репозиторий примеров Gin](https://github.com/gin-gonic/examples)** -- Коллекция самодостаточных проектов-примеров, охватывающих типичные сценарии использования, такие как загрузка файлов, плавная остановка, аутентификация JWT и многое другое.
+- **[Справочник API Gin (pkg.go.dev)](https://pkg.go.dev/github.com/gin-gonic/gin)** -- Автоматически сгенерированная документация API для каждого экспортируемого типа и функции.
 
-## Go Language Resources
+## Ресурсы по языку Go
 
-A solid understanding of Go itself will make working with Gin much easier.
+Хорошее понимание самого Go значительно упростит работу с Gin.
 
-- **[A Tour of Go](https://go.dev/tour/)** -- The official interactive introduction to Go.
-- **[Effective Go](https://go.dev/doc/effective_go)** -- Best practices and idiomatic patterns for writing Go code.
-- **[Go by Example](https://gobyexample.com/)** -- Annotated example programs covering Go fundamentals.
-- **[Go Standard Library Documentation](https://pkg.go.dev/std)** -- Reference for every package in the standard library, including `net/http`, which Gin builds on.
+- **[Тур по Go](https://go.dev/tour/)** -- Официальное интерактивное введение в Go.
+- **[Эффективный Go](https://go.dev/doc/effective_go)** -- Лучшие практики и идиоматические паттерны для написания кода на Go.
+- **[Go на примерах](https://gobyexample.com/)** -- Программы-примеры с аннотациями, охватывающие основы Go.
+- **[Документация стандартной библиотеки Go](https://pkg.go.dev/std)** -- Справочник по каждому пакету стандартной библиотеки, включая `net/http`, на котором построен Gin.
 
-## Tutorials and Articles
+## Руководства и статьи
 
-Community-written guides that walk through building real applications with Gin.
+Руководства от сообщества, которые проведут вас через создание реальных приложений с Gin.
 
-- **[Building a RESTful API with Go and Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- An official Go tutorial that uses Gin to build a simple web service.
-- **[Build a REST API with Go, Gin, and GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- Covers project layout, database integration, and deployment.
+- **[Создание RESTful API с Go и Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- Официальное руководство Go, использующее Gin для создания простого веб-сервиса.
+- **[Создание REST API с Go, Gin и GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- Охватывает структуру проекта, интеграцию с базой данных и развёртывание.
 
-## Interactive Learning Platforms
+## Интерактивные обучающие платформы
 
-Looking to practice Gin concepts through hands-on exercises? Here are some community-driven learning resources:
+Хотите попрактиковаться с концепциями Gin через практические упражнения? Вот несколько обучающих ресурсов от сообщества:
 
-### Go Interview Practice - Gin Challenges
+### Go Interview Practice - задачи по Gin
 
-A comprehensive platform offering progressive Gin challenges that complement the official documentation:
+Комплексная платформа, предлагающая пошаговые задачи по Gin, дополняющие официальную документацию:
 
 <div class="learning-platform-showcase">
   <div class="platform-features">
-    <h4>What You'll Learn:</h4>
+    <h4>Что вы изучите:</h4>
     <ul>
-      <li>Basic routing and HTTP methods</li>
-      <li>Middleware implementation and patterns</li>
-      <li>Request validation and error handling</li>
-      <li>Authentication and security practices</li>
+      <li>Базовая маршрутизация и HTTP-методы</li>
+      <li>Реализация middleware и паттерны</li>
+      <li>Валидация запросов и обработка ошибок</li>
+      <li>Аутентификация и практики безопасности</li>
     </ul>
   </div>
 
   <div class="platform-demo">
-    <h4>See It In Action:</h4>
+    <h4>Посмотрите в действии:</h4>
     <div class="video-container">
       <video controls width="100%">
         <source src="https://github.com/user-attachments/assets/23468aab-a032-4326-9d05-84de86c9128c" type="video/mp4">
-        Your browser does not support the video tag.
+        Ваш браузер не поддерживает тег video.
       </video>
-      <p class="video-caption">A brief introduction to the Go Interview Practice platform</p>
+      <p class="video-caption">Краткое знакомство с платформой Go Interview Practice</p>
     </div>
   </div>
 
   <div class="platform-cta">
     <a href="https://github.com/RezaSi/go-interview-practice" class="btn btn-primary" target="_blank" rel="noopener">
-      Explore Gin Challenges →
+      Изучить задачи по Gin →
     </a>
   </div>
 </div>
---

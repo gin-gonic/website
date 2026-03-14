@@ -1,6 +1,6 @@
 ---
-title: "Announcing Gin 1.12.0: BSON Support, Context Improvements, Performance & More"
-linkTitle: "Gin 1.12.0 Release Announcement"
+title: "معرفی Gin 1.12.0: پشتیبانی BSON، بهبود Context، عملکرد و موارد بیشتر"
+linkTitle: "اعلام انتشار Gin 1.12.0"
 lastUpdated: 2026-02-28
 ---
 

@@ -1,45 +1,45 @@
 ---
-title: "Build Tags"
+title: "构建标签"
 sidebar:
   order: 11
 ---
 
-Go [build tags](https://pkg.go.dev/go/build#hdr-Build_Constraints) (also called build constraints) are directives that tell the Go compiler to include or exclude files during compilation. Gin uses build tags to let you swap out internal implementations or disable optional features at compile time, without changing any application code.
+Go [构建标签](https://pkg.go.dev/go/build#hdr-Build_Constraints)（也称为构建约束）是告诉 Go 编译器在编译期间包含或排除文件的指令。Gin 使用构建标签让你可以在编译时替换内部实现或禁用可选功能，而无需更改任何应用代码。
 
-This is useful in several scenarios:
+这在以下场景中很有用：
 
-- **Performance optimization** -- Replace the default `encoding/json` package with a faster third-party encoder to speed up JSON serialization in your API.
-- **Binary size reduction** -- Strip out features you do not use, such as MsgPack rendering, to produce a smaller compiled binary.
-- **Deployment tuning** -- Choose different encoders for different environments (e.g., a high-throughput production build vs. a standard development build).
+- **性能优化** -- 用更快的第三方编码器替换默认的 `encoding/json` 包，以加速 API 中的 JSON 序列化。
+- **减小二进制体积** -- 剥离你不使用的功能（如 MsgPack 渲染），以生成更小的编译二进制文件。
+- **部署调优** -- 为不同环境选择不同的编码器（例如高吞吐量的生产构建与标准的开发构建）。
 
-Build tags are passed to the Go toolchain with the `-tags` flag:
+构建标签通过 `-tags` 标志传递给 Go 工具链：
 
 ```sh
 go build -tags=<tag_name> .
 ```
 
-You can combine multiple tags by separating them with commas:
+你可以通过逗号分隔来组合多个标签：
 
 ```sh
 go build -tags=nomsgpack,go_json .
 ```
 
-### Available build tags
+### 可用的构建标签
 
-| Tag | Effect |
+| 标签 | 效果 |
 |---|---|
-| `go_json` | Replaces `encoding/json` with [go-json](https://github.com/goccy/go-json) |
-| `jsoniter` | Replaces `encoding/json` with [jsoniter](https://github.com/json-iterator/go) |
-| `sonic avx` | Replaces `encoding/json` with [sonic](https://github.com/bytedance/sonic) (requires AVX CPU instructions) |
-| `nomsgpack` | Disables MsgPack rendering support |
+| `go_json` | 将 `encoding/json` 替换为 [go-json](https://github.com/goccy/go-json) |
+| `jsoniter` | 将 `encoding/json` 替换为 [jsoniter](https://github.com/json-iterator/go) |
+| `sonic avx` | 将 `encoding/json` 替换为 [sonic](https://github.com/bytedance/sonic)（需要 AVX CPU 指令集） |
+| `nomsgpack` | 禁用 MsgPack 渲染支持 |
 
 :::note
-Build tags only affect how Gin is compiled. Your application code (route handlers, middleware, etc.) does not need to change when you switch tags.
+构建标签仅影响 Gin 的编译方式。你的应用代码（路由处理函数、中间件等）在切换标签时不需要更改。
 :::
 
-## In this section
+## 本节内容
 
-The pages below cover each build tag in detail:
+以下页面详细介绍每个构建标签：
 
-- [**Build with JSON replacement**](./json-replacement/) -- Replace the default JSON encoder with go-json, jsoniter, or sonic for faster serialization.
-- [**Build without MsgPack**](./nomsgpack/) -- Disable MsgPack rendering with the `nomsgpack` build tag to reduce binary size.
+- [**使用 JSON 替换构建**](./json-replacement/) -- 用 go-json、jsoniter 或 sonic 替换默认的 JSON 编码器以加速序列化。
+- [**不使用 MsgPack 构建**](./nomsgpack/) -- 使用 `nomsgpack` 构建标签禁用 MsgPack 渲染以减小二进制体积。

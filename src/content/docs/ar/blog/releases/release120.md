@@ -1,12 +1,12 @@
 ---
-title: "Gin 1.12.0 is released"
-linkTitle: "Gin 1.12.0 is released"
+title: "تم إصدار Gin 1.12.0"
+linkTitle: "تم إصدار Gin 1.12.0"
 lastUpdated: 2026-02-28
 ---
 
 ## Gin v1.12.0
 
-### Features
+### الميزات
 
 * feat(binding): add support for encoding.UnmarshalText in uri/query binding ([#4203](https://github.com/gin-gonic/gin/pull/4203))
 * feat(context): add GetError and GetErrorSlice methods for error retrieval ([#4502](https://github.com/gin-gonic/gin/pull/4502))
@@ -16,7 +16,7 @@ lastUpdated: 2026-02-28
 * feat(logger): color latency ([#4146](https://github.com/gin-gonic/gin/pull/4146))
 * feat(render): add bson protocol ([#4145](https://github.com/gin-gonic/gin/pull/4145))
 
-### Bug Fixes
+### إصلاحات الأخطاء
 
 * fix(binding): empty value error ([#2169](https://github.com/gin-gonic/gin/pull/2169))
 * fix(binding): improve empty slice/array handling in form binding ([#4380](https://github.com/gin-gonic/gin/pull/4380))
@@ -30,7 +30,7 @@ lastUpdated: 2026-02-28
 * fix(tree): panic in findCaseInsensitivePathRec with RedirectFixedPath ([#4535](https://github.com/gin-gonic/gin/pull/4535))
 * fix: Correct typos, improve documentation clarity, and remove dead code ([#4511](https://github.com/gin-gonic/gin/pull/4511))
 
-### Enhancements
+### التحسينات
 
 * chore(binding): upgrade bson dependency to mongo-driver v2 ([#4549](https://github.com/gin-gonic/gin/pull/4549))
 * chore(context): always trust xff headers from unix socket ([#3359](https://github.com/gin-gonic/gin/pull/3359))

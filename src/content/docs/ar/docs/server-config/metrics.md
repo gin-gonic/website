@@ -1,14 +1,14 @@
 ---
-title: "Metrics and Monitoring"
+title: "المقاييس والمراقبة"
 sidebar:
   order: 13
 ---
 
-Exposing application metrics allows you to monitor request rates, latencies, error rates, and resource usage in production. [Prometheus](https://prometheus.io/) is the most common monitoring system used with Go applications.
+يتيح لك كشف مقاييس التطبيق مراقبة معدلات الطلبات والتأخيرات ومعدلات الأخطاء واستخدام الموارد في الإنتاج. [Prometheus](https://prometheus.io/) هو نظام المراقبة الأكثر شيوعاً المستخدم مع تطبيقات Go.
 
-## Using gin-contrib/openmetrics
+## استخدام gin-contrib/openmetrics
 
-The [gin-contrib/openmetrics](https://github.com/gin-contrib/openmetrics) middleware provides a ready-to-use Prometheus metrics endpoint:
+يوفر وسيط [gin-contrib/openmetrics](https://github.com/gin-contrib/openmetrics) نقطة نهاية مقاييس Prometheus جاهزة للاستخدام:
 
 ```sh
 go get github.com/gin-contrib/openmetrics
@@ -36,9 +36,9 @@ func main() {
 }
 ```
 
-## Custom Prometheus metrics
+## مقاييس Prometheus مخصصة
 
-For more control, use the [prometheus/client_golang](https://github.com/prometheus/client_golang) library directly:
+لمزيد من التحكم، استخدم مكتبة [prometheus/client_golang](https://github.com/prometheus/client_golang) مباشرة:
 
 ```go
 package main
@@ -106,23 +106,23 @@ func main() {
 ```
 
 :::note
-Use `c.FullPath()` (e.g., `/user/:id`) instead of `c.Request.URL.Path` (e.g., `/user/123`) for the path label. This prevents high-cardinality labels that can overwhelm Prometheus.
+استخدم `c.FullPath()` (مثل `/user/:id`) بدلاً من `c.Request.URL.Path` (مثل `/user/123`) لعلامة المسار. هذا يمنع العلامات عالية العدد التي يمكن أن تُرهق Prometheus.
 :::
 
-## Key metrics to monitor
+## المقاييس الرئيسية للمراقبة
 
-For a production Gin application, track these metrics:
+لتطبيق Gin في الإنتاج، تتبع هذه المقاييس:
 
-| Metric | Type | Purpose |
+| المقياس | النوع | الغرض |
 |--------|------|---------|
-| `http_requests_total` | Counter | Total request count by method, path, status |
-| `http_request_duration_seconds` | Histogram | Request latency distribution |
-| `http_requests_in_flight` | Gauge | Currently processing requests |
-| `http_response_size_bytes` | Histogram | Response body sizes |
+| `http_requests_total` | عدّاد | إجمالي عدد الطلبات حسب الطريقة والمسار والحالة |
+| `http_request_duration_seconds` | مدرج تكراري | توزيع تأخير الطلبات |
+| `http_requests_in_flight` | مقياس | الطلبات قيد المعالجة حالياً |
+| `http_response_size_bytes` | مدرج تكراري | أحجام جسم الاستجابة |
 
-## Serving metrics on a separate port
+## تقديم المقاييس على منفذ منفصل
 
-In production, serve metrics on a separate port to keep them internal:
+في الإنتاج، قدّم المقاييس على منفذ منفصل لإبقائها داخلية:
 
 ```go
 package main
@@ -152,11 +152,11 @@ func main() {
 }
 ```
 
-This way, you can expose port 8080 publicly while keeping port 9090 internal to your infrastructure.
+بهذه الطريقة، يمكنك كشف المنفذ 8080 للعموم مع إبقاء المنفذ 9090 داخلياً في بنيتك التحتية.
 
-## Prometheus scrape configuration
+## تكوين جمع Prometheus
 
-Add your application to the Prometheus configuration:
+أضف تطبيقك إلى تكوين Prometheus:
 
 ```yaml
 # prometheus.yml
@@ -167,7 +167,7 @@ scrape_configs:
       - targets: ["localhost:9090"]
 ```
 
-## Testing
+## الاختبار
 
 ```sh
 # Generate some traffic
@@ -177,7 +177,7 @@ curl http://localhost:8080/ping
 curl http://localhost:9090/metrics
 ```
 
-You should see output like:
+يجب أن ترى مخرجات مثل:
 
 ```
 # HELP http_requests_total Total number of HTTP requests
@@ -190,7 +190,7 @@ http_request_duration_seconds_bucket{method="GET",path="/ping",le="0.005"} 1
 ...
 ```
 
-## See also
+## انظر أيضاً
 
-- [Health Checks](/en/docs/server-config/health-check/)
-- [Run multiple service](/en/docs/server-config/run-multiple-service/)
+- [فحوصات الصحة](/ar/docs/server-config/health-check/)
+- [تشغيل خدمات متعددة](/ar/docs/server-config/run-multiple-service/)

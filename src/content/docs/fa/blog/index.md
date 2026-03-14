@@ -1,11 +1,10 @@
 ---
-title: "Blog"
+title: "بلاگ"
 sidebar:
   order: 30
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+این بخش **بلاگ** است. دو دسته دارد: اخبار و انتشارها.
 
-Files in these directories will be listed in reverse chronological order.
-
+فایل‌ها در این پوشه‌ها به ترتیب زمانی معکوس فهرست می‌شوند.

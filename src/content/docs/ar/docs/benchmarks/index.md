@@ -1,38 +1,38 @@
 ---
-title: "Benchmarks"
+title: "اختبارات الأداء"
 sidebar:
   order: 12
 ---
 
-> **Historical Data:** These benchmarks were collected in May 2020 using Gin v1.6.3 and Go 1.14.2. Framework performance may have changed significantly since then. For up-to-date benchmark results, see the [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) repository.
+> **بيانات تاريخية:** تم جمع اختبارات الأداء هذه في مايو 2020 باستخدام Gin v1.6.3 و Go 1.14.2. قد يكون أداء أطر العمل قد تغير بشكل كبير منذ ذلك الحين. للحصول على نتائج اختبارات أداء محدّثة، راجع مستودع [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark).
 
-## Gin Web Framework Performance Benchmarks
+## اختبارات أداء إطار عمل Gin للويب
 
-Benchmarks help developers evaluate the efficiency and resource usage of HTTP router libraries in Go. This page summarizes measurements across many popular frameworks, so you can easily compare their speed and memory consumption.
+تساعد اختبارات الأداء المطورين على تقييم كفاءة واستهلاك الموارد لمكتبات توجيه HTTP في Go. تلخّص هذه الصفحة القياسات عبر العديد من أطر العمل الشائعة، حتى تتمكن من مقارنة سرعتها واستهلاكها للذاكرة بسهولة.
 
-**Test Environment:**
+**بيئة الاختبار:**
 
-- **Host Platform:** Travis CI (virtual Linux VM)
-- **Machine Specs:** Ubuntu 16.04.6 LTS x64
-- **Test Date:** May 04th, 2020
-- **Gin Version:** v1.6.3
-- **Go Version:** 1.14.2 (linux/amd64)
-- **Benchmarks Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
-- **Detailed Results:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+- **منصة الاستضافة:** Travis CI (جهاز Linux افتراضي)
+- **مواصفات الجهاز:** Ubuntu 16.04.6 LTS x64
+- **تاريخ الاختبار:** 4 مايو 2020
+- **إصدار Gin:** v1.6.3
+- **إصدار Go:** 1.14.2 (linux/amd64)
+- **مصدر اختبارات الأداء:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **نتائج مفصّلة:** [انظر الملخص](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) أو [نتيجة Travis](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
 
-Gin uses an optimized fork of [HttpRouter](https://github.com/julienschmidt/httprouter) for high performance routing.
+يستخدم Gin نسخة محسّنة من [HttpRouter](https://github.com/julienschmidt/httprouter) للتوجيه عالي الأداء.
 
-If you want to view more test cases, you can check [all benchmarks here](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+إذا أردت عرض المزيد من حالات الاختبار، يمكنك الاطلاع على [جميع اختبارات الأداء هنا](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
 
 ---
 
-## How to Read the Table
+## كيفية قراءة الجدول
 
-The benchmarks below show various Go frameworks running common HTTP routing tasks.  
-**Lower numbers (time, memory, allocations) are better.**  
-You can use these results for a direct, side-by-side comparison of Gin and alternative routers.
+تُظهر اختبارات الأداء أدناه أطر عمل Go المختلفة أثناء تنفيذ مهام توجيه HTTP الشائعة.
+**الأرقام الأقل (الوقت، الذاكرة، التخصيصات) أفضل.**
+يمكنك استخدام هذه النتائج لمقارنة مباشرة بين Gin والموجّهات البديلة.
 
-| Test                              | Repetitions | Time (ns/op) | Bytes (B/op) | Allocations (allocs/op) |
+| الاختبار                              | التكرارات | الوقت (ns/op) | البايتات (B/op) | التخصيصات (allocs/op) |
 | ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
 | BenchmarkGin_GithubStatic         | 15629472    | 76.7         | 0            | 0                       |
 | BenchmarkAce_GithubStatic         | 15542612    | 75.9         | 0            | 0                       |
@@ -127,11 +127,11 @@ You can use these results for a direct, side-by-side comparison of Gin and alter
 
 ---
 
-## Benchmark Table Notes
+## ملاحظات جدول اختبارات الأداء
 
-- **Repetitions**: Total repetitions achieved in constant time. Higher numbers mean more confidence in the results.
-- **Time (ns/op)**: Duration for one operation, measured in nanoseconds. Lower is better.
-- **Bytes (B/op)**: Heap memory allocated per operation. Lower means better efficiency.
-- **Allocations (allocs/op)**: Average number of memory allocations per operation. Fewer allocations are better for performance and garbage collection.
+- **التكرارات**: إجمالي التكرارات المحققة في وقت ثابت. الأرقام الأعلى تعني ثقة أكبر في النتائج.
+- **الوقت (ns/op)**: المدة لعملية واحدة، مقاسة بالنانو ثانية. الأقل أفضل.
+- **البايتات (B/op)**: ذاكرة الكومة المخصصة لكل عملية. الأقل يعني كفاءة أفضل.
+- **التخصيصات (allocs/op)**: متوسط عدد تخصيصات الذاكرة لكل عملية. تخصيصات أقل أفضل للأداء وجمع المهملات.
 
-For questions or contributions, check our [GitHub repository](https://github.com/gin-gonic/gin).
+للأسئلة أو المساهمات، تفضل بزيارة [مستودع GitHub](https://github.com/gin-gonic/gin) الخاص بنا.

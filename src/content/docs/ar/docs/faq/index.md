@@ -1,40 +1,40 @@
 ---
-title: "FAQ"
+title: "الأسئلة الشائعة"
 sidebar:
   order: 15
 ---
 
-## General Questions
+## أسئلة عامة
 
-### How do I enable live reload during development?
+### كيف أفعّل إعادة التحميل المباشر أثناء التطوير؟
 
-Use [Air](https://github.com/air-verse/air) for automatic live reloading during development. Air watches your files and rebuilds/restarts your application when changes are detected.
+استخدم [Air](https://github.com/air-verse/air) لإعادة التحميل المباشر التلقائي أثناء التطوير. يراقب Air ملفاتك ويعيد بناء/تشغيل تطبيقك عند اكتشاف تغييرات.
 
-**Installation:**
+**التثبيت:**
 
 ```sh
 go install github.com/air-verse/air@latest
 ```
 
-**Setup:**
+**الإعداد:**
 
-Create a `.air.toml` configuration file in your project root:
+أنشئ ملف تكوين `.air.toml` في جذر مشروعك:
 
 ```sh
 air init
 ```
 
-Then run `air` in your project directory instead of `go run`:
+ثم شغّل `air` في مجلد مشروعك بدلاً من `go run`:
 
 ```sh
 air
 ```
 
-Air will watch your `.go` files and automatically rebuild/restart your Gin application on changes. See the [Air documentation](https://github.com/air-verse/air) for configuration options.
+سيراقب Air ملفات `.go` ويعيد بناء/تشغيل تطبيق Gin تلقائياً عند التغييرات. راجع [توثيق Air](https://github.com/air-verse/air) لخيارات التكوين.
 
-### How do I handle CORS in Gin?
+### كيف أتعامل مع CORS في Gin؟
 
-Use the official [gin-contrib/cors](https://github.com/gin-contrib/cors) middleware:
+استخدم وسيط [gin-contrib/cors](https://github.com/gin-contrib/cors) الرسمي:
 
 ```go
 package main
@@ -70,11 +70,11 @@ func main() {
 }
 ```
 
-For a complete security overview, see [Security best practices](/en/docs/middleware/security-guide/).
+للحصول على نظرة أمنية شاملة، راجع [أفضل ممارسات الأمان](/ar/docs/middleware/security-guide/).
 
-### How do I serve static files?
+### كيف أقدم الملفات الثابتة؟
 
-Use `Static()` or `StaticFS()` to serve static files:
+استخدم `Static()` أو `StaticFS()` لتقديم الملفات الثابتة:
 
 ```go
 func main() {
@@ -93,11 +93,11 @@ func main() {
 }
 ```
 
-See [Serving data from file](/en/docs/rendering/serving-data-from-file/) for more details.
+راجع [تقديم البيانات من ملف](/ar/docs/rendering/serving-data-from-file/) لمزيد من التفاصيل.
 
-### How do I handle file uploads?
+### كيف أتعامل مع رفع الملفات؟
 
-Use `FormFile()` for single files or `MultipartForm()` for multiple files:
+استخدم `FormFile()` لملف واحد أو `MultipartForm()` لملفات متعددة:
 
 ```go
 // Single file upload
@@ -119,11 +119,11 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 })
 ```
 
-See the [Upload file](/en/docs/routing/upload-file/) documentation for more details.
+راجع توثيق [رفع الملفات](/ar/docs/routing/upload-file/) لمزيد من التفاصيل.
 
-### How do I implement authentication with JWT?
+### كيف أنفّذ المصادقة باستخدام JWT؟
 
-Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware. Here's a minimal example:
+استخدم [gin-contrib/jwt](https://github.com/gin-contrib/jwt) أو نفّذ وسيطاً مخصصاً. إليك مثالاً بسيطاً:
 
 ```go
 package main
@@ -175,13 +175,13 @@ func AuthMiddleware() gin.HandlerFunc {
 }
 ```
 
-For session-based authentication, see [Session management](/en/docs/middleware/session-management/).
+للمصادقة المبنية على الجلسات، راجع [إدارة الجلسات](/ar/docs/middleware/session-management/).
 
-### How do I set up request logging?
+### كيف أعدّ تسجيل الطلبات؟
 
-Gin includes a default logger middleware via `gin.Default()`. For structured JSON logging in production, see [Structured logging](/en/docs/logging/structured-logging/).
+يتضمن Gin وسيط مسجّل افتراضي عبر `gin.Default()`. للتسجيل المنظم بتنسيق JSON في الإنتاج، راجع [التسجيل المنظم](/ar/docs/logging/structured-logging/).
 
-For basic log customization:
+لتخصيص السجل الأساسي:
 
 ```go
 r := gin.New()
@@ -191,15 +191,15 @@ r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
 r.Use(gin.Recovery())
 ```
 
-See the [Logging](/en/docs/logging/) section for all options including custom formats, file output, and skipping query strings.
+راجع قسم [التسجيل](/ar/docs/logging/) لجميع الخيارات بما في ذلك التنسيقات المخصصة ومخرجات الملفات وتخطي سلاسل الاستعلام.
 
-### How do I handle graceful shutdown?
+### كيف أتعامل مع الإيقاف الرشيق؟
 
-See [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/) for a complete guide with code examples.
+راجع [إعادة التشغيل أو الإيقاف الرشيق](/ar/docs/server-config/graceful-restart-or-stop/) للحصول على دليل كامل مع أمثلة الكود.
 
-### Why am I getting "404 Not Found" instead of "405 Method Not Allowed"?
+### لماذا أحصل على "404 Not Found" بدلاً من "405 Method Not Allowed"؟
 
-By default, Gin returns 404 for routes that don't support the requested HTTP method. Set `HandleMethodNotAllowed = true` to return 405 instead:
+افتراضياً، يُرجع Gin 404 للمسارات التي لا تدعم طريقة HTTP المطلوبة. عيّن `HandleMethodNotAllowed = true` لإرجاع 405 بدلاً من ذلك:
 
 ```go
 r := gin.Default()
@@ -219,9 +219,9 @@ HTTP/1.1 405 Method Not Allowed
 Allow: GET
 ```
 
-### How do I bind query parameters and POST data together?
+### كيف أربط معاملات الاستعلام وبيانات POST معاً؟
 
-Use `ShouldBind()` which automatically selects the binding based on content type:
+استخدم `ShouldBind()` الذي يختار الربط تلقائياً بناءً على نوع المحتوى:
 
 ```go
 type User struct {
@@ -240,11 +240,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See the [Binding](/en/docs/binding/) section for all binding options.
+راجع قسم [الربط](/ar/docs/binding/) لجميع خيارات الربط.
 
-### How do I validate request data?
+### كيف أتحقق من صحة بيانات الطلب؟
 
-Gin uses [go-playground/validator](https://github.com/go-playground/validator) for validation. Add validation tags to your structs:
+يستخدم Gin [go-playground/validator](https://github.com/go-playground/validator) للتحقق. أضف علامات التحقق إلى هياكلك:
 
 ```go
 type User struct {
@@ -263,11 +263,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for custom validators and advanced usage.
+راجع [ربط النموذج والتحقق](/ar/docs/binding/binding-and-validation/) للمحققين المخصصين والاستخدام المتقدم.
 
-### How do I run Gin in production mode?
+### كيف أشغّل Gin في وضع الإنتاج؟
 
-Set the `GIN_MODE` environment variable to `release`:
+عيّن متغير البيئة `GIN_MODE` إلى `release`:
 
 ```sh
 export GIN_MODE=release
@@ -275,21 +275,21 @@ export GIN_MODE=release
 GIN_MODE=release ./your-app
 ```
 
-Or set it programmatically:
+أو عيّنه برمجياً:
 
 ```go
 gin.SetMode(gin.ReleaseMode)
 ```
 
-Release mode disables debug logging and improves performance.
+يعطّل وضع الإصدار تسجيل التصحيح ويحسّن الأداء.
 
-### How do I handle database connections with Gin?
+### كيف أتعامل مع اتصالات قاعدة البيانات مع Gin؟
 
-See [Database integration](/en/docs/server-config/database/) for a complete guide covering `database/sql`, GORM, connection pooling, and dependency injection patterns.
+راجع [تكامل قاعدة البيانات](/ar/docs/server-config/database/) للحصول على دليل كامل يغطي `database/sql` وGORM وتجميع الاتصالات وأنماط حقن الاعتماديات.
 
-### How do I test Gin handlers?
+### كيف أختبر معالجات Gin؟
 
-Use `net/http/httptest` to test your routes:
+استخدم `net/http/httptest` لاختبار مساراتك:
 
 ```go
 func TestPingRoute(t *testing.T) {
@@ -307,30 +307,30 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-See the [Testing](/en/docs/testing/) documentation for more examples.
+راجع توثيق [الاختبار](/ar/docs/testing/) لمزيد من الأمثلة.
 
-## Performance Questions
+## أسئلة الأداء
 
-### How do I optimize Gin for high traffic?
+### كيف أحسّن Gin لحركة المرور العالية؟
 
-1. **Use Release Mode**: Set `GIN_MODE=release`
-2. **Disable unnecessary middleware**: Only use what you need
-3. **Use `gin.New()` instead of `gin.Default()`** for manual middleware control
-4. **Connection pooling**: Configure database connection pools (see [Database integration](/en/docs/server-config/database/))
-5. **Caching**: Implement caching for frequently accessed data
-6. **Load balancing**: Use reverse proxy (nginx, HAProxy)
-7. **Profiling**: Use Go's pprof to identify bottlenecks
-8. **Monitoring**: Set up [metrics and monitoring](/en/docs/server-config/metrics/) to track performance
+1. **استخدم وضع الإصدار**: عيّن `GIN_MODE=release`
+2. **عطّل الوسيطات غير الضرورية**: استخدم فقط ما تحتاجه
+3. **استخدم `gin.New()` بدلاً من `gin.Default()`** للتحكم اليدوي في الوسيطات
+4. **تجميع الاتصالات**: كوّن تجمعات اتصالات قاعدة البيانات (راجع [تكامل قاعدة البيانات](/ar/docs/server-config/database/))
+5. **التخزين المؤقت**: نفّذ التخزين المؤقت للبيانات المطلوبة بشكل متكرر
+6. **موازنة الحمل**: استخدم وكيلاً عكسياً (nginx، HAProxy)
+7. **التنميط**: استخدم pprof من Go لتحديد الاختناقات
+8. **المراقبة**: أعدّ [المقاييس والمراقبة](/ar/docs/server-config/metrics/) لتتبع الأداء
 
-### Is Gin production-ready?
+### هل Gin جاهز للإنتاج؟
 
-Yes. Gin is used in production by many companies and has been battle-tested at scale. See [Users](/en/docs/users/) for examples of projects using Gin in production.
+نعم. يُستخدم Gin في الإنتاج من قبل العديد من الشركات وقد تم اختباره على نطاق واسع. راجع [المستخدمون](/ar/docs/users/) لأمثلة على المشاريع التي تستخدم Gin في الإنتاج.
 
-## Troubleshooting
+## استكشاف الأخطاء وإصلاحها
 
-### Why are my route parameters not working?
+### لماذا لا تعمل معاملات المسار؟
 
-Ensure route parameters use `:` syntax and are properly extracted:
+تأكد من أن معاملات المسار تستخدم صيغة `:` ويتم استخراجها بشكل صحيح:
 
 ```go
 // Correct
@@ -342,11 +342,11 @@ r.GET("/user/:id", func(c *gin.Context) {
 // Not: /user/{id} or /user/<id>
 ```
 
-See [Parameters in path](/en/docs/routing/param-in-path/) for details.
+راجع [المعاملات في المسار](/ar/docs/routing/param-in-path/) للتفاصيل.
 
-### Why is my middleware not executing?
+### لماذا لا يتم تنفيذ الوسيط؟
 
-Middleware must be registered before routes or route groups:
+يجب تسجيل الوسيطات قبل المسارات أو مجموعات المسارات:
 
 ```go
 // Correct order
@@ -362,16 +362,16 @@ auth.Use(AuthMiddleware()) // Middleware for this group
 }
 ```
 
-See [Using middleware](/en/docs/middleware/using-middleware/) for details.
+راجع [استخدام الوسيطات](/ar/docs/middleware/using-middleware/) للتفاصيل.
 
-### Why is request binding failing?
+### لماذا يفشل ربط الطلب؟
 
-Common reasons:
+الأسباب الشائعة:
 
-1. **Missing binding tags**: Add `json:"field"` or `form:"field"` tags
-2. **Content-Type mismatch**: Ensure client sends correct Content-Type header
-3. **Validation errors**: Check validation tags and requirements
-4. **Unexported fields**: Only exported (capitalized) struct fields are bound
+1. **علامات ربط مفقودة**: أضف علامات `json:"field"` أو `form:"field"`
+2. **عدم تطابق Content-Type**: تأكد من أن العميل يرسل ترويسة Content-Type الصحيحة
+3. **أخطاء التحقق**: تحقق من علامات التحقق والمتطلبات
+4. **حقول غير مُصدّرة**: فقط حقول الهيكل المُصدّرة (بحرف كبير) يتم ربطها
 
 ```go
 type User struct {
@@ -381,4 +381,4 @@ type User struct {
 }
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for details.
+راجع [ربط النموذج والتحقق](/ar/docs/binding/binding-and-validation/) للتفاصيل.

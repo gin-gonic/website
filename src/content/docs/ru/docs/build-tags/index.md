@@ -1,45 +1,45 @@
 ---
-title: "Build Tags"
+title: "Теги сборки"
 sidebar:
   order: 11
 ---
 
-Go [build tags](https://pkg.go.dev/go/build#hdr-Build_Constraints) (also called build constraints) are directives that tell the Go compiler to include or exclude files during compilation. Gin uses build tags to let you swap out internal implementations or disable optional features at compile time, without changing any application code.
+[Теги сборки](https://pkg.go.dev/go/build#hdr-Build_Constraints) Go (также называемые ограничениями сборки) — это директивы, которые указывают компилятору Go включать или исключать файлы при компиляции. Gin использует теги сборки, чтобы вы могли заменять внутренние реализации или отключать необязательные функции на этапе компиляции без изменения кода приложения.
 
-This is useful in several scenarios:
+Это полезно в нескольких сценариях:
 
-- **Performance optimization** -- Replace the default `encoding/json` package with a faster third-party encoder to speed up JSON serialization in your API.
-- **Binary size reduction** -- Strip out features you do not use, such as MsgPack rendering, to produce a smaller compiled binary.
-- **Deployment tuning** -- Choose different encoders for different environments (e.g., a high-throughput production build vs. a standard development build).
+- **Оптимизация производительности** -- Замена стандартного пакета `encoding/json` на более быстрый сторонний кодировщик для ускорения JSON-сериализации в вашем API.
+- **Уменьшение размера бинарного файла** -- Исключение неиспользуемых функций, таких как рендеринг MsgPack, для получения меньшего скомпилированного бинарного файла.
+- **Настройка для развёртывания** -- Выбор различных кодировщиков для разных окружений (например, высоконагруженная продуктовая сборка vs. стандартная сборка для разработки).
 
-Build tags are passed to the Go toolchain with the `-tags` flag:
+Теги сборки передаются инструментарию Go с помощью флага `-tags`:
 
 ```sh
-go build -tags=<tag_name> .
+go build -tags=<имя_тега> .
 ```
 
-You can combine multiple tags by separating them with commas:
+Вы можете комбинировать несколько тегов, разделяя их запятыми:
 
 ```sh
 go build -tags=nomsgpack,go_json .
 ```
 
-### Available build tags
+### Доступные теги сборки
 
-| Tag | Effect |
+| Тег | Эффект |
 |---|---|
-| `go_json` | Replaces `encoding/json` with [go-json](https://github.com/goccy/go-json) |
-| `jsoniter` | Replaces `encoding/json` with [jsoniter](https://github.com/json-iterator/go) |
-| `sonic avx` | Replaces `encoding/json` with [sonic](https://github.com/bytedance/sonic) (requires AVX CPU instructions) |
-| `nomsgpack` | Disables MsgPack rendering support |
+| `go_json` | Заменяет `encoding/json` на [go-json](https://github.com/goccy/go-json) |
+| `jsoniter` | Заменяет `encoding/json` на [jsoniter](https://github.com/json-iterator/go) |
+| `sonic avx` | Заменяет `encoding/json` на [sonic](https://github.com/bytedance/sonic) (требуются инструкции AVX процессора) |
+| `nomsgpack` | Отключает поддержку рендеринга MsgPack |
 
 :::note
-Build tags only affect how Gin is compiled. Your application code (route handlers, middleware, etc.) does not need to change when you switch tags.
+Теги сборки влияют только на то, как компилируется Gin. Код вашего приложения (обработчики маршрутов, middleware и т.д.) не нужно менять при переключении тегов.
 :::
 
-## In this section
+## В этом разделе
 
-The pages below cover each build tag in detail:
+Страницы ниже подробно описывают каждый тег сборки:
 
-- [**Build with JSON replacement**](./json-replacement/) -- Replace the default JSON encoder with go-json, jsoniter, or sonic for faster serialization.
-- [**Build without MsgPack**](./nomsgpack/) -- Disable MsgPack rendering with the `nomsgpack` build tag to reduce binary size.
+- [**Сборка с заменой JSON**](./json-replacement/) -- Замена стандартного JSON-кодировщика на go-json, jsoniter или sonic для более быстрой сериализации.
+- [**Сборка без MsgPack**](./nomsgpack/) -- Отключение рендеринга MsgPack с помощью тега сборки `nomsgpack` для уменьшения размера бинарного файла.

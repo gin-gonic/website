@@ -1,10 +1,10 @@
 ---
-title: "Support Let's Encrypt"
+title: "پشتیبانی از Let's Encrypt"
 sidebar:
   order: 3
 ---
 
-example for 1-line LetsEncrypt HTTPS servers.
+مثال برای سرورهای HTTPS یک‌خطی LetsEncrypt.
 
 ```go
 package main
@@ -28,7 +28,7 @@ func main() {
 }
 ```
 
-example for custom autocert manager.
+مثال برای مدیر autocert سفارشی.
 
 ```go
 package main
@@ -58,4 +58,3 @@ func main() {
   log.Fatal(autotls.RunWithManager(router, &m))
 }
 ```
-

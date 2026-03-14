@@ -1,16 +1,16 @@
 ---
-title: "How to Build an Effective Middleware"
-linkTitle: "How to Build an Effective Middleware"
+title: "効果的なミドルウェアの作り方"
+linkTitle: "効果的なミドルウェアの作り方"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## 構成要素
 
-Middleware typically consists of two parts:
+ミドルウェアは通常、2つの部分で構成されます：
 
-- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
+- 最初の部分は、ミドルウェアを初期化する際に一度だけ実行されます。ここでは、グローバルオブジェクトや設定ロジックなど、アプリケーションのライフタイムで一度だけ実行する必要があるものをセットアップします。
 
-- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
+- 2番目の部分は、リクエストごとに実行されます。例えば、データベースミドルウェアでは、グローバルなデータベースオブジェクトをリクエストコンテキストに注入します。コンテキストに入った後は、他のミドルウェアやハンドラ関数がそれを取得して使用できます。
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -33,9 +33,9 @@ func funcName(params string) gin.HandlerFunc {
 }
 ```
 
-## Execution process
+## 実行プロセス
 
-Let's look at the following example code:
+以下のサンプルコードを見てみましょう：
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
+上記の[構成要素](#構成要素)セクションに従い、Ginプロセスを実行すると、各ミドルウェアの**第1部分**が最初に実行され、以下の情報が出力されます：
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-The initialization order is:
+初期化の順序は以下の通りです：
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
+リクエストを行うと（例：`curl -v localhost:8080/rest/n/api/some`）、各ミドルウェアの**第2部分**が順番に実行され、以下が出力されます：
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, the execution order is:
+つまり、実行順序は以下のようになります：
 
 ```go
 globalMiddleware...2

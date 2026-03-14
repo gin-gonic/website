@@ -4,13 +4,13 @@ linkTitle: "Cara Membangun Middleware yang Efektif"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## Bagian-bagian penyusun
 
-Middleware typically consists of two parts:
+Middleware biasanya terdiri dari dua bagian:
 
-- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
+- Bagian pertama dieksekusi sekali, saat Anda menginisialisasi middleware Anda. Di sinilah Anda menyiapkan objek global, logika konfigurasi, dll.—semua yang hanya perlu terjadi sekali selama masa hidup aplikasi.
 
-- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
+- Bagian kedua dieksekusi pada setiap permintaan. Misalnya, dalam middleware database, Anda akan menyuntikkan objek database global ke dalam context permintaan. Setelah berada di dalam context, middleware lain dan fungsi handler Anda dapat mengambil dan menggunakannya.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -33,9 +33,9 @@ func funcName(params string) gin.HandlerFunc {
 }
 ```
 
-## Execution process
+## Proses eksekusi
 
-Let's look at the following example code:
+Mari kita lihat contoh kode berikut:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
+Sesuai dengan bagian [Bagian-bagian penyusun](#bagian-bagian-penyusun) di atas, ketika Anda menjalankan proses Gin, **bagian pertama** dari setiap middleware dieksekusi terlebih dahulu dan mencetak informasi berikut:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-The initialization order is:
+Urutan inisialisasi adalah:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
+Ketika Anda membuat permintaan—misalnya, `curl -v localhost:8080/rest/n/api/some`—**bagian kedua** dari setiap middleware dieksekusi secara berurutan dan menghasilkan output berikut:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, the execution order is:
+Dengan kata lain, urutan eksekusi adalah:
 
 ```go
 globalMiddleware...2

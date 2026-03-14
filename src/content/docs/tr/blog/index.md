@@ -5,7 +5,7 @@ sidebar:
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+Bu **blog** bölümüdür. İki kategorisi vardır: Haberler ve Sürümler.
 
-Files in these directories will be listed in reverse chronological order.
+Bu dizinlerdeki dosyalar ters kronolojik sırayla listelenir.
 

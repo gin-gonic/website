@@ -1,12 +1,12 @@
 ---
-title: "Gin 1.4.0 is released"
-linkTitle: "Gin 1.4.0 is released"
+title: "Gin 1.4.0 ha sido publicado"
+linkTitle: "Gin 1.4.0 ha sido publicado"
 lastUpdated: 2019-05-08
 ---
 
 ### CHANGELOG
 
-#### Feature
+#### Características
 
 - [NEW] Support for [Go Modules](https://github.com/golang/go/wiki/Modules)  [#1569](https://github.com/gin-gonic/gin/pull/1569)
 - [NEW] Refactor of form mapping multipart request [#1829](https://github.com/gin-gonic/gin/pull/1829)
@@ -31,7 +31,7 @@ lastUpdated: 2019-05-08
 - [NEW] Set default time format in form binding [#1487](https://github.com/gin-gonic/gin/pull/1487)
 - [NEW] Upgrade dependency libraries [#1491](https://github.com/gin-gonic/gin/pull/1491)
 
-#### Bug fix
+#### Correcciones de errores
 
 - [FIX] Truncate Latency precision in long running request [#1830](https://github.com/gin-gonic/gin/pull/1830)
 - [FIX] IsTerm flag should not be affected by DisableConsoleColor method. [#1802](https://github.com/gin-gonic/gin/pull/1802)

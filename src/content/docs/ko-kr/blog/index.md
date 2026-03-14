@@ -1,11 +1,11 @@
 ---
-title: "Blog"
+title: "블로그"
 sidebar:
   order: 30
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+**블로그** 섹션입니다. 뉴스와 릴리스 두 가지 카테고리가 있습니다.
 
-Files in these directories will be listed in reverse chronological order.
+이 디렉토리의 파일들은 역시간순으로 나열됩니다.
 

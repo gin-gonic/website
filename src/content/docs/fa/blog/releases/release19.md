@@ -1,6 +1,6 @@
 ---
-title: "Gin 1.9.0 is released"
-linkTitle: "Gin 1.9.0 is released"
+title: "Gin نسخه 1.9.0 منتشر شد"
+linkTitle: "Gin نسخه 1.9.0 منتشر شد"
 lastUpdated: 2023-02-21
 ---
 

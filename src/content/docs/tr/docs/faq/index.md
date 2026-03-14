@@ -1,40 +1,40 @@
 ---
-title: "FAQ"
+title: "SSS"
 sidebar:
   order: 15
 ---
 
-## General Questions
+## Genel Sorular
 
-### How do I enable live reload during development?
+### Geliştirme sırasında canlı yeniden yüklemeyi nasıl etkinleştiririm?
 
-Use [Air](https://github.com/air-verse/air) for automatic live reloading during development. Air watches your files and rebuilds/restarts your application when changes are detected.
+Geliştirme sırasında otomatik canlı yeniden yükleme için [Air](https://github.com/air-verse/air) kullanın. Air dosyalarınızı izler ve değişiklikler algılandığında uygulamanızı yeniden derler/başlatır.
 
-**Installation:**
+**Kurulum:**
 
 ```sh
 go install github.com/air-verse/air@latest
 ```
 
-**Setup:**
+**Ayarlama:**
 
-Create a `.air.toml` configuration file in your project root:
+Proje kök dizininizde bir `.air.toml` yapılandırma dosyası oluşturun:
 
 ```sh
 air init
 ```
 
-Then run `air` in your project directory instead of `go run`:
+Ardından proje dizininizde `go run` yerine `air` çalıştırın:
 
 ```sh
 air
 ```
 
-Air will watch your `.go` files and automatically rebuild/restart your Gin application on changes. See the [Air documentation](https://github.com/air-verse/air) for configuration options.
+Air, `.go` dosyalarınızı izler ve değişikliklerde Gin uygulamanızı otomatik olarak yeniden derler/başlatır. Yapılandırma seçenekleri için [Air belgelerine](https://github.com/air-verse/air) bakın.
 
-### How do I handle CORS in Gin?
+### Gin'de CORS'u nasıl yönetirim?
 
-Use the official [gin-contrib/cors](https://github.com/gin-contrib/cors) middleware:
+Resmi [gin-contrib/cors](https://github.com/gin-contrib/cors) ara katmanını kullanın:
 
 ```go
 package main
@@ -70,11 +70,11 @@ func main() {
 }
 ```
 
-For a complete security overview, see [Security best practices](/en/docs/middleware/security-guide/).
+Kapsamlı bir güvenlik genel görünümü için [Güvenlik en iyi uygulamaları](/tr/docs/middleware/security-guide/) sayfasına bakın.
 
-### How do I serve static files?
+### Statik dosyaları nasıl sunarım?
 
-Use `Static()` or `StaticFS()` to serve static files:
+Statik dosyaları sunmak için `Static()` veya `StaticFS()` kullanın:
 
 ```go
 func main() {
@@ -93,11 +93,11 @@ func main() {
 }
 ```
 
-See [Serving data from file](/en/docs/rendering/serving-data-from-file/) for more details.
+Daha fazla ayrıntı için [Dosyadan veri sunma](/tr/docs/rendering/serving-data-from-file/) sayfasına bakın.
 
-### How do I handle file uploads?
+### Dosya yüklemelerini nasıl yönetirim?
 
-Use `FormFile()` for single files or `MultipartForm()` for multiple files:
+Tekli dosyalar için `FormFile()`, birden fazla dosya için `MultipartForm()` kullanın:
 
 ```go
 // Single file upload
@@ -119,11 +119,11 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 })
 ```
 
-See the [Upload file](/en/docs/routing/upload-file/) documentation for more details.
+Daha fazla ayrıntı için [Dosya yükleme](/tr/docs/routing/upload-file/) belgelerine bakın.
 
-### How do I implement authentication with JWT?
+### JWT ile kimlik doğrulamayı nasıl uygularım?
 
-Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware. Here's a minimal example:
+[gin-contrib/jwt](https://github.com/gin-contrib/jwt) kullanın veya özel ara katman uygulayın. İşte minimal bir örnek:
 
 ```go
 package main
@@ -175,13 +175,13 @@ func AuthMiddleware() gin.HandlerFunc {
 }
 ```
 
-For session-based authentication, see [Session management](/en/docs/middleware/session-management/).
+Oturum tabanlı kimlik doğrulama için [Oturum yönetimi](/tr/docs/middleware/session-management/) sayfasına bakın.
 
-### How do I set up request logging?
+### İstek loglamayı nasıl ayarlarım?
 
-Gin includes a default logger middleware via `gin.Default()`. For structured JSON logging in production, see [Structured logging](/en/docs/logging/structured-logging/).
+Gin, `gin.Default()` aracılığıyla varsayılan bir logger ara katmanı içerir. Üretimde yapılandırılmış JSON loglama için [Yapılandırılmış loglama](/tr/docs/logging/structured-logging/) sayfasına bakın.
 
-For basic log customization:
+Temel log özelleştirmesi için:
 
 ```go
 r := gin.New()
@@ -191,15 +191,15 @@ r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
 r.Use(gin.Recovery())
 ```
 
-See the [Logging](/en/docs/logging/) section for all options including custom formats, file output, and skipping query strings.
+Özel formatlar, dosya çıktısı ve sorgu dizelerini atlama dahil tüm seçenekler için [Loglama](/tr/docs/logging/) bölümüne bakın.
 
-### How do I handle graceful shutdown?
+### Zarif kapatmayı nasıl yönetirim?
 
-See [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/) for a complete guide with code examples.
+Kod örnekleri içeren kapsamlı bir kılavuz için [Zarif yeniden başlatma veya durdurma](/tr/docs/server-config/graceful-restart-or-stop/) sayfasına bakın.
 
-### Why am I getting "404 Not Found" instead of "405 Method Not Allowed"?
+### Neden "405 Method Not Allowed" yerine "404 Not Found" alıyorum?
 
-By default, Gin returns 404 for routes that don't support the requested HTTP method. Set `HandleMethodNotAllowed = true` to return 405 instead:
+Varsayılan olarak Gin, istenen HTTP yöntemini desteklemeyen rotalar için 404 döndürür. Bunun yerine 405 döndürmek için `HandleMethodNotAllowed = true` ayarlayın:
 
 ```go
 r := gin.Default()
@@ -219,9 +219,9 @@ HTTP/1.1 405 Method Not Allowed
 Allow: GET
 ```
 
-### How do I bind query parameters and POST data together?
+### Sorgu parametreleri ve POST verilerini birlikte nasıl bağlarım?
 
-Use `ShouldBind()` which automatically selects the binding based on content type:
+İçerik türüne göre otomatik olarak bağlama seçen `ShouldBind()` kullanın:
 
 ```go
 type User struct {
@@ -240,11 +240,11 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See the [Binding](/en/docs/binding/) section for all binding options.
+Tüm bağlama seçenekleri için [Bağlama](/tr/docs/binding/) bölümüne bakın.
 
-### How do I validate request data?
+### İstek verilerini nasıl doğrularım?
 
-Gin uses [go-playground/validator](https://github.com/go-playground/validator) for validation. Add validation tags to your structs:
+Gin, doğrulama için [go-playground/validator](https://github.com/go-playground/validator) kullanır. Struct'larınıza doğrulama etiketleri ekleyin:
 
 ```go
 type User struct {
@@ -263,33 +263,33 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for custom validators and advanced usage.
+Özel doğrulayıcılar ve gelişmiş kullanım için [Model bağlama ve doğrulama](/tr/docs/binding/binding-and-validation/) sayfasına bakın.
 
-### How do I run Gin in production mode?
+### Gin'i üretim modunda nasıl çalıştırırım?
 
-Set the `GIN_MODE` environment variable to `release`:
+`GIN_MODE` ortam değişkenini `release` olarak ayarlayın:
 
 ```sh
 export GIN_MODE=release
-# or
+# veya
 GIN_MODE=release ./your-app
 ```
 
-Or set it programmatically:
+Veya programatik olarak ayarlayın:
 
 ```go
 gin.SetMode(gin.ReleaseMode)
 ```
 
-Release mode disables debug logging and improves performance.
+Release modu hata ayıklama loglamasını devre dışı bırakır ve performansı artırır.
 
-### How do I handle database connections with Gin?
+### Gin ile veritabanı bağlantılarını nasıl yönetirim?
 
-See [Database integration](/en/docs/server-config/database/) for a complete guide covering `database/sql`, GORM, connection pooling, and dependency injection patterns.
+`database/sql`, GORM, bağlantı havuzlama ve bağımlılık enjeksiyonu kalıplarını kapsayan kapsamlı bir kılavuz için [Veritabanı entegrasyonu](/tr/docs/server-config/database/) sayfasına bakın.
 
-### How do I test Gin handlers?
+### Gin işleyicilerini nasıl test ederim?
 
-Use `net/http/httptest` to test your routes:
+Rotalarınızı test etmek için `net/http/httptest` kullanın:
 
 ```go
 func TestPingRoute(t *testing.T) {
@@ -307,30 +307,30 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-See the [Testing](/en/docs/testing/) documentation for more examples.
+Daha fazla örnek için [Test](/tr/docs/testing/) belgelerine bakın.
 
-## Performance Questions
+## Performans Soruları
 
-### How do I optimize Gin for high traffic?
+### Gin'i yüksek trafik için nasıl optimize ederim?
 
-1. **Use Release Mode**: Set `GIN_MODE=release`
-2. **Disable unnecessary middleware**: Only use what you need
-3. **Use `gin.New()` instead of `gin.Default()`** for manual middleware control
-4. **Connection pooling**: Configure database connection pools (see [Database integration](/en/docs/server-config/database/))
-5. **Caching**: Implement caching for frequently accessed data
-6. **Load balancing**: Use reverse proxy (nginx, HAProxy)
-7. **Profiling**: Use Go's pprof to identify bottlenecks
-8. **Monitoring**: Set up [metrics and monitoring](/en/docs/server-config/metrics/) to track performance
+1. **Release Modunu Kullanın**: `GIN_MODE=release` ayarlayın
+2. **Gereksiz ara katmanları devre dışı bırakın**: Yalnızca ihtiyacınız olanı kullanın
+3. **Manuel ara katman kontrolü için `gin.Default()` yerine `gin.New()` kullanın**
+4. **Bağlantı havuzlama**: Veritabanı bağlantı havuzlarını yapılandırın ([Veritabanı entegrasyonu](/tr/docs/server-config/database/) bakın)
+5. **Önbellekleme**: Sık erişilen veriler için önbellekleme uygulayın
+6. **Yük dengeleme**: Ters proxy kullanın (nginx, HAProxy)
+7. **Profilleme**: Darboğazları belirlemek için Go'nun pprof'unu kullanın
+8. **İzleme**: Performansı takip etmek için [metrikler ve izleme](/tr/docs/server-config/metrics/) ayarlayın
 
-### Is Gin production-ready?
+### Gin üretime hazır mı?
 
-Yes. Gin is used in production by many companies and has been battle-tested at scale. See [Users](/en/docs/users/) for examples of projects using Gin in production.
+Evet. Gin birçok şirket tarafından üretimde kullanılmaktadır ve ölçekte savaş testinden geçmiştir. Gin'i üretimde kullanan projelerin örnekleri için [Kullanıcılar](/tr/docs/users/) sayfasına bakın.
 
-## Troubleshooting
+## Sorun Giderme
 
-### Why are my route parameters not working?
+### Rota parametrelerim neden çalışmıyor?
 
-Ensure route parameters use `:` syntax and are properly extracted:
+Rota parametrelerinin `:` sözdizimini kullandığından ve düzgün şekilde çıkarıldığından emin olun:
 
 ```go
 // Correct
@@ -342,11 +342,11 @@ r.GET("/user/:id", func(c *gin.Context) {
 // Not: /user/{id} or /user/<id>
 ```
 
-See [Parameters in path](/en/docs/routing/param-in-path/) for details.
+Ayrıntılar için [Yol parametreleri](/tr/docs/routing/param-in-path/) sayfasına bakın.
 
-### Why is my middleware not executing?
+### Ara katmanım neden çalışmıyor?
 
-Middleware must be registered before routes or route groups:
+Ara katman, rotalardan veya rota gruplarından önce kaydedilmelidir:
 
 ```go
 // Correct order
@@ -362,16 +362,16 @@ auth.Use(AuthMiddleware()) // Middleware for this group
 }
 ```
 
-See [Using middleware](/en/docs/middleware/using-middleware/) for details.
+Ayrıntılar için [Ara katman kullanımı](/tr/docs/middleware/using-middleware/) sayfasına bakın.
 
-### Why is request binding failing?
+### İstek bağlama neden başarısız oluyor?
 
-Common reasons:
+Yaygın nedenler:
 
-1. **Missing binding tags**: Add `json:"field"` or `form:"field"` tags
-2. **Content-Type mismatch**: Ensure client sends correct Content-Type header
-3. **Validation errors**: Check validation tags and requirements
-4. **Unexported fields**: Only exported (capitalized) struct fields are bound
+1. **Eksik bağlama etiketleri**: `json:"field"` veya `form:"field"` etiketleri ekleyin
+2. **Content-Type uyumsuzluğu**: İstemcinin doğru Content-Type başlığını gönderdiğinden emin olun
+3. **Doğrulama hataları**: Doğrulama etiketlerini ve gereksinimleri kontrol edin
+4. **Dışa aktarılmamış alanlar**: Yalnızca dışa aktarılmış (büyük harfle başlayan) struct alanları bağlanır
 
 ```go
 type User struct {
@@ -381,4 +381,4 @@ type User struct {
 }
 ```
 
-See [Binding and validation](/en/docs/binding/binding-and-validation/) for details.
+Ayrıntılar için [Model bağlama ve doğrulama](/tr/docs/binding/binding-and-validation/) sayfasına bakın.

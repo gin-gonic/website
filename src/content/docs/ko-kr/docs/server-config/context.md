@@ -1,14 +1,14 @@
 ---
-title: "Context and Cancellation"
+title: "Context와 취소"
 sidebar:
   order: 11
 ---
 
-Every Gin handler receives a `*gin.Context`, which wraps Go's standard `context.Context` along with request and response helpers. Understanding how to use the underlying context correctly is essential for building production applications that handle timeouts, cancellation, and resource cleanup properly.
+모든 Gin 핸들러는 `*gin.Context`를 받으며, 이는 Go의 표준 `context.Context`와 요청 및 응답 헬퍼를 래핑합니다. 기본 context를 올바르게 사용하는 방법을 이해하는 것은 타임아웃, 취소, 리소스 정리를 적절히 처리하는 프로덕션 애플리케이션을 구축하는 데 필수적입니다.
 
-## Accessing the request context
+## 요청 context 접근
 
-The standard `context.Context` for the current request is available through `c.Request.Context()`. This is the context you should pass to any downstream call -- database queries, HTTP requests, or other I/O operations.
+현재 요청의 표준 `context.Context`는 `c.Request.Context()`를 통해 사용할 수 있습니다. 이것이 모든 다운스트림 호출(데이터베이스 쿼리, HTTP 요청 또는 기타 I/O 작업)에 전달해야 하는 context입니다.
 
 ```go
 package main
@@ -26,7 +26,7 @@ func main() {
 	r.GET("/api/data", func(c *gin.Context) {
 		ctx := c.Request.Context()
 
-		// Pass ctx to any downstream function that accepts context.Context.
+		// context.Context를 받는 모든 다운스트림 함수에 ctx를 전달합니다.
 		log.Println("request context deadline:", ctx.Done())
 
 		c.JSON(http.StatusOK, gin.H{"status": "ok"})
@@ -36,9 +36,9 @@ func main() {
 }
 ```
 
-## Request timeouts
+## 요청 타임아웃
 
-You can apply a timeout to individual requests using a middleware. When the timeout expires, the context is cancelled and any downstream call that respects context cancellation will return immediately.
+미들웨어를 사용하여 개별 요청에 타임아웃을 적용할 수 있습니다. 타임아웃이 만료되면 context가 취소되고, context 취소를 존중하는 모든 다운스트림 호출이 즉시 반환됩니다.
 
 ```go
 package main
@@ -51,13 +51,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// TimeoutMiddleware wraps each request with a context deadline.
+// TimeoutMiddleware는 각 요청을 context 데드라인으로 래핑합니다.
 func TimeoutMiddleware(timeout time.Duration) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		ctx, cancel := context.WithTimeout(c.Request.Context(), timeout)
 		defer cancel()
 
-		// Replace the request with one that carries the new context.
+		// 새로운 context를 가진 요청으로 교체합니다.
 		c.Request = c.Request.WithContext(ctx)
 		c.Next()
 	}
@@ -70,7 +70,7 @@ func main() {
 	r.GET("/api/slow", func(c *gin.Context) {
 		ctx := c.Request.Context()
 
-		// Simulate work that respects the context deadline.
+		// context 데드라인을 존중하는 작업 시뮬레이션.
 		select {
 		case <-time.After(10 * time.Second):
 			c.JSON(http.StatusOK, gin.H{"result": "done"})
@@ -85,9 +85,9 @@ func main() {
 }
 ```
 
-## Passing context to database queries
+## 데이터베이스 쿼리에 context 전달
 
-Database drivers in Go accept a `context.Context` as the first argument. Always pass the request context so that queries are automatically cancelled if the client disconnects or the request times out.
+Go의 데이터베이스 드라이버는 첫 번째 인수로 `context.Context`를 받습니다. 클라이언트가 연결을 끊거나 요청이 타임아웃되면 쿼리가 자동으로 취소되도록 항상 요청 context를 전달하세요.
 
 ```go
 package main
@@ -126,9 +126,9 @@ func main() {
 }
 ```
 
-## Passing context to outbound HTTP calls
+## 외부 HTTP 호출에 context 전달
 
-When your handler calls external services, pass the request context so that outbound calls are cancelled together with the incoming request.
+핸들러가 외부 서비스를 호출할 때, 수신 요청과 함께 외부 호출이 취소되도록 요청 context를 전달하세요.
 
 ```go
 package main
@@ -167,9 +167,9 @@ func main() {
 }
 ```
 
-## Handling client disconnection
+## 클라이언트 연결 끊김 처리
 
-When a client closes the connection (e.g., navigates away or cancels a request), the request context is cancelled. You can detect this in long-running handlers to stop work early and free resources.
+클라이언트가 연결을 닫으면(예: 다른 페이지로 이동하거나 요청을 취소할 때), 요청 context가 취소됩니다. 장시간 실행되는 핸들러에서 이를 감지하여 작업을 일찍 중단하고 리소스를 해제할 수 있습니다.
 
 ```go
 package main
@@ -204,21 +204,21 @@ func main() {
 }
 ```
 
-## Best practices
+## 모범 사례
 
-- **Always propagate the request context.** Pass `c.Request.Context()` to every function that accepts a `context.Context` -- database calls, HTTP clients, gRPC calls, and any I/O operation. This ensures cancellation and timeouts propagate through the entire call chain.
+- **항상 요청 context를 전파하세요.** `context.Context`를 받는 모든 함수(데이터베이스 호출, HTTP 클라이언트, gRPC 호출, 모든 I/O 작업)에 `c.Request.Context()`를 전달하세요. 이렇게 하면 전체 호출 체인을 통해 취소와 타임아웃이 전파됩니다.
 
-- **Do not store `*gin.Context` in structs or pass it across goroutine boundaries.** `gin.Context` is tied to the HTTP request/response lifecycle and is not safe for concurrent use. Instead, extract the values you need (request context, parameters, headers) before spawning goroutines.
+- **`*gin.Context`를 구조체에 저장하거나 고루틴 경계를 넘어 전달하지 마세요.** `gin.Context`는 HTTP 요청/응답 수명 주기에 연결되어 있으며 동시 사용에 안전하지 않습니다. 대신 고루틴을 시작하기 전에 필요한 값(요청 context, 매개변수, 헤더)을 추출하세요.
 
-- **Set timeouts at the middleware level.** A timeout middleware gives you a single place to enforce deadlines across all routes, rather than duplicating timeout logic in every handler.
+- **미들웨어 수준에서 타임아웃을 설정하세요.** 타임아웃 미들웨어는 모든 핸들러에서 타임아웃 로직을 중복하지 않고 모든 라우트에 데드라인을 강제하는 단일 장소를 제공합니다.
 
-- **Use `context.WithValue` sparingly.** Prefer `c.Set()` and `c.Get()` within Gin handlers. Reserve `context.WithValue` for values that need to cross package boundaries through standard library interfaces.
+- **`context.WithValue`는 절제하여 사용하세요.** Gin 핸들러 내에서는 `c.Set()`과 `c.Get()`을 선호하세요. 표준 라이브러리 인터페이스를 통해 패키지 경계를 넘어야 하는 값에 대해서만 `context.WithValue`를 사용하세요.
 
-## Common pitfalls
+## 일반적인 함정
 
-### Using `gin.Context` in goroutines
+### 고루틴에서 `gin.Context` 사용
 
-`gin.Context` is reused across requests for performance. If you need to access it from a goroutine, you **must** call `c.Copy()` to create a read-only copy. Using the original `gin.Context` in a goroutine leads to data races and unpredictable behaviour.
+`gin.Context`는 성능을 위해 요청 간에 재사용됩니다. 고루틴에서 접근해야 하는 경우 **반드시** `c.Copy()`를 호출하여 읽기 전용 복사본을 생성해야 합니다. 고루틴에서 원래 `gin.Context`를 사용하면 데이터 레이스와 예측할 수 없는 동작이 발생합니다.
 
 ```go
 package main
@@ -235,12 +235,12 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/api/async", func(c *gin.Context) {
-		// WRONG: using c directly in a goroutine.
+		// 잘못된 방법: 고루틴에서 c를 직접 사용.
 		// go func() {
-		//     log.Println(c.Request.URL.Path) // data race!
+		//     log.Println(c.Request.URL.Path) // 데이터 레이스!
 		// }()
 
-		// CORRECT: copy the context first.
+		// 올바른 방법: 먼저 context를 복사.
 		cCopy := c.Copy()
 		go func() {
 			time.Sleep(2 * time.Second)
@@ -254,13 +254,13 @@ func main() {
 }
 ```
 
-### Ignoring context cancellation
+### context 취소 무시
 
-If your handler does not check `ctx.Done()`, it will keep running even after the client has disconnected, wasting CPU and memory. Always use context-aware APIs (`QueryRowContext`, `NewRequestWithContext`, `select` on `ctx.Done()`) so work stops as soon as the context is cancelled.
+핸들러가 `ctx.Done()`을 확인하지 않으면, 클라이언트가 연결을 끊은 후에도 계속 실행되어 CPU와 메모리를 낭비합니다. context가 취소되면 작업이 즉시 중단되도록 항상 context 인식 API(`QueryRowContext`, `NewRequestWithContext`, `ctx.Done()`에 대한 `select`)를 사용하세요.
 
-### Writing the response after context cancellation
+### context 취소 후 응답 작성
 
-Once a context is cancelled, avoid writing to `c.Writer`. The connection may already be closed, and writes will fail silently or panic. Check `ctx.Err()` before writing if your handler performs long-running work.
+context가 취소된 후에는 `c.Writer`에 쓰기를 피하세요. 연결이 이미 닫혔을 수 있으며, 쓰기가 조용히 실패하거나 패닉을 일으킬 수 있습니다. 핸들러가 장시간 실행 작업을 수행하는 경우 쓰기 전에 `ctx.Err()`을 확인하세요.
 
 ```go
 func handler(c *gin.Context) {
@@ -269,7 +269,7 @@ func handler(c *gin.Context) {
 	result, err := doExpensiveWork(ctx)
 	if err != nil {
 		if ctx.Err() != nil {
-			// Client is gone; do not write a response.
+			// 클라이언트가 사라졌습니다; 응답을 작성하지 않습니다.
 			return
 		}
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})

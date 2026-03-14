@@ -1,14 +1,14 @@
 ---
-title: "Database Integration"
+title: "یکپارچه‌سازی پایگاه داده"
 sidebar:
   order: 10
 ---
 
-Most real-world Gin applications need a database. This guide covers how to structure database access cleanly, configure connection pooling, and apply patterns that keep your handlers testable and your connections healthy.
+اکثر برنامه‌های Gin در دنیای واقعی نیاز به پایگاه داده دارند. این راهنما نحوه ساختاردهی تمیز دسترسی به پایگاه داده، پیکربندی connection pooling و اعمال الگوهایی که handlerهای شما را قابل تست و اتصالات شما را سالم نگه می‌دارند پوشش می‌دهد.
 
-## Using database/sql with Gin
+## استفاده از database/sql با Gin
 
-The Go standard library `database/sql` package works well with Gin. Open the connection once in `main` and pass it to your handlers.
+پکیج `database/sql` کتابخانه استاندارد Go به خوبی با Gin کار می‌کند. اتصال را یک بار در `main` باز کنید و آن را به handlerها ارسال کنید.
 
 ```go
 package main
@@ -54,11 +54,11 @@ func main() {
 }
 ```
 
-Always pass `c.Request.Context()` to database calls so that queries are cancelled automatically when the client disconnects.
+همیشه `c.Request.Context()` را به فراخوانی‌های پایگاه داده ارسال کنید تا پرس‌وجوها هنگام قطع اتصال کلاینت به طور خودکار لغو شوند.
 
-## Connection pooling configuration
+## پیکربندی connection pooling
 
-The `database/sql` package maintains a pool of connections internally. For production workloads, configure the pool to match your database and traffic profile.
+پکیج `database/sql` به صورت داخلی یک pool از اتصالات را نگهداری می‌کند. برای بارهای کاری تولیدی، pool را متناسب با پایگاه داده و پروفایل ترافیک خود پیکربندی کنید.
 
 ```go
 db, err := sql.Open("postgres", dsn)
@@ -79,16 +79,16 @@ db.SetConnMaxLifetime(5 * time.Minute)
 db.SetConnMaxIdleTime(1 * time.Minute)
 ```
 
-- `SetMaxOpenConns` prevents your application from overwhelming the database server under high load.
-- `SetMaxIdleConns` keeps warm connections ready so new requests avoid the cost of dialling.
-- `SetConnMaxLifetime` rotates connections so your app picks up DNS changes and does not hold stale server-side sessions.
-- `SetConnMaxIdleTime` closes connections that have been idle too long, freeing resources on both sides.
+- `SetMaxOpenConns` از overwhelm شدن سرور پایگاه داده تحت بار بالا جلوگیری می‌کند.
+- `SetMaxIdleConns` اتصالات آماده نگه می‌دارد تا درخواست‌های جدید هزینه برقراری اتصال را نداشته باشند.
+- `SetConnMaxLifetime` اتصالات را چرخش می‌دهد تا برنامه تغییرات DNS را دریافت کند و نشست‌های قدیمی سمت سرور را نگه ندارد.
+- `SetConnMaxIdleTime` اتصالاتی که مدت زیادی بیکار بوده‌اند را می‌بندد و منابع را در هر دو طرف آزاد می‌کند.
 
-## Dependency injection patterns
+## الگوهای تزریق وابستگی
 
 ### Closure
 
-The simplest approach is to close over the `*sql.DB` in your handler functions.
+ساده‌ترین رویکرد، بسته کردن `*sql.DB` در توابع handler است.
 
 ```go
 package main
@@ -136,9 +136,9 @@ func main() {
 }
 ```
 
-### Middleware
+### میان‌افزار
 
-Store the connection in the Gin context so any handler can retrieve it.
+اتصال را در context Gin ذخیره کنید تا هر handler بتواند آن را بازیابی کند.
 
 ```go
 func DatabaseMiddleware(db *sql.DB) gin.HandlerFunc {
@@ -165,9 +165,9 @@ func main() {
 }
 ```
 
-### Struct with methods
+### Struct با متدها
 
-Group related handlers into a struct that holds the database handle. This approach scales well when you have many handlers that share the same dependencies.
+handlerهای مرتبط را در یک struct که handle پایگاه داده را نگه می‌دارد گروه‌بندی کنید. این رویکرد وقتی handlerهای زیادی با وابستگی‌های مشترک دارید به خوبی مقیاس می‌شود.
 
 ```go
 type UserHandler struct {
@@ -196,11 +196,11 @@ func main() {
 }
 ```
 
-The closure and struct patterns are generally preferred over middleware because they provide compile-time type safety and avoid type assertions at runtime.
+الگوهای closure و struct معمولاً نسبت به میان‌افزار ترجیح داده می‌شوند زیرا ایمنی نوع زمان کامپایل ارائه می‌دهند و از type assertion در زمان اجرا جلوگیری می‌کنند.
 
-## Using GORM with Gin
+## استفاده از GORM با Gin
 
-[GORM](https://gorm.io) is a popular Go ORM. It wraps `database/sql` and adds migrations, associations, and a query builder.
+[GORM](https://gorm.io) یک ORM محبوب Go است. `database/sql` را پوشش می‌دهد و migration، associations و query builder اضافه می‌کند.
 
 ```go
 package main
@@ -257,11 +257,11 @@ func main() {
 }
 ```
 
-## Transaction handling in request handlers
+## مدیریت تراکنش در handlerهای درخواست
 
-When a request needs to perform multiple writes that must succeed or fail together, use a database transaction.
+وقتی یک درخواست نیاز به انجام چندین نوشتن دارد که باید همه موفق شوند یا همه شکست بخورند، از تراکنش پایگاه داده استفاده کنید.
 
-### With database/sql
+### با database/sql
 
 ```go
 r.POST("/transfer", func(c *gin.Context) {
@@ -296,7 +296,7 @@ r.POST("/transfer", func(c *gin.Context) {
 })
 ```
 
-### With GORM
+### با GORM
 
 ```go
 r.POST("/transfer", func(c *gin.Context) {
@@ -320,19 +320,19 @@ r.POST("/transfer", func(c *gin.Context) {
 })
 ```
 
-GORM's `Transaction` method handles `Begin`, `Commit`, and `Rollback` automatically based on the returned error.
+متد `Transaction` در GORM عملیات `Begin`، `Commit` و `Rollback` را بر اساس خطای برگردانده شده به طور خودکار مدیریت می‌کند.
 
-## Best practices
+## بهترین روش‌ها
 
-- **Initialize the database connection in `main`** and share it via closures, a struct, or middleware. Never open a new connection per request.
-- **Always use parameterized queries.** Pass user input as arguments (`$1`, `?`) rather than concatenating strings. This prevents SQL injection.
-- **Configure the connection pool for production.** Set `MaxOpenConns`, `MaxIdleConns`, and `ConnMaxLifetime` to values that match your database server limits and expected traffic.
-- **Handle connection errors gracefully.** Call `db.Ping()` at startup to fail fast. In handlers, return meaningful HTTP status codes and avoid leaking internal error details to clients.
-- **Pass the request context to queries.** Use `c.Request.Context()` so that long-running queries are cancelled when the client disconnects or a timeout fires.
-- **Close `*sql.Rows` with `defer`.** Failing to close rows leaks connections back to the pool.
+- **اتصال پایگاه داده را در `main` مقداردهی اولیه کنید** و آن را از طریق closure، struct یا میان‌افزار به اشتراک بگذارید. هرگز یک اتصال جدید برای هر درخواست باز نکنید.
+- **همیشه از پرس‌وجوهای پارامتری استفاده کنید.** ورودی کاربر را به عنوان آرگومان (`$1`، `?`) ارسال کنید نه الحاق رشته. این از تزریق SQL جلوگیری می‌کند.
+- **connection pool را برای تولید پیکربندی کنید.** `MaxOpenConns`، `MaxIdleConns` و `ConnMaxLifetime` را به مقادیری متناسب با محدودیت‌های سرور پایگاه داده و ترافیک مورد انتظار تنظیم کنید.
+- **خطاهای اتصال را با ظرافت مدیریت کنید.** `db.Ping()` را در هنگام راه‌اندازی فراخوانی کنید تا سریع شکست بخورد. در handlerها، کدهای وضعیت HTTP معنادار برگردانید و جزئیات خطای داخلی را به کلاینت‌ها فاش نکنید.
+- **context درخواست را به پرس‌وجوها ارسال کنید.** از `c.Request.Context()` استفاده کنید تا پرس‌وجوهای طولانی‌مدت هنگام قطع اتصال کلاینت یا timeout لغو شوند.
+- **`*sql.Rows` را با `defer` ببندید.** عدم بسته شدن rows اتصالات را به pool نشت می‌دهد.
 
-## See also
+## همچنین ببینید
 
-- [Custom HTTP configuration](/en/docs/server-config/custom-http-config/)
-- [Custom Middleware](/en/docs/middleware/custom-middleware/)
-- [Using middleware](/en/docs/middleware/using-middleware/)
+- [پیکربندی HTTP سفارشی](/fa/docs/server-config/custom-http-config/)
+- [میان‌افزار سفارشی](/fa/docs/middleware/custom-middleware/)
+- [استفاده از میان‌افزار](/fa/docs/middleware/using-middleware/)

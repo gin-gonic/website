@@ -1,11 +1,11 @@
 ---
-title: "Blog"
+title: "Блог"
 sidebar:
   order: 30
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+Это раздел **блога**. Он содержит две категории: Новости и Релизы.
 
-Files in these directories will be listed in reverse chronological order.
+Файлы в этих директориях отображаются в обратном хронологическом порядке.
 

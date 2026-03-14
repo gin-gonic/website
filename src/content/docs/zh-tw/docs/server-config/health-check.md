@@ -4,11 +4,11 @@ sidebar:
   order: 12
 ---
 
-Health check endpoints allow load balancers, orchestrators like Kubernetes, and monitoring systems to verify your application is running and ready to serve traffic. A typical setup includes two endpoints: **liveness** (is the process alive?) and **readiness** (is it ready to accept requests?).
+健康檢查端點讓負載均衡器、Kubernetes 等編排工具和監控系統能夠驗證你的應用程式是否正在運行並準備好處理流量。典型的設定包含兩個端點：**存活探測**（程序是否存活？）和**就緒探測**（是否準備好接受請求？）。
 
-## Basic health check
+## 基本健康檢查
 
-A simple health endpoint that returns 200 OK:
+一個回傳 200 OK 的簡單健康端點：
 
 ```go
 package main
@@ -34,12 +34,12 @@ func main() {
 }
 ```
 
-## Liveness vs readiness
+## 存活探測 vs 就緒探測
 
-In Kubernetes and similar environments, you typically need two types of health checks:
+在 Kubernetes 和類似環境中，你通常需要兩種類型的健康檢查：
 
-- **Liveness probe** — checks if the application process is alive. If it fails, the container is restarted.
-- **Readiness probe** — checks if the application is ready to handle traffic. If it fails, traffic is temporarily stopped but the container is not restarted.
+- **存活探測（Liveness probe）** — 檢查應用程式程序是否存活。如果失敗，容器會被重新啟動。
+- **就緒探測（Readiness probe）** — 檢查應用程式是否準備好處理流量。如果失敗，流量會暫時停止，但容器不會被重新啟動。
 
 ```go
 package main
@@ -95,9 +95,9 @@ func main() {
 }
 ```
 
-## Kubernetes configuration
+## Kubernetes 配置
 
-Configure probes in your Kubernetes deployment manifest:
+在你的 Kubernetes 部署清單中配置探測：
 
 ```yaml
 apiVersion: apps/v1
@@ -126,9 +126,9 @@ spec:
             periodSeconds: 5
 ```
 
-## Checking multiple dependencies
+## 檢查多個依賴項
 
-For applications with multiple dependencies, check each one and report detailed status:
+對於具有多個依賴項的應用程式，逐一檢查每個依賴項並回報詳細狀態：
 
 ```go
 package main
@@ -184,10 +184,10 @@ func (h *HealthChecker) CheckHealth(c *gin.Context) {
 ```
 
 :::note
-Always set a timeout on health check handlers. A hanging database connection should not block the health check indefinitely — return unhealthy instead.
+務必在健康檢查處理函式上設定逾時。掛起的資料庫連線不應無限期地阻塞健康檢查——應改為回傳不健康狀態。
 :::
 
-## Testing
+## 測試
 
 ```sh
 # Check liveness
@@ -197,7 +197,7 @@ curl -i http://localhost:8080/healthz
 curl -i http://localhost:8080/readyz
 ```
 
-Expected output:
+預期輸出：
 
 ```
 HTTP/1.1 200 OK
@@ -206,7 +206,7 @@ Content-Type: application/json; charset=utf-8
 {"status":"ready"}
 ```
 
-## See also
+## 另請參閱
 
-- [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/)
-- [Deployment](/en/docs/deployment/)
+- [優雅地重啟或停止](/zh-tw/docs/server-config/graceful-restart-or-stop/)
+- [部署](/zh-tw/docs/deployment/)

@@ -1,38 +1,38 @@
 ---
-title: "Benchmarks"
+title: "벤치마크"
 sidebar:
   order: 12
 ---
 
-> **Historical Data:** These benchmarks were collected in May 2020 using Gin v1.6.3 and Go 1.14.2. Framework performance may have changed significantly since then. For up-to-date benchmark results, see the [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) repository.
+> **과거 데이터:** 이 벤치마크는 2020년 5월에 Gin v1.6.3과 Go 1.14.2를 사용하여 수집되었습니다. 프레임워크 성능은 그 이후 크게 변경되었을 수 있습니다. 최신 벤치마크 결과는 [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) 저장소를 참조하세요.
 
-## Gin Web Framework Performance Benchmarks
+## Gin 웹 프레임워크 성능 벤치마크
 
-Benchmarks help developers evaluate the efficiency and resource usage of HTTP router libraries in Go. This page summarizes measurements across many popular frameworks, so you can easily compare their speed and memory consumption.
+벤치마크는 개발자가 Go의 HTTP 라우터 라이브러리의 효율성과 리소스 사용량을 평가하는 데 도움이 됩니다. 이 페이지는 많은 인기 프레임워크의 측정치를 요약하여 속도와 메모리 소비를 쉽게 비교할 수 있도록 합니다.
 
-**Test Environment:**
+**테스트 환경:**
 
-- **Host Platform:** Travis CI (virtual Linux VM)
-- **Machine Specs:** Ubuntu 16.04.6 LTS x64
-- **Test Date:** May 04th, 2020
-- **Gin Version:** v1.6.3
-- **Go Version:** 1.14.2 (linux/amd64)
-- **Benchmarks Source:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
-- **Detailed Results:** [See the gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) or [Travis result](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
+- **호스트 플랫폼:** Travis CI (가상 Linux VM)
+- **머신 사양:** Ubuntu 16.04.6 LTS x64
+- **테스트 날짜:** 2020년 5월 4일
+- **Gin 버전:** v1.6.3
+- **Go 버전:** 1.14.2 (linux/amd64)
+- **벤치마크 소스:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
+- **상세 결과:** [gist 보기](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) 또는 [Travis 결과](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
 
-Gin uses an optimized fork of [HttpRouter](https://github.com/julienschmidt/httprouter) for high performance routing.
+Gin은 고성능 라우팅을 위해 [HttpRouter](https://github.com/julienschmidt/httprouter)의 최적화된 포크를 사용합니다.
 
-If you want to view more test cases, you can check [all benchmarks here](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+더 많은 테스트 케이스를 보려면 [여기에서 모든 벤치마크를 확인하세요](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
 
 ---
 
-## How to Read the Table
+## 테이블 읽는 방법
 
-The benchmarks below show various Go frameworks running common HTTP routing tasks.  
-**Lower numbers (time, memory, allocations) are better.**  
-You can use these results for a direct, side-by-side comparison of Gin and alternative routers.
+아래 벤치마크는 다양한 Go 프레임워크가 일반적인 HTTP 라우팅 작업을 실행하는 것을 보여줍니다.
+**낮은 숫자(시간, 메모리, 할당)가 더 좋습니다.**
+이 결과를 사용하여 Gin과 대안 라우터를 직접적으로 나란히 비교할 수 있습니다.
 
-| Test                              | Repetitions | Time (ns/op) | Bytes (B/op) | Allocations (allocs/op) |
+| 테스트                              | 반복 횟수 | 시간 (ns/op) | 바이트 (B/op) | 할당 (allocs/op) |
 | ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
 | BenchmarkGin_GithubStatic         | 15629472    | 76.7         | 0            | 0                       |
 | BenchmarkAce_GithubStatic         | 15542612    | 75.9         | 0            | 0                       |
@@ -127,11 +127,11 @@ You can use these results for a direct, side-by-side comparison of Gin and alter
 
 ---
 
-## Benchmark Table Notes
+## 벤치마크 테이블 참고 사항
 
-- **Repetitions**: Total repetitions achieved in constant time. Higher numbers mean more confidence in the results.
-- **Time (ns/op)**: Duration for one operation, measured in nanoseconds. Lower is better.
-- **Bytes (B/op)**: Heap memory allocated per operation. Lower means better efficiency.
-- **Allocations (allocs/op)**: Average number of memory allocations per operation. Fewer allocations are better for performance and garbage collection.
+- **반복 횟수**: 일정 시간 내에 달성된 총 반복 횟수. 숫자가 높을수록 결과에 대한 신뢰도가 높습니다.
+- **시간 (ns/op)**: 한 연산의 소요 시간으로 나노초 단위로 측정됩니다. 낮을수록 좋습니다.
+- **바이트 (B/op)**: 연산당 힙 메모리 할당량. 낮을수록 효율성이 좋습니다.
+- **할당 (allocs/op)**: 연산당 평균 메모리 할당 횟수. 할당이 적을수록 성능과 가비지 컬렉션에 유리합니다.
 
-For questions or contributions, check our [GitHub repository](https://github.com/gin-gonic/gin).
+질문이나 기여 사항은 [GitHub 저장소](https://github.com/gin-gonic/gin)를 확인하세요.

@@ -1,19 +1,19 @@
 ---
-title: "Graceful restart or stop"
+title: "راه‌اندازی مجدد یا توقف آرام"
 sidebar:
   order: 5
 ---
 
-When a server process receives a termination signal (e.g., during a deployment or scaling event), an immediate shutdown drops all in-flight requests, leaving clients with broken connections and potentially corrupted operations. A **graceful shutdown** solves this by:
+وقتی یک فرآیند سرور سیگنال خاتمه دریافت می‌کند (مثلاً در حین استقرار یا رویداد مقیاس‌بندی)، یک خاموشی فوری تمام درخواست‌های در حال انجام را قطع می‌کند و کلاینت‌ها را با اتصالات شکسته و عملیات احتمالاً خراب شده مواجه می‌کند. یک **خاموشی آرام** این مشکل را حل می‌کند با:
 
-- **Completing in-flight requests** -- Requests that are already being processed are given time to finish, so clients receive proper responses instead of connection resets.
-- **Draining connections** -- The server stops accepting new connections while existing ones are allowed to complete, preventing a sudden cut-off.
-- **Cleaning up resources** -- Open database connections, file handles, and background workers are closed properly, avoiding data corruption or resource leaks.
-- **Enabling zero-downtime deployments** -- When combined with a load balancer, graceful shutdown lets you roll out new versions without any user-visible errors.
+- **تکمیل درخواست‌های در حال انجام** -- به درخواست‌هایی که در حال پردازش هستند زمان داده می‌شود تا تمام شوند، بنابراین کلاینت‌ها پاسخ‌های مناسب به جای بازنشانی اتصال دریافت می‌کنند.
+- **تخلیه اتصالات** -- سرور پذیرش اتصالات جدید را متوقف می‌کند در حالی که اتصالات موجود اجازه تکمیل دارند.
+- **پاکسازی منابع** -- اتصالات باز پایگاه داده، handle فایل‌ها و workerهای پس‌زمینه به درستی بسته می‌شوند و از خرابی داده یا نشت منابع جلوگیری می‌شود.
+- **فعال‌سازی استقرار بدون قطعی** -- در ترکیب با یک متعادل‌کننده بار، خاموشی آرام به شما اجازه می‌دهد نسخه‌های جدید را بدون خطای قابل مشاهده برای کاربر منتشر کنید.
 
-There are several ways to achieve this in Go.
+چندین روش برای دستیابی به این در Go وجود دارد.
 
-We can use [fvbock/endless](https://github.com/fvbock/endless) to replace the default `ListenAndServe`. Refer issue [#296](https://github.com/gin-gonic/gin/issues/296) for more details.
+می‌توانیم از [fvbock/endless](https://github.com/fvbock/endless) برای جایگزینی `ListenAndServe` پیش‌فرض استفاده کنیم. برای جزئیات بیشتر به مسئله [#296](https://github.com/gin-gonic/gin/issues/296) مراجعه کنید.
 
 ```go
 router := gin.Default()
@@ -22,13 +22,13 @@ router.GET("/", handler)
 endless.ListenAndServe(":4242", router)
 ```
 
-An alternative to endless:
+جایگزین‌هایی برای endless:
 
-* [manners](https://github.com/braintree/manners): A polite Go HTTP server that shuts down gracefully.
-* [graceful](https://github.com/tylerb/graceful): Graceful is a Go package enabling graceful shutdown of an http.Handler server.
-* [grace](https://github.com/facebookgo/grace): Graceful restart & zero downtime deploy for Go servers.
+* [manners](https://github.com/braintree/manners): یک سرور HTTP مودب Go که به صورت آرام خاموش می‌شود.
+* [graceful](https://github.com/tylerb/graceful): Graceful یک پکیج Go است که خاموشی آرام یک سرور http.Handler را فعال می‌کند.
+* [grace](https://github.com/facebookgo/grace): راه‌اندازی مجدد آرام و استقرار بدون قطعی برای سرورهای Go.
 
-If you are using Go 1.8 and later, you may not need to use this library! Consider using `http.Server`'s built-in [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) method for graceful shutdowns. See the full [graceful-shutdown](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) example with gin.
+اگر از Go نسخه 1.8 و بالاتر استفاده می‌کنید، ممکن است نیازی به استفاده از این کتابخانه نداشته باشید! استفاده از متد [Shutdown()](https://golang.org/pkg/net/http/#Server.Shutdown) داخلی `http.Server` را برای خاموشی‌های آرام در نظر بگیرید. مثال کامل [graceful-shutdown](https://github.com/gin-gonic/examples/tree/master/graceful-shutdown) با gin را ببینید.
 
 ```go
 //go:build go1.8
@@ -85,4 +85,3 @@ func main() {
   log.Println("Server exiting")
 }
 ```
-

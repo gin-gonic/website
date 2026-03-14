@@ -1,22 +1,22 @@
 ---
-title: "WebSocket Support"
+title: "پشتیبانی WebSocket"
 sidebar:
   order: 9
 ---
 
-Gin does not include a built-in WebSocket implementation, but it integrates seamlessly with the [gorilla/websocket](https://github.com/gorilla/websocket) package. Because Gin handlers receive the underlying `http.ResponseWriter` and `*http.Request`, you can upgrade any Gin route to a WebSocket connection with minimal effort.
+Gin شامل پیاده‌سازی داخلی WebSocket نیست، اما به صورت یکپارچه با پکیج [gorilla/websocket](https://github.com/gorilla/websocket) کار می‌کند. از آنجا که handlerهای Gin `http.ResponseWriter` و `*http.Request` زیربنایی را دریافت می‌کنند، می‌توانید هر مسیر Gin را با حداقل تلاش به یک اتصال WebSocket ارتقا دهید.
 
-## Installation
+## نصب
 
-Install the `gorilla/websocket` package:
+پکیج `gorilla/websocket` را نصب کنید:
 
 ```bash
 go get github.com/gorilla/websocket
 ```
 
-## Basic Echo Server
+## سرور Echo پایه
 
-The simplest WebSocket server reads a message from the client and echoes it back. This is a good starting point for understanding the upgrade process.
+ساده‌ترین سرور WebSocket یک پیام را از کلاینت می‌خواند و آن را بازمی‌گرداند. این نقطه شروع خوبی برای درک فرآیند ارتقا است.
 
 ```go
 package main
@@ -66,9 +66,9 @@ func main() {
 }
 ```
 
-## Chat Broadcast Example
+## مثال پخش چت
 
-A more practical example: a simple chat server that broadcasts every incoming message to all connected clients.
+یک مثال عملی‌تر: یک سرور چت ساده که هر پیام ورودی را به تمام کلاینت‌های متصل پخش می‌کند.
 
 ```go
 package main
@@ -149,11 +149,11 @@ func main() {
 }
 ```
 
-> **Note:** The broadcast example above writes to multiple connections while holding a read lock. For production use, consider sending messages through a channel per client to avoid blocking the broadcast loop on a slow connection. See the [gorilla/websocket chat example](https://github.com/gorilla/websocket/tree/main/examples/chat) for a production-ready pattern.
+> **توجه:** مثال پخش بالا هنگام نگه داشتن read lock به چندین اتصال می‌نویسد. برای استفاده تولیدی، ارسال پیام‌ها از طریق یک channel به ازای هر کلاینت را در نظر بگیرید تا از مسدود شدن حلقه پخش روی اتصال کند جلوگیری شود. [مثال چت gorilla/websocket](https://github.com/gorilla/websocket/tree/main/examples/chat) را برای الگوی آماده تولید ببینید.
 
-## Connection Upgrade and Configuration
+## ارتقا و پیکربندی اتصال
 
-The `websocket.Upgrader` controls how HTTP connections are upgraded to WebSocket. Key fields:
+`websocket.Upgrader` نحوه ارتقای اتصالات HTTP به WebSocket را کنترل می‌کند. فیلدهای کلیدی:
 
 ```go
 var upgrader = websocket.Upgrader{
@@ -174,7 +174,7 @@ var upgrader = websocket.Upgrader{
 }
 ```
 
-You can also set response headers during the upgrade:
+همچنین می‌توانید هدرهای پاسخ را در حین ارتقا تنظیم کنید:
 
 ```go
 func handleWebSocket(c *gin.Context) {
@@ -191,11 +191,11 @@ func handleWebSocket(c *gin.Context) {
 }
 ```
 
-## Best Practices
+## بهترین روش‌ها
 
-### Ping/Pong for Connection Health
+### Ping/Pong برای سلامت اتصال
 
-WebSocket connections can go stale silently. Use ping/pong frames to detect dead connections:
+اتصالات WebSocket می‌توانند بی‌صدا قطع شوند. از فریم‌های ping/pong برای تشخیص اتصالات مرده استفاده کنید:
 
 ```go
 import "time"
@@ -240,44 +240,44 @@ func handleWebSocket(c *gin.Context) {
 }
 ```
 
-### Connection Cleanup
+### پاکسازی اتصال
 
-Always close connections and release resources when done:
+همیشه اتصالات را ببندید و منابع را آزاد کنید:
 
-- Use `defer conn.Close()` immediately after a successful upgrade.
-- Remove connections from any shared data structures (such as the hub in the chat example) when the read loop exits.
-- Set read and write deadlines to prevent goroutine leaks from idle connections.
+- بلافاصله پس از ارتقای موفق از `defer conn.Close()` استفاده کنید.
+- اتصالات را از ساختارهای داده مشترک (مانند hub در مثال چت) هنگام خروج از حلقه خواندن حذف کنید.
+- مهلت‌های خواندن و نوشتن را تنظیم کنید تا از نشت گوروتین از اتصالات بیکار جلوگیری شود.
 
-### Concurrent Writes
+### نوشتن همزمان
 
-The `gorilla/websocket` package does **not** support concurrent writes to a single connection. If multiple goroutines need to write, serialize access with one of these approaches:
+پکیج `gorilla/websocket` از نوشتن همزمان به یک اتصال واحد پشتیبانی **نمی‌کند**. اگر چندین گوروتین نیاز به نوشتن دارند، دسترسی را با یکی از این روش‌ها سریال‌سازی کنید:
 
-- **Mutex:** Protect writes with a `sync.Mutex`.
-- **Channel:** Funnel all outgoing messages through a single channel consumed by one writer goroutine.
+- **Mutex:** نوشتن‌ها را با `sync.Mutex` محافظت کنید.
+- **Channel:** تمام پیام‌های خروجی را از طریق یک channel واحد که توسط یک گوروتین نویسنده مصرف می‌شود هدایت کنید.
 
-The channel approach is generally preferred because it naturally handles back-pressure and keeps the writing logic in one place.
+رویکرد channel معمولاً ترجیح داده می‌شود زیرا به طور طبیعی فشار برگشتی را مدیریت کرده و منطق نوشتن را در یک مکان نگه می‌دارد.
 
-## Testing
+## تست
 
-### Using wscat
+### استفاده از wscat
 
-[wscat](https://github.com/websockets/wscat) is a command-line WebSocket client. Install it with npm:
+[wscat](https://github.com/websockets/wscat) یک کلاینت WebSocket خط فرمان است. آن را با npm نصب کنید:
 
 ```bash
 npm install -g wscat
 ```
 
-Connect to your server:
+به سرور خود متصل شوید:
 
 ```bash
 wscat -c ws://localhost:8080/ws
 ```
 
-Type a message and press Enter. The echo server will send it back.
+یک پیام تایپ کنید و Enter بزنید. سرور echo آن را بازمی‌گرداند.
 
-### Using curl
+### استفاده از curl
 
-curl 7.86+ supports WebSocket. Send a message to the echo server:
+curl نسخه 7.86+ از WebSocket پشتیبانی می‌کند. یک پیام به سرور echo ارسال کنید:
 
 ```bash
 curl --include \
@@ -289,11 +289,11 @@ curl --include \
   http://localhost:8080/ws
 ```
 
-> For interactive testing, `wscat` is more convenient than curl because it handles the WebSocket framing protocol automatically.
+> برای تست تعاملی، `wscat` از curl راحت‌تر است زیرا پروتکل framing WebSocket را به طور خودکار مدیریت می‌کند.
 
-## See Also
+## همچنین ببینید
 
-- [gorilla/websocket documentation](https://pkg.go.dev/github.com/gorilla/websocket)
-- [gorilla/websocket chat example](https://github.com/gorilla/websocket/tree/main/examples/chat) -- production-ready chat with per-client write goroutines
-- [RFC 6455 -- The WebSocket Protocol](https://datatracker.ietf.org/doc/html/rfc6455)
-- [Custom HTTP configuration](/docs/en/docs/server-config/custom-http-config/) -- customizing the underlying HTTP server used with Gin
+- [مستندات gorilla/websocket](https://pkg.go.dev/github.com/gorilla/websocket)
+- [مثال چت gorilla/websocket](https://github.com/gorilla/websocket/tree/main/examples/chat) -- چت آماده تولید با گوروتین‌های نوشتن به ازای هر کلاینت
+- [RFC 6455 -- پروتکل WebSocket](https://datatracker.ietf.org/doc/html/rfc6455)
+- [پیکربندی HTTP سفارشی](/fa/docs/server-config/custom-http-config/) -- سفارشی‌سازی سرور HTTP زیربنایی استفاده شده با Gin

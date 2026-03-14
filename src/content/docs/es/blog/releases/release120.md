@@ -1,12 +1,12 @@
 ---
-title: "Gin 1.12.0 is released"
-linkTitle: "Gin 1.12.0 is released"
+title: "Gin 1.12.0 ha sido publicado"
+linkTitle: "Gin 1.12.0 ha sido publicado"
 lastUpdated: 2026-02-28
 ---
 
 ## Gin v1.12.0
 
-### Features
+### Características
 
 * feat(binding): add support for encoding.UnmarshalText in uri/query binding ([#4203](https://github.com/gin-gonic/gin/pull/4203))
 * feat(context): add GetError and GetErrorSlice methods for error retrieval ([#4502](https://github.com/gin-gonic/gin/pull/4502))
@@ -16,7 +16,7 @@ lastUpdated: 2026-02-28
 * feat(logger): color latency ([#4146](https://github.com/gin-gonic/gin/pull/4146))
 * feat(render): add bson protocol ([#4145](https://github.com/gin-gonic/gin/pull/4145))
 
-### Bug Fixes
+### Correcciones de errores
 
 * fix(binding): empty value error ([#2169](https://github.com/gin-gonic/gin/pull/2169))
 * fix(binding): improve empty slice/array handling in form binding ([#4380](https://github.com/gin-gonic/gin/pull/4380))
@@ -30,7 +30,7 @@ lastUpdated: 2026-02-28
 * fix(tree): panic in findCaseInsensitivePathRec with RedirectFixedPath ([#4535](https://github.com/gin-gonic/gin/pull/4535))
 * fix: Correct typos, improve documentation clarity, and remove dead code ([#4511](https://github.com/gin-gonic/gin/pull/4511))
 
-### Enhancements
+### Mejoras
 
 * chore(binding): upgrade bson dependency to mongo-driver v2 ([#4549](https://github.com/gin-gonic/gin/pull/4549))
 * chore(context): always trust xff headers from unix socket ([#3359](https://github.com/gin-gonic/gin/pull/3359))
@@ -39,7 +39,7 @@ lastUpdated: 2026-02-28
 * chore(logger): allow skipping query string output ([#4547](https://github.com/gin-gonic/gin/pull/4547))
 * chore(response): prevent Flush() panic when `http.Flusher` ([#4479](https://github.com/gin-gonic/gin/pull/4479))
 
-### Refactor
+### Refactorización
 
 * refactor(binding): use maps.Copy for cleaner map handling ([#4352](https://github.com/gin-gonic/gin/pull/4352))
 * refactor(context): omit the return value names ([#4395](https://github.com/gin-gonic/gin/pull/4395))
@@ -52,7 +52,7 @@ lastUpdated: 2026-02-28
 * refactor: replace magic numbers with named constants in bodyAllowedForStatus ([#4529](https://github.com/gin-gonic/gin/pull/4529))
 * refactor: use b.Loop() to simplify the code and improve performance ([#4389](https://github.com/gin-gonic/gin/pull/4389), [#4432](https://github.com/gin-gonic/gin/pull/4432))
 
-### Build process updates / CI
+### Actualizaciones del proceso de compilación / CI
 
 * ci(bot): increase frequency and group updates for dependencies ([#4367](https://github.com/gin-gonic/gin/pull/4367))
 * ci(lint): refactor test assertions and linter configuration ([#4436](https://github.com/gin-gonic/gin/pull/4436))
@@ -62,7 +62,7 @@ lastUpdated: 2026-02-28
 * ci: update CI workflows and standardize Trivy config quotes ([#4531](https://github.com/gin-gonic/gin/pull/4531))
 * ci: update Go version support to 1.25+ across CI and docs ([#4550](https://github.com/gin-gonic/gin/pull/4550))
 
-### Documentation updates
+### Actualizaciones de documentación
 
 * docs(README): add a Trivy security scan badge ([#4426](https://github.com/gin-gonic/gin/pull/4426))
 * docs(context): add example comments for ShouldBind\* methods ([#4428](https://github.com/gin-gonic/gin/pull/4428))
@@ -76,14 +76,14 @@ lastUpdated: 2026-02-28
 * docs: update documentation to reflect Go version changes ([#4552](https://github.com/gin-gonic/gin/pull/4552))
 * docs: update feature documentation instructions for broken doc link ([#4508](https://github.com/gin-gonic/gin/pull/4508))
 
-### Performance
+### Rendimiento
 
 * perf(path): replace regex with custom functions in redirectTrailingSlash ([#4414](https://github.com/gin-gonic/gin/pull/4414))
 * perf(recovery): optimize line reading in stack function ([#4466](https://github.com/gin-gonic/gin/pull/4466))
 * perf(tree): optimize path parsing using strings.Count ([#4246](https://github.com/gin-gonic/gin/pull/4246))
 * perf(tree): reduce allocations in findCaseInsensitivePath ([#4417](https://github.com/gin-gonic/gin/pull/4417))
 
-### Tests
+### Pruebas
 
 * test(benchmarks): fix the incorrect function name ([#4375](https://github.com/gin-gonic/gin/pull/4375))
 * test(bytesconv): add tests for empty/nil cases ([#4454](https://github.com/gin-gonic/gin/pull/4454))

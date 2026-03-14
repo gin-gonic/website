@@ -1,16 +1,16 @@
 ---
-title: "Testing"
+title: "الاختبار"
 sidebar:
   order: 9
 ---
 
-## How to write test case for Gin?
+## كيف تكتب حالات اختبار لـ Gin؟
 
-The `net/http/httptest` package is the preferred way for HTTP testing.
+حزمة `net/http/httptest` هي الطريقة المفضلة لاختبار HTTP.
 
-### Suppress debug output
+### إخفاء مخرجات التصحيح
 
-Call `gin.SetMode(gin.TestMode)` before creating the router in your tests. This suppresses the debug-level route registration logs that Gin prints by default, keeping your test output clean. You can place this in `TestMain` so it applies to all tests in the package:
+استدعِ `gin.SetMode(gin.TestMode)` قبل إنشاء الموجّه في اختباراتك. هذا يخفي سجلات تسجيل المسارات على مستوى التصحيح التي يطبعها Gin افتراضياً، مما يبقي مخرجات اختباراتك نظيفة. يمكنك وضع هذا في `TestMain` ليُطبق على جميع الاختبارات في الحزمة:
 
 ```go
 func TestMain(m *testing.M) {
@@ -19,7 +19,7 @@ func TestMain(m *testing.M) {
 }
 ```
 
-### Example application
+### تطبيق مثال
 
 ```go
 package main
@@ -55,7 +55,7 @@ func main() {
 }
 ```
 
-### Basic tests
+### اختبارات أساسية
 
 ```go
 package main
@@ -103,9 +103,9 @@ func TestPostUser(t *testing.T) {
 }
 ```
 
-### Table-driven tests
+### اختبارات مبنية على الجداول
 
-Table-driven tests let you cover many input/output combinations without duplicating test logic. This pattern is idiomatic Go and works well with Gin:
+تتيح لك الاختبارات المبنية على الجداول تغطية العديد من مجموعات المدخلات/المخرجات دون تكرار منطق الاختبار. هذا النمط اصطلاحي في Go ويعمل بشكل جيد مع Gin:
 
 ```go
 func TestPingRouteTableDriven(t *testing.T) {
@@ -137,9 +137,9 @@ func TestPingRouteTableDriven(t *testing.T) {
 }
 ```
 
-### Testing middleware
+### اختبار الوسيطات
 
-To test a middleware in isolation, create a minimal router with the middleware applied and a simple handler that records the result:
+لاختبار وسيط بشكل منفصل، أنشئ موجّهاً بسيطاً مع الوسيط المُطبق ومعالج بسيط يسجّل النتيجة:
 
 ```go
 func TestAuthMiddleware(t *testing.T) {

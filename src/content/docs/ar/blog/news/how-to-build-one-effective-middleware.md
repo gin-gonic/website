@@ -1,16 +1,16 @@
 ---
-title: "How to Build an Effective Middleware"
-linkTitle: "How to Build an Effective Middleware"
+title: "كيف تبني وسيطاً فعّالاً"
+linkTitle: "كيف تبني وسيطاً فعّالاً"
 lastUpdated: 2019-02-26
 ---
 
-## Constituent parts
+## الأجزاء المكوّنة
 
-Middleware typically consists of two parts:
+يتكون الوسيط عادةً من جزأين:
 
-- The first part executes once, when you initialize your middleware. This is where you set up global objects, configuration logic, etc.—everything that only needs to happen once in the application's lifetime.
+- الجزء الأول يُنفذ مرة واحدة، عند تهيئة الوسيط. هنا تُعدّ الكائنات العامة ومنطق التكوين وغيرها -- كل ما يحتاج للحدوث مرة واحدة فقط في عمر التطبيق.
 
-- The second part executes on every request. For example, in a database middleware, you would inject your global database object into the request context. Once it is in the context, other middlewares and your handler functions can retrieve and use it.
+- الجزء الثاني يُنفذ مع كل طلب. على سبيل المثال، في وسيط قاعدة البيانات، ستحقن كائن قاعدة البيانات العام في سياق الطلب. بمجرد وجوده في السياق، يمكن للوسيطات الأخرى ودوال المعالجة استرداده واستخدامه.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
@@ -33,9 +33,9 @@ func funcName(params string) gin.HandlerFunc {
 }
 ```
 
-## Execution process
+## عملية التنفيذ
 
-Let's look at the following example code:
+لنلقِ نظرة على كود المثال التالي:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-According to the [Constituent parts](#constituent-parts) section above, when you run the Gin process, **part one** of each middleware executes first and prints the following information:
+وفقاً لقسم [الأجزاء المكوّنة](#الأجزاء-المكوّنة) أعلاه، عند تشغيل عملية Gin، يُنفذ **الجزء الأول** من كل وسيط أولاً ويطبع المعلومات التالية:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-The initialization order is:
+ترتيب التهيئة هو:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-When you make a request—e.g., `curl -v localhost:8080/rest/n/api/some`—**part two** of each middleware executes in order and outputs the following:
+عند إجراء طلب -- مثل `curl -v localhost:8080/rest/n/api/some` -- يُنفذ **الجزء الثاني** من كل وسيط بالترتيب وينتج المخرجات التالية:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-In other words, the execution order is:
+بعبارة أخرى، ترتيب التنفيذ هو:
 
 ```go
 globalMiddleware...2

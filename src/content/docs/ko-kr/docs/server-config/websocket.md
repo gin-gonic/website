@@ -1,22 +1,22 @@
 ---
-title: "WebSocket Support"
+title: "WebSocket 지원"
 sidebar:
   order: 9
 ---
 
-Gin does not include a built-in WebSocket implementation, but it integrates seamlessly with the [gorilla/websocket](https://github.com/gorilla/websocket) package. Because Gin handlers receive the underlying `http.ResponseWriter` and `*http.Request`, you can upgrade any Gin route to a WebSocket connection with minimal effort.
+Gin은 내장 WebSocket 구현을 포함하지 않지만, [gorilla/websocket](https://github.com/gorilla/websocket) 패키지와 원활하게 통합됩니다. Gin 핸들러는 기본 `http.ResponseWriter`와 `*http.Request`를 받으므로, 최소한의 노력으로 모든 Gin 라우트를 WebSocket 연결로 업그레이드할 수 있습니다.
 
-## Installation
+## 설치
 
-Install the `gorilla/websocket` package:
+`gorilla/websocket` 패키지를 설치합니다:
 
 ```bash
 go get github.com/gorilla/websocket
 ```
 
-## Basic Echo Server
+## 기본 에코 서버
 
-The simplest WebSocket server reads a message from the client and echoes it back. This is a good starting point for understanding the upgrade process.
+가장 간단한 WebSocket 서버는 클라이언트로부터 메시지를 읽고 다시 에코합니다. 이는 업그레이드 프로세스를 이해하기 위한 좋은 출발점입니다.
 
 ```go
 package main
@@ -30,7 +30,7 @@ import (
 )
 
 var upgrader = websocket.Upgrader{
-  // Allow all origins for development; restrict this in production.
+  // 개발 시 모든 출처 허용; 프로덕션에서는 이를 제한하세요.
   CheckOrigin: func(r *http.Request) bool {
     return true
   },
@@ -66,9 +66,9 @@ func main() {
 }
 ```
 
-## Chat Broadcast Example
+## 채팅 브로드캐스트 예제
 
-A more practical example: a simple chat server that broadcasts every incoming message to all connected clients.
+더 실용적인 예제: 들어오는 모든 메시지를 연결된 모든 클라이언트에게 브로드캐스트하는 간단한 채팅 서버입니다.
 
 ```go
 package main
@@ -149,32 +149,32 @@ func main() {
 }
 ```
 
-> **Note:** The broadcast example above writes to multiple connections while holding a read lock. For production use, consider sending messages through a channel per client to avoid blocking the broadcast loop on a slow connection. See the [gorilla/websocket chat example](https://github.com/gorilla/websocket/tree/main/examples/chat) for a production-ready pattern.
+> **참고:** 위 브로드캐스트 예제는 읽기 잠금을 유지한 상태로 여러 연결에 쓰기를 합니다. 프로덕션에서는 느린 연결에서 브로드캐스트 루프가 차단되는 것을 방지하기 위해 클라이언트별 채널을 통해 메시지를 보내는 것을 고려하세요. 프로덕션 수준의 패턴은 [gorilla/websocket 채팅 예제](https://github.com/gorilla/websocket/tree/main/examples/chat)를 참조하세요.
 
-## Connection Upgrade and Configuration
+## 연결 업그레이드 및 설정
 
-The `websocket.Upgrader` controls how HTTP connections are upgraded to WebSocket. Key fields:
+`websocket.Upgrader`는 HTTP 연결이 WebSocket으로 업그레이드되는 방식을 제어합니다. 주요 필드:
 
 ```go
 var upgrader = websocket.Upgrader{
-  // ReadBufferSize and WriteBufferSize specify the I/O buffer sizes in bytes.
-  // The default (4096) works for most use cases. Increase them for large messages.
+  // ReadBufferSize와 WriteBufferSize는 I/O 버퍼 크기를 바이트로 지정합니다.
+  // 기본값(4096)은 대부분의 사용 사례에 적합합니다. 큰 메시지의 경우 늘리세요.
   ReadBufferSize:  1024,
   WriteBufferSize: 1024,
 
-  // CheckOrigin controls whether the request Origin header is acceptable.
-  // By default it rejects cross-origin requests. Override it for CORS support.
+  // CheckOrigin은 요청 Origin 헤더가 허용 가능한지 제어합니다.
+  // 기본적으로 크로스 오리진 요청을 거부합니다. CORS 지원을 위해 재정의하세요.
   CheckOrigin: func(r *http.Request) bool {
     origin := r.Header.Get("Origin")
     return origin == "https://your-app.example.com"
   },
 
-  // Subprotocols specifies the server's supported protocols in order of preference.
+  // Subprotocols는 서버가 지원하는 프로토콜을 선호도 순으로 지정합니다.
   Subprotocols: []string{"graphql-ws", "graphql-transport-ws"},
 }
 ```
 
-You can also set response headers during the upgrade:
+업그레이드 시 응답 헤더를 설정할 수도 있습니다:
 
 ```go
 func handleWebSocket(c *gin.Context) {
@@ -191,18 +191,18 @@ func handleWebSocket(c *gin.Context) {
 }
 ```
 
-## Best Practices
+## 모범 사례
 
-### Ping/Pong for Connection Health
+### 연결 상태 확인을 위한 Ping/Pong
 
-WebSocket connections can go stale silently. Use ping/pong frames to detect dead connections:
+WebSocket 연결은 조용히 끊어질 수 있습니다. ping/pong 프레임을 사용하여 끊어진 연결을 감지합니다:
 
 ```go
 import "time"
 
 const (
   pongWait   = 60 * time.Second
-  pingPeriod = (pongWait * 9) / 10 // must be less than pongWait
+  pingPeriod = (pongWait * 9) / 10 // pongWait보다 작아야 합니다
 )
 
 func handleWebSocket(c *gin.Context) {
@@ -218,7 +218,7 @@ func handleWebSocket(c *gin.Context) {
     return nil
   })
 
-  // Start a goroutine to send pings.
+  // ping을 보내는 고루틴 시작.
   go func() {
     ticker := time.NewTicker(pingPeriod)
     defer ticker.Stop()
@@ -229,7 +229,7 @@ func handleWebSocket(c *gin.Context) {
     }
   }()
 
-  // Read loop
+  // 읽기 루프
   for {
     _, message, err := conn.ReadMessage()
     if err != nil {
@@ -240,44 +240,44 @@ func handleWebSocket(c *gin.Context) {
 }
 ```
 
-### Connection Cleanup
+### 연결 정리
 
-Always close connections and release resources when done:
+완료 시 항상 연결을 닫고 리소스를 해제하세요:
 
-- Use `defer conn.Close()` immediately after a successful upgrade.
-- Remove connections from any shared data structures (such as the hub in the chat example) when the read loop exits.
-- Set read and write deadlines to prevent goroutine leaks from idle connections.
+- 성공적인 업그레이드 직후에 `defer conn.Close()`를 사용하세요.
+- 읽기 루프가 종료될 때 공유 데이터 구조(채팅 예제의 hub 등)에서 연결을 제거하세요.
+- 유휴 연결에서의 고루틴 누수를 방지하기 위해 읽기 및 쓰기 데드라인을 설정하세요.
 
-### Concurrent Writes
+### 동시 쓰기
 
-The `gorilla/websocket` package does **not** support concurrent writes to a single connection. If multiple goroutines need to write, serialize access with one of these approaches:
+`gorilla/websocket` 패키지는 단일 연결에 대한 동시 쓰기를 **지원하지 않습니다**. 여러 고루틴이 쓰기를 해야 하는 경우, 다음 접근 방식 중 하나로 접근을 직렬화하세요:
 
-- **Mutex:** Protect writes with a `sync.Mutex`.
-- **Channel:** Funnel all outgoing messages through a single channel consumed by one writer goroutine.
+- **Mutex:** `sync.Mutex`로 쓰기를 보호합니다.
+- **Channel:** 모든 발신 메시지를 하나의 쓰기 고루틴이 소비하는 단일 채널을 통해 전달합니다.
 
-The channel approach is generally preferred because it naturally handles back-pressure and keeps the writing logic in one place.
+채널 접근 방식은 자연스럽게 백프레셔를 처리하고 쓰기 로직을 한 곳에 유지하므로 일반적으로 선호됩니다.
 
-## Testing
+## 테스트
 
-### Using wscat
+### wscat 사용하기
 
-[wscat](https://github.com/websockets/wscat) is a command-line WebSocket client. Install it with npm:
+[wscat](https://github.com/websockets/wscat)은 명령줄 WebSocket 클라이언트입니다. npm으로 설치합니다:
 
 ```bash
 npm install -g wscat
 ```
 
-Connect to your server:
+서버에 연결합니다:
 
 ```bash
 wscat -c ws://localhost:8080/ws
 ```
 
-Type a message and press Enter. The echo server will send it back.
+메시지를 입력하고 Enter를 누르세요. 에코 서버가 메시지를 다시 보내줍니다.
 
-### Using curl
+### curl 사용하기
 
-curl 7.86+ supports WebSocket. Send a message to the echo server:
+curl 7.86+는 WebSocket을 지원합니다. 에코 서버에 메시지를 보냅니다:
 
 ```bash
 curl --include \
@@ -289,11 +289,11 @@ curl --include \
   http://localhost:8080/ws
 ```
 
-> For interactive testing, `wscat` is more convenient than curl because it handles the WebSocket framing protocol automatically.
+> 대화형 테스트의 경우, `wscat`이 WebSocket 프레이밍 프로토콜을 자동으로 처리하므로 curl보다 더 편리합니다.
 
-## See Also
+## 참고
 
-- [gorilla/websocket documentation](https://pkg.go.dev/github.com/gorilla/websocket)
-- [gorilla/websocket chat example](https://github.com/gorilla/websocket/tree/main/examples/chat) -- production-ready chat with per-client write goroutines
+- [gorilla/websocket 문서](https://pkg.go.dev/github.com/gorilla/websocket)
+- [gorilla/websocket 채팅 예제](https://github.com/gorilla/websocket/tree/main/examples/chat) -- 클라이언트별 쓰기 고루틴을 갖춘 프로덕션 수준의 채팅
 - [RFC 6455 -- The WebSocket Protocol](https://datatracker.ietf.org/doc/html/rfc6455)
-- [Custom HTTP configuration](/docs/en/docs/server-config/custom-http-config/) -- customizing the underlying HTTP server used with Gin
+- [커스텀 HTTP 설정](/ko-kr/docs/server-config/custom-http-config/) -- Gin과 함께 사용되는 기본 HTTP 서버 커스터마이즈

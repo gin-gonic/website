@@ -1,10 +1,10 @@
 ---
-title: "Gin 1.5.0 is released"
-linkTitle: "Gin 1.5.0 is released"
+title: "تم إصدار Gin 1.5.0"
+linkTitle: "تم إصدار Gin 1.5.0"
 lastUpdated: 2019-11-28
 ---
 
-### CHANGELOG
+### سجل التغييرات
 
 #### Feature
 

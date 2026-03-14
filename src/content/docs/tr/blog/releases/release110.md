@@ -1,12 +1,12 @@
 ---
-title: "Gin 1.10.0 is released"
-linkTitle: "Gin 1.10.0 is released"
+title: "Gin 1.10.0 yayınlandı"
+linkTitle: "Gin 1.10.0 yayınlandı"
 lastUpdated: 2024-05-07
 ---
 
-### CHANGELOG
+### DEĞİŞİKLİK GÜNLÜĞÜ
 
-#### Features
+#### Özellikler
 
   * [`5f458dd`](https://github.com/gin-gonic/gin/commit/5f458dd1a6d631f324e4af9a4f5429ffdf199342): feat(auth): add proxy-server authentication ([#3877](https://github.com/gin-gonic/gin/pull/3877)) ([@EndlessParadox1](https://github.com/EndlessParadox1))
   * [`7a865dc`](https://github.com/gin-gonic/gin/commit/7a865dc): feat(bind): ShouldBindBodyWith shortcut and change doc ([#3871](https://github.com/gin-gonic/gin/pull/3871)) ([@RedCrazyGhost](https://github.com/RedCrazyGhost))
@@ -16,7 +16,7 @@ lastUpdated: 2024-05-07
   * [`c6ae2e6`](https://github.com/gin-gonic/gin/commit/c6ae2e6): feat(logger): ability to skip logs based on user-defined logic ([#3593](https://github.com/gin-gonic/gin/pull/3593)) ([@palvaneh](https://github.com/palvaneh))
 
 
-#### Bug fixes
+#### Hata düzeltmeleri
   * [`d4e4136`](https://github.com/gin-gonic/gin/commit/d4e4136): Revert "fix(uri): query binding bug ([#3236](https://github.com/gin-gonic/gin/pull/3236))" ([#3899](https://github.com/gin-gonic/gin/pull/3899)) ([@appleboy](https://github.com/appleboy))
   * [`3dc1cd6`](https://github.com/gin-gonic/gin/commit/3dc1cd6): fix(binding): binding error while not upload file ([#3819](https://github.com/gin-gonic/gin/pull/3819)) ([#3820](https://github.com/gin-gonic/gin/pull/3820)) ([@clearcodecn](https://github.com/clearcodecn))
   * [`82bcd6d`](https://github.com/gin-gonic/gin/commit/82bcd6d): fix(binding): dereference pointer to struct ([#3199](https://github.com/gin-gonic/gin/pull/3199)) ([@echovl](https://github.com/echovl))
@@ -32,7 +32,7 @@ lastUpdated: 2024-05-07
   * [`646312a`](https://github.com/gin-gonic/gin/commit/646312a): fix: protect Context.Keys map when call Copy method ([#3873](https://github.com/gin-gonic/gin/pull/3873)) ([@kingcanfish](https://github.com/kingcanfish))
 
 
-#### Enhancements
+#### İyileştirmeler
   * [`d4a6426`](https://github.com/gin-gonic/gin/commit/d4a6426): chore(CI): update release args ([#3595](https://github.com/gin-gonic/gin/pull/3595)) ([@qloog](https://github.com/qloog))
   * [`bb3519d`](https://github.com/gin-gonic/gin/commit/bb3519d): chore(IP): add TrustedPlatform constant for Fly.io. ([#3839](https://github.com/gin-gonic/gin/pull/3839)) ([@ab](https://github.com/ab))
   * [`1b3c085`](https://github.com/gin-gonic/gin/commit/1b3c085): chore(debug): add ability to override the debugPrint statement ([#2337](https://github.com/gin-gonic/gin/pull/2337)) ([@josegonzalez](https://github.com/josegonzalez))
@@ -52,7 +52,7 @@ lastUpdated: 2024-05-07
   * [`638aa19`](https://github.com/gin-gonic/gin/commit/638aa19): chore: update external dependencies to latest versions ([#3950](https://github.com/gin-gonic/gin/pull/3950)) ([@appleboy](https://github.com/appleboy))
   * [`c6f90df`](https://github.com/gin-gonic/gin/commit/c6f90df): chore: update various Go dependencies to latest versions ([#3901](https://github.com/gin-gonic/gin/pull/3901)) ([@appleboy](https://github.com/appleboy))
 
-#### Build process updates
+#### Derleme süreci güncellemeleri
   * [`78f4687`](https://github.com/gin-gonic/gin/commit/78f4687): build(codecov): Added a codecov configuration ([#3891](https://github.com/gin-gonic/gin/pull/3891)) ([@flc1125](https://github.com/flc1125))
   * [`56dc72c`](https://github.com/gin-gonic/gin/commit/56dc72c): ci(Makefile): vet command add .PHONY ([#3915](https://github.com/gin-gonic/gin/pull/3915)) ([@imalasong](https://github.com/imalasong))
   * [`8ab47c6`](https://github.com/gin-gonic/gin/commit/8ab47c6): ci(lint): update tooling and workflows for consistency ([#3834](https://github.com/gin-gonic/gin/pull/3834)) ([@appleboy](https://github.com/appleboy))
@@ -60,7 +60,7 @@ lastUpdated: 2024-05-07
   * [`000fdb3`](https://github.com/gin-gonic/gin/commit/000fdb3): ci(testing): add go1.22 version ([#3842](https://github.com/gin-gonic/gin/pull/3842)) ([@appleboy](https://github.com/appleboy))
 
 
-#### Documentation updates
+#### Belge güncellemeleri
   * [`990c44a`](https://github.com/gin-gonic/gin/commit/990c44aebf20f0796d99051e53d6ee75b7ed52fb): docs(context): Added deprecation comments to BindWith ([#3880](https://github.com/gin-gonic/gin/pull/3880)) ([@flc1125](https://github.com/flc1125))
   * [`861ffb9`](https://github.com/gin-gonic/gin/commit/861ffb9181dc811dc5d76fc450b36d3e68850b95): docs(middleware): comments to function `BasicAuthForProxy` ([#3881](https://github.com/gin-gonic/gin/pull/3881)) ([@EndlessParadox1](https://github.com/EndlessParadox1))
   * [`ee70b30`](https://github.com/gin-gonic/gin/commit/ee70b30a97205ac1f32889f41d8a494b3b2c81a5): docs: Add document to constant `AuthProxyUserKey` and `BasicAuthForProxy`. ([#3887](https://github.com/gin-gonic/gin/pull/3887)) ([@EndlessParadox1](https://github.com/EndlessParadox1))
@@ -69,7 +69,7 @@ lastUpdated: 2024-05-07
   * [`49f45a5`](https://github.com/gin-gonic/gin/commit/49f45a542719df661bd71dd48f1595f0bc1ff6f7): docs: remove redundant comments ([#3765](https://github.com/gin-gonic/gin/pull/3765)) ([@WeiTheShinobi](https://github.com/WeiTheShinobi))
   * [`75ccf94`](https://github.com/gin-gonic/gin/commit/75ccf94d605a05fe24817fc2f166f6f2959d5cea): feat: update version constant to v1.10.0 ([#3952](https://github.com/gin-gonic/gin/pull/3952)) ([@appleboy](https://github.com/appleboy))
 
-#### Others
+#### Diğer
   * [`02e754b`](https://github.com/gin-gonic/gin/commit/02e754be9c4889f7ee56db0660cc611eb82b61d6): Upgrade golang.org/x/net -> v0.13.0 ([#3684](https://github.com/gin-gonic/gin/pull/3684)) ([@cpcf](https://github.com/cpcf))
   * [`97eab7d`](https://github.com/gin-gonic/gin/commit/97eab7d09a8b048cab4a3d8ebd6c0ea78284c716): test(git): gitignore add develop tools ([#3370](https://github.com/gin-gonic/gin/pull/3370)) ([@demoManito](https://github.com/demoManito))
   * [`ae15646`](https://github.com/gin-gonic/gin/commit/ae15646aba14cd8245fbebd263cc7740c6789ef3): test(http): use constant instead of numeric literal ([#3863](https://github.com/gin-gonic/gin/pull/3863)) ([@testwill](https://github.com/testwill))

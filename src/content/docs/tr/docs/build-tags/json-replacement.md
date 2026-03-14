@@ -1,18 +1,18 @@
 ---
-title: "Build with JSON replacement"
+title: "JSON yerine alternatif ile derleme"
 sidebar:
   order: 1
 ---
 
-Gin uses the standard library `encoding/json` package for JSON serialization and deserialization by default. The standard library encoder is well-tested and fully compatible, but it is not the fastest option available. If JSON performance is a bottleneck in your application -- for example, in high-throughput APIs that serialize large response payloads -- you can swap in a faster drop-in replacement at build time using build tags. No code changes are required.
+Gin, varsayılan olarak JSON serileştirme ve deserileştirme için standart kütüphane `encoding/json` paketini kullanır. Standart kütüphane kodlayıcısı iyi test edilmiş ve tamamen uyumludur, ancak mevcut en hızlı seçenek değildir. JSON performansı uygulamanızda bir darboğaz oluşturuyorsa -- örneğin, büyük yanıt yükleri serileştiren yüksek verimli API'lerde -- derleme etiketlerini kullanarak derleme zamanında daha hızlı bir yerine geçen alternatif kullanabilirsiniz. Kod değişikliği gerekmez.
 
-## Available replacements
+## Kullanılabilir alternatifler
 
-Gin supports three alternative JSON encoders. Each one implements the same interface that Gin expects, so your handlers, middleware, and binding logic continue to work without modification.
+Gin, üç alternatif JSON kodlayıcısını destekler. Her biri Gin'in beklediği aynı arayüzü uygular, bu nedenle işleyicileriniz, ara katmanlarınız ve bağlama mantığınız herhangi bir değişiklik olmadan çalışmaya devam eder.
 
 ### go-json
 
-[go-json](https://github.com/goccy/go-json) is a pure-Go JSON encoder that offers significant performance improvements over `encoding/json` while maintaining full compatibility. It works on all platforms and architectures.
+[go-json](https://github.com/goccy/go-json), tam uyumluluk sağlarken `encoding/json` üzerinde önemli performans iyileştirmeleri sunan saf Go JSON kodlayıcısıdır. Tüm platformlarda ve mimarilerde çalışır.
 
 ```sh
 go build -tags=go_json .
@@ -20,7 +20,7 @@ go build -tags=go_json .
 
 ### jsoniter
 
-[jsoniter](https://github.com/json-iterator/go) (json-iterator) is another pure-Go, high-performance JSON library. It is API-compatible with `encoding/json` and provides a flexible configuration system for advanced use cases.
+[jsoniter](https://github.com/json-iterator/go) (json-iterator), `encoding/json` ile API uyumlu olan ve gelişmiş kullanım senaryoları için esnek bir yapılandırma sistemi sunan başka bir saf Go, yüksek performanslı JSON kütüphanesidir.
 
 ```sh
 go build -tags=jsoniter .
@@ -28,40 +28,40 @@ go build -tags=jsoniter .
 
 ### sonic
 
-[sonic](https://github.com/bytedance/sonic) is a blazing-fast JSON encoder developed by ByteDance. It uses JIT compilation and SIMD instructions to achieve maximum throughput, making it the fastest option among the three.
+[sonic](https://github.com/bytedance/sonic), ByteDance tarafından geliştirilen son derece hızlı bir JSON kodlayıcısıdır. Maksimum verim elde etmek için JIT derleme ve SIMD komutlarını kullanır, bu da onu üç seçenek arasında en hızlı yapar.
 
 ```sh
 go build -tags="sonic avx" .
 ```
 
 :::note
-Sonic requires a CPU with AVX instruction support. This is available on most modern x86_64 processors (Intel Sandy Bridge and later, AMD Bulldozer and later), but it will not work on ARM architectures or older x86 hardware. If your deployment target does not support AVX, use go-json or jsoniter instead.
+Sonic, AVX komut desteğine sahip bir CPU gerektirir. Bu, çoğu modern x86_64 işlemcide (Intel Sandy Bridge ve sonrası, AMD Bulldozer ve sonrası) mevcuttur, ancak ARM mimarilerinde veya eski x86 donanımında çalışmaz. Dağıtım hedefiniz AVX'i desteklemiyorsa, bunun yerine go-json veya jsoniter kullanın.
 :::
 
-## Choosing a replacement
+## Alternatif seçme
 
-| Encoder | Platform support | Key strength |
+| Kodlayıcı | Platform desteği | Temel güç |
 |---|---|---|
-| `encoding/json` (default) | All | Maximum compatibility, no extra dependency |
-| go-json | All | Good speedup, pure Go, broad compatibility |
-| jsoniter | All | Good speedup, flexible configuration |
-| sonic | x86_64 with AVX only | Highest throughput via JIT and SIMD |
+| `encoding/json` (varsayılan) | Tümü | Maksimum uyumluluk, ek bağımlılık yok |
+| go-json | Tümü | İyi hız artışı, saf Go, geniş uyumluluk |
+| jsoniter | Tümü | İyi hız artışı, esnek yapılandırma |
+| sonic | Yalnızca AVX'li x86_64 | JIT ve SIMD ile en yüksek verim |
 
-For most applications, **go-json** is a safe and effective choice -- it works everywhere and provides meaningful performance gains. Choose **sonic** when you need maximum JSON throughput and your servers run on x86_64 hardware. Choose **jsoniter** if you need its specific configuration features or are already using it elsewhere in your codebase.
+Çoğu uygulama için **go-json** güvenli ve etkili bir seçimdir -- her yerde çalışır ve anlamlı performans kazanımları sağlar. Maksimum JSON verimi gerektiğinde ve sunucularınız x86_64 donanımında çalışıyorsa **sonic**'i seçin. Özel yapılandırma özelliklerine ihtiyacınız varsa veya kod tabanınızda zaten kullanıyorsanız **jsoniter**'ı seçin.
 
-## Verifying the replacement
+## Alternatifi doğrulama
 
-You can confirm that the replacement is active by comparing serialization performance with a simple benchmark, or by checking the binary's symbol table:
+Serileştirme performansını basit bir karşılaştırma ile veya ikili dosyanın sembol tablosunu kontrol ederek alternatifin aktif olduğunu doğrulayabilirsiniz:
 
 ```sh
-# Build with go-json
+# go-json ile derleme
 go build -tags=go_json -o myapp .
 
-# Check that go-json symbols are present
+# go-json sembollerinin mevcut olduğunu kontrol etme
 go tool nm myapp | grep goccy
 ```
 
-The build tag also works with other Go commands:
+Derleme etiketi diğer Go komutlarıyla da çalışır:
 
 ```sh
 go run -tags=go_json .
@@ -69,5 +69,5 @@ go test -tags=go_json ./...
 ```
 
 :::note
-Only use one JSON replacement tag at a time. If you specify multiple JSON tags (e.g., `-tags=go_json,jsoniter`), the behavior is undefined. The `nomsgpack` tag can be safely combined with any JSON replacement tag.
+Aynı anda yalnızca bir JSON alternatif etiketi kullanın. Birden fazla JSON etiketi belirtirseniz (örneğin, `-tags=go_json,jsoniter`), davranış tanımsızdır. `nomsgpack` etiketi herhangi bir JSON alternatif etiketiyle güvenle birleştirilebilir.
 :::

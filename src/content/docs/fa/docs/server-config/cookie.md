@@ -1,34 +1,34 @@
 ---
-title: "Cookie"
+title: "کوکی"
 sidebar:
   order: 7
 ---
 
-Gin provides helpers to set and read HTTP cookies on the response and request.
+Gin توابع کمکی برای تنظیم و خواندن کوکی‌های HTTP در پاسخ و درخواست ارائه می‌دهد.
 
-### `SetCookie` parameters
+### پارامترهای `SetCookie`
 
-The `c.SetCookie()` method signature is:
+امضای متد `c.SetCookie()` به شکل زیر است:
 
 ```go
 c.SetCookie(name, value string, maxAge int, path, domain string, secure, httpOnly bool)
 ```
 
-| Parameter  | Description |
+| پارامتر | توضیحات |
 |------------|-------------|
-| `name`     | The cookie name (key). |
-| `value`    | The cookie value. |
-| `maxAge`   | Time-to-live in **seconds**. Set to `-1` to delete the cookie, or `0` to make it a session cookie (deleted when the browser closes). |
-| `path`     | The URL path the cookie is valid for. Use `"/"` to make it available site-wide. |
-| `domain`   | The domain the cookie is scoped to (e.g., `"example.com"`). Use `"localhost"` during development. |
-| `secure`   | When `true`, the cookie is only sent over **HTTPS** connections. **Set this to `true` in production.** |
-| `httpOnly` | When `true`, the cookie is inaccessible to client-side JavaScript (`document.cookie`), which helps prevent XSS attacks. **Set this to `true` in production.** |
+| `name`     | نام (کلید) کوکی. |
+| `value`    | مقدار کوکی. |
+| `maxAge`   | زمان حیات به **ثانیه**. `-1` برای حذف کوکی یا `0` برای کوکی نشست (هنگام بستن مرورگر حذف می‌شود). |
+| `path`     | مسیر URL که کوکی برای آن معتبر است. از `"/"` برای دسترسی در کل سایت استفاده کنید. |
+| `domain`   | دامنه‌ای که کوکی به آن محدود است (مثلاً `"example.com"`). در حین توسعه از `"localhost"` استفاده کنید. |
+| `secure`   | وقتی `true` باشد، کوکی فقط از طریق اتصالات **HTTPS** ارسال می‌شود. **در تولید این را `true` تنظیم کنید.** |
+| `httpOnly` | وقتی `true` باشد، کوکی برای JavaScript سمت کلاینت (`document.cookie`) غیرقابل دسترسی است که به جلوگیری از حملات XSS کمک می‌کند. **در تولید این را `true` تنظیم کنید.** |
 
-:::tip[Production recommendation]
-For production deployments, set `Secure: true`, `HttpOnly: true`, and `SameSite: Strict` (or `Lax`) to minimize exposure to cross-site request forgery (CSRF) and cross-site scripting (XSS) attacks.
+:::tip[توصیه تولیدی]
+برای استقرار تولیدی، `Secure: true`، `HttpOnly: true` و `SameSite: Strict` (یا `Lax`) تنظیم کنید تا قرارگیری در معرض حملات جعل درخواست بین‌سایتی (CSRF) و اسکریپت بین‌سایتی (XSS) به حداقل برسد.
 :::
 
-### Set and get a cookie
+### تنظیم و دریافت کوکی
 
 ```go
 import (
@@ -57,7 +57,7 @@ func main() {
 }
 ```
 
-### Try it
+### امتحان کنید
 
 ```bash
 # First request -- no cookie sent, server sets one
@@ -69,17 +69,17 @@ curl -v --cookie "gin_cookie=test" http://localhost:8080/cookie
 # Server logs: Cookie value: test
 ```
 
-### Delete a cookie
+### حذف کوکی
 
-Delete a cookie by setting max age to `-1`.
+یک کوکی را با تنظیم حداکثر سن به `-1` حذف کنید.
 
 ```go
 c.SetCookie("gin_cookie", "test", -1, "/", "localhost", false, true)
 ```
 
-### Set cookie via http.Cookie (v1.11+)
+### تنظیم کوکی از طریق http.Cookie (نسخه v1.11+)
 
-Gin also supports setting cookies using an `*http.Cookie`, giving access to fields like `Expires`, `MaxAge`, `SameSite`, and `Partitioned`.
+Gin همچنین از تنظیم کوکی‌ها با استفاده از `*http.Cookie` پشتیبانی می‌کند که دسترسی به فیلدهایی مانند `Expires`، `MaxAge`، `SameSite` و `Partitioned` را فراهم می‌کند.
 
 ```go
 import (
@@ -109,6 +109,6 @@ func main() {
 }
 ```
 
-## See also
+## همچنین ببینید
 
-- [Security headers](/en/docs/middleware/security-headers/)
+- [هدرهای امنیتی](/fa/docs/middleware/security-headers/)

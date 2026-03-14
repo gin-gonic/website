@@ -1,6 +1,6 @@
 ---
-title: "Gin 1.9.0 is released"
-linkTitle: "Gin 1.9.0 is released"
+title: "Gin 1.9.0 릴리스"
+linkTitle: "Gin 1.9.0 릴리스"
 lastUpdated: 2023-02-21
 ---
 
