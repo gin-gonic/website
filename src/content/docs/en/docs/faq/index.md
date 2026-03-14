@@ -199,9 +199,25 @@ See [Graceful restart or stop](/en/docs/server-config/graceful-restart-or-stop/)
 
 ### Why am I getting "404 Not Found" instead of "405 Method Not Allowed"?
 
-By default, Gin returns 404 for routes that don't support the requested HTTP method. To return 405 Method Not Allowed, enable the `HandleMethodNotAllowed` option.
+By default, Gin returns 404 for routes that don't support the requested HTTP method. Set `HandleMethodNotAllowed = true` to return 405 instead:
 
-See [Method Not Allowed FAQ](./method-not-allowed/) for details.
+```go
+r := gin.Default()
+r.HandleMethodNotAllowed = true
+
+r.GET("/ping", func(c *gin.Context) {
+  c.JSON(200, gin.H{"message": "pong"})
+})
+
+r.Run()
+```
+
+```sh
+$ curl -X POST localhost:8080/ping
+
+HTTP/1.1 405 Method Not Allowed
+Allow: GET
+```
 
 ### How do I bind query parameters and POST data together?
 
