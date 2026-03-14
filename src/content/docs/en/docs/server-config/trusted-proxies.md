@@ -8,6 +8,16 @@ Gin lets you specify which headers to hold the real client IP (if any),
 as well as specifying which proxies (or direct clients) you trust to
 specify one of these headers.
 
+### Why trusted proxy configuration matters
+
+When your application sits behind a reverse proxy (Nginx, HAProxy, a cloud load balancer, etc.), the proxy forwards the original client's IP address in headers like `X-Forwarded-For` or `X-Real-Ip`. The problem is that **any client can set these headers**. Without proper trusted proxy configuration, an attacker can forge `X-Forwarded-For` to:
+
+- **Bypass IP-based access controls** -- If your application restricts certain routes to an internal IP range (e.g., `10.0.0.0/8`), an attacker can send `X-Forwarded-For: 10.0.0.1` from a public IP and bypass the restriction entirely.
+- **Poison logs and audit trails** -- Forged IPs make incident investigation unreliable because you can no longer trace requests back to the real source.
+- **Evade rate limiting** -- If rate limiting is keyed on `ClientIP()`, each request can claim a different IP address to avoid being throttled.
+
+`SetTrustedProxies` solves this by telling Gin which network addresses are legitimate proxies. When `ClientIP()` parses the `X-Forwarded-For` chain, it only trusts entries added by those proxies and discards anything a client may have prepended. If a request arrives directly (not from a trusted proxy), the forwarding headers are ignored entirely and the raw remote address is used.
+
 Use function `SetTrustedProxies()` on your `gin.Engine` to specify network addresses
 or network CIDRs from where clients which their request headers related to client
 IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs, IPv6 addresses or

@@ -4,6 +4,8 @@ sidebar:
   order: 6
 ---
 
+> **Note:** HTTP/2 Server Push has been deprecated by major browsers (Chrome removed support in 2022). Consider using `103 Early Hints` or `<link rel="preload">` instead. This example is kept for reference.
+
 http.Pusher is supported only **go1.8+**. See the [golang blog](https://blog.golang.org/h2push) for detail information.
 
 ```go

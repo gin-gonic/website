@@ -4,7 +4,23 @@ sidebar:
   order: 2
 ---
 
+Middleware in Gin are functions that run before (and optionally after) your route handler. They are used for cross-cutting concerns such as logging, authentication, error recovery, and request modification.
+
+Gin supports three levels of middleware attachment:
+
+- **Global middleware** — Applied to every route in the router. Registered with `router.Use()`. Good for concerns like logging and panic recovery that apply universally.
+- **Group middleware** — Applied to all routes within a route group. Registered with `group.Use()`. Useful for applying authentication or authorization to a subset of routes (e.g., all `/admin/*` routes).
+- **Per-route middleware** — Applied to a single route only. Passed as additional arguments to `router.GET()`, `router.POST()`, etc. Useful for route-specific logic such as custom rate limiting or input validation.
+
+**Execution order:** Middleware functions execute in the order they are registered. When a middleware calls `c.Next()`, it passes control to the next middleware (or the final handler), and then resumes execution after `c.Next()` returns. This creates a stack-like (LIFO) pattern — the first middleware registered is the first to start but the last to finish. If a middleware does not call `c.Next()`, subsequent middleware and the handler are skipped (useful for short-circuiting with `c.Abort()`).
+
 ```go
+package main
+
+import (
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   // Creates a router without any middleware by default
   router := gin.New()
@@ -42,3 +58,6 @@ func main() {
 }
 ```
 
+:::note
+`gin.Default()` is a convenience function that creates a router with `Logger` and `Recovery` middleware already attached. If you want a bare router with no middleware, use `gin.New()` as shown above and add only the middleware you need.
+:::

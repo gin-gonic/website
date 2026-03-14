@@ -4,7 +4,31 @@ sidebar:
   order: 7
 ---
 
-Set and get cookie.
+Gin provides helpers to set and read HTTP cookies on the response and request.
+
+### `SetCookie` parameters
+
+The `c.SetCookie()` method signature is:
+
+```go
+c.SetCookie(name, value string, maxAge int, path, domain string, secure, httpOnly bool)
+```
+
+| Parameter  | Description |
+|------------|-------------|
+| `name`     | The cookie name (key). |
+| `value`    | The cookie value. |
+| `maxAge`   | Time-to-live in **seconds**. Set to `-1` to delete the cookie, or `0` to make it a session cookie (deleted when the browser closes). |
+| `path`     | The URL path the cookie is valid for. Use `"/"` to make it available site-wide. |
+| `domain`   | The domain the cookie is scoped to (e.g., `"example.com"`). Use `"localhost"` during development. |
+| `secure`   | When `true`, the cookie is only sent over **HTTPS** connections. **Set this to `true` in production.** |
+| `httpOnly` | When `true`, the cookie is inaccessible to client-side JavaScript (`document.cookie`), which helps prevent XSS attacks. **Set this to `true` in production.** |
+
+:::tip[Production recommendation]
+For production deployments, set `Secure: true`, `HttpOnly: true`, and `SameSite: Strict` (or `Lax`) to minimize exposure to cross-site request forgery (CSRF) and cross-site scripting (XSS) attacks.
+:::
+
+### Set and get a cookie
 
 ```go
 import (
@@ -33,7 +57,21 @@ func main() {
 }
 ```
 
-Delete cookie by set max age to -1.
+### Try it
+
+```bash
+# First request -- no cookie sent, server sets one
+curl -v http://localhost:8080/cookie
+# Look for "Set-Cookie: gin_cookie=test" in the response headers
+
+# Second request -- send the cookie back
+curl -v --cookie "gin_cookie=test" http://localhost:8080/cookie
+# Server logs: Cookie value: test
+```
+
+### Delete a cookie
+
+Delete a cookie by setting max age to `-1`.
 
 ```go
 c.SetCookie("gin_cookie", "test", -1, "/", "localhost", false, true)
@@ -70,3 +108,7 @@ func main() {
   r.Run(":8080")
 }
 ```
+
+## See also
+
+- [Security headers](/en/docs/middleware/security-headers/)

@@ -5,9 +5,14 @@ sidebar:
 ---
 
 Normally, JSON replaces special HTML characters with their unicode entities, e.g. `<` becomes  `\u003c`. If you want to encode such characters literally, you can use PureJSON instead.
-This feature is unavailable in Go 1.6 and lower.
 
 ```go
+package main
+
+import (
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
   

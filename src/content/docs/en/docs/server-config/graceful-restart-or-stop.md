@@ -4,8 +4,14 @@ sidebar:
   order: 5
 ---
 
-Do you want to graceful restart or stop your web server?
-There are some ways this can be done.
+When a server process receives a termination signal (e.g., during a deployment or scaling event), an immediate shutdown drops all in-flight requests, leaving clients with broken connections and potentially corrupted operations. A **graceful shutdown** solves this by:
+
+- **Completing in-flight requests** -- Requests that are already being processed are given time to finish, so clients receive proper responses instead of connection resets.
+- **Draining connections** -- The server stops accepting new connections while existing ones are allowed to complete, preventing a sudden cut-off.
+- **Cleaning up resources** -- Open database connections, file handles, and background workers are closed properly, avoiding data corruption or resource leaks.
+- **Enabling zero-downtime deployments** -- When combined with a load balancer, graceful shutdown lets you roll out new versions without any user-visible errors.
+
+There are several ways to achieve this in Go.
 
 We can use [fvbock/endless](https://github.com/fvbock/endless) to replace the default `ListenAndServe`. Refer issue [#296](https://github.com/gin-gonic/gin/issues/296) for more details.
 

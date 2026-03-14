@@ -26,3 +26,7 @@ func main() {
   router.Run(":8080")
 }
 ```
+
+## See also
+
+- [Query string parameters](/en/docs/routing/querystring-param/)

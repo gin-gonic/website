@@ -4,7 +4,25 @@ sidebar:
   order: 5
 ---
 
+Gin ships with a built-in `gin.BasicAuth()` middleware that implements [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme). It accepts a `gin.Accounts` map (a shortcut for `map[string]string`) of username/password pairs and protects any route group it is applied to.
+
+:::caution[Security Warning]
+HTTP Basic Authentication transmits credentials as a **Base64-encoded** string, **not encrypted**. Anyone who can intercept the traffic can decode the credentials trivially. Always use **HTTPS** (TLS) when using BasicAuth in production.
+:::
+
+:::note[Production Credentials]
+The example below hardcodes usernames and passwords for simplicity. In a real application, load credentials from a secure source such as environment variables, a secrets manager (e.g., HashiCorp Vault, AWS Secrets Manager), or a database with properly hashed passwords. Never commit plaintext credentials to version control.
+:::
+
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 // simulate some private data
 var secrets = gin.H{
   "foo":    gin.H{"email": "foo@bar.com", "phone": "123433"},
@@ -39,4 +57,20 @@ func main() {
   // Listen and serve on 0.0.0.0:8080
   router.Run(":8080")
 }
+```
+
+### Try it
+
+Use the `-u` flag with curl to supply Basic Authentication credentials:
+
+```bash
+# Successful authentication
+curl -u foo:bar http://localhost:8080/admin/secrets
+# => {"secret":{"email":"foo@bar.com","phone":"123433"},"user":"foo"}
+
+# Wrong password -- returns 401 Unauthorized
+curl -u foo:wrongpassword http://localhost:8080/admin/secrets
+
+# No credentials -- returns 401 Unauthorized
+curl http://localhost:8080/admin/secrets
 ```

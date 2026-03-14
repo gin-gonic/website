@@ -6,7 +6,22 @@ sidebar:
 
 When starting new Goroutines inside a middleware or handler, you **SHOULD NOT** use the original context inside it, you have to use a read-only copy.
 
+### Why `c.Copy()` is essential
+
+Gin uses a **sync.Pool** to reuse `gin.Context` objects across requests for performance. Once a handler returns, the `gin.Context` is returned to the pool and may be assigned to an entirely different request. If a goroutine still holds a reference to the original context at that point, it will read or write fields that now belong to another request. This leads to **race conditions**, **data corruption**, or **panics**.
+
+Calling `c.Copy()` creates a snapshot of the context that is safe to use after the handler returns. The copy includes the request, URL, keys, and other read-only data, but is detached from the pool lifecycle.
+
 ```go
+package main
+
+import (
+  "log"
+  "time"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 

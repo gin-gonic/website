@@ -19,3 +19,7 @@ func main() {
   router.Run(":8080")
 }
 ```
+
+## See also
+
+- [Parameters in path](/en/docs/routing/param-in-path/)

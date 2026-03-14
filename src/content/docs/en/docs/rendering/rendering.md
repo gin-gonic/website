@@ -4,7 +4,27 @@ sidebar:
   order: 1
 ---
 
+Gin provides built-in support for rendering responses in multiple formats including JSON, XML, YAML, and Protocol Buffers. This makes it straightforward to build APIs that support content negotiation — serving data in whatever format the client requests.
+
+**When to use each format:**
+
+- **JSON** — The most common choice for REST APIs and browser-based clients. Use `c.JSON()` for standard output or `c.IndentedJSON()` for human-readable formatting during development.
+- **XML** — Useful when integrating with legacy systems, SOAP services, or clients that expect XML (such as some enterprise applications).
+- **YAML** — A good fit for configuration-oriented endpoints or tools that consume YAML natively (such as Kubernetes or CI/CD pipelines).
+- **ProtoBuf** — Ideal for high-performance, low-latency communication between services. Protocol Buffers produce smaller payloads and faster serialization compared to text-based formats, but require a shared schema definition (`.proto` file).
+
+All rendering methods accept an HTTP status code and a data value. Gin serializes the data and sets the appropriate `Content-Type` header automatically.
+
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin/testdata/protoexample"
+)
+
 func main() {
   router := gin.Default()
 
@@ -53,3 +73,10 @@ func main() {
   router.Run(":8080")
 }
 ```
+
+## See also
+
+- [PureJSON](/en/docs/rendering/pure-json/)
+- [SecureJSON](/en/docs/rendering/secure-json/)
+- [AsciiJSON](/en/docs/rendering/ascii-json/)
+- [JSONP](/en/docs/rendering/jsonp/)

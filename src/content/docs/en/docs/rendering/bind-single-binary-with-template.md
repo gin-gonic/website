@@ -3,13 +3,45 @@ title: "Build a single binary with templates"
 sidebar:
   order: 11
 ---
-## Use the third-party package
+## Using `//go:embed` (recommended)
 
-You can use the third party package to build a server into a single binary containing templates by using [go-assets](https://github.com/jessevdk/go-assets).
+Since Go 1.16, the standard library supports embedding files directly into the binary with the `//go:embed` directive. No third-party dependencies are needed.
+
+```go
+package main
+
+import (
+  "embed"
+  "html/template"
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
+//go:embed templates/*
+var templateFS embed.FS
+
+func main() {
+  router := gin.Default()
+
+  t := template.Must(template.ParseFS(templateFS, "templates/*.tmpl"))
+  router.SetHTMLTemplate(t)
+
+  router.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "index.tmpl", nil)
+  })
+
+  router.Run(":8080")
+}
+```
+
+## Using a third-party package
+
+You can also use a third-party package such as [go-assets](https://github.com/jessevdk/go-assets) to embed templates into the binary.
 
 ```go
 func main() {
-  r := gin.New()
+  router := gin.New()
 
   t, err := loadTemplate()
   if err != nil {
@@ -30,7 +62,7 @@ func loadTemplate() (*template.Template, error) {
     if file.IsDir() || !strings.HasSuffix(name, ".tmpl") {
       continue
     }
-    h, err := ioutil.ReadAll(file)
+    h, err := io.ReadAll(file)
     if err != nil {
       return nil, err
     }

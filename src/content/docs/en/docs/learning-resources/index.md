@@ -4,6 +4,30 @@ sidebar:
   order: 13
 ---
 
+## Official Resources
+
+These are maintained by the Gin team and are the most authoritative sources of information.
+
+- **[Gin GitHub Repository](https://github.com/gin-gonic/gin)** -- Source code, issue tracker, and the latest release notes.
+- **[Gin Examples Repository](https://github.com/gin-gonic/examples)** -- A collection of self-contained example projects covering common use cases such as file uploads, graceful shutdown, JWT authentication, and more.
+- **[Gin API Reference (pkg.go.dev)](https://pkg.go.dev/github.com/gin-gonic/gin)** -- Auto-generated API documentation for every exported type and function.
+
+## Go Language Resources
+
+A solid understanding of Go itself will make working with Gin much easier.
+
+- **[A Tour of Go](https://go.dev/tour/)** -- The official interactive introduction to Go.
+- **[Effective Go](https://go.dev/doc/effective_go)** -- Best practices and idiomatic patterns for writing Go code.
+- **[Go by Example](https://gobyexample.com/)** -- Annotated example programs covering Go fundamentals.
+- **[Go Standard Library Documentation](https://pkg.go.dev/std)** -- Reference for every package in the standard library, including `net/http`, which Gin builds on.
+
+## Tutorials and Articles
+
+Community-written guides that walk through building real applications with Gin.
+
+- **[Building a RESTful API with Go and Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- An official Go tutorial that uses Gin to build a simple web service.
+- **[Build a REST API with Go, Gin, and GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- Covers project layout, database integration, and deployment.
+
 ## Interactive Learning Platforms
 
 Looking to practice Gin concepts through hands-on exercises? Here are some community-driven learning resources:

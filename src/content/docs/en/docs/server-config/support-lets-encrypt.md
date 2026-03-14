@@ -55,7 +55,7 @@ func main() {
     Cache:      autocert.DirCache("/var/www/.cache"),
   }
 
-  log.Fatal(autotls.RunWithManager(r, &m))
+  log.Fatal(autotls.RunWithManager(router, &m))
 }
 ```
 
