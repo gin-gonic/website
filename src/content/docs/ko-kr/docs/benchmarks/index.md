@@ -6,9 +6,7 @@ sidebar:
 
 > **업데이트된 데이터:** 이 벤치마크는 2026년 3월에 Gin v1.12.0과 Go 1.25.8을 사용하여 수집되었습니다. 최신 벤치마크 결과는 [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark) 저장소를 참조하세요.
 
-## Gin 웹 프레임워크 성능 벤치마크
-
-벤치마크는 개발자가 Go에서 HTTP 라우터 라이브러리의 효율성과 리소스 사용량을 평가하는 데 도움이 됩니다. 이 페이지는 많은 인기 프레임워크의 측정 결과를 요약하여 속도와 메모리 소비를 쉽게 비교할 수 있도록 합니다.
+## Gin 벤치마크 보고서
 
 **테스트 환경:**
 
@@ -19,118 +17,268 @@ sidebar:
 - **Go 버전:** 1.25.8 (darwin/arm64)
 - **벤치마크 소스:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
 
-Gin은 고성능 라우팅을 위해 [HttpRouter](https://github.com/julienschmidt/httprouter)의 최적화된 포크를 사용합니다.
+---
 
-더 많은 테스트 케이스를 보려면 [모든 벤치마크](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md)를 확인하세요.
+## 요약
+
+아래 표는 모든 라우터를 **GitHub API 처리량** (203개 라우트, 모든 메서드) 기준으로 순위를 매긴 것으로, 실제 라우팅 워크로드를 가장 잘 대표합니다. _ns/op가 낮을수록 좋습니다._
+
+| Rank | Router | ns/op | B/op | allocs/op | Zero-alloc |
+| :--: | :--- | ---: | ---: | ---: | :---: |
+| 1 | **Gin** | 9,944 | 0 | 0 | :white_check_mark: |
+| 2 | **BunRouter** | 10,281 | 0 | 0 | :white_check_mark: |
+| 3 | **Echo** | 11,072 | 0 | 0 | :white_check_mark: |
+| 4 | HttpRouter | 15,059 | 13,792 | 167 | |
+| 5 | HttpTreeMux | 49,302 | 65,856 | 671 | |
+| 6 | Chi | 94,376 | 130,817 | 740 | |
+| 7 | Beego | 101,941 | 71,456 | 609 | |
+| 8 | Fiber | 109,148 | 0 | 0 | :white_check_mark: |
+| 9 | Macaron | 121,785 | 147,784 | 1,624 | |
+| 10 | Goji v2 | 242,849 | 313,744 | 3,712 | |
+| 11 | GoRestful | 885,678 | 1,006,744 | 3,009 | |
+| 12 | GorillaMux | 1,316,844 | 225,667 | 1,588 | |
+
+**주요 시사점:**
+
+- Gin, BunRouter, Echo는 최상위 그룹을 형성하며, 모두 힙 할당이 0이고 전체 GitHub API를 약 10마이크로초 만에 라우팅합니다.
+- **HttpRouter**는 매우 빠르지만 매개변수화된 라우트당 1회 할당이 발생합니다 (203개 라우트에서 167회 할당).
+- Fiber도 할당 0을 달성하지만, fasthttp 기반 벤치마크 인프라가 반복당 리셋 오버헤드를 추가하므로 net/http 라우터와의 직접 비교는 주의가 필요합니다.
+- **GorillaMux**와 **GoRestful**은 기능이 풍부하지만 수 배 느려서 지연 시간에 민감한 애플리케이션에는 적합하지 않습니다.
+
+> **Fiber 주의사항:** Fiber 벤치마크는 반복마다 Reset을 수행하는 `fasthttp.RequestCtx`를 사용하며, 이는 net/http 벤치마크에는 없는 일정한 오버헤드를 추가합니다. Fiber 간 비교는 유효하지만, 프레임워크 간 비교는 신중하게 해석해야 합니다.
 
 ---
 
-## 표 읽는 방법
+## 메모리 소비
 
-아래 벤치마크는 다양한 Go 프레임워크가 일반적인 HTTP 라우팅 작업을 실행한 결과를 보여줍니다.
-**숫자가 낮을수록(시간, 메모리, 할당 횟수) 좋습니다.**
-이 결과를 사용하여 Gin과 대체 라우터를 직접 비교할 수 있습니다.
+라우팅 구조를 로드하는 데 필요한 메모리입니다 (낮을수록 좋습니다). 바이트 오름차순으로 정렬되어 있습니다.
 
-| 테스트                              | 반복 횟수 | 시간 (ns/op) | 바이트 (B/op) | 할당 횟수 (allocs/op) |
-| ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
-| BenchmarkGin_GithubStatic         | 43895277    | 28.10        | 0            | 0                       |
-| BenchmarkAce_GithubStatic         | 42779731    | 28.31        | 0            | 0                       |
-| BenchmarkAero_GithubStatic        | 83284414    | 14.50        | 0            | 0                       |
-| BenchmarkBear_GithubStatic        | 9311720     | 131.2        | 120          | 3                       |
-| BenchmarkBeego_GithubStatic       | 2897301     | 395.7        | 352          | 3                       |
-| BenchmarkBone_GithubStatic        | 308800      | 3903         | 2880         | 60                      |
-| BenchmarkChi_GithubStatic         | 5401872     | 229.6        | 368          | 2                       |
-| BenchmarkDenco_GithubStatic       | 98722773    | 11.71        | 0            | 0                       |
-| BenchmarkEcho_GithubStatic        | 40625690    | 27.23        | 0            | 0                       |
-| BenchmarkGocraftWeb_GithubStatic  | 5341020     | 229.8        | 288          | 5                       |
-| BenchmarkGoji_GithubStatic        | 15548287    | 76.12        | 0            | 0                       |
-| BenchmarkGojiv2_GithubStatic      | 2520218     | 490.3        | 1120         | 7                       |
-| BenchmarkGoRestful_GithubStatic   | 330211      | 3671         | 4792         | 14                      |
-| BenchmarkGoJsonRest_GithubStatic  | 3861292     | 321.3        | 297          | 11                      |
-| BenchmarkGorillaMux_GithubStatic  | 938425      | 1474         | 848          | 7                       |
-| BenchmarkGowwwRouter_GithubStatic | 38324576    | 32.24        | 0            | 0                       |
-| BenchmarkHttpRouter_GithubStatic  | 69731800    | 17.26        | 0            | 0                       |
-| BenchmarkHttpTreeMux_GithubStatic | 55391751    | 22.97        | 0            | 0                       |
-| BenchmarkKocha_GithubStatic       | 52384971    | 24.34        | 0            | 0                       |
-| BenchmarkLARS_GithubStatic        | 45034478    | 25.48        | 0            | 0                       |
-| BenchmarkMacaron_GithubStatic     | 2014342     | 578.0        | 728          | 8                       |
-| BenchmarkMartini_GithubStatic     | 554347      | 2686         | 792          | 11                      |
-| BenchmarkPat_GithubStatic         | 288867      | 4049         | 3648         | 76                      |
-| BenchmarkPossum_GithubStatic      | 3928141     | 306.4        | 416          | 3                       |
-| BenchmarkR2router_GithubStatic    | 11773146    | 97.06        | 112          | 3                       |
-| BenchmarkRivet_GithubStatic       | 37206849    | 32.03        | 0            | 0                       |
-| BenchmarkTango_GithubStatic       | 3806214     | 321.1        | 192          | 6                       |
-| BenchmarkTigerTonic_GithubStatic  | 15421950    | 82.96        | 48           | 1                       |
-| BenchmarkTraffic_GithubStatic     | 307382      | 3618         | 4632         | 89                      |
-| BenchmarkVulcan_GithubStatic      | 6107649     | 198.2        | 98           | 3                       |
-| BenchmarkAce_GithubParam          | 12033406    | 102.1        | 96           | 1                       |
-| BenchmarkAero_GithubParam         | 34218457    | 35.12        | 0            | 0                       |
-| BenchmarkBear_GithubParam         | 3491167     | 340.3        | 496          | 5                       |
-| BenchmarkBeego_GithubParam        | 2462625     | 492.9        | 352          | 3                       |
-| BenchmarkBone_GithubParam         | 479170      | 2435         | 1824         | 18                      |
-| BenchmarkChi_GithubParam          | 2392147     | 439.7        | 704          | 4                       |
-| BenchmarkDenco_GithubParam        | 10566573    | 108.5        | 128          | 1                       |
-| BenchmarkEcho_GithubParam         | 22438311    | 53.46        | 0            | 0                       |
-| BenchmarkGin_GithubParam          | 25399108    | 50.29        | 0            | 0                       |
-| BenchmarkGocraftWeb_GithubParam   | 2686350     | 425.8        | 656          | 7                       |
-| BenchmarkGoji_GithubParam         | 3468987     | 331.6        | 336          | 2                       |
-| BenchmarkGojiv2_GithubParam       | 1713819     | 693.3        | 1216         | 10                      |
-| BenchmarkGoJsonRest_GithubParam   | 2105818     | 561.9        | 681          | 14                      |
-| BenchmarkGoRestful_GithubParam    | 268806      | 4732         | 4696         | 15                      |
-| BenchmarkGorillaMux_GithubParam   | 484622      | 2436         | 1168         | 8                       |
-| BenchmarkGowwwRouter_GithubParam  | 6445003     | 195.4        | 368          | 2                       |
-| BenchmarkHttpRouter_GithubParam   | 14665429    | 88.59        | 96           | 1                       |
-| BenchmarkHttpTreeMux_GithubParam  | 4199426     | 311.2        | 384          | 4                       |
-| BenchmarkKocha_GithubParam        | 8478230     | 139.3        | 112          | 3                       |
-| BenchmarkLARS_GithubParam         | 27976429    | 43.36        | 0            | 0                       |
-| BenchmarkMacaron_GithubParam      | 1475805     | 805.7        | 1064         | 10                      |
-| BenchmarkMartini_GithubParam      | 354076      | 3459         | 1176         | 13                      |
-| BenchmarkPat_GithubParam          | 422454      | 2919         | 2360         | 45                      |
-| BenchmarkPossum_GithubParam       | 3345200     | 349.5        | 496          | 5                       |
-| BenchmarkR2router_GithubParam     | 5887364     | 205.1        | 400          | 4                       |
-| BenchmarkRivet_GithubParam        | 9056540     | 118.9        | 96           | 1                       |
-| BenchmarkTango_GithubParam        | 3217730     | 376.9        | 296          | 6                       |
-| BenchmarkTigerTonic_GithubParam   | 1000000     | 1043         | 1072         | 21                      |
-| BenchmarkTraffic_GithubParam      | 375636      | 3171         | 2840         | 43                      |
-| BenchmarkVulcan_GithubParam       | 3770610     | 321.0        | 98           | 3                       |
-| BenchmarkAce_GithubAll            | 61230       | 21354        | 13792        | 167                     |
-| BenchmarkAero_GithubAll           | 176716      | 6646         | 0            | 0                       |
-| BenchmarkBear_GithubAll           | 16941       | 69598        | 86448        | 943                     |
-| BenchmarkBeego_GithubAll          | 12163       | 97593        | 71456        | 609                     |
-| BenchmarkBone_GithubAll           | 1176        | 1040342      | 709472       | 8453                    |
-| BenchmarkChi_GithubAll            | 12346       | 98943        | 130816       | 740                     |
-| BenchmarkDenco_GithubAll          | 59050       | 22401        | 20224        | 167                     |
-| BenchmarkEcho_GithubAll           | 104632      | 12030        | 0            | 0                       |
-| BenchmarkGin_GithubAll            | 135811      | 9058         | 0            | 0                       |
-| BenchmarkGocraftWeb_GithubAll     | 13927       | 85845        | 123552       | 1400                    |
-| BenchmarkGoji_GithubAll           | 8512        | 158755       | 56112        | 334                     |
-| BenchmarkGojiv2_GithubAll         | 5108        | 226986       | 313744       | 3712                    |
-| BenchmarkGoJsonRest_GithubAll     | 9859        | 120437       | 127875       | 2737                    |
-| BenchmarkGoRestful_GithubAll      | 1359        | 863892       | 1006744      | 3009                    |
-| BenchmarkGorillaMux_GithubAll     | 974         | 1282012      | 225666       | 1588                    |
-| BenchmarkGowwwRouter_GithubAll    | 32976       | 35511        | 61456        | 334                     |
-| BenchmarkHttpRouter_GithubAll     | 89264       | 13840        | 13792        | 167                     |
-| BenchmarkHttpTreeMux_GithubAll    | 25005       | 49430        | 65856        | 671                     |
-| BenchmarkKocha_GithubAll          | 38254       | 33213        | 20592        | 504                     |
-| BenchmarkLARS_GithubAll           | 144225      | 8714         | 0            | 0                       |
-| BenchmarkMacaron_GithubAll        | 8706        | 131574       | 147784       | 1624                    |
-| BenchmarkMartini_GithubAll        | 825         | 1483537      | 231418       | 2731                    |
-| BenchmarkPat_GithubAll            | 838         | 1432291      | 1421792      | 23019                   |
-| BenchmarkPossum_GithubAll         | 18913       | 62291        | 84448        | 609                     |
-| BenchmarkR2router_GithubAll       | 26276       | 45938        | 70832        | 776                     |
-| BenchmarkRivet_GithubAll          | 49792       | 23337        | 16272        | 167                     |
-| BenchmarkTango_GithubAll          | 14306       | 84094        | 53850        | 1215                    |
-| BenchmarkTigerTonic_GithubAll     | 5797        | 209921       | 188584       | 4300                    |
-| BenchmarkTraffic_GithubAll        | 1044        | 1213864      | 829175       | 14582                   |
-| BenchmarkVulcan_GithubAll         | 19022       | 60788        | 19894        | 609                     |
+### 정적 라우트: 157개
+
+| Router | Bytes |
+| :--- | ---: |
+| **HttpRouter** | **21,680** |
+| **Gin** | **34,408** |
+| **Macaron** | **36,976** |
+| BunRouter | 51,232 |
+| Fiber | 59,248 |
+| HttpServeMux | 71,728 |
+| HttpTreeMux | 73,448 |
+| Chi | 83,160 |
+| Echo | 91,976 |
+| Beego | 98,824 |
+| Goji v2 | 117,952 |
+| GorillaMux | 599,496 |
+| GoRestful | 819,704 |
+
+### GitHub API 라우트: 203개
+
+| Router | Bytes |
+| :--- | ---: |
+| **HttpRouter** | **37,072** |
+| **Gin** | **58,840** |
+| **HttpTreeMux** | **78,800** |
+| Macaron | 90,632 |
+| BunRouter | 93,776 |
+| Chi | 94,888 |
+| Echo | 117,784 |
+| Goji v2 | 118,640 |
+| Beego | 150,840 |
+| Fiber | 163,832 |
+| GoRestful | 1,270,848 |
+| GorillaMux | 1,319,696 |
+
+### Google+ API 라우트: 13개
+
+| Router | Bytes |
+| :--- | ---: |
+| **HttpRouter** | **2,776** |
+| **Gin** | **4,576** |
+| **BunRouter** | **7,360** |
+| HttpTreeMux | 7,440 |
+| Chi | 8,008 |
+| Goji v2 | 8,096 |
+| Macaron | 8,672 |
+| Beego | 10,256 |
+| Fiber | 10,840 |
+| Echo | 10,968 |
+| GorillaMux | 68,000 |
+| GoRestful | 72,536 |
+
+### Parse API 라우트: 26개
+
+| Router | Bytes |
+| :--- | ---: |
+| **HttpRouter** | **5,024** |
+| **Gin** | **7,896** |
+| **HttpTreeMux** | **7,848** |
+| BunRouter | 9,336 |
+| Chi | 9,656 |
+| Echo | 13,816 |
+| Macaron | 13,704 |
+| Fiber | 15,352 |
+| Goji v2 | 16,064 |
+| Beego | 19,256 |
+| GorillaMux | 105,384 |
+| GoRestful | 121,200 |
 
 ---
 
-## 벤치마크 표 참고사항
+## 벤치마크 결과
 
-- **반복 횟수**: 일정 시간 내에 달성된 총 반복 횟수. 숫자가 높을수록 결과의 신뢰도가 높습니다.
-- **시간 (ns/op)**: 한 번의 작업에 걸리는 시간(나노초 단위). 낮을수록 좋습니다.
-- **바이트 (B/op)**: 작업당 할당된 힙 메모리. 낮을수록 효율적입니다.
-- **할당 횟수 (allocs/op)**: 작업당 평균 메모리 할당 횟수. 할당이 적을수록 성능과 가비지 컬렉션에 좋습니다.
+### GitHub API (203개 라우트)
 
-질문이나 기여에 대해서는 [GitHub 저장소](https://github.com/gin-gonic/gin)를 확인하세요.
+작업당 203개의 모든 GitHub API 엔드포인트를 라우팅합니다.
+
+| Rank | Router | ns/op | B/op | allocs/op |
+| :--: | :--- | ---: | ---: | ---: |
+| 1 | **Gin** | 9,944 | 0 | 0 |
+| 2 | **BunRouter** | 10,281 | 0 | 0 |
+| 3 | **Echo** | 11,072 | 0 | 0 |
+| 4 | HttpRouter | 15,059 | 13,792 | 167 |
+| 5 | HttpTreeMux | 49,302 | 65,856 | 671 |
+| 6 | Chi | 94,376 | 130,817 | 740 |
+| 7 | Beego | 101,941 | 71,456 | 609 |
+| 8 | Fiber | 109,148 | 0 | 0 |
+| 9 | Macaron | 121,785 | 147,784 | 1,624 |
+| 10 | Goji v2 | 242,849 | 313,744 | 3,712 |
+| 11 | GoRestful | 885,678 | 1,006,744 | 3,009 |
+| 12 | GorillaMux | 1,316,844 | 225,667 | 1,588 |
+
+### Google+ API (13개 라우트)
+
+작업당 13개의 모든 Google+ API 엔드포인트를 라우팅합니다.
+
+| Rank | Router | ns/op | B/op | allocs/op |
+| :--: | :--- | ---: | ---: | ---: |
+| 1 | **BunRouter** | 348.5 | 0 | 0 |
+| 2 | **Gin** | 429.7 | 0 | 0 |
+| 3 | **Echo** | 451.1 | 0 | 0 |
+| 4 | HttpRouter | 668.6 | 640 | 11 |
+| 5 | HttpTreeMux | 2,428 | 4,032 | 38 |
+| 6 | Fiber | 2,506 | 0 | 0 |
+| 7 | Chi | 5,333 | 8,480 | 48 |
+| 8 | Beego | 5,927 | 4,576 | 39 |
+| 9 | Macaron | 7,294 | 9,464 | 104 |
+| 10 | Goji v2 | 8,000 | 15,120 | 115 |
+| 11 | GorillaMux | 14,707 | 14,448 | 102 |
+| 12 | GoRestful | 24,189 | 60,720 | 193 |
+
+### Parse API (26개 라우트)
+
+작업당 26개의 모든 Parse API 엔드포인트를 라우팅합니다.
+
+| Rank | Router | ns/op | B/op | allocs/op |
+| :--: | :--- | ---: | ---: | ---: |
+| 1 | **BunRouter** | 588.2 | 0 | 0 |
+| 2 | **Gin** | 712.1 | 0 | 0 |
+| 3 | **Echo** | 742.1 | 0 | 0 |
+| 4 | HttpRouter | 948.5 | 640 | 16 |
+| 5 | HttpTreeMux | 3,372 | 5,728 | 51 |
+| 6 | Fiber | 4,250 | 0 | 0 |
+| 7 | Chi | 8,863 | 14,944 | 84 |
+| 8 | Beego | 10,541 | 9,152 | 78 |
+| 9 | Macaron | 13,635 | 18,928 | 208 |
+| 10 | Goji v2 | 13,264 | 29,456 | 199 |
+| 11 | GorillaMux | 25,886 | 26,960 | 198 |
+| 12 | GoRestful | 54,780 | 131,728 | 380 |
+
+### 정적 라우트 (157개 라우트)
+
+작업당 157개의 모든 정적 라우트를 라우팅합니다. 기준선으로 http.ServeMux를 포함합니다.
+
+| Rank | Router | ns/op | B/op | allocs/op |
+| :--: | :--- | ---: | ---: | ---: |
+| 1 | **HttpRouter** | 4,177 | 0 | 0 |
+| 2 | **HttpTreeMux** | 5,363 | 0 | 0 |
+| 3 | **Gin** | 5,528 | 0 | 0 |
+| 4 | BunRouter | 5,997 | 0 | 0 |
+| 5 | Echo | 6,897 | 0 | 0 |
+| — | HttpServeMux | 18,172 | 0 | 0 |
+| 6 | Fiber | 29,310 | 0 | 0 |
+| 7 | Chi | 41,317 | 57,776 | 314 |
+| 8 | Beego | 68,255 | 55,264 | 471 |
+| 9 | Macaron | 81,824 | 114,296 | 1,256 |
+| 10 | Goji v2 | 84,459 | 175,840 | 1,099 |
+| 11 | GorillaMux | 302,825 | 133,137 | 1,099 |
+| 12 | GoRestful | 436,510 | 677,824 | 2,193 |
+
+---
+
+## 마이크로 벤치마크
+
+### 단일 파라미터
+
+라우트: `/user/:name` — 요청: `GET /user/gordon`
+
+| Rank | Router | ns/op | B/op | allocs/op |
+| :--: | :--- | ---: | ---: | ---: |
+| 1 | **BunRouter** | 12.22 | 0 | 0 |
+| 2 | **Echo** | 17.75 | 0 | 0 |
+| 3 | **Gin** | 23.31 | 0 | 0 |
+| 4 | HttpRouter | 31.88 | 32 | 1 |
+| 5 | Fiber | 114.4 | 0 | 0 |
+| 6 | HttpTreeMux | 165.0 | 352 | 3 |
+| 7 | Chi | 332.2 | 704 | 4 |
+| 8 | Beego | 348.8 | 352 | 3 |
+| 9 | Goji v2 | 494.3 | 1,136 | 8 |
+| 10 | GorillaMux | 630.6 | 1,152 | 8 |
+| 11 | Macaron | 708.0 | 1,064 | 10 |
+| 12 | GoRestful | 1,394 | 4,600 | 15 |
+
+### 5개 파라미터
+
+라우트: `/:a/:b/:c/:d/:e` — 요청: `GET /test/test/test/test/test`
+
+| Rank | Router | ns/op | B/op | allocs/op |
+| :--: | :--- | ---: | ---: | ---: |
+| 1 | **BunRouter** | 41.86 | 0 | 0 |
+| 2 | **Echo** | 43.76 | 0 | 0 |
+| 3 | **Gin** | 44.20 | 0 | 0 |
+| 4 | HttpRouter | 83.74 | 160 | 1 |
+| 5 | Fiber | 271.6 | 0 | 0 |
+| 6 | HttpTreeMux | 358.8 | 576 | 6 |
+| 7 | Chi | 453.7 | 704 | 4 |
+| 8 | Beego | 480.3 | 352 | 3 |
+| 9 | Goji v2 | 532.4 | 1,200 | 8 |
+| 10 | Macaron | 799.7 | 1,064 | 10 |
+| 11 | GorillaMux | 972.6 | 1,216 | 8 |
+| 12 | GoRestful | 1,579 | 4,712 | 15 |
+
+### 20개 파라미터
+
+라우트: `/:a/:b/.../:t` (20개 세그먼트) — 요청: `GET /a/b/.../t`
+
+| Rank | Router | ns/op | B/op | allocs/op |
+| :--: | :--- | ---: | ---: | ---: |
+| 1 | **Gin** | 121.7 | 0 | 0 |
+| 2 | **Echo** | 127.5 | 0 | 0 |
+| 3 | **BunRouter** | 211.4 | 0 | 0 |
+| 4 | HttpRouter | 290.2 | 704 | 1 |
+| 5 | Fiber | 466.1 | 0 | 0 |
+| 6 | Goji v2 | 745.3 | 1,440 | 8 |
+| 7 | Beego | 1,099 | 352 | 3 |
+| 8 | Chi | 1,805 | 2,504 | 9 |
+| 9 | HttpTreeMux | 1,857 | 3,144 | 13 |
+| 10 | Macaron | 2,058 | 2,864 | 15 |
+| 11 | GorillaMux | 2,223 | 3,272 | 13 |
+| 12 | GoRestful | 3,337 | 7,008 | 20 |
+
+### 파라미터 쓰기
+
+라우트: `/user/:name` (응답 쓰기 포함) — 요청: `GET /user/gordon`
+
+| Rank | Router | ns/op | B/op | allocs/op |
+| :--: | :--- | ---: | ---: | ---: |
+| 1 | **BunRouter** | 25.86 | 0 | 0 |
+| 2 | **Gin** | 27.65 | 0 | 0 |
+| 3 | HttpRouter | 37.40 | 32 | 1 |
+| 4 | Echo | 47.94 | 8 | 1 |
+| 5 | Fiber | 125.7 | 0 | 0 |
+| 6 | HttpTreeMux | 180.4 | 352 | 3 |
+| 7 | Chi | 348.3 | 704 | 4 |
+| 8 | Beego | 386.1 | 360 | 4 |
+| 9 | Goji v2 | 516.9 | 1,168 | 10 |
+| 10 | GorillaMux | 665.5 | 1,152 | 8 |
+| 11 | Macaron | 784.3 | 1,112 | 13 |
+| 12 | GoRestful | 1,534 | 4,608 | 16 |
