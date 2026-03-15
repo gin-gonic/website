@@ -1,138 +1,136 @@
 ---
 title: "Benchmarks"
-
 sidebar:
   order: 12
 ---
 
-> **Dados Históricos:** Estes benchmarks foram coletados em maio de 2020 usando Gin v1.6.3 e Go 1.14.2. O desempenho dos frameworks pode ter mudado significativamente desde então. Para resultados de benchmark atualizados, veja o repositório [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark).
+> **Dados atualizados:** Estes benchmarks foram coletados em março de 2026 usando Gin v1.12.0 e Go 1.25.8. Para resultados de benchmarks atualizados, consulte o repositório [go-http-routing-benchmark](https://github.com/gin-gonic/go-http-routing-benchmark).
 
-## Benchmarks de Desempenho do Gin Web Framework
+## Benchmarks de desempenho do framework web Gin
 
-Benchmarks ajudam desenvolvedores a avaliar a eficiência e o uso de recursos das bibliotecas de roteamento HTTP em Go. Esta página resume medições de muitos frameworks populares, para que você possa comparar facilmente sua velocidade e consumo de memória.
+Os benchmarks ajudam os desenvolvedores a avaliar a eficiência e o uso de recursos das bibliotecas de roteadores HTTP em Go. Esta página resume as medições de muitos frameworks populares, para que você possa comparar facilmente sua velocidade e consumo de memória.
 
 **Ambiente de teste:**
 
-- **Plataforma de hospedagem:** Travis CI (VM Linux virtual)
-- **Especificações da máquina:** Ubuntu 16.04.6 LTS x64
-- **Data do teste:** 04 de maio de 2020
-- **Versão do Gin:** v1.6.3
-- **Versão do Go:** 1.14.2 (linux/amd64)
+- **Plataforma host:** Apple M4 Pro
+- **Especificações da máquina:** macOS (Darwin 25.3.0), arm64
+- **Data do teste:** 15 de março de 2026
+- **Versão do Gin:** v1.12.0
+- **Versão do Go:** 1.25.8 (darwin/arm64)
 - **Fonte dos benchmarks:** [Go HTTP Router Benchmark](https://github.com/gin-gonic/go-http-routing-benchmark)
-- **Resultados detalhados:** [Veja o gist](https://gist.github.com/appleboy/b5f2ecfaf50824ae9c64dcfb9165ae5e) ou [resultado do Travis](https://travis-ci.org/github/gin-gonic/go-http-routing-benchmark/jobs/682947061)
 
-O Gin usa um fork otimizado do [HttpRouter](https://github.com/julienschmidt/httprouter) para roteamento de alto desempenho.
+O Gin utiliza um fork otimizado do [HttpRouter](https://github.com/julienschmidt/httprouter) para roteamento de alto desempenho.
 
-Se você quiser ver mais casos de teste, pode conferir [todos os benchmarks aqui](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
+Se você deseja ver mais casos de teste, pode conferir [todos os benchmarks aqui](https://github.com/gin-gonic/gin/blob/master/BENCHMARKS.md).
 
 ---
 
-## Como Ler a Tabela
+## Como ler a tabela
 
 Os benchmarks abaixo mostram vários frameworks Go executando tarefas comuns de roteamento HTTP.
-**Números menores (tempo, memória, alocações) são melhores.**
-Você pode usar esses resultados para uma comparação direta, lado a lado, do Gin e roteadores alternativos.
+**Números mais baixos (tempo, memória, alocações) são melhores.**
+Você pode usar estes resultados para uma comparação direta entre o Gin e roteadores alternativos.
 
-| Test                              | Repetitions | Time (ns/op) | Bytes (B/op) | Allocations (allocs/op) |
+| Teste                              | Repetições | Tempo (ns/op) | Bytes (B/op) | Alocações (allocs/op) |
 | ---------------------------------- | ----------- | ------------ | ------------ | ----------------------- |
-| BenchmarkGin_GithubStatic         | 15629472    | 76.7         | 0            | 0                       |
-| BenchmarkAce_GithubStatic         | 15542612    | 75.9         | 0            | 0                       |
-| BenchmarkAero_GithubStatic        | 24777151    | 48.5         | 0            | 0                       |
-| BenchmarkBear_GithubStatic        | 2788894     | 435          | 120          | 3                       |
-| BenchmarkBeego_GithubStatic       | 1000000     | 1064         | 352          | 3                       |
-| BenchmarkBone_GithubStatic        | 93507       | 12838        | 2880         | 60                      |
-| BenchmarkChi_GithubStatic         | 1387743     | 860          | 432          | 3                       |
-| BenchmarkDenco_GithubStatic       | 39384996    | 30.4         | 0            | 0                       |
-| BenchmarkEcho_GithubStatic        | 12076382    | 99.1         | 0            | 0                       |
-| BenchmarkGocraftWeb_GithubStatic  | 1596495     | 756          | 296          | 5                       |
-| BenchmarkGoji_GithubStatic        | 6364876     | 189          | 0            | 0                       |
-| BenchmarkGojiv2_GithubStatic      | 550202      | 2098         | 1312         | 10                      |
-| BenchmarkGoRestful_GithubStatic   | 102183      | 12552        | 4256         | 13                      |
-| BenchmarkGoJsonRest_GithubStatic  | 1000000     | 1029         | 329          | 11                      |
-| BenchmarkGorillaMux_GithubStatic  | 255552      | 5190         | 976          | 9                       |
-| BenchmarkGowwwRouter_GithubStatic | 15531916    | 77.1         | 0            | 0                       |
-| BenchmarkHttpRouter_GithubStatic  | 27920724    | 43.1         | 0            | 0                       |
-| BenchmarkHttpTreeMux_GithubStatic | 21448953    | 55.8         | 0            | 0                       |
-| BenchmarkKocha_GithubStatic       | 21405310    | 56.0         | 0            | 0                       |
-| BenchmarkLARS_GithubStatic        | 13625156    | 89.0         | 0            | 0                       |
-| BenchmarkMacaron_GithubStatic     | 1000000     | 1747         | 736          | 8                       |
-| BenchmarkMartini_GithubStatic     | 187186      | 7326         | 768          | 9                       |
-| BenchmarkPat_GithubStatic         | 109143      | 11563        | 3648         | 76                      |
-| BenchmarkPossum_GithubStatic      | 1575898     | 770          | 416          | 3                       |
-| BenchmarkR2router_GithubStatic    | 3046231     | 404          | 144          | 4                       |
-| BenchmarkRivet_GithubStatic       | 11484826    | 105          | 0            | 0                       |
-| BenchmarkTango_GithubStatic       | 1000000     | 1153         | 248          | 8                       |
-| BenchmarkTigerTonic_GithubStatic  | 4929780     | 249          | 48           | 1                       |
-| BenchmarkTraffic_GithubStatic     | 106351      | 11819        | 4664         | 90                      |
-| BenchmarkVulcan_GithubStatic      | 1613271     | 722          | 98           | 3                       |
-| BenchmarkAce_GithubParam          | 8386032     | 143          | 0            | 0                       |
-| BenchmarkAero_GithubParam         | 11816200    | 102          | 0            | 0                       |
-| BenchmarkBear_GithubParam         | 1000000     | 1012         | 496          | 5                       |
-| BenchmarkBeego_GithubParam        | 1000000     | 1157         | 352          | 3                       |
-| BenchmarkBone_GithubParam         | 184653      | 6912         | 1888         | 19                      |
-| BenchmarkChi_GithubParam          | 1000000     | 1102         | 432          | 3                       |
-| BenchmarkDenco_GithubParam        | 3484798     | 352          | 128          | 1                       |
-| BenchmarkEcho_GithubParam         | 6337380     | 189          | 0            | 0                       |
-| BenchmarkGin_GithubParam          | 9132032     | 131          | 0            | 0                       |
-| BenchmarkGocraftWeb_GithubParam   | 1000000     | 1446         | 712          | 9                       |
-| BenchmarkGoji_GithubParam         | 1248640     | 977          | 336          | 2                       |
-| BenchmarkGojiv2_GithubParam       | 383233      | 2784         | 1408         | 13                      |
-| BenchmarkGoJsonRest_GithubParam   | 1000000     | 1991         | 713          | 14                      |
-| BenchmarkGoRestful_GithubParam    | 76414       | 16015        | 4352         | 16                      |
-| BenchmarkGorillaMux_GithubParam   | 150026      | 7663         | 1296         | 10                      |
-| BenchmarkGowwwRouter_GithubParam  | 1592044     | 751          | 432          | 3                       |
-| BenchmarkHttpRouter_GithubParam   | 10420628    | 115          | 0            | 0                       |
-| BenchmarkHttpTreeMux_GithubParam  | 1403755     | 835          | 384          | 4                       |
-| BenchmarkKocha_GithubParam        | 2286170     | 533          | 128          | 5                       |
-| BenchmarkLARS_GithubParam         | 9540374     | 129          | 0            | 0                       |
-| BenchmarkMacaron_GithubParam      | 533154      | 2742         | 1072         | 10                      |
-| BenchmarkMartini_GithubParam      | 119397      | 9638         | 1152         | 11                      |
-| BenchmarkPat_GithubParam          | 150675      | 8858         | 2408         | 48                      |
-| BenchmarkPossum_GithubParam       | 1000000     | 1001         | 496          | 5                       |
-| BenchmarkR2router_GithubParam     | 1602886     | 761          | 432          | 5                       |
-| BenchmarkRivet_GithubParam        | 2986579     | 409          | 96           | 1                       |
-| BenchmarkTango_GithubParam        | 1000000     | 1356         | 344          | 8                       |
-| BenchmarkTigerTonic_GithubParam   | 388899      | 3429         | 1176         | 22                      |
-| BenchmarkTraffic_GithubParam      | 123160      | 9734         | 2816         | 40                      |
-| BenchmarkVulcan_GithubParam       | 1000000     | 1138         | 98           | 3                       |
-| BenchmarkAce_GithubAll            | 40543       | 29670        | 0            | 0                       |
-| BenchmarkAero_GithubAll           | 57632       | 20648        | 0            | 0                       |
-| BenchmarkBear_GithubAll           | 9234        | 216179       | 86448        | 943                     |
-| BenchmarkBeego_GithubAll          | 7407        | 243496       | 71456        | 609                     |
-| BenchmarkBone_GithubAll           | 420         | 2922835      | 720160       | 8620                    |
-| BenchmarkChi_GithubAll            | 7620        | 238331       | 87696        | 609                     |
-| BenchmarkDenco_GithubAll          | 18355       | 64494        | 20224        | 167                     |
-| BenchmarkEcho_GithubAll           | 31251       | 38479        | 0            | 0                       |
-| BenchmarkGin_GithubAll            | 43550       | 27364        | 0            | 0                       |
-| BenchmarkGocraftWeb_GithubAll     | 4117        | 300062       | 131656       | 1686                    |
-| BenchmarkGoji_GithubAll           | 3274        | 416158       | 56112        | 334                     |
-| BenchmarkGojiv2_GithubAll         | 1402        | 870518       | 352720       | 4321                    |
-| BenchmarkGoJsonRest_GithubAll     | 2976        | 401507       | 134371       | 2737                    |
-| BenchmarkGoRestful_GithubAll      | 410         | 2913158      | 910144       | 2938                    |
-| BenchmarkGorillaMux_GithubAll     | 346         | 3384987      | 251650       | 1994                    |
-| BenchmarkGowwwRouter_GithubAll    | 10000       | 143025       | 72144        | 501                     |
-| BenchmarkHttpRouter_GithubAll     | 55938       | 21360        | 0            | 0                       |
-| BenchmarkHttpTreeMux_GithubAll    | 10000       | 153944       | 65856        | 671                     |
-| BenchmarkKocha_GithubAll          | 10000       | 106315       | 23304        | 843                     |
-| BenchmarkLARS_GithubAll           | 47779       | 25084        | 0            | 0                       |
-| BenchmarkMacaron_GithubAll        | 3266        | 371907       | 149409       | 1624                    |
-| BenchmarkMartini_GithubAll        | 331         | 3444706      | 226551       | 2325                    |
-| BenchmarkPat_GithubAll            | 273         | 4381818      | 1483152      | 26963                   |
-| BenchmarkPossum_GithubAll         | 10000       | 164367       | 84448        | 609                     |
-| BenchmarkR2router_GithubAll       | 10000       | 160220       | 77328        | 979                     |
-| BenchmarkRivet_GithubAll          | 14625       | 82453        | 16272        | 167                     |
-| BenchmarkTango_GithubAll          | 6255        | 279611       | 63826        | 1618                    |
-| BenchmarkTigerTonic_GithubAll     | 2008        | 687874       | 193856       | 4474                    |
-| BenchmarkTraffic_GithubAll        | 355         | 3478508      | 820744       | 14114                   |
-| BenchmarkVulcan_GithubAll         | 6885        | 193333       | 19894        | 609                     |
+| BenchmarkGin_GithubStatic         | 43895277    | 28.10        | 0            | 0                       |
+| BenchmarkAce_GithubStatic         | 42779731    | 28.31        | 0            | 0                       |
+| BenchmarkAero_GithubStatic        | 83284414    | 14.50        | 0            | 0                       |
+| BenchmarkBear_GithubStatic        | 9311720     | 131.2        | 120          | 3                       |
+| BenchmarkBeego_GithubStatic       | 2897301     | 395.7        | 352          | 3                       |
+| BenchmarkBone_GithubStatic        | 308800      | 3903         | 2880         | 60                      |
+| BenchmarkChi_GithubStatic         | 5401872     | 229.6        | 368          | 2                       |
+| BenchmarkDenco_GithubStatic       | 98722773    | 11.71        | 0            | 0                       |
+| BenchmarkEcho_GithubStatic        | 40625690    | 27.23        | 0            | 0                       |
+| BenchmarkGocraftWeb_GithubStatic  | 5341020     | 229.8        | 288          | 5                       |
+| BenchmarkGoji_GithubStatic        | 15548287    | 76.12        | 0            | 0                       |
+| BenchmarkGojiv2_GithubStatic      | 2520218     | 490.3        | 1120         | 7                       |
+| BenchmarkGoRestful_GithubStatic   | 330211      | 3671         | 4792         | 14                      |
+| BenchmarkGoJsonRest_GithubStatic  | 3861292     | 321.3        | 297          | 11                      |
+| BenchmarkGorillaMux_GithubStatic  | 938425      | 1474         | 848          | 7                       |
+| BenchmarkGowwwRouter_GithubStatic | 38324576    | 32.24        | 0            | 0                       |
+| BenchmarkHttpRouter_GithubStatic  | 69731800    | 17.26        | 0            | 0                       |
+| BenchmarkHttpTreeMux_GithubStatic | 55391751    | 22.97        | 0            | 0                       |
+| BenchmarkKocha_GithubStatic       | 52384971    | 24.34        | 0            | 0                       |
+| BenchmarkLARS_GithubStatic        | 45034478    | 25.48        | 0            | 0                       |
+| BenchmarkMacaron_GithubStatic     | 2014342     | 578.0        | 728          | 8                       |
+| BenchmarkMartini_GithubStatic     | 554347      | 2686         | 792          | 11                      |
+| BenchmarkPat_GithubStatic         | 288867      | 4049         | 3648         | 76                      |
+| BenchmarkPossum_GithubStatic      | 3928141     | 306.4        | 416          | 3                       |
+| BenchmarkR2router_GithubStatic    | 11773146    | 97.06        | 112          | 3                       |
+| BenchmarkRivet_GithubStatic       | 37206849    | 32.03        | 0            | 0                       |
+| BenchmarkTango_GithubStatic       | 3806214     | 321.1        | 192          | 6                       |
+| BenchmarkTigerTonic_GithubStatic  | 15421950    | 82.96        | 48           | 1                       |
+| BenchmarkTraffic_GithubStatic     | 307382      | 3618         | 4632         | 89                      |
+| BenchmarkVulcan_GithubStatic      | 6107649     | 198.2        | 98           | 3                       |
+| BenchmarkAce_GithubParam          | 12033406    | 102.1        | 96           | 1                       |
+| BenchmarkAero_GithubParam         | 34218457    | 35.12        | 0            | 0                       |
+| BenchmarkBear_GithubParam         | 3491167     | 340.3        | 496          | 5                       |
+| BenchmarkBeego_GithubParam        | 2462625     | 492.9        | 352          | 3                       |
+| BenchmarkBone_GithubParam         | 479170      | 2435         | 1824         | 18                      |
+| BenchmarkChi_GithubParam          | 2392147     | 439.7        | 704          | 4                       |
+| BenchmarkDenco_GithubParam        | 10566573    | 108.5        | 128          | 1                       |
+| BenchmarkEcho_GithubParam         | 22438311    | 53.46        | 0            | 0                       |
+| BenchmarkGin_GithubParam          | 25399108    | 50.29        | 0            | 0                       |
+| BenchmarkGocraftWeb_GithubParam   | 2686350     | 425.8        | 656          | 7                       |
+| BenchmarkGoji_GithubParam         | 3468987     | 331.6        | 336          | 2                       |
+| BenchmarkGojiv2_GithubParam       | 1713819     | 693.3        | 1216         | 10                      |
+| BenchmarkGoJsonRest_GithubParam   | 2105818     | 561.9        | 681          | 14                      |
+| BenchmarkGoRestful_GithubParam    | 268806      | 4732         | 4696         | 15                      |
+| BenchmarkGorillaMux_GithubParam   | 484622      | 2436         | 1168         | 8                       |
+| BenchmarkGowwwRouter_GithubParam  | 6445003     | 195.4        | 368          | 2                       |
+| BenchmarkHttpRouter_GithubParam   | 14665429    | 88.59        | 96           | 1                       |
+| BenchmarkHttpTreeMux_GithubParam  | 4199426     | 311.2        | 384          | 4                       |
+| BenchmarkKocha_GithubParam        | 8478230     | 139.3        | 112          | 3                       |
+| BenchmarkLARS_GithubParam         | 27976429    | 43.36        | 0            | 0                       |
+| BenchmarkMacaron_GithubParam      | 1475805     | 805.7        | 1064         | 10                      |
+| BenchmarkMartini_GithubParam      | 354076      | 3459         | 1176         | 13                      |
+| BenchmarkPat_GithubParam          | 422454      | 2919         | 2360         | 45                      |
+| BenchmarkPossum_GithubParam       | 3345200     | 349.5        | 496          | 5                       |
+| BenchmarkR2router_GithubParam     | 5887364     | 205.1        | 400          | 4                       |
+| BenchmarkRivet_GithubParam        | 9056540     | 118.9        | 96           | 1                       |
+| BenchmarkTango_GithubParam        | 3217730     | 376.9        | 296          | 6                       |
+| BenchmarkTigerTonic_GithubParam   | 1000000     | 1043         | 1072         | 21                      |
+| BenchmarkTraffic_GithubParam      | 375636      | 3171         | 2840         | 43                      |
+| BenchmarkVulcan_GithubParam       | 3770610     | 321.0        | 98           | 3                       |
+| BenchmarkAce_GithubAll            | 61230       | 21354        | 13792        | 167                     |
+| BenchmarkAero_GithubAll           | 176716      | 6646         | 0            | 0                       |
+| BenchmarkBear_GithubAll           | 16941       | 69598        | 86448        | 943                     |
+| BenchmarkBeego_GithubAll          | 12163       | 97593        | 71456        | 609                     |
+| BenchmarkBone_GithubAll           | 1176        | 1040342      | 709472       | 8453                    |
+| BenchmarkChi_GithubAll            | 12346       | 98943        | 130816       | 740                     |
+| BenchmarkDenco_GithubAll          | 59050       | 22401        | 20224        | 167                     |
+| BenchmarkEcho_GithubAll           | 104632      | 12030        | 0            | 0                       |
+| BenchmarkGin_GithubAll            | 135811      | 9058         | 0            | 0                       |
+| BenchmarkGocraftWeb_GithubAll     | 13927       | 85845        | 123552       | 1400                    |
+| BenchmarkGoji_GithubAll           | 8512        | 158755       | 56112        | 334                     |
+| BenchmarkGojiv2_GithubAll         | 5108        | 226986       | 313744       | 3712                    |
+| BenchmarkGoJsonRest_GithubAll     | 9859        | 120437       | 127875       | 2737                    |
+| BenchmarkGoRestful_GithubAll      | 1359        | 863892       | 1006744      | 3009                    |
+| BenchmarkGorillaMux_GithubAll     | 974         | 1282012      | 225666       | 1588                    |
+| BenchmarkGowwwRouter_GithubAll    | 32976       | 35511        | 61456        | 334                     |
+| BenchmarkHttpRouter_GithubAll     | 89264       | 13840        | 13792        | 167                     |
+| BenchmarkHttpTreeMux_GithubAll    | 25005       | 49430        | 65856        | 671                     |
+| BenchmarkKocha_GithubAll          | 38254       | 33213        | 20592        | 504                     |
+| BenchmarkLARS_GithubAll           | 144225      | 8714         | 0            | 0                       |
+| BenchmarkMacaron_GithubAll        | 8706        | 131574       | 147784       | 1624                    |
+| BenchmarkMartini_GithubAll        | 825         | 1483537      | 231418       | 2731                    |
+| BenchmarkPat_GithubAll            | 838         | 1432291      | 1421792      | 23019                   |
+| BenchmarkPossum_GithubAll         | 18913       | 62291        | 84448        | 609                     |
+| BenchmarkR2router_GithubAll       | 26276       | 45938        | 70832        | 776                     |
+| BenchmarkRivet_GithubAll          | 49792       | 23337        | 16272        | 167                     |
+| BenchmarkTango_GithubAll          | 14306       | 84094        | 53850        | 1215                    |
+| BenchmarkTigerTonic_GithubAll     | 5797        | 209921       | 188584       | 4300                    |
+| BenchmarkTraffic_GithubAll        | 1044        | 1213864      | 829175       | 14582                   |
+| BenchmarkVulcan_GithubAll         | 19022       | 60788        | 19894        | 609                     |
 
 ---
 
-## Notas da Tabela de Benchmarks
+## Notas da tabela de benchmarks
 
-- **Repetitions**: Total de repetições alcançadas em tempo constante. Números mais altos significam mais confiança nos resultados.
-- **Time (ns/op)**: Duração para uma operação, medida em nanossegundos. Menor é melhor.
+- **Repetições**: Total de repetições alcançadas em tempo constante. Números mais altos significam maior confiança nos resultados.
+- **Tempo (ns/op)**: Duração de uma operação, medida em nanossegundos. Menor é melhor.
 - **Bytes (B/op)**: Memória heap alocada por operação. Menor significa melhor eficiência.
-- **Allocations (allocs/op)**: Número médio de alocações de memória por operação. Menos alocações são melhores para desempenho e coleta de lixo.
+- **Alocações (allocs/op)**: Número médio de alocações de memória por operação. Menos alocações são melhores para desempenho e coleta de lixo.
 
 Para perguntas ou contribuições, confira nosso [repositório GitHub](https://github.com/gin-gonic/gin).
