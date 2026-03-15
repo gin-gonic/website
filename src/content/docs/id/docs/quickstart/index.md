@@ -4,7 +4,7 @@ sidebar:
   order: 2
 ---
 
-Selamat datang di panduan memulai cepat Gin! Panduan ini akan memandu Anda memasang Gin, menyiapkan proyek, dan menjalankan API pertama Anda—sehingga Anda dapat mulai membangun layanan web dengan percaya diri.
+Selamat datang di panduan memulai cepat Gin! Panduan ini memandu Anda dalam menginstal Gin, menyiapkan proyek, dan menjalankan API pertama Anda—sehingga Anda dapat mulai membangun layanan web dengan percaya diri.
 
 ## Prasyarat
 
@@ -52,7 +52,7 @@ func main() {
       "message": "pong",
     })
   })
-  router.Run() // listens on 0.0.0.0:8080 by default
+  router.Run() // berjalan di 0.0.0.0:8080 secara bawaan
 }
 ```
 
@@ -103,7 +103,7 @@ func main() {
 
 - Baru mengenal Go? Pelajari cara menulis dan menjalankan kode Go di [dokumentasi resmi Go](https://go.dev/doc/code).
 - Ingin berlatih konsep Gin secara langsung? Lihat [Sumber Belajar](../learning-resources) kami untuk tantangan interaktif dan tutorial.
-- Butuh contoh berfitur lengkap? Coba buat scaffold dengan:
+- Butuh contoh dengan fitur lengkap? Coba buat scaffold dengan:
 
   ```sh
   curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
