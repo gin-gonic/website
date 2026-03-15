@@ -25,14 +25,14 @@ A tabela abaixo classifica todos os roteadores por **throughput da API do GitHub
 
 | Rank | Router | ns/op | B/op | allocs/op | Zero-alloc |
 | :--: | :--- | ---: | ---: | ---: | :---: |
-| 1 | **Gin** | 9,944 | 0 | 0 | :white_check_mark: |
-| 2 | **BunRouter** | 10,281 | 0 | 0 | :white_check_mark: |
-| 3 | **Echo** | 11,072 | 0 | 0 | :white_check_mark: |
+| 1 | **Gin** | 9,944 | 0 | 0 | ✓ |
+| 2 | **BunRouter** | 10,281 | 0 | 0 | ✓ |
+| 3 | **Echo** | 11,072 | 0 | 0 | ✓ |
 | 4 | HttpRouter | 15,059 | 13,792 | 167 | |
 | 5 | HttpTreeMux | 49,302 | 65,856 | 671 | |
 | 6 | Chi | 94,376 | 130,817 | 740 | |
 | 7 | Beego | 101,941 | 71,456 | 609 | |
-| 8 | Fiber | 109,148 | 0 | 0 | :white_check_mark: |
+| 8 | Fiber | 109,148 | 0 | 0 | ✓ |
 | 9 | Macaron | 121,785 | 147,784 | 1,624 | |
 | 10 | Goji v2 | 242,849 | 313,744 | 3,712 | |
 | 11 | GoRestful | 885,678 | 1,006,744 | 3,009 | |
