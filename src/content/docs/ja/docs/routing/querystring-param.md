@@ -4,22 +4,30 @@ sidebar:
   order: 3
 ---
 
-クエリ文字列パラメータは、URL内の`?`の後に表示されるキーと値のペアです（例：`/search?q=gin&page=2`）。Ginはそれらを読み取るための2つのメソッドを提供しています：
+クエリ文字列パラメータは、URL内の `?` の後に表示されるキーバリューペアです（例：`/search?q=gin&page=2`）。Ginはこれらを読み取るための2つのメソッドを提供しています：
 
-- `c.Query("key")`はクエリパラメータの値を返します。キーが存在しない場合は**空文字列**を返します。
-- `c.DefaultQuery("key", "default")`は値を返します。キーが存在しない場合は指定された**デフォルト値**を返します。
+- `c.Query("key")` はクエリパラメータの値を返します。キーが存在しない場合は**空文字列**を返します。
+- `c.DefaultQuery("key", "default")` は値を返します。キーが存在しない場合は指定された**デフォルト値**を返します。
 
-どちらのメソッドも`c.Request.URL.Query()`にアクセスするためのショートカットで、ボイラープレートコードを削減できます。
+どちらのメソッドも、より少ないボイラープレートで `c.Request.URL.Query()` にアクセスするためのショートカットです。
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
-  // クエリ文字列パラメータは既存のリクエストオブジェクトを使用してパースされます。
-  // リクエストは次のURLにマッチします：/welcome?firstname=Jane&lastname=Doe
+  // Query string parameters are parsed using the existing underlying request object.
+  // The request responds to a url matching:  /welcome?firstname=Jane&lastname=Doe
   router.GET("/welcome", func(c *gin.Context) {
     firstname := c.DefaultQuery("firstname", "Guest")
-    lastname := c.Query("lastname") // c.Request.URL.Query().Get("lastname") のショートカット
+    lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
 
     c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
   })
@@ -27,20 +35,20 @@ func main() {
 }
 ```
 
-### テスト方法
+## テスト
 
 ```sh
-# 両方のパラメータを指定
+# Both parameters provided
 curl "http://localhost:8080/welcome?firstname=Jane&lastname=Doe"
-# 出力: Hello Jane Doe
+# Output: Hello Jane Doe
 
-# firstnameなし -- デフォルト値 "Guest" を使用
+# Missing firstname -- uses default value "Guest"
 curl "http://localhost:8080/welcome?lastname=Doe"
-# 出力: Hello Guest Doe
+# Output: Hello Guest Doe
 
-# パラメータなし
+# No parameters at all
 curl "http://localhost:8080/welcome"
-# 出力: Hello Guest
+# Output: Hello Guest
 ```
 
 ## 関連項目

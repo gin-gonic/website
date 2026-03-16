@@ -4,97 +4,75 @@ sidebar:
   order: 4
 ---
 
-در یک برنامه RESTful معمولی، ممکن است با خطاهایی در هر مسیر مواجه شوید مانند:
+در یک برنامه RESTful معمولی، ممکن است در هر مسیر با خطاهایی مواجه شوید -- ورودی نامعتبر، خرابی پایگاه داده، دسترسی غیرمجاز، یا باگ‌های داخلی. مدیریت جداگانه خطاها در هر handler منجر به کد تکراری و پاسخ‌های ناسازگار می‌شود.
 
-- ورودی نامعتبر از کاربر
-- خرابی پایگاه داده
-- دسترسی غیرمجاز
-- باگ‌های داخلی سرور
-
-به طور پیش‌فرض، Gin به شما اجازه می‌دهد خطاها را به صورت دستی در هر مسیر با استفاده از `c.Error(err)` مدیریت کنید.
-اما این می‌تواند به سرعت تکراری و ناسازگار شود.
-
-برای حل این مشکل، می‌توانیم از میان‌افزار سفارشی برای مدیریت تمام خطاها در یک مکان استفاده کنیم.
-این میان‌افزار پس از هر درخواست اجرا می‌شود و هر خطایی که به context Gin اضافه شده (`c.Errors`) را بررسی می‌کند.
-اگر خطایی پیدا کند، یک پاسخ JSON ساختاریافته با کد وضعیت مناسب ارسال می‌کند.
-
-#### مثال
+یک میان‌افزار متمرکز مدیریت خطا این مشکل را با اجرا پس از هر درخواست و بررسی خطاهای اضافه‌شده به context Gin از طریق `c.Error(err)` حل می‌کند. اگر خطایی یافت شود، یک پاسخ JSON ساختاریافته با کد وضعیت مناسب ارسال می‌کند.
 
 ```go
+package main
+
 import (
   "errors"
   "net/http"
+
   "github.com/gin-gonic/gin"
 )
 
 // ErrorHandler captures errors and returns a consistent JSON error response
 func ErrorHandler() gin.HandlerFunc {
-    return func(c *gin.Context) {
-        c.Next() // Step1: Process the request first.
+  return func(c *gin.Context) {
+    c.Next() // Process the request first
 
-        // Step2: Check if any errors were added to the context
-        if len(c.Errors) > 0 {
-            // Step3: Use the last error
-            err := c.Errors.Last().Err
+    // Check if any errors were added to the context
+    if len(c.Errors) > 0 {
+      err := c.Errors.Last().Err
 
-            // Step4: Respond with a generic error message
-            c.JSON(http.StatusInternalServerError, map[string]any{
-                "success": false,
-                "message": err.Error(),
-            })
-        }
-
-        // Any other steps if no errors are found
+      c.JSON(http.StatusInternalServerError, gin.H{
+        "success": false,
+        "message": err.Error(),
+      })
     }
+  }
 }
 
 func main() {
-    r := gin.Default()
+  r := gin.Default()
 
-    // Attach the error-handling middleware
-    r.Use(ErrorHandler())
+  // Attach the error-handling middleware
+  r.Use(ErrorHandler())
 
-    r.GET("/ok", func(c *gin.Context) {
-        somethingWentWrong := false
-
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
+  r.GET("/ok", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "success": true,
+      "message": "Everything is fine!",
     })
+  })
 
-    r.GET("/error", func(c *gin.Context) {
-        somethingWentWrong := true
+  r.GET("/error", func(c *gin.Context) {
+    c.Error(errors.New("something went wrong"))
+  })
 
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
-    })
-
-    r.Run()
+  r.Run(":8080")
 }
-
 ```
 
-#### توسعه‌ها
+## تست
 
-- نگاشت خطاها به کدهای وضعیت
-- تولید پاسخ‌های خطای مختلف بر اساس کدهای خطا
-- لاگ‌گذاری خطاها
+```sh
+# Successful request
+curl http://localhost:8080/ok
+# Output: {"message":"Everything is fine!","success":true}
 
-#### مزایای میان‌افزار مدیریت خطا
+# Error request -- middleware catches the error
+curl http://localhost:8080/error
+# Output: {"message":"something went wrong","success":false}
+```
 
-- **سازگاری**: تمام خطاها از یک فرمت پیروی می‌کنند
-- **مسیرهای تمیز**: منطق کسب‌وکار از قالب‌بندی خطا جدا شده است
-- **تکرار کمتر**: نیازی به تکرار منطق مدیریت خطا در هر handler نیست
+:::tip
+می‌توانید این الگو را گسترش دهید تا انواع خطاهای خاص را به کدهای وضعیت HTTP مختلف نگاشت کنید، یا قبل از پاسخ دادن خطاها را به یک سرویس خارجی لاگ کنید.
+:::
+
+## همچنین ببینید
+
+- [میان‌افزار سفارشی](/fa/docs/middleware/custom-middleware/)
+- [استفاده از میان‌افزار](/fa/docs/middleware/using-middleware/)

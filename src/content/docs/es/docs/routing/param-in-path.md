@@ -45,15 +45,15 @@ func main() {
 ## Pruébalo
 
 ```sh
-# Parámetro simple -- coincide con :name
+# Single parameter -- matches :name
 curl http://localhost:8080/user/john
 # Output: Hello john
 
-# Parámetro comodín -- coincide con :name y *action
+# Wildcard parameter -- matches :name and *action
 curl http://localhost:8080/user/john/send
 # Output: john is /send
 
-# La barra final es capturada por el comodín
+# Trailing slash is captured by the wildcard
 curl http://localhost:8080/user/john/
 # Output: john is /
 ```

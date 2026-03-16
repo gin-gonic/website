@@ -4,35 +4,61 @@ sidebar:
   order: 1
 ---
 
-يشير إلى المشكلة [#774](https://github.com/gin-gonic/gin/issues/774) و[الكود النموذجي](https://github.com/gin-gonic/examples/tree/master/upload-file/single) التفصيلي.
+استخدم `c.FormFile` لاستقبال ملف واحد مرفوع من طلب `multipart/form-data`، ثم `c.SaveUploadedFile` لحفظه على القرص.
 
-`file.Filename` **لا ينبغي** الوثوق به. راجع [`Content-Disposition` على MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition#Directives) و[#1693](https://github.com/gin-gonic/gin/issues/1693)
-
-> اسم الملف اختياري دائماً ويجب عدم استخدامه بشكل أعمى من قبل التطبيق: يجب إزالة معلومات المسار، ويجب إجراء التحويل إلى قواعد نظام ملفات الخادم.
+يمكنك التحكم في الحد الأقصى للذاكرة المستخدمة أثناء تحليل multipart بتعيين `router.MaxMultipartMemory` (الافتراضي 32 ميجابايت). الملفات الأكبر من هذا الحد تُخزّن في ملفات مؤقتة على القرص بدلاً من الذاكرة.
 
 ```go
+package main
+
+import (
+  "fmt"
+  "log"
+  "net/http"
+  "path/filepath"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
   // Set a lower memory limit for multipart forms (default is 32 MiB)
-  router.MaxMultipartMemory = 8 << 20  // 8 MiB
+  router.MaxMultipartMemory = 8 << 20 // 8 MiB
+
   router.POST("/upload", func(c *gin.Context) {
     // single file
-    file, _ := c.FormFile("file")
+    file, err := c.FormFile("file")
+    if err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
     log.Println(file.Filename)
 
     // Upload the file to specific dst.
-    c.SaveUploadedFile(file, "./files/" + file.Filename)
+    dst := filepath.Join("./files/", filepath.Base(file.Filename))
+    c.SaveUploadedFile(file, dst)
 
     c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
   })
+
   router.Run(":8080")
 }
 ```
 
-كيفية استخدام `curl`:
+## اختبره
 
 ```sh
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
+  -F "file=@/path/to/your/file.zip" \
   -H "Content-Type: multipart/form-data"
+# Output: 'file.zip' uploaded!
 ```
+
+:::caution
+لا تثق أبداً بـ `file.Filename` من العميل. قم دائماً بتنظيف اسم الملف قبل استخدامه في مسارات الملفات. استخدم `filepath.Base` لإزالة مكونات المجلد ومنع هجمات اجتياز المسار.
+:::
+
+## انظر أيضاً
+
+- [ملفات متعددة](/ar/docs/routing/upload-file/multiple-file/)
+- [تحديد حجم الرفع](/ar/docs/routing/upload-file/limit-bytes/)

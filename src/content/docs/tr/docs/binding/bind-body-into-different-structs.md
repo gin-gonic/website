@@ -4,9 +4,20 @@ sidebar:
   order: 13
 ---
 
-İstek gövdesini bağlamak için kullanılan normal metodlar `c.Request.Body`'yi tüketir ve birden fazla kez çağrılamazlar.
+`c.ShouldBind` gibi standart bağlama metodları, bir `io.ReadCloser` olan `c.Request.Body`'yi tüketir — bir kez okunduktan sonra tekrar okunamaz. Bu, aynı istek üzerinde farklı struct yapılarını denemek için `c.ShouldBind`'ı birden fazla kez çağıramayacağınız anlamına gelir.
+
+Bu sorunu çözmek için `c.ShouldBindBodyWith` kullanın. Bu metod gövdeyi bir kez okur ve context'te saklar, böylece sonraki bağlamalar önbelleğe alınmış gövdeyi yeniden kullanabilir.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin/binding"
+)
+
 type formA struct {
   Foo string `json:"foo" xml:"foo" binding:"required"`
 }
@@ -15,42 +26,51 @@ type formB struct {
   Bar string `json:"bar" xml:"bar" binding:"required"`
 }
 
-func SomeHandler(c *gin.Context) {
-  objA := formA{}
-  objB := formB{}
-  // This c.ShouldBind consumes c.Request.Body and it cannot be reused.
-  if errA := c.ShouldBind(&objA); errA == nil {
-    c.String(http.StatusOK, `the body should be formA`)
-  // Always an error is occurred by this because c.Request.Body is EOF now.
-  } else if errB := c.ShouldBind(&objB); errB == nil {
-    c.String(http.StatusOK, `the body should be formB`)
-  } else {
-    ...
-  }
+func main() {
+  router := gin.Default()
+
+  router.POST("/bind", func(c *gin.Context) {
+    objA := formA{}
+    objB := formB{}
+    // This reads c.Request.Body and stores the result into the context.
+    if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
+      c.JSON(http.StatusOK, gin.H{"message": "matched formA", "foo": objA.Foo})
+      return
+    }
+    // At this time, it reuses body stored in the context.
+    if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
+      c.JSON(http.StatusOK, gin.H{"message": "matched formB", "bar": objB.Bar})
+      return
+    }
+
+    c.JSON(http.StatusBadRequest, gin.H{"error": "request body did not match any known format"})
+  })
+
+  router.Run(":8080")
 }
 ```
 
-Bunun için `c.ShouldBindBodyWith` kullanabilirsiniz.
+## Test et
 
-```go
-func SomeHandler(c *gin.Context) {
-  objA := formA{}
-  objB := formB{}
-  // This reads c.Request.Body and stores the result into the context.
-  if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
-    c.String(http.StatusOK, `the body should be formA`)
-  // At this time, it reuses body stored in the context.
-  } else if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
-    c.String(http.StatusOK, `the body should be formB JSON`)
-  // And it can accepts other formats
-  } else if errB2 := c.ShouldBindBodyWith(&objB, binding.XML); errB2 == nil {
-    c.String(http.StatusOK, `the body should be formB XML`)
-  } else {
-    ...
-  }
-}
+```sh
+# Body matches formA
+curl -X POST http://localhost:8080/bind \
+  -H "Content-Type: application/json" \
+  -d '{"foo":"hello"}'
+# Output: {"foo":"hello","message":"matched formA"}
+
+# Body matches formB
+curl -X POST http://localhost:8080/bind \
+  -H "Content-Type: application/json" \
+  -d '{"bar":"world"}'
+# Output: {"bar":"world","message":"matched formB"}
 ```
 
-* `c.ShouldBindBodyWith` bağlamadan önce gövdeyi context'e kaydeder. Bu, performansı biraz etkiler, bu nedenle yalnızca bir kez bağlamanız gerekiyorsa bu metodu kullanmamalısınız.
-* Bu özellik yalnızca bazı formatlar için gereklidir -- `JSON`, `XML`, `MsgPack`, `ProtoBuf`. Diğer formatlar için `Query`, `Form`, `FormPost`, `FormMultipart`, performansa herhangi bir zarar vermeden `c.ShouldBind()` ile birden fazla kez çağrılabilir (Bakınız [#1341](https://github.com/gin-gonic/gin/pull/1341)).
+:::note
+`c.ShouldBindBodyWith` bağlamadan önce gövdeyi context'te saklar. Bu, performansı biraz etkiler, bu nedenle yalnızca gövdeyi birden fazla kez bağlamanız gerektiğinde kullanın. Gövdeyi okumayan formatlar için — `Query`, `Form`, `FormPost`, `FormMultipart` gibi — `c.ShouldBind()` metodunu herhangi bir sorun olmadan birden fazla kez çağırabilirsiniz.
+:::
 
+## Ayrıca bakınız
+
+- [Bağlama ve doğrulama](/tr/docs/binding/binding-and-validation/)
+- [Sorgu dizesi veya post verisi bağlama](/tr/docs/binding/bind-query-or-post/)

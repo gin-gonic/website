@@ -12,14 +12,22 @@ sidebar:
 두 메서드 모두 `c.Request.URL.Query()`에 접근하는 단축 방법으로, 보일러플레이트 코드를 줄여줍니다.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
-  // 쿼리 문자열 매개변수는 기존 요청 객체를 사용하여 파싱됩니다.
-  // 요청은 다음 URL에 매칭됩니다: /welcome?firstname=Jane&lastname=Doe
+  // Query string parameters are parsed using the existing underlying request object.
+  // The request responds to a url matching:  /welcome?firstname=Jane&lastname=Doe
   router.GET("/welcome", func(c *gin.Context) {
     firstname := c.DefaultQuery("firstname", "Guest")
-    lastname := c.Query("lastname") // c.Request.URL.Query().Get("lastname")의 단축
+    lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
 
     c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
   })
@@ -27,20 +35,20 @@ func main() {
 }
 ```
 
-### 테스트하기
+## 테스트
 
 ```sh
-# 두 매개변수 모두 제공
+# Both parameters provided
 curl "http://localhost:8080/welcome?firstname=Jane&lastname=Doe"
-# 출력: Hello Jane Doe
+# Output: Hello Jane Doe
 
-# firstname 누락 -- 기본값 "Guest" 사용
+# Missing firstname -- uses default value "Guest"
 curl "http://localhost:8080/welcome?lastname=Doe"
-# 출력: Hello Guest Doe
+# Output: Hello Guest Doe
 
-# 매개변수 없음
+# No parameters at all
 curl "http://localhost:8080/welcome"
-# 출력: Hello Guest
+# Output: Hello Guest
 ```
 
 ## 참고

@@ -4,7 +4,9 @@ sidebar:
   order: 2
 ---
 
-Özel doğrulayıcılar kaydetmek de mümkündür. [Örnek koda](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) bakın.
+Gin, alan düzeyinde doğrulama için [go-playground/validator](https://github.com/go-playground/validator) kullanır. Yerleşik doğrulayıcılara (`required`, `email`, `min`, `max` gibi) ek olarak, kendi özel doğrulama fonksiyonlarınızı kaydedebilirsiniz.
+
+Aşağıdaki örnek, geçmişteki tarihleri reddeden bir `bookabledate` doğrulayıcısı kaydeder ve rezervasyon giriş ve çıkış tarihlerinin her zaman gelecekte olmasını sağlar.
 
 ```go
 package main
@@ -56,13 +58,23 @@ func getBookable(c *gin.Context) {
 }
 ```
 
-```sh
-$ curl "localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
-{"message":"Booking dates are valid!"}
+## Test et
 
-$ curl "localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
-{"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
+```sh
+# Both dates are in the future and check_out > check_in
+curl "http://localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
+# Output: {"message":"Booking dates are valid!"}
+
+# check_out is before check_in -- fails gtfield validation
+curl "http://localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
+# Output: {"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
 ```
 
-[Struct düzeyinde doğrulamalar](https://github.com/go-playground/validator/releases/tag/v8.7) da bu şekilde kaydedilebilir.
-Daha fazla bilgi için [struct-lvl-validation örneğine](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) bakın.
+:::tip
+Tek alan kontrollerinin ötesinde çapraz alan kuralları için [struct düzeyinde doğrulamalar](https://github.com/go-playground/validator/releases/tag/v8.7) da kaydedebilirsiniz. Daha fazla bilgi için [struct-lvl-validation örneğine](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) bakın.
+:::
+
+## Ayrıca bakınız
+
+- [Bağlama ve doğrulama](/tr/docs/binding/binding-and-validation/)
+- [Varsayılan değerler bağlama](/tr/docs/binding/bind-default-values/)

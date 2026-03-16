@@ -4,23 +4,52 @@ sidebar:
   order: 1
 ---
 
-Use `http.ListenAndServe()` diretamente, desta forma:
+Por padrão, `router.Run()` inicia um servidor HTTP básico. Para uso em produção, você pode precisar customizar timeouts, limites de headers ou configurações TLS. Você pode fazer isso criando seu próprio `http.Server` e passando o router do Gin como o `Handler`.
+
+## Uso básico
+
+Passe o router do Gin diretamente para `http.ListenAndServe`:
 
 ```go
-import "net/http"
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
 
 func main() {
   router := gin.Default()
+
+  router.GET("/ping", func(c *gin.Context) {
+    c.String(http.StatusOK, "pong")
+  })
+
   http.ListenAndServe(":8080", router)
 }
 ```
-ou
+
+## Com configurações de servidor customizadas
+
+Crie uma struct `http.Server` para configurar timeouts de leitura/escrita e outras opções:
 
 ```go
-import "net/http"
+package main
+
+import (
+  "net/http"
+  "time"
+
+  "github.com/gin-gonic/gin"
+)
 
 func main() {
   router := gin.Default()
+
+  router.GET("/ping", func(c *gin.Context) {
+    c.String(http.StatusOK, "pong")
+  })
 
   s := &http.Server{
     Addr:           ":8080",
@@ -32,3 +61,15 @@ func main() {
   s.ListenAndServe()
 }
 ```
+
+## Teste
+
+```sh
+curl http://localhost:8080/ping
+# Output: pong
+```
+
+## Veja também
+
+- [Reinício ou parada graciosa](/pt/docs/server-config/graceful-restart-or-stop/)
+- [Executar múltiplos serviços](/pt/docs/server-config/run-multiple-service/)

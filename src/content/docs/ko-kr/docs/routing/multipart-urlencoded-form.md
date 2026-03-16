@@ -10,6 +10,14 @@ sidebar:
 - `c.DefaultPostForm("field", "fallback")`는 값을 반환하며, 필드가 없으면 지정된 기본값을 반환합니다.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,16 +35,23 @@ func main() {
 }
 ```
 
-### 테스트하기
+## 테스트
 
 ```sh
-# URL 인코딩 폼
+# URL-encoded form
 curl -X POST http://localhost:8080/form_post \
   -d "message=hello&nick=world"
+# Output: {"message":"hello","nick":"world","status":"posted"}
 
-# Multipart 폼
+# Multipart form
 curl -X POST http://localhost:8080/form_post \
   -F "message=hello" -F "nick=world"
+# Output: {"message":"hello","nick":"world","status":"posted"}
+
+# Missing nick -- falls back to default "anonymous"
+curl -X POST http://localhost:8080/form_post \
+  -d "message=hello"
+# Output: {"message":"hello","nick":"anonymous","status":"posted"}
 ```
 
 ## 참고

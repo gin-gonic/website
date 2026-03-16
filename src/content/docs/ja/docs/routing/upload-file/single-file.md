@@ -4,35 +4,61 @@ sidebar:
   order: 1
 ---
 
-Issue [#774](https://github.com/gin-gonic/gin/issues/774)を参照し、[サンプルコード](https://github.com/gin-gonic/examples/tree/master/upload-file/single)の詳細をご確認ください。
+`c.FormFile` を使用して `multipart/form-data` リクエストから単一のアップロードファイルを受け取り、`c.SaveUploadedFile` でディスクに保存します。
 
-`file.Filename`は**信頼すべきではありません**。[MDNの`Content-Disposition`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition#Directives)と[#1693](https://github.com/gin-gonic/gin/issues/1693)を参照してください。
-
-> ファイル名は常にオプションであり、アプリケーションで盲目的に使用してはいけません。パス情報は除去し、サーバーのファイルシステムルールへの変換を行う必要があります。
+`router.MaxMultipartMemory` を設定することで、マルチパート解析中に使用される最大メモリを制御できます（デフォルトは32 MiB）。この制限を超えるファイルは、メモリではなくディスク上の一時ファイルに保存されます。
 
 ```go
+package main
+
+import (
+  "fmt"
+  "log"
+  "net/http"
+  "path/filepath"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
-  // multipartフォームのメモリ制限を低く設定（デフォルトは32 MiB）
-  router.MaxMultipartMemory = 8 << 20  // 8 MiB
+  // Set a lower memory limit for multipart forms (default is 32 MiB)
+  router.MaxMultipartMemory = 8 << 20 // 8 MiB
+
   router.POST("/upload", func(c *gin.Context) {
-    // 単一ファイル
-    file, _ := c.FormFile("file")
+    // single file
+    file, err := c.FormFile("file")
+    if err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
     log.Println(file.Filename)
 
-    // ファイルを指定の場所にアップロード
-    c.SaveUploadedFile(file, "./files/" + file.Filename)
+    // Upload the file to specific dst.
+    dst := filepath.Join("./files/", filepath.Base(file.Filename))
+    c.SaveUploadedFile(file, dst)
 
     c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
   })
+
   router.Run(":8080")
 }
 ```
 
-`curl`の使い方：
+## テスト
 
 ```sh
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
+  -F "file=@/path/to/your/file.zip" \
   -H "Content-Type: multipart/form-data"
+# Output: 'file.zip' uploaded!
 ```
+
+:::caution
+クライアントからの `file.Filename` を信頼しないでください。ファイルパスで使用する前に必ずファイル名をサニタイズしてください。`filepath.Base` を使用してディレクトリコンポーネントを除去し、パストラバーサル攻撃を防いでください。
+:::
+
+## 関連項目
+
+- [複数ファイル](/ja/docs/routing/upload-file/multiple-file/)
+- [アップロードサイズの制限](/ja/docs/routing/upload-file/limit-bytes/)

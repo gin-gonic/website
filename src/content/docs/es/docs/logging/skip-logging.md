@@ -6,9 +6,18 @@ sidebar:
 
 Puedes omitir el logging para rutas específicas o basándote en lógica personalizada usando `LoggerConfig`.
 
-Usa `SkipPaths` para excluir rutas específicas del logging, y la función `Skip` para lógica personalizada de omisión basada en el contexto de la solicitud.
+- `SkipPaths` excluye rutas específicas del logging — útil para verificaciones de salud o endpoints de métricas que generan ruido.
+- `Skip` es una función que recibe el `*gin.Context` y devuelve `true` para omitir el logging — útil para lógica condicional como omitir respuestas exitosas.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.New()
 
@@ -17,24 +26,24 @@ func main() {
 
   // skip logging based on your logic by setting Skip func in LoggerConfig
   loggerConfig.Skip = func(c *gin.Context) bool {
-      // as an example skip non server side errors
-      return c.Writer.Status() < http.StatusInternalServerError
+    // as an example skip non server side errors
+    return c.Writer.Status() < http.StatusInternalServerError
   }
 
   router.Use(gin.LoggerWithConfig(loggerConfig))
   router.Use(gin.Recovery())
 
-  // skipped
+  // skipped -- path is in SkipPaths
   router.GET("/metrics", func(c *gin.Context) {
-      c.Status(http.StatusNotImplemented)
+    c.Status(http.StatusNotImplemented)
   })
 
-  // skipped
+  // skipped -- status < 500
   router.GET("/ping", func(c *gin.Context) {
-      c.String(http.StatusOK, "pong")
+    c.String(http.StatusOK, "pong")
   })
 
-  // not skipped
+  // not skipped -- status is 501 (>= 500)
   router.GET("/data", func(c *gin.Context) {
     c.Status(http.StatusNotImplemented)
   })
@@ -42,3 +51,22 @@ func main() {
   router.Run(":8080")
 }
 ```
+
+## Pruébalo
+
+```sh
+# This request is logged (status 501 >= 500)
+curl http://localhost:8080/data
+
+# This request is NOT logged (path in SkipPaths)
+curl http://localhost:8080/metrics
+
+# This request is NOT logged (status 200 < 500)
+curl http://localhost:8080/ping
+# Output: pong
+```
+
+## Ver también
+
+- [Formato de log personalizado](/es/docs/logging/custom-log-format/)
+- [Escribir log](/es/docs/logging/write-log/)

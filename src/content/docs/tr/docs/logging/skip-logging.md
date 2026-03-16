@@ -6,9 +6,18 @@ sidebar:
 
 `LoggerConfig` kullanarak belirli yollar veya özel mantığa göre loglamayı atlayabilirsiniz.
 
-Belirli rotaları loglamadan hariç tutmak için `SkipPaths` kullanın ve istek context'ine dayalı özel atlama mantığı için `Skip` fonksiyonunu kullanın.
+- `SkipPaths`, belirli rotaları loglamadan hariç tutar — gürültü oluşturan sağlık kontrolleri veya metrik uç noktaları için kullanışlıdır.
+- `Skip`, `*gin.Context` alan ve loglamayı atlamak için `true` döndüren bir fonksiyondur — başarılı yanıtları atlama gibi koşullu mantık için kullanışlıdır.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.New()
 
@@ -17,24 +26,24 @@ func main() {
 
   // skip logging based on your logic by setting Skip func in LoggerConfig
   loggerConfig.Skip = func(c *gin.Context) bool {
-      // as an example skip non server side errors
-      return c.Writer.Status() < http.StatusInternalServerError
+    // as an example skip non server side errors
+    return c.Writer.Status() < http.StatusInternalServerError
   }
 
   router.Use(gin.LoggerWithConfig(loggerConfig))
   router.Use(gin.Recovery())
 
-  // skipped
+  // skipped -- path is in SkipPaths
   router.GET("/metrics", func(c *gin.Context) {
-      c.Status(http.StatusNotImplemented)
+    c.Status(http.StatusNotImplemented)
   })
 
-  // skipped
+  // skipped -- status < 500
   router.GET("/ping", func(c *gin.Context) {
-      c.String(http.StatusOK, "pong")
+    c.String(http.StatusOK, "pong")
   })
 
-  // not skipped
+  // not skipped -- status is 501 (>= 500)
   router.GET("/data", func(c *gin.Context) {
     c.Status(http.StatusNotImplemented)
   })
@@ -42,3 +51,22 @@ func main() {
   router.Run(":8080")
 }
 ```
+
+## Test et
+
+```sh
+# This request is logged (status 501 >= 500)
+curl http://localhost:8080/data
+
+# This request is NOT logged (path in SkipPaths)
+curl http://localhost:8080/metrics
+
+# This request is NOT logged (status 200 < 500)
+curl http://localhost:8080/ping
+# Output: pong
+```
+
+## Ayrıca bakınız
+
+- [Özel log formatı](/tr/docs/logging/custom-log-format/)
+- [Log yazma](/tr/docs/logging/write-log/)

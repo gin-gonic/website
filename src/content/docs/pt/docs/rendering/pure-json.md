@@ -4,38 +4,60 @@ sidebar:
   order: 5
 ---
 
-Normalmente, o JSON substitui caracteres HTML especiais por suas entidades unicode, ex.: `<` se torna `\u003c`. Se você quiser codificar esses caracteres literalmente, pode usar PureJSON em vez disso.
+Normalmente, o `json.Marshal` do Go substitui caracteres HTML especiais por sequências de escape unicode por segurança — por exemplo, `<` se torna `\u003c`. Isso é adequado quando se incorpora JSON em HTML, mas se você está construindo uma API pura, os clientes podem esperar os caracteres literais.
+
+`c.PureJSON` usa `json.Encoder` com `SetEscapeHTML(false)`, então caracteres HTML como `<`, `>` e `&` são renderizados literalmente em vez de serem escapados.
+
+Use `PureJSON` quando os consumidores da sua API esperam JSON bruto e sem escape. Use o `JSON` padrão quando a resposta pode ser incorporada em uma página HTML.
 
 ```go
 package main
 
 import (
+  "net/http"
+
   "github.com/gin-gonic/gin"
 )
 
 func main() {
   router := gin.Default()
 
-  // Serves unicode entities
+  // Standard JSON -- escapes HTML characters
   router.GET("/json", func(c *gin.Context) {
-    c.JSON(200, gin.H{
+    c.JSON(http.StatusOK, gin.H{
       "html": "<b>Hello, world!</b>",
     })
   })
 
-  // Serves literal characters
+  // PureJSON -- serves literal characters
   router.GET("/purejson", func(c *gin.Context) {
-    c.PureJSON(200, gin.H{
+    c.PureJSON(http.StatusOK, gin.H{
       "html": "<b>Hello, world!</b>",
     })
   })
 
-  // Abort early with a PureJSON response and status code (v1.11+)
-  router.GET("/abort_purejson", func(c *gin.Context) {
-    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
-  })
-
-  // listen and serve on 0.0.0.0:8080
   router.Run(":8080")
 }
 ```
+
+## Teste
+
+```sh
+# Standard JSON -- HTML characters are escaped
+curl http://localhost:8080/json
+# Output: {"html":"\u003cb\u003eHello, world!\u003c/b\u003e"}
+
+# PureJSON -- HTML characters are literal
+curl http://localhost:8080/purejson
+# Output: {"html":"<b>Hello, world!</b>"}
+```
+
+:::tip
+O Gin também fornece `c.AbortWithStatusPureJSON` (v1.11+) para retornar JSON sem escape enquanto aborta a cadeia de middleware — útil em middleware de autenticação ou validação.
+:::
+
+## Veja também
+
+- [AsciiJSON](/pt/docs/rendering/ascii-json/)
+- [SecureJSON](/pt/docs/rendering/secure-json/)
+- [Renderização](/pt/docs/rendering/rendering/)

@@ -4,15 +4,15 @@ sidebar:
   order: 3
 ---
 
-این مثال نحوه استفاده از `http.MaxBytesReader` برای محدود کردن دقیق حداکثر حجم فایل‌های آپلود شده و بازگرداندن وضعیت `413` هنگام تجاوز از محدودیت را نشان می‌دهد.
+از `http.MaxBytesReader` برای محدود کردن دقیق حداکثر حجم فایل‌های آپلود شده استفاده کنید. وقتی از محدودیت تجاوز شود، reader خطا برمی‌گرداند و می‌توانید با وضعیت `413 Request Entity Too Large` پاسخ دهید.
 
-[کد نمونه](https://github.com/gin-gonic/examples/blob/master/upload-file/limit-bytes/main.go) جزئیات را ببینید.
+این برای جلوگیری از حملات انکار سرویس مهم است، جایی که کلاینت‌ها فایل‌های بسیار بزرگ ارسال می‌کنند تا حافظه یا فضای دیسک سرور را تمام کنند.
 
 ## نحوه کار
 
-1. **تعریف محدودیت** -- یک ثابت `MaxUploadSize` (۱ مگابایت) سقف سخت‌افزاری آپلودها را تعیین می‌کند.
+1. **تعریف محدودیت** -- یک ثابت `MaxUploadSize` (۱ مگابایت) سقف سخت آپلودها را تعیین می‌کند.
 2. **اعمال محدودیت** -- `http.MaxBytesReader` بدنه `c.Request.Body` را بسته‌بندی می‌کند. اگر کلاینت بیش از حد مجاز بایت ارسال کند، reader متوقف شده و خطا برمی‌گرداند.
-3. **تجزیه و بررسی** -- `c.Request.ParseMultipartForm` خواندن را فعال می‌کند. کد `*http.MaxBytesError` را بررسی می‌کند تا وضعیت `413 Request Entity Too Large` با پیام واضح برگرداند.
+3. **تجزیه و بررسی** -- `c.Request.ParseMultipartForm` خواندن را فعال می‌کند. کد `*http.MaxBytesError` را بررسی می‌کند تا وضعیت `413` با پیام واضح برگرداند.
 
 ```go
 package main
@@ -63,10 +63,21 @@ func main() {
 }
 ```
 
-نحوه استفاده از `curl`:
+## تست
 
 ```sh
+# Upload a small file (under 1 MB) -- succeeds
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
-  -H "Content-Type: multipart/form-data"
+  -F "file=@/path/to/small-file.txt"
+# Output: {"message":"upload successful"}
+
+# Upload a large file (over 1 MB) -- rejected
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/path/to/large-file.zip"
+# Output: {"error":"file too large (max: 1048576 bytes)"}
 ```
+
+## همچنین ببینید
+
+- [تک فایل](/fa/docs/routing/upload-file/single-file/)
+- [چند فایل](/fa/docs/routing/upload-file/multiple-file/)

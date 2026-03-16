@@ -4,15 +4,15 @@ sidebar:
   order: 3
 ---
 
-يوضح هذا المثال كيفية استخدام `http.MaxBytesReader` لتقييد الحد الأقصى لحجم الملفات المرفوعة بشكل صارم وإرجاع حالة `413` عند تجاوز الحد.
+استخدم `http.MaxBytesReader` لتقييد الحد الأقصى لحجم الملفات المرفوعة بشكل صارم. عند تجاوز الحد، يُرجع القارئ خطأ ويمكنك الاستجابة بحالة `413 Request Entity Too Large`.
 
-راجع [الكود النموذجي](https://github.com/gin-gonic/examples/blob/master/upload-file/limit-bytes/main.go) التفصيلي.
+هذا مهم لمنع هجمات رفض الخدمة حيث يُرسل العملاء ملفات كبيرة جداً لاستنفاد ذاكرة الخادم أو مساحة القرص.
 
 ## كيف يعمل
 
-1. **تحديد الحد** -- ثابت `MaxUploadSize` (1 ميجابايت) يُعيّن الحد الأقصى للرفع.
-2. **فرض الحد** -- يلف `http.MaxBytesReader` `c.Request.Body`. إذا أرسل العميل بايتات أكثر من المسموح، يتوقف القارئ ويُرجع خطأ.
-3. **التحليل والتحقق** -- يُشغّل `c.Request.ParseMultipartForm` القراءة. يتحقق الكود من `*http.MaxBytesError` لإرجاع حالة `413 Request Entity Too Large` مع رسالة واضحة.
+1. **تحديد الحد** — ثابت `MaxUploadSize` (1 ميجابايت) يُعيّن الحد الأقصى للرفع.
+2. **فرض الحد** — `http.MaxBytesReader` يلف `c.Request.Body`. إذا أرسل العميل بايتات أكثر من المسموح، يتوقف القارئ ويُرجع خطأ.
+3. **التحليل والتحقق** — `c.Request.ParseMultipartForm` يُشغّل القراءة. يتحقق الكود من `*http.MaxBytesError` لإرجاع حالة `413` مع رسالة واضحة.
 
 ```go
 package main
@@ -63,10 +63,21 @@ func main() {
 }
 ```
 
-كيفية استخدام `curl`:
+## اختبره
 
 ```sh
+# Upload a small file (under 1 MB) -- succeeds
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
-  -H "Content-Type: multipart/form-data"
+  -F "file=@/path/to/small-file.txt"
+# Output: {"message":"upload successful"}
+
+# Upload a large file (over 1 MB) -- rejected
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/path/to/large-file.zip"
+# Output: {"error":"file too large (max: 1048576 bytes)"}
 ```
+
+## انظر أيضاً
+
+- [ملف واحد](/ar/docs/routing/upload-file/single-file/)
+- [ملفات متعددة](/ar/docs/routing/upload-file/multiple-file/)

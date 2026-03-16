@@ -4,15 +4,15 @@ sidebar:
   order: 3
 ---
 
-Bu örnek, yüklenen dosyaların maksimum boyutunu kesin olarak sınırlamak ve limit aşıldığında `413` durumu döndürmek için `http.MaxBytesReader`'ın nasıl kullanılacağını gösterir.
+Yüklenen dosyaların maksimum boyutunu kesin olarak sınırlamak için `http.MaxBytesReader` kullanın. Limit aşıldığında okuyucu bir hata döndürür ve `413 Request Entity Too Large` durumu ile yanıt verebilirsiniz.
 
-Ayrıntılı [örnek koda](https://github.com/gin-gonic/examples/blob/master/upload-file/limit-bytes/main.go) bakın.
+Bu, istemcilerin sunucu belleğini veya disk alanını tüketmek için aşırı büyük dosyalar gönderdiği hizmet reddi saldırılarını önlemek için önemlidir.
 
 ## Nasıl çalışır
 
-1. **Limit tanımlama** -- `MaxUploadSize` sabiti (1 MB) yüklemeler için kesin üst sınırı belirler.
-2. **Limiti uygulama** -- `http.MaxBytesReader`, `c.Request.Body`'yi sarar. İstemci izin verilenden fazla bayt gönderirse, okuyucu durur ve hata döndürür.
-3. **Ayrıştırma ve kontrol** -- `c.Request.ParseMultipartForm` okumayı tetikler. Kod, net bir mesajla `413 Request Entity Too Large` durumu döndürmek için `*http.MaxBytesError`'u kontrol eder.
+1. **Limit tanımlama** — `MaxUploadSize` sabiti (1 MB) yüklemeler için kesin üst sınırı belirler.
+2. **Limiti uygulama** — `http.MaxBytesReader`, `c.Request.Body`'yi sarar. İstemci izin verilenden fazla bayt gönderirse, okuyucu durur ve hata döndürür.
+3. **Ayrıştırma ve kontrol** — `c.Request.ParseMultipartForm` okumayı tetikler. Kod, net bir mesajla `413` durumu döndürmek için `*http.MaxBytesError`'u kontrol eder.
 
 ```go
 package main
@@ -63,10 +63,21 @@ func main() {
 }
 ```
 
-`curl` ile nasıl kullanılır:
+## Test et
 
 ```sh
+# Upload a small file (under 1 MB) -- succeeds
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
-  -H "Content-Type: multipart/form-data"
+  -F "file=@/path/to/small-file.txt"
+# Output: {"message":"upload successful"}
+
+# Upload a large file (over 1 MB) -- rejected
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/path/to/large-file.zip"
+# Output: {"error":"file too large (max: 1048576 bytes)"}
 ```
+
+## Ayrıca bakınız
+
+- [Tekli dosya](/tr/docs/routing/upload-file/single-file/)
+- [Çoklu dosya](/tr/docs/routing/upload-file/multiple-file/)

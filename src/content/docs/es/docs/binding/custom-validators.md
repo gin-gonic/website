@@ -4,7 +4,9 @@ sidebar:
   order: 2
 ---
 
-También es posible registrar validadores personalizados. Consulta el [código de ejemplo](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).
+Gin usa [go-playground/validator](https://github.com/go-playground/validator) para la validación a nivel de campo. Además de los validadores integrados (como `required`, `email`, `min`, `max`), puedes registrar tus propias funciones de validación personalizadas.
+
+El ejemplo a continuación registra un validador `bookabledate` que rechaza fechas en el pasado, asegurando que las fechas de check-in y check-out de reserva siempre estén en el futuro.
 
 ```go
 package main
@@ -56,13 +58,23 @@ func getBookable(c *gin.Context) {
 }
 ```
 
-```sh
-$ curl "localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
-{"message":"Booking dates are valid!"}
+## Pruébalo
 
-$ curl "localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
-{"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
+```sh
+# Both dates are in the future and check_out > check_in
+curl "http://localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
+# Output: {"message":"Booking dates are valid!"}
+
+# check_out is before check_in -- fails gtfield validation
+curl "http://localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
+# Output: {"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
 ```
 
-Las [validaciones a nivel de struct](https://github.com/go-playground/validator/releases/tag/v8.7) también pueden ser registradas de esta manera.
-Consulta el [ejemplo de validación a nivel de struct](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) para aprender más.
+:::tip
+También puedes registrar [validaciones a nivel de struct](https://github.com/go-playground/validator/releases/tag/v8.7) para reglas entre campos que van más allá de las verificaciones de un solo campo. Consulta el [ejemplo de validación a nivel de struct](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) para aprender más.
+:::
+
+## Ver también
+
+- [Enlace y validación](/es/docs/binding/binding-and-validation/)
+- [Enlazar valores por defecto](/es/docs/binding/bind-default-values/)

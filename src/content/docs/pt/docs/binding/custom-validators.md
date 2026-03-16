@@ -4,7 +4,9 @@ sidebar:
   order: 2
 ---
 
-Também é possível registrar validadores customizados. Veja o [código de exemplo](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).
+O Gin usa [go-playground/validator](https://github.com/go-playground/validator) para validação em nível de campo. Além dos validadores integrados (como `required`, `email`, `min`, `max`), você pode registrar suas próprias funções de validação customizadas.
+
+O exemplo abaixo registra um validador `bookabledate` que rejeita datas no passado, garantindo que as datas de check-in e check-out de reservas estejam sempre no futuro.
 
 ```go
 package main
@@ -56,13 +58,23 @@ func getBookable(c *gin.Context) {
 }
 ```
 
-```sh
-$ curl "localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
-{"message":"Booking dates are valid!"}
+## Teste
 
-$ curl "localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
-{"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
+```sh
+# Both dates are in the future and check_out > check_in
+curl "http://localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
+# Output: {"message":"Booking dates are valid!"}
+
+# check_out is before check_in -- fails gtfield validation
+curl "http://localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
+# Output: {"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
 ```
 
-[Validações em nível de struct](https://github.com/go-playground/validator/releases/tag/v8.7) também podem ser registradas dessa forma.
-Veja o [exemplo de validação em nível de struct](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) para saber mais.
+:::tip
+Você também pode registrar [validações em nível de struct](https://github.com/go-playground/validator/releases/tag/v8.7) para regras entre campos que vão além de verificações de campo único. Veja o [exemplo de struct-lvl-validation](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) para saber mais.
+:::
+
+## Veja também
+
+- [Binding e validação](/pt/docs/binding/binding-and-validation/)
+- [Vincular valores padrão](/pt/docs/binding/bind-default-values/)

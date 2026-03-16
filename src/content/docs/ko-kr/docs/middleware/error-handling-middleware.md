@@ -4,97 +4,75 @@ sidebar:
   order: 4
 ---
 
-일반적인 RESTful 애플리케이션에서는 다음과 같은 모든 라우트에서 오류를 만날 수 있습니다:
+일반적인 RESTful 애플리케이션에서는 잘못된 입력, 데이터베이스 장애, 인증되지 않은 접근 또는 내부 버그 등 모든 라우트에서 오류를 만날 수 있습니다. 각 핸들러에서 개별적으로 오류를 처리하면 반복적인 코드와 일관성 없는 응답이 발생합니다.
 
-- 사용자의 잘못된 입력
-- 데이터베이스 장애
-- 인증되지 않은 접근
-- 내부 서버 버그
-
-기본적으로 Gin은 `c.Error(err)`를 사용하여 각 라우트에서 수동으로 오류를 처리할 수 있도록 합니다.
-하지만 이는 빠르게 반복적이고 일관성 없어질 수 있습니다.
-
-이를 해결하기 위해 커스텀 미들웨어를 사용하여 한 곳에서 모든 오류를 처리할 수 있습니다.
-이 미들웨어는 각 요청 후에 실행되며 Gin 컨텍스트(`c.Errors`)에 추가된 오류를 확인합니다.
-오류를 찾으면 적절한 상태 코드와 함께 구조화된 JSON 응답을 보냅니다.
-
-#### 예제
+중앙 집중식 오류 처리 미들웨어는 각 요청 후에 실행되어 `c.Error(err)`를 통해 Gin 컨텍스트에 추가된 오류를 확인함으로써 이 문제를 해결합니다. 오류가 발견되면 적절한 상태 코드와 함께 구조화된 JSON 응답을 보냅니다.
 
 ```go
+package main
+
 import (
   "errors"
   "net/http"
+
   "github.com/gin-gonic/gin"
 )
 
-// ErrorHandler는 오류를 캡처하고 일관된 JSON 오류 응답을 반환합니다
+// ErrorHandler captures errors and returns a consistent JSON error response
 func ErrorHandler() gin.HandlerFunc {
-    return func(c *gin.Context) {
-        c.Next() // 1단계: 먼저 요청을 처리합니다.
+  return func(c *gin.Context) {
+    c.Next() // Process the request first
 
-        // 2단계: 컨텍스트에 오류가 추가되었는지 확인
-        if len(c.Errors) > 0 {
-            // 3단계: 마지막 오류를 사용
-            err := c.Errors.Last().Err
+    // Check if any errors were added to the context
+    if len(c.Errors) > 0 {
+      err := c.Errors.Last().Err
 
-            // 4단계: 일반적인 오류 메시지로 응답
-            c.JSON(http.StatusInternalServerError, map[string]any{
-                "success": false,
-                "message": err.Error(),
-            })
-        }
-
-        // 오류가 없으면 다른 단계 수행
+      c.JSON(http.StatusInternalServerError, gin.H{
+        "success": false,
+        "message": err.Error(),
+      })
     }
+  }
 }
 
 func main() {
-    r := gin.Default()
+  r := gin.Default()
 
-    // 오류 처리 미들웨어 부착
-    r.Use(ErrorHandler())
+  // Attach the error-handling middleware
+  r.Use(ErrorHandler())
 
-    r.GET("/ok", func(c *gin.Context) {
-        somethingWentWrong := false
-
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
+  r.GET("/ok", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "success": true,
+      "message": "Everything is fine!",
     })
+  })
 
-    r.GET("/error", func(c *gin.Context) {
-        somethingWentWrong := true
+  r.GET("/error", func(c *gin.Context) {
+    c.Error(errors.New("something went wrong"))
+  })
 
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
-    })
-
-    r.Run()
+  r.Run(":8080")
 }
-
 ```
 
-#### 확장
+## 테스트
 
-- 오류를 상태 코드에 매핑
-- 오류 코드에 따라 다른 오류 응답 생성
-- 오류 로깅
+```sh
+# Successful request
+curl http://localhost:8080/ok
+# Output: {"message":"Everything is fine!","success":true}
 
-#### 오류 처리 미들웨어의 이점
+# Error request -- middleware catches the error
+curl http://localhost:8080/error
+# Output: {"message":"something went wrong","success":false}
+```
 
-- **일관성**: 모든 오류가 동일한 형식을 따릅니다
-- **깔끔한 라우트**: 비즈니스 로직이 오류 포맷팅과 분리됩니다
-- **중복 감소**: 모든 핸들러에서 오류 처리 로직을 반복할 필요가 없습니다
+:::tip
+이 패턴을 확장하여 특정 오류 타입을 다른 HTTP 상태 코드에 매핑하거나 응답하기 전에 외부 서비스에 오류를 기록할 수 있습니다.
+:::
+
+## 참고
+
+- [커스텀 미들웨어](/ko-kr/docs/middleware/custom-middleware/)
+- [미들웨어 사용](/ko-kr/docs/middleware/using-middleware/)

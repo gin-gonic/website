@@ -12,6 +12,14 @@ sidebar:
 كلتا الطريقتين هما اختصارات للوصول إلى `c.Request.URL.Query()` مع كود أقل تكراراً.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,7 +35,7 @@ func main() {
 }
 ```
 
-### جرّبها
+## اختبره
 
 ```sh
 # Both parameters provided

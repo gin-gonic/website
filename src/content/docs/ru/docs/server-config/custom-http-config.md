@@ -4,23 +4,52 @@ sidebar:
   order: 1
 ---
 
-Используйте `http.ListenAndServe()` напрямую:
+По умолчанию `router.Run()` запускает базовый HTTP-сервер. Для продакшена вам может потребоваться настроить таймауты, лимиты заголовков или параметры TLS. Вы можете сделать это, создав собственный `http.Server` и передав маршрутизатор Gin в качестве `Handler`.
+
+## Базовое использование
+
+Передайте маршрутизатор Gin непосредственно в `http.ListenAndServe`:
 
 ```go
-import "net/http"
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
 
 func main() {
   router := gin.Default()
+
+  router.GET("/ping", func(c *gin.Context) {
+    c.String(http.StatusOK, "pong")
+  })
+
   http.ListenAndServe(":8080", router)
 }
 ```
-или
+
+## С пользовательскими настройками сервера
+
+Создайте структуру `http.Server` для настройки таймаутов чтения/записи и других параметров:
 
 ```go
-import "net/http"
+package main
+
+import (
+  "net/http"
+  "time"
+
+  "github.com/gin-gonic/gin"
+)
 
 func main() {
   router := gin.Default()
+
+  router.GET("/ping", func(c *gin.Context) {
+    c.String(http.StatusOK, "pong")
+  })
 
   s := &http.Server{
     Addr:           ":8080",
@@ -32,3 +61,15 @@ func main() {
   s.ListenAndServe()
 }
 ```
+
+## Тестирование
+
+```sh
+curl http://localhost:8080/ping
+# Output: pong
+```
+
+## Смотрите также
+
+- [Плавный перезапуск или остановка](/ru/docs/server-config/graceful-restart-or-stop/)
+- [Запуск нескольких сервисов](/ru/docs/server-config/run-multiple-service/)

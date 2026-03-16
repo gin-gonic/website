@@ -4,15 +4,15 @@ sidebar:
   order: 3
 ---
 
-本示例展示如何使用 `http.MaxBytesReader` 严格限制上传文件的最大大小，并在超出限制时返回 `413` 状态码。
+使用 `http.MaxBytesReader` 严格限制上传文件的最大大小。当超出限制时，读取器会返回错误，你可以使用 `413 Request Entity Too Large` 状态码进行响应。
 
-查看详细[示例代码](https://github.com/gin-gonic/examples/blob/master/upload-file/limit-bytes/main.go)。
+这对于防止客户端发送超大文件以耗尽服务器内存或磁盘空间的拒绝服务攻击非常重要。
 
 ## 工作原理
 
-1. **定义限制** -- 常量 `MaxUploadSize`（1 MB）设置上传的硬性上限。
-2. **强制限制** -- `http.MaxBytesReader` 包装 `c.Request.Body`。如果客户端发送的字节数超过允许值，读取器将停止并返回错误。
-3. **解析并检查** -- `c.Request.ParseMultipartForm` 触发读取。代码检查 `*http.MaxBytesError` 以返回 `413 Request Entity Too Large` 状态码和明确的消息。
+1. **定义限制** —— 常量 `MaxUploadSize`（1 MB）设置上传的硬性上限。
+2. **强制限制** —— `http.MaxBytesReader` 包装 `c.Request.Body`。如果客户端发送的字节数超过允许值，读取器将停止并返回错误。
+3. **解析并检查** —— `c.Request.ParseMultipartForm` 触发读取。代码检查 `*http.MaxBytesError` 以返回带有明确消息的 `413` 状态码。
 
 ```go
 package main
@@ -63,10 +63,21 @@ func main() {
 }
 ```
 
-如何使用 `curl`：
+## 测试
 
 ```sh
+# Upload a small file (under 1 MB) -- succeeds
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
-  -H "Content-Type: multipart/form-data"
+  -F "file=@/path/to/small-file.txt"
+# Output: {"message":"upload successful"}
+
+# Upload a large file (over 1 MB) -- rejected
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/path/to/large-file.zip"
+# Output: {"error":"file too large (max: 1048576 bytes)"}
 ```
+
+## 另请参阅
+
+- [单文件](/zh-cn/docs/routing/upload-file/single-file/)
+- [多文件](/zh-cn/docs/routing/upload-file/multiple-file/)

@@ -4,16 +4,19 @@ sidebar:
   order: 6
 ---
 
-Log rute default adalah:
+Ketika Gin dimulai, ia mencetak semua rute yang terdaftar dalam mode debug. Format default terlihat seperti ini:
+
 ```
 [GIN-debug] POST   /foo                      --> main.main.func1 (3 handlers)
 [GIN-debug] GET    /bar                      --> main.main.func2 (3 handlers)
 [GIN-debug] GET    /status                   --> main.main.func3 (3 handlers)
 ```
 
-Jika Anda ingin mencatat informasi ini dalam format tertentu (mis. JSON, key-value, atau lainnya), maka Anda dapat mendefinisikan format ini dengan `gin.DebugPrintRouteFunc`.
-Dalam contoh di bawah, kami mencatat semua rute dengan paket log standar tetapi Anda dapat menggunakan alat log lain yang sesuai dengan kebutuhan Anda.
+Anda dapat menyesuaikan format ini dengan menetapkan fungsi ke `gin.DebugPrintRouteFunc`. Ini berguna jika Anda ingin mencatat rute sebagai JSON, pasangan kunci-nilai, atau dalam format lain yang diharapkan oleh pipeline logging Anda.
+
 ```go
+package main
+
 import (
   "log"
   "net/http"
@@ -23,6 +26,7 @@ import (
 
 func main() {
   router := gin.Default()
+
   gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
     log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
   }
@@ -39,7 +43,19 @@ func main() {
     c.JSON(http.StatusOK, "ok")
   })
 
-  // Listen and Server in http://0.0.0.0:8080
-  router.Run()
+  router.Run(":8080")
 }
 ```
+
+Ketika server dimulai, alih-alih baris `[GIN-debug]` default, Anda akan melihat:
+
+```
+endpoint POST /foo main.main.func2 3
+endpoint GET /bar main.main.func3 3
+endpoint GET /status main.main.func4 3
+```
+
+## Lihat juga
+
+- [Format log kustom](/id/docs/logging/custom-log-format/)
+- [Melewati logging](/id/docs/logging/skip-logging/)

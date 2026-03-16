@@ -4,30 +4,46 @@ sidebar:
   order: 10
 ---
 
-[상세 정보](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)를 참조하세요.
+동일한 `name` 속성을 가진 HTML 체크박스는 선택 시 여러 값을 제출합니다. Gin은 `form` 구조체 태그를 사용하여 이러한 값을 구조체의 `[]string` 슬라이스에 직접 바인딩할 수 있으며, HTML name과 일치하는 `[]` 접미사를 사용합니다.
 
-main.go
+이는 색상 선택기, 권한 선택기 또는 다중 선택 필터와 같이 사용자가 하나 이상의 옵션을 선택하는 폼에 유용합니다.
 
 ```go
-...
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
 
 type myForm struct {
-    Colors []string `form:"colors[]"`
+  Colors []string `form:"colors[]"`
 }
 
-...
+func main() {
+  router := gin.Default()
 
-func formHandler(c *gin.Context) {
+  router.LoadHTMLGlob("templates/*")
+
+  router.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "form.html", nil)
+  })
+
+  router.POST("/", func(c *gin.Context) {
     var fakeForm myForm
-    c.ShouldBind(&fakeForm)
-    c.JSON(200, gin.H{"color": fakeForm.Colors})
+    if err := c.ShouldBind(&fakeForm); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
+    c.JSON(http.StatusOK, gin.H{"color": fakeForm.Colors})
+  })
+
+  router.Run(":8080")
 }
-
-...
-
 ```
 
-form.html
+해당 HTML 폼 (`templates/form.html`):
 
 ```html
 <form action="/" method="POST">
@@ -42,8 +58,29 @@ form.html
 </form>
 ```
 
-결과:
+## 테스트
 
 ```sh
-{"color":["red","green","blue"]}
+# Select all three colors
+curl -X POST http://localhost:8080/ \
+  -d "colors[]=red&colors[]=green&colors[]=blue"
+# Output: {"color":["red","green","blue"]}
+
+# Select only one color
+curl -X POST http://localhost:8080/ \
+  -d "colors[]=green"
+# Output: {"color":["green"]}
+
+# No checkboxes selected -- slice is empty
+curl -X POST http://localhost:8080/
+# Output: {"color":[]}
 ```
+
+:::tip
+`colors[]`의 `[]` 접미사는 HTML 규칙이며 Go 요구 사항이 아닙니다. 구조체 태그는 HTML `name` 속성과 정확히 일치해야 합니다. HTML에서 `name="colors"` (괄호 없이)를 사용하는 경우 구조체 태그는 `form:"colors"`여야 합니다.
+:::
+
+## 참고
+
+- [바인딩과 유효성 검사](/ko-kr/docs/binding/binding-and-validation/)
+- [Multipart/URL 인코딩 바인딩](/ko-kr/docs/binding/multipart-urlencoded-binding/)

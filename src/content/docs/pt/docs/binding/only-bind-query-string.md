@@ -4,13 +4,15 @@ sidebar:
   order: 3
 ---
 
-A função `ShouldBindQuery` vincula apenas os parâmetros de query e não os dados post. Veja as [informações detalhadas](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017).
+`ShouldBindQuery` vincula apenas os parâmetros de query string da URL a uma struct, ignorando completamente o corpo da requisição. Isso é útil quando você quer garantir que dados do corpo POST não sobrescrevam acidentalmente os parâmetros de query — por exemplo, em endpoints que aceitam tanto filtros de query quanto um corpo JSON.
+
+Em contraste, `ShouldBind` em uma requisição GET também usa binding de query, mas em uma requisição POST ele verificará primeiro o corpo. Use `ShouldBindQuery` quando você quiser explicitamente vincular apenas a query, independentemente do método HTTP.
 
 ```go
 package main
 
 import (
-  "log"
+  "net/http"
 
   "github.com/gin-gonic/gin"
 )
@@ -28,11 +30,32 @@ func main() {
 
 func startPage(c *gin.Context) {
   var person Person
-  if c.ShouldBindQuery(&person) == nil {
-    log.Println("====== Only Bind By Query String ======")
-    log.Println(person.Name)
-    log.Println(person.Address)
+  if err := c.ShouldBindQuery(&person); err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    return
   }
-  c.String(200, "Success")
+
+  c.JSON(http.StatusOK, gin.H{
+    "name":    person.Name,
+    "address": person.Address,
+  })
 }
 ```
+
+## Teste
+
+```sh
+# GET with query parameters
+curl "http://localhost:8085/testing?name=appleboy&address=xyz"
+# Output: {"address":"xyz","name":"appleboy"}
+
+# POST with query parameters -- body is ignored, only query is bound
+curl -X POST "http://localhost:8085/testing?name=appleboy&address=xyz" \
+  -d "name=ignored&address=ignored"
+# Output: {"address":"xyz","name":"appleboy"}
+```
+
+## Veja também
+
+- [Vincular query string ou dados post](/pt/docs/binding/bind-query-or-post/)
+- [Binding e validação](/pt/docs/binding/binding-and-validation/)

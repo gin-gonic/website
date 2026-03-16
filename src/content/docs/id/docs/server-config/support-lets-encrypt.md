@@ -4,7 +4,11 @@ sidebar:
   order: 3
 ---
 
-Contoh server HTTPS LetsEncrypt 1 baris.
+Paket [gin-gonic/autotls](https://github.com/gin-gonic/autotls) menyediakan HTTPS otomatis melalui Let's Encrypt. Paket ini menangani penerbitan dan pembaruan sertifikat secara otomatis, sehingga Anda dapat menyajikan HTTPS dengan konfigurasi minimal.
+
+## Mulai cepat
+
+Cara paling sederhana adalah memanggil `autotls.Run` dengan router Anda dan satu atau lebih nama domain:
 
 ```go
 package main
@@ -19,7 +23,6 @@ import (
 func main() {
   router := gin.Default()
 
-  // Ping handler
   router.GET("/ping", func(c *gin.Context) {
     c.String(200, "pong")
   })
@@ -28,7 +31,9 @@ func main() {
 }
 ```
 
-Contoh untuk manajer autocert kustom.
+## Manajer autocert kustom
+
+Untuk kontrol lebih — seperti menentukan direktori cache sertifikat atau membatasi hostname yang diizinkan — gunakan `autotls.RunWithManager` dengan `autocert.Manager` kustom:
 
 ```go
 package main
@@ -44,7 +49,6 @@ import (
 func main() {
   router := gin.Default()
 
-  // Ping handler
   router.GET("/ping", func(c *gin.Context) {
     c.String(200, "pong")
   })
@@ -59,3 +63,10 @@ func main() {
 }
 ```
 
+:::note
+Let's Encrypt mengharuskan server Anda dapat diakses pada port 80 dan 443 dari internet publik. Ini tidak akan berfungsi di localhost atau di belakang firewall yang memblokir koneksi masuk.
+:::
+
+## Lihat juga
+
+- [Konfigurasi HTTP kustom](/id/docs/server-config/custom-http-config/)

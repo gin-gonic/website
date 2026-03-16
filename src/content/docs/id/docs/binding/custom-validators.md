@@ -4,7 +4,9 @@ sidebar:
   order: 2
 ---
 
-Anda juga dapat mendaftarkan validator kustom. Lihat [contoh kode](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).
+Gin menggunakan [go-playground/validator](https://github.com/go-playground/validator) untuk validasi tingkat field. Selain validator bawaan (seperti `required`, `email`, `min`, `max`), Anda dapat mendaftarkan fungsi validasi kustom Anda sendiri.
+
+Contoh di bawah ini mendaftarkan validator `bookabledate` yang menolak tanggal di masa lalu, memastikan bahwa tanggal check-in dan check-out pemesanan selalu di masa depan.
 
 ```go
 package main
@@ -56,13 +58,23 @@ func getBookable(c *gin.Context) {
 }
 ```
 
-```sh
-$ curl "localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
-{"message":"Booking dates are valid!"}
+## Uji coba
 
-$ curl "localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
-{"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
+```sh
+# Both dates are in the future and check_out > check_in
+curl "http://localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
+# Output: {"message":"Booking dates are valid!"}
+
+# check_out is before check_in -- fails gtfield validation
+curl "http://localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
+# Output: {"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
 ```
 
-[Validasi tingkat struct](https://github.com/go-playground/validator/releases/tag/v8.7) juga dapat didaftarkan dengan cara ini.
-Lihat [contoh validasi tingkat struct](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) untuk mempelajari lebih lanjut.
+:::tip
+Anda juga dapat mendaftarkan [validasi tingkat struct](https://github.com/go-playground/validator/releases/tag/v8.7) untuk aturan lintas-field yang melampaui pemeriksaan field tunggal. Lihat [contoh struct-lvl-validation](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) untuk mempelajari lebih lanjut.
+:::
+
+## Lihat juga
+
+- [Binding dan validasi](/id/docs/binding/binding-and-validation/)
+- [Bind nilai default](/id/docs/binding/bind-default-values/)

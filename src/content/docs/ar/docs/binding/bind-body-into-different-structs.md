@@ -4,10 +4,20 @@ sidebar:
   order: 13
 ---
 
-الطرق العادية لربط جسم الطلب تستهلك `c.Request.Body` ولا يمكن
-استدعاؤها عدة مرات.
+طرق الربط القياسية مثل `c.ShouldBind` تستهلك `c.Request.Body`، وهو `io.ReadCloser` — بمجرد قراءته، لا يمكن قراءته مرة أخرى. هذا يعني أنه لا يمكنك استدعاء `c.ShouldBind` عدة مرات على نفس الطلب لتجربة أشكال هياكل مختلفة.
+
+لحل هذه المشكلة، استخدم `c.ShouldBindBodyWith`. يقرأ الجسم مرة واحدة ويخزّنه في السياق، مما يسمح لعمليات الربط اللاحقة بإعادة استخدام الجسم المخزّن مؤقتاً.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin/binding"
+)
+
 type formA struct {
   Foo string `json:"foo" xml:"foo" binding:"required"`
 }
@@ -16,45 +26,51 @@ type formB struct {
   Bar string `json:"bar" xml:"bar" binding:"required"`
 }
 
-func SomeHandler(c *gin.Context) {
-  objA := formA{}
-  objB := formB{}
-  // This c.ShouldBind consumes c.Request.Body and it cannot be reused.
-  if errA := c.ShouldBind(&objA); errA == nil {
-    c.String(http.StatusOK, `the body should be formA`)
-  // Always an error is occurred by this because c.Request.Body is EOF now.
-  } else if errB := c.ShouldBind(&objB); errB == nil {
-    c.String(http.StatusOK, `the body should be formB`)
-  } else {
-    ...
-  }
+func main() {
+  router := gin.Default()
+
+  router.POST("/bind", func(c *gin.Context) {
+    objA := formA{}
+    objB := formB{}
+    // This reads c.Request.Body and stores the result into the context.
+    if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
+      c.JSON(http.StatusOK, gin.H{"message": "matched formA", "foo": objA.Foo})
+      return
+    }
+    // At this time, it reuses body stored in the context.
+    if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
+      c.JSON(http.StatusOK, gin.H{"message": "matched formB", "bar": objB.Bar})
+      return
+    }
+
+    c.JSON(http.StatusBadRequest, gin.H{"error": "request body did not match any known format"})
+  })
+
+  router.Run(":8080")
 }
 ```
 
-لهذا الغرض، يمكنك استخدام `c.ShouldBindBodyWith`.
+## اختبره
 
-```go
-func SomeHandler(c *gin.Context) {
-  objA := formA{}
-  objB := formB{}
-  // This reads c.Request.Body and stores the result into the context.
-  if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
-    c.String(http.StatusOK, `the body should be formA`)
-  // At this time, it reuses body stored in the context.
-  } else if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
-    c.String(http.StatusOK, `the body should be formB JSON`)
-  // And it can accepts other formats
-  } else if errB2 := c.ShouldBindBodyWith(&objB, binding.XML); errB2 == nil {
-    c.String(http.StatusOK, `the body should be formB XML`)
-  } else {
-    ...
-  }
-}
+```sh
+# Body matches formA
+curl -X POST http://localhost:8080/bind \
+  -H "Content-Type: application/json" \
+  -d '{"foo":"hello"}'
+# Output: {"foo":"hello","message":"matched formA"}
+
+# Body matches formB
+curl -X POST http://localhost:8080/bind \
+  -H "Content-Type: application/json" \
+  -d '{"bar":"world"}'
+# Output: {"bar":"world","message":"matched formB"}
 ```
 
-* `c.ShouldBindBodyWith` يخزّن الجسم في السياق قبل الربط. هذا له
-تأثير طفيف على الأداء، لذا لا ينبغي استخدام هذه الطريقة إذا كنت تحتاج فقط للربط مرة واحدة.
-* هذه الميزة مطلوبة فقط لبعض التنسيقات -- `JSON`، `XML`، `MsgPack`،
-`ProtoBuf`. بالنسبة للتنسيقات الأخرى، `Query`، `Form`، `FormPost`، `FormMultipart`،
-يمكن استدعاؤها بواسطة `c.ShouldBind()` عدة مرات دون أي تأثير على
-الأداء (راجع [#1341](https://github.com/gin-gonic/gin/pull/1341)).
+:::note
+`c.ShouldBindBodyWith` يخزّن الجسم في السياق قبل الربط. هذا له تأثير طفيف على الأداء، لذا استخدمه فقط عندما تحتاج لربط الجسم أكثر من مرة. بالنسبة للتنسيقات التي لا تقرأ الجسم — مثل `Query`، `Form`، `FormPost`، `FormMultipart` — يمكنك استدعاء `c.ShouldBind()` عدة مرات دون مشكلة.
+:::
+
+## انظر أيضاً
+
+- [الربط والتحقق](/ar/docs/binding/binding-and-validation/)
+- [ربط سلسلة الاستعلام أو بيانات الإرسال](/ar/docs/binding/bind-query-or-post/)

@@ -4,97 +4,75 @@ sidebar:
   order: 4
 ---
 
-在典型的 RESTful 應用程式中，你可能會在任何路由中遇到錯誤，例如：
+在典型的 RESTful 應用程式中，你可能會在任何路由中遇到錯誤——無效輸入、資料庫故障、未授權的存取或內部錯誤。在每個處理器中個別處理錯誤會導致重複的程式碼和不一致的回應。
 
-- 使用者的無效輸入
-- 資料庫故障
-- 未經授權的存取
-- 內部伺服器錯誤
-
-預設情況下，Gin 允許你在每個路由中使用 `c.Error(err)` 手動處理錯誤。
-但這很快就會變得重複且不一致。
-
-為了解決這個問題，我們可以使用自訂中介軟體在一個地方處理所有錯誤。
-此中介軟體在每次請求後執行，並檢查 Gin 上下文（`c.Errors`）中是否有任何錯誤。
-如果找到錯誤，它會發送一個結構化的 JSON 回應，附帶適當的狀態碼。
-
-#### 範例
+集中式的錯誤處理中介軟體透過在每個請求之後執行並檢查透過 `c.Error(err)` 添加到 Gin 上下文中的任何錯誤來解決這個問題。如果發現錯誤，它會傳送一個帶有適當狀態碼的結構化 JSON 回應。
 
 ```go
+package main
+
 import (
   "errors"
   "net/http"
+
   "github.com/gin-gonic/gin"
 )
 
 // ErrorHandler captures errors and returns a consistent JSON error response
 func ErrorHandler() gin.HandlerFunc {
-    return func(c *gin.Context) {
-        c.Next() // Step1: Process the request first.
+  return func(c *gin.Context) {
+    c.Next() // Process the request first
 
-        // Step2: Check if any errors were added to the context
-        if len(c.Errors) > 0 {
-            // Step3: Use the last error
-            err := c.Errors.Last().Err
+    // Check if any errors were added to the context
+    if len(c.Errors) > 0 {
+      err := c.Errors.Last().Err
 
-            // Step4: Respond with a generic error message
-            c.JSON(http.StatusInternalServerError, map[string]any{
-                "success": false,
-                "message": err.Error(),
-            })
-        }
-
-        // Any other steps if no errors are found
+      c.JSON(http.StatusInternalServerError, gin.H{
+        "success": false,
+        "message": err.Error(),
+      })
     }
+  }
 }
 
 func main() {
-    r := gin.Default()
+  r := gin.Default()
 
-    // Attach the error-handling middleware
-    r.Use(ErrorHandler())
+  // Attach the error-handling middleware
+  r.Use(ErrorHandler())
 
-    r.GET("/ok", func(c *gin.Context) {
-        somethingWentWrong := false
-
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
+  r.GET("/ok", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "success": true,
+      "message": "Everything is fine!",
     })
+  })
 
-    r.GET("/error", func(c *gin.Context) {
-        somethingWentWrong := true
+  r.GET("/error", func(c *gin.Context) {
+    c.Error(errors.New("something went wrong"))
+  })
 
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
-    })
-
-    r.Run()
+  r.Run(":8080")
 }
-
 ```
 
-#### 擴充功能
+## 測試
 
-- 將錯誤映射到狀態碼
-- 根據錯誤碼生成不同的錯誤回應
-- 使用日誌記錄錯誤
+```sh
+# Successful request
+curl http://localhost:8080/ok
+# Output: {"message":"Everything is fine!","success":true}
 
-#### 錯誤處理中介軟體的優點
+# Error request -- middleware catches the error
+curl http://localhost:8080/error
+# Output: {"message":"something went wrong","success":false}
+```
 
-- **一致性**：所有錯誤遵循相同格式
-- **清潔路由**：業務邏輯與錯誤格式化分離
-- **減少重複**：不需要在每個處理函式中重複錯誤處理邏輯
+:::tip
+你可以擴展此模式，將特定錯誤類型對應到不同的 HTTP 狀態碼，或在回應之前將錯誤記錄到外部服務。
+:::
+
+## 另請參閱
+
+- [自訂中介軟體](/zh-tw/docs/middleware/custom-middleware/)
+- [使用中介軟體](/zh-tw/docs/middleware/using-middleware/)

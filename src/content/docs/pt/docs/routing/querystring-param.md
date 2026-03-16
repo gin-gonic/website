@@ -9,9 +9,17 @@ Parâmetros de query string são os pares chave-valor que aparecem após o `?` e
 - `c.Query("key")` retorna o valor do parâmetro de query, ou uma **string vazia** se a chave não estiver presente.
 - `c.DefaultQuery("key", "default")` retorna o valor, ou o **valor padrão** especificado se a chave não estiver presente.
 
-Ambos os métodos são atalhos para acessar `c.Request.URL.Query()` com menos código repetitivo.
+Ambos os métodos são atalhos para acessar `c.Request.URL.Query()` com menos código boilerplate.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,7 +35,7 @@ func main() {
 }
 ```
 
-### Teste
+## Teste
 
 ```sh
 # Both parameters provided

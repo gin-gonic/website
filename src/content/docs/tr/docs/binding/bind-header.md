@@ -4,13 +4,12 @@ sidebar:
   order: 9
 ---
 
-HTTP istek başlıklarını bir struct'a bağlamak için `ShouldBindHeader` kullanın.
+`ShouldBindHeader`, `header` struct etiketlerini kullanarak HTTP istek başlıklarını doğrudan bir struct'a bağlar. Bu, gelen isteklerden API hız limitleri, kimlik doğrulama token'ları veya özel alan başlıkları gibi meta verileri çıkarmak için kullanışlıdır.
 
 ```go
 package main
 
 import (
-  "fmt"
   "net/http"
 
   "github.com/gin-gonic/gin"
@@ -23,22 +22,50 @@ type testHeader struct {
 
 func main() {
   r := gin.Default()
+
   r.GET("/", func(c *gin.Context) {
     h := testHeader{}
 
     if err := c.ShouldBindHeader(&h); err != nil {
-      c.JSON(http.StatusOK, err)
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
     }
 
-    fmt.Printf("%#v\n", h)
     c.JSON(http.StatusOK, gin.H{"Rate": h.Rate, "Domain": h.Domain})
   })
 
-  r.Run()
-
-// client
-// curl -H "rate:300" -H "domain:music" 127.0.0.1:8080/
-// output
-// {"Domain":"music","Rate":300}
+  r.Run(":8080")
 }
 ```
+
+## Test et
+
+```sh
+# Pass custom headers
+curl -H "Rate:300" -H "Domain:music" http://localhost:8080/
+# Output: {"Domain":"music","Rate":300}
+
+# Missing headers -- zero values are used
+curl http://localhost:8080/
+# Output: {"Domain":"","Rate":0}
+```
+
+:::note
+Başlık adları HTTP spesifikasyonuna göre büyük/küçük harf duyarsızdır. `header` struct etiket değeri büyük/küçük harf duyarsız olarak eşleştirilir, bu nedenle `header:"Rate"` etiketi `Rate`, `rate` veya `RATE` olarak gönderilen başlıklarla eşleşir.
+:::
+
+:::tip
+Zorunlu başlıkları eksik olan istekleri reddetmek için `header` etiketlerini `binding:"required"` ile birleştirebilirsiniz:
+
+```go
+type authHeader struct {
+  Token string `header:"Authorization" binding:"required"`
+}
+```
+
+:::
+
+## Ayrıca bakınız
+
+- [Bağlama ve doğrulama](/tr/docs/binding/binding-and-validation/)
+- [Sorgu dizesi veya post verisi bağlama](/tr/docs/binding/bind-query-or-post/)

@@ -4,7 +4,11 @@ sidebar:
   order: 3
 ---
 
-مثال لخوادم HTTPS بسطر واحد من LetsEncrypt.
+توفر حزمة [gin-gonic/autotls](https://github.com/gin-gonic/autotls) HTTPS تلقائي عبر Let's Encrypt. تتعامل مع إصدار وتجديد الشهادات تلقائياً، بحيث يمكنك تقديم HTTPS بأقل تكوين.
+
+## البداية السريعة
+
+أبسط طريقة هي استدعاء `autotls.Run` مع الموجّه واسم نطاق واحد أو أكثر:
 
 ```go
 package main
@@ -19,7 +23,6 @@ import (
 func main() {
   router := gin.Default()
 
-  // Ping handler
   router.GET("/ping", func(c *gin.Context) {
     c.String(200, "pong")
   })
@@ -28,7 +31,9 @@ func main() {
 }
 ```
 
-مثال لمدير autocert مخصص.
+## مدير الشهادات التلقائي المخصص
+
+لمزيد من التحكم — مثل تحديد مجلد تخزين الشهادات مؤقتاً أو تقييد أسماء المضيفين المسموح بها — استخدم `autotls.RunWithManager` مع `autocert.Manager` مخصص:
 
 ```go
 package main
@@ -44,7 +49,6 @@ import (
 func main() {
   router := gin.Default()
 
-  // Ping handler
   router.GET("/ping", func(c *gin.Context) {
     c.String(200, "pong")
   })
@@ -58,3 +62,11 @@ func main() {
   log.Fatal(autotls.RunWithManager(router, &m))
 }
 ```
+
+:::note
+يتطلب Let's Encrypt أن يكون خادمك قابلاً للوصول على المنفذ 80 و443 من الإنترنت العام. لن يعمل هذا على localhost أو خلف جدار حماية يحظر الاتصالات الواردة.
+:::
+
+## انظر أيضاً
+
+- [تكوين HTTP مخصص](/ar/docs/server-config/custom-http-config/)

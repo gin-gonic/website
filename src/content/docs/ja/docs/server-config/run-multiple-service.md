@@ -4,7 +4,9 @@ sidebar:
   order: 4
 ---
 
-[こちらの質問](https://github.com/gin-gonic/gin/issues/346)を参照し、以下の例を試してみてください：
+`golang.org/x/sync/errgroup` パッケージの `errgroup.Group` を使用して、同じプロセス内で複数のGinサーバーを異なるポートで実行できます。これは、パブリックAPI（ポート8080）と管理API（ポート8081）など、別々のバイナリをデプロイせずに異なるAPIを公開する必要がある場合に便利です。
+
+各サーバーは独自のルーター、ミドルウェアスタック、`http.Server` 設定を持ちます。
 
 ```go
 package main
@@ -26,13 +28,10 @@ func router01() http.Handler {
   e := gin.New()
   e.Use(gin.Recovery())
   e.GET("/", func(c *gin.Context) {
-    c.JSON(
-      http.StatusOK,
-      gin.H{
-        "code":  http.StatusOK,
-        "message": "Welcome server 01",
-      },
-    )
+    c.JSON(http.StatusOK, gin.H{
+      "code":    http.StatusOK,
+      "message": "Welcome server 01",
+    })
   })
 
   return e
@@ -42,13 +41,10 @@ func router02() http.Handler {
   e := gin.New()
   e.Use(gin.Recovery())
   e.GET("/", func(c *gin.Context) {
-    c.JSON(
-      http.StatusOK,
-      gin.H{
-        "code":  http.StatusOK,
-        "message": "Welcome server 02",
-      },
-    )
+    c.JSON(http.StatusOK, gin.H{
+      "code":    http.StatusOK,
+      "message": "Welcome server 02",
+    })
   })
 
   return e
@@ -82,3 +78,24 @@ func main() {
   }
 }
 ```
+
+## テスト
+
+```sh
+# Server 01 on port 8080
+curl http://localhost:8080/
+# Output: {"code":200,"message":"Welcome server 01"}
+
+# Server 02 on port 8081
+curl http://localhost:8081/
+# Output: {"code":200,"message":"Welcome server 02"}
+```
+
+:::note
+いずれかのサーバーが起動に失敗した場合（例えば、ポートが既に使用中の場合）、`g.Wait()` は最初のエラーを返します。プロセスが実行し続けるには、両方のサーバーが正常に起動する必要があります。
+:::
+
+## 関連項目
+
+- [カスタムHTTP設定](/ja/docs/server-config/custom-http-config/)
+- [グレースフルリスタートまたは停止](/ja/docs/server-config/graceful-restart-or-stop/)

@@ -6,9 +6,18 @@ sidebar:
 
 你可以使用 `LoggerConfig` 對特定路徑或基於自訂邏輯跳過日誌記錄。
 
-使用 `SkipPaths` 排除特定路由不被記錄，使用 `Skip` 函式根據請求上下文進行自訂跳過邏輯。
+- `SkipPaths` 排除特定路由不被記錄——適用於會產生大量雜訊的健康檢查或指標端點。
+- `Skip` 是一個接收 `*gin.Context` 並回傳 `true` 以跳過記錄的函式——適用於條件邏輯，例如跳過成功的回應。
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.New()
 
@@ -17,24 +26,24 @@ func main() {
 
   // skip logging based on your logic by setting Skip func in LoggerConfig
   loggerConfig.Skip = func(c *gin.Context) bool {
-      // as an example skip non server side errors
-      return c.Writer.Status() < http.StatusInternalServerError
+    // as an example skip non server side errors
+    return c.Writer.Status() < http.StatusInternalServerError
   }
 
   router.Use(gin.LoggerWithConfig(loggerConfig))
   router.Use(gin.Recovery())
 
-  // skipped
+  // skipped -- path is in SkipPaths
   router.GET("/metrics", func(c *gin.Context) {
-      c.Status(http.StatusNotImplemented)
+    c.Status(http.StatusNotImplemented)
   })
 
-  // skipped
+  // skipped -- status < 500
   router.GET("/ping", func(c *gin.Context) {
-      c.String(http.StatusOK, "pong")
+    c.String(http.StatusOK, "pong")
   })
 
-  // not skipped
+  // not skipped -- status is 501 (>= 500)
   router.GET("/data", func(c *gin.Context) {
     c.Status(http.StatusNotImplemented)
   })
@@ -42,3 +51,22 @@ func main() {
   router.Run(":8080")
 }
 ```
+
+## 測試
+
+```sh
+# This request is logged (status 501 >= 500)
+curl http://localhost:8080/data
+
+# This request is NOT logged (path in SkipPaths)
+curl http://localhost:8080/metrics
+
+# This request is NOT logged (status 200 < 500)
+curl http://localhost:8080/ping
+# Output: pong
+```
+
+## 另請參閱
+
+- [自訂日誌格式](/zh-tw/docs/logging/custom-log-format/)
+- [寫入日誌](/zh-tw/docs/logging/write-log/)

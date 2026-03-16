@@ -4,38 +4,60 @@ sidebar:
   order: 5
 ---
 
-به طور معمول، JSON کاراکترهای خاص HTML را با موجودیت‌های یونیکد جایگزین می‌کند، مثلاً `<` به `\u003c` تبدیل می‌شود. اگر می‌خواهید چنین کاراکترهایی را به صورت لفظی کدگذاری کنید، می‌توانید به جای آن از PureJSON استفاده کنید.
+به‌طور معمول، `json.Marshal` در Go کاراکترهای خاص HTML را برای امنیت با دنباله‌های فرار یونیکد جایگزین می‌کند -- به‌عنوان مثال، `<` به `\u003c` تبدیل می‌شود. این برای جاسازی JSON در HTML مناسب است، اما اگر در حال ساخت یک API خالص هستید، کلاینت‌ها ممکن است انتظار کاراکترهای واقعی را داشته باشند.
+
+`c.PureJSON` از `json.Encoder` با `SetEscapeHTML(false)` استفاده می‌کند، بنابراین کاراکترهای HTML مانند `<`، `>` و `&` به‌صورت واقعی رندر می‌شوند به‌جای اینکه فرار داده شوند.
+
+از `PureJSON` زمانی استفاده کنید که مصرف‌کنندگان API شما انتظار JSON خام و بدون فرار دارند. از `JSON` استاندارد زمانی استفاده کنید که پاسخ ممکن است در یک صفحه HTML جاسازی شود.
 
 ```go
 package main
 
 import (
+  "net/http"
+
   "github.com/gin-gonic/gin"
 )
 
 func main() {
   router := gin.Default()
 
-  // Serves unicode entities
+  // Standard JSON -- escapes HTML characters
   router.GET("/json", func(c *gin.Context) {
-    c.JSON(200, gin.H{
+    c.JSON(http.StatusOK, gin.H{
       "html": "<b>Hello, world!</b>",
     })
   })
 
-  // Serves literal characters
+  // PureJSON -- serves literal characters
   router.GET("/purejson", func(c *gin.Context) {
-    c.PureJSON(200, gin.H{
+    c.PureJSON(http.StatusOK, gin.H{
       "html": "<b>Hello, world!</b>",
     })
   })
 
-  // Abort early with a PureJSON response and status code (v1.11+)
-  router.GET("/abort_purejson", func(c *gin.Context) {
-    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
-  })
-
-  // listen and serve on 0.0.0.0:8080
   router.Run(":8080")
 }
 ```
+
+## تست
+
+```sh
+# Standard JSON -- HTML characters are escaped
+curl http://localhost:8080/json
+# Output: {"html":"\u003cb\u003eHello, world!\u003c/b\u003e"}
+
+# PureJSON -- HTML characters are literal
+curl http://localhost:8080/purejson
+# Output: {"html":"<b>Hello, world!</b>"}
+```
+
+:::tip
+Gin همچنین `c.AbortWithStatusPureJSON` (نسخه 1.11 به بعد) را برای برگرداندن JSON بدون فرار هنگام متوقف کردن زنجیره میان‌افزار ارائه می‌دهد -- مفید در میان‌افزارهای احراز هویت یا اعتبارسنجی.
+:::
+
+## همچنین ببینید
+
+- [AsciiJSON](/fa/docs/rendering/ascii-json/)
+- [SecureJSON](/fa/docs/rendering/secure-json/)
+- [رندرینگ](/fa/docs/rendering/rendering/)

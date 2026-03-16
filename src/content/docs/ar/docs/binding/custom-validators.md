@@ -4,7 +4,9 @@ sidebar:
   order: 2
 ---
 
-من الممكن أيضاً تسجيل محققين مخصصين. راجع [الكود النموذجي](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations).
+يستخدم Gin مكتبة [go-playground/validator](https://github.com/go-playground/validator) للتحقق على مستوى الحقول. بالإضافة إلى المحققين المدمجين (مثل `required`، `email`، `min`، `max`)، يمكنك تسجيل دوال التحقق المخصصة الخاصة بك.
+
+المثال أدناه يسجّل محققاً `bookabledate` يرفض التواريخ في الماضي، مما يضمن أن تواريخ تسجيل الوصول والمغادرة تكون دائماً في المستقبل.
 
 ```go
 package main
@@ -56,13 +58,23 @@ func getBookable(c *gin.Context) {
 }
 ```
 
-```sh
-$ curl "localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
-{"message":"Booking dates are valid!"}
+## اختبره
 
-$ curl "localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
-{"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
+```sh
+# Both dates are in the future and check_out > check_in
+curl "http://localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
+# Output: {"message":"Booking dates are valid!"}
+
+# check_out is before check_in -- fails gtfield validation
+curl "http://localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
+# Output: {"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
 ```
 
-يمكن أيضاً تسجيل [التحققات على مستوى الهيكل](https://github.com/go-playground/validator/releases/tag/v8.7) بهذه الطريقة.
-راجع [مثال التحقق على مستوى الهيكل](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) لمعرفة المزيد.
+:::tip
+يمكنك أيضاً تسجيل [تحققات على مستوى الهيكل](https://github.com/go-playground/validator/releases/tag/v8.7) لقواعد عبر الحقول تتجاوز فحوصات الحقل الواحد. راجع [مثال struct-lvl-validation](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) لمعرفة المزيد.
+:::
+
+## انظر أيضاً
+
+- [الربط والتحقق](/ar/docs/binding/binding-and-validation/)
+- [ربط القيم الافتراضية](/ar/docs/binding/bind-default-values/)

@@ -4,16 +4,19 @@ sidebar:
   order: 6
 ---
 
-Формат лога маршрутов по умолчанию:
+При запуске Gin в режиме отладки выводит все зарегистрированные маршруты. Формат по умолчанию выглядит так:
+
 ```
 [GIN-debug] POST   /foo                      --> main.main.func1 (3 handlers)
 [GIN-debug] GET    /bar                      --> main.main.func2 (3 handlers)
 [GIN-debug] GET    /status                   --> main.main.func3 (3 handlers)
 ```
 
-Если вы хотите логировать эту информацию в заданном формате (например, JSON, ключ-значение или что-то другое), вы можете определить этот формат с помощью `gin.DebugPrintRouteFunc`.
-В примере ниже мы логируем все маршруты с помощью стандартного пакета log, но вы можете использовать другой инструмент логирования, который соответствует вашим потребностям.
+Вы можете настроить этот формат, назначив функцию переменной `gin.DebugPrintRouteFunc`. Это полезно, если вы хотите логировать маршруты в формате JSON, пар ключ-значение или в любом другом формате, ожидаемом вашей системой логирования.
+
 ```go
+package main
+
 import (
   "log"
   "net/http"
@@ -23,6 +26,7 @@ import (
 
 func main() {
   router := gin.Default()
+
   gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
     log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
   }
@@ -39,7 +43,19 @@ func main() {
     c.JSON(http.StatusOK, "ok")
   })
 
-  // Listen and Server in http://0.0.0.0:8080
-  router.Run()
+  router.Run(":8080")
 }
 ```
+
+При запуске сервера вместо стандартных строк `[GIN-debug]` вы увидите:
+
+```
+endpoint POST /foo main.main.func2 3
+endpoint GET /bar main.main.func3 3
+endpoint GET /status main.main.func4 3
+```
+
+## Смотрите также
+
+- [Пользовательский формат логов](/ru/docs/logging/custom-log-format/)
+- [Пропуск логирования](/ru/docs/logging/skip-logging/)

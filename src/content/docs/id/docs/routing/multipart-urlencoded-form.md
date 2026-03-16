@@ -10,6 +10,14 @@ Gunakan `c.PostForm()` dan `c.DefaultPostForm()` untuk membaca nilai dari pengir
 - `c.DefaultPostForm("field", "fallback")` mengembalikan nilai atau default yang ditentukan jika field tidak ada.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,16 +35,23 @@ func main() {
 }
 ```
 
-### Coba jalankan
+## Uji coba
 
 ```sh
 # URL-encoded form
 curl -X POST http://localhost:8080/form_post \
   -d "message=hello&nick=world"
+# Output: {"message":"hello","nick":"world","status":"posted"}
 
 # Multipart form
 curl -X POST http://localhost:8080/form_post \
   -F "message=hello" -F "nick=world"
+# Output: {"message":"hello","nick":"world","status":"posted"}
+
+# Missing nick -- falls back to default "anonymous"
+curl -X POST http://localhost:8080/form_post \
+  -d "message=hello"
+# Output: {"message":"hello","nick":"anonymous","status":"posted"}
 ```
 
 ## Lihat juga

@@ -4,15 +4,15 @@ sidebar:
   order: 3
 ---
 
-この例では、`http.MaxBytesReader`を使用してアップロードファイルの最大サイズを厳密に制限し、制限を超えた場合に`413`ステータスを返す方法を示します。
+`http.MaxBytesReader` を使用して、アップロードファイルの最大サイズを厳密に制限します。制限を超えた場合、リーダーはエラーを返し、`413 Request Entity Too Large` ステータスで応答できます。
 
-詳細は[サンプルコード](https://github.com/gin-gonic/examples/blob/master/upload-file/limit-bytes/main.go)を参照してください。
+これは、クライアントが過度に大きなファイルを送信してサーバーのメモリやディスクスペースを消耗させるサービス拒否攻撃を防ぐために重要です。
 
-## 動作の仕組み
+## 仕組み
 
-1. **制限の定義** -- 定数`MaxUploadSize`（1 MB）がアップロードのハードキャップを設定します。
-2. **制限の適用** -- `http.MaxBytesReader`が`c.Request.Body`をラップします。クライアントが許可されたバイト数を超えて送信した場合、リーダーは停止してエラーを返します。
-3. **パースとチェック** -- `c.Request.ParseMultipartForm`が読み取りをトリガーします。コードは`*http.MaxBytesError`をチェックして、明確なメッセージとともに`413 Request Entity Too Large`ステータスを返します。
+1. **制限の定義** -- 定数 `MaxUploadSize`（1 MB）がアップロードのハードキャップを設定します。
+2. **制限の適用** -- `http.MaxBytesReader` が `c.Request.Body` をラップします。クライアントが許可されたバイト数を超えて送信した場合、リーダーは停止してエラーを返します。
+3. **パースと確認** -- `c.Request.ParseMultipartForm` が読み取りをトリガーします。コードは `*http.MaxBytesError` を確認し、明確なメッセージと共に `413` ステータスを返します。
 
 ```go
 package main
@@ -29,10 +29,10 @@ const (
 )
 
 func uploadHandler(c *gin.Context) {
-  // MaxUploadSizeバイトのみ許可するようにボディリーダーをラップ
+  // Wrap the body reader so only MaxUploadSize bytes are allowed
   c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, MaxUploadSize)
 
-  // Multipartフォームをパース
+  // Parse multipart form
   if err := c.Request.ParseMultipartForm(MaxUploadSize); err != nil {
     if _, ok := err.(*http.MaxBytesError); ok {
       c.JSON(http.StatusRequestEntityTooLarge, gin.H{
@@ -63,10 +63,21 @@ func main() {
 }
 ```
 
-`curl`の使い方：
+## テスト
 
 ```sh
+# Upload a small file (under 1 MB) -- succeeds
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
-  -H "Content-Type: multipart/form-data"
+  -F "file=@/path/to/small-file.txt"
+# Output: {"message":"upload successful"}
+
+# Upload a large file (over 1 MB) -- rejected
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/path/to/large-file.zip"
+# Output: {"error":"file too large (max: 1048576 bytes)"}
 ```
+
+## 関連項目
+
+- [単一ファイル](/ja/docs/routing/upload-file/single-file/)
+- [複数ファイル](/ja/docs/routing/upload-file/multiple-file/)

@@ -4,97 +4,75 @@ sidebar:
   order: 4
 ---
 
-典型的なRESTfulアプリケーションでは、あらゆるルートで次のようなエラーが発生する可能性があります：
+典型的なRESTfulアプリケーションでは、あらゆるルートでエラーが発生する可能性があります。無効な入力、データベースの障害、未認証のアクセス、内部バグなどです。各ハンドラで個別にエラーを処理すると、繰り返しのコードと一貫性のないレスポンスにつながります。
 
-- ユーザーからの無効な入力
-- データベースの障害
-- 不正なアクセス
-- 内部サーバーバグ
-
-デフォルトでは、Ginは`c.Error(err)`を使用して各ルートでエラーを手動で処理できます。
-しかし、これはすぐに繰り返しが多く、一貫性のないものになりがちです。
-
-この問題を解決するために、カスタムミドルウェアを使用してすべてのエラーを一箇所で処理できます。
-このミドルウェアは各リクエストの後に実行され、Ginコンテキスト（`c.Errors`）に追加されたエラーをチェックします。
-エラーが見つかった場合、適切なステータスコード付きの構造化されたJSONレスポンスを送信します。
-
-#### 例
+集中型のエラーハンドリングミドルウェアは、各リクエストの後に実行され、`c.Error(err)` を介してGinコンテキストに追加されたエラーを確認することで、この問題を解決します。エラーが見つかった場合、適切なステータスコードと構造化されたJSONレスポンスを送信します。
 
 ```go
+package main
+
 import (
   "errors"
   "net/http"
+
   "github.com/gin-gonic/gin"
 )
 
-// ErrorHandlerはエラーをキャプチャし、一貫したJSONエラーレスポンスを返します
+// ErrorHandler captures errors and returns a consistent JSON error response
 func ErrorHandler() gin.HandlerFunc {
-    return func(c *gin.Context) {
-        c.Next() // ステップ1: まずリクエストを処理。
+  return func(c *gin.Context) {
+    c.Next() // Process the request first
 
-        // ステップ2: コンテキストにエラーが追加されたかチェック
-        if len(c.Errors) > 0 {
-            // ステップ3: 最後のエラーを使用
-            err := c.Errors.Last().Err
+    // Check if any errors were added to the context
+    if len(c.Errors) > 0 {
+      err := c.Errors.Last().Err
 
-            // ステップ4: 汎用エラーメッセージで応答
-            c.JSON(http.StatusInternalServerError, map[string]any{
-                "success": false,
-                "message": err.Error(),
-            })
-        }
-
-        // エラーが見つからない場合のその他のステップ
+      c.JSON(http.StatusInternalServerError, gin.H{
+        "success": false,
+        "message": err.Error(),
+      })
     }
+  }
 }
 
 func main() {
-    r := gin.Default()
+  r := gin.Default()
 
-    // エラーハンドリングミドルウェアを登録
-    r.Use(ErrorHandler())
+  // Attach the error-handling middleware
+  r.Use(ErrorHandler())
 
-    r.GET("/ok", func(c *gin.Context) {
-        somethingWentWrong := false
-
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
+  r.GET("/ok", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "success": true,
+      "message": "Everything is fine!",
     })
+  })
 
-    r.GET("/error", func(c *gin.Context) {
-        somethingWentWrong := true
+  r.GET("/error", func(c *gin.Context) {
+    c.Error(errors.New("something went wrong"))
+  })
 
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
-    })
-
-    r.Run()
+  r.Run(":8080")
 }
-
 ```
 
-#### 拡張
+## テスト
 
-- エラーをステータスコードにマッピング
-- エラーコードに基づいて異なるエラーレスポンスを生成
-- エラーをロギング
+```sh
+# Successful request
+curl http://localhost:8080/ok
+# Output: {"message":"Everything is fine!","success":true}
 
-#### エラーハンドリングミドルウェアの利点
+# Error request -- middleware catches the error
+curl http://localhost:8080/error
+# Output: {"message":"something went wrong","success":false}
+```
 
-- **一貫性**: すべてのエラーが同じフォーマットに従う
-- **クリーンなルート**: ビジネスロジックがエラーフォーマットから分離される
-- **重複の削減**: すべてのハンドラでエラーハンドリングロジックを繰り返す必要がない
+:::tip
+このパターンを拡張して、特定のエラータイプを異なるHTTPステータスコードにマッピングしたり、レスポンスを返す前に外部サービスにエラーをログ記録したりできます。
+:::
+
+## 関連項目
+
+- [カスタムミドルウェア](/ja/docs/middleware/custom-middleware/)
+- [ミドルウェアの使用](/ja/docs/middleware/using-middleware/)

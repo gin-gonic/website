@@ -4,16 +4,19 @@ sidebar:
   order: 6
 ---
 
-ルートのデフォルトログは以下の通りです：
+Ginが起動すると、デバッグモードで登録されたすべてのルートを出力します。デフォルトのフォーマットは以下のようになります：
+
 ```
 [GIN-debug] POST   /foo                      --> main.main.func1 (3 handlers)
 [GIN-debug] GET    /bar                      --> main.main.func2 (3 handlers)
 [GIN-debug] GET    /status                   --> main.main.func3 (3 handlers)
 ```
 
-この情報を特定のフォーマット（例：JSON、キーバリュー、その他）でログに記録したい場合は、`gin.DebugPrintRouteFunc`でこのフォーマットを定義できます。
-以下の例では、標準logパッケージですべてのルートをログに記録していますが、ニーズに合った他のログツールを使用することもできます。
+`gin.DebugPrintRouteFunc` に関数を割り当てることで、このフォーマットをカスタマイズできます。これは、ルートをJSON、キーバリューペア、またはログパイプラインが期待するその他のフォーマットでログに記録したい場合に便利です。
+
 ```go
+package main
+
 import (
   "log"
   "net/http"
@@ -23,6 +26,7 @@ import (
 
 func main() {
   router := gin.Default()
+
   gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
     log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
   }
@@ -39,7 +43,19 @@ func main() {
     c.JSON(http.StatusOK, "ok")
   })
 
-  // http://0.0.0.0:8080でリッスンしてサーブ
-  router.Run()
+  router.Run(":8080")
 }
 ```
+
+サーバーが起動すると、デフォルトの `[GIN-debug]` 行の代わりに以下が表示されます：
+
+```
+endpoint POST /foo main.main.func2 3
+endpoint GET /bar main.main.func3 3
+endpoint GET /status main.main.func4 3
+```
+
+## 関連項目
+
+- [カスタムログフォーマット](/ja/docs/logging/custom-log-format/)
+- [ロギングのスキップ](/ja/docs/logging/skip-logging/)

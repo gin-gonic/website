@@ -4,7 +4,9 @@ sidebar:
   order: 2
 ---
 
-也可以註冊自訂驗證器。請參閱[範例程式碼](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations)。
+Gin 使用 [go-playground/validator](https://github.com/go-playground/validator) 進行欄位級別驗證。除了內建驗證器（如 `required`、`email`、`min`、`max`）之外，你還可以註冊自己的自訂驗證函式。
+
+以下範例註冊了一個 `bookabledate` 驗證器，它會拒絕過去的日期，確保預訂的入住和退房日期始終在未來。
 
 ```go
 package main
@@ -56,13 +58,23 @@ func getBookable(c *gin.Context) {
 }
 ```
 
-```sh
-$ curl "localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
-{"message":"Booking dates are valid!"}
+## 測試
 
-$ curl "localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
-{"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
+```sh
+# Both dates are in the future and check_out > check_in
+curl "http://localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
+# Output: {"message":"Booking dates are valid!"}
+
+# check_out is before check_in -- fails gtfield validation
+curl "http://localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
+# Output: {"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
 ```
 
-也可以用這種方式註冊[結構體層級驗證](https://github.com/go-playground/validator/releases/tag/v8.7)。
-請參閱 [struct-lvl-validation 範例](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations)以了解更多。
+:::tip
+你也可以註冊[結構體級別驗證](https://github.com/go-playground/validator/releases/tag/v8.7)來處理超越單一欄位檢查的跨欄位規則。請參閱 [struct-lvl-validation 範例](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations)以了解更多。
+:::
+
+## 另請參閱
+
+- [綁定與驗證](/zh-tw/docs/binding/binding-and-validation/)
+- [綁定預設值](/zh-tw/docs/binding/bind-default-values/)

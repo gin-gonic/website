@@ -10,6 +10,14 @@ sidebar:
 - `c.DefaultPostForm("field", "fallback")` 返回值，如果字段不存在则返回指定的默认值。
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,16 +35,23 @@ func main() {
 }
 ```
 
-### 测试一下
+## 测试
 
 ```sh
 # URL-encoded form
 curl -X POST http://localhost:8080/form_post \
   -d "message=hello&nick=world"
+# Output: {"message":"hello","nick":"world","status":"posted"}
 
 # Multipart form
 curl -X POST http://localhost:8080/form_post \
   -F "message=hello" -F "nick=world"
+# Output: {"message":"hello","nick":"world","status":"posted"}
+
+# Missing nick -- falls back to default "anonymous"
+curl -X POST http://localhost:8080/form_post \
+  -d "message=hello"
+# Output: {"message":"hello","nick":"anonymous","status":"posted"}
 ```
 
 ## 另请参阅

@@ -4,9 +4,20 @@ sidebar:
   order: 13
 ---
 
-普通的请求体绑定方法会消费 `c.Request.Body`，因此不能被多次调用。
+标准的绑定方法如 `c.ShouldBind` 会消费 `c.Request.Body`，它是一个 `io.ReadCloser`——一旦读取后就无法再次读取。这意味着你不能对同一个请求多次调用 `c.ShouldBind` 来尝试不同的结构体。
+
+要解决这个问题，请使用 `c.ShouldBindBodyWith`。它会读取一次请求体并将其存储在上下文中，允许后续的绑定重用缓存的请求体。
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin/binding"
+)
+
 type formA struct {
   Foo string `json:"foo" xml:"foo" binding:"required"`
 }
@@ -15,41 +26,51 @@ type formB struct {
   Bar string `json:"bar" xml:"bar" binding:"required"`
 }
 
-func SomeHandler(c *gin.Context) {
-  objA := formA{}
-  objB := formB{}
-  // This c.ShouldBind consumes c.Request.Body and it cannot be reused.
-  if errA := c.ShouldBind(&objA); errA == nil {
-    c.String(http.StatusOK, `the body should be formA`)
-  // Always an error is occurred by this because c.Request.Body is EOF now.
-  } else if errB := c.ShouldBind(&objB); errB == nil {
-    c.String(http.StatusOK, `the body should be formB`)
-  } else {
-    ...
-  }
+func main() {
+  router := gin.Default()
+
+  router.POST("/bind", func(c *gin.Context) {
+    objA := formA{}
+    objB := formB{}
+    // This reads c.Request.Body and stores the result into the context.
+    if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
+      c.JSON(http.StatusOK, gin.H{"message": "matched formA", "foo": objA.Foo})
+      return
+    }
+    // At this time, it reuses body stored in the context.
+    if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
+      c.JSON(http.StatusOK, gin.H{"message": "matched formB", "bar": objB.Bar})
+      return
+    }
+
+    c.JSON(http.StatusBadRequest, gin.H{"error": "request body did not match any known format"})
+  })
+
+  router.Run(":8080")
 }
 ```
 
-为此，你可以使用 `c.ShouldBindBodyWith`。
+## 测试
 
-```go
-func SomeHandler(c *gin.Context) {
-  objA := formA{}
-  objB := formB{}
-  // This reads c.Request.Body and stores the result into the context.
-  if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
-    c.String(http.StatusOK, `the body should be formA`)
-  // At this time, it reuses body stored in the context.
-  } else if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
-    c.String(http.StatusOK, `the body should be formB JSON`)
-  // And it can accepts other formats
-  } else if errB2 := c.ShouldBindBodyWith(&objB, binding.XML); errB2 == nil {
-    c.String(http.StatusOK, `the body should be formB XML`)
-  } else {
-    ...
-  }
-}
+```sh
+# Body matches formA
+curl -X POST http://localhost:8080/bind \
+  -H "Content-Type: application/json" \
+  -d '{"foo":"hello"}'
+# Output: {"foo":"hello","message":"matched formA"}
+
+# Body matches formB
+curl -X POST http://localhost:8080/bind \
+  -H "Content-Type: application/json" \
+  -d '{"bar":"world"}'
+# Output: {"bar":"world","message":"matched formB"}
 ```
 
-* `c.ShouldBindBodyWith` 在绑定之前会将请求体存储到上下文中。这对性能有轻微影响，因此如果你只需要绑定一次，不应该使用此方法。
-* 此功能仅适用于某些格式——`JSON`、`XML`、`MsgPack`、`ProtoBuf`。对于其他格式，`Query`、`Form`、`FormPost`、`FormMultipart` 可以通过 `c.ShouldBind()` 多次调用而不会影响性能（参见 [#1341](https://github.com/gin-gonic/gin/pull/1341)）。
+:::note
+`c.ShouldBindBodyWith` 在绑定之前会将请求体存储到上下文中。这会对性能产生轻微影响，因此仅在需要多次绑定请求体时使用。对于不读取请求体的格式——如 `Query`、`Form`、`FormPost`、`FormMultipart`——你可以多次调用 `c.ShouldBind()` 而不会有任何问题。
+:::
+
+## 另请参阅
+
+- [绑定和验证](/zh-cn/docs/binding/binding-and-validation/)
+- [绑定查询字符串或 POST 数据](/zh-cn/docs/binding/bind-query-or-post/)

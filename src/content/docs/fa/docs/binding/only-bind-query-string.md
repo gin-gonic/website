@@ -4,13 +4,15 @@ sidebar:
   order: 3
 ---
 
-تابع `ShouldBindQuery` فقط پارامترهای پرس‌وجو را متصل می‌کند و نه داده‌های ارسالی. [اطلاعات جزئی](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017) را ببینید.
+`ShouldBindQuery` فقط پارامترهای رشته پرس‌وجوی URL را به struct متصل می‌کند و بدنه درخواست را کاملاً نادیده می‌گیرد. این زمانی مفید است که می‌خواهید مطمئن شوید داده‌های بدنه POST به‌طور تصادفی پارامترهای پرس‌وجو را بازنویسی نکنند -- مثلاً در endpointهایی که هم فیلترهای query و هم بدنه JSON دریافت می‌کنند.
+
+در مقابل، `ShouldBind` در درخواست GET نیز از اتصال query استفاده می‌کند، اما در درخواست POST ابتدا بدنه را بررسی می‌کند. از `ShouldBindQuery` زمانی استفاده کنید که صریحاً فقط اتصال query را می‌خواهید، صرف‌نظر از متد HTTP.
 
 ```go
 package main
 
 import (
-  "log"
+  "net/http"
 
   "github.com/gin-gonic/gin"
 )
@@ -28,11 +30,32 @@ func main() {
 
 func startPage(c *gin.Context) {
   var person Person
-  if c.ShouldBindQuery(&person) == nil {
-    log.Println("====== Only Bind By Query String ======")
-    log.Println(person.Name)
-    log.Println(person.Address)
+  if err := c.ShouldBindQuery(&person); err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    return
   }
-  c.String(200, "Success")
+
+  c.JSON(http.StatusOK, gin.H{
+    "name":    person.Name,
+    "address": person.Address,
+  })
 }
 ```
+
+## تست
+
+```sh
+# GET with query parameters
+curl "http://localhost:8085/testing?name=appleboy&address=xyz"
+# Output: {"address":"xyz","name":"appleboy"}
+
+# POST with query parameters -- body is ignored, only query is bound
+curl -X POST "http://localhost:8085/testing?name=appleboy&address=xyz" \
+  -d "name=ignored&address=ignored"
+# Output: {"address":"xyz","name":"appleboy"}
+```
+
+## همچنین ببینید
+
+- [اتصال رشته پرس‌وجو یا داده ارسالی](/fa/docs/binding/bind-query-or-post/)
+- [اتصال و اعتبارسنجی](/fa/docs/binding/binding-and-validation/)

@@ -4,13 +4,19 @@ sidebar:
   order: 4
 ---
 
-請參閱[詳細資訊](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292)。
+`ShouldBind` 會根據 HTTP 方法和 `Content-Type` 標頭自動選擇綁定引擎：
+
+- 對於 **GET** 請求，使用查詢字串綁定（`form` 標籤）。
+- 對於 **POST/PUT** 請求，會檢查 `Content-Type`——對 `application/json` 使用 JSON 綁定，對 `application/xml` 使用 XML 綁定，對 `application/x-www-form-urlencoded` 或 `multipart/form-data` 使用表單綁定。
+
+這意味著單一處理器可以接受來自查詢字串和請求主體的資料，而無需手動選擇來源。
 
 ```go
 package main
 
 import (
   "log"
+  "net/http"
   "time"
 
   "github.com/gin-gonic/gin"
@@ -25,30 +31,51 @@ type Person struct {
 func main() {
   route := gin.Default()
   route.GET("/testing", startPage)
+  route.POST("/testing", startPage)
   route.Run(":8085")
 }
 
 func startPage(c *gin.Context) {
   var person Person
-  // If `GET`, only `Form` binding engine (`query`) used.
-  // If `POST`, first checks the `content-type` for `JSON` or `XML`, then uses `Form` (`form-data`).
-  // See more at https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
-  err := c.ShouldBind(&person)
-  if err != nil {
+  if err := c.ShouldBind(&person); err != nil {
     c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
     return
   }
 
-  log.Println(person.Name)
-  log.Println(person.Address)
-  log.Println(person.Birthday)
-
-  c.String(200, "Success")
+  log.Printf("Name: %s, Address: %s, Birthday: %s\n", person.Name, person.Address, person.Birthday)
+  c.JSON(http.StatusOK, gin.H{
+    "name":     person.Name,
+    "address":  person.Address,
+    "birthday": person.Birthday,
+  })
 }
 ```
 
-測試方式：
+## 測試
 
 ```sh
-curl -X GET "localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
+# GET with query string parameters
+curl "http://localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
+# Output: {"address":"xyz","birthday":"1992-03-15T00:00:00Z","name":"appleboy"}
+
+# POST with form data
+curl -X POST http://localhost:8085/testing \
+  -d "name=appleboy&address=xyz&birthday=1992-03-15"
+# Output: {"address":"xyz","birthday":"1992-03-15T00:00:00Z","name":"appleboy"}
+
+# POST with JSON body
+curl -X POST http://localhost:8085/testing \
+  -H "Content-Type: application/json" \
+  -d '{"name":"appleboy","address":"xyz","birthday":"1992-03-15"}'
+# Output: {"address":"xyz","birthday":"1992-03-15T00:00:00Z","name":"appleboy"}
 ```
+
+:::note
+`time_format` 標籤使用 Go 的[參考時間格式](https://pkg.go.dev/time#pkg-constants)。格式 `2006-01-02` 表示「年-月-日」。`time_utc:"1"` 標籤確保解析的時間為 UTC。
+:::
+
+## 另請參閱
+
+- [綁定與驗證](/zh-tw/docs/binding/binding-and-validation/)
+- [僅綁定查詢字串](/zh-tw/docs/binding/only-bind-query-string/)
+- [綁定標頭](/zh-tw/docs/binding/bind-header/)

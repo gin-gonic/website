@@ -4,30 +4,46 @@ sidebar:
   order: 10
 ---
 
-Consulta la [información detallada](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092)
+Los checkboxes HTML con el mismo atributo `name` envían múltiples valores cuando están marcados. Gin puede enlazar estos valores directamente en un slice `[]string` en tu struct usando la etiqueta de struct `form` con el sufijo `[]` que coincida con el nombre HTML.
 
-main.go
+Esto es útil para formularios donde los usuarios seleccionan una o más opciones — como selectores de color, selectores de permisos o filtros de selección múltiple.
 
 ```go
-...
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
 
 type myForm struct {
-    Colors []string `form:"colors[]"`
+  Colors []string `form:"colors[]"`
 }
 
-...
+func main() {
+  router := gin.Default()
 
-func formHandler(c *gin.Context) {
+  router.LoadHTMLGlob("templates/*")
+
+  router.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "form.html", nil)
+  })
+
+  router.POST("/", func(c *gin.Context) {
     var fakeForm myForm
-    c.ShouldBind(&fakeForm)
-    c.JSON(200, gin.H{"color": fakeForm.Colors})
+    if err := c.ShouldBind(&fakeForm); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
+    c.JSON(http.StatusOK, gin.H{"color": fakeForm.Colors})
+  })
+
+  router.Run(":8080")
 }
-
-...
-
 ```
 
-form.html
+El formulario HTML correspondiente (`templates/form.html`):
 
 ```html
 <form action="/" method="POST">
@@ -42,9 +58,29 @@ form.html
 </form>
 ```
 
-resultado:
+## Pruébalo
 
 ```sh
-{"color":["red","green","blue"]}
+# Select all three colors
+curl -X POST http://localhost:8080/ \
+  -d "colors[]=red&colors[]=green&colors[]=blue"
+# Output: {"color":["red","green","blue"]}
+
+# Select only one color
+curl -X POST http://localhost:8080/ \
+  -d "colors[]=green"
+# Output: {"color":["green"]}
+
+# No checkboxes selected -- slice is empty
+curl -X POST http://localhost:8080/
+# Output: {"color":[]}
 ```
 
+:::tip
+El sufijo `[]` en `colors[]` es una convención HTML, no un requisito de Go. La etiqueta del struct debe coincidir exactamente con el atributo `name` del HTML. Si tu HTML usa `name="colors"` (sin corchetes), tu etiqueta de struct debería ser `form:"colors"`.
+:::
+
+## Ver también
+
+- [Enlace y validación](/es/docs/binding/binding-and-validation/)
+- [Enlace Multipart/Urlencoded](/es/docs/binding/multipart-urlencoded-binding/)

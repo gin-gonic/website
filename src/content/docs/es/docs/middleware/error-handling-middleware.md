@@ -4,97 +4,75 @@ sidebar:
   order: 4
 ---
 
-En una aplicación RESTful típica, podrías encontrar errores en cualquier ruta como:
+En una aplicación RESTful típica, podrías encontrar errores en cualquier ruta — entrada inválida, fallos de base de datos, acceso no autorizado o errores internos. Manejar errores individualmente en cada handler lleva a código repetitivo y respuestas inconsistentes.
 
-- Entrada inválida del usuario
-- Fallos de base de datos
-- Acceso no autorizado
-- Errores internos del servidor
-
-Por defecto, Gin te permite manejar errores manualmente en cada ruta usando `c.Error(err)`.
-Pero esto puede volverse repetitivo e inconsistente rápidamente.
-
-Para resolver esto, podemos usar middleware personalizado para manejar todos los errores en un solo lugar.
-Este middleware se ejecuta después de cada solicitud y verifica si hay errores añadidos al contexto de Gin (`c.Errors`).
-Si encuentra uno, envía una respuesta JSON estructurada con un código de estado apropiado.
-
-#### Ejemplo
+Un middleware centralizado de manejo de errores resuelve esto ejecutándose después de cada solicitud y verificando si hay errores añadidos al contexto de Gin mediante `c.Error(err)`. Si se encuentran errores, envía una respuesta JSON estructurada con un código de estado apropiado.
 
 ```go
+package main
+
 import (
   "errors"
   "net/http"
+
   "github.com/gin-gonic/gin"
 )
 
 // ErrorHandler captures errors and returns a consistent JSON error response
 func ErrorHandler() gin.HandlerFunc {
-    return func(c *gin.Context) {
-        c.Next() // Step1: Process the request first.
+  return func(c *gin.Context) {
+    c.Next() // Process the request first
 
-        // Step2: Check if any errors were added to the context
-        if len(c.Errors) > 0 {
-            // Step3: Use the last error
-            err := c.Errors.Last().Err
+    // Check if any errors were added to the context
+    if len(c.Errors) > 0 {
+      err := c.Errors.Last().Err
 
-            // Step4: Respond with a generic error message
-            c.JSON(http.StatusInternalServerError, map[string]any{
-                "success": false,
-                "message": err.Error(),
-            })
-        }
-
-        // Any other steps if no errors are found
+      c.JSON(http.StatusInternalServerError, gin.H{
+        "success": false,
+        "message": err.Error(),
+      })
     }
+  }
 }
 
 func main() {
-    r := gin.Default()
+  r := gin.Default()
 
-    // Attach the error-handling middleware
-    r.Use(ErrorHandler())
+  // Attach the error-handling middleware
+  r.Use(ErrorHandler())
 
-    r.GET("/ok", func(c *gin.Context) {
-        somethingWentWrong := false
-
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
+  r.GET("/ok", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "success": true,
+      "message": "Everything is fine!",
     })
+  })
 
-    r.GET("/error", func(c *gin.Context) {
-        somethingWentWrong := true
+  r.GET("/error", func(c *gin.Context) {
+    c.Error(errors.New("something went wrong"))
+  })
 
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
-    })
-
-    r.Run()
+  r.Run(":8080")
 }
-
 ```
 
-#### Extensiones
+## Pruébalo
 
-- Mapear errores a códigos de estado
-- Generar diferentes respuestas de error basadas en códigos de error
-- Registrar errores usando logging
+```sh
+# Successful request
+curl http://localhost:8080/ok
+# Output: {"message":"Everything is fine!","success":true}
 
-#### Beneficios del middleware de manejo de errores
+# Error request -- middleware catches the error
+curl http://localhost:8080/error
+# Output: {"message":"something went wrong","success":false}
+```
 
-- **Consistencia**: Todos los errores siguen el mismo formato
-- **Rutas limpias**: La lógica de negocio se separa del formato de errores
-- **Menos duplicación**: No es necesario repetir la lógica de manejo de errores en cada handler
+:::tip
+Puedes extender este patrón para mapear tipos de error específicos a diferentes códigos de estado HTTP, o para registrar errores en un servicio externo antes de responder.
+:::
+
+## Ver también
+
+- [Middleware personalizado](/es/docs/middleware/custom-middleware/)
+- [Usar middleware](/es/docs/middleware/using-middleware/)

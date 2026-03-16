@@ -4,15 +4,15 @@ sidebar:
   order: 3
 ---
 
-Этот пример показывает, как использовать `http.MaxBytesReader` для строгого ограничения максимального размера загружаемых файлов и возврата статуса `413` при превышении лимита.
+Используйте `http.MaxBytesReader` для строгого ограничения максимального размера загружаемых файлов. При превышении лимита reader возвращает ошибку, и вы можете ответить статусом `413 Request Entity Too Large`.
 
-Подробный [пример кода](https://github.com/gin-gonic/examples/blob/master/upload-file/limit-bytes/main.go).
+Это важно для предотвращения атак типа «отказ в обслуживании», когда клиенты отправляют чрезмерно большие файлы, чтобы исчерпать память или дисковое пространство сервера.
 
 ## Как это работает
 
-1. **Определение лимита** -- Константа `MaxUploadSize` (1 МБ) задаёт жёсткий предел для загрузок.
-2. **Применение лимита** -- `http.MaxBytesReader` оборачивает `c.Request.Body`. Если клиент отправляет больше байтов, чем разрешено, reader останавливается и возвращает ошибку.
-3. **Разбор и проверка** -- `c.Request.ParseMultipartForm` запускает чтение. Код проверяет наличие `*http.MaxBytesError` для возврата статуса `413 Request Entity Too Large` с понятным сообщением.
+1. **Определение лимита** — Константа `MaxUploadSize` (1 МБ) задаёт жёсткий предел для загрузок.
+2. **Применение лимита** — `http.MaxBytesReader` оборачивает `c.Request.Body`. Если клиент отправляет больше байтов, чем разрешено, reader останавливается и возвращает ошибку.
+3. **Разбор и проверка** — `c.Request.ParseMultipartForm` запускает чтение. Код проверяет наличие `*http.MaxBytesError` для возврата статуса `413` с понятным сообщением.
 
 ```go
 package main
@@ -63,10 +63,21 @@ func main() {
 }
 ```
 
-Как использовать `curl`:
+## Тестирование
 
 ```sh
+# Upload a small file (under 1 MB) -- succeeds
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
-  -H "Content-Type: multipart/form-data"
+  -F "file=@/path/to/small-file.txt"
+# Output: {"message":"upload successful"}
+
+# Upload a large file (over 1 MB) -- rejected
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/path/to/large-file.zip"
+# Output: {"error":"file too large (max: 1048576 bytes)"}
 ```
+
+## Смотрите также
+
+- [Один файл](/ru/docs/routing/upload-file/single-file/)
+- [Несколько файлов](/ru/docs/routing/upload-file/multiple-file/)

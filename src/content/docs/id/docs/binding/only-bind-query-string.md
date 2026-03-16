@@ -4,13 +4,15 @@ sidebar:
   order: 3
 ---
 
-Fungsi `ShouldBindQuery` hanya mengikat parameter query dan bukan data post. Lihat [informasi detail](https://github.com/gin-gonic/gin/issues/742#issuecomment-315953017).
+`ShouldBindQuery` hanya melakukan bind parameter query string URL ke struct, mengabaikan body request sepenuhnya. Ini berguna ketika Anda ingin memastikan bahwa data body POST tidak secara tidak sengaja menimpa parameter query — misalnya, pada endpoint yang menerima filter query dan body JSON.
+
+Sebaliknya, `ShouldBind` pada request GET juga menggunakan binding query, tetapi pada request POST akan memeriksa body terlebih dahulu. Gunakan `ShouldBindQuery` ketika Anda secara eksplisit menginginkan binding khusus query terlepas dari metode HTTP.
 
 ```go
 package main
 
 import (
-  "log"
+  "net/http"
 
   "github.com/gin-gonic/gin"
 )
@@ -28,11 +30,32 @@ func main() {
 
 func startPage(c *gin.Context) {
   var person Person
-  if c.ShouldBindQuery(&person) == nil {
-    log.Println("====== Only Bind By Query String ======")
-    log.Println(person.Name)
-    log.Println(person.Address)
+  if err := c.ShouldBindQuery(&person); err != nil {
+    c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+    return
   }
-  c.String(200, "Success")
+
+  c.JSON(http.StatusOK, gin.H{
+    "name":    person.Name,
+    "address": person.Address,
+  })
 }
 ```
+
+## Uji coba
+
+```sh
+# GET with query parameters
+curl "http://localhost:8085/testing?name=appleboy&address=xyz"
+# Output: {"address":"xyz","name":"appleboy"}
+
+# POST with query parameters -- body is ignored, only query is bound
+curl -X POST "http://localhost:8085/testing?name=appleboy&address=xyz" \
+  -d "name=ignored&address=ignored"
+# Output: {"address":"xyz","name":"appleboy"}
+```
+
+## Lihat juga
+
+- [Bind query string atau post data](/id/docs/binding/bind-query-or-post/)
+- [Binding dan validasi](/id/docs/binding/binding-and-validation/)

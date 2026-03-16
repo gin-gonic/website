@@ -12,6 +12,14 @@ sidebar:
 这两种方法都是访问 `c.Request.URL.Query()` 的便捷方式，减少了样板代码。
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,7 +35,7 @@ func main() {
 }
 ```
 
-### 测试一下
+## 测试
 
 ```sh
 # Both parameters provided

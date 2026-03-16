@@ -4,7 +4,9 @@ sidebar:
   order: 4
 ---
 
-راجع [السؤال](https://github.com/gin-gonic/gin/issues/346) وجرب المثال التالي:
+يمكنك تشغيل عدة خوادم Gin في نفس العملية — كل منها على منفذ مختلف — باستخدام `errgroup.Group` من حزمة `golang.org/x/sync/errgroup`. هذا مفيد عندما تحتاج لكشف واجهات API منفصلة (على سبيل المثال، واجهة API عامة على المنفذ 8080 وواجهة API للإدارة على المنفذ 8081) دون نشر ملفات تنفيذية منفصلة.
+
+كل خادم يحصل على موجّه خاص به ومجموعة وسيط وتكوين `http.Server` خاص.
 
 ```go
 package main
@@ -26,13 +28,10 @@ func router01() http.Handler {
   e := gin.New()
   e.Use(gin.Recovery())
   e.GET("/", func(c *gin.Context) {
-    c.JSON(
-      http.StatusOK,
-      gin.H{
-        "code":  http.StatusOK,
-        "message": "Welcome server 01",
-      },
-    )
+    c.JSON(http.StatusOK, gin.H{
+      "code":    http.StatusOK,
+      "message": "Welcome server 01",
+    })
   })
 
   return e
@@ -42,13 +41,10 @@ func router02() http.Handler {
   e := gin.New()
   e.Use(gin.Recovery())
   e.GET("/", func(c *gin.Context) {
-    c.JSON(
-      http.StatusOK,
-      gin.H{
-        "code":  http.StatusOK,
-        "message": "Welcome server 02",
-      },
-    )
+    c.JSON(http.StatusOK, gin.H{
+      "code":    http.StatusOK,
+      "message": "Welcome server 02",
+    })
   })
 
   return e
@@ -82,3 +78,24 @@ func main() {
   }
 }
 ```
+
+## اختبره
+
+```sh
+# Server 01 on port 8080
+curl http://localhost:8080/
+# Output: {"code":200,"message":"Welcome server 01"}
+
+# Server 02 on port 8081
+curl http://localhost:8081/
+# Output: {"code":200,"message":"Welcome server 02"}
+```
+
+:::note
+إذا فشل أي خادم في البدء (على سبيل المثال، إذا كان المنفذ مستخدماً بالفعل)، يُرجع `g.Wait()` الخطأ الأول. يجب أن يبدأ كلا الخادمين بنجاح حتى تستمر العملية في العمل.
+:::
+
+## انظر أيضاً
+
+- [تكوين HTTP مخصص](/ar/docs/server-config/custom-http-config/)
+- [إعادة التشغيل أو الإيقاف بأمان](/ar/docs/server-config/graceful-restart-or-stop/)

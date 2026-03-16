@@ -12,6 +12,14 @@ Parameter query string adalah pasangan kunci-nilai yang muncul setelah `?` dalam
 Kedua metode adalah pintasan untuk mengakses `c.Request.URL.Query()` dengan boilerplate yang lebih sedikit.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,7 +35,7 @@ func main() {
 }
 ```
 
-### Coba jalankan
+## Uji coba
 
 ```sh
 # Both parameters provided

@@ -4,30 +4,46 @@ sidebar:
   order: 10
 ---
 
-[اطلاعات جزئی](https://github.com/gin-gonic/gin/issues/129#issuecomment-124260092) را ببینید
+چک‌باکس‌های HTML با ویژگی `name` یکسان، هنگام انتخاب شدن مقادیر متعددی ارسال می‌کنند. Gin می‌تواند این مقادیر را مستقیماً با استفاده از تگ `form` در struct به یک اسلایس `[]string` متصل کند.
 
-main.go
+این برای فرم‌هایی مفید است که کاربران یک یا چند گزینه انتخاب می‌کنند -- مانند انتخاب‌گر رنگ، انتخاب‌گر دسترسی، یا فیلترهای چندگزینه‌ای.
 
 ```go
-...
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
 
 type myForm struct {
-    Colors []string `form:"colors[]"`
+  Colors []string `form:"colors[]"`
 }
 
-...
+func main() {
+  router := gin.Default()
 
-func formHandler(c *gin.Context) {
+  router.LoadHTMLGlob("templates/*")
+
+  router.GET("/", func(c *gin.Context) {
+    c.HTML(http.StatusOK, "form.html", nil)
+  })
+
+  router.POST("/", func(c *gin.Context) {
     var fakeForm myForm
-    c.ShouldBind(&fakeForm)
-    c.JSON(200, gin.H{"color": fakeForm.Colors})
+    if err := c.ShouldBind(&fakeForm); err != nil {
+      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+      return
+    }
+    c.JSON(http.StatusOK, gin.H{"color": fakeForm.Colors})
+  })
+
+  router.Run(":8080")
 }
-
-...
-
 ```
 
-form.html
+فرم HTML مربوطه (`templates/form.html`):
 
 ```html
 <form action="/" method="POST">
@@ -42,9 +58,29 @@ form.html
 </form>
 ```
 
-نتیجه:
+## تست
 
 ```sh
-{"color":["red","green","blue"]}
+# Select all three colors
+curl -X POST http://localhost:8080/ \
+  -d "colors[]=red&colors[]=green&colors[]=blue"
+# Output: {"color":["red","green","blue"]}
+
+# Select only one color
+curl -X POST http://localhost:8080/ \
+  -d "colors[]=green"
+# Output: {"color":["green"]}
+
+# No checkboxes selected -- slice is empty
+curl -X POST http://localhost:8080/
+# Output: {"color":[]}
 ```
 
+:::tip
+پسوند `[]` در `colors[]` یک قرارداد HTML است، نه یک الزام Go. تگ struct باید دقیقاً با ویژگی `name` در HTML مطابقت داشته باشد. اگر HTML شما از `name="colors"` (بدون براکت) استفاده می‌کند، تگ struct شما باید `form:"colors"` باشد.
+:::
+
+## همچنین ببینید
+
+- [اتصال و اعتبارسنجی](/fa/docs/binding/binding-and-validation/)
+- [اتصال Multipart/Urlencoded](/fa/docs/binding/multipart-urlencoded-binding/)

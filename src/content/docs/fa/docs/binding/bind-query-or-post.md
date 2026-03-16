@@ -4,13 +4,19 @@ sidebar:
   order: 4
 ---
 
-[اطلاعات جزئی](https://github.com/gin-gonic/gin/issues/742#issuecomment-264681292) را ببینید.
+`ShouldBind` به‌صورت خودکار موتور اتصال را بر اساس متد HTTP و هدر `Content-Type` انتخاب می‌کند:
+
+- برای درخواست‌های **GET**، از اتصال رشته پرس‌وجو (تگ‌های `form`) استفاده می‌کند.
+- برای درخواست‌های **POST/PUT**، هدر `Content-Type` را بررسی می‌کند -- از اتصال JSON برای `application/json`، XML برای `application/xml`، و اتصال فرم برای `application/x-www-form-urlencoded` یا `multipart/form-data` استفاده می‌کند.
+
+این بدین معنی است که یک handler واحد می‌تواند داده را هم از رشته‌های پرس‌وجو و هم از بدنه درخواست بدون انتخاب دستی منبع دریافت کند.
 
 ```go
 package main
 
 import (
   "log"
+  "net/http"
   "time"
 
   "github.com/gin-gonic/gin"
@@ -25,30 +31,51 @@ type Person struct {
 func main() {
   route := gin.Default()
   route.GET("/testing", startPage)
+  route.POST("/testing", startPage)
   route.Run(":8085")
 }
 
 func startPage(c *gin.Context) {
   var person Person
-  // If `GET`, only `Form` binding engine (`query`) used.
-  // If `POST`, first checks the `content-type` for `JSON` or `XML`, then uses `Form` (`form-data`).
-  // See more at https://github.com/gin-gonic/gin/blob/master/binding/binding.go#L48
-  err := c.ShouldBind(&person)
-  if err != nil {
+  if err := c.ShouldBind(&person); err != nil {
     c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
     return
   }
 
-  log.Println(person.Name)
-  log.Println(person.Address)
-  log.Println(person.Birthday)
-
-  c.String(200, "Success")
+  log.Printf("Name: %s, Address: %s, Birthday: %s\n", person.Name, person.Address, person.Birthday)
+  c.JSON(http.StatusOK, gin.H{
+    "name":     person.Name,
+    "address":  person.Address,
+    "birthday": person.Birthday,
+  })
 }
 ```
 
-با دستور زیر تست کنید:
+## تست
 
 ```sh
-curl -X GET "localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
+# GET with query string parameters
+curl "http://localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
+# Output: {"address":"xyz","birthday":"1992-03-15T00:00:00Z","name":"appleboy"}
+
+# POST with form data
+curl -X POST http://localhost:8085/testing \
+  -d "name=appleboy&address=xyz&birthday=1992-03-15"
+# Output: {"address":"xyz","birthday":"1992-03-15T00:00:00Z","name":"appleboy"}
+
+# POST with JSON body
+curl -X POST http://localhost:8085/testing \
+  -H "Content-Type: application/json" \
+  -d '{"name":"appleboy","address":"xyz","birthday":"1992-03-15"}'
+# Output: {"address":"xyz","birthday":"1992-03-15T00:00:00Z","name":"appleboy"}
 ```
+
+:::note
+تگ `time_format` از [طرح زمان مرجع](https://pkg.go.dev/time#pkg-constants) Go استفاده می‌کند. فرمت `2006-01-02` به معنای "سال-ماه-روز" است. تگ `time_utc:"1"` تضمین می‌کند که زمان تجزیه‌شده در UTC باشد.
+:::
+
+## همچنین ببینید
+
+- [اتصال و اعتبارسنجی](/fa/docs/binding/binding-and-validation/)
+- [فقط اتصال رشته پرس‌وجو](/fa/docs/binding/only-bind-query-string/)
+- [اتصال هدر](/fa/docs/binding/bind-header/)

@@ -4,9 +4,20 @@ sidebar:
   order: 14
 ---
 
-يمكنك ربط طلبات بيانات النموذج باستخدام علامات هيكل مخصصة عن طريق تنفيذ ربط مخصص.
+بشكل افتراضي، يستخدم Gin علامة الهيكل `form` لربط بيانات النموذج. عندما تحتاج لربط هيكل يستخدم علامة مختلفة — على سبيل المثال، نوع خارجي لا يمكنك تعديله — يمكنك إنشاء ربط مخصص يقرأ من علامتك الخاصة.
+
+هذا مفيد عند التكامل مع مكتبات الطرف الثالث التي تستخدم هياكلها علامات مثل `url` أو `query` أو أسماء مخصصة أخرى بدلاً من `form`.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin/binding"
+)
+
 const (
   customerTag   = "url"
   defaultMemory = 32 << 20
@@ -45,15 +56,39 @@ type FormA struct {
   FieldA string `url:"field_a"`
 }
 
-func ListHandler(s *Service) func(ctx *gin.Context) {
-  return func(ctx *gin.Context) {
+func main() {
+  router := gin.Default()
+
+  router.GET("/list", func(c *gin.Context) {
     var urlBinding = customerBinding{}
     var opt FormA
-    err := ctx.MustBindWith(&opt, urlBinding)
-    if err != nil {
-      // handle error
+    if err := c.MustBindWith(&opt, urlBinding); err != nil {
+      return
     }
-    // use opt.FieldA
-  }
+    c.JSON(http.StatusOK, gin.H{"field_a": opt.FieldA})
+  })
+
+  router.Run(":8080")
 }
 ```
+
+## اختبره
+
+```sh
+# The custom binding reads from the "url" struct tag instead of "form"
+curl "http://localhost:8080/list?field_a=hello"
+# Output: {"field_a":"hello"}
+
+# Missing parameter -- empty string
+curl "http://localhost:8080/list"
+# Output: {"field_a":""}
+```
+
+:::note
+الربط المخصص ينفّذ واجهة `binding.Binding`، التي تتطلب دالة `Name() string` ودالة `Bind(*http.Request, any) error`. المساعد `binding.MapFormWithTag` يقوم بالعمل الفعلي لربط قيم النموذج بحقول الهيكل باستخدام علامتك المخصصة.
+:::
+
+## انظر أيضاً
+
+- [الربط والتحقق](/ar/docs/binding/binding-and-validation/)
+- [ربط طلب بيانات النموذج بهيكل مخصص](/ar/docs/binding/bind-form-data-request-with-custom-struct/)

@@ -4,7 +4,11 @@ sidebar:
   order: 3
 ---
 
-Пример однострочного HTTPS-сервера с LetsEncrypt.
+Пакет [gin-gonic/autotls](https://github.com/gin-gonic/autotls) обеспечивает автоматический HTTPS через Let's Encrypt. Он автоматически обрабатывает выпуск и обновление сертификатов, позволяя обслуживать HTTPS с минимальной конфигурацией.
+
+## Быстрый старт
+
+Самый простой способ — вызвать `autotls.Run` с вашим маршрутизатором и одним или несколькими доменными именами:
 
 ```go
 package main
@@ -19,7 +23,6 @@ import (
 func main() {
   router := gin.Default()
 
-  // Ping handler
   router.GET("/ping", func(c *gin.Context) {
     c.String(200, "pong")
   })
@@ -28,7 +31,9 @@ func main() {
 }
 ```
 
-Пример с пользовательским менеджером autocert.
+## Пользовательский менеджер автосертификатов
+
+Для большего контроля — например, указания каталога кэша сертификатов или ограничения разрешённых имён хостов — используйте `autotls.RunWithManager` с пользовательским `autocert.Manager`:
 
 ```go
 package main
@@ -44,7 +49,6 @@ import (
 func main() {
   router := gin.Default()
 
-  // Ping handler
   router.GET("/ping", func(c *gin.Context) {
     c.String(200, "pong")
   })
@@ -58,3 +62,11 @@ func main() {
   log.Fatal(autotls.RunWithManager(router, &m))
 }
 ```
+
+:::note
+Let's Encrypt требует, чтобы ваш сервер был доступен на портах 80 и 443 из публичного интернета. Это не будет работать на localhost или за брандмауэром, блокирующим входящие соединения.
+:::
+
+## Смотрите также
+
+- [Пользовательская конфигурация HTTP](/ru/docs/server-config/custom-http-config/)

@@ -4,16 +4,19 @@ sidebar:
   order: 6
 ---
 
-السجل الافتراضي للمسارات هو:
+عندما يبدأ Gin، يطبع جميع المسارات المسجلة في وضع التصحيح. التنسيق الافتراضي يبدو هكذا:
+
 ```
 [GIN-debug] POST   /foo                      --> main.main.func1 (3 handlers)
 [GIN-debug] GET    /bar                      --> main.main.func2 (3 handlers)
 [GIN-debug] GET    /status                   --> main.main.func3 (3 handlers)
 ```
 
-إذا أردت تسجيل هذه المعلومات بتنسيق معين (مثل JSON أو أزواج المفتاح-القيمة أو شيء آخر)، يمكنك تحديد هذا التنسيق باستخدام `gin.DebugPrintRouteFunc`.
-في المثال أدناه، نسجّل جميع المسارات بحزمة log القياسية لكن يمكنك استخدام أداة تسجيل أخرى تناسب احتياجاتك.
+يمكنك تخصيص هذا التنسيق بتعيين دالة إلى `gin.DebugPrintRouteFunc`. هذا مفيد إذا أردت تسجيل المسارات بتنسيق JSON أو أزواج المفتاح-القيمة أو أي تنسيق آخر يتوقعه نظام التسجيل لديك.
+
 ```go
+package main
+
 import (
   "log"
   "net/http"
@@ -23,6 +26,7 @@ import (
 
 func main() {
   router := gin.Default()
+
   gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
     log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
   }
@@ -39,7 +43,19 @@ func main() {
     c.JSON(http.StatusOK, "ok")
   })
 
-  // Listen and Server in http://0.0.0.0:8080
-  router.Run()
+  router.Run(":8080")
 }
 ```
+
+عند بدء تشغيل الخادم، بدلاً من سطور `[GIN-debug]` الافتراضية، سترى:
+
+```
+endpoint POST /foo main.main.func2 3
+endpoint GET /bar main.main.func3 3
+endpoint GET /status main.main.func4 3
+```
+
+## انظر أيضاً
+
+- [تنسيق السجل المخصص](/ar/docs/logging/custom-log-format/)
+- [تخطي التسجيل](/ar/docs/logging/skip-logging/)

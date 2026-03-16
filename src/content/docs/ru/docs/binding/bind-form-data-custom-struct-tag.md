@@ -4,9 +4,20 @@ sidebar:
   order: 14
 ---
 
-Вы можете привязывать запросы с данными форм, используя пользовательские теги структур, реализовав пользовательскую привязку.
+По умолчанию Gin использует тег структуры `form` для привязки данных формы. Когда вам нужно привязать структуру, использующую другой тег — например, внешний тип, который вы не можете изменить — вы можете создать пользовательскую привязку, которая читает из вашего собственного тега.
+
+Это полезно при интеграции со сторонними библиотеками, структуры которых используют теги вроде `url`, `query` или другие пользовательские имена вместо `form`.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin/binding"
+)
+
 const (
   customerTag   = "url"
   defaultMemory = 32 << 20
@@ -45,15 +56,39 @@ type FormA struct {
   FieldA string `url:"field_a"`
 }
 
-func ListHandler(s *Service) func(ctx *gin.Context) {
-  return func(ctx *gin.Context) {
+func main() {
+  router := gin.Default()
+
+  router.GET("/list", func(c *gin.Context) {
     var urlBinding = customerBinding{}
     var opt FormA
-    err := ctx.MustBindWith(&opt, urlBinding)
-    if err != nil {
-      // handle error
+    if err := c.MustBindWith(&opt, urlBinding); err != nil {
+      return
     }
-    // use opt.FieldA
-  }
+    c.JSON(http.StatusOK, gin.H{"field_a": opt.FieldA})
+  })
+
+  router.Run(":8080")
 }
 ```
+
+## Тестирование
+
+```sh
+# The custom binding reads from the "url" struct tag instead of "form"
+curl "http://localhost:8080/list?field_a=hello"
+# Output: {"field_a":"hello"}
+
+# Missing parameter -- empty string
+curl "http://localhost:8080/list"
+# Output: {"field_a":""}
+```
+
+:::note
+Пользовательская привязка реализует интерфейс `binding.Binding`, который требует метод `Name() string` и метод `Bind(*http.Request, any) error`. Вспомогательная функция `binding.MapFormWithTag` выполняет фактическую работу по сопоставлению значений формы с полями структуры, используя ваш пользовательский тег.
+:::
+
+## Смотрите также
+
+- [Привязка и валидация](/ru/docs/binding/binding-and-validation/)
+- [Привязка данных формы с пользовательской структурой](/ru/docs/binding/bind-form-data-request-with-custom-struct/)

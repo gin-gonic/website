@@ -4,7 +4,9 @@ sidebar:
   order: 4
 ---
 
-См. [обсуждение](https://github.com/gin-gonic/gin/issues/346) и попробуйте следующий пример:
+Вы можете запускать несколько серверов Gin в одном процессе — каждый на своём порту — используя `errgroup.Group` из пакета `golang.org/x/sync/errgroup`. Это полезно, когда вам нужно предоставить отдельные API (например, публичное API на порту 8080 и административное API на порту 8081) без развёртывания отдельных бинарных файлов.
+
+Каждый сервер получает свой собственный маршрутизатор, стек middleware и конфигурацию `http.Server`.
 
 ```go
 package main
@@ -26,13 +28,10 @@ func router01() http.Handler {
   e := gin.New()
   e.Use(gin.Recovery())
   e.GET("/", func(c *gin.Context) {
-    c.JSON(
-      http.StatusOK,
-      gin.H{
-        "code":  http.StatusOK,
-        "message": "Welcome server 01",
-      },
-    )
+    c.JSON(http.StatusOK, gin.H{
+      "code":    http.StatusOK,
+      "message": "Welcome server 01",
+    })
   })
 
   return e
@@ -42,13 +41,10 @@ func router02() http.Handler {
   e := gin.New()
   e.Use(gin.Recovery())
   e.GET("/", func(c *gin.Context) {
-    c.JSON(
-      http.StatusOK,
-      gin.H{
-        "code":  http.StatusOK,
-        "message": "Welcome server 02",
-      },
-    )
+    c.JSON(http.StatusOK, gin.H{
+      "code":    http.StatusOK,
+      "message": "Welcome server 02",
+    })
   })
 
   return e
@@ -82,3 +78,24 @@ func main() {
   }
 }
 ```
+
+## Тестирование
+
+```sh
+# Server 01 on port 8080
+curl http://localhost:8080/
+# Output: {"code":200,"message":"Welcome server 01"}
+
+# Server 02 on port 8081
+curl http://localhost:8081/
+# Output: {"code":200,"message":"Welcome server 02"}
+```
+
+:::note
+Если один из серверов не может запуститься (например, если порт уже занят), `g.Wait()` возвращает первую ошибку. Оба сервера должны успешно запуститься, чтобы процесс продолжал работу.
+:::
+
+## Смотрите также
+
+- [Пользовательская конфигурация HTTP](/ru/docs/server-config/custom-http-config/)
+- [Плавный перезапуск или остановка](/ru/docs/server-config/graceful-restart-or-stop/)

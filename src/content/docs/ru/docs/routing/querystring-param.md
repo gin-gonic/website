@@ -12,6 +12,14 @@ sidebar:
 Оба метода являются сокращениями для доступа к `c.Request.URL.Query()` с меньшим количеством шаблонного кода.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,7 +35,7 @@ func main() {
 }
 ```
 
-### Проверка
+## Тестирование
 
 ```sh
 # Both parameters provided

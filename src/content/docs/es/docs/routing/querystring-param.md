@@ -12,6 +12,14 @@ Los parámetros de cadena de consulta son los pares clave-valor que aparecen des
 Ambos métodos son atajos para acceder a `c.Request.URL.Query()` con menos código repetitivo.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,7 +35,7 @@ func main() {
 }
 ```
 
-### Pruébalo
+## Pruébalo
 
 ```sh
 # Both parameters provided

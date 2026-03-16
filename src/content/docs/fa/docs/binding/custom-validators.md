@@ -4,7 +4,9 @@ sidebar:
   order: 2
 ---
 
-همچنین امکان ثبت اعتبارسنج‌های سفارشی وجود دارد. [کد نمونه](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) را ببینید.
+Gin از [go-playground/validator](https://github.com/go-playground/validator) برای اعتبارسنجی سطح فیلد استفاده می‌کند. علاوه بر اعتبارسنج‌های داخلی (مانند `required`، `email`، `min`، `max`)، می‌توانید توابع اعتبارسنجی سفارشی خودتان را ثبت کنید.
+
+مثال زیر یک اعتبارسنج `bookabledate` ثبت می‌کند که تاریخ‌های گذشته را رد می‌کند و تضمین می‌کند که تاریخ‌های ورود و خروج رزرو همیشه در آینده هستند.
 
 ```go
 package main
@@ -56,13 +58,23 @@ func getBookable(c *gin.Context) {
 }
 ```
 
-```sh
-$ curl "localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
-{"message":"Booking dates are valid!"}
+## تست
 
-$ curl "localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
-{"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
+```sh
+# Both dates are in the future and check_out > check_in
+curl "http://localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
+# Output: {"message":"Booking dates are valid!"}
+
+# check_out is before check_in -- fails gtfield validation
+curl "http://localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
+# Output: {"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
 ```
 
-[اعتبارسنجی سطح struct](https://github.com/go-playground/validator/releases/tag/v8.7) نیز می‌تواند به این روش ثبت شود.
-برای اطلاعات بیشتر [نمونه struct-lvl-validation](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) را ببینید.
+:::tip
+همچنین می‌توانید [اعتبارسنجی سطح struct](https://github.com/go-playground/validator/releases/tag/v8.7) را برای قوانین بین‌فیلدی که فراتر از بررسی‌های تک‌فیلدی هستند ثبت کنید. برای اطلاعات بیشتر [نمونه struct-lvl-validation](https://github.com/gin-gonic/examples/tree/master/struct-lvl-validations) را ببینید.
+:::
+
+## همچنین ببینید
+
+- [اتصال و اعتبارسنجی](/fa/docs/binding/binding-and-validation/)
+- [مقادیر پیش‌فرض اتصال](/fa/docs/binding/bind-default-values/)

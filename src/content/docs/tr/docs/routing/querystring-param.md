@@ -12,6 +12,14 @@ Sorgu dizesi parametreleri, URL'deki `?` işaretinden sonra görünen anahtar-de
 Her iki metod da `c.Request.URL.Query()` erişiminin daha az şablon koduyla kısayollarıdır.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,7 +35,7 @@ func main() {
 }
 ```
 
-### Test edin
+## Test et
 
 ```sh
 # Both parameters provided

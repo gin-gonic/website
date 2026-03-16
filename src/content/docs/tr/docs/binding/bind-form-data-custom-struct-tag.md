@@ -4,9 +4,20 @@ sidebar:
   order: 14
 ---
 
-Özel bir bağlama uygulayarak form verisi isteklerini özel struct etiketleri kullanarak bağlayabilirsiniz.
+Varsayılan olarak, Gin form verisi bağlamak için `form` struct etiketini kullanır. Farklı bir etiket kullanan bir struct'ı bağlamanız gerektiğinde — örneğin, değiştiremediğiniz harici bir tür — kendi etiketinizden okuyan özel bir bağlama oluşturabilirsiniz.
+
+Bu, struct'ları `form` yerine `url`, `query` veya diğer özel adları etiket olarak kullanan üçüncü parti kütüphanelerle entegre olurken kullanışlıdır.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin/binding"
+)
+
 const (
   customerTag   = "url"
   defaultMemory = 32 << 20
@@ -45,15 +56,39 @@ type FormA struct {
   FieldA string `url:"field_a"`
 }
 
-func ListHandler(s *Service) func(ctx *gin.Context) {
-  return func(ctx *gin.Context) {
+func main() {
+  router := gin.Default()
+
+  router.GET("/list", func(c *gin.Context) {
     var urlBinding = customerBinding{}
     var opt FormA
-    err := ctx.MustBindWith(&opt, urlBinding)
-    if err != nil {
-      // handle error
+    if err := c.MustBindWith(&opt, urlBinding); err != nil {
+      return
     }
-    // use opt.FieldA
-  }
+    c.JSON(http.StatusOK, gin.H{"field_a": opt.FieldA})
+  })
+
+  router.Run(":8080")
 }
 ```
+
+## Test et
+
+```sh
+# The custom binding reads from the "url" struct tag instead of "form"
+curl "http://localhost:8080/list?field_a=hello"
+# Output: {"field_a":"hello"}
+
+# Missing parameter -- empty string
+curl "http://localhost:8080/list"
+# Output: {"field_a":""}
+```
+
+:::note
+Özel bağlama, `binding.Binding` arayüzünü uygular; bu arayüz bir `Name() string` metodu ve bir `Bind(*http.Request, any) error` metodu gerektirir. `binding.MapFormWithTag` yardımcısı, özel etiketinizi kullanarak form değerlerini struct alanlarına eşlemenin asıl işini yapar.
+:::
+
+## Ayrıca bakınız
+
+- [Bağlama ve doğrulama](/tr/docs/binding/binding-and-validation/)
+- [Özel struct ile form verisi bağlama](/tr/docs/binding/bind-form-data-request-with-custom-struct/)

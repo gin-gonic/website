@@ -4,38 +4,60 @@ sidebar:
   order: 5
 ---
 
-Normalde JSON, özel HTML karakterlerini unicode varlıklarıyla değiştirir, ör. `<` `\u003c` olur. Bu tür karakterleri olduğu gibi kodlamak istiyorsanız, bunun yerine PureJSON kullanabilirsiniz.
+Normalde, Go'nun `json.Marshal` fonksiyonu güvenlik amacıyla özel HTML karakterlerini unicode kaçış dizileriyle değiştirir — örneğin, `<` `\u003c` olur. Bu, JSON'u HTML'e gömerken sorun olmaz, ancak saf bir API oluşturuyorsanız istemciler gerçek karakterleri bekleyebilir.
+
+`c.PureJSON`, `SetEscapeHTML(false)` ile `json.Encoder` kullanır, böylece `<`, `>` ve `&` gibi HTML karakterleri kaçırılmak yerine olduğu gibi render edilir.
+
+API tüketicileriniz ham, kaçırılmamış JSON beklediğinde `PureJSON` kullanın. Yanıt bir HTML sayfasına gömülebilecekse standart `JSON` kullanın.
 
 ```go
 package main
 
 import (
+  "net/http"
+
   "github.com/gin-gonic/gin"
 )
 
 func main() {
   router := gin.Default()
 
-  // Serves unicode entities
+  // Standard JSON -- escapes HTML characters
   router.GET("/json", func(c *gin.Context) {
-    c.JSON(200, gin.H{
+    c.JSON(http.StatusOK, gin.H{
       "html": "<b>Hello, world!</b>",
     })
   })
 
-  // Serves literal characters
+  // PureJSON -- serves literal characters
   router.GET("/purejson", func(c *gin.Context) {
-    c.PureJSON(200, gin.H{
+    c.PureJSON(http.StatusOK, gin.H{
       "html": "<b>Hello, world!</b>",
     })
   })
 
-  // Abort early with a PureJSON response and status code (v1.11+)
-  router.GET("/abort_purejson", func(c *gin.Context) {
-    c.AbortWithStatusPureJSON(403, gin.H{"error": "forbidden"})
-  })
-
-  // listen and serve on 0.0.0.0:8080
   router.Run(":8080")
 }
 ```
+
+## Test et
+
+```sh
+# Standard JSON -- HTML characters are escaped
+curl http://localhost:8080/json
+# Output: {"html":"\u003cb\u003eHello, world!\u003c/b\u003e"}
+
+# PureJSON -- HTML characters are literal
+curl http://localhost:8080/purejson
+# Output: {"html":"<b>Hello, world!</b>"}
+```
+
+:::tip
+Gin ayrıca ara katman zincirini iptal ederken kaçırılmamış JSON döndürmek için `c.AbortWithStatusPureJSON` (v1.11+) sağlar — kimlik doğrulama veya doğrulama ara katmanlarında kullanışlıdır.
+:::
+
+## Ayrıca bakınız
+
+- [AsciiJSON](/tr/docs/rendering/ascii-json/)
+- [SecureJSON](/tr/docs/rendering/secure-json/)
+- [Render](/tr/docs/rendering/rendering/)
