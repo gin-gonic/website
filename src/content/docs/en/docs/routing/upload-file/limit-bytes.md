@@ -4,15 +4,15 @@ sidebar:
   order: 3
 ---
 
-This example shows how to use `http.MaxBytesReader` to strictly limit the maximum size of uploaded files and return a `413` status when the limit is exceeded.
+Use `http.MaxBytesReader` to strictly limit the maximum size of uploaded files. When the limit is exceeded, the reader returns an error and you can respond with a `413 Request Entity Too Large` status.
 
-See the detail [example code](https://github.com/gin-gonic/examples/blob/master/upload-file/limit-bytes/main.go).
+This is important for preventing denial-of-service attacks where clients send excessively large files to exhaust server memory or disk space.
 
 ## How it works
 
-1. **Define limit** -- A constant `MaxUploadSize` (1 MB) sets the hard cap for uploads.
-2. **Enforce limit** -- `http.MaxBytesReader` wraps `c.Request.Body`. If the client sends more bytes than allowed, the reader stops and returns an error.
-3. **Parse and check** -- `c.Request.ParseMultipartForm` triggers the read. The code checks for `*http.MaxBytesError` to return a `413 Request Entity Too Large` status with a clear message.
+1. **Define limit** — A constant `MaxUploadSize` (1 MB) sets the hard cap for uploads.
+2. **Enforce limit** — `http.MaxBytesReader` wraps `c.Request.Body`. If the client sends more bytes than allowed, the reader stops and returns an error.
+3. **Parse and check** — `c.Request.ParseMultipartForm` triggers the read. The code checks for `*http.MaxBytesError` to return a `413` status with a clear message.
 
 ```go
 package main
@@ -63,10 +63,21 @@ func main() {
 }
 ```
 
-How to `curl`:
+## Test it
 
 ```sh
+# Upload a small file (under 1 MB) -- succeeds
 curl -X POST http://localhost:8080/upload \
-  -F "file=@/Users/appleboy/test.zip" \
-  -H "Content-Type: multipart/form-data"
+  -F "file=@/path/to/small-file.txt"
+# Output: {"message":"upload successful"}
+
+# Upload a large file (over 1 MB) -- rejected
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/path/to/large-file.zip"
+# Output: {"error":"file too large (max: 1048576 bytes)"}
 ```
+
+## See also
+
+- [Single file](/en/docs/routing/upload-file/single-file/)
+- [Multiple files](/en/docs/routing/upload-file/multiple-file/)

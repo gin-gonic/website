@@ -12,6 +12,14 @@ Query string parameters are the key-value pairs that appear after the `?` in a U
 Both methods are shortcuts for accessing `c.Request.URL.Query()` with less boilerplate.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+)
+
 func main() {
   router := gin.Default()
 
@@ -27,7 +35,7 @@ func main() {
 }
 ```
 
-### Test it
+## Test it
 
 ```sh
 # Both parameters provided

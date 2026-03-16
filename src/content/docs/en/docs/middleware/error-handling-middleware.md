@@ -4,97 +4,75 @@ sidebar:
   order: 4
 ---
 
-In a typical RESTful application, you might encounter errors in any route such as:
+In a typical RESTful application, you might encounter errors in any route — invalid input, database failures, unauthorized access, or internal bugs. Handling errors individually in each handler leads to repetitive code and inconsistent responses.
 
-- Invalid input from the user
-- Database failures
-- Unauthorized access
-- Internal server bugs
-
-By default, Gin allows you to handle errors manually in each route using `c.Error(err)`.
-But this can quickly become repetitive and inconsistent.
-
-To solve this, we can use custom middleware to handle all errors in one place.
-This middleware runs after each request and checks for any errors added to the Gin context (`c.Errors`).
-If it finds one, it sends a structured JSON response with a proper status code.
-
-#### Example
+A centralized error-handling middleware solves this by running after each request and checking for any errors added to the Gin context via `c.Error(err)`. If errors are found, it sends a structured JSON response with a proper status code.
 
 ```go
+package main
+
 import (
   "errors"
   "net/http"
+
   "github.com/gin-gonic/gin"
 )
 
 // ErrorHandler captures errors and returns a consistent JSON error response
 func ErrorHandler() gin.HandlerFunc {
-    return func(c *gin.Context) {
-        c.Next() // Step1: Process the request first.
+  return func(c *gin.Context) {
+    c.Next() // Process the request first
 
-        // Step2: Check if any errors were added to the context
-        if len(c.Errors) > 0 {
-            // Step3: Use the last error
-            err := c.Errors.Last().Err
+    // Check if any errors were added to the context
+    if len(c.Errors) > 0 {
+      err := c.Errors.Last().Err
 
-            // Step4: Respond with a generic error message
-            c.JSON(http.StatusInternalServerError, map[string]any{
-                "success": false,
-                "message": err.Error(),
-            })
-        }
-
-        // Any other steps if no errors are found
+      c.JSON(http.StatusInternalServerError, gin.H{
+        "success": false,
+        "message": err.Error(),
+      })
     }
+  }
 }
 
 func main() {
-    r := gin.Default()
+  r := gin.Default()
 
-    // Attach the error-handling middleware
-    r.Use(ErrorHandler())
+  // Attach the error-handling middleware
+  r.Use(ErrorHandler())
 
-    r.GET("/ok", func(c *gin.Context) {
-        somethingWentWrong := false
-
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
+  r.GET("/ok", func(c *gin.Context) {
+    c.JSON(http.StatusOK, gin.H{
+      "success": true,
+      "message": "Everything is fine!",
     })
+  })
 
-    r.GET("/error", func(c *gin.Context) {
-        somethingWentWrong := true
+  r.GET("/error", func(c *gin.Context) {
+    c.Error(errors.New("something went wrong"))
+  })
 
-        if somethingWentWrong {
-            c.Error(errors.New("something went wrong"))
-            return
-        }
-
-        c.JSON(http.StatusOK, gin.H{
-            "success": true,
-            "message": "Everything is fine!",
-        })
-    })
-
-    r.Run()
+  r.Run(":8080")
 }
-
 ```
 
-#### Extensions
+## Test it
 
-- Map errors to status codes
-- Generate different error responses based on error codes
-- Log errors using
+```sh
+# Successful request
+curl http://localhost:8080/ok
+# Output: {"message":"Everything is fine!","success":true}
 
-#### Benefits of Error-Handling Middleware
+# Error request -- middleware catches the error
+curl http://localhost:8080/error
+# Output: {"message":"something went wrong","success":false}
+```
 
-- **Consistency**: All errors follow the same format
-- **Clean routes**: Business logic is separated from error formatting
-- **Less duplication**: No need to repeat error-handling logic in every handler
+:::tip
+You can extend this pattern to map specific error types to different HTTP status codes, or to log errors to an external service before responding.
+:::
+
+## See also
+
+- [Custom middleware](/en/docs/middleware/custom-middleware/)
+- [Using middleware](/en/docs/middleware/using-middleware/)

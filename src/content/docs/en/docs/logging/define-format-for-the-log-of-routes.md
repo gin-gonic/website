@@ -4,16 +4,19 @@ sidebar:
   order: 6
 ---
 
-The default log of routes is:
+When Gin starts, it prints all registered routes in debug mode. The default format looks like this:
+
 ```
 [GIN-debug] POST   /foo                      --> main.main.func1 (3 handlers)
 [GIN-debug] GET    /bar                      --> main.main.func2 (3 handlers)
 [GIN-debug] GET    /status                   --> main.main.func3 (3 handlers)
 ```
 
-If you want to log this information in given format (e.g. JSON, key values or something else), then you can define this format with `gin.DebugPrintRouteFunc`.
-In the example below, we log all routes with standard log package but you can use another log tools that suits of your needs.
+You can customize this format by assigning a function to `gin.DebugPrintRouteFunc`. This is useful if you want to log routes as JSON, key-value pairs, or in any other format your logging pipeline expects.
+
 ```go
+package main
+
 import (
   "log"
   "net/http"
@@ -23,6 +26,7 @@ import (
 
 func main() {
   router := gin.Default()
+
   gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
     log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
   }
@@ -39,7 +43,19 @@ func main() {
     c.JSON(http.StatusOK, "ok")
   })
 
-  // Listen and Server in http://0.0.0.0:8080
-  router.Run()
+  router.Run(":8080")
 }
 ```
+
+When the server starts, instead of the default `[GIN-debug]` lines, you will see:
+
+```
+endpoint POST /foo main.main.func2 3
+endpoint GET /bar main.main.func3 3
+endpoint GET /status main.main.func4 3
+```
+
+## See also
+
+- [Custom log format](/en/docs/logging/custom-log-format/)
+- [Skip logging](/en/docs/logging/skip-logging/)
