@@ -4,9 +4,20 @@ sidebar:
   order: 14
 ---
 
-You can bind form-data requests using custom struct tags by implementing a custom binding.
+By default, Gin uses the `form` struct tag to bind form data. When you need to bind a struct that uses a different tag — for example, an external type you cannot modify — you can create a custom binding that reads from your own tag.
+
+This is useful when integrating with third-party libraries whose structs use tags like `url`, `query`, or other custom names instead of `form`.
 
 ```go
+package main
+
+import (
+  "net/http"
+
+  "github.com/gin-gonic/gin"
+  "github.com/gin-gonic/gin/binding"
+)
+
 const (
   customerTag   = "url"
   defaultMemory = 32 << 20
@@ -45,15 +56,39 @@ type FormA struct {
   FieldA string `url:"field_a"`
 }
 
-func ListHandler(s *Service) func(ctx *gin.Context) {
-  return func(ctx *gin.Context) {
+func main() {
+  router := gin.Default()
+
+  router.GET("/list", func(c *gin.Context) {
     var urlBinding = customerBinding{}
     var opt FormA
-    err := ctx.MustBindWith(&opt, urlBinding)
-    if err != nil {
-      // handle error
+    if err := c.MustBindWith(&opt, urlBinding); err != nil {
+      return
     }
-    // use opt.FieldA
-  }
+    c.JSON(http.StatusOK, gin.H{"field_a": opt.FieldA})
+  })
+
+  router.Run(":8080")
 }
 ```
+
+## Test it
+
+```sh
+# The custom binding reads from the "url" struct tag instead of "form"
+curl "http://localhost:8080/list?field_a=hello"
+# Output: {"field_a":"hello"}
+
+# Missing parameter -- empty string
+curl "http://localhost:8080/list"
+# Output: {"field_a":""}
+```
+
+:::note
+The custom binding implements the `binding.Binding` interface, which requires a `Name() string` method and a `Bind(*http.Request, any) error` method. The `binding.MapFormWithTag` helper does the actual work of mapping form values to struct fields using your custom tag.
+:::
+
+## See also
+
+- [Binding and validation](/en/docs/binding/binding-and-validation/)
+- [Bind form-data request with custom struct](/en/docs/binding/bind-form-data-request-with-custom-struct/)
