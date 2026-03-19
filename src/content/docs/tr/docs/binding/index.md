@@ -48,7 +48,7 @@ Gin birçok kaynaktan veri bağlayabilir: **JSON**, **XML**, **YAML**, **TOML**,
 
 ## Bu bölümde
 
-- [**Model bağlama ve doğrulama**](./model-binding-and-validation/) -- Temel bağlama kavramları ve doğrulama kuralları
+- [**Model bağlama ve doğrulama**](./binding-and-validation/) -- Temel bağlama kavramları ve doğrulama kuralları
 - [**Özel doğrulayıcılar**](./custom-validators/) -- Kendi doğrulama fonksiyonlarınızı kaydetme
 - [**Sorgu dizesi veya post verisi bağlama**](./bind-query-or-post/) -- Sorgu dizeleri ve form gövdelerinden bağlama
 - [**URI bağlama**](./bind-uri/) -- Yol parametrelerini struct'lara bağlama

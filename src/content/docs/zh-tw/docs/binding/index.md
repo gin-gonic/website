@@ -48,7 +48,7 @@ Gin 可以從多種來源綁定資料：**JSON**、**XML**、**YAML**、**TOML**
 
 ## 本節內容
 
-- [**模型綁定與驗證**](./model-binding-and-validation/) -- 核心綁定概念與驗證規則
+- [**模型綁定與驗證**](./binding-and-validation/) -- 核心綁定概念與驗證規則
 - [**自訂驗證器**](./custom-validators/) -- 註冊自訂的驗證函式
 - [**綁定查詢字串或 POST 資料**](./bind-query-or-post/) -- 從查詢字串和表單主體綁定
 - [**綁定 URI**](./bind-uri/) -- 將路徑參數綁定到結構體
