@@ -11,7 +11,7 @@ Gin, her ölçekteki şirketler ve açık kaynak projeler tarafından üretimde 
 - [gorush](https://github.com/appleboy/gorush): Go ile yazılmış bir push bildirim sunucusu.
 - [fnproject](https://github.com/fnproject/fn): Konteyner tabanlı, bulut bağımsız sunucusuz platform.
 - [photoprism](https://github.com/photoprism/photoprism): Merkeziyetsiz Web için yapay zeka destekli fotoğraf uygulaması.
-- [krakend](https://github.com/devopsfaith/krakend): Ara katmanlı ultra performanslı API Gateway.
+- [lura](https://github.com/luraproject/lura): Ara katmanlı ultra performanslı API Gateway.
 - [picfit](https://github.com/thoas/picfit): Go ile yazılmış bir resim boyutlandırma sunucusu.
 - [gotify](https://github.com/gotify/server): WebSocket üzerinden gerçek zamanlı mesaj gönderme ve alma için basit bir sunucu.
 - [cds](https://github.com/ovh/cds): Kurumsal düzeyde Sürekli Teslim ve DevOps Otomasyon Açık Kaynak Platformu.

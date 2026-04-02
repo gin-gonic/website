@@ -11,7 +11,7 @@ Gin 被各种规模的公司和开源项目用于生产环境。以下是使用 
 - [gorush](https://github.com/appleboy/gorush)：一个用 Go 编写的推送通知服务器。
 - [fnproject](https://github.com/fnproject/fn)：容器原生、云无关的 Serverless 平台。
 - [photoprism](https://github.com/photoprism/photoprism)：面向去中心化 Web 的 AI 驱动照片应用。
-- [krakend](https://github.com/devopsfaith/krakend)：带中间件的超高性能 API 网关。
+- [lura](https://github.com/luraproject/lura)：带中间件的超高性能 API 网关。
 - [picfit](https://github.com/thoas/picfit)：一个用 Go 编写的图片缩放服务器。
 - [gotify](https://github.com/gotify/server)：一个通过 WebSocket 实时发送和接收消息的简单服务器。
 - [cds](https://github.com/ovh/cds)：企业级持续交付和 DevOps 自动化开源平台。

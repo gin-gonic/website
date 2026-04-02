@@ -11,7 +11,7 @@ Gin es usado en producción por empresas y proyectos de código abierto de todos
 - [gorush](https://github.com/appleboy/gorush): Un servidor de notificaciones push escrito en Go.
 - [fnproject](https://github.com/fnproject/fn): La plataforma serverless nativa de contenedores y agnóstica de la nube.
 - [photoprism](https://github.com/photoprism/photoprism): App de fotos potenciada por IA para la Web Descentralizada.
-- [krakend](https://github.com/devopsfaith/krakend): API Gateway de ultra rendimiento con middlewares.
+- [lura](https://github.com/luraproject/lura): API Gateway de ultra rendimiento con middlewares.
 - [picfit](https://github.com/thoas/picfit): Un servidor de redimensionamiento de imágenes escrito en Go.
 - [gotify](https://github.com/gotify/server): Un servidor simple para enviar y recibir mensajes en tiempo real por WebSocket.
 - [cds](https://github.com/ovh/cds): Plataforma de código abierto de Entrega Continua y Automatización DevOps de grado empresarial.

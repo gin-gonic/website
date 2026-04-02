@@ -11,7 +11,7 @@ sidebar:
 - [gorush](https://github.com/appleboy/gorush): خادم إشعارات دفع مكتوب بلغة Go.
 - [fnproject](https://github.com/fnproject/fn): منصة بدون خادم أصلية للحاويات ومحايدة للسحابة.
 - [photoprism](https://github.com/photoprism/photoprism): تطبيق صور مدعوم بالذكاء الاصطناعي للويب اللامركزي.
-- [krakend](https://github.com/devopsfaith/krakend): بوابة API فائقة الأداء مع وسيطات.
+- [lura](https://github.com/luraproject/lura): بوابة API فائقة الأداء مع وسيطات.
 - [picfit](https://github.com/thoas/picfit): خادم تغيير حجم الصور مكتوب بلغة Go.
 - [gotify](https://github.com/gotify/server): خادم بسيط لإرسال واستقبال الرسائل في الوقت الفعلي عبر WebSocket.
 - [cds](https://github.com/ovh/cds): منصة مفتوحة المصدر للتسليم المستمر وأتمتة DevOps على مستوى المؤسسات.
