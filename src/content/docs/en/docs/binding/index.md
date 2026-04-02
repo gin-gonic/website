@@ -48,7 +48,7 @@ Gin can bind data from many sources: **JSON**, **XML**, **YAML**, **TOML**, **fo
 
 ## In this section
 
-- [**Model binding and validation**](./model-binding-and-validation/) -- Core binding concepts and validation rules
+- [**Model binding and validation**](./binding-and-validation/) -- Core binding concepts and validation rules
 - [**Custom validators**](./custom-validators/) -- Register your own validation functions
 - [**Binding query string or post data**](./bind-query-or-post/) -- Bind from query strings and form bodies
 - [**Bind URI**](./bind-uri/) -- Bind path parameters into structs

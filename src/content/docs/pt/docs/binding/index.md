@@ -48,7 +48,7 @@ O Gin pode vincular dados de diversas fontes: **JSON**, **XML**, **YAML**, **TOM
 
 ## Nesta seção
 
-- [**Model binding e validação**](./model-binding-and-validation/) -- Conceitos básicos de binding e regras de validação
+- [**Model binding e validação**](./binding-and-validation/) -- Conceitos básicos de binding e regras de validação
 - [**Validadores customizados**](./custom-validators/) -- Registre suas próprias funções de validação
 - [**Vincular query string ou dados post**](./bind-query-or-post/) -- Vincule a partir de query strings e corpos de formulário
 - [**Bind URI**](./bind-uri/) -- Vincule parâmetros de caminho em structs

@@ -48,7 +48,7 @@ Gin 可以从多种来源绑定数据：**JSON**、**XML**、**YAML**、**TOML**
 
 ## 本节内容
 
-- [**模型绑定和验证**](./model-binding-and-validation/) -- 核心绑定概念和验证规则
+- [**模型绑定和验证**](./binding-and-validation/) -- 核心绑定概念和验证规则
 - [**自定义验证器**](./custom-validators/) -- 注册自己的验证函数
 - [**绑定查询字符串或 POST 数据**](./bind-query-or-post/) -- 从查询字符串和表单体绑定
 - [**绑定 URI**](./bind-uri/) -- 将路径参数绑定到结构体

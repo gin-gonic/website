@@ -48,7 +48,7 @@ Gin puede enlazar datos de muchas fuentes: **JSON**, **XML**, **YAML**, **TOML**
 
 ## En esta sección
 
-- [**Enlace y validación de modelos**](./model-binding-and-validation/) -- Conceptos básicos de enlace y reglas de validación
+- [**Enlace y validación de modelos**](./binding-and-validation/) -- Conceptos básicos de enlace y reglas de validación
 - [**Validadores personalizados**](./custom-validators/) -- Registrar tus propias funciones de validación
 - [**Enlazar cadena de consulta o datos post**](./bind-query-or-post/) -- Enlazar desde cadenas de consulta y cuerpos de formularios
 - [**Enlazar URI**](./bind-uri/) -- Enlazar parámetros de ruta en structs

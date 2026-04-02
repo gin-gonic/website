@@ -48,7 +48,7 @@ Gin dapat mengikat data dari berbagai sumber: **JSON**, **XML**, **YAML**, **TOM
 
 ## Dalam bagian ini
 
-- [**Model binding dan validasi**](./model-binding-and-validation/) -- Konsep inti binding dan aturan validasi
+- [**Model binding dan validasi**](./binding-and-validation/) -- Konsep inti binding dan aturan validasi
 - [**Validator kustom**](./custom-validators/) -- Mendaftarkan fungsi validasi Anda sendiri
 - [**Binding query string atau post data**](./bind-query-or-post/) -- Binding dari query string dan body form
 - [**Bind URI**](./bind-uri/) -- Mengikat parameter path ke dalam struct
