@@ -13,13 +13,14 @@
     "@astrojs/sitemap": "^3.3.0",
     "@astrojs/starlight": "^0.32.5",
     "@lorenzo_lewis/starlight-utils": "^0.3.2",
-    "astro": "^5.15.9",
+    "astro": "^5.18.1",
     "sharp": "^0.32.5"
   },
   "overrides": {
     "mdast-util-to-hast": "^13.2.1",
     "h3": "^1.15.9",
     "picomatch": "^4.0.4",
-    "smol-toml": "^1.6.1"
+    "smol-toml": "^1.6.1",
+    "vite": "^6.4.2"
   }
 }
