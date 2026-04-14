@@ -17,6 +17,7 @@ sidebar:
 - [cds](https://github.com/ovh/cds): منصة مفتوحة المصدر للتسليم المستمر وأتمتة DevOps على مستوى المؤسسات.
 - [drone](https://github.com/harness/drone): منصة تسليم مستمر أصلية للحاويات مبنية بلغة Go.
 - [go-admin](https://github.com/GoAdminGroup/go-admin): إطار عمل لتصوير البيانات ولوحة الإدارة للغة Go.
+- [room](https://github.com/andreimerlescu/room): A drop in _waiting room_ middleware for high throughput web applications.
 
 ## أضف مشروعك
 

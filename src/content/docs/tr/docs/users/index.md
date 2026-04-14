@@ -17,6 +17,7 @@ Gin, her ölçekteki şirketler ve açık kaynak projeler tarafından üretimde 
 - [cds](https://github.com/ovh/cds): Kurumsal düzeyde Sürekli Teslim ve DevOps Otomasyon Açık Kaynak Platformu.
 - [drone](https://github.com/harness/drone): Go üzerine kurulu konteyner tabanlı Sürekli Teslim platformu.
 - [go-admin](https://github.com/GoAdminGroup/go-admin): Go için veri görselleştirme ve yönetim paneli framework'ü.
+- [room](https://github.com/andreimerlescu/room): A drop in _waiting room_ middleware for high throughput web applications.
 
 ## Projenizi gönderin
 

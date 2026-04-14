@@ -17,6 +17,7 @@ Gin es usado en producción por empresas y proyectos de código abierto de todos
 - [cds](https://github.com/ovh/cds): Plataforma de código abierto de Entrega Continua y Automatización DevOps de grado empresarial.
 - [drone](https://github.com/harness/drone): Una plataforma de Entrega Continua nativa de contenedores construida en Go.
 - [go-admin](https://github.com/GoAdminGroup/go-admin): Un framework de visualización de datos y panel de administración para Go.
+- [room](https://github.com/andreimerlescu/room): A drop in _waiting room_ middleware for high throughput web applications.
 
 ## Envía tu proyecto
 

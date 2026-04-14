@@ -17,6 +17,7 @@ Gin 被各种规模的公司和开源项目用于生产环境。以下是使用 
 - [cds](https://github.com/ovh/cds)：企业级持续交付和 DevOps 自动化开源平台。
 - [drone](https://github.com/harness/drone)：基于 Go 构建的容器原生持续交付平台。
 - [go-admin](https://github.com/GoAdminGroup/go-admin)：Go 的数据可视化和管理面板框架。
+- [room](https://github.com/andreimerlescu/room): A drop in _waiting room_ middleware for high throughput web applications.
 
 ## 提交你的项目
 
