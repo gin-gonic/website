@@ -4,16 +4,16 @@ sidebar:
   order: 9
 ---
 
-Gin mendukung redirect HTTP (mengirim klien ke URL berbeda) dan redirect router (meneruskan request secara internal ke handler lain tanpa round-trip ke klien).
+Gin mendukung redirect HTTP (mengirim klien ke URL berbeda) dan redirect router (meneruskan permintaan secara internal ke handler lain tanpa round-trip ke klien).
 
 ## Redirect HTTP
 
 Gunakan `c.Redirect` dengan kode status HTTP yang sesuai untuk mengarahkan klien:
 
-- **301 (`http.StatusMovedPermanently`)** — resource telah pindah secara permanen. Browser dan mesin pencari memperbarui cache mereka.
-- **302 (`http.StatusFound`)** — redirect sementara. Browser mengikuti tetapi tidak menyimpan URL baru di cache.
-- **307 (`http.StatusTemporaryRedirect`)** — seperti 302, tetapi browser harus mempertahankan metode HTTP asli (berguna untuk redirect POST).
-- **308 (`http.StatusPermanentRedirect`)** — seperti 301, tetapi browser harus mempertahankan metode HTTP asli.
+- **301 (`http.StatusMovedPermanently`)** — sumber daya telah pindah secara permanen. Peramban dan mesin pencari memperbarui cache mereka.
+- **302 (`http.StatusFound`)** — redirect sementara. Peramban mengikuti tetapi tidak menyimpan URL baru di cache.
+- **307 (`http.StatusTemporaryRedirect`)** — seperti 302, tetapi peramban harus mempertahankan metode HTTP asli (berguna untuk redirect POST).
+- **308 (`http.StatusPermanentRedirect`)** — seperti 301, tetapi peramban harus mempertahankan metode HTTP asli.
 
 ```go
 package main
@@ -27,17 +27,17 @@ import (
 func main() {
   router := gin.Default()
 
-  // External redirect (GET)
+  // Redirect eksternal (GET)
   router.GET("/old", func(c *gin.Context) {
     c.Redirect(http.StatusMovedPermanently, "https://www.google.com/")
   })
 
-  // Redirect from POST -- use 302 or 307 to preserve behavior
+  // Redirect dari POST -- gunakan 302 atau 307 untuk mempertahankan perilaku
   router.POST("/submit", func(c *gin.Context) {
     c.Redirect(http.StatusFound, "/result")
   })
 
-  // Internal router redirect (no HTTP round-trip)
+  // Redirect internal router (tidak ada round-trip HTTP)
   router.GET("/test", func(c *gin.Context) {
     c.Request.URL.Path = "/final"
     router.HandleContext(c)
@@ -58,17 +58,17 @@ func main() {
 ## Uji coba
 
 ```sh
-# GET redirect -- follows to Google (use -L to follow, -I to see headers only)
+# GET redirect -- diarahkan ke Google (gunakan -L untuk mengikuti pengalihan, -I untuk melihat header saja)
 curl -I http://localhost:8080/old
 # Output includes: HTTP/1.1 301 Moved Permanently
 # Output includes: Location: https://www.google.com/
 
-# POST redirect -- returns 302 with new location
+# POST redirect -- mengembalikan 302 dengan lokasi baru
 curl -X POST -I http://localhost:8080/submit
 # Output includes: HTTP/1.1 302 Found
 # Output includes: Location: /result
 
-# Internal redirect -- handled server-side, client sees final response
+# Redirect internal -- ditangani di sisi server, klien melihat respons akhir
 curl http://localhost:8080/test
 # Output: {"hello":"world"}
 ```
@@ -78,9 +78,9 @@ Saat melakukan redirect dari handler POST, gunakan `302` atau `307` sebagai peng
 :::
 
 :::tip
-Redirect internal melalui `router.HandleContext(c)` tidak mengirim respons redirect ke klien. Request di-route ulang di dalam server, yang lebih cepat dan tidak terlihat oleh klien.
+Redirect internal melalui `router.HandleContext(c)` tidak mengirim respons redirect ke klien. Permintaan dilakukan route ulang di dalam server, yang lebih cepat dan tidak terlihat oleh klien.
 :::
 
 ## Lihat juga
 
-- [Pengelompokan rute](/id/docs/routing/grouping-routes/)
+- [Mengelompokkan rute](/id/docs/routing/grouping-routes/)

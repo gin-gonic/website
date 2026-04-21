@@ -4,10 +4,10 @@ sidebar:
   order: 6
 ---
 
-Terkadang Anda perlu menerima sekumpulan pasangan kunci-nilai di mana kunci tidak diketahui sebelumnya — misalnya, filter dinamis atau metadata yang ditentukan pengguna. Gin menyediakan `c.QueryMap` dan `c.PostFormMap` untuk mem-parse parameter notasi bracket (seperti `ids[a]=1234`) menjadi `map[string]string`.
+Terkadang Anda perlu menerima sekumpulan pasangan kunci-nilai dengan kunci yang tidak diketahui sebelumnya — misalnya, filter dinamis atau metadata yang ditentukan pengguna. Gin menyediakan `c.QueryMap` dan `c.PostFormMap` untuk melakukan parse parameter notasi braket (seperti `ids[a]=1234`) menjadi `map[string]string`.
 
-- `c.QueryMap("key")` — mem-parse pasangan `key[subkey]=value` dari query string URL.
-- `c.PostFormMap("key")` — mem-parse pasangan `key[subkey]=value` dari body request.
+- `c.QueryMap("key")` — melakukan parse pasangan `key[subkey]=value` dari query string URL.
+- `c.PostFormMap("key")` — melakukan parse pasangan `key[subkey]=value` dari body permintaan.
 
 ```go
 package main
@@ -46,7 +46,7 @@ curl -X POST "http://localhost:8080/post?ids[a]=1234&ids[b]=hello" \
 ```
 
 :::note
-Notasi bracket `ids[a]=1234` adalah konvensi umum. Gin mem-parse bagian di dalam bracket sebagai kunci map. Hanya bracket satu tingkat yang didukung — bracket bersarang seperti `ids[a][b]=value` tidak diparsing sebagai map bersarang.
+Notasi braket `ids[a]=1234` adalah konvensi umum. Gin melakukan parse bagian di dalam braket sebagai kunci map. Hanya braket satu tingkat yang didukung — braket bersarang seperti `ids[a][b]=value` tidak dilakukan parsing sebagai map bersarang.
 :::
 
 ## Lihat juga

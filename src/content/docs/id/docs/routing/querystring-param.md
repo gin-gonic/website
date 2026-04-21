@@ -23,11 +23,11 @@ import (
 func main() {
   router := gin.Default()
 
-  // Query string parameters are parsed using the existing underlying request object.
-  // The request responds to a url matching:  /welcome?firstname=Jane&lastname=Doe
+  // Parameter query string diurai menggunakan objek permintaan yang mendasarinya.
+  // Permintaan tersebut merespons url yang cocok dengan:  /welcome?firstname=Jane&lastname=Doe
   router.GET("/welcome", func(c *gin.Context) {
     firstname := c.DefaultQuery("firstname", "Guest")
-    lastname := c.Query("lastname") // shortcut for c.Request.URL.Query().Get("lastname")
+    lastname := c.Query("lastname") // pintasan untuk c.Request.URL.Query().Get("lastname")
 
     c.String(http.StatusOK, "Hello %s %s", firstname, lastname)
   })
@@ -38,15 +38,15 @@ func main() {
 ## Uji coba
 
 ```sh
-# Both parameters provided
+# Kedua parameter disediakan
 curl "http://localhost:8080/welcome?firstname=Jane&lastname=Doe"
 # Output: Hello Jane Doe
 
-# Missing firstname -- uses default value "Guest"
+# Parameter firstname tidak ada -- menggunakan nilai bawaan "Guest"
 curl "http://localhost:8080/welcome?lastname=Doe"
 # Output: Hello Guest Doe
 
-# No parameters at all
+# Tidak ada parameter sama sekali
 curl "http://localhost:8080/welcome"
 # Output: Hello Guest
 ```

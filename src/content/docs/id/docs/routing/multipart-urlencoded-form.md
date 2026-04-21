@@ -38,17 +38,17 @@ func main() {
 ## Uji coba
 
 ```sh
-# URL-encoded form
+# Form URL-encoded
 curl -X POST http://localhost:8080/form_post \
   -d "message=hello&nick=world"
 # Output: {"message":"hello","nick":"world","status":"posted"}
 
-# Multipart form
+# Form multipart
 curl -X POST http://localhost:8080/form_post \
   -F "message=hello" -F "nick=world"
 # Output: {"message":"hello","nick":"world","status":"posted"}
 
-# Missing nick -- falls back to default "anonymous"
+# Nick tidak ada -- menggunakan nilai bawaan "anonymous"
 curl -X POST http://localhost:8080/form_post \
   -d "message=hello"
 # Output: {"message":"hello","nick":"anonymous","status":"posted"}
@@ -56,5 +56,5 @@ curl -X POST http://localhost:8080/form_post \
 
 ## Lihat juga
 
-- [Upload file](/id/docs/routing/upload-file/)
+- [Unggah file](/id/docs/routing/upload-file/)
 - [Query dan post form](/id/docs/routing/query-and-post-form/)

@@ -4,11 +4,11 @@ sidebar:
   order: 10
 ---
 
-Membangun API RESTful dengan Gin tidak hanya sekadar mendefinisikan rute. API yang dirancang dengan baik menggunakan format respons yang konsisten, paginasi yang dapat diprediksi, versioning yang jelas, dan penanganan error yang terstruktur. Panduan ini membahas pola-pola praktis yang dapat Anda terapkan pada aplikasi Gin produksi.
+Membangun API RESTful dengan Gin tidak hanya sekadar mendefinisikan rute. API yang dirancang dengan baik menggunakan format respons yang konsisten, paginasi yang dapat diprediksi, pembuatan versi yang jelas, dan penanganan eror yang terstruktur. Panduan ini membahas pola-pola praktis yang dapat Anda terapkan pada aplikasi Gin produksi.
 
 ## Format respons yang konsisten
 
-Membungkus setiap respons dalam envelope standar memudahkan konsumen API. Mereka selalu tahu di mana menemukan data, error, dan metadata.
+Membungkus setiap respons dalam envelope standar memudahkan konsumen API. Mereka selalu tahu di mana menemukan data, eror, dan metadata.
 
 ```go
 package main
@@ -19,7 +19,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Response is the standard API envelope.
+// Response merupakan pembungkus API standar.
 type Response struct {
 	Success bool        `json:"success"`
 	Data    interface{} `json:"data,omitempty"`
@@ -39,7 +39,7 @@ type Meta struct {
 	TotalPages int `json:"total_pages,omitempty"`
 }
 
-// OK sends a success response.
+// OK mengirimkan respons sukses.
 func OK(c *gin.Context, data interface{}) {
 	c.JSON(http.StatusOK, Response{
 		Success: true,
@@ -47,7 +47,7 @@ func OK(c *gin.Context, data interface{}) {
 	})
 }
 
-// Fail sends an error response.
+// Fail mengirimkan respons eror.
 func Fail(c *gin.Context, status int, code, message string) {
 	c.JSON(status, Response{
 		Success: false,
@@ -60,7 +60,7 @@ func main() {
 
 	r.GET("/api/users/:id", func(c *gin.Context) {
 		id := c.Param("id")
-		// Simulate a lookup
+		// Simulasi pencarian
 		if id == "0" {
 			Fail(c, http.StatusNotFound, "USER_NOT_FOUND", "no user with that ID")
 			return
@@ -96,7 +96,7 @@ func main() {
 		offset, _ := strconv.Atoi(c.DefaultQuery("offset", "0"))
 
 		if limit > 100 {
-			limit = 100 // cap the page size
+			limit = 100 // batasi ukuran halaman
 		}
 
 		// articles, total := db.ListArticles(limit, offset)
@@ -134,7 +134,7 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/api/events", func(c *gin.Context) {
-		cursor := c.Query("cursor") // e.g. last event ID
+		cursor := c.Query("cursor") // contoh: ID event terakhir
 		limit, _ := strconv.Atoi(c.DefaultQuery("limit", "20"))
 
 		if limit > 100 {
@@ -147,7 +147,7 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{
 			"success":     true,
 			"data":        []gin.H{}, // events
-			"next_cursor": "",        // nextCursor (empty string means no more pages)
+			"next_cursor": "",        // nextCursor (string kosong berarti tidak ada halaman lagi)
 		})
 	})
 
@@ -179,7 +179,7 @@ func main() {
 		sortBy := c.DefaultQuery("sort", "created_at")
 		order := c.DefaultQuery("order", "desc")
 
-		// Validate the sort field against an allow-list to prevent injection.
+		// Validasi field sort terhadap allow-list untuk mencegah injeksi.
 		allowed := map[string]bool{"created_at": true, "price": true, "name": true}
 		if !allowed[sortBy] {
 			sortBy = "created_at"
@@ -188,7 +188,7 @@ func main() {
 			order = "desc"
 		}
 
-		// Build and execute your query using these filters...
+		// Bangun dan jalankan query Anda menggunakan filter ini...
 		_ = category
 		_ = minPrice
 		_ = maxPrice
@@ -210,11 +210,11 @@ func main() {
 }
 ```
 
-## Versioning API
+## Pembuatan versi API
 
-### Versioning path URL
+### Pembuatan versi path URL
 
-Versioning path URL adalah strategi yang paling umum. Ini eksplisit, mudah di-routing, dan sederhana untuk diuji dengan `curl`.
+Pembuatan versi path URL adalah strategi yang paling umum. Ini eksplisit, mudah dilakukan routing, dan sederhana untuk diuji dengan `curl`.
 
 ```go
 package main
@@ -238,7 +238,7 @@ func main() {
 	v2 := r.Group("/api/v2")
 	{
 		v2.GET("/users", func(c *gin.Context) {
-			// v2 returns a different shape
+			// v2 mengembalikan bentuk yang berbeda
 			c.JSON(http.StatusOK, gin.H{
 				"version": "v2",
 				"data":    []gin.H{},
@@ -251,9 +251,9 @@ func main() {
 }
 ```
 
-### Versioning berbasis header
+### Pembuatan versi berbasis header
 
-Versioning header menjaga URL tetap bersih tetapi mengharuskan klien mengatur header kustom. Middleware dapat membaca header dan menyimpan versi dalam context.
+Pembuatan versi header menjaga URL tetap bersih tetapi mengharuskan klien mengatur header tersuai. Middleware dapat membaca header dan menyimpan versi dalam context.
 
 ```go
 package main
@@ -264,12 +264,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// VersionMiddleware reads the API version from the Accept-Version header.
+// VersionMiddleware membaca versi API dari header Accept-Version.
 func VersionMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		version := c.GetHeader("Accept-Version")
 		if version == "" {
-			version = "v1" // default
+			version = "v1" // bawaan
 		}
 		c.Set("api_version", version)
 		c.Next()
@@ -295,11 +295,11 @@ func main() {
 }
 ```
 
-## Pola penanganan error
+## Pola penanganan eror
 
-### Tipe error kustom
+### Tipe eror tersuai
 
-Definisikan tipe error tingkat aplikasi sehingga handler dapat mengembalikan error yang bermakna dan terstruktur.
+Definisikan tipe eror tingkat aplikasi sehingga handler dapat mengembalikan eror yang bermakna dan terstruktur.
 
 ```go
 package main
@@ -311,7 +311,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// AppError represents a structured API error.
+// AppError merepresentasikan eror API yang terstruktur.
 type AppError struct {
 	Status  int    `json:"-"`
 	Code    string `json:"code"`
@@ -328,7 +328,7 @@ var (
 	ErrBadRequest   = &AppError{Status: 400, Code: "BAD_REQUEST", Message: "invalid request"}
 )
 
-// ErrorHandler is a middleware that catches errors set via c.Error().
+// ErrorHandler adalah middleware yang menangkap set eror melalui c.Error().
 func ErrorHandler() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Next()
@@ -383,7 +383,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// RegisterUserRoutes sets up all /users endpoints.
+// RegisterUserRoutes mendaftarkan semua endpoint /users.
 func RegisterUserRoutes(rg *gin.RouterGroup) {
 	users := rg.Group("/users")
 	{
@@ -395,7 +395,7 @@ func RegisterUserRoutes(rg *gin.RouterGroup) {
 	}
 }
 
-// RegisterOrderRoutes sets up all /orders endpoints.
+// RegisterOrderRoutes mendaftarkan semua endpoint /orders.
 func RegisterOrderRoutes(rg *gin.RouterGroup) {
 	orders := rg.Group("/orders")
 	{
