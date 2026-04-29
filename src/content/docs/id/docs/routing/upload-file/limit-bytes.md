@@ -1,17 +1,17 @@
 ---
-title: "Batasi ukuran upload"
+title: "Batasi ukuran unggahan"
 sidebar:
   order: 3
 ---
 
-Gunakan `http.MaxBytesReader` untuk membatasi secara ketat ukuran maksimum file yang diupload. Ketika batas terlampaui, reader mengembalikan error dan Anda dapat merespons dengan status `413 Request Entity Too Large`.
+Gunakan `http.MaxBytesReader` untuk membatasi secara ketat ukuran maksimum file yang diunggah. Ketika batas terlampaui, reader mengembalikan eror dan Anda dapat merespons dengan status `413 Request Entity Too Large`.
 
-Ini penting untuk mencegah serangan denial-of-service di mana klien mengirim file berukuran sangat besar untuk menghabiskan memori atau ruang disk server.
+Ini penting untuk mencegah serangan *denial-of-service* ketika klien mengirim file berukuran sangat besar untuk menghabiskan memori atau ruang disk server.
 
 ## Cara kerja
 
-1. **Tentukan batas** — Konstanta `MaxUploadSize` (1 MB) menetapkan batas keras untuk upload.
-2. **Terapkan batas** — `http.MaxBytesReader` membungkus `c.Request.Body`. Jika klien mengirim lebih banyak byte dari yang diizinkan, reader berhenti dan mengembalikan error.
+1. **Tentukan batas** — Konstanta `MaxUploadSize` (1 MB) menetapkan batas mutlak untuk unggahan.
+2. **Terapkan batas** — `http.MaxBytesReader` membungkus `c.Request.Body`. Jika klien mengirim lebih banyak byte dari yang diizinkan, reader berhenti dan mengembalikan eror.
 3. **Parse dan periksa** — `c.Request.ParseMultipartForm` memicu pembacaan. Kode memeriksa `*http.MaxBytesError` untuk mengembalikan status `413` dengan pesan yang jelas.
 
 ```go
@@ -29,10 +29,10 @@ const (
 )
 
 func uploadHandler(c *gin.Context) {
-  // Wrap the body reader so only MaxUploadSize bytes are allowed
+  // Bungkus body reader sehingga hanya MaxUploadSize byte yang diizinkan
   c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, MaxUploadSize)
 
-  // Parse multipart form
+  // Parse form multipart
   if err := c.Request.ParseMultipartForm(MaxUploadSize); err != nil {
     if _, ok := err.(*http.MaxBytesError); ok {
       c.JSON(http.StatusRequestEntityTooLarge, gin.H{
@@ -66,12 +66,12 @@ func main() {
 ## Uji coba
 
 ```sh
-# Upload a small file (under 1 MB) -- succeeds
+# Unggah file kecil (di bawah 1 MB) -- berhasil
 curl -X POST http://localhost:8080/upload \
   -F "file=@/path/to/small-file.txt"
 # Output: {"message":"upload successful"}
 
-# Upload a large file (over 1 MB) -- rejected
+# Unggah file besar (di atas 1 MB) -- ditolak
 curl -X POST http://localhost:8080/upload \
   -F "file=@/path/to/large-file.zip"
 # Output: {"error":"file too large (max: 1048576 bytes)"}
@@ -80,4 +80,4 @@ curl -X POST http://localhost:8080/upload \
 ## Lihat juga
 
 - [File tunggal](/id/docs/routing/upload-file/single-file/)
-- [Banyak file](/id/docs/routing/upload-file/multiple-file/)
+- [Multipel file](/id/docs/routing/upload-file/multiple-file/)

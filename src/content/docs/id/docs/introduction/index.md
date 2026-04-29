@@ -1,5 +1,5 @@
 ---
-title: "Pengantar"
+title: "Pendahuluan"
 sidebar:
   order: 1
 ---
@@ -27,21 +27,21 @@ Gin dapat menangkap panic yang terjadi selama permintaan HTTP dan memulihkannya.
 
 ### Validasi JSON
 
-Gin dapat mem-parse dan memvalidasi JSON dari sebuah permintaan - misalnya, memeriksa keberadaan nilai yang wajib diisi.
+Gin dapat melakukan parse dan memvalidasi JSON dari sebuah permintaan - misalnya, memeriksa keberadaan nilai yang wajib diisi.
 
 ### Pengelompokan Rute
 
 Organisasikan rute Anda lebih baik. Memerlukan otorisasi vs tidak memerlukan, versi API berbeda... Selain itu, grup dapat disusun bertingkat tanpa batas tanpa menurunkan performa.
 
-### Manajemen Error
+### Manajemen Eror
 
-Gin menyediakan cara praktis untuk mengumpulkan semua error yang terjadi selama permintaan HTTP. Pada akhirnya, middleware dapat menulisnya ke file log, ke database, dan mengirimnya melalui jaringan.
+Gin menyediakan cara praktis untuk mengumpulkan semua eror yang terjadi selama permintaan HTTP. Pada akhirnya, middleware dapat menulisnya ke file log, ke database, dan mengirimnya melalui jaringan.
 
 ### Rendering Bawaan
 
 Gin menyediakan API yang mudah digunakan untuk rendering JSON, XML, dan HTML.
 
-### Dapat Diperluas
+### Dapat Diekspansi
 
 Membuat middleware baru sangat mudah, cukup lihat contoh kodenya.
 
@@ -49,6 +49,6 @@ Membuat middleware baru sangat mudah, cukup lihat contoh kodenya.
 
 - Router tanpa alokasi.
 - Masih menjadi router dan framework HTTP tercepat. Dari routing hingga penulisan.
-- Rangkaian lengkap pengujian unit.
-- Teruji dalam pertempuran.
+- Paket lengkap pengujian unit.
+- Teruji di lapangan.
 - API dibekukan, rilis baru tidak akan merusak kode Anda.

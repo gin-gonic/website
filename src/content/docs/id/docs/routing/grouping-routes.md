@@ -6,7 +6,7 @@ sidebar:
 
 Grup rute memungkinkan Anda mengorganisasi rute terkait di bawah prefix URL bersama. Ini berguna untuk:
 
-- **Versioning API** -- mengelompokkan semua endpoint v1 di bawah `/v1` dan endpoint v2 di bawah `/v2`.
+- **Pembuatan versi API** -- mengelompokkan semua endpoint v1 di bawah `/v1` dan endpoint v2 di bawah `/v2`.
 - **Middleware bersama** -- menerapkan autentikasi, logging, atau rate-limiting ke seluruh set rute sekaligus alih-alih memasang middleware ke setiap rute satu per satu.
 - **Organisasi kode** -- menjaga handler terkait terkelompok secara visual dalam kode sumber Anda.
 
@@ -36,7 +36,7 @@ func readEndpoint(c *gin.Context) {
 func main() {
 	router := gin.Default()
 
-	// Simple group: v1
+	// Grup sederhana: v1
 	{
 		v1 := router.Group("/v1")
 		v1.POST("/login", loginEndpoint)
@@ -44,7 +44,7 @@ func main() {
 		v1.POST("/read", readEndpoint)
 	}
 
-	// Simple group: v2
+	// Grup sederhana: v2
 	{
 		v2 := router.Group("/v2")
 		v2.POST("/login", loginEndpoint)
@@ -61,10 +61,10 @@ func main() {
 Anda dapat meneruskan middleware ke `router.Group()` atau memanggil `Use()` pada grup. Setiap rute dalam grup tersebut akan menjalankan middleware sebelum handler-nya.
 
 ```go
-// AuthRequired is a placeholder for your auth middleware.
+// AuthRequired adalah placeholder untuk middleware autentikasi Anda.
 func AuthRequired() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// ... check token, session, etc.
+		// ... periksa token, session, dll.
 		c.Next()
 	}
 }
@@ -72,13 +72,13 @@ func AuthRequired() gin.HandlerFunc {
 func main() {
 	router := gin.Default()
 
-	// Public routes -- no auth required
+	// Rute publik -- tidak memerlukan autentikasi
 	public := router.Group("/api")
 	{
 		public.GET("/health", healthCheck)
 	}
 
-	// Private routes -- auth middleware applied to the whole group
+	// Rute privat -- middleware autentikasi diterapkan ke seluruh grup
 	private := router.Group("/api")
 	private.Use(AuthRequired())
 	{

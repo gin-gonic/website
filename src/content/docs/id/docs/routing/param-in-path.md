@@ -4,12 +4,12 @@ sidebar:
   order: 2
 ---
 
-Gin mendukung dua jenis parameter path yang memungkinkan Anda menangkap nilai langsung dari URL:
+Gin mendukung dua jenis parameter path yang memungkinkan untuk menangkap nilai langsung dari URL:
 
 - **`:name`** — mencocokkan satu segmen path. Misalnya, `/user/:name` mencocokkan `/user/john` tetapi **tidak** mencocokkan `/user/` atau `/user`.
 - **`*action`** — mencocokkan semua setelah prefix, termasuk garis miring. Misalnya, `/user/:name/*action` mencocokkan `/user/john/send` dan `/user/john/`. Nilai yang ditangkap menyertakan `/` di awal.
 
-Gunakan `c.Param("name")` untuk mengambil nilai parameter path di dalam handler Anda.
+Gunakan `c.Param("name")` untuk mengambil nilai parameter path di dalam handler.
 
 ```go
 package main
@@ -23,14 +23,14 @@ import (
 func main() {
   router := gin.Default()
 
-  // This handler will match /user/john but will not match /user/ or /user
+  // Handler ini akan cocok dengan /user/john tetapi tidak akan cocok dengan /user/ atau /user
   router.GET("/user/:name", func(c *gin.Context) {
     name := c.Param("name")
     c.String(http.StatusOK, "Hello %s", name)
   })
 
-  // However, this one will match /user/john/ and also /user/john/send
-  // If no other routers match /user/john, it will redirect to /user/john/
+  // Namun, yang ini akan cocok dengan /user/john/ dan juga /user/john/send
+  // Jika tidak ada router lain yang cocok dengan /user/john, maka akan redirect ke /user/john/
   router.GET("/user/:name/*action", func(c *gin.Context) {
     name := c.Param("name")
     action := c.Param("action")
@@ -45,15 +45,15 @@ func main() {
 ## Uji coba
 
 ```sh
-# Single parameter -- matches :name
+# Parameter tunggal -- cocok dengan :name
 curl http://localhost:8080/user/john
 # Output: Hello john
 
-# Wildcard parameter -- matches :name and *action
+# Parameter wildcard -- cocok dengan :name dan *action
 curl http://localhost:8080/user/john/send
 # Output: john is /send
 
-# Trailing slash is captured by the wildcard
+# Trailing slash (garis miring di akhir) ditangkap oleh wildcard
 curl http://localhost:8080/user/john/
 # Output: john is /
 ```
@@ -63,7 +63,7 @@ Nilai wildcard `*action` selalu menyertakan `/` di awal. Pada contoh di atas, `c
 :::
 
 :::caution
-Anda tidak dapat mendefinisikan `/user/:name` dan `/user/:name/*action` jika keduanya berkonflik pada kedalaman path yang sama. Gin akan panic saat startup jika mendeteksi rute yang ambigu.
+Anda tidak dapat mendefinisikan `/user/:name` dan `/user/:name/*action` jika keduanya konflik pada kedalaman path yang sama. Gin akan panic saat startup jika mendeteksi rute yang ambigu.
 :::
 
 ## Lihat juga

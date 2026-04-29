@@ -54,8 +54,8 @@ func options(c *gin.Context) {
 }
 
 func main() {
-	// Creates a gin router with default middleware:
-	// logger and recovery (crash-free) middleware
+	// Membuat router Gin dengan middleware bawaan:
+	// logger dan middleware recovery (bebas crash)
 	router := gin.Default()
 
 	router.GET("/someGet", getting)
@@ -66,10 +66,10 @@ func main() {
 	router.HEAD("/someHead", head)
 	router.OPTIONS("/someOptions", options)
 
-	// By default it serves on :8080 unless a
-	// PORT environment variable was defined.
+	// Secara bawaan berjalan di :8080 kecuali
+	// variabel lingkungan PORT telah ditentukan.
 	router.Run()
-	// router.Run(":3000") for a hard coded port
+	// router.Run(":3000") menentukan port secara langsung di kode
 }
 ```
 
@@ -78,25 +78,25 @@ func main() {
 Setelah server berjalan, Anda dapat menguji setiap endpoint:
 
 ```sh
-# GET request
+# Permintaan GET
 curl -X GET http://localhost:8080/someGet
 
-# POST request
+# Permintaan POST
 curl -X POST http://localhost:8080/somePost
 
-# PUT request
+# Permintaan PUT
 curl -X PUT http://localhost:8080/somePut
 
-# DELETE request
+# Permintaan DELETE
 curl -X DELETE http://localhost:8080/someDelete
 
-# PATCH request
+# Permintaan PATCH
 curl -X PATCH http://localhost:8080/somePatch
 
-# HEAD request (returns headers only, no body)
+# Permintaan HEAD (mengembalikan header saja, tanpa body)
 curl -I http://localhost:8080/someHead
 
-# OPTIONS request
+# Permintaan OPTIONS
 curl -X OPTIONS http://localhost:8080/someOptions
 ```
 
