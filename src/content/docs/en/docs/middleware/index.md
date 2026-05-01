@@ -56,7 +56,7 @@ Middleware attached at a broader scope runs first. In the example above, a reque
 
 - [**Using middleware**](./using-middleware/) -- Attach middleware globally, to groups, or individual routes
 - [**Custom middleware**](./custom-middleware/) -- Write your own middleware functions
-- [**Using BasicAuth middleware**](./using-basicauth/) -- HTTP Basic Authentication
+- [**Using BasicAuth middleware**](./using-basicauth-middleware/) -- HTTP Basic Authentication
 - [**Goroutines inside middleware**](./goroutines-inside-middleware/) -- Safely run background tasks from middleware
 - [**Custom HTTP configuration**](./custom-http-config/) -- Error handling and recovery in middleware
 - [**Security headers**](./security-headers/) -- Set common security headers
