@@ -8,7 +8,7 @@ Gin adalah framework web yang ditulis dalam Go (Golang). Gin memiliki API mirip 
 
 Di bagian ini kami akan membahas apa itu Gin, masalah apa yang dipecahkannya, dan bagaimana Gin dapat membantu proyek Anda.
 
-Atau, jika Anda sudah siap menggunakan Gin dalam proyek Anda, kunjungi [Memulai Cepat](https://gin-gonic.com/en/docs/quickstart/).
+Atau, jika Anda sudah siap menggunakan Gin dalam proyek Anda, kunjungi [Memulai Cepat](https://gin-gonic.com/id/docs/quickstart/).
 
 ## Fitur
 
