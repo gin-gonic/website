@@ -36,8 +36,10 @@ Add styles or override variables from the theme here.
 	--sl-color-accent-low: hsl(215, 88%, 90%);
 }
 
-/* Fix writing direction when the language is set to arabic */
-html[lang='ar'] * {
+/* Fix writing direction when the language is set to arabic and persian */
+/* The fix should be applied to all RTL languages, if more to be added in the future */
+html[lang='ar'] *,
+html[lang='fa'] * {
 	direction: rtl;
 
 	pre,
