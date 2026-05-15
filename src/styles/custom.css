@@ -49,6 +49,10 @@ html[lang='ar'] * {
 		text-align: left;
 	}
 
+	kbd {
+		flex-direction: row-reverse;
+	}
+
 	a[rel="next"] svg {
 		rotate: 180deg;
 	}
