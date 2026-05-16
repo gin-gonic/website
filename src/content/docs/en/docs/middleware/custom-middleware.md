@@ -1,7 +1,7 @@
 ---
 title: "Custom Middleware"
-sidebar:
-  order: 3
+sidebar: 7
+  order: 8
 ---
 
 Gin middleware is a function that returns a `gin.HandlerFunc`. Middleware runs before and/or after the main handler, which makes it useful for logging, authentication, error handling, and other cross-cutting concerns.
