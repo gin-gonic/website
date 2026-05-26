@@ -8,7 +8,7 @@ Gin 是一個用 Go 語言（Golang）撰寫的 Web 框架。它提供類似 Mar
 
 在本節中，我們將介紹 Gin 是什麼、它解決了哪些問題，以及它如何幫助你的專案。
 
-或者，如果你已經準備好在專案中使用 Gin，請造訪[快速入門](https://gin-gonic.com/en/docs/quickstart/)。
+或者，如果你已經準備好在專案中使用 Gin，請造訪[快速入門](https://gin-gonic.com/zh-tw/docs/quickstart/)。
 
 ## 特點
 
