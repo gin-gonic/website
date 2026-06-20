@@ -1,91 +1,38 @@
 ---
 title: "FAQ"
 sidebar:
-  order: 9
+  order: 15
 ---
 
 ## Общие вопросы
 
-### Как включить горячую перезагрузку во время разработки?
+### Как включить автоперезагрузку при разработке?
 
-Используйте [Air](https://github.com/air-verse/air) для автоматической горячей перезагрузки во время разработки. Air отслеживает ваши файлы и пересобирает/перезапускает приложение при обнаружении изменений.
+Используйте [Air](https://github.com/air-verse/air) для автоматической перезагрузки при разработке. Air отслеживает ваши файлы и пересобирает/перезапускает приложение при обнаружении изменений.
 
 **Установка:**
 
 ```sh
-# Установить Air глобально
 go install github.com/air-verse/air@latest
 ```
 
 **Настройка:**
 
-Создайте файл конфигурации `.air.toml` в корне проекта:
+Создайте файл конфигурации `.air.toml` в корне вашего проекта:
 
 ```sh
 air init
 ```
 
-Это создаст конфигурацию по умолчанию. Вы можете настроить её для вашего Gin проекта:
-
-```toml
-# .air.toml
-root = "."
-testdata_dir = "testdata"
-tmp_dir = "tmp"
-
-[build]
-  args_bin = []
-  bin = "./tmp/main"
-  cmd = "go build -o ./tmp/main ."
-  delay = 1000
-  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
-  exclude_file = []
-  exclude_regex = ["_test.go"]
-  exclude_unchanged = false
-  follow_symlink = false
-  full_bin = ""
-  include_dir = []
-  include_ext = ["go", "tpl", "tmpl", "html"]
-  include_file = []
-  kill_delay = "0s"
-  log = "build-errors.log"
-  poll = false
-  poll_interval = 0
-  rerun = false
-  rerun_delay = 500
-  send_interrupt = false
-  stop_on_error = false
-
-[color]
-  app = ""
-  build = "yellow"
-  main = "magenta"
-  runner = "green"
-  watcher = "cyan"
-
-[log]
-  main_only = false
-  time = false
-
-[misc]
-  clean_on_exit = false
-
-[screen]
-  clear_on_rebuild = false
-  keep_scroll = true
-```
-
-**Использование:**
-
-Просто запустите `air` в директории проекта вместо `go run`:
+Затем запустите `air` в директории проекта вместо `go run`:
 
 ```sh
 air
 ```
 
-Air будет отслеживать ваши `.go` файлы и автоматически пересобирать/перезапускать ваше Gin приложение при изменениях.
+Air будет отслеживать ваши файлы `.go` и автоматически пересобирать/перезапускать ваше приложение Gin при изменениях. Смотрите [документацию Air](https://github.com/air-verse/air) для параметров конфигурации.
 
-### Как обрабатывать CORS в Gin?
+### Как настроить CORS в Gin?
 
 Используйте официальный middleware [gin-contrib/cors](https://github.com/gin-contrib/cors):
 
@@ -102,10 +49,10 @@ import (
 func main() {
   r := gin.Default()
 
-  // Конфигурация CORS по умолчанию
+  // Default CORS configuration
   r.Use(cors.Default())
 
-  // Или настройте CORS
+  // Or customize CORS settings
   r.Use(cors.New(cors.Config{
     AllowOrigins:     []string{"https://example.com"},
     AllowMethods:     []string{"GET", "POST", "PUT", "DELETE"},
@@ -123,6 +70,8 @@ func main() {
 }
 ```
 
+Полный обзор безопасности см. в разделе [Лучшие практики безопасности](/ru/docs/middleware/security-guide/).
+
 ### Как раздавать статические файлы?
 
 Используйте `Static()` или `StaticFS()` для раздачи статических файлов:
@@ -131,37 +80,34 @@ func main() {
 func main() {
   r := gin.Default()
 
-  // Раздавать файлы из директории ./assets по пути /assets/*
+  // Serve files from ./assets directory at /assets/*
   r.Static("/assets", "./assets")
 
-  // Раздавать один файл
+  // Serve a single file
   r.StaticFile("/favicon.ico", "./resources/favicon.ico")
 
-  // Раздавать из встроенной файловой системы (Go 1.16+)
+  // Serve from embedded filesystem (Go 1.16+)
   r.StaticFS("/public", http.FS(embedFS))
 
   r.Run()
 }
 ```
 
-Подробнее см. [пример раздачи статических файлов](../examples/serving-static-files/).
+Подробнее см. [Раздача данных из файла](/ru/docs/rendering/serving-data-from-file/).
 
 ### Как обрабатывать загрузку файлов?
 
 Используйте `FormFile()` для одного файла или `MultipartForm()` для нескольких файлов:
 
 ```go
-// Загрузка одного файла
+// Single file upload
 r.POST("/upload", func(c *gin.Context) {
   file, _ := c.FormFile("file")
-
-  // Сохранить файл
   c.SaveUploadedFile(file, "./uploads/"+file.Filename)
-
-  c.String(200, "Файл %s успешно загружен", file.Filename)
+  c.String(200, "File %s uploaded successfully", file.Filename)
 })
 
-// Загрузка нескольких файлов
+// Multiple files upload
 r.POST("/upload-multiple", func(c *gin.Context) {
   form, _ := c.MultipartForm()
   files := form.File["files"]
@@ -169,16 +115,15 @@ r.POST("/upload-multiple", func(c *gin.Context) {
   for _, file := range files {
     c.SaveUploadedFile(file, "./uploads/"+file.Filename)
   }
-
-  c.String(200, "Загружено %d файлов", len(files))
+  c.String(200, "%d files uploaded", len(files))
 })
 ```
 
-Подробнее см. [примеры загрузки файлов](../examples/upload-file/).
+Подробнее см. документацию [Загрузка файлов](/ru/docs/routing/upload-file/).
 
 ### Как реализовать аутентификацию с JWT?
 
-Используйте [gin-contrib/jwt](https://github.com/gin-contrib/jwt) или реализуйте собственный middleware:
+Используйте [gin-contrib/jwt](https://github.com/gin-contrib/jwt) или реализуйте пользовательский middleware. Вот минимальный пример:
 
 ```go
 package main
@@ -198,29 +143,16 @@ type Claims struct {
   jwt.RegisteredClaims
 }
 
-func GenerateToken(username string) (string, error) {
-  claims := Claims{
-    Username: username,
-    RegisteredClaims: jwt.RegisteredClaims{
-      ExpiresAt: jwt.NewNumericDate(time.Now().Add(24 * time.Hour)),
-      IssuedAt:  jwt.NewNumericDate(time.Now()),
-    },
-  }
-
-  token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-  return token.SignedString(jwtSecret)
-}
-
 func AuthMiddleware() gin.HandlerFunc {
   return func(c *gin.Context) {
     tokenString := c.GetHeader("Authorization")
     if tokenString == "" {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Отсутствует токен авторизации"})
+      c.JSON(http.StatusUnauthorized, gin.H{"error": "Missing authorization token"})
       c.Abort()
       return
     }
 
-    // Удалить префикс "Bearer " если присутствует
+    // Remove "Bearer " prefix if present
     if len(tokenString) > 7 && tokenString[:7] == "Bearer " {
       tokenString = tokenString[7:]
     }
@@ -230,7 +162,7 @@ func AuthMiddleware() gin.HandlerFunc {
     })
 
     if err != nil || !token.Valid {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Недействительный токен"})
+      c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid token"})
       c.Abort()
       return
     }
@@ -238,171 +170,58 @@ func AuthMiddleware() gin.HandlerFunc {
     if claims, ok := token.Claims.(*Claims); ok {
       c.Set("username", claims.Username)
       c.Next()
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Недействительные claims токена"})
-      c.Abort()
     }
   }
-}
-
-func main() {
-  r := gin.Default()
-
-  r.POST("/login", func(c *gin.Context) {
-    var credentials struct {
-      Username string `json:"username"`
-      Password string `json:"password"`
-    }
-
-    if err := c.BindJSON(&credentials); err != nil {
-      c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-      return
-    }
-
-    // Проверка учётных данных (реализуйте свою логику)
-    if credentials.Username == "admin" && credentials.Password == "password" {
-      token, _ := GenerateToken(credentials.Username)
-      c.JSON(http.StatusOK, gin.H{"token": token})
-    } else {
-      c.JSON(http.StatusUnauthorized, gin.H{"error": "Неверные учётные данные"})
-    }
-  })
-
-  // Защищённые маршруты
-  authorized := r.Group("/")
-  authorized.Use(AuthMiddleware())
-  {
-    authorized.GET("/profile", func(c *gin.Context) {
-      username := c.MustGet("username").(string)
-      c.JSON(http.StatusOK, gin.H{"username": username})
-    })
-  }
-
-  r.Run()
 }
 ```
+
+Для аутентификации на основе сессий см. [Управление сессиями](/ru/docs/middleware/session-management/).
 
 ### Как настроить логирование запросов?
 
-Gin включает middleware логирования по умолчанию. Настройте его или используйте структурированное логирование:
+Gin включает middleware логирования по умолчанию через `gin.Default()`. Для структурированного JSON-логирования в продакшене см. [Структурированное логирование](/ru/docs/logging/structured-logging/).
+
+Для базовой настройки логов:
 
 ```go
-package main
-
-import (
-  "log"
-  "time"
-
-  "github.com/gin-gonic/gin"
-)
-
-// Пользовательский middleware логирования
-func Logger() gin.HandlerFunc {
-  return func(c *gin.Context) {
-    start := time.Now()
-    path := c.Request.URL.Path
-
-    c.Next()
-
-    latency := time.Since(start)
-    statusCode := c.Writer.Status()
-    clientIP := c.ClientIP()
-    method := c.Request.Method
-
-    log.Printf("[GIN] %s | %3d | %13v | %15s | %-7s %s",
-      time.Now().Format("2006/01/02 - 15:04:05"),
-      statusCode,
-      latency,
-      clientIP,
-      method,
-      path,
-    )
-  }
-}
-
-func main() {
-  r := gin.New()
-  r.Use(Logger())
-  r.Use(gin.Recovery())
-
-  r.GET("/ping", func(c *gin.Context) {
-    c.JSON(200, gin.H{"message": "pong"})
-  })
-
-  r.Run()
-}
+r := gin.New()
+r.Use(gin.LoggerWithConfig(gin.LoggerConfig{
+  SkipPaths: []string{"/healthz"},
+}))
+r.Use(gin.Recovery())
 ```
 
-Для продвинутого логирования см. [пример пользовательского формата лога](../examples/custom-log-format/).
+Все варианты, включая пользовательские форматы, вывод в файл и исключение строк запроса, см. в разделе [Логирование](/ru/docs/logging/).
 
-### Как обработать graceful shutdown?
+### Как реализовать плавную остановку?
 
-Реализуйте graceful shutdown для корректного закрытия соединений:
-
-```go
-package main
-
-import (
-  "context"
-  "log"
-  "net/http"
-  "os"
-  "os/signal"
-  "syscall"
-  "time"
-
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  r := gin.Default()
-
-  r.GET("/", func(c *gin.Context) {
-    time.Sleep(5 * time.Second)
-    c.String(http.StatusOK, "Добро пожаловать!")
-  })
-
-  srv := &http.Server{
-    Addr:    ":8080",
-    Handler: r,
-  }
-
-  // Запустить сервер в горутине
-  go func() {
-    if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-      log.Fatalf("прослушивание: %s\n", err)
-    }
-  }()
-
-  // Ожидание сигнала прерывания для graceful shutdown сервера
-  quit := make(chan os.Signal, 1)
-  signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
-  <-quit
-  log.Println("Завершение работы сервера...")
-
-  // Дать незавершённым запросам 5 секунд на завершение
-  ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-  defer cancel()
-
-  if err := srv.Shutdown(ctx); err != nil {
-    log.Fatal("Принудительное завершение сервера:", err)
-  }
-
-  log.Println("Сервер завершил работу")
-}
-```
-
-Подробнее см. [пример graceful restart или stop](../examples/graceful-restart-or-stop/).
+См. [Плавная перезагрузка или остановка](/ru/docs/server-config/graceful-restart-or-stop/) для полного руководства с примерами кода.
 
 ### Почему я получаю "404 Not Found" вместо "405 Method Not Allowed"?
 
-По умолчанию Gin возвращает 404 для маршрутов, не поддерживающих запрошенный HTTP метод. Чтобы возвращать 405 Method Not Allowed, включите опцию `HandleMethodNotAllowed`.
+По умолчанию Gin возвращает 404 для маршрутов, которые не поддерживают запрашиваемый HTTP-метод. Установите `HandleMethodNotAllowed = true`, чтобы возвращать 405:
 
-Подробнее см. [FAQ Method Not Allowed](./method-not-allowed/).
+```go
+r := gin.Default()
+r.HandleMethodNotAllowed = true
 
-### Как связать параметры запроса и POST данные вместе?
+r.GET("/ping", func(c *gin.Context) {
+  c.JSON(200, gin.H{"message": "pong"})
+})
 
-Используйте `ShouldBind()`, который автоматически выбирает binding на основе типа контента:
+r.Run()
+```
+
+```sh
+$ curl -X POST localhost:8080/ping
+
+HTTP/1.1 405 Method Not Allowed
+Allow: GET
+```
+
+### Как привязать параметры запроса и POST-данные одновременно?
+
+Используйте `ShouldBind()`, который автоматически выбирает привязку на основе типа контента:
 
 ```go
 type User struct {
@@ -413,7 +232,6 @@ type User struct {
 
 r.POST("/user", func(c *gin.Context) {
   var user User
-  // Связывает параметры запроса и тело запроса (JSON/form)
   if err := c.ShouldBind(&user); err != nil {
     c.JSON(400, gin.H{"error": err.Error()})
     return
@@ -422,7 +240,7 @@ r.POST("/user", func(c *gin.Context) {
 })
 ```
 
-Для большего контроля см. [пример bind query или post](../examples/bind-query-or-post/).
+Все варианты привязки см. в разделе [Привязка данных](/ru/docs/binding/).
 
 ### Как валидировать данные запроса?
 
@@ -441,15 +259,15 @@ r.POST("/user", func(c *gin.Context) {
     c.JSON(400, gin.H{"error": err.Error()})
     return
   }
-  c.JSON(200, gin.H{"message": "Пользователь валиден"})
+  c.JSON(200, gin.H{"message": "User is valid"})
 })
 ```
 
-Для пользовательских валидаторов см. [пример пользовательских валидаторов](../examples/custom-validators/).
+Пользовательские валидаторы и продвинутое использование см. в разделе [Привязка модели и валидация](/ru/docs/binding/binding-and-validation/).
 
-### Как запустить Gin в production режиме?
+### Как запустить Gin в продакшен-режиме?
 
-Установите переменную окружения `GIN_MODE` в `release`:
+Установите переменную окружения `GIN_MODE` в значение `release`:
 
 ```sh
 export GIN_MODE=release
@@ -463,88 +281,22 @@ GIN_MODE=release ./your-app
 gin.SetMode(gin.ReleaseMode)
 ```
 
-Release режим:
-
-- Отключает отладочное логирование
-- Улучшает производительность
-- Немного уменьшает размер бинарного файла
+Режим release отключает отладочное логирование и улучшает производительность.
 
 ### Как обрабатывать подключения к базе данных с Gin?
 
-Используйте внедрение зависимостей или контекст для разделения подключений к базе данных:
-
-```go
-package main
-
-import (
-  "database/sql"
-
-  "github.com/gin-gonic/gin"
-  _ "github.com/lib/pq"
-)
-
-func main() {
-  db, err := sql.Open("postgres", "postgres://user:pass@localhost/dbname")
-  if err != nil {
-    panic(err)
-  }
-  defer db.Close()
-
-  r := gin.Default()
-
-  // Метод 1: Передать db в обработчики
-  r.GET("/users", func(c *gin.Context) {
-    var users []string
-    rows, _ := db.Query("SELECT name FROM users")
-    defer rows.Close()
-
-    for rows.Next() {
-      var name string
-      rows.Scan(&name)
-      users = append(users, name)
-    }
-
-    c.JSON(200, users)
-  })
-
-  // Метод 2: Использовать middleware для внедрения db
-  r.Use(func(c *gin.Context) {
-    c.Set("db", db)
-    c.Next()
-  })
-
-  r.Run()
-}
-```
-
-Для ORM рассмотрите использование [GORM](https://gorm.io/) с Gin.
+См. [Интеграция с базой данных](/ru/docs/server-config/database/) для полного руководства, охватывающего `database/sql`, GORM, пул соединений и паттерны внедрения зависимостей.
 
 ### Как тестировать обработчики Gin?
 
-Используйте `net/http/httptest` для тестирования ваших маршрутов:
+Используйте `net/http/httptest` для тестирования маршрутов:
 
 ```go
-package main
-
-import (
-  "net/http"
-  "net/http/httptest"
-  "testing"
-
-  "github.com/gin-gonic/gin"
-  "github.com/stretchr/testify/assert"
-)
-
-func SetupRouter() *gin.Engine {
-  r := gin.Default()
-  r.GET("/ping", func(c *gin.Context) {
+func TestPingRoute(t *testing.T) {
+  router := gin.Default()
+  router.GET("/ping", func(c *gin.Context) {
     c.JSON(200, gin.H{"message": "pong"})
   })
-  return r
-}
-
-func TestPingRoute(t *testing.T) {
-  router := SetupRouter()
 
   w := httptest.NewRecorder()
   req, _ := http.NewRequest("GET", "/ping", nil)
@@ -555,38 +307,24 @@ func TestPingRoute(t *testing.T) {
 }
 ```
 
-Больше примеров см. в [документации по тестированию](../testing/).
+Больше примеров см. в документации [Тестирование](/ru/docs/testing/).
 
-## Вопросы производительности
+## Вопросы о производительности
 
 ### Как оптимизировать Gin для высокой нагрузки?
 
-1. **Используйте release режим**: Установите `GIN_MODE=release`
+1. **Используйте режим Release**: Установите `GIN_MODE=release`
 2. **Отключите ненужные middleware**: Используйте только то, что вам нужно
-3. **Используйте `gin.New()` вместо `gin.Default()`** если хотите ручной контроль middleware
-4. **Пул соединений**: Правильно настройте пул соединений с базой данных
-5. **Кэширование**: Реализуйте кэширование для часто запрашиваемых данных
+3. **Используйте `gin.New()` вместо `gin.Default()`** для ручного управления middleware
+4. **Пул соединений**: Настройте пулы соединений к базе данных (см. [Интеграция с базой данных](/ru/docs/server-config/database/))
+5. **Кеширование**: Реализуйте кеширование для часто запрашиваемых данных
 6. **Балансировка нагрузки**: Используйте обратный прокси (nginx, HAProxy)
-7. **Профилирование**: Используйте pprof Go для определения узких мест
+7. **Профилирование**: Используйте pprof из Go для выявления узких мест
+8. **Мониторинг**: Настройте [метрики и мониторинг](/ru/docs/server-config/metrics/) для отслеживания производительности
 
-```go
-r := gin.New()
-r.Use(gin.Recovery()) // Использовать только recovery middleware
+### Готов ли Gin к продакшену?
 
-// Установить лимиты пула соединений
-db.SetMaxOpenConns(25)
-db.SetMaxIdleConns(5)
-db.SetConnMaxLifetime(5 * time.Minute)
-```
-
-### Готов ли Gin для production?
-
-Да! Gin используется в production многими компаниями и проверен в боевых условиях в масштабе. Это один из самых популярных Go веб-фреймворков с:
-
-- Активной поддержкой и сообществом
-- Обширной экосистемой middleware
-- Отличными показателями производительности
-- Сильной обратной совместимостью
+Да. Gin используется в продакшене многими компаниями и проверен под высокими нагрузками. Примеры проектов, использующих Gin в продакшене, см. в разделе [Пользователи](/ru/docs/users/).
 
 ## Устранение неполадок
 
@@ -595,46 +333,52 @@ db.SetConnMaxLifetime(5 * time.Minute)
 Убедитесь, что параметры маршрута используют синтаксис `:` и правильно извлекаются:
 
 ```go
-// Правильно
+// Correct
 r.GET("/user/:id", func(c *gin.Context) {
   id := c.Param("id")
-  c.String(200, "ID пользователя: %s", id)
+  c.String(200, "User ID: %s", id)
 })
 
-// Неправильно: /user/{id} или /user/<id>
+// Not: /user/{id} or /user/<id>
 ```
+
+Подробнее см. [Параметры в пути](/ru/docs/routing/param-in-path/).
 
 ### Почему мой middleware не выполняется?
 
 Middleware должен быть зарегистрирован до маршрутов или групп маршрутов:
 
 ```go
-// Правильный порядок
+// Correct order
 r := gin.New()
-r.Use(MyMiddleware()) // Сначала зарегистрировать middleware
-r.GET("/ping", handler) // Затем маршруты
+r.Use(MyMiddleware()) // Register middleware first
+r.GET("/ping", handler) // Then routes
 
-// Для групп маршрутов
+// For route groups
 auth := r.Group("/admin")
-auth.Use(AuthMiddleware()) // Middleware для этой группы
+auth.Use(AuthMiddleware()) // Middleware for this group
 {
   auth.GET("/dashboard", handler)
 }
 ```
 
-### Почему binding запроса не работает?
+Подробнее см. [Использование middleware](/ru/docs/middleware/using-middleware/).
 
-Распространённые причины:
+### Почему привязка запроса не работает?
 
-1. **Отсутствуют теги binding**: Добавьте теги `json:"field"` или `form:"field"`
+Частые причины:
+
+1. **Отсутствуют теги привязки**: Добавьте теги `json:"field"` или `form:"field"`
 2. **Несоответствие Content-Type**: Убедитесь, что клиент отправляет правильный заголовок Content-Type
-3. **Ошибки валидации**: Проверьте теги валидации и требования
-4. **Неэкспортированные поля**: Только экспортированные (с заглавной буквы) поля структуры связываются
+3. **Ошибки валидации**: Проверьте теги и правила валидации
+4. **Неэкспортируемые поля**: Привязываются только экспортируемые (с заглавной буквы) поля структуры
 
 ```go
 type User struct {
-  Name  string `json:"name" binding:"required"` // ✓ Правильно
-  Email string `json:"email"`                    // ✓ Правильно
-  age   int    `json:"age"`                      // ✗ Не будет связано (неэкспортированное)
+  Name  string `json:"name" binding:"required"` // Correct
+  Email string `json:"email"`                    // Correct
+  age   int    `json:"age"`                      // Won't bind (unexported)
 }
 ```
+
+Подробнее см. [Привязка модели и валидация](/ru/docs/binding/binding-and-validation/).

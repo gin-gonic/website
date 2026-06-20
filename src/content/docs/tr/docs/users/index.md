@@ -1,21 +1,24 @@
 ---
 title: "Kullanıcılar"
 sidebar:
-  order: 8
+  order: 14
 ---
 
-##### [Gin](https://github.com/gin-gonic/gin) web çerçevesini kullanan harika proje listeleri:
+Gin, her ölçekteki şirketler ve açık kaynak projeler tarafından üretimde kullanılmaktadır. Aşağıda Gin ile oluşturulan önemli projelerin bir seçkisi bulunmaktadır. Projeniz Gin kullanıyorsa, bu listeye eklememizden memnuniyet duyarız.
 
-* [gorush](https://github.com/appleboy/gorush): Go'da yazılmış bir anında iletme bildirim sunucusu.
+## Harika Proje Listesi
 
-* [fnproject](https://github.com/fnproject/fn): Container native, buluttan bağımsız sunucusuz platform.
+- [gorush](https://github.com/appleboy/gorush): Go ile yazılmış bir push bildirim sunucusu.
+- [fnproject](https://github.com/fnproject/fn): Konteyner tabanlı, bulut bağımsız sunucusuz platform.
+- [photoprism](https://github.com/photoprism/photoprism): Merkeziyetsiz Web için yapay zeka destekli fotoğraf uygulaması.
+- [lura](https://github.com/luraproject/lura): Ara katmanlı ultra performanslı API Gateway.
+- [picfit](https://github.com/thoas/picfit): Go ile yazılmış bir resim boyutlandırma sunucusu.
+- [gotify](https://github.com/gotify/server): WebSocket üzerinden gerçek zamanlı mesaj gönderme ve alma için basit bir sunucu.
+- [cds](https://github.com/ovh/cds): Kurumsal düzeyde Sürekli Teslim ve DevOps Otomasyon Açık Kaynak Platformu.
+- [drone](https://github.com/harness/drone): Go üzerine kurulu konteyner tabanlı Sürekli Teslim platformu.
+- [go-admin](https://github.com/GoAdminGroup/go-admin): Go için veri görselleştirme ve yönetim paneli framework'ü.
+- [room](https://github.com/andreimerlescu/room): A drop in _waiting room_ middleware for high throughput web applications.
 
-* [photoprism](https://github.com/photoprism/photoprism): Go ve Google TensorFlow tarafından desteklenen kişisel fotoğraf yönetimi.
+## Projenizi gönderin
 
-* [krakend](https://github.com/devopsfaith/krakend): Middlewarelere sahip ultra performanslı API Gateway'i.
-
-* [picfit](https://github.com/thoas/picfit): Go'da yazılmış bir görüntü yeniden boyutlandırma sunucusu.
-
-* [gotify](https://github.com/gotify/server): Web soketi başına gerçek zamanlı olarak mesaj göndermek ve almak için basit bir sunucu.
-
-* [cds](https://github.com/ovh/cds): Kurumsal Düzeyde Continuous Delivery ve DevOps Otomasyonu Açık Kaynak Platformu.
+Gin'i üretimde veya açık kaynak bir projede mi kullanıyorsunuz? Projenizi bu sayfaya eklemek için [gin-gonic/website](https://github.com/gin-gonic/website) deposuna bir pull request açın.

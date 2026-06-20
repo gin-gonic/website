@@ -1,51 +1,63 @@
 ---
-title: "Deploy etme"
+title: "Dağıtım"
 sidebar:
-  order: 6
+  order: 10
 ---
 
-Gin projeleri herhangi bir bulut sağlayıcısına kolayca deploy edilebilir.
+Gin projeleri herhangi bir bulut sağlayıcısında kolayca dağıtılabilir.
+
+## [Railway](https://www.railway.com)
+
+Railway, uygulamaları ve servisleri dağıtmak, yönetmek ve ölçeklendirmek için modern bir bulut geliştirme platformudur. Sunuculardan gözlemlenebilirliğe kadar altyapı yığınınızı tek, ölçeklenebilir, kullanımı kolay bir platformla basitleştirir.
+
+Gin projelerinizi dağıtmak için Railway [kılavuzunu](https://docs.railway.com/guides/gin) takip edin.
+
+## [Seenode](https://seenode.com)
+
+Seenode, uygulamaları hızlı ve verimli bir şekilde dağıtmak isteyen geliştiriciler için özel olarak tasarlanmış modern bir bulut platformudur. Git tabanlı dağıtım, otomatik SSL sertifikaları, yerleşik veritabanları ve Gin uygulamalarınızı dakikalar içinde canlıya alan akıcı bir arayüz sunar.
+
+Gin projelerinizi dağıtmak için Seenode [kılavuzunu](https://seenode.com/docs/frameworks/go/gin) takip edin.
 
 ## [Koyeb](https://www.koyeb.com)
 
-Koyeb, git tabanlı, TLS şifreleme, yerel otomatik ölçeklendirme, küresel uç ağ ve yerleşik hizmet ağı ve keşfi ile uygulamaları küresel olarak dağıtmak/deploy etmek için geliştirici dostu sunucusuz bir platformdur.
+Koyeb, git tabanlı dağıtım, TLS şifreleme, yerel otomatik ölçeklendirme, küresel uç ağı ve yerleşik servis ağı ve keşfi ile uygulamaları küresel olarak dağıtmak için geliştirici dostu bir sunucusuz platformdur.
 
-Koyeb'i takip edin [guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+Gin projelerinizi dağıtmak için Koyeb [kılavuzunu](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb) takip edin.
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery; veri tabanı, SSL'i, küresel CDN'i olan ve Git ile otomatik deploy için ücretsiz bulut ortamı sağlar.
+Qovery, veritabanları, SSL, küresel CDN ve Git ile otomatik dağıtımlar içeren ücretsiz Bulut barındırma sunar.
 
-[Gin projenizi deploy etmek](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/) için Qovery kılavuzunu izleyin.
+Daha fazla bilgi için [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/) sayfasına bakın.
 
 ## [Render](https://render.com)
 
-Render; Go, tam yönetilebilen SSL, veritabanları, sıfır kesintili deploy, HTTP/2 ve websocket desteği için yerel destek sunan modern bir bulut platformudur.
+Render, Go için yerel destek, tam yönetimli SSL, veritabanları, kesintisiz dağıtımlar, HTTP/2 ve websocket desteği sunan modern bir bulut platformudur.
 
-Render'ı takip edin [Gin projelerini dağıtma kılavuzu.](https://render.com/docs/deploy-go-gin).
+Gin projelerini dağıtmak için Render [kılavuzunu](https://render.com/docs/deploy-go-gin) takip edin.
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-GAE, Go uygulamalarını dağıtmanın iki yönteme sahiptir. Standart ortamın kullanımı daha kolaydır ancak daha az özelleştirilebilir ve güvenlik nedenleriyle [syscalls](https://github.com/gin-gonic/gin/issues/1639) gibi sistem çağrılarını önler.
+GAE, Go uygulamalarını dağıtmak için iki yol sunar. Standart ortam kullanımı daha kolaydır ancak daha az özelleştirilebilirdir ve güvenlik nedeniyle [syscall](https://github.com/gin-gonic/gin/issues/1639) çağrılarını engeller. Esnek ortam herhangi bir framework veya kütüphaneyi çalıştırabilir.
 
-Daha fazla bilgi edinin ve tercih ettiğiniz ortamı şuradan seçin: [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+Daha fazla bilgi edinin ve tercih ettiğiniz ortamı [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/) sayfasından seçin.
 
-## Self Hosted
+## Kendi Sunucunuzda Barındırma
 
-Gin projects can also be deployed in a self-hosted manner. Deployment architecture and security considerations vary depending on the target environment. The following section only presents a high level overview of configuration options to consider when planning the deployment.
+Gin projeleri kendi sunucunuzda da dağıtılabilir. Dağıtım mimarisi ve güvenlik değerlendirmeleri hedef ortama göre değişir. Aşağıdaki bölüm, yalnızca dağıtımı planlarken göz önünde bulundurulacak yapılandırma seçeneklerinin üst düzey bir genel görünümünü sunar.
 
-## Configuration Options
+## Yapılandırma Seçenekleri
 
-Gin project deployments can be tuned by using environment variables or directly in code.
+Gin proje dağıtımları, ortam değişkenleri kullanılarak veya doğrudan kod içinde ayarlanabilir.
 
-The following environment variables are available for configuring Gin:
+Gin'i yapılandırmak için aşağıdaki ortam değişkenleri kullanılabilir:
 
-| Environment Variable | Description                                                                                                                                                                                                   |
+| Ortam Değişkeni | Açıklama                                                                                                                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PORT                 | The TCP port to listen on when starting the Gin server with `router.Run()` (i.e. without any arguments).                                                                                                      |
-| GIN_MODE             | Set to one of `debug`, `release`, or `test`. Handles management of Gin modes, such as when to emit debug outputs. Can also be set in code using `gin.SetMode(gin.ReleaseMode)` or `gin.SetMode(gin.TestMode)` |
+| PORT                 | Gin sunucusunu `router.Run()` ile (argümansız) başlatırken dinlenecek TCP portu.                                                                                                      |
+| GIN_MODE             | `debug`, `release` veya `test` değerlerinden birine ayarlanır. Hata ayıklama çıktılarının ne zaman üretileceği gibi Gin modlarının yönetimini sağlar. Ayrıca kod içinde `gin.SetMode(gin.ReleaseMode)` veya `gin.SetMode(gin.TestMode)` ile de ayarlanabilir. |
 
-The following code can be used to configure Gin.
+Gin'i yapılandırmak için aşağıdaki kod kullanılabilir.
 
 ```go
 // Don't specify the bind address or port for Gin. Defaults to binding on all interfaces on port 8080.
@@ -67,75 +79,4 @@ router := gin.Default()
 router.SetTrustedProxies([]string{"192.168.1.2"})
 ```
 
-## Don't trust all proxies
-
-Gin lets you specify which headers to hold the real client IP (if any),
-as well as specifying which proxies (or direct clients) you trust to
-specify one of these headers.
-
-Use function `SetTrustedProxies()` on your `gin.Engine` to specify network addresses
-or network CIDRs from where clients which their request headers related to client
-IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs, IPv6 addresses or
-IPv6 CIDRs.
-
-**Attention:** Gin trust all proxies by default if you don't specify a trusted
-proxy using the function above, **this is NOT safe**. At the same time, if you don't
-use any proxy, you can disable this feature by using `Engine.SetTrustedProxies(nil)`,
-then `Context.ClientIP()` will return the remote address directly to avoid some
-unnecessary computation.
-
-```go
-import (
-  "fmt"
-
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  router := gin.Default()
-  router.SetTrustedProxies([]string{"192.168.1.2"})
-
-  router.GET("/", func(c *gin.Context) {
-    // If the client is 192.168.1.2, use the X-Forwarded-For
-    // header to deduce the original client IP from the trust-
-    // worthy parts of that header.
-    // Otherwise, simply return the direct client IP
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
-}
-```
-
-**Notice:** If you are using a CDN service, you can set the `Engine.TrustedPlatform`
-to skip TrustedProxies check, it has a higher priority than TrustedProxies.
-Look at the example below:
-
-```go
-import (
-  "fmt"
-
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  router := gin.Default()
-  // Use predefined header gin.PlatformXXX
-  // Google App Engine
-  router.TrustedPlatform = gin.PlatformGoogleAppEngine
-  // Cloudflare
-  router.TrustedPlatform = gin.PlatformCloudflare
-  // Fly.io
-  router.TrustedPlatform = gin.PlatformFlyIO
-  // Or, you can set your own trusted request header. But be sure your CDN
-  // prevents users from passing this header! For example, if your CDN puts
-  // the client IP in X-CDN-Client-IP:
-  router.TrustedPlatform = "X-CDN-Client-IP"
-
-  router.GET("/", func(c *gin.Context) {
-    // If you set TrustedPlatform, ClientIP() will resolve the
-    // corresponding header and return IP directly
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
-}
-```
+Güvenilir proxy'leri yapılandırma hakkında bilgi için [Güvenilir proxy'ler](/tr/docs/server-config/trusted-proxies/) sayfasına bakın.

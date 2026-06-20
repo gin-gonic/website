@@ -1,6 +1,6 @@
 ---
-title: "Gin 1.4.0 is released"
-linkTitle: "Gin 1.4.0 is released"
+title: "Gin 1.4.0 foi lançado"
+linkTitle: "Gin 1.4.0 foi lançado"
 lastUpdated: 2019-05-08
 ---
 

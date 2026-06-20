@@ -1,12 +1,25 @@
 ---
 title: "Pengujian"
 sidebar:
-  order: 7
+  order: 9
 ---
 
-## Cara menulis test case di Gin
+## Bagaimana menulis test case untuk Gin?
 
-`net/http/httptest` adalah paket yang lebih disukai untuk pengujian HTTP.
+Paket `net/http/httptest` adalah cara yang direkomendasikan untuk pengujian HTTP.
+
+### Menekan output debug
+
+Panggil `gin.SetMode(gin.TestMode)` sebelum membuat router dalam pengujian Anda. Ini menekan log pendaftaran rute level debug yang dicetak Gin secara default, menjaga output pengujian Anda tetap bersih. Anda dapat meletakkan ini di `TestMain` agar berlaku untuk semua pengujian dalam paket:
+
+```go
+func TestMain(m *testing.M) {
+  gin.SetMode(gin.TestMode)
+  os.Exit(m.Run())
+}
+```
+
+### Contoh aplikasi
 
 ```go
 package main
@@ -42,7 +55,7 @@ func main() {
 }
 ```
 
-Contoh pengujian untuk kode di atas:
+### Pengujian dasar
 
 ```go
 package main
@@ -68,14 +81,14 @@ func TestPingRoute(t *testing.T) {
   assert.Equal(t, "pong", w.Body.String())
 }
 
-// Pengujian untuk POST /user/add
+// Test for POST /user/add
 func TestPostUser(t *testing.T) {
   router := setupRouter()
   router = postUser(router)
 
   w := httptest.NewRecorder()
 
-  // Buat contoh user untuk pengujian
+  // Create an example user for testing
   exampleUser := User{
     Username: "test_name",
     Gender:   "male",
@@ -85,7 +98,72 @@ func TestPostUser(t *testing.T) {
   router.ServeHTTP(w, req)
 
   assert.Equal(t, 200, w.Code)
-  // Bandingkan body respons dengan data json dari exampleUser
+  // Compare the response body with the json data of exampleUser
   assert.Equal(t, string(userJson), w.Body.String())
+}
+```
+
+### Pengujian berbasis tabel
+
+Pengujian berbasis tabel memungkinkan Anda mencakup banyak kombinasi input/output tanpa menduplikasi logika pengujian. Pola ini idiomatis Go dan bekerja dengan baik dengan Gin:
+
+```go
+func TestPingRouteTableDriven(t *testing.T) {
+  router := setupRouter()
+
+  tests := []struct {
+    name       string
+    method     string
+    path       string
+    wantCode   int
+    wantBody   string
+  }{
+    {"ping endpoint", "GET", "/ping", 200, "pong"},
+    {"not found", "GET", "/nonexistent", 404, ""},
+  }
+
+  for _, tt := range tests {
+    t.Run(tt.name, func(t *testing.T) {
+      w := httptest.NewRecorder()
+      req, _ := http.NewRequest(tt.method, tt.path, nil)
+      router.ServeHTTP(w, req)
+
+      assert.Equal(t, tt.wantCode, w.Code)
+      if tt.wantBody != "" {
+        assert.Equal(t, tt.wantBody, w.Body.String())
+      }
+    })
+  }
+}
+```
+
+### Menguji middleware
+
+Untuk menguji middleware secara terisolasi, buat router minimal dengan middleware yang diterapkan dan handler sederhana yang mencatat hasilnya:
+
+```go
+func TestAuthMiddleware(t *testing.T) {
+  gin.SetMode(gin.TestMode)
+
+  // Create a router with the middleware under test
+  router := gin.New()
+  router.Use(AuthRequired()) // your middleware
+
+  router.GET("/protected", func(c *gin.Context) {
+    c.String(200, "ok")
+  })
+
+  // Test without credentials -- expect 401
+  w := httptest.NewRecorder()
+  req, _ := http.NewRequest("GET", "/protected", nil)
+  router.ServeHTTP(w, req)
+  assert.Equal(t, 401, w.Code)
+
+  // Test with valid credentials -- expect 200
+  w = httptest.NewRecorder()
+  req, _ = http.NewRequest("GET", "/protected", nil)
+  req.Header.Set("Authorization", "Bearer valid-token")
+  router.ServeHTTP(w, req)
+  assert.Equal(t, 200, w.Code)
 }
 ```

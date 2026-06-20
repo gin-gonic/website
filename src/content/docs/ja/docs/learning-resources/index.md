@@ -1,42 +1,67 @@
 ---
 title: "学習リソース"
 sidebar:
-  order: 7
+  order: 13
 ---
+
+## 公式リソース
+
+これらはGinチームによって管理されており、最も信頼性の高い情報源です。
+
+- **[Gin GitHub Repository](https://github.com/gin-gonic/gin)** -- Source code, issue tracker, and the latest release notes.
+- **[Gin Examples Repository](https://github.com/gin-gonic/examples)** -- A collection of self-contained example projects covering common use cases such as file uploads, graceful shutdown, JWT authentication, and more.
+- **[Gin API Reference (pkg.go.dev)](https://pkg.go.dev/github.com/gin-gonic/gin)** -- Auto-generated API documentation for every exported type and function.
+
+## Go言語リソース
+
+Go自体をしっかり理解することで、Ginの使用がはるかに容易になります。
+
+- **[A Tour of Go](https://go.dev/tour/)** -- The official interactive introduction to Go.
+- **[Effective Go](https://go.dev/doc/effective_go)** -- Best practices and idiomatic patterns for writing Go code.
+- **[Go by Example](https://gobyexample.com/)** -- Annotated example programs covering Go fundamentals.
+- **[Go Standard Library Documentation](https://pkg.go.dev/std)** -- Reference for every package in the standard library, including `net/http`, which Gin builds on.
+
+## チュートリアルと記事
+
+Ginで実際のアプリケーションを構築する手順を説明するコミュニティ作成のガイド。
+
+- **[Building a RESTful API with Go and Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- An official Go tutorial that uses Gin to build a simple web service.
+- **[Build a REST API with Go, Gin, and GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- Covers project layout, database integration, and deployment.
 
 ## インタラクティブ学習プラットフォーム
 
-Ginの概念を実践的な演習で練習したいですか？コミュニティ主導の学習リソースをご紹介します：
+実践的なエクササイズを通じてGinの概念を学びたいですか？コミュニティ主導の学習リソースをいくつかご紹介します：
 
-### Go Interview Practice - Ginチャレンジ
+### Go Interview Practice - Gin Challenges
 
-公式ドキュメントを補完する段階的なGinチャレンジを提供する包括的なプラットフォーム：
+A comprehensive platform offering progressive Gin challenges that complement the official documentation:
 
 <div class="learning-platform-showcase">
   <div class="platform-features">
-    <h4>学習内容：</h4>
+    <h4>What You'll Learn:</h4>
     <ul>
-      <li>基本的なルーティングとHTTPメソッド</li>
-      <li>ミドルウェアの実装とパターン</li>
-      <li>リクエスト検証とエラーハンドリング</li>
-      <li>認証とセキュリティの実践</li>
+      <li>Basic routing and HTTP methods</li>
+      <li>Middleware implementation and patterns</li>
+      <li>Request validation and error handling</li>
+      <li>Authentication and security practices</li>
     </ul>
   </div>
 
   <div class="platform-demo">
-    <h4>実際の動作を見る：</h4>
+    <h4>See It In Action:</h4>
     <div class="video-container">
       <video controls width="100%">
         <source src="https://github.com/user-attachments/assets/23468aab-a032-4326-9d05-84de86c9128c" type="video/mp4">
-        お使いのブラウザはビデオタグをサポートしていません。
+        Your browser does not support the video tag.
       </video>
-      <p class="video-caption">Go Interview Practiceプラットフォームの簡単な紹介</p>
+      <p class="video-caption">A brief introduction to the Go Interview Practice platform</p>
     </div>
   </div>
 
   <div class="platform-cta">
     <a href="https://github.com/RezaSi/go-interview-practice" class="btn btn-primary" target="_blank" rel="noopener">
-      Ginチャレンジを探索 →
+      Explore Gin Challenges →
     </a>
   </div>
-</div> 
+</div>
+--

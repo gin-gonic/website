@@ -1,6 +1,6 @@
 ---
-title: "Gin 1.4.0 is released"
-linkTitle: "Gin 1.4.0 is released"
+title: "Gin 1.4.0 已发布"
+linkTitle: "Gin 1.4.0 已发布"
 lastUpdated: 2019-05-08
 ---
 
@@ -9,7 +9,7 @@ lastUpdated: 2019-05-08
 #### Feature
 
 - [NEW] Support for [Go Modules](https://github.com/golang/go/wiki/Modules)  [#1569](https://github.com/gin-gonic/gin/pull/1569)
-- [NEW] Refactor of form mapping multipart request[#1829](https://github.com/gin-gonic/gin/pull/1829)
+- [NEW] Refactor of form mapping multipart request [#1829](https://github.com/gin-gonic/gin/pull/1829)
 - [NEW] Supporting file binding [#1264](https://github.com/gin-gonic/gin/pull/1264)
 - [NEW] Add support for mapping arrays [#1797](https://github.com/gin-gonic/gin/pull/1797)
 - [NEW] Make context.Keys available as LogFormatterParams [#1779](https://github.com/gin-gonic/gin/pull/1779)

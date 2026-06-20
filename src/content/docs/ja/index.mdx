@@ -1,16 +1,16 @@
 ---
 title: Gin Web Framework
-description: 'Go 言語のためのフル機能の最速 Web フレームワーク。水晶のようにすっきり。'
+description: Go言語で最速のフル機能Webフレームワーク。明快そのもの。
 template: splash
 hero:
-  tagline: Go 言語のためのフル機能の最速 Web フレームワーク。水晶のようにすっきり。
+  tagline: Go言語で最速のフル機能Webフレームワーク。明快そのもの。
   image:
     file: ../../../assets/gin.png
   actions:
-    - text: 詳しく見る
+    - text: ドキュメントを読む
       link: /ja/docs/
       icon: right-arrow
-    - text: Download
+    - text: ダウンロード
       link: https://github.com/gin-gonic/gin/releases
       icon: external
       variant: minimal
@@ -18,33 +18,33 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Ginとは
+## Ginとは？
 
-Gin は、Golang で書かれた Web フレームワークです。 martini に似た API を持ちながら、非常に優れたパフォーマンスを発揮し、最大で40倍高速であることが特徴です。 性能と優れた生産性が必要なら、きっと Gin が好きになれるでしょう。
+GinはGo言語（Golang）で書かれたWebフレームワークです。Martiniに似たAPIを備えていますが、Martiniの最大40倍高速なパフォーマンスを誇ります。パフォーマンスと生産性の両方を求めるなら、Ginを気に入るでしょう。
 
 <CardGrid>
 	<Card title="高速" icon="rocket">
-		基数木（redix tree）を元にしたルーティング、小さなメモリフットプリント、リフレクションなし、予測可能な API 性能などの特徴があります。
+		基数木ベースのルーティング、少ないメモリ使用量。リフレクション不使用。予測可能なAPIパフォーマンス。
 	</Card>
-	<Card icon="seti:plan" title="ミドルウェアのサポート">
-		受信したHTTPリクエストをミドルウェアのチェーンと最終的なアクションによりハンドリングできます。たとえば、ロガー、認証、GZIP、さらに DB へのメッセージのポストなどが可能です。
+	<Card title="ミドルウェアサポート" icon="seti:plan">
+		受信したHTTPリクエストは、ミドルウェアのチェーンと最終的なアクションで処理できます。例：Logger、認可、GZIP、そして最終的にDBへのメッセージ投稿。
 	</Card>
-	<Card icon="seti:lock" title="クラッシュフリー">
-		Gin は、HTTP リクエスト中に発生した panic をキャッチし、回復することが可能です。これにより、サーバーが常に利用可能な状態になります。さらに、この panic を Sentry などに報告することもできます。
+	<Card title="クラッシュフリー" icon="seti:lock">
+		GinはHTTPリクエスト中に発生したpanicをキャッチしてリカバリできます。これにより、サーバーは常に利用可能な状態を維持します。例えばSentryにpanicを報告することも可能です！
 	</Card>
-	<Card icon="approve-check-circle" title="JSON のバリデーション">
-		Gin はリクエストの JSON をパース・検証できます。たとえば、必須の値が存在するかどうかをチェックできます。
+	<Card title="JSONバリデーション" icon="approve-check-circle">
+		GinはリクエストのJSONをパースしてバリデーションできます。例えば、必須値の存在チェックなどが可能です。
 	</Card>
-	<Card icon="puzzle" title="ルートのグループ化">
-		ルートを上手く組織化しましょう。認証が必要なページと必要のないページ、異なるバージョンの API などを区別できます。さらに、各グループは性能劣化なしに無制限にネストできます。
+	<Card title="ルートグルーピング" icon="puzzle">
+		ルートをより適切に整理できます。認可が必要なルートと不要なルート、異なるAPIバージョンなど。さらに、グループはパフォーマンスを低下させることなく無限にネストできます。
 	</Card>
-	<Card icon="open-book" title="エラーの管理">
-		Gin は HTTP リクエスト中に発生したすべてのエラーを収集する便利な手段を提供します。最終的に、ミドルウェアによって、ログファイルへの書き込み、データベースへの格納、ネットワーク越しの送信などが行われます。
+	<Card title="エラー管理" icon="open-book">
+		Ginは、HTTPリクエスト中に発生したすべてのエラーを収集する便利な方法を提供します。最終的に、ミドルウェアでログファイルやデータベースへの書き込み、ネットワーク経由の送信が可能です。
 	</Card>
-	<Card icon="seti:json" title="レンダリングのビルトイン">
-		Gin は JSON、XML、HTML のレンダリングのための簡単に使える API を提供します。
+	<Card title="組み込みレンダリング" icon="seti:json">
+		GinはJSON、XML、HTMLレンダリングのための使いやすいAPIを提供します。
 	</Card>
-	<Card icon="seti:html" title="拡張可能">
-		新しいミドルウェアの作成は非常に簡単です。サンプルコードを見てみてください。
+	<Card title="拡張可能" icon="seti:html">
+		新しいミドルウェアの作成はとても簡単です。サンプルコードをご覧ください。
 	</Card>
 </CardGrid>

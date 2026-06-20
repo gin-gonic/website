@@ -1,11 +1,10 @@
 ---
-title: "Blog"
+title: "部落格"
 sidebar:
   order: 30
 ---
 
 
-This is the **blog** section. It has two categories: News and Releases.
+這是**部落格**區塊。它有兩個類別：新聞和版本發布。
 
-Files in these directories will be listed in reverse chronological order.
-
+這些目錄中的檔案將以反向時間順序列出。

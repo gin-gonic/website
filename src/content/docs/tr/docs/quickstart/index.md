@@ -4,25 +4,25 @@ sidebar:
   order: 2
 ---
 
-Gin Hızlı Başlangıç rehberine hoş geldiniz! Bu rehberde Gin’in kurulumu, projenizin yapılandırılması ve ilk API’nizin çalıştırılması adımlarını kolay anlaşılır şekilde öğrenecek, web servislerinizi güvenle inşa edebileceksiniz.
+Gin hızlı başlangıç rehberine hoş geldiniz! Bu kılavuz, Gin'i kurma, bir proje oluşturma ve ilk API'nizi çalıştırma adımlarında size yol gösterir; böylece güvenle web servisleri oluşturmaya başlayabilirsiniz.
 
-## Ön Gereksinimler
+## Ön Koşullar
 
-- **Go sürümü**: Gin, [Go](https://go.dev/) sürümü [1.24](https://go.dev/doc/devel/release#go1.24) veya üstünü gerektirir
-- Go’nun `PATH`'inize ekli olduğundan ve terminalden çalıştığından emin olun. Kurulum için [resmi belgeleri inceleyin](https://golang.org/doc/install).
+- **Go sürümü**: Gin, [Go](https://go.dev/) sürüm [1.25](https://go.dev/doc/devel/release#go1.25) veya üstünü gerektirir
+- Go'nun `PATH`'inizde olduğunu ve terminalinizden kullanılabilir olduğunu doğrulayın. Go kurulumu için [resmi dokümanlara bakın](https://go.dev/doc/install).
 
 ---
 
-## Adım 1: Gin’i Kur ve Projeni Başlat
+## Adım 1: Gin'i Kurun ve Projenizi Başlatın
 
-Yeni bir proje dizini oluşturup Go modülünü başlatın:
+Yeni bir proje klasörü oluşturarak ve bir Go modülü başlatarak başlayın:
 
 ```sh
 mkdir gin-quickstart && cd gin-quickstart
 go mod init gin-quickstart
 ```
 
-Gin’i projeye ekleyin:
+Gin'i bağımlılık olarak ekleyin:
 
 ```sh
 go get -u github.com/gin-gonic/gin
@@ -30,9 +30,9 @@ go get -u github.com/gin-gonic/gin
 
 ---
 
-## Adım 2: İlk Gin Uygulamanı Oluştur
+## Adım 2: İlk Gin Uygulamanızı Oluşturun
 
-`main.go` dosyasını oluşturun:
+`main.go` adında bir dosya oluşturun:
 
 ```sh
 touch main.go
@@ -52,21 +52,21 @@ func main() {
       "message": "pong",
     })
   })
-  router.Run() // varsayılan olarak 0.0.0.0:8080’de dinler
+  router.Run() // listens on 0.0.0.0:8080 by default
 }
 ```
 
 ---
 
-## Adım 3: API Sunucunu Çalıştır
+## Adım 3: API Sunucunuzu Çalıştırın
 
-Sunucuyu başlatmak için:
+Sunucunuzu şu komutla başlatın:
 
 ```sh
 go run main.go
 ```
 
-Tarayıcıda [http://localhost:8080/ping](http://localhost:8080/ping) adresine git ve aşağıdaki çıktıyı görmelisin:
+Tarayıcınızda [http://localhost:8080/ping](http://localhost:8080/ping) adresine gidin, şunu görmelisiniz:
 
 ```json
 {"message":"pong"}
@@ -74,9 +74,9 @@ Tarayıcıda [http://localhost:8080/ping](http://localhost:8080/ping) adresine g
 
 ---
 
-## Ekstra Örnek: Gin ile net/http Kullanmak
+## Ek Örnek: net/http ile Gin Kullanımı
 
-Yanıt kodlarını belirlemek için `net/http` sabitlerini kullanmak istersen, onu da ekleyebilirsin:
+Yanıt kodları için `net/http` sabitlerini kullanmak istiyorsanız, onu da içe aktarın:
 
 ```go
 package main
@@ -101,12 +101,12 @@ func main() {
 
 ## İpuçları ve Kaynaklar
 
-- Go'ya yeni misin? Go kodu yazmayı ve çalıştırmayı [buradan öğrenebilirsin](https://golang.org/doc/code.html).
-- Gin kavramlarını pratik yapmaya hazır mısın? Etkileşimli görevler ve öğreticiler için [Öğrenme Kaynaklarımızı](../learning-resources) incele.
-- Daha kapsamlı bir örnek için şu komutu kullanabilirsin:
+- Go'da yeni misiniz? Go kodu yazmayı ve çalıştırmayı [resmi Go dokümantasyonunda](https://go.dev/doc/code) öğrenin.
+- Gin kavramlarını uygulamalı olarak pratik yapmak mı istiyorsunuz? Etkileşimli alıştırmalar ve eğitimler için [Öğrenme Kaynakları](../learning-resources) sayfamıza göz atın.
+- Tam özellikli bir örneğe mi ihtiyacınız var? Şununla hızlıca başlayın:
 
   ```sh
   curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
   ```
 
-- Daha ayrıntılı belge için [Gin kaynak kodu dokümantasyonu](https://github.com/gin-gonic/gin/blob/master/docs/doc.md) adresini incele.
+- Daha ayrıntılı dokümantasyon için [Gin kaynak kodu dokümanlarını](https://github.com/gin-gonic/gin/blob/master/docs/doc.md) ziyaret edin.

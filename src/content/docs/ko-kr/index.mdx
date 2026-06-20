@@ -1,16 +1,16 @@
 ---
-title: Gin Web Framework
-description: The fastest full-featured web framework for Go. Crystal clear.
+title: Gin 웹 프레임워크
+description: Go를 위한 가장 빠른 풀 기능 웹 프레임워크. 명확하고 간결합니다.
 template: splash
 hero:
-  tagline: The fastest full-featured web framework for Go. Crystal clear.
+  tagline: Go를 위한 가장 빠른 풀 기능 웹 프레임워크. 명확하고 간결합니다.
   image:
     file: ../../../assets/gin.png
   actions:
-    - text: Learn More
+    - text: 문서 읽기
       link: /ko-kr/docs/
       icon: right-arrow
-    - text: Download
+    - text: 다운로드
       link: https://github.com/gin-gonic/gin/releases
       icon: external
       variant: minimal
@@ -18,34 +18,33 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## What is Gin?
+## Gin이란?
 
-Gin is a web framework written in Golang. It features a martini-like API with much better performance, up to 40 times faster. If you need performance and good productivity, you will love Gin.
+Gin은 Go(Golang)로 작성된 웹 프레임워크입니다. Martini와 유사한 API를 제공하지만, Martini보다 최대 40배 빠른 성능을 자랑합니다. 성능과 생산성이 필요하다면, Gin을 좋아하게 될 것입니다.
 
 <CardGrid>
-	<Card title="Fast" icon="rocket">
-		Radix tree based routing, small memory foot print. No reflection. Predictable API performance.
+	<Card title="빠름" icon="rocket">
+		기수 트리(Radix tree) 기반 라우팅으로 메모리 사용량이 적습니다. 리플렉션을 사용하지 않습니다. 예측 가능한 API 성능을 제공합니다.
 	</Card>
-	<Card icon="seti:plan" title="Middleware support">
-		A incoming HTTP request can be handled by a chain of middlewares and the final action. For example: Logger, Authorization, GZIP and finally post a message in the DB.
+	<Card title="미들웨어 지원" icon="seti:plan">
+		수신되는 HTTP 요청은 미들웨어 체인과 최종 액션으로 처리할 수 있습니다. 예를 들어: 로거, 인증, GZIP, 그리고 최종적으로 DB에 메시지를 게시합니다.
 	</Card>
-	<Card icon="seti:lock" title="Crash-free">
-		Gin can catch a panic occurred during a HTTP request and recover it. This way, your server will be always available. It’s also possible to report this panic to Sentry for example!
+	<Card title="크래시 방지" icon="seti:lock">
+		Gin은 HTTP 요청 중 발생한 패닉을 포착하고 복구할 수 있습니다. 이를 통해 서버는 항상 가용 상태를 유지합니다. 예를 들어 이 패닉을 Sentry에 보고하는 것도 가능합니다!
 	</Card>
-	<Card icon="approve-check-circle" title="JSON validation">
-		Gin can parse and validate the JSON of a request, checking for example the existence of required values.
+	<Card title="JSON 유효성 검사" icon="approve-check-circle">
+		Gin은 요청의 JSON을 파싱하고 유효성을 검사할 수 있으며, 예를 들어 필수 값의 존재 여부를 확인할 수 있습니다.
 	</Card>
-	<Card icon="puzzle" title="Routes grouping">
-		Organize your routes better. Authorization required vs non required, different API versions. In addition, the groups can be nested unlimitedly without degrading performance.
+	<Card title="라우트 그룹화" icon="puzzle">
+		라우트를 더 잘 구성할 수 있습니다. 인증 필요 vs 불필요, 다른 API 버전 등. 또한, 그룹은 성능 저하 없이 무한히 중첩할 수 있습니다.
 	</Card>
-	<Card icon="open-book" title="Error management">
-		Gin provides a convenient way to collect all the errors occurred during a HTTP request. Eventually, a middleware can write them to a log file, to a database and send them through the network.
+	<Card title="오류 관리" icon="open-book">
+		Gin은 HTTP 요청 중 발생한 모든 오류를 수집하는 편리한 방법을 제공합니다. 최종적으로, 미들웨어가 이를 로그 파일, 데이터베이스에 기록하고 네트워크를 통해 전송할 수 있습니다.
 	</Card>
-	<Card icon="seti:json" title="Rendering built-in">
-		Gin provides an easy to use API for JSON, XML and HTML rendering.
+	<Card title="내장 렌더링" icon="seti:json">
+		Gin은 JSON, XML 및 HTML 렌더링을 위한 사용하기 쉬운 API를 제공합니다.
 	</Card>
-	<Card icon="seti:html" title="Extendable">
-		Creating a new middleware is so easy, just check out the sample codes.
+	<Card title="확장 가능" icon="seti:html">
+		새로운 미들웨어를 만드는 것은 매우 쉽습니다. 샘플 코드를 확인해 보세요.
 	</Card>
 </CardGrid>
- 

@@ -1,16 +1,16 @@
 ---
-title: Gin Web Framework
-description: The fastest full-featured web framework for Go. Crystal clear.
+title: فریم‌ورک وب Gin
+description: سریع‌ترین فریم‌ورک وب با امکانات کامل برای Go. شفاف و روشن.
 template: splash
 hero:
-  tagline: The fastest full-featured web framework for Go. Crystal clear.
+  tagline: سریع‌ترین فریم‌ورک وب با امکانات کامل برای Go. شفاف و روشن.
   image:
     file: ../../../assets/gin.png
   actions:
-    - text: Read the docs
+    - text: مطالعه مستندات
       link: /fa/docs/
       icon: right-arrow
-    - text: Download
+    - text: دانلود
       link: https://github.com/gin-gonic/gin/releases
       icon: external
       variant: minimal
@@ -18,37 +18,33 @@ hero:
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Gin چیست?
+## Gin چیست؟
 
-جین یک فریم ورک وبه که با زبان گو ساخته شده.
-
-.جین یک فریم ورک شبیه به مارتینه(یکی دیگه از وب فریم ورک های گو) ولی با پرفورمنس بهتر . چیزی حدود 40 برار سریع تر
-
-اگه شما نیازمند پرفورمنس و کارایی بالا(بهره بری بالا) هستید عاشق جین میشید.
+Gin یک فریم‌ورک وب است که با زبان Golang نوشته شده است. این فریم‌ورک دارای API مشابه Martini است، اما با عملکردی تا ۴۰ برابر سریع‌تر از Martini. اگر به عملکرد بالا و بهره‌وری نیاز دارید، Gin را دوست خواهید داشت.
 
 <CardGrid>
-	<Card icon="rocket" title="Fast">
-		Radix tree based routing(مسیریابی مبتنی بر درخت ردیکس), small memory foot print. No reflection(بدون تامل). Predictable API performance.
+	<Card title="سریع" icon="rocket">
+		مسیریابی مبتنی بر درخت Radix، مصرف حافظه کم. بدون بازتاب (Reflection). عملکرد قابل پیش‌بینی API.
 	</Card>
-	<Card icon="seti:plan" title="Middleware support">
-	An incoming HTTP request can be handled by a chain of middleware and the final action. For example: Logger, Authorization, GZIP and finally post a message in the DB.
+	<Card title="پشتیبانی از میان‌افزار" icon="seti:plan">
+		یک درخواست HTTP ورودی می‌تواند توسط زنجیره‌ای از میان‌افزارها و عمل نهایی پردازش شود. به عنوان مثال: Logger، احراز هویت، GZIP و در نهایت ارسال پیام به پایگاه داده.
 	</Card>
-	<Card icon="seti:lock" title="Crash-free">
-		Gin can catch a panic occurred during a HTTP request and recover it. This way, your server will be always available. It’s also possible to report this panic to Sentry for example!
+	<Card title="بدون خرابی" icon="seti:lock">
+		Gin می‌تواند panic رخ داده در طول یک درخواست HTTP را بگیرد و آن را بازیابی کند. به این ترتیب، سرور شما همیشه در دسترس خواهد بود. همچنین می‌توانید این panic را مثلاً به Sentry گزارش دهید!
 	</Card>
-	<Card icon="approve-check-circle" title="JSON validation">
-		Gin can parse and validate the JSON of a request, checking, for example, the existence of required values.
+	<Card title="اعتبارسنجی JSON" icon="approve-check-circle">
+		Gin می‌تواند JSON یک درخواست را تجزیه و اعتبارسنجی کند، مثلاً وجود مقادیر الزامی را بررسی کند.
 	</Card>
-	<Card icon="puzzle" title="Routes grouping">
-		Organize your routes better. Authorization required vs non required, different API versions. In addition, groups can be nested infinitely without degrading performance.
+	<Card title="گروه‌بندی مسیرها" icon="puzzle">
+		مسیرهای خود را بهتر سازماندهی کنید. نیازمند احراز هویت در مقابل بدون نیاز، نسخه‌های مختلف API. علاوه بر این، گروه‌ها می‌توانند بدون کاهش عملکرد به صورت نامحدود تو در تو شوند.
 	</Card>
-	<Card icon="open-book" title="Error management">
-		Gin provides a convenient way to collect all the errors occurred during a HTTP request. Eventually, middleware can write them to a log file, to a database and send them through the network.
+	<Card title="مدیریت خطا" icon="open-book">
+		Gin راهی مناسب برای جمع‌آوری تمام خطاهای رخ داده در طول یک درخواست HTTP فراهم می‌کند. در نهایت، میان‌افزار می‌تواند آن‌ها را در فایل لاگ، پایگاه داده بنویسد و از طریق شبکه ارسال کند.
 	</Card>
-	<Card icon="seti:json" title="Rendering built-in">
-		Gin provides an easy to use API for JSON, XML and HTML rendering.
+	<Card title="رندرینگ داخلی" icon="seti:json">
+		Gin یک API آسان برای رندرینگ JSON، XML و HTML ارائه می‌دهد.
 	</Card>
-	<Card icon="seti:html" title="Extendable">
-		Creating new middleware is so easy, just check out the sample code.
+	<Card title="قابل توسعه" icon="seti:html">
+		ساختن میان‌افزار جدید بسیار آسان است، کافی است کد نمونه را بررسی کنید.
 	</Card>
 </CardGrid>

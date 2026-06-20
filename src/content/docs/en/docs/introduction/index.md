@@ -44,3 +44,11 @@ Gin provides an easy to use API for JSON, XML and HTML rendering.
 ### Extendable
 
 Creating a new middleware is so easy, just check out the sample code.
+
+## Gin v1. Stable
+
+- Zero allocation router.
+- Still the fastest HTTP router and framework. From routing to writing.
+- Complete suite of unit tests.
+- Battle tested.
+- API frozen, new releases will not break your code.

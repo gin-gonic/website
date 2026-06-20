@@ -1,28 +1,28 @@
 ---
-title: "快速開始"
+title: "快速入門"
 sidebar:
   order: 2
 ---
 
-歡迎來到 Gin 的快速開始指南！本指南將逐步帶你完成 Gin 的安裝、專案初始化以及運行第一個 API，協助你快速上手 Web 服務開發。
+歡迎閱讀 Gin 快速入門指南！本指南將引導你安裝 Gin、設定專案，並執行你的第一個 API——讓你能夠自信地開始建構 Web 服務。
 
-## 必備條件
+## 先決條件
 
-- **Go 版本**：Gin 需要 [Go](https://go.dev/) 版本 [1.24](https://go.dev/doc/devel/release#go1.24) 或更高
-- 請確認 Go 已加入你的 `PATH`，並可在終端機中使用。如需安裝協助，請參考[官方文件](https://golang.org/doc/install)。
+- **Go 版本**：Gin 需要 [Go](https://go.dev/) [1.25](https://go.dev/doc/devel/release#go1.25) 或以上版本
+- 確認 Go 已加入你的 `PATH` 環境變數，且可在終端機中使用。如需 Go 安裝說明，[請參閱官方文件](https://go.dev/doc/install)。
 
 ---
 
-## 第一步：安裝 Gin 並初始化專案
+## 步驟 1：安裝 Gin 並初始化專案
 
-先建立專案資料夾並初始化 Go 模組：
+首先建立一個新的專案資料夾並初始化 Go 模組：
 
 ```sh
 mkdir gin-quickstart && cd gin-quickstart
 go mod init gin-quickstart
 ```
 
-安裝 Gin 套件：
+新增 Gin 作為依賴套件：
 
 ```sh
 go get -u github.com/gin-gonic/gin
@@ -30,15 +30,15 @@ go get -u github.com/gin-gonic/gin
 
 ---
 
-## 第二步：建立你的第一個 Gin 應用程式
+## 步驟 2：建立你的第一個 Gin 應用程式
 
-創建 `main.go` 檔案：
+建立一個名為 `main.go` 的檔案：
 
 ```sh
 touch main.go
 ```
 
-打開 `main.go` 並貼上以下程式碼：
+開啟 `main.go` 並加入以下程式碼：
 
 ```go
 package main
@@ -52,21 +52,21 @@ func main() {
       "message": "pong",
     })
   })
-  router.Run() // 預設監聽 0.0.0.0:8080
+  router.Run() // listens on 0.0.0.0:8080 by default
 }
 ```
 
 ---
 
-## 第三步：啟動 API 服務
+## 步驟 3：執行你的 API 伺服器
 
-用下列指令啟動服務：
+使用以下指令啟動伺服器：
 
 ```sh
 go run main.go
 ```
 
-於瀏覽器開啟 [http://localhost:8080/ping](http://localhost:8080/ping) 即可看到：
+在瀏覽器中造訪 [http://localhost:8080/ping](http://localhost:8080/ping)，你應該會看到：
 
 ```json
 {"message":"pong"}
@@ -74,9 +74,9 @@ go run main.go
 
 ---
 
-## 補充範例：Gin 搭配 net/http 使用
+## 補充範例：在 Gin 中使用 net/http
 
-若需使用 `net/http` 套件常數設定回應碼，請一起引入：
+如果你想使用 `net/http` 的回應碼常數，也需要一併匯入：
 
 ```go
 package main
@@ -99,14 +99,14 @@ func main() {
 
 ---
 
-## 小技巧與資源
+## 提示與資源
 
-- 新手入門 Go？請參考[這裡](https://golang.org/doc/code.html)學習 Go 寫作與執行方式。
-- 想要實際練習 Gin 概念？請查看我們的[學習資源](../learning-resources)以獲取互動式挑戰和教學。
-- 想要更完整範例？請執行：
+- 剛接觸 Go？請在[官方 Go 文件](https://go.dev/doc/code)中學習如何撰寫和執行 Go 程式碼。
+- 想要實際練習 Gin 的概念？查看我們的[學習資源](../learning-resources)，獲取互動式挑戰和教學。
+- 需要完整功能的範例？試試用以下指令快速建立：
 
   ```sh
   curl https://raw.githubusercontent.com/gin-gonic/examples/master/basic/main.go > main.go
   ```
 
-- 更多詳細說明可參閱 [Gin 官方文件](https://github.com/gin-gonic/gin/blob/master/docs/doc.md)。
+- 如需更詳細的文件，請造訪 [Gin 原始碼文件](https://github.com/gin-gonic/gin/blob/master/docs/doc.md)。

@@ -4,35 +4,35 @@ sidebar:
   order: 20
 ---
 
-Gin es un framework web HTTP de alto rendimiento escrito en [Go](https://go.dev/). Proporciona una API similar a Martini pero con un rendimiento significativamente superior—hasta 40 veces más rápido—gracias a [httprouter](https://github.com/julienschmidt/httprouter). Gin está diseñado para construir APIs REST, aplicaciones web y microservicios donde la velocidad y la productividad del desarrollador son esenciales.
+Gin es un framework web HTTP de alto rendimiento escrito en [Go](https://go.dev/). Proporciona una API similar a Martini pero con un rendimiento significativamente mejor —hasta 40 veces más rápido— gracias a [httprouter](https://github.com/julienschmidt/httprouter). Gin está diseñado para construir APIs REST, aplicaciones web y microservicios donde la velocidad y la productividad del desarrollador son esenciales.
 
 **¿Por qué elegir Gin?**
 
-Gin combina la simplicidad del enrutamiento estilo Express.js con las características de rendimiento de Go, lo que lo convierte en ideal para:
+Gin combina la simplicidad del enrutamiento estilo Express.js con las características de rendimiento de Go, haciéndolo ideal para:
 
 - Construir APIs REST de alto rendimiento
-- Desarrollar microservicios que gestionan muchas solicitudes concurrentes
+- Desarrollar microservicios que necesitan manejar muchas solicitudes concurrentes
 - Crear aplicaciones web que requieren tiempos de respuesta rápidos
-- Prototipar servicios web rápidamente con mínima configuración
+- Prototipar servicios web rápidamente con código mínimo
 
 **Características clave de Gin:**
 
-- **Router sin asignación de memoria** - Enrutamiento extremadamente eficiente en memoria sin asignaciones en heap
-- **Alto rendimiento** - Benchmarks muestran velocidad superior comparada con otros frameworks web de Go
-- **Soporte para middleware** - Sistema extensible de middleware para autenticación, registro, CORS, etc.
-- **Sin bloqueos por errores** - Middleware de recuperación incorporado evita que los pánicos derriben el servidor
-- **Validación JSON** - Vinculación y validación automática de peticiones/respuestas JSON
+- **Enrutador sin asignaciones** - Enrutamiento extremadamente eficiente en memoria sin asignaciones en el heap
+- **Alto rendimiento** - Los benchmarks muestran una velocidad superior en comparación con otros frameworks web de Go
+- **Soporte de middleware** - Sistema de middleware extensible para autenticación, logging, CORS, etc.
+- **Libre de fallos** - Middleware de recuperación incorporado que evita que los panics detengan tu servidor
+- **Validación JSON** - Enlace y validación automática de JSON en solicitudes/respuestas
 - **Agrupación de rutas** - Organiza rutas relacionadas y aplica middleware común
 - **Gestión de errores** - Manejo y registro centralizado de errores
-- **Renderizado integrado** - Soporte para JSON, XML, plantillas HTML y más
-- **Extensible** - Gran ecosistema de middleware y plugins comunitarios
+- **Renderizado incorporado** - Soporte para JSON, XML, plantillas HTML y más
+- **Extensible** - Gran ecosistema de middleware y plugins de la comunidad
 
-## Comenzando
+## Primeros pasos
 
 ### Requisitos previos
 
-- **Versión Go:** Gin requiere [Go](https://go.dev/) versión [1.23](https://go.dev/doc/devel/release#go1.23.0) o superior
-- **Conocimiento básico de Go:** Familiaridad con la sintaxis de Go y gestión de paquetes es útil
+- **Versión de Go**: Gin requiere [Go](https://go.dev/) versión [1.25](https://go.dev/doc/devel/release#go1.25) o superior
+- **Conocimiento básico de Go**: Es útil tener familiaridad con la sintaxis de Go y la gestión de paquetes
 
 ### Instalación
 
@@ -56,24 +56,24 @@ import (
 )
 
 func main() {
-  // Crea un router Gin con middleware por defecto (logger y recovery)
+  // Create a Gin router with default middleware (logger and recovery)
   r := gin.Default()
-  
-  // Define un endpoint GET sencillo
+
+  // Define a simple GET endpoint
   r.GET("/ping", func(c *gin.Context) {
-    // Devuelve respuesta JSON
+    // Return JSON response
     c.JSON(http.StatusOK, gin.H{
       "message": "pong",
     })
   })
-  
-  // Inicia el servidor en el puerto 8080 (por defecto)
-  // El servidor escuchará en 0.0.0.0:8080 (localhost:8080 en Windows)
+
+  // Start server on port 8080 (default)
+  // Server will listen on 0.0.0.0:8080 (localhost:8080 on Windows)
   r.Run()
 }
 ```
 
-**Ejecución de la aplicación:**
+**Ejecutar la aplicación:**
 
 1. Guarda el código anterior como `main.go`
 2. Ejecuta la aplicación:
@@ -85,10 +85,10 @@ func main() {
 3. Abre tu navegador y visita [`http://localhost:8080/ping`](http://localhost:8080/ping)
 4. Deberías ver: `{"message":"pong"}`
 
-**¿Qué muestra este ejemplo?**
+**Lo que demuestra este ejemplo:**
 
-- Crear un router Gin con middleware por defecto
-- Definir endpoints HTTP con funciones manejadoras simples
+- Crear un enrutador Gin con middleware predeterminado
+- Definir endpoints HTTP con funciones handler simples
 - Devolver respuestas JSON
 - Iniciar un servidor HTTP
 
@@ -96,9 +96,9 @@ func main() {
 
 Después de ejecutar tu primera aplicación Gin, explora estos recursos para aprender más:
 
-#### 📚 Recursos de aprendizaje
+#### Recursos de aprendizaje
 
-- **[Guía Rápida de Gin](./quickstart/)** - Tutorial comprensivo con ejemplos de API y configuraciones de compilación
+- **[Guía de inicio rápido de Gin](./quickstart/)** - Tutorial completo con ejemplos de API y configuraciones de compilación
 - **[Repositorio de ejemplos](https://github.com/gin-gonic/examples)** - Ejemplos listos para ejecutar que demuestran varios casos de uso de Gin:
   - Desarrollo de APIs REST
   - Autenticación y middleware
@@ -108,16 +108,16 @@ Después de ejecutar tu primera aplicación Gin, explora estos recursos para apr
 
 ### Tutoriales oficiales
 
-- [Tutorial Go.dev: Desarrollar una API RESTful con Go y Gin](https://go.dev/doc/tutorial/web-service-gin)
+- [Tutorial de Go.dev: Desarrollando una API RESTful con Go y Gin](https://go.dev/doc/tutorial/web-service-gin)
 
-## 🔌 Ecosistema de middleware
+## Ecosistema de middleware
 
-Gin tiene un rico ecosistema de middleware para necesidades comunes de desarrollo web. Explora los middleware contribuidos por la comunidad:
+Gin tiene un rico ecosistema de middleware para necesidades comunes de desarrollo web. Explora el middleware contribuido por la comunidad:
 
-- **[gin-contrib](https://github.com/gin-contrib)** - Colección oficial de middleware incluyendo:
+- **[gin-contrib](https://github.com/gin-contrib)** - Colección oficial de middleware que incluye:
   - Autenticación (JWT, Basic Auth, Sesiones)
-  - CORS, limitación de tasa, compresión
-  - Registro, métricas, trazabilidad
-  - Servir archivos estáticos, motores de plantillas
-  
+  - CORS, Limitación de tasa, Compresión
+  - Logging, Métricas, Rastreo
+  - Servicio de archivos estáticos, Motores de plantillas
+
 - **[gin-gonic/contrib](https://github.com/gin-gonic/contrib)** - Middleware adicional de la comunidad

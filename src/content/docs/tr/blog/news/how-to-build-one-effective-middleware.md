@@ -1,41 +1,41 @@
 ---
-title: "Etkili Bir Middleware Nasıl Oluşturulur"
-linkTitle: "Etkili Bir Middleware Nasıl Oluşturulur"
+title: "Etkili Bir Ara Katman Nasıl Oluşturulur"
+linkTitle: "Etkili Bir Ara Katman Nasıl Oluşturulur"
 lastUpdated: 2019-02-26
 ---
 
-## Bileşenler
+## Yapısal Bileşenler
 
-Middleware tipik olarak iki bölümden oluşur:
+Ara katman genellikle iki bölümden oluşur:
 
-- İlk bölüm, middleware'inizi başlattığınızda bir kez çalışır. Burada global nesneleri, yapılandırma mantığını vb. ayarlarsınız; uygulamanın yaşam döngüsünde yalnızca bir kez olması gereken her şey burada gerçekleşir.
+- İlk bölüm, ara katmanınızı başlattığınızda bir kez çalışır. Burası genel nesneleri, yapılandırma mantığını vb. kurduğunuz yerdir -- uygulamanın ömrü boyunca yalnızca bir kez gerçekleşmesi gereken her şey.
 
-- İkinci bölüm ise her istekte çalışır. Örneğin bir veritabanı middleware'inde, global veritabanı nesnenizi istek bağlamına enjekte edersiniz. Bağlamda olduğunda, diğer middleware'ler ve handler fonksiyonlarınız bunu alıp kullanabilir.
+- İkinci bölüm her istekte çalışır. Örneğin, bir veritabanı ara katmanında, genel veritabanı nesnenizi istek context'ine enjekte edersiniz. Context'e yerleştirildikten sonra, diğer ara katmanlar ve işleyici fonksiyonlarınız onu alıp kullanabilir.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
   // <---
-  // Bu birinci bölüm
+  // This is part one
   // --->
-  // Örnek başlatma: parametrelerin doğrulanması
+  // Example initialization: validate input params
   if err := check(params); err != nil {
       panic(err)
   }
 
   return func(c *gin.Context) {
     // <---
-    // Bu ikinci bölüm
+    // This is part two
     // --->
-    // Her istek için örnek yürütme: bağlama enjekte et
+    // Example execution per request: inject into context
     c.Set("TestVar", params)
     c.Next()
   }
 }
 ```
 
-## Çalışma süreci
+## Yürütme Süreci
 
-Şimdi aşağıdaki örnek koda bakalım:
+Aşağıdaki örnek koda bakalım:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-[Yukarıdaki bileşenler](#bileşenler) bölümüne göre, Gin sürecini başlattığınızda her middleware'in **birinci bölümü** önce çalışır ve aşağıdaki bilgileri yazdırır:
+Yukarıdaki [Yapısal Bileşenler](#yapısal-bileşenler) bölümüne göre, Gin sürecini çalıştırdığınızda her ara katmanın **birinci bölümü** önce çalışır ve aşağıdaki bilgileri yazdırır:
 
 ```go
 globalMiddleware...1
@@ -92,7 +92,7 @@ mid1...1
 mid2...1
 ```
 
-Başlatma sırası:
+Başlatma sırası şöyledir:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-Bir istek gönderdiğinizde—ör: `curl -v localhost:8080/rest/n/api/some`—her middleware'in **ikinci bölümü** sırayla çalışır ve aşağıdaki çıktıyı verir:
+Bir istek yaptığınızda -- örneğin `curl -v localhost:8080/rest/n/api/some` -- her ara katmanın **ikinci bölümü** sırasıyla çalışır ve aşağıdaki çıktıyı üretir:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-Yani, yürütme sırası şöyledir:
+Başka bir deyişle, yürütme sırası şöyledir:
 
 ```go
 globalMiddleware...2
@@ -138,3 +138,4 @@ mid1...3
     |
     v
 globalMiddleware...3
+```

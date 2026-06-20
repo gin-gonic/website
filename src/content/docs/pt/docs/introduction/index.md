@@ -4,43 +4,51 @@ sidebar:
   order: 1
 ---
 
-A Gin é uma abstração de web escrita em Go (Golang). Ela apresenta uma API parecida com a Martini com desempenho muito melhor, acima de 40 vezes mais rápida graças ao [`httprouter`](https://github.com/julienschmidt/httprouter). Se precisares de desempenho e excelente produtividade, amarás a Gin.
+Gin é um framework web escrito em Go (Golang). Possui uma API semelhante ao Martini com desempenho muito melhor, até 40 vezes mais rápido graças ao [httprouter](https://github.com/julienschmidt/httprouter). Se você precisa de desempenho e boa produtividade, vai adorar o Gin.
 
-Nesta seção introduziremos o que a Gin é, quais problemas soluciona, e como pode ajudar o teu projeto.
+Nesta seção, vamos apresentar o que é o Gin, quais problemas ele resolve e como ele pode ajudar o seu projeto.
 
-Ou, se estiveres pronto para usar a Gin no teu projeto, visite a [Introdução rápida](https://gin-gonic.com/docs/quickstart/).
+Ou, se você já está pronto para usar o Gin no seu projeto, visite o [Início Rápido](https://gin-gonic.com/pt/docs/quickstart/).
 
-## Características
+## Recursos
 
-### Rápida
+### Rápido
 
-Roteamento baseado na árvore de Radix, pegada de memória pequena. Sem reflexão. Desempenho de API previsível.
+Roteamento baseado em árvore radix, baixo consumo de memória. Sem reflection. Desempenho de API previsível.
 
-### Suporte à Intermediário
+### Suporte a middleware
 
-Uma requisição de HTTP de chegada pode ser manipulada por uma série de intermediários e a ação final. Por exemplo: Registador, Autorização, GZIP e finalmente publicar uma mensagem na Base de Dados.
+Uma requisição HTTP recebida pode ser tratada por uma cadeia de middlewares e pela ação final.
+Por exemplo: Logger, Autorização, GZIP e, por fim, publicar uma mensagem no banco de dados.
 
-### Livre de Avaria
+### À prova de falhas
 
-A Gin pode capturar um pânico ocorrido durante uma requisição de HTTP e recuperá-lo. Desta maneira, o teu servidor sempre estará disponível. Como exemplo - também é possível reportar este pânico para a Sentry!
+O Gin pode capturar um panic ocorrido durante uma requisição HTTP e recuperá-lo. Dessa forma, seu servidor estará sempre disponível. Como exemplo — também é possível reportar esse panic para o Sentry!
 
 ### Validação de JSON
 
-A Gin pode analisar e validar o JSON de uma requisição - por exemplo, verificando a existência de valores obrigatórios.
+O Gin pode analisar e validar o JSON de uma requisição — por exemplo, verificando a existência de valores obrigatórios.
 
-### Agrupamento de Rotas
+### Agrupamento de rotas
 
-Organiza melhor as tuas rotas. Autorização obrigatória vs não obrigatória, diferentes versões de API... Além destes, os grupos podem ser encaixados ilimitadamente sem degradar o desempenho.
+Organize suas rotas de forma melhor. Com ou sem autorização, diferentes versões de API... Além disso, os grupos podem ser aninhados infinitamente sem degradar o desempenho.
 
-### Gestão de Erro
+### Gerenciamento de erros
 
-A Gin fornece uma maneira conveniente de reunir todos os erros ocorridos durante uma requisição de HTTP. Eventualmente, um intermediário pode escrevê-los para um ficheiro de registo, para uma base de dados e envia-los através da rede.
+O Gin oferece uma maneira conveniente de coletar todos os erros ocorridos durante uma requisição HTTP. Eventualmente, um middleware pode gravá-los em um arquivo de log, em um banco de dados ou enviá-los pela rede.
 
-### Interpretação Embutida
+### Renderização integrada
 
-A Gin fornece uma API fácil de usar para interpretação de JSON, XML e HTML.
+O Gin fornece uma API fácil de usar para renderização de JSON, XML e HTML.
 
 ### Extensível
 
-A criação de um intermediário é tão fácil, apenas consulte os códigos de exemplo.
+Criar um novo middleware é muito fácil, basta conferir o código de exemplo.
 
+## Gin v1. Estável
+
+- Roteador sem alocação.
+- Ainda o roteador e framework HTTP mais rápido. Do roteamento à escrita.
+- Suíte completa de testes unitários.
+- Testado em batalha.
+- API congelada, novas versões não quebrarão seu código.

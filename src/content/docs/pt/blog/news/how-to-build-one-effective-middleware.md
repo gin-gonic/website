@@ -4,38 +4,38 @@ linkTitle: "Como Construir um Middleware Eficaz"
 lastUpdated: 2019-02-26
 ---
 
-## Partes Constituintes
+## Partes constituintes
 
-O middleware geralmente consiste em duas partes:
+O middleware tipicamente consiste em duas partes:
 
-- A primeira parte executa apenas uma vez, quando inicializa seu middleware. É nesse ponto que você configura objetos globais, lógica de configuração, etc.—tudo que só precisa acontecer uma única vez durante o ciclo de vida da aplicação.
+- A primeira parte executa uma vez, quando você inicializa seu middleware. É aqui que você configura objetos globais, lógica de configuração, etc. -- tudo que precisa acontecer apenas uma vez durante o tempo de vida da aplicação.
 
-- A segunda parte executa a cada requisição. Por exemplo, em um middleware de banco de dados, você injeta seu objeto de banco de dados global no contexto da requisição. Uma vez inserido no contexto, outros middlewares e suas funções manipuladoras podem recuperá-lo e usá-lo.
+- A segunda parte executa em cada requisição. Por exemplo, em um middleware de banco de dados, você injetaria seu objeto global de banco de dados no contexto da requisição. Uma vez no contexto, outros middlewares e suas funções handler podem recuperá-lo e usá-lo.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
   // <---
-  // Esta é a primeira parte
+  // This is part one
   // --->
-  // Exemplo de inicialização: validar parâmetros de entrada
+  // Example initialization: validate input params
   if err := check(params); err != nil {
       panic(err)
   }
 
   return func(c *gin.Context) {
     // <---
-    // Esta é a segunda parte
+    // This is part two
     // --->
-    // Execução por requisição: injeta no contexto
+    // Example execution per request: inject into context
     c.Set("TestVar", params)
     c.Next()
   }
 }
 ```
 
-## Processo de Execução
+## Processo de execução
 
-Vamos analisar o seguinte exemplo de código:
+Vamos analisar o seguinte código de exemplo:
 
 ```go
 func main() {
@@ -84,7 +84,7 @@ func mid2() gin.HandlerFunc {
 }
 ```
 
-De acordo com a seção [Partes Constituintes](#partes-constituintes), ao executar o processo Gin, **a primeira parte** de cada middleware é executada antes, imprimindo as seguintes informações:
+De acordo com a seção [Partes constituintes](#partes-constituintes) acima, quando você executa o processo do Gin, a **parte um** de cada middleware executa primeiro e imprime as seguintes informações:
 
 ```go
 globalMiddleware...1
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-Quando você faz uma requisição—por exemplo, `curl -v localhost:8080/rest/n/api/some`—**a segunda parte** de cada middleware é executada em ordem e imprime o seguinte:
+Quando você faz uma requisição -- por exemplo, `curl -v localhost:8080/rest/n/api/some` -- a **parte dois** de cada middleware executa em ordem e produz a seguinte saída:
 
 ```go
 globalMiddleware...2
@@ -116,7 +116,7 @@ mid1...3
 globalMiddleware...3
 ```
 
-Ou seja, a ordem de execução é:
+Em outras palavras, a ordem de execução é:
 
 ```go
 globalMiddleware...2
@@ -138,3 +138,4 @@ mid1...3
     |
     v
 globalMiddleware...3
+```

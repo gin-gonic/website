@@ -1,52 +1,52 @@
 ---
-title: "Gin 1.11.0リリース！HTTP/3、フォーム機能改善、パフォーマンス向上など"
-linkTitle: "Gin 1.11.0リリース発表"
+title: "Gin 1.11.0 リリースのお知らせ: HTTP/3、フォーム改善、パフォーマンス向上など"
+linkTitle: "Gin 1.11.0 リリースのお知らせ"
 lastUpdated: 2025-09-21
 ---
 
-## Gin v1.11.0が登場
+## Gin v1.11.0 がリリースされました
 
-人気のGo WebフレームワークGinの新バージョン1.11.0が、数々の新機能、パフォーマンス改善、バグ修正を携えてリリースされました。今回のリリースも、Ginの高速性・柔軟性・モダン開発の追求が反映されています。
+Gin v1.11.0のリリースを発表できることを嬉しく思います。このリリースでは、多数の新機能、パフォーマンスの調整、バグ修正がWebフレームワークに追加されました。このリリースは、速度、柔軟性、そしてモダンなGo開発に対するGinのコミットメントを継続するものです。
 
-### 🌟 主な新機能
+### 主な機能
 
-- **実験的HTTP/3対応:** Ginは[quic-go](https://github.com/quic-go/quic-go)経由で実験的にHTTP/3をサポート！最新のWebプロトコルを試したい方はぜひ。([#3210](https://github.com/gin-gonic/gin/pull/3210))
+- **実験的なHTTP/3サポート:** Ginは[quic-go](https://github.com/quic-go/quic-go)を介した実験的なHTTP/3をサポートするようになりました！最新のWebトランスポートプロトコルを試したい方は、ぜひお試しください。([#3210](https://github.com/gin-gonic/gin/pull/3210))
 
-- **フォームバインディングの強化:**
-  - フォームでの配列コレクション形式に対応 ([#3986](https://github.com/gin-gonic/gin/pull/3986))
-  - フォームタグの文字列sliceカスタムアンマーシャル対応 ([#3970](https://github.com/gin-gonic/gin/pull/3970))
-  - コレクションのデフォルト値対応 ([#4048](https://github.com/gin-gonic/gin/pull/4048))
+- **フォームバインディングの改善:** フォームバインディングに大幅な改善を加えました：
+  - フォームでの配列コレクションフォーマットのサポート ([#3986](https://github.com/gin-gonic/gin/pull/3986))
+  - フォームタグのカスタム文字列スライスアンマーシャリング ([#3970](https://github.com/gin-gonic/gin/pull/3970))
+  - コレクションのデフォルト値 ([#4048](https://github.com/gin-gonic/gin/pull/4048))
 
-- **バインディング型の拡張:** 新たに`BindPlain`でプレーンテキストを簡単にバインディング ([#3904](https://github.com/gin-gonic/gin/pull/3904))、unixMilli・unixMicro形式もサポート ([#4190](https://github.com/gin-gonic/gin/pull/4190))。
+- **バインディングタイプの拡張:** 新しい`BindPlain`メソッドでプレーンテキストを簡単にバインドでき ([#3904](https://github.com/gin-gonic/gin/pull/3904))、unixMilliおよびunixMicroフォーマットもサポートされました ([#4190](https://github.com/gin-gonic/gin/pull/4190))。
 
-- **Context APIの改善:** `GetXxx`がGoネイティブ型の取得にさらに対応し、型安全なデータ取り扱いが容易に ([#3633](https://github.com/gin-gonic/gin/pull/3633))。
+- **Context APIの改善:** `GetXxx`がより多くのGoネイティブ型をサポートするようになり ([#3633](https://github.com/gin-gonic/gin/pull/3633))、型安全なコンテキストデータの取得が容易になりました。
 
-- **ファイルシステム拡張:** 新しい `OnlyFilesFS` がエクスポートされ、テスト・ドキュメントも充実 ([#3939](https://github.com/gin-gonic/gin/pull/3939))。
+- **ファイルシステムの更新:** 新しい`OnlyFilesFS`がエクスポートされ、テストとドキュメントが整備されました ([#3939](https://github.com/gin-gonic/gin/pull/3939))。
 
-### 🚀 パフォーマンス＆強化
+### パフォーマンスと機能強化
 
-- **フォームデータのより高速な処理:** フォーム解析が内部で最適化され、処理性能が向上 ([#4339](https://github.com/gin-gonic/gin/pull/4339))。
-- コア・レンダリング・Contextロジックのリファクタリング、堅牢性と明瞭さ向上（[PR一覧はchangelog参照](../releases/release111.md)）。
+- **フォームデータ処理の高速化:** フォームパースの内部最適化によりパフォーマンスが向上しました ([#4339](https://github.com/gin-gonic/gin/pull/4339))。
+- 堅牢性と明確性のためにコア、レンダリング、コンテキストロジックをリファクタリングしました ([変更ログの完全なPRリスト](../releases/release111.md))。
 
-### 🐛 バグ修正
+### バグ修正
 
-- **ミドルウェアの信頼性向上:** まれなミドルウェア再エントリ問題が修正されました ([#3987](https://github.com/gin-gonic/gin/pull/3987))。
-- TOMLフォームバインディングの安定性向上 ([#4193](https://github.com/gin-gonic/gin/pull/4193))。
-- 空のツリー上での“method not allowed”リクエストでpanicしなくなりました ([#4003](https://github.com/gin-gonic/gin/pull/4003))。
-- Context競合や各種安定性も着実に改善。
+- **ミドルウェアの信頼性:** ミドルウェアが予期せず再入される稀なバグを修正しました ([#3987](https://github.com/gin-gonic/gin/pull/3987))。
+- TOMLフォームバインディングの安定性を改善しました ([#4193](https://github.com/gin-gonic/gin/pull/4193))。
+- 空のツリーで「method not allowed」リクエストを処理する際のpanicを解消しました ([#4003](https://github.com/gin-gonic/gin/pull/4003))。
+- コンテキスト処理、競合状態などの全般的な改善。
 
-### 🔧 ビルド・依存関係・CIの更新
+### ビルド、依存関係、CIの更新
 
-- CI/CDで**Go 1.25**サポート、より厳格なコード品質lintersの追加 ([#4341](https://github.com/gin-gonic/gin/pull/4341), [#4010](https://github.com/gin-gonic/gin/pull/4010))。
-- CIにTrivy脆弱性スキャンを統合 ([#4359](https://github.com/gin-gonic/gin/pull/4359))。
-- sonic、setup-go、quic-goなど依存パッケージのアップデートも多数。
+- CI/CDワークフローで**Go 1.25**をサポートし、より厳格なコード品質のために新しいリンターを有効化しました ([#4341](https://github.com/gin-gonic/gin/pull/4341)、[#4010](https://github.com/gin-gonic/gin/pull/4010))。
+- Trivy脆弱性スキャンがCIに統合されました ([#4359](https://github.com/gin-gonic/gin/pull/4359))。
+- `sonic`、`setup-go`、`quic-go`などの複数の依存関係がアップグレードされました。
 
-### 📖 ドキュメント更新
+### ドキュメント
 
-- ドキュメント拡充、changelog更新、サンプルや文法改善、新たにポルトガル語版も追加 ([#4078](https://github.com/gin-gonic/gin/pull/4078))。
+- ドキュメントの拡充、変更ログの更新、文法とコードサンプルの改善、そしてポルトガル語ドキュメントの新規追加 ([#4078](https://github.com/gin-gonic/gin/pull/4078))。
 
 ---
 
-Gin 1.11.0はコミュニティの活力と継続的な開発の証です。全てのコントリビューター、バグ報告者、そしてユーザーの皆さまに感謝します。Ginを現代Web開発の最前線で活かしてくださり、ありがとうございます。
+Gin 1.11.0は、活発なコミュニティと継続的な開発の証です。Ginを最新かつモダンなWebアプリケーションに適したものに保ち続けてくださる、すべてのコントリビューター、Issue報告者、ユーザーの皆様に感謝いたします。
 
-Gin 1.11.0をぜひお試しください！[GitHubでアップグレード](https://github.com/gin-gonic/gin/releases/tag/v1.11.0)。フィードバックもお待ちしています。
+Gin 1.11.0を試してみませんか？[GitHubでアップグレード](https://github.com/gin-gonic/gin/releases/tag/v1.11.0)して、ご感想をお聞かせください！

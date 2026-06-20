@@ -4,47 +4,47 @@ sidebar:
   order: 20
 ---
 
-Gin 是一個以 [Go](https://go.dev/) 撰寫的高效能 HTTP Web 框架。它提供類似 Martini 的 API，但透過 [httprouter](https://github.com/julienschmidt/httprouter)，效能提升至 40 倍之多。Gin 適用於 REST API、網頁應用程式與微服務開發，尤其強調速度及開發者生產力。
+Gin 是一個用 [Go](https://go.dev/) 撰寫的高效能 HTTP Web 框架。它提供類似 Martini 的 API，但效能顯著提升——得益於 [httprouter](https://github.com/julienschmidt/httprouter)，速度快上 40 倍。Gin 專為建構 REST API、Web 應用程式和微服務而設計，兼顧速度與開發者生產力。
 
-**為何選擇 Gin?**
+**為什麼選擇 Gin？**
 
-Gin 結合 Express.js 式路由的簡潔體驗與 Go 的效能特性，特別適合：
+Gin 結合了 Express.js 風格路由的簡潔性與 Go 的效能特性，非常適合：
 
-- 建立高流量 REST API
-- 開發需要高併發處理的微服務
-- 創建反應速度極快的網頁應用程式
-- 使用極少樣板快速原型化網頁服務
+- 建構高吞吐量的 REST API
+- 開發需要處理大量並發請求的微服務
+- 建立需要快速回應時間的 Web 應用程式
+- 以最少的樣板程式碼快速開發 Web 服務原型
 
-**Gin 核心特色：**
+**Gin 的主要特點：**
 
-- **零記憶體分配路由器** —— 超高記憶體效率，無 Heap 配置
-- **高效能** —— 基準測試顯示超越其他 Go Web 框架
-- **中介軟體 (Middleware) 支援** —— 可擴充的中介軟體系統，適用認證、記錄、CORS 等
-- **防崩潰** —— 內建復原中介軟體自動攔截 panic，防止伺服器當掉
-- **JSON 驗證** —— 請求/回應自動綁定及驗證
-- **路由分組** —— 有效組織路由並可套用通用中介軟體
-- **錯誤管理** —— 集中處理與日誌記錄各類錯誤
-- **內建渲染** —— 支援 JSON、XML、HTML 樣板等
-- **具高度擴充性** —— 社群資源豐富，眾多中介軟體與外掛可用
+- **零記憶體配置路由器** - 極高記憶體效率的路由，不產生堆積記憶體配置
+- **高效能** - 基準測試顯示其速度優於其他 Go Web 框架
+- **中介軟體支援** - 可擴充的中介軟體系統，支援身份驗證、日誌記錄、CORS 等
+- **不會當機** - 內建恢復中介軟體，防止 panic 導致伺服器崩潰
+- **JSON 驗證** - 自動請求/回應 JSON 綁定與驗證
+- **路由分組** - 組織相關路由並套用共用中介軟體
+- **錯誤管理** - 集中式錯誤處理與日誌記錄
+- **內建渲染** - 支援 JSON、XML、HTML 模板等多種格式
+- **可擴充** - 龐大的社群中介軟體與外掛生態系統
 
-## 入門指南
+## 開始使用
 
 ### 先決條件
 
-- **Go 版本：** Gin 需要 [Go](https://go.dev/) [1.23](https://go.dev/doc/devel/release#go1.23.0) 或以上版本
-- **Go 基礎知識：** 熟悉 Go 語法及套件管理更易上手
+- **Go 版本**：Gin 需要 [Go](https://go.dev/) [1.25](https://go.dev/doc/devel/release#go1.25) 或以上版本
+- **基礎 Go 知識**：熟悉 Go 語法和套件管理會有所幫助
 
-### 安裝方式
+### 安裝
 
-使用 [Go 模組](https://go.dev/wiki/Modules#how-to-use-modules)功能，只要直接 import Gin，編譯時 Go 會自動下載：
+透過 [Go 的模組支援](https://go.dev/wiki/Modules#how-to-use-modules)，只需在程式碼中匯入 Gin，Go 將在建構時自動下載：
 
 ```go
 import "github.com/gin-gonic/gin"
 ```
 
-### 第一個 Gin 應用
+### 你的第一個 Gin 應用程式
 
-以下完整範例展示 Gin 的簡單易用性：
+以下是一個展示 Gin 簡潔性的完整範例：
 
 ```go
 package main
@@ -56,68 +56,68 @@ import (
 )
 
 func main() {
-  // 建立預設中介軟體 (logger, recovery) 的 Gin 路由器
+  // Create a Gin router with default middleware (logger and recovery)
   r := gin.Default()
-  
-  // 定義基本 GET 路由
+
+  // Define a simple GET endpoint
   r.GET("/ping", func(c *gin.Context) {
-    // 回傳 JSON 響應
+    // Return JSON response
     c.JSON(http.StatusOK, gin.H{
       "message": "pong",
     })
   })
-  
-  // 預設 8080 port 啟動伺服器
-  // 在 0.0.0.0:8080 (Windows 為 localhost:8080) 監聽
+
+  // Start server on port 8080 (default)
+  // Server will listen on 0.0.0.0:8080 (localhost:8080 on Windows)
   r.Run()
 }
 ```
 
 **執行應用程式：**
 
-1. 將上方程式碼儲存為 `main.go`
-2. 執行應用：
+1. 將上述程式碼儲存為 `main.go`
+2. 執行應用程式：
 
    ```sh
    go run main.go
    ```
 
-3. 在瀏覽器開啟 [`http://localhost:8080/ping`](http://localhost:8080/ping)
-4. 畫面顯示： `{"message":"pong"}`
+3. 開啟瀏覽器並造訪 [`http://localhost:8080/ping`](http://localhost:8080/ping)
+4. 你應該會看到：`{"message":"pong"}`
 
-**本範例展示：**
+**此範例展示了：**
 
-- 建立具預設中介軟體的 Gin 路由器
-- 以簡易處理函式定義 HTTP 路由
-- 回傳 JSON 響應
+- 使用預設中介軟體建立 Gin 路由器
+- 使用簡單的處理函式定義 HTTP 端點
+- 回傳 JSON 回應
 - 啟動 HTTP 伺服器
 
-### 進階學習
+### 下一步
 
-執行第一個 Gin 應用後，推薦以下資源探索更多：
+在執行完你的第一個 Gin 應用程式後，可以探索以下資源來深入學習：
 
-#### 📚 學習資源
+#### 學習資源
 
-- **[Gin 快速入門指南](./quickstart/)** —— 各式 API 示範與構建設定範例
-- **[範例專案](https://github.com/gin-gonic/examples)** —— 多元 Gin 使用場景，提供即用範例：
+- **[Gin 快速入門指南](./quickstart/)** - 包含 API 範例和建構配置的完整教學
+- **[範例儲存庫](https://github.com/gin-gonic/examples)** - 展示各種 Gin 使用情境的即用範例：
   - REST API 開發
-  - 認證及中介軟體
-  - 檔案上傳/下載
+  - 身份驗證與中介軟體
+  - 檔案上傳與下載
   - WebSocket 連線
-  - 樣板渲染
+  - 模板渲染
 
 ### 官方教學
 
-- [Go.dev 教學：使用 Go 與 Gin 開發 RESTful API](https://go.dev/doc/tutorial/web-service-gin)
+- [Go.dev 教學：使用 Go 和 Gin 開發 RESTful API](https://go.dev/doc/tutorial/web-service-gin)
 
-## 🔌 中介軟體生態系
+## 中介軟體生態系統
 
-Gin 有豐富的中介軟體生態系，滿足各類常見 Web 開發需求。可探索社群貢獻的中介軟體：
+Gin 擁有豐富的中介軟體生態系統，滿足常見的 Web 開發需求。探索社群貢獻的中介軟體：
 
-- **[gin-contrib](https://github.com/gin-contrib)** —— 官方中介軟體集，主要包含：
-  - 認證（JWT、Basic Auth、Session）
-  - CORS、速度限制、壓縮
-  - 日誌、指標、鏈路追蹤
-  - 靜態檔案、樣板引擎
+- **[gin-contrib](https://github.com/gin-contrib)** - 官方中介軟體集合，包括：
+  - 身份驗證（JWT、Basic Auth、Sessions）
+  - CORS、速率限制、壓縮
+  - 日誌記錄、指標監控、鏈路追蹤
+  - 靜態檔案服務、模板引擎
 
-- **[gin-gonic/contrib](https://github.com/gin-gonic/contrib)** —— 更多社群中介軟體
+- **[gin-gonic/contrib](https://github.com/gin-gonic/contrib)** - 額外的社群中介軟體

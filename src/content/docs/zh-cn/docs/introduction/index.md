@@ -3,43 +3,52 @@ title: "介绍"
 sidebar:
   order: 1
 ---
-Gin 是一个用 Go (Golang) 编写的 Web 框架。 它具有类似 martini 的 API，性能要好得多，多亏了 [httprouter](https://github.com/julienschmidt/httprouter)，速度提高了 40 倍。 如果您需要性能和良好的生产力，您一定会喜欢 Gin。
+
+Gin 是一个用 Go (Golang) 编写的 Web 框架。它拥有类似 Martini 的 API，但性能要好得多，得益于 [httprouter](https://github.com/julienschmidt/httprouter)，速度快了多达 40 倍。如果你需要高性能和高效开发，你一定会爱上 Gin。
 
 在本节中，我们将介绍 Gin 是什么，它解决了哪些问题，以及它如何帮助你的项目。
 
-或者, 如果你已经准备在项目中使用 Gin，请访问[快速入门](https://gin-gonic.com/zh-cn/docs/quickstart/).
+或者，如果你已经准备好在项目中使用 Gin，请访问[快速入门](https://gin-gonic.com/zh-cn/docs/quickstart/)。
 
 ## 特性
 
 ### 快速
 
-基于 Radix 树的路由，小内存占用。没有反射。可预测的 API 性能。
+基于基数树的路由，内存占用小。无反射。可预测的 API 性能。
 
-### 支持中间件
+### 中间件支持
 
 传入的 HTTP 请求可以由一系列中间件和最终操作来处理。
-例如：Logger，Authorization，GZIP，最终操作 DB。
+例如：日志记录器、授权认证、GZIP 压缩，最终将消息发布到数据库。
 
-### Crash 处理
+### 不会崩溃
 
-Gin 可以 catch 一个发生在 HTTP 请求中的 panic 并 recover 它。这样，你的服务器将始终可用。例如，你可以向 Sentry 报告这个 panic！
+Gin 可以捕获 HTTP 请求中发生的 panic 并恢复它。这样，你的服务器将始终可用。例如，还可以将 panic 报告给 Sentry！
 
-### JSON 验证 
+### JSON 验证
 
-Gin 可以解析并验证请求的 JSON，例如检查所需值的存在。
+Gin 可以解析和验证请求的 JSON——例如，检查必填值是否存在。
 
-### 路由组
+### 路由分组
 
-更好地组织路由。是否需要授权，不同的 API 版本...... 此外，这些组可以无限制地嵌套而不会降低性能。
+更好地组织你的路由。将需要授权和不需要授权的路由分开，区分不同的 API 版本……此外，分组可以无限嵌套而不会降低性能。
 
 ### 错误管理
 
-Gin 提供了一种方便的方法来收集 HTTP 请求期间发生的所有错误。最终，中间件可以将它们写入日志文件，数据库并通过网络发送。
+Gin 提供了一种便捷的方式来收集 HTTP 请求中发生的所有错误。中间件可以将错误写入日志文件、数据库或通过网络发送。
 
 ### 内置渲染
 
-Gin 为 JSON，XML 和 HTML 渲染提供了易于使用的 API。
+Gin 提供了简单易用的 API，支持 JSON、XML 和 HTML 渲染。
 
-### 可扩展性
+### 可扩展
 
-新建一个中间件非常简单，去查看[示例代码](https://gin-gonic.com/zh-cn/docs/examples/using-middleware/)吧。
+创建新的中间件非常简单，只需查看示例代码即可。
+
+## Gin v1. 稳定版
+
+- 零分配路由。
+- 仍然是最快的 HTTP 路由器和框架。从路由到写入，全面领先。
+- 完整的单元测试套件。
+- 经过实战检验。
+- API 已冻结，新版本不会破坏你的代码。

@@ -1,15 +1,24 @@
 ---
-title: "Users"
+title: "Пользователи"
 sidebar:
-  order: 8
+  order: 14
 ---
 
-## Awesome Project Lists
+Gin используется в продакшене компаниями и проектами с открытым исходным кодом любого масштаба. Ниже представлена подборка известных проектов, построенных на Gin. Если ваш проект использует Gin, мы будем рады добавить его в этот список.
 
-- [gorush](https://github.com/appleboy/gorush): A push notification server written in Go.
-- [fnproject](https://github.com/fnproject/fn): The container native, cloud agnostic serverless platform.
-- [photoprism](https://github.com/photoprism/photoprism): Personal photo management powered by Go and Google TensorFlow.
-- [krakend](https://github.com/devopsfaith/krakend): Ultra performant API Gateway with middlewares.
-- [picfit](https://github.com/thoas/picfit): An image resizing server written in Go.
-- [gotify](https://github.com/gotify/server): A simple server for sending and receiving messages in real-time per web socket.
-- [cds](https://github.com/ovh/cds): Enterprise-Grade Continuous Delivery & DevOps Automation Open Source Platform.
+## Список проектов
+
+- [gorush](https://github.com/appleboy/gorush): Сервер push-уведомлений, написанный на Go.
+- [fnproject](https://github.com/fnproject/fn): Бессерверная платформа, нативная для контейнеров, независимая от облака.
+- [photoprism](https://github.com/photoprism/photoprism): Фото-приложение на базе ИИ для децентрализованного веба.
+- [lura](https://github.com/luraproject/lura): Сверхпроизводительный API Gateway с middleware.
+- [picfit](https://github.com/thoas/picfit): Сервер изменения размеров изображений, написанный на Go.
+- [gotify](https://github.com/gotify/server): Простой сервер для отправки и получения сообщений в реальном времени через WebSocket.
+- [cds](https://github.com/ovh/cds): Платформа с открытым исходным кодом корпоративного уровня для непрерывной доставки и DevOps-автоматизации.
+- [drone](https://github.com/harness/drone): Платформа непрерывной доставки на основе контейнеров, построенная на Go.
+- [go-admin](https://github.com/GoAdminGroup/go-admin): Фреймворк визуализации данных и админ-панели для Go.
+- [room](https://github.com/andreimerlescu/room): A drop in _waiting room_ middleware for high throughput web applications.
+
+## Добавьте свой проект
+
+Используете Gin в продакшене или в проекте с открытым исходным кодом? Откройте pull request в репозитории [gin-gonic/website](https://github.com/gin-gonic/website), чтобы добавить ваш проект на эту страницу.

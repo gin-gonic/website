@@ -4,44 +4,51 @@ sidebar:
   order: 1
 ---
 
-Gin, Go (Golang) ile yazılmış bir web çerçevesidir. Martini benzeri bir API'ye sahiptir ama [httprouter](https://github.com/julienschmidt/httprouter) sayesinde 40 kata kadar daha hızlı, çok daha iyi performansa sahiptir. Performansa ve iyi üretkenliğe ihtiyacınız varsa, Gin'i seveceksiniz.
+Gin, Go (Golang) ile yazılmış bir web framework'üdür. [httprouter](https://github.com/julienschmidt/httprouter) sayesinde 40 kata kadar daha hızlı, çok daha iyi performansa sahip martini benzeri bir API sunar. Performans ve iyi verimlilik istiyorsanız, Gin'i seveceksiniz.
 
 Bu bölümde Gin'in ne olduğunu, hangi sorunları çözdüğünü ve projenize nasıl yardımcı olabileceğini inceleyeceğiz.
 
-Veya projenizde Gin'i kullanmaya hazırsanız [Hızlı Başlangıç](https://gin-gonic.com/tr/docs/quickstart/)'ı ziyaret edin.
+Veya Gin'i projenizde kullanmaya hazırsanız, [Hızlı Başlangıç](https://gin-gonic.com/tr/docs/quickstart/) sayfasını ziyaret edin.
 
 ## Özellikler
 
 ### Hızlı
 
-Radix ağacı tabanlı routing, küçük bellek ayak izi. Reflection yok. Öngörülebilir API performansı.
+Radix ağacı tabanlı yönlendirme, küçük bellek ayak izi. Yansıma (reflection) yok. Öngörülebilir API performansı.
 
-### Middleware desteği
+### Ara katman desteği
 
-Gelen bir HTTP isteği, bir middleware zinciri ve son eylem tarafından işlenebilir. Örneğin: Logger, Authorization, GZIP ve son olarak veritabanına bir mesaj gönderin.
+Gelen bir HTTP isteği, bir ara katman zinciri ve son eylem tarafından işlenebilir.
+Örneğin: Logger, Yetkilendirme, GZIP ve son olarak veritabanına mesaj gönderme.
 
-### Çökmeye Dirençli
+### Çökme koruması
 
-Gin, bir HTTP isteği sırasında oluşan bir paniği yakalayabilir ve düzeltebilir. Bu şekilde sunucunuz her zaman çalışacaktır. Ayrıca bir paniği Sentry'ye bildirmek de mümkündür.
+Gin, bir HTTP isteği sırasında oluşan panic'i yakalayabilir ve kurtarabilir. Bu sayede sunucunuz her zaman erişilebilir olur. Örneğin - bu panic'i Sentry'ye raporlamak da mümkündür!
 
-### JSON doğrulama 
+### JSON doğrulama
 
-Gin, bir isteğin JSON'ını ayrıştırabilir ve doğrulayabilir. Örneğin gerekli değerlerin varlığını kontrol edebilir.
+Gin, bir isteğin JSON'ını ayrıştırabilir ve doğrulayabilir - örneğin, zorunlu değerlerin varlığını kontrol edebilir.
 
-### Route gruplama
+### Rota gruplama
 
-Routelarınızı daha iyi düzenleyin. Authorization gerektiren veya gerektirmeyen, farklı API sürümlerini kolayca düzenleyin. Ayrıca, gruplar performansı düşürmeden sınırsız olarak iç içe yerleştirilebilir.
+Rotalarınızı daha iyi düzenleyin. Yetkilendirme gerektiren ve gerektirmeyen, farklı API sürümleri... Ayrıca gruplar, performans kaybı olmadan sınırsız şekilde iç içe yerleştirilebilir.
 
 ### Hata yönetimi
 
-Gin, bir HTTP isteği sırasında meydana gelen tüm hataları toplamak için uygun bir yol sağlar. Sonunda, middleware bunları bir log dosyasına veya bir veritabanına yazabilir ve ağ üzerinden gönderebilir.
+Gin, bir HTTP isteği sırasında oluşan tüm hataları toplamak için kullanışlı bir yol sağlar. Sonunda, bir ara katman bunları bir log dosyasına, veritabanına yazabilir ve ağ üzerinden gönderebilir.
 
-
-### Hazır rendering
+### Yerleşik işleme
 
 Gin, JSON, XML ve HTML işleme için kullanımı kolay bir API sağlar.
 
 ### Genişletilebilir
 
-Yeni middleware oluşturmak çok kolaydır, sadece örnek kodları inceleyin.
+Yeni bir ara katman oluşturmak çok kolay, örnek koda göz atmanız yeterli.
 
+## Gin v1. Kararlı
+
+- Sıfır tahsisli yönlendirici.
+- Hâlâ en hızlı HTTP yönlendirici ve framework. Yönlendirmeden yazmaya kadar.
+- Eksiksiz birim test paketi.
+- Savaş testinden geçmiş.
+- API dondurulmuş, yeni sürümler kodunuzu bozmayacak.

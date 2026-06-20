@@ -6,27 +6,27 @@ lastUpdated: 2019-02-26
 
 ## Partes constituyentes
 
-Normalmente, un middleware consta de dos partes:
+Un middleware generalmente consta de dos partes:
 
-- La primera parte se ejecuta una vez, cuando inicializas tu middleware. Aquí es donde configuras objetos globales, lógica de configuración, etc.; todo lo que solo necesita suceder una vez en el ciclo de vida de la aplicación.
+- La primera parte se ejecuta una sola vez, cuando inicializas tu middleware. Aquí es donde configuras objetos globales, lógica de configuración, etc., todo lo que solo necesita ocurrir una vez durante el tiempo de vida de la aplicación.
 
-- La segunda parte se ejecuta en cada petición. Por ejemplo, en un middleware de base de datos, inyectarías tu objeto global de base de datos en el contexto de la solicitud. Una vez en el contexto, otros middlewares y tus funciones controlador pueden recuperarlo y utilizarlo.
+- La segunda parte se ejecuta en cada solicitud. Por ejemplo, en un middleware de base de datos, inyectarías tu objeto de base de datos global en el contexto de la solicitud. Una vez que está en el contexto, otros middlewares y tus funciones handler pueden recuperarlo y usarlo.
 
 ```go
 func funcName(params string) gin.HandlerFunc {
   // <---
-  // Esta es la primera parte
+  // This is part one
   // --->
-  // Ejemplo de inicialización: validar parámetros de entrada
+  // Example initialization: validate input params
   if err := check(params); err != nil {
       panic(err)
   }
 
   return func(c *gin.Context) {
     // <---
-    // Esta es la segunda parte
+    // This is part two
     // --->
-    // Ejecución por solicitud: inyectar en el contexto
+    // Example execution per request: inject into context
     c.Set("TestVar", params)
     c.Next()
   }
@@ -35,7 +35,7 @@ func funcName(params string) gin.HandlerFunc {
 
 ## Proceso de ejecución
 
-Veamos el siguiente ejemplo de código:
+Veamos el siguiente código de ejemplo:
 
 ```go
 func main() {
@@ -104,7 +104,7 @@ mid1...1
 mid2...1
 ```
 
-Cuando realizas una solicitud—por ejemplo, `curl -v localhost:8080/rest/n/api/some`—**la segunda parte** de cada middleware se ejecuta en orden y muestra lo siguiente:
+Cuando haces una solicitud, por ejemplo, `curl -v localhost:8080/rest/n/api/some`, **la segunda parte** de cada middleware se ejecuta en orden y produce la siguiente salida:
 
 ```go
 globalMiddleware...2
@@ -138,3 +138,4 @@ mid1...3
     |
     v
 globalMiddleware...3
+```

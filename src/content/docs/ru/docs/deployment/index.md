@@ -1,51 +1,63 @@
 ---
-title: "Deployment"
+title: "Развёртывание"
 sidebar:
-  order: 6
+  order: 10
 ---
 
-Проекты Gin могут быть легко развернуты на любом облачном провайдере.
+Проекты на Gin легко развернуть на любом облачном провайдере.
+
+## [Railway](https://www.railway.com)
+
+Railway — это современная облачная платформа для развёртывания, управления и масштабирования приложений и сервисов. Она упрощает вашу инфраструктуру — от серверов до мониторинга — с помощью единой, масштабируемой и удобной платформы.
+
+Следуйте [руководству Railway по развёртыванию проектов Gin](https://docs.railway.com/guides/gin).
+
+## [Seenode](https://seenode.com)
+
+Seenode — это современная облачная платформа, разработанная специально для разработчиков, которые хотят быстро и эффективно развёртывать приложения. Она предлагает развёртывание на основе Git, автоматические SSL-сертификаты, встроенные базы данных и удобный интерфейс, который позволяет запустить ваши приложения Gin за считанные минуты.
+
+Следуйте [руководству Seenode по развёртыванию проектов Gin](https://seenode.com/docs/frameworks/go/gin).
 
 ## [Koyeb](https://www.koyeb.com)
 
-Koyeb - это удобная для разработчиков бессерверная платформа для глобального развертывания приложений с развертыванием на основе git, шифрованием TLS, встроенным автомасштабированием, глобальной пограничной сетью и встроенным сервисом mesh & discovery.
+Koyeb — это удобная для разработчиков бессерверная платформа для глобального развёртывания приложений с развёртыванием на основе Git, TLS-шифрованием, нативным автомасштабированием, глобальной пограничной сетью и встроенным service mesh и обнаружением сервисов.
 
-Следуйте руководству Koyeb [Guide to deploy your Gin projects](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
+Следуйте [руководству Koyeb по развёртыванию проектов Gin](https://www.koyeb.com/tutorials/deploy-go-gin-on-koyeb).
 
 ## [Qovery](https://www.qovery.com)
 
-Qovery предоставляет бесплатный облачный хостинг с базами данных, SSL, глобальной CDN и автоматическим развертыванием с помощью Git.
+Qovery предоставляет бесплатный облачный хостинг с базами данных, SSL, глобальным CDN и автоматическим развёртыванием из Git.
 
-Следуйте руководству Qovery, чтобы [развернуть свой проект Gin](https://docs.qovery.com/guides/tutorial/deploy-gin-with-postgresql/).
+Подробнее см. [Qovery](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/).
 
 ## [Render](https://render.com)
 
-Render - это современная облачная платформа, которая предлагает встроенную поддержку Go, полностью управляемый SSL, базы данных, деплой с нулевым временем простоя, HTTP/2 и поддержку websocket.
+Render — это современная облачная платформа с нативной поддержкой Go, полностью управляемым SSL, базами данных, развёртыванием без простоев, HTTP/2 и поддержкой WebSocket.
 
-Следуйте рекомендациям Render [руководство по развертыванию проектов Gin](https://render.com/docs/deploy-go-gin).
+Следуйте [руководству Render по развёртыванию проектов Gin](https://render.com/docs/deploy-go-gin).
 
 ## [Google App Engine](https://cloud.google.com/appengine/)
 
-В GAE есть два способа развертывания Go-приложений. Стандартная среда проще в использовании, но менее настраиваема и не допускает [syscalls](https://github.com/gin-gonic/gin/issues/1639) по соображениям безопасности. В гибком окружении можно запускать любые фреймворки и библиотеки.
+GAE предлагает два способа развёртывания приложений Go. Стандартное окружение проще в использовании, но менее настраиваемо и запрещает [системные вызовы](https://github.com/gin-gonic/gin/issues/1639) по соображениям безопасности. Гибкое окружение может запускать любой фреймворк или библиотеку.
 
-Узнать больше и выбрать предпочтительную среду можно на сайте [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
+Узнайте больше и выберите предпочтительное окружение на странице [Go на Google App Engine](https://cloud.google.com/appengine/docs/go/).
 
-## Self Hosted
+## Самостоятельное размещение
 
-Gin projects can also be deployed in a self-hosted manner. Deployment architecture and security considerations vary depending on the target environment. The following section only presents a high level overview of configuration options to consider when planning the deployment.
+Проекты на Gin также можно развернуть самостоятельно. Архитектура развёртывания и вопросы безопасности зависят от целевого окружения. В следующем разделе представлен лишь общий обзор параметров конфигурации, которые следует учитывать при планировании развёртывания.
 
-## Configuration Options
+## Параметры конфигурации
 
-Gin project deployments can be tuned by using environment variables or directly in code.
+Развёртывание проектов Gin можно настроить с помощью переменных окружения или непосредственно в коде.
 
-The following environment variables are available for configuring Gin:
+Для настройки Gin доступны следующие переменные окружения:
 
-| Environment Variable | Description                                                                                                                                                                                                   |
+| Переменная окружения | Описание                                                                                                                                                                                                   |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| PORT                 | The TCP port to listen on when starting the Gin server with `router.Run()` (i.e. without any arguments).                                                                                                      |
-| GIN_MODE             | Set to one of `debug`, `release`, or `test`. Handles management of Gin modes, such as when to emit debug outputs. Can also be set in code using `gin.SetMode(gin.ReleaseMode)` or `gin.SetMode(gin.TestMode)` |
+| PORT                 | TCP-порт для прослушивания при запуске сервера Gin с помощью `router.Run()` (т.е. без аргументов).                                                                                                      |
+| GIN_MODE             | Установите значение `debug`, `release` или `test`. Управляет режимами Gin, например, когда выводить отладочные сообщения. Также можно установить в коде с помощью `gin.SetMode(gin.ReleaseMode)` или `gin.SetMode(gin.TestMode)` |
 
-The following code can be used to configure Gin.
+Следующий код можно использовать для настройки Gin.
 
 ```go
 // Don't specify the bind address or port for Gin. Defaults to binding on all interfaces on port 8080.
@@ -67,75 +79,4 @@ router := gin.Default()
 router.SetTrustedProxies([]string{"192.168.1.2"})
 ```
 
-## Don't trust all proxies
-
-Gin lets you specify which headers to hold the real client IP (if any),
-as well as specifying which proxies (or direct clients) you trust to
-specify one of these headers.
-
-Use function `SetTrustedProxies()` on your `gin.Engine` to specify network addresses
-or network CIDRs from where clients which their request headers related to client
-IP can be trusted. They can be IPv4 addresses, IPv4 CIDRs, IPv6 addresses or
-IPv6 CIDRs.
-
-**Attention:** Gin trust all proxies by default if you don't specify a trusted
-proxy using the function above, **this is NOT safe**. At the same time, if you don't
-use any proxy, you can disable this feature by using `Engine.SetTrustedProxies(nil)`,
-then `Context.ClientIP()` will return the remote address directly to avoid some
-unnecessary computation.
-
-```go
-import (
-  "fmt"
-
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  router := gin.Default()
-  router.SetTrustedProxies([]string{"192.168.1.2"})
-
-  router.GET("/", func(c *gin.Context) {
-    // If the client is 192.168.1.2, use the X-Forwarded-For
-    // header to deduce the original client IP from the trust-
-    // worthy parts of that header.
-    // Otherwise, simply return the direct client IP
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
-}
-```
-
-**Notice:** If you are using a CDN service, you can set the `Engine.TrustedPlatform`
-to skip TrustedProxies check, it has a higher priority than TrustedProxies.
-Look at the example below:
-
-```go
-import (
-  "fmt"
-
-  "github.com/gin-gonic/gin"
-)
-
-func main() {
-  router := gin.Default()
-  // Use predefined header gin.PlatformXXX
-  // Google App Engine
-  router.TrustedPlatform = gin.PlatformGoogleAppEngine
-  // Cloudflare
-  router.TrustedPlatform = gin.PlatformCloudflare
-  // Fly.io
-  router.TrustedPlatform = gin.PlatformFlyIO
-  // Or, you can set your own trusted request header. But be sure your CDN
-  // prevents users from passing this header! For example, if your CDN puts
-  // the client IP in X-CDN-Client-IP:
-  router.TrustedPlatform = "X-CDN-Client-IP"
-
-  router.GET("/", func(c *gin.Context) {
-    // If you set TrustedPlatform, ClientIP() will resolve the
-    // corresponding header and return IP directly
-    fmt.Printf("ClientIP: %s\n", c.ClientIP())
-  })
-  router.Run()
-}
-```
+Информацию о настройке доверенных прокси см. в разделе [Доверенные прокси](/ru/docs/server-config/trusted-proxies/).
