@@ -77,9 +77,13 @@ export default defineConfig({
         },
       },
 
-      social: {
-        github: "https://github.com/gin-gonic/gin",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/gin-gonic/gin",
+        },
+      ],
       sidebar: [
         {
           label: "Docs",
@@ -196,7 +200,7 @@ export default defineConfig({
                 "zh-TW": "資料綁定",
                 ar: "الربط",
               },
-              autogenerate: { directory: "docs/binding" },
+              items: [{ autogenerate: { directory: "docs/binding" } }],
             },
             {
               label: "Rendering",
@@ -213,7 +217,7 @@ export default defineConfig({
                 "zh-TW": "渲染",
                 ar: "العرض",
               },
-              autogenerate: { directory: "docs/rendering" },
+              items: [{ autogenerate: { directory: "docs/rendering" } }],
             },
             {
               label: "Middleware",
@@ -230,7 +234,7 @@ export default defineConfig({
                 "zh-TW": "中介軟體",
                 ar: "البرمجيات الوسيطة",
               },
-              autogenerate: { directory: "docs/middleware" },
+              items: [{ autogenerate: { directory: "docs/middleware" } }],
             },
             {
               label: "Logging",
@@ -247,7 +251,7 @@ export default defineConfig({
                 "zh-TW": "日誌",
                 ar: "التسجيل",
               },
-              autogenerate: { directory: "docs/logging" },
+              items: [{ autogenerate: { directory: "docs/logging" } }],
             },
             {
               label: "Server Configuration",
@@ -264,7 +268,7 @@ export default defineConfig({
                 "zh-TW": "伺服器設定",
                 ar: "إعدادات الخادم",
               },
-              autogenerate: { directory: "docs/server-config" },
+              items: [{ autogenerate: { directory: "docs/server-config" } }],
             },
             {
               label: "Testing",
@@ -315,7 +319,7 @@ export default defineConfig({
                 "zh-TW": "建置標籤",
                 ar: "علامات البناء",
               },
-              autogenerate: { directory: "docs/build-tags" },
+              items: [{ autogenerate: { directory: "docs/build-tags" } }],
             },
             {
               label: "Benchmarks",
@@ -383,7 +387,7 @@ export default defineConfig({
                 "zh-TW": "常見問題",
                 ar: "الأسئلة الشائعة",
               },
-              autogenerate: { directory: "docs/faq" },
+              items: [{ autogenerate: { directory: "docs/faq" } }],
             },
           ],
         },
@@ -402,7 +406,7 @@ export default defineConfig({
             "zh-TW": "部落格",
             ar: "المدونة",
           },
-          autogenerate: { directory: "blog" },
+          items: [{ autogenerate: { directory: "blog" } }],
         },
       ],
       expressiveCode: {
