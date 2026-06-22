@@ -1,7 +1,7 @@
 ---
 title: "BasicAuth 미들웨어 사용하기"
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Gin에는 [HTTP Basic 인증](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme)을 구현하는 내장 `gin.BasicAuth()` 미들웨어가 포함되어 있습니다. 사용자 이름/비밀번호 쌍의 `gin.Accounts` 맵(`map[string]string`의 단축)을 받아 적용되는 모든 라우트 그룹을 보호합니다.

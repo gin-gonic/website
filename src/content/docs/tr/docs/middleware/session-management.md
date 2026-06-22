@@ -1,7 +1,7 @@
 ---
 title: "Oturum Yönetimi"
 sidebar:
-  order: 10
+  order: 11
 ---
 
 Oturumlar, birden fazla HTTP isteği boyunca kullanıcıya özgü verileri depolamanıza olanak tanır. HTTP durumsuz olduğundan, oturumlar geri dönen kullanıcıları tanımlamak ve saklanan verilerini almak için çerezler veya diğer mekanizmaları kullanır.

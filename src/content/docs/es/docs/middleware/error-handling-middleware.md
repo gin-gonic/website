@@ -1,7 +1,7 @@
 ---
 title: "Middleware de manejo de errores"
 sidebar:
-  order: 4
+  order: 5
 ---
 
 En una aplicación RESTful típica, podrías encontrar errores en cualquier ruta — entrada inválida, fallos de base de datos, acceso no autorizado o errores internos. Manejar errores individualmente en cada handler lleva a código repetitivo y respuestas inconsistentes.

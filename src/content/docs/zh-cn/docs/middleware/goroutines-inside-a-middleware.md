@@ -1,7 +1,7 @@
 ---
 title: "中间件中的 Goroutine"
 sidebar:
-  order: 7
+  order: 8
 ---
 
 在中间件或处理函数中启动新的 Goroutine 时，**不应该**在其中使用原始上下文，必须使用只读副本。

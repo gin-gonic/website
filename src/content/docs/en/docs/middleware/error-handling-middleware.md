@@ -1,7 +1,7 @@
 ---
 title: "Error handling middleware"
 sidebar:
-  order: 4
+  order: 5
 ---
 
 In a typical RESTful application, you might encounter errors in any route — invalid input, database failures, unauthorized access, or internal bugs. Handling errors individually in each handler leads to repetitive code and inconsistent responses.

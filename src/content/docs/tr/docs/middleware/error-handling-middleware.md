@@ -1,7 +1,7 @@
 ---
 title: "Hata işleme ara katmanı"
 sidebar:
-  order: 4
+  order: 5
 ---
 
 Tipik bir RESTful uygulamada, herhangi bir rotada hatalarla karşılaşabilirsiniz — geçersiz girdi, veritabanı hataları, yetkisiz erişim veya dahili hatalar. Her handler'da hataları tek tek ele almak tekrarlayan koda ve tutarsız yanıtlara yol açar.

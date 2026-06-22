@@ -1,7 +1,7 @@
 ---
 title: "استفاده از میان‌افزار BasicAuth"
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Gin دارای میان‌افزار داخلی `gin.BasicAuth()` است که [احراز هویت پایه HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme) را پیاده‌سازی می‌کند. این میان‌افزار یک map `gin.Accounts` (میانبر برای `map[string]string`) از جفت‌های نام کاربری/رمز عبور می‌پذیرد و هر گروه مسیری که روی آن اعمال شود را محافظت می‌کند.

@@ -1,7 +1,7 @@
 ---
 title: "Goroutines dentro de um middleware"
 sidebar:
-  order: 7
+  order: 8
 ---
 
 Ao iniciar novas Goroutines dentro de um middleware ou handler, você **NÃO DEVE** usar o contexto original dentro delas, você deve usar uma cópia somente leitura.

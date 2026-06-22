@@ -1,7 +1,7 @@
 ---
 title: "使用 BasicAuth 中介軟體"
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Gin 內建了 `gin.BasicAuth()` 中介軟體，實作了 [HTTP 基本身份驗證](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme)。它接受一個 `gin.Accounts` 映射（`map[string]string` 的捷徑）來存放使用者名稱/密碼對，並保護所有套用該中介軟體的路由群組。

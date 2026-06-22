@@ -1,7 +1,7 @@
 ---
 title: "Manajemen Session"
 sidebar:
-  order: 10
+  order: 11
 ---
 
 Session memungkinkan Anda menyimpan data spesifik pengguna di seluruh permintaan HTTP. Karena HTTP bersifat stateless, session menggunakan cookie atau mekanisme lain untuk mengidentifikasi pengguna yang kembali dan mengambil data tersimpan mereka.

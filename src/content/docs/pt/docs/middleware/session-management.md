@@ -1,7 +1,7 @@
 ---
 title: "Gerenciamento de Sessões"
 sidebar:
-  order: 10
+  order: 11
 ---
 
 Sessões permitem armazenar dados específicos do usuário entre múltiplas requisições HTTP. Como HTTP é stateless, sessões usam cookies ou outros mecanismos para identificar usuários que retornam e recuperar seus dados armazenados.

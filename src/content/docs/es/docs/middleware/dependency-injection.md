@@ -1,7 +1,7 @@
 ---
 title: "Patrones de inyección de dependencias"
 sidebar:
-  order: 11
+  order: 12
 ---
 
 A medida que tu aplicación Gin crece, necesitas una forma limpia de compartir dependencias como conexiones a bases de datos, configuración y servicios entre handlers. La simplicidad de Go fomenta patrones directos en lugar de frameworks pesados de inyección de dependencias.

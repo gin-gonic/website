@@ -1,7 +1,7 @@
 ---
 title: "Headers de Segurança"
 sidebar:
-  order: 8
+  order: 9
 ---
 
 É importante usar headers de segurança para proteger sua aplicação web de vulnerabilidades comuns de segurança. Este exemplo mostra como adicionar headers de segurança à sua aplicação Gin e também como evitar ataques relacionados à injeção de Host Header (SSRF, Open Redirection).

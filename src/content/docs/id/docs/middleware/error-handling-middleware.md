@@ -1,7 +1,7 @@
 ---
 title: "Middleware penanganan error"
 sidebar:
-  order: 4
+  order: 5
 ---
 
 Dalam aplikasi RESTful tipikal, Anda mungkin menemui error di rute mana pun — input tidak valid, kegagalan database, akses tidak sah, atau bug internal. Menangani error secara individual di setiap handler menyebabkan kode berulang dan respons yang tidak konsisten.

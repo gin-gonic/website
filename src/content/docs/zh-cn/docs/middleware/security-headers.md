@@ -1,7 +1,7 @@
 ---
 title: "安全头"
 sidebar:
-  order: 8
+  order: 9
 ---
 
 使用安全头来保护你的 Web 应用免受常见安全漏洞非常重要。此示例展示了如何向 Gin 应用添加安全头，以及如何避免 Host Header 注入相关攻击（SSRF、开放重定向）。

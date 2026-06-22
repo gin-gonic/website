@@ -1,7 +1,7 @@
 ---
 title: "보안 헤더"
 sidebar:
-  order: 8
+  order: 9
 ---
 
 일반적인 보안 취약점으로부터 웹 애플리케이션을 보호하기 위해 보안 헤더를 사용하는 것이 중요합니다. 이 예제에서는 Gin 애플리케이션에 보안 헤더를 추가하는 방법과 Host Header Injection 관련 공격(SSRF, Open Redirection)을 방지하는 방법을 보여줍니다.

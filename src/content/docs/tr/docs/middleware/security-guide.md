@@ -1,7 +1,7 @@
 ---
 title: "Güvenlik En İyi Uygulamaları"
 sidebar:
-  order: 9
+  order: 10
 ---
 
 Web uygulamaları saldırganlar için birincil hedeftir. Kullanıcı girdisi işleyen, veri depolayan veya ters proxy arkasında çalışan bir Gin uygulaması, üretime geçmeden önce bilinçli güvenlik yapılandırmasına ihtiyaç duyar. Bu kılavuz, en önemli savunmaları kapsar ve her birinin Gin ara katmanı ve standart Go kütüphaneleriyle nasıl uygulanacağını gösterir.

@@ -1,7 +1,7 @@
 ---
 title: "Middleware"
 sidebar:
-  order: 6
+  order: 7
 ---
 
 Middleware di Gin menyediakan cara untuk memproses permintaan HTTP sebelum mencapai handler rute. Fungsi middleware memiliki signature yang sama dengan handler rute -- `gin.HandlerFunc` -- dan biasanya memanggil `c.Next()` untuk meneruskan kontrol ke handler berikutnya dalam rantai.

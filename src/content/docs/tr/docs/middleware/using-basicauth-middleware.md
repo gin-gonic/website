@@ -1,7 +1,7 @@
 ---
 title: "BasicAuth ara katmanı kullanımı"
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Gin, [HTTP Temel Kimlik Doğrulamayı](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme) uygulayan yerleşik bir `gin.BasicAuth()` ara katmanıyla birlikte gelir. Kullanıcı adı/şifre çiftlerinden oluşan bir `gin.Accounts` haritası (`map[string]string` için kısayol) kabul eder ve uygulandığı herhangi bir rota grubunu korur.

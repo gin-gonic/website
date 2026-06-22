@@ -1,7 +1,7 @@
 ---
 title: "BasicAuthミドルウェアの使用"
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Ginには[HTTP基本認証](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme)を実装する組み込みの`gin.BasicAuth()`ミドルウェアが付属しています。ユーザー名/パスワードのペアの`gin.Accounts`マップ（`map[string]string`のショートカット）を受け取り、適用されたルートグループを保護します。

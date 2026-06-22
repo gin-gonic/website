@@ -1,7 +1,7 @@
 ---
 title: "Bağımlılık Enjeksiyonu Kalıpları"
 sidebar:
-  order: 11
+  order: 12
 ---
 
 Gin uygulamanız büyüdükçe, veritabanı bağlantıları, yapılandırma ve servisler gibi bağımlılıkları işleyiciler arasında paylaşmanın temiz bir yoluna ihtiyaç duyarsınız. Go'nun sadeliği, ağır DI framework'leri yerine doğrudan kalıpları teşvik eder.

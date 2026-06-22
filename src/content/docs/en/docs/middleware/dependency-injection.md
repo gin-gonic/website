@@ -1,7 +1,7 @@
 ---
 title: "Dependency Injection Patterns"
 sidebar:
-  order: 11
+  order: 12
 ---
 
 As your Gin application grows, you need a clean way to share dependencies like database connections, configuration, and services across handlers. Go's simplicity encourages straightforward patterns over heavy DI frameworks.

@@ -1,7 +1,7 @@
 ---
 title: "使用 BasicAuth 中间件"
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Gin 内置了 `gin.BasicAuth()` 中间件，实现了 [HTTP 基本认证](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme)。它接受一个 `gin.Accounts` 映射（`map[string]string` 的快捷方式），包含用户名/密码对，并保护应用它的任何路由组。

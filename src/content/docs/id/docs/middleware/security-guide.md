@@ -1,7 +1,7 @@
 ---
 title: "Praktik Terbaik Keamanan"
 sidebar:
-  order: 9
+  order: 10
 ---
 
 Aplikasi web adalah target utama penyerang. Aplikasi Gin yang menangani input pengguna, menyimpan data, atau berjalan di balik reverse proxy memerlukan konfigurasi keamanan yang disengaja sebelum masuk ke produksi. Panduan ini mencakup pertahanan paling penting dan menunjukkan cara menerapkan masing-masing dengan middleware Gin dan pustaka standar Go.

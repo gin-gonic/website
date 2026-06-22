@@ -1,7 +1,7 @@
 ---
 title: "在中介軟體中使用 Goroutine"
 sidebar:
-  order: 7
+  order: 8
 ---
 
 在中介軟體或處理函式中啟動新的 Goroutine 時，**不應該**在其中使用原始的上下文，你必須使用唯讀副本。

@@ -1,7 +1,7 @@
 ---
 title: "Usar middleware BasicAuth"
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Gin incluye un middleware integrado `gin.BasicAuth()` que implementa [Autenticación HTTP Básica](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme). Acepta un mapa `gin.Accounts` (un atajo para `map[string]string`) de pares usuario/contraseña y protege cualquier grupo de rutas al que se aplique.

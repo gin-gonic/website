@@ -1,7 +1,7 @@
 ---
 title: "Session Management"
 sidebar:
-  order: 10
+  order: 11
 ---
 
 Sessions allow you to store user-specific data across multiple HTTP requests. Since HTTP is stateless, sessions use cookies or other mechanisms to identify returning users and retrieve their stored data.

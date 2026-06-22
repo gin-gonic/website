@@ -1,7 +1,7 @@
 ---
 title: "Middleware de tratamento de erros"
 sidebar:
-  order: 4
+  order: 5
 ---
 
 Em uma aplicação RESTful típica, você pode encontrar erros em qualquer rota — entrada inválida, falhas no banco de dados, acesso não autorizado ou bugs internos. Tratar erros individualmente em cada handler leva a código repetitivo e respostas inconsistentes.

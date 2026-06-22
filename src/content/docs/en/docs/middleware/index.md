@@ -1,7 +1,7 @@
 ---
 title: "Middleware"
 sidebar:
-  order: 6
+  order: 7
 ---
 
 Middleware in Gin provides a way to process HTTP requests before they reach route handlers. A middleware function has the same signature as a route handler -- `gin.HandlerFunc` -- and typically calls `c.Next()` to pass control to the next handler in the chain.

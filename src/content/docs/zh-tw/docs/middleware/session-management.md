@@ -1,7 +1,7 @@
 ---
 title: "Session 管理"
 sidebar:
-  order: 10
+  order: 11
 ---
 
 Session 讓你可以跨多個 HTTP 請求儲存使用者特定的資料。由於 HTTP 是無狀態的，Session 使用 Cookie 或其他機制來識別回訪的使用者並擷取其儲存的資料。

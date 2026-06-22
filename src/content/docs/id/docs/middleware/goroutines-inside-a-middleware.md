@@ -1,7 +1,7 @@
 ---
 title: "Goroutine di dalam middleware"
 sidebar:
-  order: 7
+  order: 8
 ---
 
 Saat memulai Goroutine baru di dalam middleware atau handler, Anda **TIDAK BOLEH** menggunakan context asli di dalamnya, Anda harus menggunakan salinan read-only.

@@ -1,7 +1,7 @@
 ---
 title: "Menggunakan middleware BasicAuth"
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Gin dilengkapi dengan middleware `gin.BasicAuth()` bawaan yang mengimplementasikan [Autentikasi HTTP Basic](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme). Middleware ini menerima map `gin.Accounts` (pintasan untuk `map[string]string`) berisi pasangan username/password dan melindungi grup rute yang diterapkan.

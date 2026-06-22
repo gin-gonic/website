@@ -1,7 +1,7 @@
 ---
 title: "Encabezados de seguridad"
 sidebar:
-  order: 8
+  order: 9
 ---
 
 Es importante usar encabezados de seguridad para proteger tu aplicación web de vulnerabilidades de seguridad comunes. Este ejemplo muestra cómo agregar encabezados de seguridad a tu aplicación Gin y también cómo evitar ataques relacionados con la inyección de encabezado Host (SSRF, Redirección abierta).

@@ -1,7 +1,7 @@
 ---
 title: "Ara Katman (Middleware)"
 sidebar:
-  order: 6
+  order: 7
 ---
 
 Gin'de ara katman, HTTP isteklerini rota işleyicilerine ulaşmadan önce işlemek için bir yol sağlar. Bir ara katman fonksiyonu, rota işleyicisi ile aynı imzaya sahiptir -- `gin.HandlerFunc` -- ve genellikle zincirdeki bir sonraki işleyiciye kontrolü geçirmek için `c.Next()` çağırır.

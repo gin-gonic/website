@@ -1,7 +1,7 @@
 ---
 title: "Security Best Practices"
 sidebar:
-  order: 9
+  order: 10
 ---
 
 Web applications are a primary target for attackers. A Gin application that handles user input, stores data, or runs behind a reverse proxy needs deliberate security configuration before it goes to production. This guide covers the most important defenses and shows how to apply each one with Gin middleware and standard Go libraries.

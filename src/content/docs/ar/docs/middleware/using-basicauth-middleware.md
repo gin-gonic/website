@@ -1,7 +1,7 @@
 ---
 title: "استخدام وسيط BasicAuth"
 sidebar:
-  order: 5
+  order: 6
 ---
 
 يأتي Gin مع وسيط `gin.BasicAuth()` مدمج يُنفذ [مصادقة HTTP الأساسية](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#basic_authentication_scheme). يقبل خريطة `gin.Accounts` (اختصار لـ `map[string]string`) من أزواج اسم المستخدم/كلمة المرور ويحمي أي مجموعة مسارات يُطبق عليها.

@@ -1,7 +1,7 @@
 ---
 title: "Melhores Práticas de Segurança"
 sidebar:
-  order: 9
+  order: 10
 ---
 
 Aplicações web são um alvo primário para atacantes. Uma aplicação Gin que lida com entrada de usuário, armazena dados ou roda atrás de um proxy reverso precisa de configuração de segurança deliberada antes de ir para produção. Este guia cobre as defesas mais importantes e mostra como aplicar cada uma com middleware Gin e bibliotecas padrão do Go.

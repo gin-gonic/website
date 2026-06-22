@@ -1,7 +1,7 @@
 ---
 title: "Güvenlik Başlıkları"
 sidebar:
-  order: 8
+  order: 9
 ---
 
 Web uygulamanızı yaygın güvenlik açıklarından korumak için güvenlik başlıkları kullanmak önemlidir. Bu örnek, Gin uygulamanıza güvenlik başlıklarını nasıl ekleyeceğinizi ve Host Header Injection ile ilgili saldırılardan (SSRF, Açık Yönlendirme) nasıl kaçınacağınızı gösterir.

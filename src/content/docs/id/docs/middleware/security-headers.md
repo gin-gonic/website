@@ -1,7 +1,7 @@
 ---
 title: "Header Keamanan"
 sidebar:
-  order: 8
+  order: 9
 ---
 
 Penting untuk menggunakan header keamanan untuk melindungi aplikasi web Anda dari kerentanan keamanan umum. Contoh ini menunjukkan cara menambahkan header keamanan ke aplikasi Gin Anda dan juga cara menghindari serangan terkait Host Header Injection (SSRF, Open Redirection).
