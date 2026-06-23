@@ -16,7 +16,7 @@ jobs:
         node: [ '22' ]
     name: Node ${{ matrix.node }} Setup
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Setup node
         uses: actions/setup-node@v6
         with:
