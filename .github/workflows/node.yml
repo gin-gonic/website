@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '20' ]
+        node: [ '22' ]
     name: Node ${{ matrix.node }} Setup
     steps:
       - uses: actions/checkout@v6
