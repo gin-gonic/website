@@ -19,7 +19,7 @@ export default defineConfig({
         }),
       ],
 
-      title: "Gin Web Framework",
+      title: "Gin",
       favicon: "/favicon.ico",
       logo: {
         src: "./src/assets/gin.png",
@@ -36,7 +36,7 @@ export default defineConfig({
           lang: "es",
         },
         fa: {
-          label: "Persian",
+          label: "فارسی",
           lang: "fa",
         },
         id: {
@@ -56,11 +56,11 @@ export default defineConfig({
           lang: "pt",
         },
         ru: {
-          label: "Russian",
+          label: "Русский",
           lang: "ru",
         },
         tr: {
-          label: "Turkish",
+          label: "Türkçe",
           lang: "tr",
         },
         "zh-cn": {
@@ -419,6 +419,11 @@ export default defineConfig({
       lastUpdated: true,
       credits: false, // Opcional
     }),
-    sitemap(),
+    sitemap({
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        return !path.startsWith("/docs/") && !path.startsWith("/blog/");
+      },
+    }),
   ],
 });

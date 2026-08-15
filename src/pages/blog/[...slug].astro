@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const legacyPosts = await getCollection(
+    "docs",
+    ({ id }) => id.startsWith("en/blog/") && !id.replace(/\.mdx?$/, "").endsWith("/index")
+  );
+
+  return legacyPosts.map(({ id }) => {
+    const slug = id
+      .replace(/^en\//, "")
+      .replace(/^blog\//, "")
+      .replace(/\.mdx?$/, "");
+
+    return {
+      params: { slug },
+      props: { slug },
+    };
+  });
+}
+
+const { slug } = Astro.props;
+const destination = `/en/blog/${slug}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={'0; url=' + destination} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`https://gin-gonic.com${destination}`} />
+    <title>{'Redirecting to ' + destination}</title>
+  </head>
+  <body>
+    <a href={destination}>Redirecting to {destination}</a>
+  </body>
+</html>

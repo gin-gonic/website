@@ -296,4 +296,4 @@ curl --include \
 - [gorilla/websocket documentation](https://pkg.go.dev/github.com/gorilla/websocket)
 - [gorilla/websocket chat example](https://github.com/gorilla/websocket/tree/main/examples/chat) -- production-ready chat with per-client write goroutines
 - [RFC 6455 -- The WebSocket Protocol](https://datatracker.ietf.org/doc/html/rfc6455)
-- [Custom HTTP configuration](/docs/en/docs/server-config/custom-http-config/) -- customizing the underlying HTTP server used with Gin
+- [自定义 HTTP 配置](/zh-cn/docs/server-config/custom-http-config/) -- 微调底层 HTTP 服务器

@@ -25,7 +25,7 @@ Once your pull request is created, a Gin reviewer will take responsibility for p
 
 See the [official Astro documentation](https://docs.astro.build/en/getting-started) for Astro installation instructions. and [Starlight documentation](https://starlight.astro.build/getting-started) for Starlight installation instructions.
 
-To run the site locally when you have Hugo installed:
+To run the site locally when you have Node installed:
 
 ```sh
 git clone https://github.com/<your-username>/website.git # your fork url
