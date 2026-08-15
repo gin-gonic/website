@@ -24,6 +24,9 @@ jobs:
       - name: Install node modules
         run: npm install
 
+      - name: Typecheck
+        run: npm run check
+
       - name: Build
         run: |
           npm run build
