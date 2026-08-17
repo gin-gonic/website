@@ -1,10 +1,10 @@
 ---
-title: "Bind permintaan form-data dengan struct kustom"
+title: "Bind permintaan form-data dengan struct tersuai"
 sidebar:
   order: 12
 ---
 
-Gin dapat melakukan bind data form ke struct bersarang secara otomatis. Ketika model data Anda terdiri dari struct-struct yang lebih kecil — baik sebagai field embedded, field pointer, atau struct inline anonim — Gin menelusuri hierarki struct dan memetakan setiap tag `form` ke parameter query atau field form yang sesuai.
+Gin dapat melakukan bind data form ke struct bersarang secara otomatis. Ketika model data Anda terdiri dari struct-struct yang lebih kecil — baik sebagai field tertanam, field pointer, atau struct inline anonim — Gin menelusuri hierarki struct dan memetakan setiap tag `form` ke parameter query atau field form yang sesuai.
 
 Ini berguna untuk mengorganisasi form yang kompleks menjadi sub-struktur yang dapat digunakan kembali daripada mendefinisikan satu struct datar dengan banyak field.
 
@@ -75,21 +75,21 @@ func main() {
 ## Uji coba
 
 ```sh
-# Nested struct -- fields from StructA are bound alongside StructB's own fields
+# Struct bersarang -- field dari StructA dilakukan bind bersama dengan field StructB
 curl "http://localhost:8080/getb?field_a=hello&field_b=world"
 # Output: {"a":{"FieldA":"hello"},"b":"world"}
 
-# Nested struct pointer -- works the same way, Gin allocates the pointer automatically
+# Pointer struct bersarang -- bekerja dengan cara yang sama, Gin mengalokasikan pointer secara otomatis
 curl "http://localhost:8080/getc?field_a=hello&field_c=world"
 # Output: {"a":{"FieldA":"hello"},"c":"world"}
 
-# Anonymous inline struct -- fields are bound by their form tags as usual
+# Struct inline anonim -- field dilakukan bind menggunakan tag form seperti biasanya
 curl "http://localhost:8080/getd?field_x=hello&field_d=world"
 # Output: {"d":"world","x":{"FieldX":"hello"}}
 ```
 
 :::note
-Ketiga pola — struct bersarang, pointer struct bersarang, dan struct inline anonim — di-bind menggunakan parameter query datar yang sama. Gin tidak memerlukan konvensi prefix atau nesting pada nama parameter.
+Ketiga pola — struct bersarang, pointer struct bersarang, dan struct inline anonim — dilakukan bind menggunakan parameter query datar yang sama. Gin tidak memerlukan konvensi prefix atau nesting pada nama parameter.
 :::
 
 ## Lihat juga

@@ -4,9 +4,9 @@ sidebar:
   order: 7
 ---
 
-`ShouldBindUri` melakukan bind parameter path URI langsung ke struct menggunakan tag struct `uri`. Dikombinasikan dengan tag validasi `binding`, ini memungkinkan Anda memvalidasi parameter path (seperti memerlukan UUID yang valid) dengan satu panggilan.
+`ShouldBindUri` melakukan bind parameter path URI langsung ke struct menggunakan tag struct `uri`. Mengkombinasikannya dengan tag validasi `binding`, memungkinkan Anda untuk memvalidasi parameter path (seperti kewajiban format UUID yang valid) dengan satu panggilan.
 
-Ini berguna ketika route Anda berisi data terstruktur — seperti ID resource atau slug — yang ingin Anda validasi dan periksa tipenya sebelum digunakan.
+Hal ini berguna ketika rute berisi data terstruktur — seperti ID resource atau slug — yang ingin Anda validasi dan periksa tipenya sebelum digunakan.
 
 ```go
 package main
@@ -41,17 +41,17 @@ func main() {
 ## Uji coba
 
 ```sh
-# Valid UUID -- binding succeeds
+# UUID valid -- berhasil melakukan bind
 curl http://localhost:8088/thinkerou/987fbc97-4bed-5078-9f07-9141ba07c9f3
 # Output: {"name":"thinkerou","uuid":"987fbc97-4bed-5078-9f07-9141ba07c9f3"}
 
-# Invalid UUID -- binding fails with validation error
+# UUID tidak valid -- gagal melakukan bind karena eror validasi
 curl http://localhost:8088/thinkerou/not-uuid
 # Output: {"error":"Key: 'Person.ID' Error:Field validation for 'ID' failed on the 'uuid' tag"}
 ```
 
 :::note
-Nama tag struct `uri` harus sesuai dengan nama parameter di definisi route. Misalnya, `:id` di route sesuai dengan `uri:"id"` di struct.
+Nama tag struct `uri` harus sesuai dengan nama parameter di definisi rute. Misalnya, `:id` di rute sesuai dengan `uri:"id"` di struct.
 :::
 
 ## Lihat juga

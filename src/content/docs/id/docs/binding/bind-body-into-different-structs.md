@@ -1,12 +1,12 @@
 ---
-title: "Mencoba bind body ke struct berbeda"
+title: "Coba bind body ke struct berbeda"
 sidebar:
   order: 13
 ---
 
-Metode binding standar seperti `c.ShouldBind` mengonsumsi `c.Request.Body`, yang merupakan `io.ReadCloser` — setelah dibaca, tidak dapat dibaca lagi. Ini berarti Anda tidak dapat memanggil `c.ShouldBind` berkali-kali pada request yang sama untuk mencoba bentuk struct yang berbeda.
+Metode binding standar seperti `c.ShouldBind` mengonsumsi `c.Request.Body`, yang merupakan `io.ReadCloser` — setelah dibaca, tidak dapat dibaca lagi. Ini berarti Anda tidak dapat memanggil `c.ShouldBind` berkali-kali pada request yang sama untuk coba membentuk struct yang berbeda.
 
-Untuk mengatasi ini, gunakan `c.ShouldBindBodyWith`. Metode ini membaca body sekali dan menyimpannya di context, memungkinkan binding berikutnya menggunakan kembali body yang sudah di-cache.
+Untuk mengatasi ini, gunakan `c.ShouldBindBodyWith`. Metode ini membaca body sekali dan menyimpannya di context, memungkinkan binding berikutnya menggunakan kembali body yang sudah dilakukan cache.
 
 ```go
 package main
@@ -32,12 +32,12 @@ func main() {
   router.POST("/bind", func(c *gin.Context) {
     objA := formA{}
     objB := formB{}
-    // This reads c.Request.Body and stores the result into the context.
+    // Membaca c.Request.Body dan menyimpan hasilnya ke context.
     if errA := c.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
       c.JSON(http.StatusOK, gin.H{"message": "matched formA", "foo": objA.Foo})
       return
     }
-    // At this time, it reuses body stored in the context.
+    // Saat ini, ia menggunakan kembali body yang tersimpan di context.
     if errB := c.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
       c.JSON(http.StatusOK, gin.H{"message": "matched formB", "bar": objB.Bar})
       return
@@ -53,13 +53,13 @@ func main() {
 ## Uji coba
 
 ```sh
-# Body matches formA
+# Body cocok dengan formA
 curl -X POST http://localhost:8080/bind \
   -H "Content-Type: application/json" \
   -d '{"foo":"hello"}'
 # Output: {"foo":"hello","message":"matched formA"}
 
-# Body matches formB
+# Body cocok dengan formB
 curl -X POST http://localhost:8080/bind \
   -H "Content-Type: application/json" \
   -d '{"bar":"world"}'

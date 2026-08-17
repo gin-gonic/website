@@ -1,10 +1,10 @@
 ---
-title: "Validator kustom"
+title: "Validator tersuai"
 sidebar:
   order: 2
 ---
 
-Gin menggunakan [go-playground/validator](https://github.com/go-playground/validator) untuk validasi tingkat field. Selain validator bawaan (seperti `required`, `email`, `min`, `max`), Anda dapat mendaftarkan fungsi validasi kustom Anda sendiri.
+Gin menggunakan [go-playground/validator](https://github.com/go-playground/validator) untuk validasi tingkat field. Selain validator bawaan (seperti `required`, `email`, `min`, `max`), Anda dapat mendaftarkan fungsi validasi tersuai Anda sendiri.
 
 Contoh di bawah ini mendaftarkan validator `bookabledate` yang menolak tanggal di masa lalu, memastikan bahwa tanggal check-in dan check-out pemesanan selalu di masa depan.
 
@@ -20,7 +20,7 @@ import (
   "github.com/go-playground/validator/v10"
 )
 
-// Booking contains binded and validated data.
+// Booking berisi data yang terikat dan tervalidasi.
 type Booking struct {
   CheckIn  time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
   CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn,bookabledate" time_format:"2006-01-02"`
@@ -61,11 +61,11 @@ func getBookable(c *gin.Context) {
 ## Uji coba
 
 ```sh
-# Both dates are in the future and check_out > check_in
+# Kedua tanggal merupakan tanggal yang akan datang dan check_out > check_in
 curl "http://localhost:8085/bookable?check_in=2118-04-16&check_out=2118-04-17"
 # Output: {"message":"Booking dates are valid!"}
 
-# check_out is before check_in -- fails gtfield validation
+# check_out sebelum check_in -- gagal validasi gtfield
 curl "http://localhost:8085/bookable?check_in=2118-03-10&check_out=2118-03-09"
 # Output: {"error":"Key: 'Booking.CheckOut' Error:Field validation for 'CheckOut' failed on the 'gtfield' tag"}
 ```
@@ -77,4 +77,4 @@ Anda juga dapat mendaftarkan [validasi tingkat struct](https://github.com/go-pla
 ## Lihat juga
 
 - [Binding dan validasi](/id/docs/binding/binding-and-validation/)
-- [Bind nilai default](/id/docs/binding/bind-default-values/)
+- [Bind nilai bawaan](/id/docs/binding/bind-default-values/)

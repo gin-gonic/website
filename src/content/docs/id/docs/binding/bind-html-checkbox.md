@@ -6,7 +6,7 @@ sidebar:
 
 Checkbox HTML dengan atribut `name` yang sama mengirimkan beberapa nilai saat dicentang. Gin dapat melakukan bind nilai-nilai ini langsung ke slice `[]string` pada struct Anda dengan menggunakan tag struct `form` dengan suffix `[]` yang sesuai dengan nama HTML.
 
-Ini berguna untuk form di mana pengguna memilih satu atau lebih opsi — seperti pemilih warna, pemilih izin, atau filter multi-pilih.
+Hal ini berguna untuk form yang pengguna dapat memilih satu atau lebih opsi — seperti color picker, permission selector, atau filter multi-pilihan.
 
 ```go
 package main
@@ -61,23 +61,23 @@ Form HTML yang sesuai (`templates/form.html`):
 ## Uji coba
 
 ```sh
-# Select all three colors
+# Memilih ketiga warna
 curl -X POST http://localhost:8080/ \
   -d "colors[]=red&colors[]=green&colors[]=blue"
 # Output: {"color":["red","green","blue"]}
 
-# Select only one color
+# Memilih salah satu warna
 curl -X POST http://localhost:8080/ \
   -d "colors[]=green"
 # Output: {"color":["green"]}
 
-# No checkboxes selected -- slice is empty
+# Tidak mencentang checkbox sama sekali -- slice kosong
 curl -X POST http://localhost:8080/
 # Output: {"color":[]}
 ```
 
 :::tip
-Suffix `[]` pada `colors[]` adalah konvensi HTML, bukan keharusan Go. Tag struct harus cocok persis dengan atribut `name` HTML. Jika HTML Anda menggunakan `name="colors"` (tanpa tanda kurung), tag struct Anda harus `form:"colors"`.
+Sufiks `[]` pada `colors[]` adalah konvensi HTML, bukan keharusan Go. Tag struct harus sama persis dengan atribut `name` HTML. Jika HTML Anda menggunakan `name="colors"` (tanpa tanda kurung), tag struct Anda harus `form:"colors"`.
 :::
 
 ## Lihat juga

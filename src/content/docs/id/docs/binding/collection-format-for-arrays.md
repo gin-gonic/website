@@ -8,7 +8,7 @@ Anda dapat mengontrol bagaimana Gin memisahkan nilai list untuk field slice/arra
 
 Format yang didukung (v1.11+):
 
-- multi (default): kunci berulang atau nilai dipisahkan koma
+- multi (bawaan): kunci berulang atau nilai dipisahkan koma
 - csv: nilai dipisahkan koma
 - ssv: nilai dipisahkan spasi
 - tsv: nilai dipisahkan tab
@@ -46,10 +46,10 @@ func main() {
 }
 ```
 
-Default untuk koleksi (v1.11+):
+Bawaan untuk koleksi (v1.11+):
 
 - Gunakan `default` dalam tag `form` untuk menetapkan nilai fallback.
-- Untuk `multi` dan `csv`, pisahkan nilai default dengan titik koma: `default=1;2;3`.
+- Untuk `multi` dan `csv`, pisahkan nilai bawaan dengan titik koma: `default=1;2;3`.
 - Untuk `ssv`, `tsv`, dan `pipes`, gunakan pemisah alami dalam default.
 
-Lihat juga: contoh "Bind nilai default untuk field form".
+Lihat juga: contoh "Bind nilai bawaan untuk field form".

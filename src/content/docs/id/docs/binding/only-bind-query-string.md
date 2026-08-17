@@ -4,7 +4,7 @@ sidebar:
   order: 3
 ---
 
-`ShouldBindQuery` hanya melakukan bind parameter query string URL ke struct, mengabaikan body request sepenuhnya. Ini berguna ketika Anda ingin memastikan bahwa data body POST tidak secara tidak sengaja menimpa parameter query — misalnya, pada endpoint yang menerima filter query dan body JSON.
+`ShouldBindQuery` hanya melakukan bind parameter query string URL ke struct, mengabaikan permintaan body sepenuhnya. Ini berguna ketika Anda ingin memastikan bahwa data body POST tidak secara tidak sengaja menimpa parameter query — misalnya, pada endpoint yang menerima filter query dan body JSON.
 
 Sebaliknya, `ShouldBind` pada request GET juga menggunakan binding query, tetapi pada request POST akan memeriksa body terlebih dahulu. Gunakan `ShouldBindQuery` ketika Anda secara eksplisit menginginkan binding khusus query terlepas dari metode HTTP.
 
@@ -45,11 +45,11 @@ func startPage(c *gin.Context) {
 ## Uji coba
 
 ```sh
-# GET with query parameters
+# GET dengan parameter query
 curl "http://localhost:8085/testing?name=appleboy&address=xyz"
 # Output: {"address":"xyz","name":"appleboy"}
 
-# POST with query parameters -- body is ignored, only query is bound
+# POST dengan parameter query -- body diabaikan, hanya query yang terikat
 curl -X POST "http://localhost:8085/testing?name=appleboy&address=xyz" \
   -d "name=ignored&address=ignored"
 # Output: {"address":"xyz","name":"appleboy"}
