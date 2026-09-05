@@ -10,19 +10,21 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/starlight": "^0.40.0",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/starlight": "^0.42.0",
     "@lorenzo_lewis/starlight-utils": "^0.3.2",
-    "astro": "^6.4.8",
-    "sharp": "^0.32.5"
+    "astro": "^7.3.1",
+    "sharp": "^0.35.4"
   },
   "overrides": {
     "mdast-util-to-hast": "^13.2.1",
     "h3": "^1.15.9",
     "picomatch": "^4.0.4",
     "smol-toml": "^1.6.1",
-    "vite": "^7.3.5",
-    "js-yaml": "^4.2.0",
-    "postcss": "^8.5.10"
+    "vite": "^8.0.13",
+    "js-yaml": "^4.3.0",
+    "postcss": "^8.5.28",
+    "nanoid": "^3.3.18",
+    "svgo": "^4.1.0"
   }
 }
