@@ -12,7 +12,9 @@ Gin üç düzeyde ara katman eklemeyi destekler:
 - **Grup ara katmanı** -- Bir rota grubundaki tüm rotalara uygulanır. `group.Use()` ile kaydedilir. Bir rota alt kümesine (ör. tüm `/admin/*` rotaları) kimlik doğrulama veya yetkilendirme uygulamak için faydalıdır.
 - **Rota başına ara katman** -- Yalnızca tek bir rotaya uygulanır. `router.GET()`, `router.POST()` vb. fonksiyonlara ek argümanlar olarak geçirilir. Özel hız sınırlama veya girdi doğrulama gibi rotaya özgü mantık için faydalıdır.
 
-**Yürütme sırası:** Ara katman fonksiyonları kaydedildikleri sırada yürütülür. Bir ara katman `c.Next()` çağırdığında, kontrolü bir sonraki ara katmana (veya son işleyiciye) geçirir ve ardından `c.Next()` döndükten sonra yürütmeye devam eder. Bu, yığın benzeri (LIFO) bir kalıp oluşturur -- kaydedilen ilk ara katman başlayan ilk ama biten son ara katmandır. Bir ara katman `c.Next()` çağırmazsa, sonraki ara katmanlar ve işleyici atlanır (`c.Abort()` ile kısa devre yapmak için faydalıdır).
+**Yürütme sırası:** Ara katman fonksiyonları kaydedildikleri sırada yürütülür. `c.Next()` çağrısı kalan işleyicileri yürütür; çağrı döndükten sonra mevcut ara katmanın yürütülmesi devam eder. Böylece sonraki işleyicilerden önce ve sonra kod çalıştırabilirsiniz. Ara katmanlar sonraki işleyicileri bu şekilde sardığında, son işlemleri ters sırada (LIFO) yürütülür.
+
+Bir ara katman `c.Next()` çağırmadan dönerse, bağlam sonlandırılmadığı sürece sonraki ara katmanlar ve işleyici yine yürütülür. Henüz yürütülmemiş işleyicileri atlamak için `c.Abort()` veya bir `AbortWithStatus*` metodu çağırın. Bağlamı sonlandırmak mevcut ara katman fonksiyonunu durdurmaz; bu fonksiyonun kalan kodunun yürütülmesini de durdurmak istiyorsanız `return` kullanın.
 
 ```go
 package main
