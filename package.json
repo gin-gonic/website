@@ -20,11 +20,14 @@
     "mdast-util-to-hast": "^13.2.1",
     "h3": "^1.15.9",
     "picomatch": "^4.0.4",
-    "smol-toml": "^1.6.1",
+    "smol-toml": "^1.9.0",
     "vite": "^8.0.13",
     "js-yaml": "^4.3.0",
     "postcss": "^8.5.28",
     "nanoid": "^3.3.18",
-    "svgo": "^4.1.0"
+    "svgo": "^4.1.0",
+    "devalue": "^5.9.3",
+    "postcss-selector-parser": "^7.1.6",
+    "source-map-js": "^1.2.2"
   }
 }
