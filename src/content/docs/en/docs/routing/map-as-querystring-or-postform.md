@@ -40,7 +40,7 @@ func main() {
 ## Test it
 
 ```sh
-curl -X POST "http://localhost:8080/post?ids[a]=1234&ids[b]=hello" \
+curl --globoff -X POST "http://localhost:8080/post?ids[a]=1234&ids[b]=hello" \
   -d "names[first]=thinkerou&names[second]=tianou"
 # Output: {"ids":{"a":"1234","b":"hello"},"names":{"first":"thinkerou","second":"tianou"}}
 ```
