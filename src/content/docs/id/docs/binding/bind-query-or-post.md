@@ -54,16 +54,16 @@ func startPage(c *gin.Context) {
 ## Uji coba
 
 ```sh
-# GET with query string parameters
+# GET dengan parameter query string
 curl "http://localhost:8085/testing?name=appleboy&address=xyz&birthday=1992-03-15"
 # Output: {"address":"xyz","birthday":"1992-03-15T00:00:00Z","name":"appleboy"}
 
-# POST with form data
+# POST dengan form data
 curl -X POST http://localhost:8085/testing \
   -d "name=appleboy&address=xyz&birthday=1992-03-15"
 # Output: {"address":"xyz","birthday":"1992-03-15T00:00:00Z","name":"appleboy"}
 
-# POST with JSON body
+# POST dengan body JSON
 curl -X POST http://localhost:8085/testing \
   -H "Content-Type: application/json" \
   -d '{"name":"appleboy","address":"xyz","birthday":"1992-03-15"}'
@@ -71,7 +71,7 @@ curl -X POST http://localhost:8085/testing \
 ```
 
 :::note
-Tag `time_format` menggunakan [layout waktu referensi](https://pkg.go.dev/time#pkg-constants) Go. Format `2006-01-02` berarti "tahun-bulan-hari". Tag `time_utc:"1"` memastikan waktu yang diparsing menggunakan zona waktu UTC.
+Tag `time_format` menggunakan [referensi tata letak waktu](https://pkg.go.dev/time#pkg-constants) Go. Format `2006-01-02` berarti "tahun-bulan-hari". Tag `time_utc:"1"` memastikan waktu yang dilakukan parsing menggunakan zona waktu UTC.
 :::
 
 ## Lihat juga

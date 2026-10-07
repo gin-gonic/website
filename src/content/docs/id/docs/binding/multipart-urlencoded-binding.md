@@ -4,7 +4,7 @@ sidebar:
   order: 11
 ---
 
-`ShouldBind` secara otomatis mendeteksi `Content-Type` dan melakukan bind body request `multipart/form-data` atau `application/x-www-form-urlencoded` ke struct. Gunakan tag struct `form` untuk memetakan nama field form ke field struct, dan `binding:"required"` untuk mewajibkan field tertentu.
+`ShouldBind` secara otomatis mendeteksi `Content-Type` dan melakukan bind body permintaan `multipart/form-data` atau `application/x-www-form-urlencoded` ke struct. Gunakan tag struct `form` untuk memetakan nama field form ke field struct, dan `binding:"required"` untuk mewajibkan field tertentu.
 
 Ini biasa digunakan untuk form login, halaman registrasi, atau pengiriman form HTML apa pun.
 
@@ -27,7 +27,7 @@ func main() {
 
   router.POST("/login", func(c *gin.Context) {
     var form LoginForm
-    // ShouldBind automatically selects the right binding based on Content-Type
+    // ShouldBind secara otomatis memilih binding yang tepat berdasarkan Content-Type
     if err := c.ShouldBind(&form); err != nil {
       c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
       return
@@ -47,22 +47,22 @@ func main() {
 ## Uji coba
 
 ```sh
-# Multipart form
+# Form multipart
 curl -X POST http://localhost:8080/login \
   -F "user=user" -F "password=password"
 # Output: {"status":"you are logged in"}
 
-# URL-encoded form
+# Form URL-encoded
 curl -X POST http://localhost:8080/login \
   -d "user=user&password=password"
 # Output: {"status":"you are logged in"}
 
-# Wrong credentials
+# Kredensial salah
 curl -X POST http://localhost:8080/login \
   -d "user=wrong&password=wrong"
 # Output: {"status":"unauthorized"}
 
-# Missing required field
+# Nilai field wajib tidak ada
 curl -X POST http://localhost:8080/login \
   -d "user=user"
 # Output: {"error":"Key: 'LoginForm.Password' Error:Field validation for 'Password' failed on the 'required' tag"}

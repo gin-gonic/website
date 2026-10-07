@@ -1,16 +1,16 @@
 ---
-title: "Bind nilai default untuk field form"
+title: "Bind nilai bawaan untuk field form"
 sidebar:
   order: 5
 ---
 
-Terkadang Anda ingin sebuah field kembali ke nilai default ketika klien tidak mengirim nilai. Binding form Gin mendukung default melalui opsi `default` dalam tag struct `form`. Ini bekerja untuk skalar dan, mulai Gin v1.11, untuk koleksi (slice/array) dengan format koleksi eksplisit.
+Terkadang Anda ingin sebuah field kembali ke nilai bawaan ketika klien tidak mengirim nilai. Binding form Gin mendukung nilai bawaan melalui opsi `default` dalam tag struct `form`. Dapat bekerja untuk skalar dan, mulai Gin v1.11, mendukung koleksi (slice/array) dengan format koleksi eksplisit.
 
 Poin penting:
 
 - Letakkan default tepat setelah kunci form: `form:"name,default=William"`.
-- Untuk koleksi, tentukan cara memisahkan nilai dengan `collection_format:"multi|csv|ssv|tsv|pipes"`.
-- Untuk `multi` dan `csv`, gunakan titik koma dalam default untuk memisahkan nilai (mis., `default=1;2;3`). Gin mengonversinya ke koma secara internal agar parser tag tetap tidak ambigu.
+- Untuk koleksi, tentukan cara pemisahan nilai bawaan dengan `collection_format:"multi|csv|ssv|tsv|pipes"`.
+- Untuk `multi` dan `csv`, gunakan titik koma dalam default untuk memisahkan nilai (mis., `default=1;2;3`). Gin mengonversinya ke koma secara internal agar parser tag tidak ambigu.
 - Untuk `ssv` (spasi), `tsv` (tab), dan `pipes` (|), gunakan pemisah alami dalam default.
 
 Contoh:
@@ -46,7 +46,7 @@ func main() {
 }
 ```
 
-Jika Anda POST tanpa body apapun, Gin merespons dengan nilai default:
+Jika POST tanpa body apapun, Gin akan merespons dengan nilai bawaan:
 
 ```sh
 curl -X POST http://localhost:8080/person
@@ -66,11 +66,11 @@ Respons (contoh):
 
 Catatan dan peringatan:
 
-- Koma digunakan oleh sintaks tag struct Go untuk memisahkan opsi; hindari koma di dalam nilai default.
-- Untuk `multi` dan `csv`, titik koma memisahkan nilai default; jangan sertakan titik koma di dalam default individual untuk format ini.
-- Nilai `collection_format` yang tidak valid akan menghasilkan error binding.
+- Koma digunakan oleh sintaksis tag struct Go untuk memisahkan opsi; hindari koma di dalam nilai bawaan.
+- Untuk `multi` dan `csv`, titik koma memisahkan nilai bawaan; jangan sertakan titik koma di dalam default individual untuk format ini.
+- Nilai `collection_format` yang tidak valid akan menghasilkan eror binding.
 
 Perubahan terkait:
 
 - Format koleksi untuk binding form (`multi`, `csv`, `ssv`, `tsv`, `pipes`) ditingkatkan sekitar v1.11.
-- Nilai default untuk koleksi ditambahkan di v1.11 (PR #4048).
+- Nilai bawaan untuk koleksi ditambahkan di v1.11 (PR #4048).
