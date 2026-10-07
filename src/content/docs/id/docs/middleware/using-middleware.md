@@ -12,7 +12,9 @@ Gin mendukung tiga level pemasangan middleware:
 - **Middleware grup** -- Diterapkan ke semua rute dalam grup rute. Didaftarkan dengan `group.Use()`. Berguna untuk menerapkan autentikasi atau otorisasi ke subset rute (mis., semua rute `/admin/*`).
 - **Middleware per-rute** -- Diterapkan ke satu rute saja. Diteruskan sebagai argumen tambahan ke `router.GET()`, `router.POST()`, dll. Berguna untuk logika spesifik rute seperti rate limiting kustom atau validasi input.
 
-**Urutan eksekusi:** Fungsi middleware dieksekusi sesuai urutan pendaftarannya. Ketika middleware memanggil `c.Next()`, ia meneruskan kontrol ke middleware berikutnya (atau handler akhir), dan kemudian melanjutkan eksekusi setelah `c.Next()` selesai. Ini menciptakan pola seperti stack (LIFO) -- middleware pertama yang didaftarkan adalah yang pertama dimulai tetapi terakhir selesai. Jika middleware tidak memanggil `c.Next()`, middleware dan handler selanjutnya dilewati (berguna untuk short-circuiting dengan `c.Abort()`).
+**Urutan eksekusi:** Fungsi middleware dieksekusi sesuai urutan pendaftarannya. Pemanggilan `c.Next()` mengeksekusi handler yang tersisa, lalu melanjutkan middleware saat ini setelah `c.Next()` selesai. Ini memungkinkan kode berjalan sebelum dan sesudah handler berikutnya; ketika middleware membungkus handler berikutnya dengan cara ini, pemrosesan setelahnya berjalan dalam urutan terbalik (LIFO).
+
+Jika middleware kembali tanpa memanggil `c.Next()`, middleware berikutnya dan handler tetap dieksekusi kecuali konteks telah dibatalkan. Untuk melewati handler yang belum dieksekusi, panggil `c.Abort()` atau metode `AbortWithStatus*`. Pembatalan tidak menghentikan fungsi middleware saat ini, jadi gunakan `return` jika Anda juga ingin menghentikan eksekusi sisa kode fungsi tersebut.
 
 ```go
 package main
