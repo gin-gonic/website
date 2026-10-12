@@ -56,7 +56,7 @@ router.GET("/benchmark", BenchmarkMiddleware(), benchHandler)
 
 - [**استفاده از میان‌افزار**](./using-middleware/) -- اتصال میان‌افزار به صورت سراسری، به گروه‌ها یا مسیرهای منفرد
 - [**میان‌افزار سفارشی**](./custom-middleware/) -- نوشتن توابع میان‌افزار خود
-- [**استفاده از میان‌افزار BasicAuth**](./using-basicauth/) -- احراز هویت پایه HTTP
-- [**گوروتین‌ها در میان‌افزار**](./goroutines-inside-middleware/) -- اجرای امن وظایف پس‌زمینه از میان‌افزار
-- [**پیکربندی HTTP سفارشی**](./custom-http-config/) -- مدیریت خطا و بازیابی در میان‌افزار
+- [**استفاده از میان‌افزار BasicAuth**](./using-basicauth-middleware/) -- احراز هویت پایه HTTP
+- [**گوروتین‌ها در میان‌افزار**](./goroutines-inside-a-middleware/) -- اجرای امن وظایف پس‌زمینه از میان‌افزار
+- [**پیکربندی HTTP سفارشی**](../server-config/custom-http-config/) -- مدیریت خطا و بازیابی در میان‌افزار
 - [**هدرهای امنیتی**](./security-headers/) -- تنظیم هدرهای امنیتی رایج

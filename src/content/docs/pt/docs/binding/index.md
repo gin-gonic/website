@@ -53,10 +53,10 @@ O Gin pode vincular dados de diversas fontes: **JSON**, **XML**, **YAML**, **TOM
 - [**Vincular query string ou dados post**](./bind-query-or-post/) -- Vincule a partir de query strings e corpos de formulário
 - [**Bind URI**](./bind-uri/) -- Vincule parâmetros de caminho em structs
 - [**Bind header**](./bind-header/) -- Vincule headers HTTP em structs
-- [**Valor padrão**](./default-value/) -- Defina valores de fallback para campos ausentes
-- [**Formato de coleção**](./collection-format/) -- Gerencie parâmetros de array em query
-- [**Unmarshaler customizado**](./custom-unmarshaler/) -- Implemente lógica de deserialização personalizada
-- [**Bind checkboxes HTML**](./bind-html-checkboxes/) -- Gerencie inputs de checkbox de formulários
+- [**Valor padrão**](./bind-default-values/) -- Defina valores de fallback para campos ausentes
+- [**Formato de coleção**](./collection-format-for-arrays/) -- Gerencie parâmetros de array em query
+- [**Unmarshaler customizado**](./bind-custom-unmarshaler/) -- Implemente lógica de deserialização personalizada
+- [**Bind checkboxes HTML**](./bind-html-checkbox/) -- Gerencie inputs de checkbox de formulários
 - [**Binding multipart/urlencoded**](./multipart-urlencoded-binding/) -- Vincule dados de formulários multipart
-- [**Tag de struct customizada**](./custom-struct-tag/) -- Use tags de struct personalizadas para mapeamento de campos
+- [**Tag de struct customizada**](./bind-form-data-custom-struct-tag/) -- Use tags de struct personalizadas para mapeamento de campos
 - [**Vincular body em structs diferentes**](./bind-body-into-different-structs/) -- Analise o corpo da requisição mais de uma vez

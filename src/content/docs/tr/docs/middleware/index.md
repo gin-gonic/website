@@ -56,7 +56,7 @@ Daha geniş kapsamda eklenen ara katman önce çalışır. Yukarıdaki örnekte,
 
 - [**Ara katman kullanımı**](./using-middleware/) -- Ara katmanı global olarak, gruplara veya bireysel rotalara ekleme
 - [**Özel ara katman**](./custom-middleware/) -- Kendi ara katman fonksiyonlarınızı yazma
-- [**BasicAuth ara katmanı kullanımı**](./using-basicauth/) -- HTTP Temel Kimlik Doğrulama
-- [**Ara katmanda goroutine'ler**](./goroutines-inside-middleware/) -- Ara katmandan güvenli şekilde arka plan görevleri çalıştırma
-- [**Özel HTTP yapılandırması**](./custom-http-config/) -- Ara katmanda hata işleme ve kurtarma
+- [**BasicAuth ara katmanı kullanımı**](./using-basicauth-middleware/) -- HTTP Temel Kimlik Doğrulama
+- [**Ara katmanda goroutine'ler**](./goroutines-inside-a-middleware/) -- Ara katmandan güvenli şekilde arka plan görevleri çalıştırma
+- [**Özel HTTP yapılandırması**](../server-config/custom-http-config/) -- Ara katmanda hata işleme ve kurtarma
 - [**Güvenlik başlıkları**](./security-headers/) -- Yaygın güvenlik başlıklarını ayarlama

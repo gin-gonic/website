@@ -34,8 +34,8 @@ func main() {
 
 - [**カスタムHTTP設定**](./custom-http-config/) -- 基盤となるHTTPサーバーの微調整
 - [**カスタムJSONコーデック**](./custom-json-codec/) -- 代替JSONシリアライゼーションライブラリの使用
-- [**Let's Encrypt**](./lets-encrypt/) -- Let's Encryptによる自動TLS証明書
-- [**複数サービスの実行**](./multiple-service/) -- 異なるポートで複数のGinエンジンを起動
+- [**Let's Encrypt**](./support-lets-encrypt/) -- Let's Encryptによる自動TLS証明書
+- [**複数サービスの実行**](./run-multiple-service/) -- 異なるポートで複数のGinエンジンを起動
 - [**グレースフルリスタートまたは停止**](./graceful-restart-or-stop/) -- アクティブな接続を切断せずにシャットダウン
 - [**HTTP/2サーバープッシュ**](./http2-server-push/) -- リソースをクライアントに先行してプッシュ
 - [**Cookieの処理**](./cookie/) -- HTTP Cookieの読み書き

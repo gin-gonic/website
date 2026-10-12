@@ -53,10 +53,10 @@ Gin 可以從多種來源綁定資料：**JSON**、**XML**、**YAML**、**TOML**
 - [**綁定查詢字串或 POST 資料**](./bind-query-or-post/) -- 從查詢字串和表單主體綁定
 - [**綁定 URI**](./bind-uri/) -- 將路徑參數綁定到結構體
 - [**綁定標頭**](./bind-header/) -- 將 HTTP 標頭綁定到結構體
-- [**預設值**](./default-value/) -- 為缺失欄位設定備用值
-- [**集合格式**](./collection-format/) -- 處理陣列查詢參數
-- [**自訂反序列化器**](./custom-unmarshaler/) -- 實作自訂的反序列化邏輯
-- [**綁定 HTML 核取方塊**](./bind-html-checkboxes/) -- 處理核取方塊表單輸入
+- [**預設值**](./bind-default-values/) -- 為缺失欄位設定備用值
+- [**集合格式**](./collection-format-for-arrays/) -- 處理陣列查詢參數
+- [**自訂反序列化器**](./bind-custom-unmarshaler/) -- 實作自訂的反序列化邏輯
+- [**綁定 HTML 核取方塊**](./bind-html-checkbox/) -- 處理核取方塊表單輸入
 - [**Multipart/urlencoded 綁定**](./multipart-urlencoded-binding/) -- 綁定 multipart 表單資料
-- [**自訂結構體標籤**](./custom-struct-tag/) -- 使用自訂結構體標籤進行欄位映射
+- [**自訂結構體標籤**](./bind-form-data-custom-struct-tag/) -- 使用自訂結構體標籤進行欄位映射
 - [**嘗試將請求主體綁定到不同結構體**](./bind-body-into-different-structs/) -- 多次解析請求主體

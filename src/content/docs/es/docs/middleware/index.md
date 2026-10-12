@@ -56,7 +56,7 @@ El middleware adjunto en un alcance más amplio se ejecuta primero. En el ejempl
 
 - [**Usar middleware**](./using-middleware/) -- Adjuntar middleware globalmente, a grupos o rutas individuales
 - [**Middleware personalizado**](./custom-middleware/) -- Escribir tus propias funciones middleware
-- [**Usar middleware BasicAuth**](./using-basicauth/) -- Autenticación HTTP básica
-- [**Goroutines dentro del middleware**](./goroutines-inside-middleware/) -- Ejecutar tareas en segundo plano de forma segura desde el middleware
-- [**Configuración HTTP personalizada**](./custom-http-config/) -- Manejo de errores y recuperación en middleware
+- [**Usar middleware BasicAuth**](./using-basicauth-middleware/) -- Autenticación HTTP básica
+- [**Goroutines dentro del middleware**](./goroutines-inside-a-middleware/) -- Ejecutar tareas en segundo plano de forma segura desde el middleware
+- [**Configuración HTTP personalizada**](../server-config/custom-http-config/) -- Manejo de errores y recuperación en middleware
 - [**Encabezados de seguridad**](./security-headers/) -- Establecer encabezados de seguridad comunes

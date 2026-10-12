@@ -34,8 +34,8 @@ func main() {
 
 - [**自定义 HTTP 配置**](./custom-http-config/) -- 微调底层 HTTP 服务器
 - [**自定义 JSON 编解码器**](./custom-json-codec/) -- 使用替代 JSON 序列化库
-- [**Let's Encrypt**](./lets-encrypt/) -- 使用 Let's Encrypt 自动获取 TLS 证书
-- [**运行多个服务**](./multiple-service/) -- 在不同端口上运行多个 Gin 引擎
+- [**Let's Encrypt**](./support-lets-encrypt/) -- 使用 Let's Encrypt 自动获取 TLS 证书
+- [**运行多个服务**](./run-multiple-service/) -- 在不同端口上运行多个 Gin 引擎
 - [**优雅重启或停止**](./graceful-restart-or-stop/) -- 不中断活动连接地关闭服务
 - [**HTTP/2 服务器推送**](./http2-server-push/) -- 主动向客户端推送资源
 - [**Cookie 处理**](./cookie/) -- 读写 HTTP Cookie

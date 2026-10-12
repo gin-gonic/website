@@ -34,8 +34,8 @@ Esto te da acceso completo a la configuración del servidor de Go mientras manti
 
 - [**Configuración HTTP personalizada**](./custom-http-config/) -- Ajustar el servidor HTTP subyacente
 - [**Códec JSON personalizado**](./custom-json-codec/) -- Usar bibliotecas alternativas de serialización JSON
-- [**Let's Encrypt**](./lets-encrypt/) -- Certificados TLS automáticos con Let's Encrypt
-- [**Ejecutar múltiples servicios**](./multiple-service/) -- Servir múltiples motores Gin en diferentes puertos
+- [**Let's Encrypt**](./support-lets-encrypt/) -- Certificados TLS automáticos con Let's Encrypt
+- [**Ejecutar múltiples servicios**](./run-multiple-service/) -- Servir múltiples motores Gin en diferentes puertos
 - [**Reinicio o parada elegante**](./graceful-restart-or-stop/) -- Apagar sin interrumpir conexiones activas
 - [**HTTP/2 server push**](./http2-server-push/) -- Enviar recursos al cliente de forma proactiva
 - [**Manejo de cookies**](./cookie/) -- Leer y escribir cookies HTTP

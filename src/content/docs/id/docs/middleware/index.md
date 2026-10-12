@@ -56,7 +56,7 @@ Middleware yang dipasang pada cakupan yang lebih luas berjalan terlebih dahulu. 
 
 - [**Menggunakan middleware**](./using-middleware/) -- Memasang middleware secara global, ke grup, atau rute individual
 - [**Middleware kustom**](./custom-middleware/) -- Menulis fungsi middleware Anda sendiri
-- [**Menggunakan middleware BasicAuth**](./using-basicauth/) -- Autentikasi HTTP Basic
-- [**Goroutine di dalam middleware**](./goroutines-inside-middleware/) -- Menjalankan tugas latar belakang dengan aman dari middleware
-- [**Konfigurasi HTTP kustom**](./custom-http-config/) -- Penanganan error dan recovery dalam middleware
+- [**Menggunakan middleware BasicAuth**](./using-basicauth-middleware/) -- Autentikasi HTTP Basic
+- [**Goroutine di dalam middleware**](./goroutines-inside-a-middleware/) -- Menjalankan tugas latar belakang dengan aman dari middleware
+- [**Konfigurasi HTTP kustom**](../server-config/custom-http-config/) -- Penanganan error dan recovery dalam middleware
 - [**Header keamanan**](./security-headers/) -- Mengatur header keamanan umum

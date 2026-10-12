@@ -53,10 +53,10 @@ Gin می‌تواند داده‌ها را از منابع مختلف متصل �
 - [**اتصال رشته پرس‌وجو یا داده ارسالی**](./bind-query-or-post/) -- اتصال از رشته‌های پرس‌وجو و بدنه فرم
 - [**اتصال URI**](./bind-uri/) -- اتصال پارامترهای مسیر به structها
 - [**اتصال هدر**](./bind-header/) -- اتصال هدرهای HTTP به structها
-- [**مقدار پیش‌فرض**](./default-value/) -- تنظیم مقادیر بازگشتی برای فیلدهای گمشده
-- [**فرمت مجموعه**](./collection-format/) -- مدیریت پارامترهای آرایه‌ای پرس‌وجو
-- [**Unmarshaler سفارشی**](./custom-unmarshaler/) -- پیاده‌سازی منطق deserialization سفارشی
-- [**اتصال چک‌باکس‌های HTML**](./bind-html-checkboxes/) -- مدیریت ورودی‌های فرم چک‌باکس
+- [**مقدار پیش‌فرض**](./bind-default-values/) -- تنظیم مقادیر بازگشتی برای فیلدهای گمشده
+- [**فرمت مجموعه**](./collection-format-for-arrays/) -- مدیریت پارامترهای آرایه‌ای پرس‌وجو
+- [**Unmarshaler سفارشی**](./bind-custom-unmarshaler/) -- پیاده‌سازی منطق deserialization سفارشی
+- [**اتصال چک‌باکس‌های HTML**](./bind-html-checkbox/) -- مدیریت ورودی‌های فرم چک‌باکس
 - [**اتصال Multipart/urlencoded**](./multipart-urlencoded-binding/) -- اتصال داده فرم multipart
-- [**تگ struct سفارشی**](./custom-struct-tag/) -- استفاده از تگ‌های struct سفارشی برای نگاشت فیلدها
+- [**تگ struct سفارشی**](./bind-form-data-custom-struct-tag/) -- استفاده از تگ‌های struct سفارشی برای نگاشت فیلدها
 - [**تلاش برای اتصال بدنه به structهای مختلف**](./bind-body-into-different-structs/) -- تجزیه بدنه درخواست بیش از یک بار

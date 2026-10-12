@@ -56,7 +56,7 @@ Middleware, подключённый на более широком уровне
 
 - [**Использование middleware**](./using-middleware/) -- Подключение middleware глобально, к группам или отдельным маршрутам
 - [**Пользовательский middleware**](./custom-middleware/) -- Написание собственных функций middleware
-- [**Использование BasicAuth middleware**](./using-basicauth/) -- HTTP Basic-аутентификация
-- [**Горутины внутри middleware**](./goroutines-inside-middleware/) -- Безопасный запуск фоновых задач из middleware
-- [**Пользовательская конфигурация HTTP**](./custom-http-config/) -- Обработка ошибок и восстановление в middleware
+- [**Использование BasicAuth middleware**](./using-basicauth-middleware/) -- HTTP Basic-аутентификация
+- [**Горутины внутри middleware**](./goroutines-inside-a-middleware/) -- Безопасный запуск фоновых задач из middleware
+- [**Пользовательская конфигурация HTTP**](../server-config/custom-http-config/) -- Обработка ошибок и восстановление в middleware
 - [**Заголовки безопасности**](./security-headers/) -- Установка стандартных заголовков безопасности

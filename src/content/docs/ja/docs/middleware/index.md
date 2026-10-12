@@ -56,7 +56,7 @@ router.GET("/benchmark", BenchmarkMiddleware(), benchHandler)
 
 - [**ミドルウェアの使用**](./using-middleware/) -- ミドルウェアをグローバル、グループ、または個別のルートに登録する
 - [**カスタムミドルウェア**](./custom-middleware/) -- 独自のミドルウェア関数を作成する
-- [**BasicAuthミドルウェアの使用**](./using-basicauth/) -- HTTP基本認証
-- [**ミドルウェア内のゴルーチン**](./goroutines-inside-middleware/) -- ミドルウェアから安全にバックグラウンドタスクを実行する
-- [**カスタムHTTP設定**](./custom-http-config/) -- ミドルウェアでのエラーハンドリングとリカバリ
+- [**BasicAuthミドルウェアの使用**](./using-basicauth-middleware/) -- HTTP基本認証
+- [**ミドルウェア内のゴルーチン**](./goroutines-inside-a-middleware/) -- ミドルウェアから安全にバックグラウンドタスクを実行する
+- [**カスタムHTTP設定**](../server-config/custom-http-config/) -- ミドルウェアでのエラーハンドリングとリカバリ
 - [**セキュリティヘッダー**](./security-headers/) -- 一般的なセキュリティヘッダーを設定する

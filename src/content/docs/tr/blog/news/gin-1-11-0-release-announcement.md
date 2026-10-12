@@ -26,7 +26,7 @@ Gin v1.11.0 sürümünün yayınlandığını heyecanla duyuruyoruz. Bu sürüm,
 ### 🚀 Performans ve İyileştirmeler
 
 - **Daha Hızlı Form Veri İşleme:** Form ayrıştırma için dahili optimizasyonlar performansı artırıyor ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
-- Sağlamlık ve netlik için çekirdek, işleme ve context mantığı yeniden düzenlendi ([tam PR listesi için değişiklik günlüğüne bakın](../releases/release111.md)).
+- Sağlamlık ve netlik için çekirdek, işleme ve context mantığı yeniden düzenlendi ([tam PR listesi için değişiklik günlüğüne bakın](../../releases/release111/)).
 
 ### 🐛 Hata Düzeltmeleri
 

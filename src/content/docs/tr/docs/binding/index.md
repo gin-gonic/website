@@ -53,10 +53,10 @@ Gin birçok kaynaktan veri bağlayabilir: **JSON**, **XML**, **YAML**, **TOML**,
 - [**Sorgu dizesi veya post verisi bağlama**](./bind-query-or-post/) -- Sorgu dizeleri ve form gövdelerinden bağlama
 - [**URI bağlama**](./bind-uri/) -- Yol parametrelerini struct'lara bağlama
 - [**Başlık bağlama**](./bind-header/) -- HTTP başlıklarını struct'lara bağlama
-- [**Varsayılan değer**](./default-value/) -- Eksik alanlar için yedek değerler ayarlama
-- [**Koleksiyon formatı**](./collection-format/) -- Dizi sorgu parametrelerini işleme
-- [**Özel unmarshaler**](./custom-unmarshaler/) -- Özel seriyi kaldırma mantığı uygulama
-- [**HTML checkbox bağlama**](./bind-html-checkboxes/) -- Checkbox form girişlerini işleme
+- [**Varsayılan değer**](./bind-default-values/) -- Eksik alanlar için yedek değerler ayarlama
+- [**Koleksiyon formatı**](./collection-format-for-arrays/) -- Dizi sorgu parametrelerini işleme
+- [**Özel unmarshaler**](./bind-custom-unmarshaler/) -- Özel seriyi kaldırma mantığı uygulama
+- [**HTML checkbox bağlama**](./bind-html-checkbox/) -- Checkbox form girişlerini işleme
 - [**Multipart/urlencoded bağlama**](./multipart-urlencoded-binding/) -- Multipart form verisi bağlama
-- [**Özel struct etiketi**](./custom-struct-tag/) -- Alan eşleme için özel struct etiketleri kullanma
+- [**Özel struct etiketi**](./bind-form-data-custom-struct-tag/) -- Alan eşleme için özel struct etiketleri kullanma
 - [**Gövdeyi farklı struct'lara bağlamayı deneme**](./bind-body-into-different-structs/) -- İstek gövdesini birden fazla kez ayrıştırma
