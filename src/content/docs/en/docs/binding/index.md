@@ -53,10 +53,10 @@ Gin can bind data from many sources: **JSON**, **XML**, **YAML**, **TOML**, **fo
 - [**Binding query string or post data**](./bind-query-or-post/) -- Bind from query strings and form bodies
 - [**Bind URI**](./bind-uri/) -- Bind path parameters into structs
 - [**Bind header**](./bind-header/) -- Bind HTTP headers into structs
-- [**Default value**](./default-value/) -- Set fallback values for missing fields
-- [**Collection format**](./collection-format/) -- Handle array query parameters
-- [**Custom unmarshaler**](./custom-unmarshaler/) -- Implement custom deserialization logic
-- [**Bind HTML checkboxes**](./bind-html-checkboxes/) -- Handle checkbox form inputs
+- [**Default value**](./bind-default-values/) -- Set fallback values for missing fields
+- [**Collection format**](./collection-format-for-arrays/) -- Handle array query parameters
+- [**Custom unmarshaler**](./bind-custom-unmarshaler/) -- Implement custom deserialization logic
+- [**Bind HTML checkboxes**](./bind-html-checkbox/) -- Handle checkbox form inputs
 - [**Multipart/urlencoded binding**](./multipart-urlencoded-binding/) -- Bind multipart form data
-- [**Custom struct tag**](./custom-struct-tag/) -- Use custom struct tags for field mapping
+- [**Custom struct tag**](./bind-form-data-custom-struct-tag/) -- Use custom struct tags for field mapping
 - [**Try to bind body into different structs**](./bind-body-into-different-structs/) -- Parse the request body more than once

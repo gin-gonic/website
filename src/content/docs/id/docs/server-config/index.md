@@ -34,8 +34,8 @@ Ini memberi Anda akses penuh ke konfigurasi server Go sambil mempertahankan semu
 
 - [**Konfigurasi HTTP kustom**](./custom-http-config/) -- Menyesuaikan server HTTP yang mendasari
 - [**Codec JSON kustom**](./custom-json-codec/) -- Menggunakan pustaka serialisasi JSON alternatif
-- [**Let's Encrypt**](./lets-encrypt/) -- Sertifikat TLS otomatis dengan Let's Encrypt
-- [**Menjalankan beberapa layanan**](./multiple-service/) -- Melayani beberapa engine Gin pada port berbeda
+- [**Let's Encrypt**](./support-lets-encrypt/) -- Sertifikat TLS otomatis dengan Let's Encrypt
+- [**Menjalankan beberapa layanan**](./run-multiple-service/) -- Melayani beberapa engine Gin pada port berbeda
 - [**Restart atau stop graceful**](./graceful-restart-or-stop/) -- Mematikan tanpa memutus koneksi aktif
 - [**HTTP/2 server push**](./http2-server-push/) -- Push sumber daya ke klien secara proaktif
 - [**Penanganan cookie**](./cookie/) -- Membaca dan menulis cookie HTTP

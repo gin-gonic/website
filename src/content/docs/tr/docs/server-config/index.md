@@ -34,8 +34,8 @@ Bu, Gin'in tüm yönlendirme ve ara katman yeteneklerini korurken Go'nun sunucu 
 
 - [**Özel HTTP yapılandırması**](./custom-http-config/) -- Temel HTTP sunucusunu ince ayarlama
 - [**Özel JSON codec'i**](./custom-json-codec/) -- Alternatif JSON serileştirme kütüphaneleri kullanma
-- [**Let's Encrypt**](./lets-encrypt/) -- Let's Encrypt ile otomatik TLS sertifikaları
-- [**Birden fazla servis çalıştırma**](./multiple-service/) -- Farklı portlarda birden fazla Gin motoru sunma
+- [**Let's Encrypt**](./support-lets-encrypt/) -- Let's Encrypt ile otomatik TLS sertifikaları
+- [**Birden fazla servis çalıştırma**](./run-multiple-service/) -- Farklı portlarda birden fazla Gin motoru sunma
 - [**Zarif yeniden başlatma veya durdurma**](./graceful-restart-or-stop/) -- Aktif bağlantıları düşürmeden kapatma
 - [**HTTP/2 sunucu push**](./http2-server-push/) -- İstemciye proaktif olarak kaynak gönderme
 - [**Çerez işleme**](./cookie/) -- HTTP çerezlerini okuma ve yazma

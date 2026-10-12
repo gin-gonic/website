@@ -34,8 +34,8 @@ func main() {
 
 - [**커스텀 HTTP 설정**](./custom-http-config/) -- 기본 HTTP 서버 세부 조정
 - [**커스텀 JSON 코덱**](./custom-json-codec/) -- 대체 JSON 직렬화 라이브러리 사용
-- [**Let's Encrypt**](./lets-encrypt/) -- Let's Encrypt로 자동 TLS 인증서
-- [**다중 서비스 실행**](./multiple-service/) -- 다른 포트에서 여러 Gin 엔진 서빙
+- [**Let's Encrypt**](./support-lets-encrypt/) -- Let's Encrypt로 자동 TLS 인증서
+- [**다중 서비스 실행**](./run-multiple-service/) -- 다른 포트에서 여러 Gin 엔진 서빙
 - [**우아한 재시작 또는 중지**](./graceful-restart-or-stop/) -- 활성 연결을 끊지 않고 종료
 - [**HTTP/2 서버 푸시**](./http2-server-push/) -- 리소스를 사전에 클라이언트에 푸시
 - [**쿠키 처리**](./cookie/) -- HTTP 쿠키 읽기 및 쓰기

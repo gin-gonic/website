@@ -56,7 +56,7 @@ router.GET("/benchmark", BenchmarkMiddleware(), benchHandler)
 
 - [**استخدام الوسيطات**](./using-middleware/) -- إرفاق الوسيطات عالمياً أو لمجموعات أو مسارات فردية
 - [**وسيطات مخصصة**](./custom-middleware/) -- كتابة دوال الوسيطات الخاصة بك
-- [**استخدام وسيط BasicAuth**](./using-basicauth/) -- المصادقة الأساسية عبر HTTP
-- [**Goroutines داخل الوسيطات**](./goroutines-inside-middleware/) -- تشغيل المهام الخلفية بأمان من الوسيطات
-- [**تكوين HTTP مخصص**](./custom-http-config/) -- معالجة الأخطاء والاسترداد في الوسيطات
+- [**استخدام وسيط BasicAuth**](./using-basicauth-middleware/) -- المصادقة الأساسية عبر HTTP
+- [**Goroutines داخل الوسيطات**](./goroutines-inside-a-middleware/) -- تشغيل المهام الخلفية بأمان من الوسيطات
+- [**تكوين HTTP مخصص**](../server-config/custom-http-config/) -- معالجة الأخطاء والاسترداد في الوسيطات
 - [**ترويسات الأمان**](./security-headers/) -- تعيين ترويسات الأمان الشائعة

@@ -53,10 +53,10 @@ Gin은 다양한 소스에서 데이터를 바인딩할 수 있습니다: **JSON
 - [**쿼리 문자열 또는 POST 데이터 바인딩**](./bind-query-or-post/) -- 쿼리 문자열과 폼 바디에서 바인딩
 - [**URI 바인딩**](./bind-uri/) -- 경로 매개변수를 구조체에 바인딩
 - [**헤더 바인딩**](./bind-header/) -- HTTP 헤더를 구조체에 바인딩
-- [**기본값**](./default-value/) -- 누락된 필드에 대한 대체 값 설정
-- [**컬렉션 형식**](./collection-format/) -- 배열 쿼리 매개변수 처리
-- [**커스텀 언마셜러**](./custom-unmarshaler/) -- 커스텀 역직렬화 로직 구현
-- [**HTML 체크박스 바인딩**](./bind-html-checkboxes/) -- 체크박스 폼 입력 처리
+- [**기본값**](./bind-default-values/) -- 누락된 필드에 대한 대체 값 설정
+- [**컬렉션 형식**](./collection-format-for-arrays/) -- 배열 쿼리 매개변수 처리
+- [**커스텀 언마셜러**](./bind-custom-unmarshaler/) -- 커스텀 역직렬화 로직 구현
+- [**HTML 체크박스 바인딩**](./bind-html-checkbox/) -- 체크박스 폼 입력 처리
 - [**Multipart/URL 인코딩 바인딩**](./multipart-urlencoded-binding/) -- multipart 폼 데이터 바인딩
-- [**커스텀 구조체 태그**](./custom-struct-tag/) -- 필드 매핑을 위한 커스텀 구조체 태그 사용
+- [**커스텀 구조체 태그**](./bind-form-data-custom-struct-tag/) -- 필드 매핑을 위한 커스텀 구조체 태그 사용
 - [**바디를 다른 구조체에 바인딩 시도**](./bind-body-into-different-structs/) -- 요청 바디를 여러 번 파싱

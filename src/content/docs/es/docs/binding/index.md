@@ -53,10 +53,10 @@ Gin puede enlazar datos de muchas fuentes: **JSON**, **XML**, **YAML**, **TOML**
 - [**Enlazar cadena de consulta o datos post**](./bind-query-or-post/) -- Enlazar desde cadenas de consulta y cuerpos de formularios
 - [**Enlazar URI**](./bind-uri/) -- Enlazar parámetros de ruta en structs
 - [**Enlazar encabezados**](./bind-header/) -- Enlazar encabezados HTTP en structs
-- [**Valores predeterminados**](./default-value/) -- Establecer valores de respaldo para campos faltantes
-- [**Formato de colección**](./collection-format/) -- Manejar parámetros de consulta tipo array
-- [**Unmarshaler personalizado**](./custom-unmarshaler/) -- Implementar lógica de deserialización personalizada
-- [**Enlazar checkboxes HTML**](./bind-html-checkboxes/) -- Manejar entradas de formulario tipo checkbox
+- [**Valores predeterminados**](./bind-default-values/) -- Establecer valores de respaldo para campos faltantes
+- [**Formato de colección**](./collection-format-for-arrays/) -- Manejar parámetros de consulta tipo array
+- [**Unmarshaler personalizado**](./bind-custom-unmarshaler/) -- Implementar lógica de deserialización personalizada
+- [**Enlazar checkboxes HTML**](./bind-html-checkbox/) -- Manejar entradas de formulario tipo checkbox
 - [**Enlace multipart/urlencoded**](./multipart-urlencoded-binding/) -- Enlazar datos de formulario multipart
-- [**Etiqueta de struct personalizada**](./custom-struct-tag/) -- Usar etiquetas de struct personalizadas para el mapeo de campos
+- [**Etiqueta de struct personalizada**](./bind-form-data-custom-struct-tag/) -- Usar etiquetas de struct personalizadas para el mapeo de campos
 - [**Intentar enlazar el cuerpo en diferentes structs**](./bind-body-into-different-structs/) -- Analizar el cuerpo de la solicitud más de una vez

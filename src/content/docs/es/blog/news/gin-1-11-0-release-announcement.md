@@ -26,7 +26,7 @@ Estamos emocionados de anunciar el lanzamiento de Gin v1.11.0, que trae un impor
 ### Rendimiento y mejoras
 
 - **Manejo más rápido de datos de formulario:** Optimizaciones internas para el análisis de formularios que mejoran el rendimiento ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
-- Refactorización del núcleo, renderizado y lógica de contexto para mayor robustez y claridad ([lista completa de PRs en el changelog](../releases/release111.md)).
+- Refactorización del núcleo, renderizado y lógica de contexto para mayor robustez y claridad ([lista completa de PRs en el changelog](../../releases/release111/)).
 
 ### Correcciones de errores
 

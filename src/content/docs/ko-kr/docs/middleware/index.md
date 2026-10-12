@@ -56,7 +56,7 @@ router.GET("/benchmark", BenchmarkMiddleware(), benchHandler)
 
 - [**미들웨어 사용하기**](./using-middleware/) -- 전역, 그룹 또는 개별 라우트에 미들웨어 부착
 - [**커스텀 미들웨어**](./custom-middleware/) -- 자체 미들웨어 함수 작성
-- [**BasicAuth 미들웨어 사용하기**](./using-basicauth/) -- HTTP Basic 인증
-- [**미들웨어 내 고루틴**](./goroutines-inside-middleware/) -- 미들웨어에서 안전하게 백그라운드 작업 실행
-- [**커스텀 HTTP 설정**](./custom-http-config/) -- 미들웨어에서의 오류 처리 및 복구
+- [**BasicAuth 미들웨어 사용하기**](./using-basicauth-middleware/) -- HTTP Basic 인증
+- [**미들웨어 내 고루틴**](./goroutines-inside-a-middleware/) -- 미들웨어에서 안전하게 백그라운드 작업 실행
+- [**커스텀 HTTP 설정**](../server-config/custom-http-config/) -- 미들웨어에서의 오류 처리 및 복구
 - [**보안 헤더**](./security-headers/) -- 일반적인 보안 헤더 설정

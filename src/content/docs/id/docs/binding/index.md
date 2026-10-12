@@ -53,10 +53,10 @@ Gin dapat mengikat data dari berbagai sumber: **JSON**, **XML**, **YAML**, **TOM
 - [**Binding query string atau post data**](./bind-query-or-post/) -- Binding dari query string dan body form
 - [**Bind URI**](./bind-uri/) -- Mengikat parameter path ke dalam struct
 - [**Bind header**](./bind-header/) -- Mengikat header HTTP ke dalam struct
-- [**Nilai default**](./default-value/) -- Menetapkan nilai fallback untuk field yang hilang
-- [**Format koleksi**](./collection-format/) -- Menangani parameter query array
-- [**Unmarshaler kustom**](./custom-unmarshaler/) -- Mengimplementasikan logika deserialisasi kustom
-- [**Bind checkbox HTML**](./bind-html-checkboxes/) -- Menangani input form checkbox
+- [**Nilai default**](./bind-default-values/) -- Menetapkan nilai fallback untuk field yang hilang
+- [**Format koleksi**](./collection-format-for-arrays/) -- Menangani parameter query array
+- [**Unmarshaler kustom**](./bind-custom-unmarshaler/) -- Mengimplementasikan logika deserialisasi kustom
+- [**Bind checkbox HTML**](./bind-html-checkbox/) -- Menangani input form checkbox
 - [**Binding multipart/urlencoded**](./multipart-urlencoded-binding/) -- Mengikat data form multipart
-- [**Tag struct kustom**](./custom-struct-tag/) -- Menggunakan tag struct kustom untuk pemetaan field
+- [**Tag struct kustom**](./bind-form-data-custom-struct-tag/) -- Menggunakan tag struct kustom untuk pemetaan field
 - [**Mencoba bind body ke struct berbeda**](./bind-body-into-different-structs/) -- Mem-parse body permintaan lebih dari sekali

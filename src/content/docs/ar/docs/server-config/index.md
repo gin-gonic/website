@@ -34,8 +34,8 @@ func main() {
 
 - [**تكوين HTTP مخصص**](./custom-http-config/) -- ضبط خادم HTTP الأساسي
 - [**مُرمّز JSON مخصص**](./custom-json-codec/) -- استخدام مكتبات تسلسل JSON بديلة
-- [**Let's Encrypt**](./lets-encrypt/) -- شهادات TLS تلقائية مع Let's Encrypt
-- [**تشغيل خدمات متعددة**](./multiple-service/) -- تقديم عدة محركات Gin على منافذ مختلفة
+- [**Let's Encrypt**](./support-lets-encrypt/) -- شهادات TLS تلقائية مع Let's Encrypt
+- [**تشغيل خدمات متعددة**](./run-multiple-service/) -- تقديم عدة محركات Gin على منافذ مختلفة
 - [**إعادة التشغيل أو الإيقاف الرشيق**](./graceful-restart-or-stop/) -- الإيقاف بدون إسقاط الاتصالات النشطة
 - [**دفع خادم HTTP/2**](./http2-server-push/) -- دفع الموارد إلى العميل بشكل استباقي
 - [**معالجة ملفات تعريف الارتباط**](./cookie/) -- قراءة وكتابة ملفات تعريف ارتباط HTTP

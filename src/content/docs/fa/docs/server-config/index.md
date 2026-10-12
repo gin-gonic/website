@@ -34,8 +34,8 @@ func main() {
 
 - [**پیکربندی HTTP سفارشی**](./custom-http-config/) -- تنظیم دقیق سرور HTTP زیربنایی
 - [**کدک JSON سفارشی**](./custom-json-codec/) -- استفاده از کتابخانه‌های سریال‌سازی JSON جایگزین
-- [**Let's Encrypt**](./lets-encrypt/) -- گواهی‌های TLS خودکار با Let's Encrypt
-- [**اجرای سرویس‌های متعدد**](./multiple-service/) -- ارائه چندین موتور Gin روی پورت‌های مختلف
+- [**Let's Encrypt**](./support-lets-encrypt/) -- گواهی‌های TLS خودکار با Let's Encrypt
+- [**اجرای سرویس‌های متعدد**](./run-multiple-service/) -- ارائه چندین موتور Gin روی پورت‌های مختلف
 - [**راه‌اندازی مجدد یا توقف آرام**](./graceful-restart-or-stop/) -- خاموشی بدون قطع اتصالات فعال
 - [**HTTP/2 server push**](./http2-server-push/) -- ارسال پیشگیرانه منابع به کلاینت
 - [**مدیریت کوکی**](./cookie/) -- خواندن و نوشتن کوکی‌های HTTP

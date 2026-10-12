@@ -26,7 +26,7 @@ We're excited to announce the release of Gin v1.11.0, bringing a major set of ne
 ### 🚀 Performance & Enhancements
 
 - **Faster Form Data Handling:** Internal optimizations for form parsing boost performance ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
-- Refactored core, rendering, and context logic for robustness and clarity ([full PR list in changelog](../releases/release111.md)).
+- Refactored core, rendering, and context logic for robustness and clarity ([full PR list in changelog](../../releases/release111/)).
 
 ### 🐛 Bug Fixes
 

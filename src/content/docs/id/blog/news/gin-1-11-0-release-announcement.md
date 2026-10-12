@@ -26,7 +26,7 @@ Kami dengan senang hati mengumumkan rilis Gin v1.11.0, yang membawa sejumlah bes
 ### Performa & Peningkatan
 
 - **Penanganan Data Form yang Lebih Cepat:** Optimasi internal untuk parsing form meningkatkan performa ([#4339](https://github.com/gin-gonic/gin/pull/4339)).
-- Refaktor inti, rendering, dan logika context untuk ketangguhan dan kejelasan ([daftar PR lengkap di changelog](../releases/release111.md)).
+- Refaktor inti, rendering, dan logika context untuk ketangguhan dan kejelasan ([daftar PR lengkap di changelog](../../releases/release111/)).
 
 ### Perbaikan Bug
 

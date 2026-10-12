@@ -56,7 +56,7 @@ router.GET("/benchmark", BenchmarkMiddleware(), benchHandler)
 
 - [**使用中介軟體**](./using-middleware/) -- 全域、群組或個別路由附加中介軟體
 - [**自訂中介軟體**](./custom-middleware/) -- 撰寫自訂中介軟體函式
-- [**使用 BasicAuth 中介軟體**](./using-basicauth/) -- HTTP 基本身份驗證
-- [**在中介軟體中使用 Goroutine**](./goroutines-inside-middleware/) -- 安全地從中介軟體執行背景任務
-- [**自訂 HTTP 配置**](./custom-http-config/) -- 中介軟體中的錯誤處理和恢復
+- [**使用 BasicAuth 中介軟體**](./using-basicauth-middleware/) -- HTTP 基本身份驗證
+- [**在中介軟體中使用 Goroutine**](./goroutines-inside-a-middleware/) -- 安全地從中介軟體執行背景任務
+- [**自訂 HTTP 配置**](../server-config/custom-http-config/) -- 中介軟體中的錯誤處理和恢復
 - [**安全標頭**](./security-headers/) -- 設定常見的安全標頭

@@ -56,7 +56,7 @@ router.GET("/benchmark", BenchmarkMiddleware(), benchHandler)
 
 - [**使用中间件**](./using-middleware/) -- 全局、分组或单个路由附加中间件
 - [**自定义中间件**](./custom-middleware/) -- 编写自己的中间件函数
-- [**使用 BasicAuth 中间件**](./using-basicauth/) -- HTTP 基本认证
-- [**中间件中的 Goroutine**](./goroutines-inside-middleware/) -- 从中间件安全地运行后台任务
-- [**自定义 HTTP 配置**](./custom-http-config/) -- 中间件中的错误处理和恢复
+- [**使用 BasicAuth 中间件**](./using-basicauth-middleware/) -- HTTP 基本认证
+- [**中间件中的 Goroutine**](./goroutines-inside-a-middleware/) -- 从中间件安全地运行后台任务
+- [**自定义 HTTP 配置**](../server-config/custom-http-config/) -- 中间件中的错误处理和恢复
 - [**安全头**](./security-headers/) -- 设置常见的安全头

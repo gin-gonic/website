@@ -53,10 +53,10 @@ Gin 可以从多种来源绑定数据：**JSON**、**XML**、**YAML**、**TOML**
 - [**绑定查询字符串或 POST 数据**](./bind-query-or-post/) -- 从查询字符串和表单体绑定
 - [**绑定 URI**](./bind-uri/) -- 将路径参数绑定到结构体
 - [**绑定请求头**](./bind-header/) -- 将 HTTP 请求头绑定到结构体
-- [**默认值**](./default-value/) -- 为缺失字段设置回退值
-- [**集合格式**](./collection-format/) -- 处理数组查询参数
-- [**自定义反序列化器**](./custom-unmarshaler/) -- 实现自定义反序列化逻辑
-- [**绑定 HTML 复选框**](./bind-html-checkboxes/) -- 处理复选框表单输入
+- [**默认值**](./bind-default-values/) -- 为缺失字段设置回退值
+- [**集合格式**](./collection-format-for-arrays/) -- 处理数组查询参数
+- [**自定义反序列化器**](./bind-custom-unmarshaler/) -- 实现自定义反序列化逻辑
+- [**绑定 HTML 复选框**](./bind-html-checkbox/) -- 处理复选框表单输入
 - [**Multipart/urlencoded 绑定**](./multipart-urlencoded-binding/) -- 绑定 multipart 表单数据
-- [**自定义结构体标签**](./custom-struct-tag/) -- 使用自定义结构体标签进行字段映射
+- [**自定义结构体标签**](./bind-form-data-custom-struct-tag/) -- 使用自定义结构体标签进行字段映射
 - [**将请求体绑定到不同的结构体**](./bind-body-into-different-structs/) -- 多次解析请求体

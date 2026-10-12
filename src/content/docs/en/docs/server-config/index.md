@@ -34,8 +34,8 @@ This gives you full access to Go's server configuration while keeping all of Gin
 
 - [**Custom HTTP configuration**](./custom-http-config/) -- Fine-tune the underlying HTTP server
 - [**Custom JSON codec**](./custom-json-codec/) -- Use alternative JSON serialization libraries
-- [**Let's Encrypt**](./lets-encrypt/) -- Automatic TLS certificates with Let's Encrypt
-- [**Running multiple services**](./multiple-service/) -- Serve multiple Gin engines on different ports
+- [**Let's Encrypt**](./support-lets-encrypt/) -- Automatic TLS certificates with Let's Encrypt
+- [**Running multiple services**](./run-multiple-service/) -- Serve multiple Gin engines on different ports
 - [**Graceful restart or stop**](./graceful-restart-or-stop/) -- Shut down without dropping active connections
 - [**HTTP/2 server push**](./http2-server-push/) -- Push resources to the client proactively
 - [**Cookie handling**](./cookie/) -- Read and write HTTP cookies

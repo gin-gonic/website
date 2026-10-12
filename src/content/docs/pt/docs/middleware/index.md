@@ -56,7 +56,7 @@ Middleware anexado em um escopo mais amplo executa primeiro. No exemplo acima, u
 
 - [**Usando middleware**](./using-middleware/) -- Anexe middleware globalmente, a grupos ou rotas individuais
 - [**Middleware customizado**](./custom-middleware/) -- Escreva suas próprias funções de middleware
-- [**Usando middleware BasicAuth**](./using-basicauth/) -- Autenticação HTTP Basic
-- [**Goroutines dentro do middleware**](./goroutines-inside-middleware/) -- Execute tarefas em segundo plano com segurança a partir do middleware
-- [**Configuração HTTP customizada**](./custom-http-config/) -- Tratamento de erros e recuperação no middleware
+- [**Usando middleware BasicAuth**](./using-basicauth-middleware/) -- Autenticação HTTP Basic
+- [**Goroutines dentro do middleware**](./goroutines-inside-a-middleware/) -- Execute tarefas em segundo plano com segurança a partir do middleware
+- [**Configuração HTTP customizada**](../server-config/custom-http-config/) -- Tratamento de erros e recuperação no middleware
 - [**Headers de segurança**](./security-headers/) -- Defina headers de segurança comuns
