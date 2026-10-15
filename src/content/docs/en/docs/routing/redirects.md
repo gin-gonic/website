@@ -11,7 +11,7 @@ Gin supports both HTTP redirects (sending the client to a different URL) and rou
 Use `c.Redirect` with an appropriate HTTP status code to redirect the client:
 
 - **301 (`http.StatusMovedPermanently`)** — the resource has permanently moved. Browsers and search engines update their caches.
-- **302 (`http.StatusFound`)** — temporary redirect. The browser follows but does not cache the new URL.
+- **302 (`http.StatusFound`)** — temporary redirect. When following a POST redirect, clients may change the request method to GET. Use 307 instead when the original method must be preserved.
 - **307 (`http.StatusTemporaryRedirect`)** — like 302, but the browser must preserve the original HTTP method (useful for POST redirects).
 - **308 (`http.StatusPermanentRedirect`)** — like 301, but the browser must preserve the original HTTP method.
 
@@ -32,7 +32,7 @@ func main() {
     c.Redirect(http.StatusMovedPermanently, "https://www.google.com/")
   })
 
-  // Redirect from POST -- use 302 or 307 to preserve behavior
+  // POST redirect: a 302 may cause clients to follow with GET
   router.POST("/submit", func(c *gin.Context) {
     c.Redirect(http.StatusFound, "/result")
   })
@@ -74,7 +74,7 @@ curl http://localhost:8080/test
 ```
 
 :::caution
-When redirecting from a POST handler, use `302` or `307` instead of `301`. A `301` redirect may cause some browsers to change the method from POST to GET, which can lead to unexpected behavior.
+When redirecting a POST request, both `301` and `302` may cause clients to change the method to GET and discard the original request body. Use `307` (temporary) or `308` (permanent) when the original method and body must be preserved. Use `303 See Other` when you explicitly want the client to follow a POST with a retrieval request.
 :::
 
 :::tip
