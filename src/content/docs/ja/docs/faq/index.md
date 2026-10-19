@@ -123,7 +123,7 @@ See the [Upload file](/en/docs/routing/upload-file/) documentation for more deta
 
 ### JWTで認証を実装するには？
 
-Use [gin-contrib/jwt](https://github.com/gin-contrib/jwt) or implement custom middleware. Here's a minimal example:
+Use [appleboy/gin-jwt](https://github.com/appleboy/gin-jwt) or implement custom middleware. Here's a minimal example:
 
 ```go
 package main

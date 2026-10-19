@@ -123,7 +123,7 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 
 ### كيف أنفّذ المصادقة باستخدام JWT؟
 
-استخدم [gin-contrib/jwt](https://github.com/gin-contrib/jwt) أو نفّذ وسيطاً مخصصاً. إليك مثالاً بسيطاً:
+استخدم [appleboy/gin-jwt](https://github.com/appleboy/gin-jwt) أو نفّذ وسيطاً مخصصاً. إليك مثالاً بسيطاً:
 
 ```go
 package main

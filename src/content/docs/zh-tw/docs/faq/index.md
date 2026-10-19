@@ -123,7 +123,7 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 
 ### 如何使用 JWT 實作身份驗證？
 
-使用 [gin-contrib/jwt](https://github.com/gin-contrib/jwt) 或實作自訂中介軟體。以下是一個最小範例：
+使用 [appleboy/gin-jwt](https://github.com/appleboy/gin-jwt) 或實作自訂中介軟體。以下是一個最小範例：
 
 ```go
 package main
