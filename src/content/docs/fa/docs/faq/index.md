@@ -123,7 +123,7 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 
 ### چگونه احراز هویت JWT را پیاده‌سازی کنم؟
 
-از [gin-contrib/jwt](https://github.com/gin-contrib/jwt) استفاده کنید یا میان‌افزار سفارشی پیاده‌سازی کنید. در اینجا یک مثال ساده آمده است:
+از [appleboy/gin-jwt](https://github.com/appleboy/gin-jwt) استفاده کنید یا میان‌افزار سفارشی پیاده‌سازی کنید. در اینجا یک مثال ساده آمده است:
 
 ```go
 package main

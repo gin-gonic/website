@@ -123,7 +123,7 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 
 ### Как реализовать аутентификацию с JWT?
 
-Используйте [gin-contrib/jwt](https://github.com/gin-contrib/jwt) или реализуйте пользовательский middleware. Вот минимальный пример:
+Используйте [appleboy/gin-jwt](https://github.com/appleboy/gin-jwt) или реализуйте пользовательский middleware. Вот минимальный пример:
 
 ```go
 package main
