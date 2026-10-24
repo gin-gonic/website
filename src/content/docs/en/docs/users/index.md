@@ -19,6 +19,8 @@ Gin is used in production by companies and open-source projects of all sizes. Be
 - [go-admin](https://github.com/GoAdminGroup/go-admin): A data visualization and admin panel framework for Go.
 - [room](https://github.com/andreimerlescu/room): A drop in _waiting room_ middleware for high throughput web applications. 
 
+- [Wordfully](https://wordfully.ai): Uses Gin for the HTTP API of an event-ingestion service written in Go. The service validates incoming extension events and passes accepted records to background processing.
+
 ## Submit your project
 
 Using Gin in production or for an open-source project? Open a pull request on the [gin-gonic/website](https://github.com/gin-gonic/website) repository to add your project to this page.
