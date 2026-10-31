@@ -1,6 +1,6 @@
 module github.com/gin-gonic/website
 
-go 1.22.2
+go 1.26.10
 
 require (
 	github.com/google/docsy v0.9.2-0.20240426161215-e9eca0fcb3b5 // indirect
