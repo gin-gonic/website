@@ -42,6 +42,12 @@ GAE has two ways to deploy Go applications. The standard environment is easier t
 
 Learn more and pick your preferred environment at [Go on Google App Engine](https://cloud.google.com/appengine/docs/go/).
 
+## [Pethost](https://pethost.dev)
+
+Pethost builds Gin projects from source and serves them over HTTPS. Install the [Pethost CLI](https://pethost.dev/docs/cli/) and run `pethost deploy` in the folder with your `go.mod`: it writes a `Dockerfile` for the project, deploys it, and prints its address.
+
+Follow the Pethost [guide to deploy your Gin projects](https://pethost.dev/blog/deploy-gin-app/).
+
 ## Self Hosted
 
 Gin projects can also be deployed in a self-hosted manner. Deployment architecture and security considerations vary depending on the target environment. The following section only presents a high level overview of configuration options to consider when planning the deployment.
