@@ -4,7 +4,7 @@ sidebar:
   order: 9
 ---
 
-`ShouldBindHeader` melakukan bind header request HTTP langsung ke struct menggunakan tag struct `header`. Ini berguna untuk mengekstrak metadata seperti batas rate API, token autentikasi, atau header domain kustom dari request yang masuk.
+`ShouldBindHeader` melakukan bind header permintaan HTTP langsung ke struct menggunakan tag struct `header`. Ini berguna untuk mengekstrak metadata seperti pembatasan laju API, token autentikasi, atau header domain tersuai dari permintaan yang masuk.
 
 ```go
 package main
@@ -41,11 +41,11 @@ func main() {
 ## Uji coba
 
 ```sh
-# Pass custom headers
+# Melewatkan header tersuai
 curl -H "Rate:300" -H "Domain:music" http://localhost:8080/
 # Output: {"Domain":"music","Rate":300}
 
-# Missing headers -- zero values are used
+# Tanpa header — nilai nol digunakan
 curl http://localhost:8080/
 # Output: {"Domain":"","Rate":0}
 ```
@@ -55,7 +55,7 @@ Nama header bersifat case-insensitive sesuai spesifikasi HTTP. Nilai tag struct 
 :::
 
 :::tip
-Anda dapat menggabungkan tag `header` dengan `binding:"required"` untuk menolak request yang tidak memiliki header yang diperlukan:
+Anda dapat mengkombinasikan tag `header` dengan `binding:"required"` untuk menolak permintaan yang tidak memiliki header yang diperlukan:
 
 ```go
 type authHeader struct {

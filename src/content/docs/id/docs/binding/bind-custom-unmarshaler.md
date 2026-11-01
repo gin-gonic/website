@@ -1,10 +1,10 @@
 ---
-title: "Bind unmarshaler kustom"
+title: "Bind unmarshaler tersuai"
 sidebar:
   order: 8
 ---
 
-Untuk mengganti logika binding default Gin, definisikan fungsi pada tipe Anda yang memenuhi antarmuka `encoding.TextUnmarshaler` dari pustaka standar Go. Kemudian tentukan `parser=encoding.TextUnmarshaler` dalam tag `uri`/`form` dari field yang diikat.
+Untuk mengganti logika binding bawaan Gin, definisikan fungsi pada tipe Anda yang memenuhi antarmuka `encoding.TextUnmarshaler` dari pustaka standar Go. Kemudian tentukan `parser=encoding.TextUnmarshaler` dalam tag `uri`/`form` dari field yang diikat.
 
 ```go
 package main
@@ -52,7 +52,7 @@ Hasil:
 {"Birthday":"2000/01/01","Birthdays":["2000/01/01","2000/01/02"],"BirthdaysDefault":["2020/09/01","2020/09/02"]}
 ```
 
-> **Catatan:** Jika `parser=encoding.TextUnmarshaler` ditentukan untuk tipe yang **tidak** mengimplementasikan `encoding.TextUnmarshaler`, Gin akan mengabaikannya dan melanjutkan dengan logika binding default-nya.
+> **Catatan:** Jika `parser=encoding.TextUnmarshaler` ditentukan untuk tipe yang **tidak** mengimplementasikan `encoding.TextUnmarshaler`, Gin akan mengabaikannya dan melanjutkan dengan logika binding bawaannya.
 
 ### Menggunakan BindUnmarshaler
 
@@ -92,4 +92,4 @@ func main() {
 }
 ```
 
-> **Catatan:** Jika sebuah tipe mengimplementasikan baik `encoding.TextUnmarshaler` maupun `BindUnmarshaler`, Gin akan menggunakan `BindUnmarshaler` secara default kecuali Anda menentukan `parser=encoding.TextUnmarshaler` dalam tag binding.
+> **Catatan:** Jika sebuah tipe mengimplementasikan baik `encoding.TextUnmarshaler` maupun `BindUnmarshaler`, Gin akan menggunakan `BindUnmarshaler` secara bawaan kecuali Anda menentukan `parser=encoding.TextUnmarshaler` dalam tag binding.

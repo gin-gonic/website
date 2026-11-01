@@ -1,12 +1,12 @@
 ---
-title: "Bind form-data dengan tag struct kustom"
+title: "Bind form-data dengan tag struct tersuai"
 sidebar:
   order: 14
 ---
 
-Secara default, Gin menggunakan tag struct `form` untuk melakukan bind data form. Ketika Anda perlu melakukan bind struct yang menggunakan tag berbeda — misalnya, tipe eksternal yang tidak dapat Anda modifikasi — Anda dapat membuat binding kustom yang membaca dari tag Anda sendiri.
+Secara bawaan, Gin menggunakan tag struct `form` untuk melakukan bind data form. Ketika Anda perlu melakukan bind struct yang menggunakan tag berbeda — misalnya, tipe eksternal yang tidak dapat Anda modifikasi — Anda dapat membuat binding tersuai yang membaca dari tag Anda sendiri.
 
-Ini berguna saat berintegrasi dengan pustaka pihak ketiga yang struct-nya menggunakan tag seperti `url`, `query`, atau nama kustom lainnya sebagai pengganti `form`.
+Ini berguna saat berintegrasi dengan pustaka pihak ketiga yang struct-nya menggunakan tag seperti `url`, `query`, atau nama tersuai lainnya sebagai pengganti `form`.
 
 ```go
 package main
@@ -51,7 +51,7 @@ func validate(obj any) error {
   return binding.Validator.ValidateStruct(obj)
 }
 
-// FormA is an external type that we can't modify its tag
+// FormA adalah tipe eksternal yang tag-nya tidak dapat kita modifikasi
 type FormA struct {
   FieldA string `url:"field_a"`
 }
@@ -75,20 +75,20 @@ func main() {
 ## Uji coba
 
 ```sh
-# The custom binding reads from the "url" struct tag instead of "form"
+# Binding tersuai membaca dari tag "url" struct alih-alih "form"
 curl "http://localhost:8080/list?field_a=hello"
 # Output: {"field_a":"hello"}
 
-# Missing parameter -- empty string
+# Tanpa parameter -- string kosong
 curl "http://localhost:8080/list"
 # Output: {"field_a":""}
 ```
 
 :::note
-Binding kustom mengimplementasikan interface `binding.Binding`, yang memerlukan metode `Name() string` dan metode `Bind(*http.Request, any) error`. Helper `binding.MapFormWithTag` melakukan pekerjaan sebenarnya untuk memetakan nilai form ke field struct menggunakan tag kustom Anda.
+Binding tersuai mengimplementasikan interface `binding.Binding`, yang memerlukan metode `Name() string` dan metode `Bind(*http.Request, any) error`. Helper `binding.MapFormWithTag` melakukan pekerjaan sebenarnya untuk memetakan nilai form ke field struct menggunakan tag tersuai Anda.
 :::
 
 ## Lihat juga
 
 - [Binding dan validasi](/id/docs/binding/binding-and-validation/)
-- [Bind permintaan form-data dengan struct kustom](/id/docs/binding/bind-form-data-request-with-custom-struct/)
+- [Bind permintaan form-data dengan struct tersuai](/id/docs/binding/bind-form-data-request-with-custom-struct/)
