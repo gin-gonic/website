@@ -123,7 +123,7 @@ Daha fazla ayrıntı için [Dosya yükleme](/tr/docs/routing/upload-file/) belge
 
 ### JWT ile kimlik doğrulamayı nasıl uygularım?
 
-[gin-contrib/jwt](https://github.com/gin-contrib/jwt) kullanın veya özel ara katman uygulayın. İşte minimal bir örnek:
+[appleboy/gin-jwt](https://github.com/appleboy/gin-jwt) kullanın veya özel ara katman uygulayın. İşte minimal bir örnek:
 
 ```go
 package main

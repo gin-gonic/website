@@ -123,7 +123,7 @@ r.POST("/upload-multiple", func(c *gin.Context) {
 
 ### 如何使用 JWT 实现认证？
 
-使用 [gin-contrib/jwt](https://github.com/gin-contrib/jwt) 或实现自定义中间件。以下是一个最小示例：
+使用 [appleboy/gin-jwt](https://github.com/appleboy/gin-jwt) 或实现自定义中间件。以下是一个最小示例：
 
 ```go
 package main

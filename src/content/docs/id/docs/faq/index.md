@@ -123,7 +123,7 @@ Lihat dokumentasi [Upload file](/id/docs/routing/upload-file/) untuk detail lebi
 
 ### Bagaimana cara mengimplementasikan autentikasi dengan JWT?
 
-Gunakan [gin-contrib/jwt](https://github.com/gin-contrib/jwt) atau implementasikan middleware kustom. Berikut contoh minimal:
+Gunakan [appleboy/gin-jwt](https://github.com/appleboy/gin-jwt) atau implementasikan middleware kustom. Berikut contoh minimal:
 
 ```go
 package main

@@ -123,7 +123,7 @@ Consulta la documentación de [Subir archivos](/es/docs/routing/upload-file/) pa
 
 ### ¿Cómo implemento autenticación con JWT?
 
-Usa [gin-contrib/jwt](https://github.com/gin-contrib/jwt) o implementa un middleware personalizado. Aquí hay un ejemplo mínimo:
+Usa [appleboy/gin-jwt](https://github.com/appleboy/gin-jwt) o implementa un middleware personalizado. Aquí hay un ejemplo mínimo:
 
 ```go
 package main
