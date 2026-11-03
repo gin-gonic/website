@@ -12,7 +12,9 @@ Gin supports three levels of middleware attachment:
 - **Group middleware** — Applied to all routes within a route group. Registered with `group.Use()`. Useful for applying authentication or authorization to a subset of routes (e.g., all `/admin/*` routes).
 - **Per-route middleware** — Applied to a single route only. Passed as additional arguments to `router.GET()`, `router.POST()`, etc. Useful for route-specific logic such as custom rate limiting or input validation.
 
-**Execution order:** Middleware functions execute in the order they are registered. When a middleware calls `c.Next()`, it passes control to the next middleware (or the final handler), and then resumes execution after `c.Next()` returns. This creates a stack-like (LIFO) pattern — the first middleware registered is the first to start but the last to finish. If a middleware does not call `c.Next()`, subsequent middleware and the handler are skipped (useful for short-circuiting with `c.Abort()`).
+**Execution order:** Middleware functions execute in the order they are registered. Calling `c.Next()` executes the remaining handlers, then resumes the current middleware after `c.Next()` returns. This lets you run code both before and after downstream handlers; when middleware wrap their downstream handlers this way, their post-processing runs in reverse order (LIFO).
+
+If a middleware returns without calling `c.Next()`, subsequent middleware and the handler still execute unless the context has been aborted. To skip pending handlers, call `c.Abort()` or an `AbortWithStatus*` method. Aborting does not stop the current middleware function, so use `return` if you also want to stop executing its remaining code.
 
 ```go
 package main

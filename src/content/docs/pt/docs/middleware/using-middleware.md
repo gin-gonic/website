@@ -12,7 +12,9 @@ O Gin suporta três níveis de anexação de middleware:
 - **Middleware de grupo** -- Aplicado a todas as rotas dentro de um grupo de rotas. Registrado com `group.Use()`. Útil para aplicar autenticação ou autorização a um subconjunto de rotas (ex.: todas as rotas `/admin/*`).
 - **Middleware por rota** -- Aplicado a uma única rota apenas. Passado como argumentos adicionais para `router.GET()`, `router.POST()`, etc. Útil para lógica específica de rota como rate limiting customizado ou validação de entrada.
 
-**Ordem de execução:** As funções middleware executam na ordem em que são registradas. Quando um middleware chama `c.Next()`, ele passa o controle para o próximo middleware (ou handler final), e então retoma a execução após o retorno de `c.Next()`. Isso cria um padrão de pilha (LIFO) -- o primeiro middleware registrado é o primeiro a iniciar mas o último a terminar. Se um middleware não chama `c.Next()`, os middlewares subsequentes e o handler são pulados (útil para curto-circuito com `c.Abort()`).
+**Ordem de execução:** As funções middleware executam na ordem em que são registradas. A chamada a `c.Next()` executa os handlers restantes e, quando retorna, retoma a execução do middleware atual. Isso permite executar código antes e depois dos handlers seguintes; quando os middlewares envolvem os handlers seguintes dessa forma, seu pós-processamento executa em ordem inversa (LIFO).
+
+Se um middleware retorna sem chamar `c.Next()`, os middlewares seguintes e o handler continuam sendo executados, a menos que o contexto tenha sido abortado. Para pular os handlers pendentes, chame `c.Abort()` ou um método `AbortWithStatus*`. Abortar não interrompe a função middleware atual, portanto use `return` se também quiser interromper a execução do código restante dessa função.
 
 ```go
 package main
