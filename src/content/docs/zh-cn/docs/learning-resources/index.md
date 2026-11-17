@@ -26,7 +26,6 @@ sidebar:
 社区编写的指南，带你逐步构建使用 Gin 的实际应用。
 
 - **[使用 Go 和 Gin 构建 RESTful API（Go.dev）](https://go.dev/doc/tutorial/web-service-gin)** -- 使用 Gin 构建简单 Web 服务的 Go 官方教程。
-- **[使用 Go、Gin 和 GORM 构建 REST API（Digital Ocean）](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- 涵盖项目结构、数据库集成和部署。
 
 ## 交互式学习平台
 

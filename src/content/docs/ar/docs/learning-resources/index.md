@@ -26,7 +26,6 @@ sidebar:
 أدلة كتبها المجتمع ترشدك خلال بناء تطبيقات حقيقية مع Gin.
 
 - **[بناء واجهة RESTful API مع Go و Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- درس رسمي من Go يستخدم Gin لبناء خدمة ويب بسيطة.
-- **[بناء واجهة REST API مع Go و Gin و GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- يغطي تنظيم المشروع والتكامل مع قاعدة البيانات والنشر.
 
 ## منصات التعلم التفاعلي
 

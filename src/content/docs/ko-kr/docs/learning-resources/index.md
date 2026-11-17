@@ -26,7 +26,6 @@ Go 자체에 대한 탄탄한 이해가 있으면 Gin 작업이 훨씬 쉬워집
 Gin으로 실제 애플리케이션을 구축하는 과정을 안내하는 커뮤니티 작성 가이드입니다.
 
 - **[Go와 Gin으로 RESTful API 구축하기 (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- Gin을 사용하여 간단한 웹 서비스를 구축하는 공식 Go 튜토리얼.
-- **[Go, Gin, GORM으로 REST API 구축하기 (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- 프로젝트 구조, 데이터베이스 통합, 배포를 다룹니다.
 
 ## 대화형 학습 플랫폼
 

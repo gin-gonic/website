@@ -26,7 +26,6 @@ sidebar:
 راهنماهای نوشته شده توسط جامعه که ساخت برنامه‌های واقعی با Gin را آموزش می‌دهند.
 
 - **[ساخت API RESTful با Go و Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- آموزش رسمی Go که از Gin برای ساخت یک سرویس وب ساده استفاده می‌کند.
-- **[ساخت REST API با Go، Gin و GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- ساختار پروژه، یکپارچه‌سازی پایگاه داده و استقرار را پوشش می‌دهد.
 
 ## پلتفرم‌های یادگیری تعاملی
 

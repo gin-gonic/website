@@ -26,7 +26,6 @@ Go'nun kendisini iyi anlamak, Gin ile çalışmayı çok daha kolay hale getirec
 Gin ile gerçek uygulamalar oluşturma sürecinde yol gösteren topluluk tarafından yazılmış kılavuzlar.
 
 - **[Go ve Gin ile RESTful API Oluşturma (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- Basit bir web servisi oluşturmak için Gin kullanan resmi Go eğitimi.
-- **[Go, Gin ve GORM ile REST API Oluşturma (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- Proje düzeni, veritabanı entegrasyonu ve dağıtımı kapsar.
 
 ## Etkileşimli Öğrenme Platformları
 
