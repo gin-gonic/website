@@ -26,7 +26,6 @@ A solid understanding of Go itself will make working with Gin much easier.
 Community-written guides that walk through building real applications with Gin.
 
 - **[Building a RESTful API with Go and Gin (Go.dev)](https://go.dev/doc/tutorial/web-service-gin)** -- An official Go tutorial that uses Gin to build a simple web service.
-- **[Build a REST API with Go, Gin, and GORM (Digital Ocean)](https://www.digitalocean.com/community/tutorials/how-to-build-and-deploy-a-go-application)** -- Covers project layout, database integration, and deployment.
 
 ## Interactive Learning Platforms
 
